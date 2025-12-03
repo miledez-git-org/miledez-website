@@ -27,6 +27,24 @@ export default function Home() {
     return () => observer.disconnect()
   }, [])
 
+  // Staggered reveal observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    document.querySelectorAll('.fade-in-up').forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
   const workflowSteps = [
     { icon: stepIcons.trigger, title: 'Gatilho', desc: 'Evento inicia o processo' },
     { icon: stepIcons.process, title: 'Processamento', desc: 'Dados são transformados' },
@@ -78,6 +96,15 @@ export default function Home() {
             Agendar conversa
           </a>
         </div>
+
+        <div className="mt-20 flex justify-center">
+          <a
+            href="#como-funciona"
+            className="px-4 py-1 rounded-full border border-brand-border text-xs text-brand-muted hover:bg-brand-accent hover:text-white hover:border-brand-accent transition-all duration-300"
+          >
+            Como funciona ↓
+          </a>
+        </div>
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -91,9 +118,9 @@ export default function Home() {
           <p className="mt-4 text-lg font-medium text-brand-muted">Processos que rodam automaticamente, 24 horas por dia</p>
         </div>
 
-        <div ref={workflowRef} className="relative py-8">
+        <div ref={workflowRef} className="relative py-8 fade-in-up">
           {/* Connection lines */}
-          <div className="absolute top-12 left-[10%] right-[10%] flex">
+          <div className="absolute top-[60px] left-[10%] right-[10%] flex">
             {workflowSteps.slice(0, -1).map((_, i) => (
               <div
                 key={i}
@@ -108,7 +135,7 @@ export default function Home() {
           </div>
 
           {/* Data pulses */}
-          <div className="absolute top-10 left-[10%] right-[10%] flex h-2 overflow-hidden">
+          <div className="absolute top-[52px] left-[10%] right-[10%] flex h-2 overflow-hidden">
             {workflowSteps.slice(0, -1).map((_, i) => (
               <div key={i} className="flex-1 relative overflow-hidden">
                 <div
@@ -136,7 +163,7 @@ export default function Home() {
                 }}
               >
                 <div
-                  className={`w-14 h-14 mx-auto mb-4 flex items-center justify-center border ${i === 3 ? 'border-brand-accent text-brand-accent' : 'border-brand-black text-brand-black'
+                  className={`w-14 h-14 mx-auto mb-4 flex items-center justify-center border bg-white relative z-10 ${i === 3 ? 'border-brand-accent text-brand-accent' : 'border-brand-black text-brand-black'
                     }`}
                 >
                   {step.icon}
@@ -147,6 +174,15 @@ export default function Home() {
             ))}
           </div>
         </div>
+
+        <div className="mt-12 flex justify-center">
+          <a
+            href="#integracoes"
+            className="px-4 py-1 rounded-full border border-brand-border text-xs text-brand-muted hover:bg-brand-accent hover:text-white hover:border-brand-accent transition-all duration-300"
+          >
+            Integrações ↓
+          </a>
+        </div>
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -154,7 +190,7 @@ export default function Home() {
       </div>
 
       {/* Integrations */}
-      <section id="integracoes" className="py-32 px-10 max-w-6xl mx-auto">
+      <section id="integracoes" className="py-32 px-10 max-w-6xl mx-auto fade-in-up">
         <div className="mb-16">
           <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Integrações</h2>
           <p className="mt-4 text-lg font-medium text-brand-muted">Conectamos as ferramentas que você já usa</p>
@@ -168,6 +204,15 @@ export default function Home() {
             </div>
           ))}
         </div>
+
+        <div className="mt-20 flex justify-center">
+          <a
+            href="#beneficios"
+            className="px-4 py-1 rounded-full border border-brand-border text-xs text-brand-muted hover:bg-brand-accent hover:text-white hover:border-brand-accent transition-all duration-300"
+          >
+            Benefícios ↓
+          </a>
+        </div>
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -175,7 +220,7 @@ export default function Home() {
       </div>
 
       {/* Benefits */}
-      <section className="py-32 px-10 max-w-6xl mx-auto">
+      <section id="beneficios" className="py-32 px-10 max-w-6xl mx-auto fade-in-up">
         <div className="grid grid-cols-3 gap-20">
           <div>
             <h3 className="text-lg font-medium mb-4 text-brand-black">Economize tempo</h3>
@@ -196,6 +241,15 @@ export default function Home() {
             </p>
           </div>
         </div>
+
+        <div className="mt-20 flex justify-center">
+          <a
+            href="#processo"
+            className="px-4 py-1 rounded-full border border-brand-border text-xs text-brand-muted hover:bg-brand-accent hover:text-white hover:border-brand-accent transition-all duration-300"
+          >
+            Nosso processo ↓
+          </a>
+        </div>
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -203,7 +257,7 @@ export default function Home() {
       </div>
 
       {/* Process */}
-      <section className="py-32 px-10 max-w-6xl mx-auto">
+      <section id="processo" className="py-32 px-10 max-w-6xl mx-auto fade-in-up">
         <div className="grid grid-cols-2 gap-32">
           <div>
             <h2 className="text-[2rem] font-medium mb-12 text-brand-black tracking-[-0.02em]">Nosso processo</h2>
@@ -228,6 +282,15 @@ export default function Home() {
             ))}
           </div>
         </div>
+
+        <div className="mt-20 flex justify-center">
+          <a
+            href="#industrias"
+            className="px-4 py-1 rounded-full border border-brand-border text-xs text-brand-muted hover:bg-brand-accent hover:text-white hover:border-brand-accent transition-all duration-300"
+          >
+            Indústrias ↓
+          </a>
+        </div>
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -235,7 +298,7 @@ export default function Home() {
       </div>
 
       {/* Industries */}
-      <section id="industrias" className="py-32 px-10 max-w-6xl mx-auto">
+      <section id="industrias" className="py-32 px-10 max-w-6xl mx-auto fade-in-up">
         <div className="mb-16">
           <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Indústrias</h2>
           <p className="mt-4 text-lg font-medium text-brand-muted">Soluções específicas para cada setor</p>
@@ -265,6 +328,15 @@ export default function Home() {
               </svg>
             </Link>
           ))}
+        </div>
+
+        <div className="mt-20 flex justify-center">
+          <a
+            href="#contato"
+            className="px-4 py-1 rounded-full border border-brand-border text-xs text-brand-muted hover:bg-brand-accent hover:text-white hover:border-brand-accent transition-all duration-300"
+          >
+            Contato ↓
+          </a>
         </div>
       </section>
 

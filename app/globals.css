@@ -4,10 +4,23 @@
 
 /* Animation keyframes */
 @keyframes movePulse {
-  0% { opacity: 0; left: 0; }
-  15% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { opacity: 0; left: calc(100% - 8px); }
+  0% {
+    opacity: 0;
+    left: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    left: calc(100% - 8px);
+  }
 }
 
 .animate-pulse-move {
@@ -17,4 +30,20 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: #8b2020;
+  color: #ffffff;
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
