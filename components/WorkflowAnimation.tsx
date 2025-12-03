@@ -37,7 +37,7 @@ export default function WorkflowAnimation({ steps, accentStep = -1 }: WorkflowAn
   return (
     <div ref={ref} className="relative py-8">
       {/* Connection lines */}
-      <div className="absolute top-12 left-[10%] right-[10%] flex">
+      <div className="absolute top-[60px] left-[10%] right-[10%] flex">
         {steps.slice(0, -1).map((_, i) => (
           <div
             key={i}
@@ -52,7 +52,7 @@ export default function WorkflowAnimation({ steps, accentStep = -1 }: WorkflowAn
       </div>
 
       {/* Data pulses */}
-      <div className="absolute top-10 left-[10%] right-[10%] flex h-2 overflow-hidden">
+      <div className="absolute top-[52px] left-[10%] right-[10%] flex h-2 overflow-hidden">
         {steps.slice(0, -1).map((_, i) => (
           <div key={i} className="flex-1 relative overflow-hidden">
             <div
@@ -80,11 +80,10 @@ export default function WorkflowAnimation({ steps, accentStep = -1 }: WorkflowAn
             }}
           >
             <div
-              className={`w-14 h-14 mx-auto mb-4 flex items-center justify-center border ${
-                i === accentStep
+              className={`w-14 h-14 mx-auto mb-4 flex items-center justify-center border bg-white relative z-10 ${i === accentStep
                   ? 'border-brand-accent text-brand-accent'
                   : 'border-brand-black text-brand-black'
-              }`}
+                }`}
             >
               {step.icon}
             </div>
