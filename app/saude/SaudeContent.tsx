@@ -1,0 +1,239 @@
+'use client'
+
+import Link from 'next/link'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import WorkflowAnimation from '@/components/WorkflowAnimation'
+import { icons, stepIcons } from '@/components/Icons'
+
+export default function SaudeContent() {
+  const workflows = {
+    documents: {
+      title: 'Coleta de Documentos',
+      subtitle: 'Prontuário completo sem trabalho manual',
+      steps: [
+        { icon: stepIcons.user, title: 'Novo paciente', desc: 'Cadastro iniciado' },
+        { icon: stepIcons.mail, title: 'Formulário enviado', desc: 'Ficha de anamnese automática' },
+        { icon: stepIcons.folder, title: 'Docs organizados', desc: 'Arquivos classificados por tipo' },
+        { icon: stepIcons.check, title: 'Prontuário completo', desc: 'Pendências sinalizadas' },
+      ],
+    },
+    billing: {
+      title: 'Faturamento de Convênios',
+      subtitle: 'Menos glosas, reembolso mais rápido',
+      steps: [
+        { icon: stepIcons.result, title: 'Consulta finalizada', desc: 'Dados registrados' },
+        { icon: stepIcons.document, title: 'Guia formatada', desc: 'Conforme exigências do convênio' },
+        { icon: stepIcons.mail, title: 'Envio automático', desc: 'Submissão ao portal' },
+        { icon: stepIcons.check, title: 'Status rastreado', desc: 'Acompanhamento até pagamento' },
+      ],
+    },
+    compliance: {
+      title: 'Organização e Conformidade',
+      subtitle: 'Pronto para auditoria, sempre',
+      steps: [
+        { icon: stepIcons.document, title: 'Documento recebido', desc: 'Qualquer formato' },
+        { icon: stepIcons.process, title: 'Auto-classificado', desc: 'IA identifica tipo' },
+        { icon: stepIcons.calendar, title: 'Retenção definida', desc: 'Prazo legal configurado' },
+        { icon: stepIcons.check, title: 'Alertas agendados', desc: 'Aviso antes vencimento' },
+      ],
+    },
+    collections: {
+      title: 'Cobrança e Acompanhamento',
+      subtitle: 'Menos inadimplência, menos trabalho',
+      steps: [
+        { icon: stepIcons.creditCard, title: 'Fatura gerada', desc: 'Automática após atendimento' },
+        { icon: stepIcons.calendar, title: 'Prazo monitorado', desc: 'Contagem regressiva' },
+        { icon: stepIcons.bell, title: 'Lembretes enviados', desc: 'Escalonamento automático' },
+        { icon: stepIcons.check, title: 'Status atualizado', desc: 'Baixa automática ao pagar' },
+      ],
+    },
+  }
+
+  const integrations = [
+    { name: 'Excel', icon: icons.excel },
+    { name: 'Google Sheets', icon: icons.googleSheets },
+    { name: 'PDF', icon: icons.pdf },
+    { name: 'Google Drive', icon: icons.googleDrive },
+    { name: 'Email', icon: icons.email },
+    { name: 'Calendar', icon: icons.calendar },
+  ]
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+
+      {/* Hero */}
+      <section className="pt-48 pb-32 px-10 max-w-6xl mx-auto">
+        <div className="max-w-2xl">
+          <p className="text-sm uppercase tracking-widest mb-4 text-brand-muted">Saúde e Clínicas</p>
+          <h1 className="text-[3.5rem] font-medium leading-tight mb-8 text-brand-black tracking-[-0.03em]">
+            Menos papelada.<br />Mais tempo para pacientes.
+          </h1>
+          <p className="text-xl mb-12 max-w-lg text-brand-text leading-relaxed">
+            Automatizamos documentação, faturamento e conformidade. Você foca no atendimento.
+          </p>
+          <a
+            href="#contato"
+            className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-black hover:bg-brand-dark transition-colors"
+          >
+            Agendar conversa
+          </a>
+        </div>
+      </section>
+
+      <div className="max-w-6xl mx-auto px-10">
+        <div className="h-px bg-brand-border" />
+      </div>
+
+      {/* Pain Points */}
+      <section className="py-32 px-10 max-w-6xl mx-auto">
+        <div className="mb-16">
+          <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Os desafios do dia a dia</h2>
+        </div>
+
+        <div className="grid grid-cols-3 gap-20">
+          <div>
+            <h3 className="text-lg font-medium mb-4 text-brand-black">Documentação dispersa</h3>
+            <p className="text-sm leading-relaxed text-brand-text">
+              Fichas em papel, arquivos no computador, anexos no e-mail. Informação espalhada, difícil de encontrar quando precisa.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium mb-4 text-brand-black">Faturamento complexo</h3>
+            <p className="text-sm leading-relaxed text-brand-text">
+              Cada convênio com regras diferentes, guias que voltam com glosa, tempo perdido corrigindo e reenviando.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-lg font-medium mb-4 text-brand-black">Conformidade constante</h3>
+            <p className="text-sm leading-relaxed text-brand-text">
+              Prazos de retenção, documentos obrigatórios, preparação para auditoria. Sempre algo para organizar.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="max-w-6xl mx-auto px-10">
+        <div className="h-px bg-brand-border" />
+      </div>
+
+      {/* Workflows */}
+      <section className="py-32 px-10 max-w-6xl mx-auto">
+        <div className="mb-20">
+          <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">O que automatizamos</h2>
+          <p className="text-lg text-brand-text">Processos que funcionam sozinhos, liberando sua equipe</p>
+        </div>
+
+        <div className="space-y-24">
+          {Object.entries(workflows).map(([key, workflow], index) => (
+            <div key={key}>
+              <div className="mb-8">
+                <h3 className="text-xl font-medium mb-2 text-brand-black">{workflow.title}</h3>
+                <p className="text-brand-muted">{workflow.subtitle}</p>
+              </div>
+              <WorkflowAnimation steps={workflow.steps} accentStep={3} />
+              {index < Object.keys(workflows).length - 1 && (
+                <div className="max-w-4xl mx-auto mt-24">
+                  <div className="h-px bg-brand-border" />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div className="max-w-6xl mx-auto px-10">
+        <div className="h-px bg-brand-border" />
+      </div>
+
+      {/* Results */}
+      <section className="py-32 px-10 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 gap-32">
+          <div>
+            <h2 className="text-[2rem] font-medium mb-12 text-brand-black tracking-[-0.02em]">Resultados típicos</h2>
+
+            <div className="space-y-10">
+              {[
+                { value: '70%', label: 'menos tempo em tarefas administrativas' },
+                { value: '50%', label: 'redução em glosas de convênios' },
+                { value: '2x', label: 'mais rápido no ciclo de recebimento' },
+                { value: '100%', label: 'dos documentos organizados e rastreáveis' },
+              ].map((metric, i) => (
+                <div key={i}>
+                  <span className="text-4xl font-medium text-brand-accent">{metric.value}</span>
+                  <p className="mt-2 text-brand-text">{metric.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center">
+            <div>
+              <p className="text-xl leading-relaxed text-brand-text">
+                Sua equipe para de correr atrás de papel e começa a focar no que importa: o atendimento ao paciente.
+              </p>
+              <p className="text-xl leading-relaxed mt-6 text-brand-text">
+                Auditorias deixam de ser emergência. Faturamento deixa de ser gargalo. Documentos param de sumir.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="max-w-6xl mx-auto px-10">
+        <div className="h-px bg-brand-border" />
+      </div>
+
+      {/* Also Automated */}
+      <section className="py-16 px-10 max-w-6xl mx-auto">
+        <p className="text-center text-brand-muted">
+          Também automatizamos: lembretes de consulta, confirmações via WhatsApp, gestão de lista de espera, follow-up pós-atendimento
+        </p>
+      </section>
+
+      <div className="max-w-6xl mx-auto px-10">
+        <div className="h-px bg-brand-border" />
+      </div>
+
+      {/* Integrations */}
+      <section className="py-32 px-10 max-w-6xl mx-auto">
+        <div className="mb-16">
+          <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">Ferramentas que você já usa</h2>
+          <p className="text-brand-text">Integramos sem trocar seus sistemas</p>
+        </div>
+
+        <div className="flex gap-14 max-w-3xl">
+          {integrations.map((item, i) => (
+            <div key={i} className="flex flex-col items-center gap-4">
+              <div className="text-brand-black">{item.icon}</div>
+              <span className="text-sm text-brand-muted">{item.name}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div className="max-w-6xl mx-auto px-10">
+        <div className="h-px bg-brand-border" />
+      </div>
+
+      {/* CTA */}
+      <section id="contato" className="py-36 px-10 max-w-6xl mx-auto text-center">
+        <h2 className="text-[2.5rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
+          Vamos simplificar sua administração?
+        </h2>
+        <p className="text-lg max-w-md mx-auto mb-12 text-brand-text">
+          Conversa sem compromisso. Entendemos sua clínica e mostramos o que é possível automatizar.
+        </p>
+        <a
+          href="mailto:contato@mildez.com"
+          className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-black hover:bg-brand-dark transition-colors"
+        >
+          Iniciar conversa
+        </a>
+      </section>
+
+      <Footer />
+    </div>
+  )
+}
