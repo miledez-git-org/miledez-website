@@ -92,7 +92,7 @@ export default function Home() {
           </p>
           <a
             href="#contato"
-            className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-black hover:bg-brand-dark transition-colors"
+            className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
           >
             Agendar conversa
           </a>

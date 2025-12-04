@@ -79,7 +79,7 @@ export default function VarejoContent() {
           </p>
           <a
             href="#contato"
-            className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-black hover:bg-brand-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
+            className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
           >
             Agendar conversa
           </a>
@@ -133,8 +133,8 @@ export default function VarejoContent() {
         <div className="space-y-16">
           {Object.entries(workflows).map(([key, workflow], index) => (
             <div key={key}>
-              <div className="mb-8 flex items-center gap-4">
-                <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center border border-brand-black text-brand-black text-sm font-medium">
+              <div className="mb-8 flex items-stretch gap-4">
+                <span className="flex-shrink-0 w-8 flex items-center justify-center border border-brand-black text-brand-black text-sm font-medium">
                   {index + 1}
                 </span>
                 <div>
