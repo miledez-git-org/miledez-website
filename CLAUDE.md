@@ -25,36 +25,52 @@ This is a Next.js 14 static website for mil&dez, a Brazilian B2B automation agen
 
 ### Key Components
 
-- `components/Header.tsx` - Fixed navigation (client component)
+- `components/Header.tsx` - Fixed navigation with logo, desktop nav, mobile hamburger menu
 - `components/Footer.tsx` - Site footer (server component)
 - `components/WorkflowAnimation.tsx` - Reusable animated workflow visualization with Intersection Observer
+- `components/SectionNavButton.tsx` - Navigation buttons between sections
 - `components/Icons.tsx` - All SVG icons (outline style, 1.5px stroke)
+
+### Assets
+
+- `public/logo.svg` - Website logo (32px height in header)
 
 ### Path Aliases
 
 Use `@/` for imports from project root: `import { icons } from '@/components/Icons'`
 
-## Design System (LOCKED - See brand-direction-locked.md)
+## Design System
 
-**Do not deviate from these principles:**
+**LOCKED - See `../brand/brand-direction-locked.md` for complete specifications**
+
+The brand direction document is the single source of truth for ALL design decisions, including:
+- Logo usage and specifications
+- Color palette
+- Typography
+- Components (buttons, icons, workflow indicators)
+- Layout principles
+- Animation patterns
+
+### Quick Reference - Brand Colors (Tailwind)
+
+```
+brand-black:       #1a1a1a  - Headlines, primary text
+brand-dark:        #2d2d2d  - Button hover (legacy)
+brand-text:        #3d3d3d  - Body text
+brand-muted:       #5a5a5a  - Secondary text, nav links
+brand-light:       #7a7a7a  - Tertiary info
+brand-border:      #e0e0e0  - Dividers
+brand-accent:      #8b2020  - CTAs, workflow indicators
+brand-accent-dark: #6b1a1a  - Accent hover state
+```
+
+### Key Design Principles
 
 - Extreme minimalism - every element must justify existence
 - White backgrounds only (no cards, shadows, gradients, rounded corners)
 - Outline icons only (1.5px stroke, black)
-- Accent color (`brand-accent: #8b2020`) for key CTAs only (max 1-2 per page)
+- Accent color for hero CTAs and workflow indicators
 - Separation via spacing (80-140px between sections), not visual containers
-
-### Brand Colors (Tailwind)
-
-```
-brand-black:  #1a1a1a  - Headlines, primary text, buttons
-brand-dark:   #2d2d2d  - Button hover state
-brand-text:   #3d3d3d  - Body text
-brand-muted:  #5a5a5a  - Secondary text, nav links
-brand-light:  #7a7a7a  - Tertiary info
-brand-border: #e0e0e0  - Dividers
-brand-accent: #8b2020  - Dark red, use sparingly
-```
 
 ### Typography
 
@@ -66,9 +82,9 @@ brand-accent: #8b2020  - Dark red, use sparingly
 ## Animation Pattern
 
 Workflow animations use Intersection Observer with threshold 0.3 to trigger on viewport entry. See `WorkflowAnimation.tsx` for the reusable pattern with:
-- Sequential fade-in for steps
-- Animated connection lines
-- Data pulse animations
+- Sequential fade-in for step elements
+- Static connection lines (always visible)
+- Animated data pulse dots moving along connections
 
 ## Static Export Note
 

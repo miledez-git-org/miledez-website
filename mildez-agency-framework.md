@@ -1,6 +1,6 @@
 # mil&dez Agency Management Framework
 
-**Last Updated:** 2025-12-02
+**Last Updated:** 2025-12-04
 **Status:** Active Development
 **Owner:** Simon
 
@@ -8,33 +8,34 @@
 
 ## Executive Summary
 
-mil&dez is an AI workflow automation agency based in Brazil, helping non-technical business owners implement automation solutions. The agency is currently in infrastructure buildout phase, establishing brand identity, website, sales materials, and operational processes.
+mil&dez is an AI workflow automation agency based in Brazil, helping non-technical business owners implement automation solutions. The agency has completed initial brand identity and website development, with ongoing refinements and next phase focused on sales materials.
 
 ---
 
 ## Current Status Overview
 
-### ✅ COMPLETED
+### COMPLETED
 
 | Area | Deliverable | Status | Location |
 |------|-------------|--------|----------|
-| **Brand Direction** | Design philosophy locked | ✅ Complete | `brand-direction-locked.md` |
-| **Website - Landing** | Main landing page | ✅ Complete | `mildez-landing-page.html` |
-| **Website - Healthcare** | Saúde e Clínicas sub-page | ✅ Complete | `saude.html` |
-| **Website - Professional Services** | Serviços Profissionais sub-page | ✅ Complete | `servicos.html` |
-| **Website - Retail** | Varejo e E-commerce sub-page | ✅ Complete | `varejo.html` |
-| **React Project** | Full site with routing | ✅ Complete | `mildez-site/` |
-| **Design Exploration** | Healthcare presentation concepts | ✅ Complete | `healthcare-design-exploration.pptx` |
-| **Folder Structure Script** | PowerShell setup script | ✅ Complete | `setup-folder-structure.ps1` |
+| **Brand Direction** | Design philosophy locked | Complete | `brand/brand-direction-locked.md` |
+| **Logo** | SVG logos (black/white variants) | Complete | `brand/logo/` |
+| **Website - Next.js** | Full site migrated to Next.js 14 | Complete | `website/` |
+| **Website - Landing** | Main landing page | Complete | `website/app/page.tsx` |
+| **Website - Healthcare** | Saúde e Clínicas sub-page | Complete | `website/app/saude/` |
+| **Website - Professional Services** | Serviços Profissionais sub-page | Complete | `website/app/servicos/` |
+| **Website - Retail** | Varejo e E-commerce sub-page | Complete | `website/app/varejo/` |
+| **Website - Mobile** | Hamburger menu navigation | Complete | `website/components/Header.tsx` |
+| **Website - Animations** | Workflow animations with data pulses | Complete | `website/components/WorkflowAnimation.tsx` |
 
-### 🔄 IN PROGRESS
+### IN PROGRESS
 
 | Area | Item | Status | Notes |
 |------|------|--------|-------|
-| **Website** | VS Code migration | 🔄 Starting | Moving dev from Claude Desktop to VS Code |
-| **Website** | Deployment | 🔄 Pending | Need hosting setup (Vercel recommended) |
+| **Website** | Deployment to production | Pending | Ready for Vercel deployment |
+| **Sales Materials** | Proposal templates | Planning | Portuguese, follows brand direction |
 
-### ⏳ NOT STARTED
+### NOT STARTED
 
 | Area | Item | Priority | Notes |
 |------|------|----------|-------|
@@ -51,7 +52,13 @@ mil&dez is an AI workflow automation agency based in Brazil, helping non-technic
 ## Brand Identity (LOCKED)
 
 ### Agency Name
-**mil&dez** (previously Larsen Invest)
+**mil&dez**
+
+### Logo
+- Primary: `brand/logo/mildez-logo.svg` (black text, red ampersand)
+- Inverted: `brand/logo/mildez-logo-white.svg` (white text, red ampersand)
+- Font: Manrope, weight 300, letter-spacing -0.03em
+- Website header: 32px height
 
 ### Design Philosophy
 Extreme minimalism. Every element must justify its existence.
@@ -63,21 +70,20 @@ Primary Text:   #1a1a1a (black)
 Body Text:      #3d3d3d
 Secondary:      #5a5a5a
 Muted:          #7a7a7a
-Accent:         #8b2020 (dark red - sparingly)
+Accent:         #8b2020 (dark red)
+Accent Dark:    #6b1a1a (hover states)
 Border:         #e0e0e0
 ```
-
-### Typography
-System fonts, weight 400-500, tight letter-spacing on headlines
 
 ### Key Rules
 - NO cards, shadows, gradients, rounded corners
 - Separation via spacing, dividers, column changes
 - Icons: outline only, 1.5px stroke, black
-- Accent color: max 1-2 uses per page
+- CTAs: accent color for hero buttons
+- Workflow indicators: accent background, white text
 - Animations: purposeful workflow demonstrations only
 
-**Full specification:** See `brand-direction-locked.md`
+**Full specification:** See `brand/brand-direction-locked.md`
 
 ---
 
@@ -86,125 +92,112 @@ System fonts, weight 400-500, tight letter-spacing on headlines
 ### Pages Complete
 
 ```
-mil&dez Website
+mil&dez Website (Next.js 14)
 ├── / (Landing)
-│   ├── Hero: Value proposition
-│   ├── Como funciona: Animated workflow
-│   ├── Integrações: 15 software icons
+│   ├── Hero: Value proposition + red CTA
+│   ├── Como funciona: Animated workflow with data pulses
+│   ├── Integrações: 15 software icons (centered labels)
 │   ├── Benefícios: 3 columns
 │   ├── Processo: Numbered steps
 │   ├── Indústrias: Links to sub-pages
 │   └── CTA: Contact
 │
-├── #saude (Healthcare)
-│   ├── Focus: Back-office operations
-│   ├── Workflows: Documents, Billing, Compliance, Collections
-│   └── Integrations: Operational tools
+├── /saude (Healthcare)
+│   ├── Hero: Industry badge + headline + red CTA
+│   ├── Pain points: 3 columns
+│   ├── Workflows: 4 numbered sections with animations
+│   ├── Results: Metrics
+│   ├── Integrations: Icon grid
+│   └── CTA: Contact
 │
-├── #servicos (Professional Services)
-│   ├── Focus: Billable hours recovery
-│   ├── Workflows: Onboarding, Contracts, Billing, Reports
-│   └── Integrations: Professional tools
+├── /servicos (Professional Services)
+│   ├── Hero: Industry badge + headline + red CTA
+│   ├── Pain points: 3 columns
+│   ├── Workflows: 4 numbered sections with animations
+│   ├── Results: Metrics
+│   ├── Integrations: Icon grid
+│   └── CTA: Contact
 │
-└── #varejo (Retail/E-commerce)
-    ├── Focus: Operations automation
-    ├── Workflows: Inventory, Orders, Financial, Reports
-    └── Integrations: Commerce tools
+└── /varejo (Retail/E-commerce)
+    ├── Hero: Industry badge + headline + red CTA
+    ├── Pain points: 3 columns
+    ├── Workflows: 4 numbered sections with animations
+    ├── Results: Metrics
+    ├── Integrations: Icon grid
+    └── CTA: Contact
 ```
 
 ### Technical Stack
-- **Framework:** React + Vite
+- **Framework:** Next.js 14 (App Router)
 - **Styling:** Tailwind CSS
-- **Routing:** Hash-based (no dependencies)
+- **Language:** TypeScript
+- **Export:** Static HTML (configured)
 - **Deployment:** Ready for Vercel
 
-### File Inventory
-
-| File | Type | Purpose |
-|------|------|---------|
-| `mildez-site/` | React Project | Full website source |
-| `mildez-site.zip` | Archive | Downloadable project |
-| `mildez-landing-page.html` | Standalone | Landing page (no build) |
-| `saude.html` | Standalone | Healthcare page (no build) |
-| `servicos.html` | Standalone | Professional Services page (no build) |
-| `varejo.html` | Standalone | Retail page (no build) |
+### Recent UI Updates (2025-12-04)
+- Added SVG logo to header (32px height)
+- Changed hero CTAs to accent color (red)
+- Redesigned workflow number indicators (square, red bg, white text)
+- Made connection lines static (removed fade animation)
+- Added center-aligned labels to integration icons
+- Removed "Também automatizamos" sections from subpages
+- Implemented mobile hamburger menu navigation
 
 ---
 
-## VS Code Development Workflow
+## File Structure
 
-### Migration from Claude Desktop
-
-The website development is moving from Claude Desktop chat to VS Code for:
-- Better file management and version control
-- Live preview and hot reload
-- Git integration
-- More efficient iteration cycles
-
-### Recommended Setup
-
-#### Option A: Claude Code CLI
-```bash
-# Install Claude Code
-npm install -g @anthropic-ai/claude-code
-
-# Navigate to project
-cd path/to/mildez-site
-
-# Start Claude Code
-claude
-
-# Example commands in Claude Code:
-# "Add a contact form to the landing page"
-# "Fix the mobile navigation"
-# "Deploy to Vercel"
+```
+miledez-agency/
+├── brand/
+│   ├── brand-direction-locked.md    ← Single source of truth for design
+│   └── logo/
+│       ├── mildez-logo.svg          ← Primary logo (black)
+│       ├── mildez-logo-white.svg    ← Inverted logo (white)
+│       └── mildez-monogram.svg      ← Compact version
+│
+├── website/                          ← Next.js 14 website
+│   ├── app/
+│   │   ├── layout.tsx
+│   │   ├── page.tsx                  ← Landing page
+│   │   ├── globals.css
+│   │   ├── saude/
+│   │   ├── servicos/
+│   │   └── varejo/
+│   ├── components/
+│   │   ├── Header.tsx                ← Nav with logo
+│   │   ├── Footer.tsx
+│   │   ├── WorkflowAnimation.tsx
+│   │   ├── SectionNavButton.tsx
+│   │   └── Icons.tsx
+│   ├── public/
+│   │   └── logo.svg                  ← Website logo
+│   ├── CLAUDE.md                     ← Dev guidance
+│   ├── README.md                     ← Project setup
+│   └── mildez-agency-framework.md    ← This document
+│
+├── sales/                            ← Future: Sales materials
+├── clients/                          ← Future: Client projects
+└── operations/                       ← Future: Processes
 ```
 
-#### Option B: Cursor IDE
-- Install Cursor (cursor.sh)
-- Open `mildez-site/` folder
-- Use Cmd+K for inline edits
-- Use Cmd+L for chat with codebase context
+---
 
-#### Option C: VS Code + Continue Extension
-- Install Continue extension
-- Configure with Anthropic API key
-- Chat with codebase context
+## Development Workflow
 
 ### Getting Started
 
-1. **Extract the project:**
-   ```bash
-   unzip mildez-site.zip
-   cd mildez-site
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Start development server:**
-   ```bash
-   npm run dev
-   ```
-
-4. **Access locally:**
-   - Landing: http://localhost:5173
-   - Healthcare: http://localhost:5173/#saude
-   - Services: http://localhost:5173/#servicos
-   - Retail: http://localhost:5173/#varejo
+```bash
+cd website
+npm install
+npm run dev
+# Open http://localhost:3000
+```
 
 ### Deployment to Vercel
 
 ```bash
-# Install Vercel CLI
 npm install -g vercel
-
-# Deploy (first time)
-vercel
-
-# Deploy updates
 vercel --prod
 ```
 
@@ -214,19 +207,18 @@ Or connect GitHub repo to Vercel for automatic deployments.
 
 ## Next Steps (Prioritized)
 
-### Phase 1: Website Launch (This Week)
+### Phase 1: Website Launch (Current)
 
-| Step | Action | Tool |
-|------|--------|------|
-| 1 | Extract `mildez-site.zip` to local folder | Terminal |
-| 2 | Open in VS Code/Cursor | IDE |
-| 3 | Run `npm install` and `npm run dev` | Terminal |
-| 4 | Test all pages locally | Browser |
-| 5 | Make any refinements needed | Claude Code/Cursor |
-| 6 | Deploy to Vercel | Vercel CLI |
-| 7 | Configure custom domain (if ready) | Vercel Dashboard |
+| Step | Action | Status |
+|------|--------|--------|
+| 1 | Website development | Complete |
+| 2 | Logo integration | Complete |
+| 3 | UI refinements | Complete |
+| 4 | Test all pages locally | Ready |
+| 5 | Deploy to Vercel | Pending |
+| 6 | Configure custom domain | Pending |
 
-### Phase 2: Sales Materials (Next 2 Weeks)
+### Phase 2: Sales Materials (Next)
 
 | Deliverable | Description | Format |
 |-------------|-------------|--------|
@@ -235,7 +227,7 @@ Or connect GitHub repo to Vercel for automatic deployments.
 | One-Pager | Quick leave-behind for prospects | PDF |
 | Follow-up Email Templates | Post-meeting sequences | Text/Email |
 
-### Phase 3: Operations Setup (Next Month)
+### Phase 3: Operations Setup
 
 | System | Purpose | Tool Options |
 |--------|---------|--------------|
@@ -243,14 +235,6 @@ Or connect GitHub repo to Vercel for automatic deployments.
 | Client Onboarding | Standardized intake | Checklist + templates |
 | File Organization | Client deliverables | Google Drive structure |
 | Invoicing | Billing clients | Stripe, Pagar.me |
-
-### Phase 4: Growth (Ongoing)
-
-| Activity | Frequency | Purpose |
-|----------|-----------|---------|
-| LinkedIn Posts | 2-3x/week | Lead generation |
-| Case Studies | Per completed project | Social proof |
-| Referral Outreach | Monthly | Network growth |
 
 ---
 
@@ -280,46 +264,9 @@ Or connect GitHub repo to Vercel for automatic deployments.
 | Agency name: mil&dez | 2025-12-02 | Fresh start, memorable, Portuguese-friendly |
 | Design: Extreme minimalism | 2025-12-02 | Differentiation, professional positioning |
 | Healthcare focus: Back-office | 2025-12-02 | Avoid crowded WhatsApp/chatbot space |
-| Tech stack: React + Vite | 2025-12-02 | Modern, fast, easy deployment |
-| Development: Move to VS Code | 2025-12-02 | Better iteration workflow |
-
----
-
-## File Locations Reference
-
-### Outputs Folder (Claude Desktop)
-```
-/mnt/user-data/outputs/
-├── brand-direction-locked.md      ← Brand spec (REFERENCE)
-├── mildez-site/                   ← React project source
-├── mildez-site.zip                ← Downloadable archive
-├── mildez-landing-page.html       ← Standalone landing
-├── saude.html                     ← Standalone healthcare
-├── servicos.html                  ← Standalone services
-├── varejo.html                    ← Standalone retail
-├── healthcare-design-exploration.pptx
-└── setup-folder-structure.ps1
-```
-
-### Recommended Local Structure
-```
-~/Projects/mildez/
-├── website/                       ← Extract mildez-site.zip here
-│   ├── src/
-│   ├── package.json
-│   └── ...
-├── brand/
-│   └── brand-direction-locked.md  ← Copy for reference
-├── sales/
-│   ├── proposals/
-│   ├── presentations/
-│   └── templates/
-├── clients/
-│   └── [client-name]/
-└── operations/
-    ├── processes/
-    └── templates/
-```
+| Tech stack: Next.js 14 | 2025-12-03 | Modern, static export, easy deployment |
+| CTAs: Accent color | 2025-12-04 | Better visual hierarchy |
+| Single brand doc | 2025-12-04 | Avoid duplication, single source of truth |
 
 ---
 
@@ -328,8 +275,8 @@ Or connect GitHub repo to Vercel for automatic deployments.
 ### For Future Claude Sessions
 
 When continuing work on mil&dez, reference:
-1. **Brand direction:** `brand-direction-locked.md` - design is LOCKED
-2. **Website:** `mildez-site/` - React project with 4 pages complete
+1. **Brand direction:** `brand/brand-direction-locked.md` - design is LOCKED
+2. **Website:** `website/` - Next.js 14 project, 4 pages complete
 3. **This document:** For current status and next steps
 
 ### Key Context
@@ -348,7 +295,12 @@ When continuing work on mil&dez, reference:
 | 2025-12-02 | Brand direction locked |
 | 2025-12-02 | Landing page completed |
 | 2025-12-02 | All 3 industry sub-pages completed |
-| 2025-12-02 | VS Code migration decision made |
+| 2025-12-03 | Migrated to Next.js 14 |
+| 2025-12-04 | Added SVG logo to header |
+| 2025-12-04 | Changed hero CTAs to accent color |
+| 2025-12-04 | Redesigned workflow number indicators |
+| 2025-12-04 | Consolidated brand direction to single file in /brand |
+| 2025-12-04 | Updated all documentation files |
 
 ---
 

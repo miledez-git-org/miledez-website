@@ -26,7 +26,7 @@ npm run dev
 ## Project Structure
 
 ```
-mildez-nextjs/
+website/
 ├── app/
 │   ├── layout.tsx           # Root layout (metadata, fonts)
 │   ├── globals.css          # Global styles + Tailwind
@@ -41,10 +41,13 @@ mildez-nextjs/
 │       ├── page.tsx
 │       └── VarejoContent.tsx
 ├── components/
-│   ├── Header.tsx           # Navigation header
+│   ├── Header.tsx           # Navigation header with logo
 │   ├── Footer.tsx           # Site footer
 │   ├── WorkflowAnimation.tsx # Reusable animated workflow
+│   ├── SectionNavButton.tsx # Section navigation buttons
 │   └── Icons.tsx            # All SVG icons
+├── public/
+│   └── logo.svg             # Website logo
 ├── package.json
 ├── next.config.js
 ├── tailwind.config.ts
@@ -65,7 +68,6 @@ claude
 # Example prompts:
 # "Add a contact form to the landing page"
 # "Create a 404 page"
-# "Add mobile navigation menu"
 # "Optimize images for Core Web Vitals"
 ```
 
@@ -120,19 +122,26 @@ Full TypeScript support with strict mode enabled.
 
 ## Brand Reference
 
-See `brand-direction-locked.md` for full design spec.
+**See `../brand/brand-direction-locked.md` for complete design specifications.**
 
-**Design is LOCKED** - follow the spec for any additions.
+This document is the single source of truth for:
+- Logo usage and sizing
+- Color palette
+- Typography
+- Component styles
+- Layout principles
+
+The brand direction applies to all mil&dez materials (website, social media, proposals, etc.).
 
 ## Key Design Rules
 
-- ❌ NO cards, shadows, gradients, rounded corners
-- ❌ NO colored backgrounds
-- ❌ NO filled icons
-- ✅ White background everywhere
-- ✅ Outline icons only (1.5px stroke)
-- ✅ Separation via spacing and dividers
-- ✅ Accent color (#8b2020) max 1-2x per page
+- NO cards, shadows, gradients, rounded corners
+- NO colored backgrounds
+- NO filled icons
+- White background everywhere
+- Outline icons only (1.5px stroke)
+- Separation via spacing and dividers
+- Accent color (#8b2020) for CTAs and indicators
 
 ## Custom Colors (Tailwind)
 
@@ -147,6 +156,7 @@ colors: {
     light: '#7a7a7a',
     border: '#e0e0e0',
     accent: '#8b2020',
+    'accent-dark': '#6b1a1a',
   }
 }
 ```
@@ -183,27 +193,6 @@ export async function POST(request: Request) {
   // Handle form submission
   return NextResponse.json({ success: true })
 }
-```
-
-## Common Tasks
-
-### Add a contact form
-```bash
-# In Claude Code:
-claude
-> "Add a contact form to the CTA section that sends to a /api/contact endpoint"
-```
-
-### Add Google Analytics
-```bash
-claude
-> "Add Google Analytics 4 with the measurement ID G-XXXXXXXXXX"
-```
-
-### Add mobile navigation
-```bash
-claude
-> "Add a hamburger menu for mobile that shows the navigation links"
 ```
 
 ## Resources
