@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
@@ -11,11 +12,14 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 bg-white z-50 border-b border-brand-border">
       <nav className="max-w-6xl mx-auto px-6 md:px-10 py-5 flex justify-between items-center">
-        <Link
-          href="/"
-          className="text-lg font-semibold tracking-tight text-brand-black"
-        >
-          mil&dez
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.svg"
+            alt="mil&dez"
+            width={149}
+            height={32}
+            priority
+          />
         </Link>
 
         {/* Mobile menu button */}

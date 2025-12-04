@@ -189,7 +189,7 @@ export default function Home() {
           {integrations.map((item, i) => (
             <div key={i} className="flex flex-col items-center gap-3">
               <div className="text-brand-black">{item.icon}</div>
-              <span className="text-xs text-brand-muted">{item.name}</span>
+              <span className="text-xs text-brand-muted text-center">{item.name}</span>
             </div>
           ))}
         </div>

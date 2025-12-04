@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300&amp;display=swap');
+      .logo-text { font-family: 'Manrope', sans-serif; font-weight: 300; font-size: 48px; letter-spacing: -0.03em; }
+      .black { fill: #1a1a1a; }
+      .accent { fill: #8b2020; }
+    </style>
+  </defs>
+  <text x="0" y="46" class="logo-text">
+    <tspan class="black">mil</tspan><tspan class="accent">&amp;</tspan><tspan class="black">dez</tspan>
+  </text>
+</svg>

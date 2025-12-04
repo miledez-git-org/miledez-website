@@ -134,12 +134,12 @@ export default function SaudeContent() {
         <div className="space-y-16">
           {Object.entries(workflows).map(([key, workflow], index) => (
             <div key={key}>
-              <div className="mb-8 flex items-stretch gap-4">
-                <span className="flex-shrink-0 w-8 flex items-center justify-center border border-brand-black text-brand-black text-sm font-medium">
+              <div className="mb-8 flex items-center gap-4">
+                <span className="flex-shrink-0 w-7 h-7 flex items-center justify-center bg-brand-accent text-white text-sm font-medium">
                   {index + 1}
                 </span>
                 <div>
-                  <h3 className="text-xl font-medium text-brand-black">{workflow.title}</h3>
+                  <h3 className="text-xl font-medium text-brand-black leading-7">{workflow.title}</h3>
                   <p className="text-brand-muted">{workflow.subtitle}</p>
                 </div>
               </div>
@@ -195,17 +195,6 @@ export default function SaudeContent() {
         <div className="h-px bg-brand-border" />
       </div>
 
-      {/* Also Automated */}
-      <section className="py-12 md:py-16 px-6 md:px-10 max-w-6xl mx-auto">
-        <p className="text-center text-brand-muted">
-          Também automatizamos: lembretes de consulta, confirmações via WhatsApp, gestão de lista de espera, follow-up pós-atendimento
-        </p>
-      </section>
-
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
-
       {/* Integrations */}
       <section id="integracoes" className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
         <div className="mb-16">
@@ -217,7 +206,7 @@ export default function SaudeContent() {
           {integrations.map((item, i) => (
             <div key={i} className="flex flex-col items-center gap-4">
               <div className="text-brand-black">{item.icon}</div>
-              <span className="text-sm text-brand-muted">{item.name}</span>
+              <span className="text-sm text-brand-muted text-center">{item.name}</span>
             </div>
           ))}
         </div>
