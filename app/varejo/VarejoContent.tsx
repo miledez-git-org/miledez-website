@@ -3,6 +3,7 @@
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import WorkflowAnimation from '@/components/WorkflowAnimation'
+import SectionNavButton from '@/components/SectionNavButton'
 import { icons, stepIcons } from '@/components/Icons'
 
 export default function VarejoContent() {
@@ -65,7 +66,11 @@ export default function VarejoContent() {
       {/* Hero */}
       <section className="pt-48 pb-32 px-10 max-w-6xl mx-auto">
         <div className="max-w-2xl">
-          <p className="text-sm uppercase tracking-widest mb-4 text-brand-muted">Varejo e E-commerce</p>
+          <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-brand-accent bg-brand-accent-light">
+            <span className="text-sm font-medium uppercase tracking-widest text-brand-accent">
+              Varejo e E-commerce
+            </span>
+          </div>
           <h1 className="text-[3.5rem] font-medium leading-tight mb-8 text-brand-black tracking-[-0.03em]">
             Operação no piloto<br />automático.
           </h1>
@@ -74,11 +79,12 @@ export default function VarejoContent() {
           </p>
           <a
             href="#contato"
-            className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-black hover:bg-brand-dark transition-colors"
+            className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
           >
             Agendar conversa
           </a>
         </div>
+        <SectionNavButton href="#workflows" label="O que automatizamos" />
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -118,28 +124,29 @@ export default function VarejoContent() {
       </div>
 
       {/* Workflows */}
-      <section className="py-32 px-10 max-w-6xl mx-auto">
+      <section id="workflows" className="py-32 px-10 max-w-6xl mx-auto">
         <div className="mb-20">
           <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">O que automatizamos</h2>
           <p className="text-lg text-brand-text">Processos que funcionam enquanto você vende</p>
         </div>
 
-        <div className="space-y-24">
+        <div className="space-y-16">
           {Object.entries(workflows).map(([key, workflow], index) => (
             <div key={key}>
-              <div className="mb-8">
-                <h3 className="text-xl font-medium mb-2 text-brand-black">{workflow.title}</h3>
-                <p className="text-brand-muted">{workflow.subtitle}</p>
+              <div className="mb-8 flex items-start gap-4">
+                <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-brand-accent text-white text-sm font-medium rounded-full">
+                  {index + 1}
+                </span>
+                <div>
+                  <h3 className="text-xl font-medium text-brand-black">{workflow.title}</h3>
+                  <p className="text-brand-muted mt-1">{workflow.subtitle}</p>
+                </div>
               </div>
               <WorkflowAnimation steps={workflow.steps} accentStep={3} />
-              {index < Object.keys(workflows).length - 1 && (
-                <div className="max-w-4xl mx-auto mt-24">
-                  <div className="h-px bg-brand-border" />
-                </div>
-              )}
             </div>
           ))}
         </div>
+        <SectionNavButton href="#resultados" label="Resultados" />
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -147,36 +154,39 @@ export default function VarejoContent() {
       </div>
 
       {/* Results */}
-      <section className="py-32 px-10 max-w-6xl mx-auto">
-        <div className="grid grid-cols-2 gap-32">
-          <div>
-            <h2 className="text-[2rem] font-medium mb-12 text-brand-black tracking-[-0.02em]">Resultados típicos</h2>
-
-            <div className="space-y-10">
-              {[
-                { value: '85%', label: 'menos rupturas de estoque' },
-                { value: '3x', label: 'mais rápido no processamento de pedidos' },
-                { value: '100%', label: 'das vendas conciliadas automaticamente' },
-                { value: 'Zero', label: 'surpresas no fechamento financeiro' },
-              ].map((metric, i) => (
-                <div key={i}>
-                  <span className="text-4xl font-medium text-brand-accent">{metric.value}</span>
-                  <p className="mt-2 text-brand-text">{metric.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex items-center">
+      <section id="resultados" className="py-32 bg-brand-accent-light">
+        <div className="px-10 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 gap-32">
             <div>
-              <p className="text-xl leading-relaxed text-brand-text">
-                Seu estoque se mantém equilibrado. Pedidos fluem sem gargalos. O financeiro fecha sozinho.
-              </p>
-              <p className="text-xl leading-relaxed mt-6 text-brand-text">
-                Você para de apagar incêndio e começa a pensar em crescimento: novos produtos, novos canais, melhor margem.
-              </p>
+              <h2 className="text-[2rem] font-medium mb-12 text-brand-black tracking-[-0.02em]">Resultados típicos</h2>
+
+              <div className="space-y-10">
+                {[
+                  { value: '85%', label: 'menos rupturas de estoque' },
+                  { value: '3x', label: 'mais rápido no processamento de pedidos' },
+                  { value: '100%', label: 'das vendas conciliadas automaticamente' },
+                  { value: 'Zero', label: 'surpresas no fechamento financeiro' },
+                ].map((metric, i) => (
+                  <div key={i}>
+                    <span className="text-4xl font-medium text-brand-accent">{metric.value}</span>
+                    <p className="mt-2 text-brand-text">{metric.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex items-center">
+              <div>
+                <p className="text-xl leading-relaxed text-brand-text">
+                  Seu estoque se mantém equilibrado. Pedidos fluem sem gargalos. O financeiro fecha sozinho.
+                </p>
+                <p className="text-xl leading-relaxed mt-6 text-brand-text">
+                  Você para de apagar incêndio e começa a pensar em crescimento: novos produtos, novos canais, melhor margem.
+                </p>
+              </div>
             </div>
           </div>
+          <SectionNavButton href="#integracoes" label="Integrações" />
         </div>
       </section>
 
@@ -196,7 +206,7 @@ export default function VarejoContent() {
       </div>
 
       {/* Integrations */}
-      <section className="py-32 px-10 max-w-6xl mx-auto">
+      <section id="integracoes" className="py-32 px-10 max-w-6xl mx-auto">
         <div className="mb-16">
           <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">Ferramentas que você já usa</h2>
           <p className="text-brand-text">Integramos sem trocar seus sistemas</p>
@@ -210,6 +220,7 @@ export default function VarejoContent() {
             </div>
           ))}
         </div>
+        <SectionNavButton href="#contato" label="Contato" />
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -226,7 +237,7 @@ export default function VarejoContent() {
         </p>
         <a
           href="mailto:contato@mildez.com"
-          className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-black hover:bg-brand-dark transition-colors"
+          className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
         >
           Iniciar conversa
         </a>

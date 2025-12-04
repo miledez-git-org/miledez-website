@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import WorkflowAnimation from '@/components/WorkflowAnimation'
+import SectionNavButton from '@/components/SectionNavButton'
 import { icons, stepIcons } from '@/components/Icons'
 
 export default function SaudeContent() {
@@ -66,7 +67,11 @@ export default function SaudeContent() {
       {/* Hero */}
       <section className="pt-48 pb-32 px-10 max-w-6xl mx-auto">
         <div className="max-w-2xl">
-          <p className="text-sm uppercase tracking-widest mb-4 text-brand-muted">Saúde e Clínicas</p>
+          <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-brand-accent bg-brand-accent-light">
+            <span className="text-sm font-medium uppercase tracking-widest text-brand-accent">
+              Saúde e Clínicas
+            </span>
+          </div>
           <h1 className="text-[3.5rem] font-medium leading-tight mb-8 text-brand-black tracking-[-0.03em]">
             Menos papelada.<br />Mais tempo para pacientes.
           </h1>
@@ -75,11 +80,12 @@ export default function SaudeContent() {
           </p>
           <a
             href="#contato"
-            className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-black hover:bg-brand-dark transition-colors"
+            className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
           >
             Agendar conversa
           </a>
         </div>
+        <SectionNavButton href="#workflows" label="O que automatizamos" />
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -119,28 +125,29 @@ export default function SaudeContent() {
       </div>
 
       {/* Workflows */}
-      <section className="py-32 px-10 max-w-6xl mx-auto">
+      <section id="workflows" className="py-32 px-10 max-w-6xl mx-auto">
         <div className="mb-20">
           <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">O que automatizamos</h2>
           <p className="text-lg text-brand-text">Processos que funcionam sozinhos, liberando sua equipe</p>
         </div>
 
-        <div className="space-y-24">
+        <div className="space-y-16">
           {Object.entries(workflows).map(([key, workflow], index) => (
             <div key={key}>
-              <div className="mb-8">
-                <h3 className="text-xl font-medium mb-2 text-brand-black">{workflow.title}</h3>
-                <p className="text-brand-muted">{workflow.subtitle}</p>
+              <div className="mb-8 flex items-start gap-4">
+                <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-brand-accent text-white text-sm font-medium rounded-full">
+                  {index + 1}
+                </span>
+                <div>
+                  <h3 className="text-xl font-medium text-brand-black">{workflow.title}</h3>
+                  <p className="text-brand-muted mt-1">{workflow.subtitle}</p>
+                </div>
               </div>
               <WorkflowAnimation steps={workflow.steps} accentStep={3} />
-              {index < Object.keys(workflows).length - 1 && (
-                <div className="max-w-4xl mx-auto mt-24">
-                  <div className="h-px bg-brand-border" />
-                </div>
-              )}
             </div>
           ))}
         </div>
+        <SectionNavButton href="#resultados" label="Resultados" />
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -148,36 +155,39 @@ export default function SaudeContent() {
       </div>
 
       {/* Results */}
-      <section className="py-32 px-10 max-w-6xl mx-auto">
-        <div className="grid grid-cols-2 gap-32">
-          <div>
-            <h2 className="text-[2rem] font-medium mb-12 text-brand-black tracking-[-0.02em]">Resultados típicos</h2>
-
-            <div className="space-y-10">
-              {[
-                { value: '70%', label: 'menos tempo em tarefas administrativas' },
-                { value: '50%', label: 'redução em glosas de convênios' },
-                { value: '2x', label: 'mais rápido no ciclo de recebimento' },
-                { value: '100%', label: 'dos documentos organizados e rastreáveis' },
-              ].map((metric, i) => (
-                <div key={i}>
-                  <span className="text-4xl font-medium text-brand-accent">{metric.value}</span>
-                  <p className="mt-2 text-brand-text">{metric.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex items-center">
+      <section id="resultados" className="py-32 bg-brand-accent-light">
+        <div className="px-10 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 gap-32">
             <div>
-              <p className="text-xl leading-relaxed text-brand-text">
-                Sua equipe para de correr atrás de papel e começa a focar no que importa: o atendimento ao paciente.
-              </p>
-              <p className="text-xl leading-relaxed mt-6 text-brand-text">
-                Auditorias deixam de ser emergência. Faturamento deixa de ser gargalo. Documentos param de sumir.
-              </p>
+              <h2 className="text-[2rem] font-medium mb-12 text-brand-black tracking-[-0.02em]">Resultados típicos</h2>
+
+              <div className="space-y-10">
+                {[
+                  { value: '70%', label: 'menos tempo em tarefas administrativas' },
+                  { value: '50%', label: 'redução em glosas de convênios' },
+                  { value: '2x', label: 'mais rápido no ciclo de recebimento' },
+                  { value: '100%', label: 'dos documentos organizados e rastreáveis' },
+                ].map((metric, i) => (
+                  <div key={i}>
+                    <span className="text-4xl font-medium text-brand-accent">{metric.value}</span>
+                    <p className="mt-2 text-brand-text">{metric.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex items-center">
+              <div>
+                <p className="text-xl leading-relaxed text-brand-text">
+                  Sua equipe para de correr atrás de papel e começa a focar no que importa: o atendimento ao paciente.
+                </p>
+                <p className="text-xl leading-relaxed mt-6 text-brand-text">
+                  Auditorias deixam de ser emergência. Faturamento deixa de ser gargalo. Documentos param de sumir.
+                </p>
+              </div>
             </div>
           </div>
+          <SectionNavButton href="#integracoes" label="Integrações" />
         </div>
       </section>
 
@@ -197,7 +207,7 @@ export default function SaudeContent() {
       </div>
 
       {/* Integrations */}
-      <section className="py-32 px-10 max-w-6xl mx-auto">
+      <section id="integracoes" className="py-32 px-10 max-w-6xl mx-auto">
         <div className="mb-16">
           <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">Ferramentas que você já usa</h2>
           <p className="text-brand-text">Integramos sem trocar seus sistemas</p>
@@ -211,6 +221,7 @@ export default function SaudeContent() {
             </div>
           ))}
         </div>
+        <SectionNavButton href="#contato" label="Contato" />
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -227,7 +238,7 @@ export default function SaudeContent() {
         </p>
         <a
           href="mailto:contato@mildez.com"
-          className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-black hover:bg-brand-dark transition-colors"
+          className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
         >
           Iniciar conversa
         </a>

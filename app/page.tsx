@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import SectionNavButton from '@/components/SectionNavButton'
 import { icons, stepIcons } from '@/components/Icons'
 
 export default function Home() {
@@ -97,14 +98,7 @@ export default function Home() {
           </a>
         </div>
 
-        <div className="mt-20 flex justify-center">
-          <a
-            href="#como-funciona"
-            className="px-4 py-1 rounded-full border border-brand-border text-xs text-brand-muted hover:bg-brand-accent hover:text-white hover:border-brand-accent transition-all duration-300"
-          >
-            Como funciona ↓
-          </a>
-        </div>
+        <SectionNavButton href="#como-funciona" label="Como funciona" />
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -175,14 +169,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-12 flex justify-center">
-          <a
-            href="#integracoes"
-            className="px-4 py-1 rounded-full border border-brand-border text-xs text-brand-muted hover:bg-brand-accent hover:text-white hover:border-brand-accent transition-all duration-300"
-          >
-            Integrações ↓
-          </a>
-        </div>
+        <SectionNavButton href="#integracoes" label="Integrações" />
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -205,14 +192,7 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="mt-20 flex justify-center">
-          <a
-            href="#beneficios"
-            className="px-4 py-1 rounded-full border border-brand-border text-xs text-brand-muted hover:bg-brand-accent hover:text-white hover:border-brand-accent transition-all duration-300"
-          >
-            Benefícios ↓
-          </a>
-        </div>
+        <SectionNavButton href="#beneficios" label="Benefícios" />
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -242,14 +222,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-20 flex justify-center">
-          <a
-            href="#processo"
-            className="px-4 py-1 rounded-full border border-brand-border text-xs text-brand-muted hover:bg-brand-accent hover:text-white hover:border-brand-accent transition-all duration-300"
-          >
-            Nosso processo ↓
-          </a>
-        </div>
+        <SectionNavButton href="#processo" label="Nosso processo" />
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -283,14 +256,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-20 flex justify-center">
-          <a
-            href="#industrias"
-            className="px-4 py-1 rounded-full border border-brand-border text-xs text-brand-muted hover:bg-brand-accent hover:text-white hover:border-brand-accent transition-all duration-300"
-          >
-            Indústrias ↓
-          </a>
-        </div>
+        <SectionNavButton href="#industrias" label="Indústrias" />
       </section>
 
       <div className="max-w-6xl mx-auto px-10">
@@ -330,14 +296,7 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="mt-20 flex justify-center">
-          <a
-            href="#contato"
-            className="px-4 py-1 rounded-full border border-brand-border text-xs text-brand-muted hover:bg-brand-accent hover:text-white hover:border-brand-accent transition-all duration-300"
-          >
-            Contato ↓
-          </a>
-        </div>
+        <SectionNavButton href="#contato" label="Contato" />
       </section>
 
       <div className="max-w-6xl mx-auto px-10">

@@ -16,6 +16,8 @@ const config: Config = {
           'light': '#7a7a7a',
           'border': '#e0e0e0',
           'accent': '#8b2020',
+          'accent-light': '#fef2f2',
+          'accent-dark': '#7a1b1b',
         }
       },
       fontFamily: {
