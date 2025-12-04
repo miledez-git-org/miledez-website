@@ -13,7 +13,7 @@ const config: Config = {
           'dark': '#2d2d2d',
           'text': '#3d3d3d',
           'muted': '#5a5a5a',
-          'light': '#7a7a7a',
+          'light': '#6e6e6e',
           'border': '#e0e0e0',
           'accent': '#8b2020',
           'accent-light': '#fef2f2',

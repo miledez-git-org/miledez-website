@@ -64,10 +64,10 @@ export default function VarejoContent() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-48 pb-32 px-10 max-w-6xl mx-auto">
+      <section className="pt-32 md:pt-48 pb-24 md:pb-32 px-6 md:px-10 max-w-6xl mx-auto">
         <div className="max-w-2xl">
-          <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-brand-accent bg-brand-accent-light">
-            <span className="text-sm font-medium uppercase tracking-widest text-brand-accent">
+          <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-brand-accent">
+            <span className="text-sm font-semibold uppercase tracking-widest text-brand-accent">
               Varejo e E-commerce
             </span>
           </div>
@@ -79,7 +79,7 @@ export default function VarejoContent() {
           </p>
           <a
             href="#contato"
-            className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
+            className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-black hover:bg-brand-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
           >
             Agendar conversa
           </a>
@@ -87,17 +87,17 @@ export default function VarejoContent() {
         <SectionNavButton href="#workflows" label="O que automatizamos" />
       </section>
 
-      <div className="max-w-6xl mx-auto px-10">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="h-px bg-brand-border" />
       </div>
 
       {/* Pain Points */}
-      <section className="py-32 px-10 max-w-6xl mx-auto">
+      <section className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
         <div className="mb-16">
           <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">A operação que não para</h2>
         </div>
 
-        <div className="grid grid-cols-3 gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20">
           <div>
             <h3 className="text-lg font-medium mb-4 text-brand-black">Estoque descontrolado</h3>
             <p className="text-sm leading-relaxed text-brand-text">
@@ -119,12 +119,12 @@ export default function VarejoContent() {
         </div>
       </section>
 
-      <div className="max-w-6xl mx-auto px-10">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="h-px bg-brand-border" />
       </div>
 
       {/* Workflows */}
-      <section id="workflows" className="py-32 px-10 max-w-6xl mx-auto">
+      <section id="workflows" className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
         <div className="mb-20">
           <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">O que automatizamos</h2>
           <p className="text-lg text-brand-text">Processos que funcionam enquanto você vende</p>
@@ -133,13 +133,13 @@ export default function VarejoContent() {
         <div className="space-y-16">
           {Object.entries(workflows).map(([key, workflow], index) => (
             <div key={key}>
-              <div className="mb-8 flex items-start gap-4">
-                <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-brand-accent text-white text-sm font-medium rounded-full">
+              <div className="mb-8 flex items-center gap-4">
+                <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center border border-brand-black text-brand-black text-sm font-medium">
                   {index + 1}
                 </span>
                 <div>
                   <h3 className="text-xl font-medium text-brand-black">{workflow.title}</h3>
-                  <p className="text-brand-muted mt-1">{workflow.subtitle}</p>
+                  <p className="text-brand-muted">{workflow.subtitle}</p>
                 </div>
               </div>
               <WorkflowAnimation steps={workflow.steps} accentStep={3} />
@@ -149,14 +149,14 @@ export default function VarejoContent() {
         <SectionNavButton href="#resultados" label="Resultados" />
       </section>
 
-      <div className="max-w-6xl mx-auto px-10">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="h-px bg-brand-border" />
       </div>
 
       {/* Results */}
-      <section id="resultados" className="py-32 bg-brand-accent-light">
-        <div className="px-10 max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 gap-32">
+      <section id="resultados" className="py-32">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-32">
             <div>
               <h2 className="text-[2rem] font-medium mb-12 text-brand-black tracking-[-0.02em]">Resultados típicos</h2>
 
@@ -190,29 +190,29 @@ export default function VarejoContent() {
         </div>
       </section>
 
-      <div className="max-w-6xl mx-auto px-10">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="h-px bg-brand-border" />
       </div>
 
       {/* Also Automated */}
-      <section className="py-16 px-10 max-w-6xl mx-auto">
+      <section className="py-12 md:py-16 px-6 md:px-10 max-w-6xl mx-auto">
         <p className="text-center text-brand-muted">
           Também automatizamos: notificações de entrega, atualização de status, respostas a perguntas frequentes, alertas de avaliações
         </p>
       </section>
 
-      <div className="max-w-6xl mx-auto px-10">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="h-px bg-brand-border" />
       </div>
 
       {/* Integrations */}
-      <section id="integracoes" className="py-32 px-10 max-w-6xl mx-auto">
+      <section id="integracoes" className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
         <div className="mb-16">
           <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">Ferramentas que você já usa</h2>
           <p className="text-brand-text">Integramos sem trocar seus sistemas</p>
         </div>
 
-        <div className="flex gap-14 max-w-3xl">
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-8 md:gap-14 max-w-3xl mx-auto">
           {integrations.map((item, i) => (
             <div key={i} className="flex flex-col items-center gap-4">
               <div className="text-brand-black">{item.icon}</div>
@@ -223,12 +223,12 @@ export default function VarejoContent() {
         <SectionNavButton href="#contato" label="Contato" />
       </section>
 
-      <div className="max-w-6xl mx-auto px-10">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="h-px bg-brand-border" />
       </div>
 
       {/* CTA */}
-      <section id="contato" className="py-36 px-10 max-w-6xl mx-auto text-center">
+      <section id="contato" className="py-24 md:py-36 px-6 md:px-10 max-w-6xl mx-auto text-center">
         <h2 className="text-[2.5rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
           Vamos automatizar sua operação?
         </h2>

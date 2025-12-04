@@ -36,8 +36,8 @@ export default function WorkflowAnimation({ steps, accentStep = -1 }: WorkflowAn
 
   return (
     <div ref={ref} className="relative py-8">
-      {/* Connection lines */}
-      <div className="absolute top-[60px] left-[10%] right-[10%] flex">
+      {/* Connection lines - horizontal on desktop, vertical on mobile */}
+      <div className="hidden md:flex absolute top-[60px] left-[10%] right-[10%]">
         {steps.slice(0, -1).map((_, i) => (
           <div
             key={i}
@@ -51,12 +51,12 @@ export default function WorkflowAnimation({ steps, accentStep = -1 }: WorkflowAn
         ))}
       </div>
 
-      {/* Data pulses */}
-      <div className="absolute top-[52px] left-[10%] right-[10%] flex h-2 overflow-hidden">
+      {/* Data pulses - desktop only */}
+      <div className="hidden md:flex absolute top-[52px] left-[10%] right-[10%] h-2 overflow-hidden">
         {steps.slice(0, -1).map((_, i) => (
           <div key={i} className="flex-1 relative overflow-hidden">
             <div
-              className="absolute w-2 h-2 rounded-full bg-brand-accent"
+              className="absolute w-2 h-2 bg-brand-accent"
               style={{
                 opacity: 0,
                 left: 0,
@@ -67,12 +67,12 @@ export default function WorkflowAnimation({ steps, accentStep = -1 }: WorkflowAn
         ))}
       </div>
 
-      {/* Steps */}
-      <div className="flex justify-between relative z-10">
+      {/* Steps - stack vertically on mobile, horizontal on desktop */}
+      <div className="flex flex-col md:flex-row md:justify-between relative z-10 gap-6 md:gap-0">
         {steps.map((step, i) => (
           <div
             key={i}
-            className="flex-1 text-center transition-all duration-500"
+            className="flex md:flex-col md:flex-1 items-center md:text-center transition-all duration-500 gap-4 md:gap-0"
             style={{
               opacity: isAnimated ? 1 : 0,
               transform: isAnimated ? 'translateY(0)' : 'translateY(20px)',
@@ -80,15 +80,17 @@ export default function WorkflowAnimation({ steps, accentStep = -1 }: WorkflowAn
             }}
           >
             <div
-              className={`w-14 h-14 mx-auto mb-4 flex items-center justify-center border bg-white relative z-10 ${i === accentStep
+              className={`w-12 h-12 md:w-14 md:h-14 md:mx-auto md:mb-4 flex-shrink-0 flex items-center justify-center border bg-white relative z-10 ${i === accentStep
                   ? 'border-brand-accent text-brand-accent'
                   : 'border-brand-black text-brand-black'
                 }`}
             >
               {step.icon}
             </div>
-            <h4 className="text-sm font-medium mb-2 text-brand-black">{step.title}</h4>
-            <p className="text-xs max-w-[140px] mx-auto text-brand-text">{step.desc}</p>
+            <div className="md:text-center">
+              <h4 className="text-sm font-medium mb-1 md:mb-2 text-brand-black">{step.title}</h4>
+              <p className="text-xs md:max-w-[140px] md:mx-auto text-brand-text">{step.desc}</p>
+            </div>
           </div>
         ))}
       </div>

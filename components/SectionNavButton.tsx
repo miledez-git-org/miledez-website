@@ -5,12 +5,15 @@ interface SectionNavButtonProps {
 
 export default function SectionNavButton({ href, label }: SectionNavButtonProps) {
   return (
-    <div className="mt-16 flex justify-center">
+    <div className="mt-24 flex justify-center">
       <a
         href={href}
-        className="px-5 py-2 rounded-full border-2 border-brand-accent text-sm font-medium text-brand-accent hover:bg-brand-accent hover:text-white transition-all duration-300"
+        className="text-sm font-medium text-brand-text hover:text-brand-black transition-colors group inline-flex items-center gap-1 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
       >
-        {label} ↓
+        {label}
+        <span className="inline-block transform group-hover:translate-y-0.5 transition-transform">
+          ↓
+        </span>
       </a>
     </div>
   )

@@ -82,7 +82,7 @@ export default function Home() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-48 pb-32 px-10 max-w-6xl mx-auto">
+      <section className="pt-32 md:pt-48 pb-24 md:pb-32 px-6 md:px-10 max-w-6xl mx-auto">
         <div className="max-w-2xl">
           <h1 className="text-[3.5rem] font-medium leading-tight mb-8 text-brand-black tracking-[-0.03em]">
             Automatizamos seus processos.<br />Você foca no que importa.
@@ -101,20 +101,20 @@ export default function Home() {
         <SectionNavButton href="#como-funciona" label="Como funciona" />
       </section>
 
-      <div className="max-w-6xl mx-auto px-10">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="h-px bg-brand-border" />
       </div>
 
       {/* How it works */}
-      <section id="como-funciona" className="py-32 px-10 max-w-6xl mx-auto">
+      <section id="como-funciona" className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
         <div className="mb-16">
           <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Como funciona</h2>
           <p className="mt-4 text-lg font-medium text-brand-muted">Processos que rodam automaticamente, 24 horas por dia</p>
         </div>
 
-        <div ref={workflowRef} className="relative py-8 fade-in-up">
-          {/* Connection lines */}
-          <div className="absolute top-[60px] left-[10%] right-[10%] flex">
+        <div ref={workflowRef} className="relative py-8">
+          {/* Connection lines - desktop only */}
+          <div className="hidden md:flex absolute top-[60px] left-[10%] right-[10%]">
             {workflowSteps.slice(0, -1).map((_, i) => (
               <div
                 key={i}
@@ -128,12 +128,12 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Data pulses */}
-          <div className="absolute top-[52px] left-[10%] right-[10%] flex h-2 overflow-hidden">
+          {/* Data pulses - desktop only */}
+          <div className="hidden md:flex absolute top-[52px] left-[10%] right-[10%] h-2 overflow-hidden">
             {workflowSteps.slice(0, -1).map((_, i) => (
               <div key={i} className="flex-1 relative overflow-hidden">
                 <div
-                  className="absolute w-2 h-2 rounded-full bg-brand-accent"
+                  className="absolute w-2 h-2 bg-brand-accent"
                   style={{
                     opacity: 0,
                     left: 0,
@@ -144,12 +144,12 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Steps */}
-          <div className="flex justify-between relative z-10">
+          {/* Steps - vertical on mobile, horizontal on desktop */}
+          <div className="flex flex-col md:flex-row md:justify-between relative z-10 gap-6 md:gap-0">
             {workflowSteps.map((step, i) => (
               <div
                 key={i}
-                className="flex-1 text-center transition-all duration-500"
+                className="flex md:flex-col md:flex-1 items-center md:text-center transition-all duration-500 gap-4 md:gap-0"
                 style={{
                   opacity: workflowAnimated ? 1 : 0,
                   transform: workflowAnimated ? 'translateY(0)' : 'translateY(20px)',
@@ -157,13 +157,15 @@ export default function Home() {
                 }}
               >
                 <div
-                  className={`w-14 h-14 mx-auto mb-4 flex items-center justify-center border bg-white relative z-10 ${i === 3 ? 'border-brand-accent text-brand-accent' : 'border-brand-black text-brand-black'
+                  className={`w-12 h-12 md:w-14 md:h-14 md:mx-auto md:mb-4 flex-shrink-0 flex items-center justify-center border bg-white relative z-10 ${i === 3 ? 'border-brand-accent text-brand-accent' : 'border-brand-black text-brand-black'
                     }`}
                 >
                   {step.icon}
                 </div>
-                <h4 className="text-sm font-medium mb-2 text-brand-black">{step.title}</h4>
-                <p className="text-xs max-w-[140px] mx-auto text-brand-text">{step.desc}</p>
+                <div className="md:text-center">
+                  <h4 className="text-sm font-medium mb-1 md:mb-2 text-brand-black">{step.title}</h4>
+                  <p className="text-xs md:max-w-[140px] md:mx-auto text-brand-text">{step.desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -172,18 +174,18 @@ export default function Home() {
         <SectionNavButton href="#integracoes" label="Integrações" />
       </section>
 
-      <div className="max-w-6xl mx-auto px-10">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="h-px bg-brand-border" />
       </div>
 
       {/* Integrations */}
-      <section id="integracoes" className="py-32 px-10 max-w-6xl mx-auto fade-in-up">
+      <section id="integracoes" className="py-32 px-10 max-w-6xl mx-auto">
         <div className="mb-16">
           <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Integrações</h2>
           <p className="mt-4 text-lg font-medium text-brand-muted">Conectamos as ferramentas que você já usa</p>
         </div>
 
-        <div className="grid grid-cols-5 gap-12 max-w-4xl">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-8 md:gap-12 max-w-4xl mx-auto">
           {integrations.map((item, i) => (
             <div key={i} className="flex flex-col items-center gap-3">
               <div className="text-brand-black">{item.icon}</div>
@@ -195,13 +197,13 @@ export default function Home() {
         <SectionNavButton href="#beneficios" label="Benefícios" />
       </section>
 
-      <div className="max-w-6xl mx-auto px-10">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="h-px bg-brand-border" />
       </div>
 
       {/* Benefits */}
-      <section id="beneficios" className="py-32 px-10 max-w-6xl mx-auto fade-in-up">
-        <div className="grid grid-cols-3 gap-20">
+      <section id="beneficios" className="py-32 px-10 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20">
           <div>
             <h3 className="text-lg font-medium mb-4 text-brand-black">Economize tempo</h3>
             <p className="text-sm leading-relaxed text-brand-text">
@@ -225,13 +227,13 @@ export default function Home() {
         <SectionNavButton href="#processo" label="Nosso processo" />
       </section>
 
-      <div className="max-w-6xl mx-auto px-10">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="h-px bg-brand-border" />
       </div>
 
       {/* Process */}
-      <section id="processo" className="py-32 px-10 max-w-6xl mx-auto fade-in-up">
-        <div className="grid grid-cols-2 gap-32">
+      <section id="processo" className="py-32 px-10 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-32">
           <div>
             <h2 className="text-[2rem] font-medium mb-12 text-brand-black tracking-[-0.02em]">Nosso processo</h2>
             <p className="text-lg text-brand-text leading-relaxed">
@@ -246,10 +248,10 @@ export default function Home() {
               { num: '04', title: 'Acompanhamento', desc: 'Monitoramos e otimizamos continuamente' },
             ].map((step, i) => (
               <div key={i} className="flex gap-6 pb-8 border-b border-brand-border last:border-0">
-                <span className="text-sm text-brand-accent font-medium">{step.num}</span>
+                <span className="text-base text-brand-accent font-medium">{step.num}</span>
                 <div>
-                  <h4 className="text-sm font-medium mb-2 text-brand-black">{step.title}</h4>
-                  <p className="text-sm text-brand-text">{step.desc}</p>
+                  <h4 className="text-base font-medium mb-2 text-brand-black">{step.title}</h4>
+                  <p className="text-base text-brand-text">{step.desc}</p>
                 </div>
               </div>
             ))}
@@ -259,12 +261,12 @@ export default function Home() {
         <SectionNavButton href="#industrias" label="Indústrias" />
       </section>
 
-      <div className="max-w-6xl mx-auto px-10">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="h-px bg-brand-border" />
       </div>
 
       {/* Industries */}
-      <section id="industrias" className="py-32 px-10 max-w-6xl mx-auto fade-in-up">
+      <section id="industrias" className="py-32 px-10 max-w-6xl mx-auto">
         <div className="mb-16">
           <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Indústrias</h2>
           <p className="mt-4 text-lg font-medium text-brand-muted">Soluções específicas para cada setor</p>
@@ -299,12 +301,12 @@ export default function Home() {
         <SectionNavButton href="#contato" label="Contato" />
       </section>
 
-      <div className="max-w-6xl mx-auto px-10">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="h-px bg-brand-border" />
       </div>
 
       {/* CTA */}
-      <section id="contato" className="py-36 px-10 max-w-6xl mx-auto text-center">
+      <section id="contato" className="py-24 md:py-36 px-6 md:px-10 max-w-6xl mx-auto text-center">
         <h2 className="text-[2.5rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
           Vamos automatizar sua operação?
         </h2>
@@ -313,7 +315,7 @@ export default function Home() {
         </p>
         <a
           href="mailto:contato@mildez.com"
-          className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-black hover:bg-brand-dark transition-colors"
+          className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
         >
           Iniciar conversa
         </a>
