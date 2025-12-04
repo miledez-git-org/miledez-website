@@ -41,12 +41,7 @@ export default function WorkflowAnimation({ steps, accentStep = -1 }: WorkflowAn
         {steps.slice(0, -1).map((_, i) => (
           <div
             key={i}
-            className="flex-1 h-px bg-brand-border transition-transform duration-500"
-            style={{
-              transformOrigin: 'left',
-              transform: isAnimated ? 'scaleX(1)' : 'scaleX(0)',
-              transitionDelay: `${400 + i * 300}ms`,
-            }}
+            className="flex-1 h-px bg-brand-border"
           />
         ))}
       </div>
