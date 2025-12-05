@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SectionNavButton from '@/components/SectionNavButton'
+import DiagnosticoAutomacao from '@/components/DiagnosticoAutomacao'
 import { icons, stepIcons } from '@/components/Icons'
 
 export default function Home() {
@@ -255,6 +256,36 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        <SectionNavButton href="#diagnostico" label="Diagnóstico gratuito" />
+      </section>
+
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
+        <div className="h-px bg-brand-border" />
+      </div>
+
+      {/* Diagnostic Tool */}
+      <section id="diagnostico" className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+          <div className="lg:sticky lg:top-32 lg:self-start">
+            <span className="inline-block text-xs font-medium text-brand-accent uppercase tracking-wider mb-4">
+              Ferramenta gratuita
+            </span>
+            <h2 className="text-[2rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
+              Diagnóstico de Automação
+            </h2>
+            <p className="text-lg text-brand-text leading-relaxed mb-4">
+              Descubra em 2 minutos o potencial de automação do seu negócio e receba recomendações personalizadas.
+            </p>
+            <p className="text-sm text-brand-muted">
+              5 perguntas simples. Resultado imediato.
+            </p>
+          </div>
+
+          <div>
+            <DiagnosticoAutomacao />
           </div>
         </div>
 
