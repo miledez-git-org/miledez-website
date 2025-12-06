@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 
 // Types
@@ -235,12 +235,26 @@ export default function DiagnosticoAutomacao() {
   const [multipleSelections, setMultipleSelections] = useState<string[]>([])
   const [showResults, setShowResults] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   const currentQuestion = questions[currentStep]
   const isMultiple = currentQuestion?.type === 'multiple'
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setIsDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
   const handleSingleAnswer = (questionId: string, value: string) => {
     setIsAnimating(true)
+    setIsDropdownOpen(false)
     setAnswers(prev => ({ ...prev, [questionId]: value }))
 
     setTimeout(() => {
@@ -265,6 +279,7 @@ export default function DiagnosticoAutomacao() {
     if (multipleSelections.length === 0) return
 
     setIsAnimating(true)
+    setIsDropdownOpen(false)
     setAnswers(prev => ({ ...prev, [currentQuestion.id]: multipleSelections }))
 
     setTimeout(() => {
@@ -283,6 +298,9 @@ export default function DiagnosticoAutomacao() {
     setAnswers({})
     setMultipleSelections([])
     setShowResults(false)
+    setIsDropdownOpen(false)
+    // Scroll to diagnostico section
+    document.getElementById('diagnostico')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   const result = showResults ? calculateBusinessCase(answers) : null
@@ -315,59 +333,92 @@ export default function DiagnosticoAutomacao() {
             </p>
           )}
 
-          <div className="space-y-3">
-            {currentQuestion.options.map((option) => {
-              const isSelected = isMultiple && multipleSelections.includes(option.value)
-
-              return (
-                <button
-                  key={option.value}
-                  onClick={() => isMultiple
-                    ? handleMultipleToggle(option.value)
-                    : handleSingleAnswer(currentQuestion.id, option.value)
-                  }
-                  className={`w-full text-left px-6 py-4 border transition-colors group flex items-center justify-between ${
-                    isSelected
-                      ? 'border-brand-accent bg-brand-accent-light'
-                      : 'border-brand-border hover:border-brand-black'
-                  }`}
-                >
-                  <span className={`transition-colors ${
-                    isSelected ? 'text-brand-black' : 'text-brand-muted group-hover:text-brand-black'
-                  }`}>
-                    {option.label}
-                  </span>
-                  {isMultiple && (
-                    <div className={`w-5 h-5 border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
-                      isSelected
-                        ? 'border-brand-accent bg-brand-accent'
-                        : 'border-brand-light group-hover:border-brand-black'
-                    }`}>
-                      {isSelected && (
-                        <svg viewBox="0 0 24 24" className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth="3">
-                          <path d="M5 13l4 4L19 7" />
-                        </svg>
-                      )}
-                    </div>
-                  )}
-                </button>
-              )
-            })}
-          </div>
-
-          {isMultiple && (
+          {/* Custom Dropdown */}
+          <div className="relative" ref={dropdownRef}>
+            {/* Dropdown Trigger */}
             <button
-              onClick={handleMultipleConfirm}
-              disabled={multipleSelections.length === 0}
-              className={`mt-6 px-8 py-4 text-sm font-medium transition-colors ${
-                multipleSelections.length > 0
-                  ? 'bg-brand-accent text-white hover:bg-brand-accent-dark'
-                  : 'bg-brand-border text-brand-muted cursor-not-allowed'
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className={`w-full text-left px-6 py-4 border transition-colors flex items-center justify-between ${
+                isDropdownOpen ? 'border-brand-black' : 'border-brand-border hover:border-brand-black'
               }`}
             >
-              Continuar ({multipleSelections.length} selecionado{multipleSelections.length !== 1 ? 's' : ''})
+              <span className={isMultiple && multipleSelections.length > 0 ? 'text-brand-black' : 'text-brand-muted'}>
+                {isMultiple
+                  ? multipleSelections.length > 0
+                    ? `${multipleSelections.length} selecionado${multipleSelections.length !== 1 ? 's' : ''}`
+                    : 'Selecione as opções'
+                  : 'Selecione uma opção'
+                }
+              </span>
+              <svg
+                viewBox="0 0 24 24"
+                className={`w-5 h-5 text-brand-muted transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
             </button>
-          )}
+
+            {/* Dropdown Options Panel */}
+            {isDropdownOpen && (
+              <div className="absolute z-10 w-full mt-0 bg-white border border-t-0 border-brand-border">
+                {currentQuestion.options.map((option) => {
+                  const isSelected = isMultiple && multipleSelections.includes(option.value)
+
+                  return (
+                    <button
+                      key={option.value}
+                      onClick={() => isMultiple
+                        ? handleMultipleToggle(option.value)
+                        : handleSingleAnswer(currentQuestion.id, option.value)
+                      }
+                      className={`w-full text-left px-6 py-3 border-b border-brand-border last:border-b-0 transition-colors flex items-center justify-between group ${
+                        isSelected
+                          ? 'bg-brand-accent-light border-l-2 border-l-brand-accent'
+                          : 'hover:bg-gray-50'
+                      }`}
+                    >
+                      <span className={`transition-colors ${
+                        isSelected ? 'text-brand-black' : 'text-brand-muted group-hover:text-brand-black'
+                      }`}>
+                        {option.label}
+                      </span>
+                      {isMultiple && (
+                        <div className={`w-5 h-5 border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
+                          isSelected
+                            ? 'border-brand-accent bg-brand-accent'
+                            : 'border-brand-light group-hover:border-brand-black'
+                        }`}>
+                          {isSelected && (
+                            <svg viewBox="0 0 24 24" className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth="3">
+                              <path d="M5 13l4 4L19 7" />
+                            </svg>
+                          )}
+                        </div>
+                      )}
+                    </button>
+                  )
+                })}
+
+                {/* Confirm button for multi-select */}
+                {isMultiple && (
+                  <button
+                    onClick={handleMultipleConfirm}
+                    disabled={multipleSelections.length === 0}
+                    className={`w-full px-6 py-4 text-sm font-medium transition-colors ${
+                      multipleSelections.length > 0
+                        ? 'bg-brand-accent text-white hover:bg-brand-accent-dark'
+                        : 'bg-brand-border text-brand-muted cursor-not-allowed'
+                    }`}
+                  >
+                    Confirmar ({multipleSelections.length} selecionado{multipleSelections.length !== 1 ? 's' : ''})
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       ) : result && (
         // Results - Streamlined Business Case

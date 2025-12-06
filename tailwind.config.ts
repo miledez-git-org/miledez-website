@@ -18,10 +18,18 @@ const config: Config = {
           'accent': '#8b2020',
           'accent-light': '#fef2f2',
           'accent-dark': '#7a1b1b',
-        }
+        },
+        'bg-base': '#FCFCFC',
+        'bg-surface': '#FFFFFF',
+        'bg-muted': '#F7F8FA',
+        'highlight': '#F0F2F5',
+        'testimonial-bg': '#FFFCF9',
+        'border-subtle': 'rgba(0,0,0,0.08)',
+        'border-emphasis': 'rgba(0,0,0,0.15)',
       },
       fontFamily: {
         sans: [
+          'var(--font-inter)',
           '-apple-system',
           'BlinkMacSystemFont',
           'Segoe UI',
@@ -29,6 +37,67 @@ const config: Config = {
           'Arial',
           'sans-serif',
         ],
+        serif: [
+          'Georgia',
+          'Cambria',
+          'Times New Roman',
+          'serif',
+        ],
+      },
+      spacing: {
+        '18': '4.5rem',
+        '128': '8rem',
+      },
+      keyframes: {
+        scaleIn: {
+          '0%': { transform: 'scale(0.9)' },
+          '100%': { transform: 'scale(1)' },
+        },
+        slideInUp: {
+          '0%': { transform: 'translateY(24px)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        slideInLeft: {
+          '0%': { transform: 'translateX(-24px)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        slideInRight: {
+          '0%': { transform: 'translateX(24px)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        drawPath: {
+          '0%': { strokeDashoffset: 'var(--path-length, 100)' },
+          '100%': { strokeDashoffset: '0' },
+        },
+        pulseGlow: {
+          '0%, 100%': { opacity: '0.3', transform: 'scale(1)' },
+          '50%': { opacity: '1', transform: 'scale(1.05)' },
+        },
+        clockShrink: {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(0.85)' },
+          '100%': { transform: 'scale(1)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-8px)' },
+        },
+        connectionPulse: {
+          '0%': { strokeDashoffset: '20', opacity: '0.3' },
+          '50%': { opacity: '1' },
+          '100%': { strokeDashoffset: '0', opacity: '0.3' },
+        },
+      },
+      animation: {
+        'scale-in': 'scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+        'slide-up': 'slideInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+        'slide-left': 'slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+        'slide-right': 'slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+        'draw-path': 'drawPath 0.8s ease-out forwards',
+        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+        'clock-shrink': 'clockShrink 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+        'float': 'float 4s ease-in-out infinite',
+        'connection-pulse': 'connectionPulse 2s ease-in-out infinite',
       },
     },
   },

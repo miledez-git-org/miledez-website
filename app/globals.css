@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS Custom Properties */
+:root {
+  --bg-base: #FCFCFC;
+  --bg-surface: #FFFFFF;
+  --bg-muted: #F7F8FA;
+  --border-subtle: rgba(0,0,0,0.08);
+  --border-emphasis: rgba(0,0,0,0.15);
+  --highlight: #F0F2F5;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* Animation keyframes */
 @keyframes movePulse {
   0% {
@@ -27,20 +38,41 @@
   animation: movePulse 1.5s infinite;
 }
 
-/* Fade in animation for results */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+/* Draw check animation for SVG paths */
+@keyframes drawCheck {
+  0% {
+    stroke-dashoffset: 24;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  100% {
+    stroke-dashoffset: 0;
   }
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.5s ease-out forwards;
+.animate-draw-check {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+}
+
+.animate-draw-check.visible {
+  animation: drawCheck 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Puzzle connect animation */
+@keyframes puzzleConnect {
+  0% {
+    transform: translateX(-8px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-puzzle-connect {
+  transform: translateX(-8px);
+}
+
+.animate-puzzle-connect.visible {
+  animation: puzzleConnect 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Smooth scrolling */
@@ -53,6 +85,17 @@ html {
   color: #ffffff;
 }
 
+/* Transform-based reveal (no opacity fade per design constraints) */
+.reveal-up {
+  transform: translateY(24px);
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.reveal-up.visible {
+  transform: translateY(0);
+}
+
+/* Legacy fade-in-up for backwards compatibility */
 .fade-in-up {
   opacity: 0;
   transform: translateY(20px);
@@ -73,4 +116,61 @@ html {
 /* Remove default focus styles when using focus-visible */
 *:focus:not(:focus-visible) {
   outline: none;
+}
+
+/* Texture overlay for subtle noise effect */
+.texture-overlay {
+  position: relative;
+}
+
+.texture-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Footer geometric texture */
+.footer-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-up,
+  .fade-in-up {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Card styling utilities */
+.card-surface {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+}
+
+.card-on-muted {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
 }
