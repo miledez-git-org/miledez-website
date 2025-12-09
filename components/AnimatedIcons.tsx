@@ -283,3 +283,113 @@ export function CalculatorPulseIcon({ isHovered, className = '' }: BenefitIconPr
     </svg>
   )
 }
+
+// Hourglass icon that fades on hover (represents eliminating repetitive work)
+export function HourglassIcon({ isHovered, className = '' }: BenefitIconProps) {
+  return (
+    <svg
+      className={`w-10 h-10 ${className}`}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      style={{
+        opacity: isHovered ? 0.5 : 1,
+        transform: isHovered ? 'scale(0.9)' : 'scale(1)',
+        transition: 'opacity 0.3s ease-out, transform 0.3s ease-out',
+      }}
+    >
+      <path
+        d="M5 3h14M5 21h14M6 3v3a6 6 0 006 6 6 6 0 006-6V3M6 21v-3a6 6 0 016-6 6 6 0 016 6v3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M12 12v0" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+// 24-hour clock icon that rotates fully on hover (represents continuous operation)
+export function Clock24Icon({ isHovered, className = '' }: BenefitIconProps) {
+  return (
+    <svg
+      className={`w-10 h-10 ${className}`}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      style={{
+        transform: isHovered ? 'rotate(360deg)' : 'rotate(0deg)',
+        transition: 'transform 1s ease-in-out',
+      }}
+    >
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 6v6l4 2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M16 4l2-2M8 4L6 2" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+// Sparkles icon that scales up on hover (represents quality results)
+export function SparklesIcon({ isHovered, className = '' }: BenefitIconProps) {
+  return (
+    <svg
+      className={`w-10 h-10 ${className}`}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      style={{
+        transform: isHovered ? 'scale(1.15)' : 'scale(1)',
+        transition: 'transform 0.3s ease-out',
+      }}
+    >
+      <path
+        d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M5 19l0.75 2.25L8 22l-2.25 0.75L5 25l-0.75-2.25L2 22l2.25-0.75L5 19z"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{ transform: 'scale(0.6)', transformOrigin: '5px 22px' }}
+      />
+      <path
+        d="M19 14l0.5 1.5L21 16l-1.5 0.5L19 18l-0.5-1.5L17 16l1.5-0.5L19 14z"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+// Rocket icon that lifts on hover (represents ROI and growth)
+export function RocketIcon({ isHovered, className = '' }: BenefitIconProps) {
+  return (
+    <svg
+      className={`w-10 h-10 ${className}`}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      style={{
+        transform: isHovered ? 'translateY(-8px)' : 'translateY(0)',
+        transition: 'transform 0.3s ease-out',
+      }}
+    >
+      <path
+        d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}

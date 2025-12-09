@@ -3,51 +3,64 @@
 import { useState } from 'react'
 import { useCountUp } from '@/hooks/useCountUp'
 import {
-  UsersFloatIcon,
-  ClockRotateIcon,
-  ShieldCheckIcon,
+  HourglassIcon,
+  Clock24Icon,
+  SparklesIcon,
   TrendingUpIcon,
-  CalculatorPulseIcon,
+  RocketIcon,
 } from '@/components/AnimatedIcons'
 
 const benefits = [
   {
     id: 1,
-    Icon: UsersFloatIcon,
-    headline: 'Sua equipe livre para o que importa',
-    copy: 'Tarefas repetitivas consomem até 40% do dia da sua equipe. Automações assumem o trabalho operacional — sua equipe foca em clientes, estratégia e crescimento.',
+    Icon: HourglassIcon,
+    headline: 'Libere sua equipe do trabalho repetitivo',
+    description:
+      'Tarefas administrativas e repetitivas consomem o tempo mais valioso da sua equipe. Automações eliminam esse trabalho — sua equipe foca em clientes, vendas e crescimento.',
+    stat: '40%',
+    statLabel: 'do tempo da equipe economizado',
   },
   {
     id: 2,
-    Icon: ClockRotateIcon,
-    headline: 'Funciona enquanto você dorme',
-    copy: 'Processos executados automaticamente, sem depender de horário comercial ou disponibilidade da equipe. Consistência garantida, dia e noite.',
+    Icon: Clock24Icon,
+    headline: 'Produtividade 24 horas por dia',
+    description:
+      'Automações executam tarefas a qualquer momento — madrugada, fim de semana, feriado. Sua operação nunca para, mesmo quando sua equipe descansa.',
+    stat: '24/7',
+    statLabel: 'operação contínua',
   },
   {
     id: 3,
-    Icon: ShieldCheckIcon,
-    headline: 'Zero erros humanos',
-    copy: 'Automações não esquecem, não digitam errado, não pulam etapas. Elimine retrabalho e erros que custam dinheiro e credibilidade.',
+    Icon: SparklesIcon,
+    headline: 'Resultados consistentes e superiores',
+    description:
+      'Respostas a clientes, processamento de documentos, geração de insights — tudo executado com velocidade e precisão impossíveis para humanos. Qualidade que impulsiona o crescimento.',
+    stat: '10x',
+    statLabel: 'mais rápido que processos manuais',
   },
   {
     id: 4,
     Icon: TrendingUpIcon,
-    headline: 'Escale sem contratar',
-    copy: 'Aumente sua capacidade operacional sem aumentar folha de pagamento. Cresça com a mesma equipe — ou até menor.',
-  },
-  {
-    id: 5,
-    Icon: CalculatorPulseIcon,
-    headline: 'Retorno comprovado',
-    copy: 'das empresas veem retorno positivo no primeiro ano. Investimento que se paga — não despesa que some no orçamento.',
-    hasCounter: true,
-    counterValue: 76,
+    headline: 'Venda mais sem contratar mais',
+    description:
+      'Aumente sua capacidade de atendimento e vendas sem aumentar a folha de pagamento. Cresça sua operação mantendo a mesma equipe — ou até reduzindo.',
+    stat: '+300%',
+    statLabel: 'de capacidade operacional',
   },
 ]
 
+const featuredBenefit = {
+  id: 5,
+  Icon: RocketIcon,
+  headline: 'Retorno imediato e comprovado',
+  description:
+    'Cada processo automatizado gera retorno mensurável desde o primeiro mês. Não é despesa — é investimento que se multiplica.',
+  statLabel: 'de retorno sobre investimento',
+}
+
 export default function BenefitsSection() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
-  const { count, ref: counterRef } = useCountUp({ end: 76, duration: 1500 })
+  const { count, ref: counterRef } = useCountUp({ end: 10, duration: 2000 })
 
   return (
     <>
@@ -58,49 +71,19 @@ export default function BenefitsSection() {
         </h2>
       </div>
 
-      {/* Bento Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {benefits.map((benefit, index) => {
+      {/* Benefits Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {/* Benefits 1-4: Regular cards */}
+        {benefits.map((benefit) => {
           const isHovered = hoveredCard === benefit.id
-          const gridClasses = getGridClasses(index)
-
-          if (benefit.hasCounter) {
-            return (
-              <div
-                key={benefit.id}
-                ref={counterRef}
-                className={`group bg-white border border-brand-border p-8 transition-colors ${gridClasses} ${
-                  isHovered ? 'border-brand-accent' : ''
-                }`}
-                onMouseEnter={() => setHoveredCard(benefit.id)}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
-                {/* Icon */}
-                <div className="mb-6 text-brand-black">
-                  <benefit.Icon isHovered={isHovered} />
-                </div>
-
-                {/* Counter + Headline */}
-                <h3 className="text-xl font-semibold mb-3 text-brand-black">
-                  <span className="text-3xl font-bold text-brand-accent">
-                    {count}%
-                  </span>{' '}
-                  {benefit.headline}
-                </h3>
-
-                {/* Description */}
-                <p className="text-base leading-relaxed text-brand-muted">
-                  {benefit.copy}
-                </p>
-              </div>
-            )
-          }
 
           return (
             <div
               key={benefit.id}
-              className={`group bg-white border border-brand-border p-8 transition-colors ${gridClasses} ${
-                isHovered ? 'border-brand-accent' : ''
+              className={`group bg-white border p-8 transition-all duration-300 flex flex-col h-full ${
+                isHovered
+                  ? 'border-brand-accent shadow-[0_4px_12px_rgba(0,0,0,0.05)]'
+                  : 'border-brand-border'
               }`}
               onMouseEnter={() => setHoveredCard(benefit.id)}
               onMouseLeave={() => setHoveredCard(null)}
@@ -111,38 +94,65 @@ export default function BenefitsSection() {
               </div>
 
               {/* Headline */}
-              <h3 className="text-xl font-semibold mb-3 text-brand-black">
+              <h3 className="text-xl font-semibold mb-3 text-brand-black leading-tight">
                 {benefit.headline}
               </h3>
 
               {/* Description */}
-              <p className="text-base leading-relaxed text-brand-muted">
-                {benefit.copy}
+              <p className="text-base leading-relaxed text-brand-muted mb-6 flex-grow">
+                {benefit.description}
               </p>
+
+              {/* Stat Block */}
+              <div className="mt-auto bg-neutral-50 border-l-[3px] border-brand-accent p-4">
+                <span className="block text-[28px] md:text-[32px] font-bold text-brand-accent leading-tight">
+                  {benefit.stat}
+                </span>
+                <span className="block text-sm text-brand-muted mt-1">
+                  {benefit.statLabel}
+                </span>
+              </div>
             </div>
           )
         })}
+
+        {/* Benefit 5: Featured full-width card */}
+        <div
+          ref={counterRef}
+          className={`md:col-span-2 bg-gradient-to-br from-white to-neutral-50 border p-8 md:p-10 text-center transition-all duration-300 ${
+            hoveredCard === 5
+              ? 'border-brand-accent shadow-[0_4px_12px_rgba(0,0,0,0.05)]'
+              : 'border-brand-border'
+          }`}
+          onMouseEnter={() => setHoveredCard(5)}
+          onMouseLeave={() => setHoveredCard(null)}
+        >
+          {/* Icon */}
+          <div className="mb-6 text-brand-black flex justify-center">
+            <featuredBenefit.Icon isHovered={hoveredCard === 5} />
+          </div>
+
+          {/* Headline */}
+          <h3 className="text-xl md:text-2xl font-semibold mb-3 text-brand-black">
+            {featuredBenefit.headline}
+          </h3>
+
+          {/* Description */}
+          <p className="text-base leading-relaxed text-brand-muted mb-6 max-w-xl mx-auto">
+            {featuredBenefit.description}
+          </p>
+
+          {/* Featured Stat Block */}
+          <div className="mt-6">
+            <span className="block text-4xl md:text-5xl font-bold text-brand-accent leading-tight">
+              {count <= 5 ? count : 5}x a {count}x
+            </span>
+            <span className="block text-sm text-brand-muted mt-2">
+              {featuredBenefit.statLabel}
+            </span>
+          </div>
+        </div>
       </div>
     </>
   )
-}
-
-function getGridClasses(index: number): string {
-  switch (index) {
-    case 0:
-      // Benefit 1: Featured (spans 2 rows on desktop)
-      return 'lg:row-span-2'
-    case 1:
-    case 2:
-      // Benefits 2 & 3: Standard cards
-      return ''
-    case 3:
-      // Benefit 4: Spans 2 columns on desktop
-      return 'md:col-span-2 lg:col-span-2'
-    case 4:
-      // Benefit 5: Full width (spans all 3 columns on desktop)
-      return 'md:col-span-2 lg:col-span-3'
-    default:
-      return ''
-  }
 }
