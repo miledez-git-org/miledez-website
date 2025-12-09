@@ -5,7 +5,56 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import WorkflowAnimation from '@/components/WorkflowAnimation'
 import SectionNavButton from '@/components/SectionNavButton'
+import ChallengeCard from '@/components/industry/ChallengeCard'
+import MetricsGrid from '@/components/industry/MetricsGrid'
+import IndustryHeroVisualization from '@/components/industry/IndustryHeroVisualization'
+import IndustryIntegrations from '@/components/industry/IndustryIntegrations'
+import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { icons, stepIcons } from '@/components/Icons'
+
+const challenges = [
+  {
+    icon: stepIcons.folder,
+    title: 'Documentação dispersa',
+    description: 'Fichas em papel, arquivos no computador, anexos no e-mail. Informação espalhada, difícil de encontrar quando precisa.',
+  },
+  {
+    icon: stepIcons.creditCard,
+    title: 'Faturamento complexo',
+    description: 'Cada convênio com regras diferentes, guias que voltam com glosa, tempo perdido corrigindo e reenviando.',
+  },
+  {
+    icon: stepIcons.calendar,
+    title: 'Conformidade constante',
+    description: 'Prazos de retenção, documentos obrigatórios, preparação para auditoria. Sempre algo para organizar.',
+  },
+]
+
+const metrics = [
+  { value: '70%', label: 'menos tempo em tarefas administrativas', type: 'percentage' as const },
+  { value: '50%', label: 'redução em glosas de convênios', type: 'percentage' as const },
+  { value: '2x', label: 'mais rápido no ciclo de recebimento', type: 'multiplier' as const },
+  { value: '100%', label: 'dos documentos organizados e rastreáveis', type: 'percentage' as const },
+]
+
+function ChallengeCards() {
+  const { ref, isVisible } = useScrollReveal({ threshold: 0.3 })
+
+  return (
+    <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+      {challenges.map((challenge, index) => (
+        <ChallengeCard
+          key={index}
+          icon={challenge.icon}
+          title={challenge.title}
+          description={challenge.description}
+          index={index}
+          isVisible={isVisible}
+        />
+      ))}
+    </div>
+  )
+}
 
 export default function SaudeContent() {
   const workflows = {
@@ -66,24 +115,27 @@ export default function SaudeContent() {
 
       {/* Hero */}
       <section className="pt-32 md:pt-48 pb-24 md:pb-32 px-6 md:px-10 max-w-6xl mx-auto">
-        <div className="max-w-2xl">
-          <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-brand-accent">
-            <span className="text-sm font-semibold uppercase tracking-widest text-brand-accent">
-              Saúde e Clínicas
-            </span>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-brand-accent">
+              <span className="text-sm font-semibold uppercase tracking-widest text-brand-accent">
+                Saúde e Clínicas
+              </span>
+            </div>
+            <h1 className="text-[3.5rem] font-medium leading-tight mb-8 text-brand-black tracking-[-0.03em]">
+              Menos papelada.<br />Mais tempo para pacientes.
+            </h1>
+            <p className="text-xl mb-12 max-w-lg text-brand-text leading-relaxed">
+              Automatizamos documentação, faturamento e conformidade. Você foca no atendimento.
+            </p>
+            <a
+              href="#contato"
+              className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
+            >
+              Agendar conversa
+            </a>
           </div>
-          <h1 className="text-[3.5rem] font-medium leading-tight mb-8 text-brand-black tracking-[-0.03em]">
-            Menos papelada.<br />Mais tempo para pacientes.
-          </h1>
-          <p className="text-xl mb-12 max-w-lg text-brand-text leading-relaxed">
-            Automatizamos documentação, faturamento e conformidade. Você foca no atendimento.
-          </p>
-          <a
-            href="#contato"
-            className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
-          >
-            Agendar conversa
-          </a>
+          <IndustryHeroVisualization industry="saude" />
         </div>
         <SectionNavButton href="#workflows" label="O que automatizamos" />
       </section>
@@ -98,27 +150,9 @@ export default function SaudeContent() {
           <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Os desafios do dia a dia</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20">
-          <div>
-            <h3 className="text-lg font-medium mb-4 text-brand-black">Documentação dispersa</h3>
-            <p className="text-sm leading-relaxed text-brand-text">
-              Fichas em papel, arquivos no computador, anexos no e-mail. Informação espalhada, difícil de encontrar quando precisa.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium mb-4 text-brand-black">Faturamento complexo</h3>
-            <p className="text-sm leading-relaxed text-brand-text">
-              Cada convênio com regras diferentes, guias que voltam com glosa, tempo perdido corrigindo e reenviando.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium mb-4 text-brand-black">Conformidade constante</h3>
-            <p className="text-sm leading-relaxed text-brand-text">
-              Prazos de retenção, documentos obrigatórios, preparação para auditoria. Sempre algo para organizar.
-            </p>
-          </div>
-        </div>
+        <ChallengeCards />
       </section>
+
 
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="h-px bg-brand-border" />
@@ -157,35 +191,17 @@ export default function SaudeContent() {
       {/* Results */}
       <section id="resultados" className="py-32">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-32">
-            <div>
-              <h2 className="text-[2rem] font-medium mb-12 text-brand-black tracking-[-0.02em]">Resultados típicos</h2>
+          <h2 className="text-[2rem] font-medium mb-12 text-brand-black tracking-[-0.02em]">Resultados típicos</h2>
 
-              <div className="space-y-10">
-                {[
-                  { value: '70%', label: 'menos tempo em tarefas administrativas' },
-                  { value: '50%', label: 'redução em glosas de convênios' },
-                  { value: '2x', label: 'mais rápido no ciclo de recebimento' },
-                  { value: '100%', label: 'dos documentos organizados e rastreáveis' },
-                ].map((metric, i) => (
-                  <div key={i}>
-                    <span className="text-4xl font-medium text-brand-accent">{metric.value}</span>
-                    <p className="mt-2 text-brand-text">{metric.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <MetricsGrid metrics={metrics} />
 
-            <div className="flex items-center">
-              <div>
-                <p className="text-xl leading-relaxed text-brand-text">
-                  Sua equipe para de correr atrás de papel e começa a focar no que importa: o atendimento ao paciente.
-                </p>
-                <p className="text-xl leading-relaxed mt-6 text-brand-text">
-                  Auditorias deixam de ser emergência. Faturamento deixa de ser gargalo. Documentos param de sumir.
-                </p>
-              </div>
-            </div>
+          <div className="mt-16 max-w-2xl">
+            <p className="text-xl leading-relaxed text-brand-text">
+              Sua equipe para de correr atrás de papel e começa a focar no que importa: o atendimento ao paciente.
+            </p>
+            <p className="text-xl leading-relaxed mt-6 text-brand-text">
+              Auditorias deixam de ser emergência. Faturamento deixa de ser gargalo. Documentos param de sumir.
+            </p>
           </div>
           <SectionNavButton href="#integracoes" label="Integrações" />
         </div>
@@ -202,14 +218,7 @@ export default function SaudeContent() {
           <p className="text-brand-text">Integramos sem trocar seus sistemas</p>
         </div>
 
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-8 md:gap-14 max-w-3xl mx-auto">
-          {integrations.map((item, i) => (
-            <div key={i} className="flex flex-col items-center gap-4">
-              <div className="text-brand-black">{item.icon}</div>
-              <span className="text-sm text-brand-muted text-center">{item.name}</span>
-            </div>
-          ))}
-        </div>
+        <IndustryIntegrations integrations={integrations} />
         <SectionNavButton href="#contato" label="Contato" />
       </section>
 

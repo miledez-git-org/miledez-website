@@ -7,12 +7,12 @@ import SectionNavButton from '@/components/SectionNavButton'
 import DiagnosticoAutomacao from '@/components/DiagnosticoAutomacao'
 import HeroVisualization from '@/components/HeroVisualization'
 import IntegrationMesh from '@/components/IntegrationMesh'
-import BentoGrid from '@/components/BentoGrid'
+import ComoFuncionaDemo from '@/components/ComoFuncionaDemo'
 import BenefitsSection from '@/components/BenefitsSection'
 import ProcessSection from '@/components/ProcessSection'
 import IndustriesSection from '@/components/IndustriesSection'
 import AnalyticsDashboard from '@/components/AnalyticsDashboard'
-import { icons, stepIcons } from '@/components/Icons'
+import { icons } from '@/components/Icons'
 
 export default function Home() {
   // Staggered reveal observer for elements with .fade-in-up class
@@ -86,38 +86,14 @@ export default function Home() {
         <div className="h-px bg-brand-border" />
       </div>
 
-      {/* How it works - Bento Grid */}
+      {/* How it works - Live Demo */}
       <section id="como-funciona" className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
-        <div className="mb-16">
+        <div className="mb-12 md:mb-16">
           <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Como funciona</h2>
-          <p className="mt-4 text-lg font-medium text-brand-muted">Processos que rodam automaticamente, 24 horas por dia</p>
+          <p className="mt-4 text-lg font-medium text-brand-muted">Veja uma automação real em ação</p>
         </div>
 
-        <BentoGrid
-          cards={[
-            {
-              icon: stepIcons.trigger,
-              title: 'Gatilho',
-              description: 'Um evento inicia o processo automaticamente - email recebido, formulário preenchido, ou agendamento.',
-            },
-            {
-              icon: stepIcons.action,
-              title: 'Acao',
-              description: 'O sistema executa as tarefas automaticamente - gera documentos, envia notificacoes, atualiza sistemas.',
-            },
-            {
-              icon: stepIcons.process,
-              title: 'Operacao 24/7',
-              description: 'Seus processos rodam sem parar, mesmo fora do horário comercial. Sem intervencao manual.',
-            },
-            {
-              icon: stepIcons.result,
-              title: 'Resultado',
-              description: 'Processo concluído com registro completo e notificacao para sua equipe.',
-              accent: true,
-            },
-          ]}
-        />
+        <ComoFuncionaDemo />
 
         <SectionNavButton href="#integracoes" label="Integrações" />
       </section>

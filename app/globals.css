@@ -38,6 +38,65 @@
   animation: movePulse 1.5s infinite;
 }
 
+/* Connector pulse animation - dot traveling along the line */
+@keyframes connectorPulse {
+  0% {
+    left: 0;
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    left: calc(100% - 8px);
+    opacity: 0;
+  }
+}
+
+/* Bottom connector pulse - travels between centered step markers */
+@keyframes pulseTravel {
+  0% {
+    left: var(--start-pos);
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    left: var(--end-pos);
+    opacity: 0;
+  }
+}
+
+.animate-pulse-travel {
+  animation: pulseTravel 1s ease-out forwards;
+}
+
+/* Vertical pulse animation for mobile workflow */
+@keyframes movePulseVertical {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+}
+
 /* Draw check animation for SVG paths */
 @keyframes drawCheck {
   0% {

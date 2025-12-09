@@ -2,9 +2,8 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
-import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { ClockShrinkIcon, DrawCheckIcon, PuzzleConnectIcon } from '@/components/AnimatedIcons'
-import { icons } from '@/components/Icons'
+import { icons, stepIcons } from '@/components/Icons'
 
 // Slide navigation component
 function SlideNavigation({
@@ -95,42 +94,6 @@ function IndustrySelector({
   )
 }
 
-// Concern/Resolution component
-function ConcernResolution({
-  concern,
-  resolution,
-  index,
-  isVisible,
-}: {
-  concern: string
-  resolution: string
-  index: number
-  isVisible: boolean
-}) {
-  return (
-    <div
-      className="py-6 border-b border-brand-border last:border-0"
-      style={{
-        transform: isVisible ? 'translateX(0)' : 'translateX(-16px)',
-        opacity: isVisible ? 1 : 0,
-        transition: `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 100}ms`,
-      }}
-    >
-      <div className="flex items-start gap-4">
-        <div className="w-6 h-6 flex items-center justify-center bg-bg-muted text-brand-muted flex-shrink-0 mt-0.5">
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
-          </svg>
-        </div>
-        <div className="flex-1">
-          <p className="text-base text-brand-muted mb-2 italic">"{concern}"</p>
-          <p className="text-base text-brand-black font-medium">{resolution}</p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 // Workflow step component for demo
 function WorkflowStep({
   step,
@@ -187,7 +150,7 @@ function PresentationIntegrationMesh({ isVisible }: { isVisible: boolean }) {
     <div className="relative w-full max-w-sm mx-auto">
       {/* Center hub */}
       <div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-brand-black flex items-center justify-center z-10"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white border border-[rgba(0,0,0,0.08)] flex items-center justify-center z-10"
         style={{
           transform: isVisible
             ? 'translate(-50%, -50%) scale(1)'
@@ -196,7 +159,12 @@ function PresentationIntegrationMesh({ isVisible }: { isVisible: boolean }) {
           transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
-        <span className="text-white text-xl font-medium tracking-tight">m&d</span>
+        <Image
+          src="/monogram.svg"
+          alt="mil&dez"
+          width={48}
+          height={48}
+        />
       </div>
 
       {/* Integration nodes */}
@@ -303,63 +271,115 @@ export default function ApresentacaoPage() {
 
   const concerns = [
     {
+      title: 'Sem instalacao',
+      icon: stepIcons.box,
       concern: 'Vou ter que instalar software novo?',
       resolution: 'Nao. Usamos os sistemas que voce ja tem. Sem instalacao, sem mudancas no seu ambiente de TI.',
     },
     {
+      title: 'Sem treinamento',
+      icon: stepIcons.user,
       concern: 'Minha equipe vai precisar de treinamento?',
       resolution: 'Nao. A automacao trabalha por tras, invisivel. Sua equipe continua usando as mesmas ferramentas.',
     },
     {
+      title: 'Sem amarracao',
+      icon: stepIcons.refresh,
       concern: 'E se eu quiser parar?',
       resolution: 'Voce pode voltar ao processo manual a qualquer momento. Sem contrato de longo prazo, sem amarracao.',
     },
     {
+      title: 'Sem risco',
+      icon: stepIcons.chart,
       concern: 'E se nao funcionar?',
       resolution: 'Voce ve resultados antes de se comprometer. O retorno geralmente aparece em semanas, nao meses.',
     },
   ]
 
   const processSteps = [
-    { num: '01', title: 'Conversa', desc: 'Entendemos seus desafios e mapeamos seus processos atuais.' },
-    { num: '02', title: 'Proposta', desc: 'Apresentamos solucoes especificas com estimativa de resultados.' },
-    { num: '03', title: 'Implementacao', desc: 'Construimos, configuramos e testamos. Voce aprova.' },
+    {
+      num: '01',
+      title: 'Conversa',
+      icon: stepIcons.mail,
+      desc: 'Entendemos seus desafios e mapeamos seus processos atuais.',
+      detail: 'Identificamos gargalos, tarefas repetitivas e oportunidades de automacao.',
+    },
+    {
+      num: '02',
+      title: 'Proposta',
+      icon: stepIcons.document,
+      desc: 'Apresentamos solucoes especificas com estimativa de resultados.',
+      detail: 'Voce ve exatamente o que sera automatizado e qual o retorno esperado.',
+    },
+    {
+      num: '03',
+      title: 'Implementacao',
+      icon: stepIcons.check,
+      desc: 'Construimos, configuramos e testamos. Voce aprova.',
+      detail: 'Todo o trabalho tecnico e nosso. Voce so precisa validar que funciona.',
+    },
   ]
 
   return (
-    <div className="min-h-screen bg-bg-base">
-      {/* Slides container */}
-      <div className="relative">
+    <div className="h-screen bg-bg-base overflow-hidden">
+      {/* Slides container - fixed height, all slides absolutely positioned */}
+      <div className="relative h-full">
         {/* Slide 1: Opening */}
         <section
-          className={`min-h-screen flex items-center justify-center px-6 md:px-10 transition-opacity duration-500 ${
-            currentSlide === 0 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'
+          className={`absolute inset-0 h-full flex items-center justify-center px-6 md:px-10 transition-opacity duration-500 ${
+            currentSlide === 0 ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none'
           }`}
         >
-          <div className="text-center max-w-2xl">
+          {/* Decorative ampersand watermark */}
+          <div
+            className="absolute right-8 md:right-16 bottom-32 text-[200px] md:text-[300px] font-light text-brand-accent opacity-[0.06] select-none pointer-events-none"
+            style={{ fontFamily: 'Manrope, sans-serif' }}
+          >
+            &
+          </div>
+
+          <div className="text-center max-w-2xl relative z-10">
             <Image
               src="/logo.svg"
               alt="mil&dez"
               width={180}
               height={48}
-              className="mx-auto mb-16"
+              className="mx-auto mb-8"
             />
-            <h1 className="text-[3rem] md:text-[4rem] font-medium text-brand-black tracking-[-0.03em] mb-6">
+            <h1 className="text-[3rem] md:text-[4rem] font-medium text-brand-black tracking-[-0.03em] leading-tight mb-4">
               Automacao de Processos
             </h1>
             <p className="text-xl text-brand-muted">
               Reuniao de descoberta
             </p>
-            <div className="mt-16 text-sm text-brand-light">
-              Use as setas do teclado para navegar
+
+            {/* Animated accent line */}
+            <div className="flex justify-center mt-8">
+              <div
+                className="w-12 h-[2px] bg-brand-accent"
+                style={{
+                  animation: 'pulse 2s ease-in-out infinite',
+                }}
+              />
             </div>
+          </div>
+
+          {/* Navigation hint - positioned closer to nav bar */}
+          <div className="absolute bottom-28 left-1/2 -translate-x-1/2 flex items-center gap-2 text-sm text-brand-muted">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+            <span>Use as setas para navegar</span>
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
           </div>
         </section>
 
         {/* Slide 2: O que e Automacao? */}
         <section
-          className={`min-h-screen flex items-center px-6 md:px-10 py-20 transition-opacity duration-500 ${
-            currentSlide === 1 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'
+          className={`absolute inset-0 h-full flex items-start px-6 md:px-10 pt-16 pb-24 overflow-y-auto transition-opacity duration-500 ${
+            currentSlide === 1 ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none'
           }`}
         >
           <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -385,8 +405,8 @@ export default function ApresentacaoPage() {
 
         {/* Slide 3: O que isso resolve? */}
         <section
-          className={`min-h-screen flex items-center px-6 md:px-10 py-20 transition-opacity duration-500 ${
-            currentSlide === 2 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'
+          className={`absolute inset-0 h-full flex items-start px-6 md:px-10 pt-16 pb-24 overflow-y-auto transition-opacity duration-500 ${
+            currentSlide === 2 ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none'
           }`}
         >
           <div className="max-w-6xl mx-auto w-full">
@@ -404,9 +424,8 @@ export default function ApresentacaoPage() {
               <div
                 className="p-6"
                 style={{
-                  transform: currentSlide === 2 ? 'translateY(0)' : 'translateY(16px)',
                   opacity: currentSlide === 2 ? 1 : 0,
-                  transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0ms',
+                  transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0ms',
                 }}
               >
                 <div className="mb-6 text-brand-black">
@@ -426,9 +445,8 @@ export default function ApresentacaoPage() {
               <div
                 className="p-6"
                 style={{
-                  transform: currentSlide === 2 ? 'translateY(0)' : 'translateY(16px)',
                   opacity: currentSlide === 2 ? 1 : 0,
-                  transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 100ms',
+                  transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 100ms',
                 }}
               >
                 <div className="mb-6 text-brand-black">
@@ -447,9 +465,8 @@ export default function ApresentacaoPage() {
               <div
                 className="p-6"
                 style={{
-                  transform: currentSlide === 2 ? 'translateY(0)' : 'translateY(16px)',
                   opacity: currentSlide === 2 ? 1 : 0,
-                  transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 200ms',
+                  transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 200ms',
                 }}
               >
                 <div className="mb-6 text-brand-black">
@@ -469,8 +486,8 @@ export default function ApresentacaoPage() {
 
         {/* Slide 4: Como funciona na pratica? */}
         <section
-          className={`min-h-screen flex items-center px-6 md:px-10 py-20 transition-opacity duration-500 ${
-            currentSlide === 3 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'
+          className={`absolute inset-0 h-full flex items-start px-6 md:px-10 pt-16 pb-24 overflow-y-auto transition-opacity duration-500 ${
+            currentSlide === 3 ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none'
           }`}
         >
           <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -529,12 +546,12 @@ export default function ApresentacaoPage() {
 
         {/* Slide 5: Por que e seguro comecar? */}
         <section
-          className={`min-h-screen flex items-center px-6 md:px-10 py-20 transition-opacity duration-500 ${
-            currentSlide === 4 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'
+          className={`absolute inset-0 h-full flex items-start px-6 md:px-10 pt-16 pb-24 overflow-y-auto transition-opacity duration-500 ${
+            currentSlide === 4 ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none'
           }`}
         >
           <div className="max-w-4xl mx-auto w-full">
-            <div className="mb-12">
+            <div className="mb-10">
               <span className="inline-block text-xs font-medium text-brand-accent uppercase tracking-wider mb-4">
                 Sem risco
               </span>
@@ -546,24 +563,42 @@ export default function ApresentacaoPage() {
               </p>
             </div>
 
-            <div>
+            {/* Card-based concerns layout */}
+            <div className="space-y-4">
               {concerns.map((item, index) => (
-                <ConcernResolution
+                <div
                   key={index}
-                  concern={item.concern}
-                  resolution={item.resolution}
-                  index={index}
-                  isVisible={currentSlide === 4}
-                />
+                  className="border border-brand-border p-6 hover:bg-bg-muted transition-colors"
+                  style={{
+                    opacity: currentSlide === 4 ? 1 : 0,
+                    transition: `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 100}ms`,
+                  }}
+                >
+                  <div className="flex items-start gap-5">
+                    <div className="w-12 h-12 border border-brand-border flex items-center justify-center flex-shrink-0 text-brand-black">
+                      {item.icon}
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg font-medium text-brand-black mb-2">
+                        {item.title}
+                      </h4>
+                      <p className="text-base text-brand-muted mb-3 italic">
+                        "{item.concern}"
+                      </p>
+                      <p className="text-base text-brand-text">
+                        {item.resolution}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
 
             <div
-              className="mt-12 p-6 bg-bg-muted"
+              className="mt-8 p-6 bg-bg-muted"
               style={{
-                transform: currentSlide === 4 ? 'translateY(0)' : 'translateY(16px)',
                 opacity: currentSlide === 4 ? 1 : 0,
-                transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 400ms',
+                transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 400ms',
               }}
             >
               <p className="text-lg text-brand-black font-medium">
@@ -575,52 +610,67 @@ export default function ApresentacaoPage() {
 
         {/* Slide 6: Nosso processo */}
         <section
-          className={`min-h-screen flex items-center px-6 md:px-10 py-20 transition-opacity duration-500 ${
-            currentSlide === 5 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'
+          className={`absolute inset-0 h-full flex items-start px-6 md:px-10 pt-16 pb-24 overflow-y-auto transition-opacity duration-500 ${
+            currentSlide === 5 ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none'
           }`}
         >
-          <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
+          <div className="max-w-6xl mx-auto w-full">
+            <div className="mb-10 text-center">
               <span className="inline-block text-xs font-medium text-brand-accent uppercase tracking-wider mb-4">
                 Processo
               </span>
-              <h2 className="text-[2.5rem] font-medium text-brand-black tracking-[-0.02em] mb-6">
+              <h2 className="text-[2.5rem] font-medium text-brand-black tracking-[-0.02em] mb-4">
                 Nosso processo
               </h2>
-              <p className="text-lg text-brand-text leading-relaxed mb-8">
+              <p className="text-xl text-brand-muted max-w-2xl mx-auto">
                 Simples e direto. Voce nao precisa entender como funciona - so precisa nos contar o que nao funciona.
-              </p>
-              <p className="text-base text-brand-muted">
-                Todo o trabalho tecnico e nosso. Seu unico trabalho e nos dizer o que dói.
               </p>
             </div>
 
-            <div className="space-y-0">
+            {/* 3-column card layout */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {processSteps.map((step, index) => (
                 <div
                   key={index}
-                  className="flex gap-6 pb-8 border-b border-brand-border last:border-0"
+                  className="border border-brand-border p-6 flex flex-col"
                   style={{
-                    transform: currentSlide === 5 ? 'translateX(0)' : 'translateX(-16px)',
                     opacity: currentSlide === 5 ? 1 : 0,
-                    transition: `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 100}ms`,
+                    transition: `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 100}ms`,
                   }}
                 >
-                  <span className="text-2xl text-brand-accent font-medium">{step.num}</span>
-                  <div>
-                    <h4 className="text-lg font-medium mb-2 text-brand-black">{step.title}</h4>
-                    <p className="text-base text-brand-text">{step.desc}</p>
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 border border-brand-accent flex items-center justify-center flex-shrink-0 text-brand-accent">
+                      {step.icon}
+                    </div>
+                    <div>
+                      <span className="text-xs text-brand-accent font-medium uppercase tracking-wider">
+                        Passo {step.num}
+                      </span>
+                      <h4 className="text-xl font-medium text-brand-black">
+                        {step.title}
+                      </h4>
+                    </div>
                   </div>
+                  <p className="text-base text-brand-text leading-relaxed mb-3">
+                    {step.desc}
+                  </p>
+                  <p className="text-sm text-brand-muted leading-relaxed">
+                    {step.detail}
+                  </p>
                 </div>
               ))}
             </div>
+
+            <p className="text-center text-base text-brand-muted mt-8">
+              Todo o trabalho tecnico e nosso. Seu unico trabalho e nos dizer o que dói.
+            </p>
           </div>
         </section>
 
         {/* Slide 7: Proximos passos */}
         <section
-          className={`min-h-screen flex items-center justify-center px-6 md:px-10 py-20 transition-opacity duration-500 ${
-            currentSlide === 6 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'
+          className={`absolute inset-0 h-full flex items-center justify-center px-6 md:px-10 py-12 transition-opacity duration-500 ${
+            currentSlide === 6 ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none'
           }`}
         >
           <div className="text-center max-w-3xl">
@@ -630,9 +680,8 @@ export default function ApresentacaoPage() {
             <h2
               className="text-[2.5rem] md:text-[3rem] font-medium text-brand-black tracking-[-0.02em] mb-8"
               style={{
-                transform: currentSlide === 6 ? 'translateY(0)' : 'translateY(24px)',
                 opacity: currentSlide === 6 ? 1 : 0,
-                transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+                transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             >
               Quais processos voce gostaria de automatizar?
@@ -640,9 +689,8 @@ export default function ApresentacaoPage() {
             <p
               className="text-xl text-brand-muted mb-12"
               style={{
-                transform: currentSlide === 6 ? 'translateY(0)' : 'translateY(24px)',
                 opacity: currentSlide === 6 ? 1 : 0,
-                transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 100ms',
+                transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 100ms',
               }}
             >
               Vamos conversar sobre os desafios do seu negocio.
@@ -651,9 +699,8 @@ export default function ApresentacaoPage() {
             <div
               className="inline-flex flex-col items-center gap-4"
               style={{
-                transform: currentSlide === 6 ? 'translateY(0)' : 'translateY(24px)',
                 opacity: currentSlide === 6 ? 1 : 0,
-                transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 200ms',
+                transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 200ms',
               }}
             >
               <a
