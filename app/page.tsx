@@ -95,6 +95,17 @@ export default function Home() {
 
         <ComoFuncionaDemo />
 
+        <SectionNavButton href="#beneficios" label="Por que automatizar?" />
+      </section>
+
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
+        <div className="h-px bg-brand-border" />
+      </div>
+
+      {/* Benefits - Bento Grid */}
+      <section id="beneficios" className="py-32 px-6 md:px-10 max-w-6xl mx-auto">
+        <BenefitsSection />
+
         <SectionNavButton href="#integracoes" label="Integrações" />
       </section>
 
@@ -110,17 +121,6 @@ export default function Home() {
         </div>
 
         <IntegrationMesh integrations={integrations} />
-
-        <SectionNavButton href="#beneficios" label="Benefícios" />
-      </section>
-
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
-
-      {/* Benefits */}
-      <section id="beneficios" className="py-32 px-6 md:px-10 max-w-6xl mx-auto">
-        <BenefitsSection />
 
         <SectionNavButton href="#processo" label="Nosso processo" />
       </section>

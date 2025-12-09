@@ -2,7 +2,7 @@
 
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import WorkflowAnimation from '@/components/WorkflowAnimation'
+import WorkflowDemo, { exampleIcons } from '@/components/WorkflowDemo'
 import SectionNavButton from '@/components/SectionNavButton'
 import ChallengeCard from '@/components/industry/ChallengeCard'
 import MetricsGrid from '@/components/industry/MetricsGrid'
@@ -61,40 +61,184 @@ export default function VarejoContent() {
       title: 'Gestão de Estoque',
       subtitle: 'Nunca mais perca venda por falta de produto',
       steps: [
-        { icon: stepIcons.box, title: 'Nível monitorado', desc: 'Estoque atualizado em tempo real' },
-        { icon: stepIcons.bell, title: 'Alerta disparado', desc: 'Produto atingiu mínimo' },
-        { icon: stepIcons.document, title: 'Pedido sugerido', desc: 'Reposição pré-calculada' },
-        { icon: stepIcons.check, title: 'Estoque equilibrado', desc: 'Sem rupturas, sem excesso' },
+        {
+          icon: stepIcons.box,
+          title: 'Nível monitorado',
+          description: 'Estoque atualizado em tempo real.',
+          examples: [
+            { icon: exampleIcons.box, text: 'Quantidade atual' },
+            { icon: exampleIcons.data, text: 'Histórico de vendas' },
+            { icon: exampleIcons.chart, text: 'Tendência de consumo' },
+          ],
+        },
+        {
+          icon: stepIcons.bell,
+          title: 'Alerta disparado',
+          description: 'Produto atingiu nível mínimo.',
+          examples: [
+            { icon: exampleIcons.bell, text: 'Notificação enviada' },
+            { icon: exampleIcons.tag, text: 'Produto identificado' },
+            { icon: exampleIcons.data, text: 'Quantidade sugerida' },
+          ],
+        },
+        {
+          icon: stepIcons.document,
+          title: 'Pedido sugerido',
+          description: 'Reposição pré-calculada.',
+          examples: [
+            { icon: exampleIcons.document, text: 'Lista de compras' },
+            { icon: exampleIcons.money, text: 'Custo estimado' },
+            { icon: exampleIcons.calendar, text: 'Prazo de entrega' },
+          ],
+        },
+        {
+          icon: stepIcons.check,
+          title: 'Estoque equilibrado',
+          description: 'Sem rupturas, sem excesso.',
+          examples: [
+            { icon: exampleIcons.check, text: 'Níveis normalizados' },
+            { icon: exampleIcons.money, text: 'Capital otimizado' },
+            { icon: exampleIcons.log, text: 'Registro atualizado' },
+          ],
+        },
       ],
     },
     orders: {
       title: 'Processamento de Pedidos',
       subtitle: 'Do pedido à entrega, tudo rastreado',
       steps: [
-        { icon: stepIcons.cart, title: 'Pedido recebido', desc: 'Venda confirmada' },
-        { icon: stepIcons.box, title: 'Separação iniciada', desc: 'Lista de picking gerada' },
-        { icon: stepIcons.truck, title: 'Envio registrado', desc: 'Código de rastreio atribuído' },
-        { icon: stepIcons.check, title: 'Cliente notificado', desc: 'Atualizações automáticas' },
+        {
+          icon: stepIcons.cart,
+          title: 'Pedido recebido',
+          description: 'Venda confirmada no sistema.',
+          examples: [
+            { icon: exampleIcons.receipt, text: 'Pedido registrado' },
+            { icon: exampleIcons.user, text: 'Cliente identificado' },
+            { icon: exampleIcons.money, text: 'Pagamento confirmado' },
+          ],
+        },
+        {
+          icon: stepIcons.box,
+          title: 'Separação iniciada',
+          description: 'Lista de picking gerada.',
+          examples: [
+            { icon: exampleIcons.document, text: 'Lista de itens' },
+            { icon: exampleIcons.box, text: 'Local no estoque' },
+            { icon: exampleIcons.check, text: 'Conferência orientada' },
+          ],
+        },
+        {
+          icon: stepIcons.truck,
+          title: 'Envio registrado',
+          description: 'Código de rastreio atribuído.',
+          examples: [
+            { icon: exampleIcons.truck, text: 'Transportadora' },
+            { icon: exampleIcons.data, text: 'Código de rastreio' },
+            { icon: exampleIcons.calendar, text: 'Previsão de entrega' },
+          ],
+        },
+        {
+          icon: stepIcons.check,
+          title: 'Cliente notificado',
+          description: 'Atualizações automáticas.',
+          examples: [
+            { icon: exampleIcons.email, text: 'Email de confirmação' },
+            { icon: exampleIcons.bell, text: 'WhatsApp com rastreio' },
+            { icon: exampleIcons.check, text: 'Entrega confirmada' },
+          ],
+        },
       ],
     },
     financial: {
       title: 'Conciliação Financeira',
       subtitle: 'Vendas e pagamentos sempre em dia',
       steps: [
-        { icon: stepIcons.creditCard, title: 'Venda registrada', desc: 'Dados capturados automaticamente' },
-        { icon: stepIcons.sync, title: 'Pagamento verificado', desc: 'Cruzamento com extrato' },
-        { icon: stepIcons.document, title: 'Relatório gerado', desc: 'Consolidação por período' },
-        { icon: stepIcons.check, title: 'Divergências alertadas', desc: 'Diferenças identificadas' },
+        {
+          icon: stepIcons.creditCard,
+          title: 'Venda registrada',
+          description: 'Dados capturados automaticamente.',
+          examples: [
+            { icon: exampleIcons.money, text: 'Valor da venda' },
+            { icon: exampleIcons.calendar, text: 'Data e hora' },
+            { icon: exampleIcons.data, text: 'Forma de pagamento' },
+          ],
+        },
+        {
+          icon: stepIcons.sync,
+          title: 'Pagamento verificado',
+          description: 'Cruzamento com extrato bancário.',
+          examples: [
+            { icon: exampleIcons.sync, text: 'Conciliação automática' },
+            { icon: exampleIcons.money, text: 'Taxas calculadas' },
+            { icon: exampleIcons.check, text: 'Valores batidos' },
+          ],
+        },
+        {
+          icon: stepIcons.document,
+          title: 'Relatório gerado',
+          description: 'Consolidação por período.',
+          examples: [
+            { icon: exampleIcons.chart, text: 'Total recebido' },
+            { icon: exampleIcons.data, text: 'Por forma de pagamento' },
+            { icon: exampleIcons.money, text: 'Taxas descontadas' },
+          ],
+        },
+        {
+          icon: stepIcons.check,
+          title: 'Divergências alertadas',
+          description: 'Diferenças identificadas na hora.',
+          examples: [
+            { icon: exampleIcons.bell, text: 'Alerta de diferença' },
+            { icon: exampleIcons.log, text: 'Detalhes do erro' },
+            { icon: exampleIcons.check, text: 'Correção orientada' },
+          ],
+        },
       ],
     },
     reports: {
       title: 'Relatórios de Vendas',
       subtitle: 'Visibilidade do negócio sem esforço',
       steps: [
-        { icon: stepIcons.calendar, title: 'Período fechado', desc: 'Dia, semana ou mês' },
-        { icon: stepIcons.refresh, title: 'Dados consolidados', desc: 'Vendas, margens, estoque' },
-        { icon: stepIcons.chart, title: 'Análise pronta', desc: 'Gráficos e indicadores' },
-        { icon: stepIcons.check, title: 'Relatório entregue', desc: 'No seu email, no horário' },
+        {
+          icon: stepIcons.calendar,
+          title: 'Período fechado',
+          description: 'Dia, semana ou mês.',
+          examples: [
+            { icon: exampleIcons.calendar, text: 'Frequência definida' },
+            { icon: exampleIcons.clock, text: 'Horário programado' },
+            { icon: exampleIcons.bell, text: 'Disparo automático' },
+          ],
+        },
+        {
+          icon: stepIcons.refresh,
+          title: 'Dados consolidados',
+          description: 'Vendas, margens e estoque.',
+          examples: [
+            { icon: exampleIcons.money, text: 'Faturamento total' },
+            { icon: exampleIcons.chart, text: 'Margem calculada' },
+            { icon: exampleIcons.box, text: 'Posição de estoque' },
+          ],
+        },
+        {
+          icon: stepIcons.chart,
+          title: 'Análise pronta',
+          description: 'Gráficos e indicadores.',
+          examples: [
+            { icon: exampleIcons.chart, text: 'Comparativo período' },
+            { icon: exampleIcons.tag, text: 'Produtos destaque' },
+            { icon: exampleIcons.data, text: 'Tendências visíveis' },
+          ],
+        },
+        {
+          icon: stepIcons.check,
+          title: 'Relatório entregue',
+          description: 'No seu email, no horário.',
+          examples: [
+            { icon: exampleIcons.email, text: 'Email enviado' },
+            { icon: exampleIcons.file, text: 'PDF anexado' },
+            { icon: exampleIcons.log, text: 'Histórico guardado' },
+          ],
+        },
       ],
     },
   }
@@ -175,7 +319,7 @@ export default function VarejoContent() {
                   <p className="text-brand-muted">{workflow.subtitle}</p>
                 </div>
               </div>
-              <WorkflowAnimation steps={workflow.steps} accentStep={3} />
+              <WorkflowDemo steps={workflow.steps} />
             </div>
           ))}
         </div>

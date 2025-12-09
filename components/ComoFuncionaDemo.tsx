@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { stepIcons } from './Icons'
 
 interface Example {
@@ -136,67 +136,26 @@ const steps: Step[] = [
   },
 ]
 
-// Connector that runs below the boxes
-function BottomConnector({ loadedSteps, isVisible }: { loadedSteps: number; isVisible: boolean }) {
-  // Calculate dot positions centered under each box (4 columns)
-  // Column centers: 12.5%, 37.5%, 62.5%, 87.5%
-  const getDotPosition = (index: number) => (index * 25) + 12.5
-
+// Animated connector line between boxes
+function ConnectorLine({ isActive, isVisible }: { isActive: boolean; isVisible: boolean }) {
   return (
     <div
-      className="relative h-6 mt-6"
+      className="w-full h-[2px] relative"
       style={{
         opacity: isVisible ? 1 : 0,
-        transition: 'opacity 0.5s ease-out 400ms',
+        transition: 'opacity 0.5s ease-out',
       }}
     >
-      {/* Base line spanning full width */}
-      <div className="absolute top-1/2 left-0 right-0 h-px bg-brand-border -translate-y-1/2" />
+      {/* Base line (subtle gray) */}
+      <div className="absolute inset-0 bg-brand-border" />
 
-      {/* Animated progress line - from first dot to current dot */}
+      {/* Animated accent line that grows from left to right */}
       <div
-        className="absolute top-1/2 h-px bg-brand-accent -translate-y-1/2 transition-all duration-1000 ease-out"
+        className="absolute top-0 left-0 h-full bg-brand-accent transition-all duration-1000 ease-out"
         style={{
-          left: `${getDotPosition(0)}%`,
-          width: loadedSteps > 1 ? `${(loadedSteps - 1) * 25}%` : '0%',
+          width: isActive ? '100%' : '0%',
         }}
       />
-
-      {/* Step marker dots - centered under each box */}
-      {steps.map((_, i) => {
-        const isActive = i < loadedSteps
-        const position = getDotPosition(i)
-
-        return (
-          <div
-            key={i}
-            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2"
-            style={{ left: `${position}%` }}
-          >
-            {/* Solid dot */}
-            <div
-              className={`w-3 h-3 transition-all duration-500 ${
-                isActive ? 'bg-brand-accent' : 'bg-brand-border'
-              }`}
-              style={{
-                transform: isActive ? 'scale(1)' : 'scale(0.8)',
-              }}
-            />
-          </div>
-        )
-      })}
-
-      {/* Animated pulse traveling along the line */}
-      {loadedSteps > 1 && loadedSteps <= 4 && (
-        <div
-          key={`pulse-${loadedSteps}`}
-          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-2 h-2 bg-brand-accent animate-pulse-travel"
-          style={{
-            '--start-pos': `${getDotPosition(loadedSteps - 2)}%`,
-            '--end-pos': `${getDotPosition(loadedSteps - 1)}%`,
-          } as React.CSSProperties}
-        />
-      )}
     </div>
   )
 }
@@ -318,12 +277,13 @@ export default function ComoFuncionaDemo() {
 
   return (
     <div ref={ref}>
-      {/* Desktop: 4-column grid with connector below */}
-      <div className="hidden md:block">
-        <div className="grid grid-cols-4 gap-4">
-          {steps.map((step, i) => (
+      {/* Desktop: boxes with connector lines between them */}
+      <div className="hidden md:flex items-center">
+        {steps.map((step, i) => (
+          <Fragment key={i}>
+            {/* Step box */}
             <div
-              key={i}
+              className="flex-1"
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
@@ -332,11 +292,15 @@ export default function ComoFuncionaDemo() {
             >
               <StepBox step={step} isLast={i === steps.length - 1} isLoaded={i < loadedSteps} />
             </div>
-          ))}
-        </div>
 
-        {/* Bottom connector */}
-        <BottomConnector loadedSteps={loadedSteps} isVisible={isVisible} />
+            {/* Connector line between boxes (not after last box) */}
+            {i < steps.length - 1 && (
+              <div className="w-12 px-2 flex items-center self-stretch">
+                <ConnectorLine isActive={i + 1 < loadedSteps} isVisible={isVisible} />
+              </div>
+            )}
+          </Fragment>
+        ))}
       </div>
 
       {/* Mobile: single column with vertical connectors */}
@@ -353,30 +317,20 @@ export default function ComoFuncionaDemo() {
             >
               <StepBox step={step} isLast={i === steps.length - 1} isLoaded={i < loadedSteps} />
             </div>
-            {/* Vertical connector (not after last item) */}
+            {/* Vertical connector line (not after last item) */}
             {i < steps.length - 1 && (
               <div className="flex justify-center py-3">
-                <div className="relative h-8 flex flex-col items-center">
-                  {/* Vertical line */}
+                <div className="relative w-px h-8">
+                  {/* Base line (subtle gray) */}
+                  <div className="absolute inset-0 bg-brand-border" />
+
+                  {/* Animated accent line that grows from top to bottom */}
                   <div
-                    className="w-px bg-brand-border transition-all duration-500 ease-out"
+                    className="absolute top-0 left-0 w-full bg-brand-accent transition-all duration-1000 ease-out"
                     style={{
                       height: i + 1 < loadedSteps ? '100%' : '0%',
                     }}
                   />
-                  {/* Arrow */}
-                  <svg
-                    viewBox="0 0 12 12"
-                    className="w-3 h-3 transition-all duration-500 ease-out"
-                    style={{
-                      opacity: i + 1 < loadedSteps ? 1 : 0,
-                    }}
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  >
-                    <path d="M6 1v10M2 7l4 4 4-4" className="text-brand-muted" />
-                  </svg>
                 </div>
               </div>
             )}

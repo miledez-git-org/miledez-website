@@ -2,7 +2,7 @@
 
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import WorkflowAnimation from '@/components/WorkflowAnimation'
+import WorkflowDemo, { exampleIcons } from '@/components/WorkflowDemo'
 import SectionNavButton from '@/components/SectionNavButton'
 import ChallengeCard from '@/components/industry/ChallengeCard'
 import MetricsGrid from '@/components/industry/MetricsGrid'
@@ -61,40 +61,184 @@ export default function ServicosContent() {
       title: 'Onboarding de Clientes',
       subtitle: 'Pasta do cliente pronta desde o primeiro dia',
       steps: [
-        { icon: stepIcons.user, title: 'Novo cliente', desc: 'Contrato assinado' },
-        { icon: stepIcons.mail, title: 'Kit enviado', desc: 'Boas-vindas + checklist de docs' },
-        { icon: stepIcons.folder, title: 'Pasta criada', desc: 'Estrutura organizada por tipo' },
-        { icon: stepIcons.check, title: 'Pronto para iniciar', desc: 'Pendências sinalizadas' },
+        {
+          icon: stepIcons.user,
+          title: 'Novo cliente',
+          description: 'Contrato assinado inicia o processo.',
+          examples: [
+            { icon: exampleIcons.document, text: 'Contrato recebido' },
+            { icon: exampleIcons.user, text: 'Dados cadastrados' },
+            { icon: exampleIcons.calendar, text: 'Início definido' },
+          ],
+        },
+        {
+          icon: stepIcons.mail,
+          title: 'Kit enviado',
+          description: 'Boas-vindas e checklist automáticos.',
+          examples: [
+            { icon: exampleIcons.email, text: 'Email de boas-vindas' },
+            { icon: exampleIcons.form, text: 'Checklist de docs' },
+            { icon: exampleIcons.bell, text: 'Lembretes programados' },
+          ],
+        },
+        {
+          icon: stepIcons.folder,
+          title: 'Pasta criada',
+          description: 'Estrutura organizada por tipo.',
+          examples: [
+            { icon: exampleIcons.folder, text: 'Pasta do projeto' },
+            { icon: exampleIcons.document, text: 'Templates prontos' },
+            { icon: exampleIcons.data, text: 'Estrutura padronizada' },
+          ],
+        },
+        {
+          icon: stepIcons.check,
+          title: 'Pronto para iniciar',
+          description: 'Tudo configurado para o projeto.',
+          examples: [
+            { icon: exampleIcons.check, text: 'Documentos completos' },
+            { icon: exampleIcons.bell, text: 'Pendências sinalizadas' },
+            { icon: exampleIcons.team, text: 'Equipe notificada' },
+          ],
+        },
       ],
     },
     contracts: {
       title: 'Gestão de Contratos',
       subtitle: 'Nenhum contrato vence sem você saber',
       steps: [
-        { icon: stepIcons.document, title: 'Contrato cadastrado', desc: 'Data de vencimento registrada' },
-        { icon: stepIcons.calendar, title: 'Alertas programados', desc: '60, 30 e 15 dias antes' },
-        { icon: stepIcons.document, title: 'Proposta gerada', desc: 'Renovação pré-preenchida' },
-        { icon: stepIcons.check, title: 'Renovação garantida', desc: 'Status sempre atualizado' },
+        {
+          icon: stepIcons.document,
+          title: 'Contrato cadastrado',
+          description: 'Data de vencimento registrada.',
+          examples: [
+            { icon: exampleIcons.document, text: 'Contrato digitalizado' },
+            { icon: exampleIcons.calendar, text: 'Validade definida' },
+            { icon: exampleIcons.money, text: 'Valor registrado' },
+          ],
+        },
+        {
+          icon: stepIcons.calendar,
+          title: 'Alertas programados',
+          description: 'Notificações 60, 30 e 15 dias antes.',
+          examples: [
+            { icon: exampleIcons.bell, text: 'Alerta 60 dias' },
+            { icon: exampleIcons.bell, text: 'Alerta 30 dias' },
+            { icon: exampleIcons.bell, text: 'Alerta 15 dias' },
+          ],
+        },
+        {
+          icon: stepIcons.document,
+          title: 'Proposta gerada',
+          description: 'Renovação pré-preenchida.',
+          examples: [
+            { icon: exampleIcons.document, text: 'Proposta criada' },
+            { icon: exampleIcons.data, text: 'Histórico incluído' },
+            { icon: exampleIcons.money, text: 'Reajuste calculado' },
+          ],
+        },
+        {
+          icon: stepIcons.check,
+          title: 'Renovação garantida',
+          description: 'Status sempre atualizado.',
+          examples: [
+            { icon: exampleIcons.check, text: 'Assinatura confirmada' },
+            { icon: exampleIcons.sync, text: 'Sistema atualizado' },
+            { icon: exampleIcons.log, text: 'Histórico registrado' },
+          ],
+        },
       ],
     },
     billing: {
       title: 'Faturamento por Projeto',
       subtitle: 'Cobrança consistente, pagamento mais rápido',
       steps: [
-        { icon: stepIcons.result, title: 'Marco atingido', desc: 'Entrega ou fim do mês' },
-        { icon: stepIcons.process, title: 'Dados compilados', desc: 'Horas, entregas, valores' },
-        { icon: stepIcons.creditCard, title: 'Fatura enviada', desc: 'Formatada e entregue ao cliente' },
-        { icon: stepIcons.check, title: 'Pagamento rastreado', desc: 'Lembretes automáticos' },
+        {
+          icon: stepIcons.result,
+          title: 'Marco atingido',
+          description: 'Entrega ou fim do mês dispara o processo.',
+          examples: [
+            { icon: exampleIcons.check, text: 'Entrega concluída' },
+            { icon: exampleIcons.calendar, text: 'Fim do período' },
+            { icon: exampleIcons.data, text: 'Horas registradas' },
+          ],
+        },
+        {
+          icon: stepIcons.process,
+          title: 'Dados compilados',
+          description: 'Horas, entregas e valores reunidos.',
+          examples: [
+            { icon: exampleIcons.clock, text: 'Horas totalizadas' },
+            { icon: exampleIcons.document, text: 'Entregas listadas' },
+            { icon: exampleIcons.money, text: 'Valores calculados' },
+          ],
+        },
+        {
+          icon: stepIcons.creditCard,
+          title: 'Fatura enviada',
+          description: 'Formatada e entregue ao cliente.',
+          examples: [
+            { icon: exampleIcons.document, text: 'NF emitida' },
+            { icon: exampleIcons.email, text: 'Email enviado' },
+            { icon: exampleIcons.calendar, text: 'Vencimento definido' },
+          ],
+        },
+        {
+          icon: stepIcons.check,
+          title: 'Pagamento rastreado',
+          description: 'Lembretes automáticos até receber.',
+          examples: [
+            { icon: exampleIcons.bell, text: 'Lembrete enviado' },
+            { icon: exampleIcons.check, text: 'Pagamento confirmado' },
+            { icon: exampleIcons.money, text: 'Valor conciliado' },
+          ],
+        },
       ],
     },
     reports: {
       title: 'Relatórios para Clientes',
       subtitle: 'Profissionalismo sem esforço manual',
       steps: [
-        { icon: stepIcons.calendar, title: 'Data programada', desc: 'Semanal, mensal ou por projeto' },
-        { icon: stepIcons.refresh, title: 'Dados coletados', desc: 'Métricas puxadas automaticamente' },
-        { icon: stepIcons.document, title: 'Relatório formatado', desc: 'Layout profissional consistente' },
-        { icon: stepIcons.check, title: 'Entrega automática', desc: 'Cliente recebe no prazo' },
+        {
+          icon: stepIcons.calendar,
+          title: 'Data programada',
+          description: 'Semanal, mensal ou por projeto.',
+          examples: [
+            { icon: exampleIcons.calendar, text: 'Frequência definida' },
+            { icon: exampleIcons.clock, text: 'Horário agendado' },
+            { icon: exampleIcons.bell, text: 'Disparo automático' },
+          ],
+        },
+        {
+          icon: stepIcons.refresh,
+          title: 'Dados coletados',
+          description: 'Métricas puxadas automaticamente.',
+          examples: [
+            { icon: exampleIcons.data, text: 'KPIs atualizados' },
+            { icon: exampleIcons.chart, text: 'Gráficos gerados' },
+            { icon: exampleIcons.sync, text: 'Fontes sincronizadas' },
+          ],
+        },
+        {
+          icon: stepIcons.document,
+          title: 'Relatório formatado',
+          description: 'Layout profissional consistente.',
+          examples: [
+            { icon: exampleIcons.document, text: 'Template aplicado' },
+            { icon: exampleIcons.file, text: 'PDF gerado' },
+            { icon: exampleIcons.check, text: 'Revisão automática' },
+          ],
+        },
+        {
+          icon: stepIcons.check,
+          title: 'Entrega automática',
+          description: 'Cliente recebe no prazo.',
+          examples: [
+            { icon: exampleIcons.email, text: 'Email enviado' },
+            { icon: exampleIcons.check, text: 'Entrega confirmada' },
+            { icon: exampleIcons.log, text: 'Histórico registrado' },
+          ],
+        },
       ],
     },
   }
@@ -176,7 +320,7 @@ export default function ServicosContent() {
                   <p className="text-brand-muted">{workflow.subtitle}</p>
                 </div>
               </div>
-              <WorkflowAnimation steps={workflow.steps} accentStep={3} />
+              <WorkflowDemo steps={workflow.steps} />
             </div>
           ))}
         </div>
