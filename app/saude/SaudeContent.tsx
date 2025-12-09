@@ -379,7 +379,7 @@ export default function SaudeContent() {
           Conversa sem compromisso. Entendemos sua clínica e mostramos o que é possível automatizar.
         </p>
         <a
-          href="mailto:contato@mildez.com"
+          href="mailto:contato@miledez.com.br"
           className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
         >
           Iniciar conversa

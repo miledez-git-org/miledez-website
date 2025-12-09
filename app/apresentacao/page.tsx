@@ -704,12 +704,12 @@ export default function ApresentacaoPage() {
               }}
             >
               <a
-                href="mailto:contato@mildez.com"
+                href="mailto:contato@miledez.com.br"
                 className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
               >
-                contato@mildez.com
+                contato@miledez.com.br
               </a>
-              <span className="text-sm text-brand-muted">mildez.com</span>
+              <span className="text-sm text-brand-muted">miledez.com.br</span>
             </div>
           </div>
         </section>
