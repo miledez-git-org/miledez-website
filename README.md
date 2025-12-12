@@ -22,6 +22,7 @@ npm run dev
 | `/saude` | `app/saude/page.tsx` | Healthcare industry |
 | `/servicos` | `app/servicos/page.tsx` | Professional services |
 | `/varejo` | `app/varejo/page.tsx` | Retail/E-commerce |
+| `/apresentacao` | `app/apresentacao/page.tsx` | Sales presentation |
 
 ## Project Structure
 
@@ -37,14 +38,17 @@ website/
 │   ├── servicos/
 │   │   ├── page.tsx
 │   │   └── ServicosContent.tsx
-│   └── varejo/
-│       ├── page.tsx
-│       └── VarejoContent.tsx
+│   ├── varejo/
+│   │   ├── page.tsx
+│   │   └── VarejoContent.tsx
+│   └── apresentacao/
+│       └── page.tsx              # Sales presentation
 ├── components/
 │   ├── Header.tsx           # Navigation header with logo
 │   ├── Footer.tsx           # Site footer
 │   ├── WorkflowAnimation.tsx # Reusable animated workflow
 │   ├── SectionNavButton.tsx # Section navigation buttons
+│   ├── DiagnosticoAutomacao.tsx # ROI quiz calculator
 │   └── Icons.tsx            # All SVG icons
 ├── public/
 │   └── logo.svg             # Website logo

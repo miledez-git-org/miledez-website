@@ -133,6 +133,174 @@ export const icons = {
       <path d="M8 26c0 2.2 5.4 4 12 4s12-1.8 12-4"/>
     </svg>
   ),
+  // Video conferencing
+  zoom: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <rect x="4" y="10" width="22" height="16" rx="2"/>
+      <path d="M26 14l10-4v16l-10-4"/>
+    </svg>
+  ),
+  // Digital signature
+  clickSign: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M8 32c4-4 8-12 12-12s4 8 8 8 4-4 6-4"/>
+      <path d="M28 6l6 6-16 16-6 2 2-6L28 6z"/>
+    </svg>
+  ),
+  // Brazilian accounting - cloud with coin
+  contaAzul: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M10 28c-3.3 0-6-2.7-6-6 0-2.8 1.9-5.2 4.5-5.8.3-4 3.7-7.2 7.8-7.2 2.5 0 4.7 1.1 6.2 2.9 1-.5 2.1-.9 3.3-.9 4 0 7.2 3.2 7.2 7.2 0 .4 0 .8-.1 1.2 2.3.9 4.1 3.1 4.1 5.8 0 3.4-2.8 6.2-6.2 6.2H10z"/>
+      <circle cx="20" cy="22" r="4"/>
+      <path d="M20 20v4M18 22h4"/>
+    </svg>
+  ),
+  // Brazilian accounting - N with chart
+  nibo: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M10 30V10l10 14V10"/>
+      <path d="M24 26l4-6 4 4"/>
+      <path d="M24 30v-8M28 30v-12M32 30v-6"/>
+    </svg>
+  ),
+  // CRM - Funnel
+  pipedrive: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M6 8h28l-8 10v12l-4 4V18L6 8z"/>
+    </svg>
+  ),
+  // Healthcare scheduling - D with cross
+  doctoralia: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M12 8v24h6c7 0 12-5 12-12s-5-12-12-12h-6z"/>
+      <path d="M18 16v8M14 20h8"/>
+    </svg>
+  ),
+  // Clinic management - Heart with pulse
+  iclinic: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M20 34l-1.5-1.4C10 25.3 4 19.8 4 13c0-5.5 4.5-10 10-10 3 0 6 1.5 6 1.5s3-1.5 6-1.5c5.5 0 10 4.5 10 10 0 6.8-6 12.3-14.5 19.6L20 34z"/>
+      <path d="M10 20h6l2-4 4 8 2-4h6"/>
+    </svg>
+  ),
+  // Medical imaging
+  pixeon: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <rect x="8" y="4" width="24" height="32" rx="2"/>
+      <circle cx="20" cy="14" r="4"/>
+      <path d="M14 24h12M16 28h8M14 32h12"/>
+      <path d="M20 18v2"/>
+    </svg>
+  ),
+  // Electronic health record - clipboard with cross
+  prontuario: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M28 6h4a2 2 0 012 2v28a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2h4"/>
+      <rect x="14" y="4" width="12" height="6" rx="1"/>
+      <path d="M20 18v10M15 23h10"/>
+    </svg>
+  ),
+  // E-commerce - Shopping bag with S
+  shopify: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M10 12l2-8h16l2 8v22a2 2 0 01-2 2H12a2 2 0 01-2-2V12z"/>
+      <path d="M14 12V8a6 6 0 1112 0v4"/>
+      <path d="M16 22c0-2 2-3 4-3s4 1 4 3-2 3-4 3-4 1-4 3 2 3 4 3 4-1 4-3"/>
+    </svg>
+  ),
+  // Brazilian e-commerce - Cloud with cart
+  nuvemshop: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M10 30c-3.3 0-6-2.7-6-6 0-2.8 1.9-5.2 4.5-5.8.3-4 3.7-7.2 7.8-7.2 2.5 0 4.7 1.1 6.2 2.9 1-.5 2.1-.9 3.3-.9 4 0 7.2 3.2 7.2 7.2 0 .4 0 .8-.1 1.2 2.3.9 4.1 3.1 4.1 5.8 0 3.4-2.8 6.2-6.2 6.2H10z"/>
+      <path d="M15 22h10l-1 4h-8l-1-4zM16 22l1-4h6l1 4"/>
+    </svg>
+  ),
+  // WooCommerce - W badge
+  woocommerce: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <rect x="4" y="8" width="32" height="24" rx="3"/>
+      <path d="M10 16l3 8 4-6 4 6 3-8"/>
+      <circle cx="30" cy="14" r="2"/>
+    </svg>
+  ),
+  // Brazilian marketplace - Handshake
+  mercadoLivre: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M8 20l6-6 4 4 6-6 8 8"/>
+      <path d="M4 24l8 8 6-6"/>
+      <path d="M36 24l-8 8-6-6"/>
+      <path d="M18 26l4-4"/>
+    </svg>
+  ),
+  // Amazon - A with smile arrow
+  amazon: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M12 28l8-20 8 20"/>
+      <path d="M15 22h10"/>
+      <path d="M8 32c8 4 16 4 24 0"/>
+      <path d="M30 30l2 2 2-4"/>
+    </svg>
+  ),
+  // Brazilian ERP - B with gear
+  bling: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M10 6v28h8c4 0 7-2 7-6 0-3-2-5-5-5.5 2-.5 4-2.5 4-5.5 0-4-3-6-7-6h-7z"/>
+      <path d="M14 10h4c2 0 3 1 3 3s-1 3-3 3h-4"/>
+      <path d="M14 20h4c2 0 3 1 3 3s-1 3-3 3h-4"/>
+      <circle cx="32" cy="28" r="6"/>
+      <circle cx="32" cy="28" r="2"/>
+    </svg>
+  ),
+  // Brazilian ERP - T with boxes
+  tinyErp: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M8 6h16M16 6v14"/>
+      <rect x="6" y="24" width="8" height="8"/>
+      <rect x="16" y="24" width="8" height="8"/>
+      <rect x="26" y="24" width="8" height="8"/>
+    </svg>
+  ),
+  // Brazilian postal - Envelope with wings
+  correios: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <rect x="8" y="12" width="24" height="16" rx="2"/>
+      <path d="M8 14l12 8 12-8"/>
+      <path d="M4 16l4 4M4 24l4-4"/>
+      <path d="M36 16l-4 4M36 24l-4-4"/>
+    </svg>
+  ),
+  // Brazilian shipping - Box with checkmark
+  melhorEnvio: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M6 14l14-8 14 8v16l-14 8-14-8V14z"/>
+      <path d="M6 14l14 8 14-8"/>
+      <path d="M20 22v16"/>
+      <path d="M14 18l4 4 8-8"/>
+    </svg>
+  ),
+  // Brazilian payment - Shield with P
+  pagSeguro: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M20 4l14 6v12c0 8-6 14-14 16-8-2-14-8-14-16V10l14-6z"/>
+      <path d="M16 14v12M16 14h6c2 0 4 2 4 4s-2 4-4 4h-6"/>
+    </svg>
+  ),
+  // Brazilian payment - MP
+  mercadoPago: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <circle cx="20" cy="20" r="14"/>
+      <path d="M12 14v12M12 14l4 8 4-8"/>
+      <path d="M24 14v12M24 14h4c2 0 3 1.5 3 3.5S30 21 28 21h-4"/>
+    </svg>
+  ),
+  // Social commerce - Instagram camera
+  instagram: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <rect x="6" y="6" width="28" height="28" rx="6"/>
+      <circle cx="20" cy="20" r="7"/>
+      <circle cx="29" cy="11" r="2"/>
+    </svg>
+  ),
 }
 
 // Step icons for workflow animations

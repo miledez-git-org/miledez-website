@@ -87,11 +87,11 @@ export default function Home() {
         <div className="h-px bg-brand-border" />
       </div>
 
-      {/* How it works - Live Demo */}
+      {/* Why choose mil&dez */}
       <section id="como-funciona" className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
         <div className="mb-12 md:mb-16">
-          <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Como funciona</h2>
-          <p className="mt-4 text-lg font-medium text-brand-muted">Veja uma automação real em ação</p>
+          <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Motivos para começar ainda hoje</h2>
+          <p className="mt-4 text-lg text-brand-muted">Seu trabalho totalmente transformado</p>
         </div>
 
         <ComoFuncionaDemo />
@@ -166,12 +166,13 @@ export default function Home() {
         <AnalyticsDashboard />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
+      {/* Divider before Diagnostic - HIDDEN */}
+      <div className="hidden max-w-6xl mx-auto px-6 md:px-10">
         <div className="h-px bg-brand-border" />
       </div>
 
-      {/* Diagnostic Tool */}
-      <section id="diagnostico" className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
+      {/* Diagnostic Tool - HIDDEN */}
+      <section id="diagnostico" className="hidden py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <span className="inline-block text-xs font-medium text-brand-accent uppercase tracking-wider mb-4">

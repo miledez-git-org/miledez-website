@@ -245,12 +245,24 @@ export default function SaudeContent() {
   }
 
   const integrations = [
+    { name: 'WhatsApp', icon: icons.whatsapp },
+    { name: 'Doctoralia', icon: icons.doctoralia },
+    { name: 'iClinic', icon: icons.iclinic },
+    { name: 'Google Calendar', icon: icons.googleCalendar },
+    { name: 'Gmail', icon: icons.gmail },
+    { name: 'Google Drive', icon: icons.googleDrive },
     { name: 'Excel', icon: icons.excel },
     { name: 'Google Sheets', icon: icons.googleSheets },
+    { name: 'Zoom', icon: icons.zoom },
+    { name: 'ContaAzul', icon: icons.contaAzul },
+    { name: 'ClickSign', icon: icons.clickSign },
+    { name: 'Pixeon', icon: icons.pixeon },
+    { name: 'Prontuário', icon: icons.prontuario },
     { name: 'PDF', icon: icons.pdf },
-    { name: 'Google Drive', icon: icons.googleDrive },
-    { name: 'Email', icon: icons.email },
-    { name: 'Calendar', icon: icons.calendar },
+    { name: 'Word', icon: icons.word },
+    { name: 'Outlook', icon: icons.outlook },
+    { name: 'OneDrive', icon: icons.oneDrive },
+    { name: 'Trello', icon: icons.trello },
   ]
 
   return (

@@ -244,13 +244,24 @@ export default function ServicosContent() {
   }
 
   const integrations = [
+    { name: 'WhatsApp', icon: icons.whatsapp },
+    { name: 'Gmail', icon: icons.gmail },
+    { name: 'Outlook', icon: icons.outlook },
+    { name: 'Google Calendar', icon: icons.googleCalendar },
+    { name: 'Google Drive', icon: icons.googleDrive },
+    { name: 'OneDrive', icon: icons.oneDrive },
     { name: 'Excel', icon: icons.excel },
+    { name: 'Word', icon: icons.word },
     { name: 'Google Sheets', icon: icons.googleSheets },
     { name: 'PDF', icon: icons.pdf },
-    { name: 'Word', icon: icons.word },
-    { name: 'Google Drive', icon: icons.googleDrive },
-    { name: 'Email', icon: icons.email },
-    { name: 'Calendar', icon: icons.calendar },
+    { name: 'Trello', icon: icons.trello },
+    { name: 'Notion', icon: icons.notion },
+    { name: 'Slack', icon: icons.slack },
+    { name: 'Zoom', icon: icons.zoom },
+    { name: 'ContaAzul', icon: icons.contaAzul },
+    { name: 'Nibo', icon: icons.nibo },
+    { name: 'Pipedrive', icon: icons.pipedrive },
+    { name: 'ClickSign', icon: icons.clickSign },
   ]
 
   return (

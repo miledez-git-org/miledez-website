@@ -1,341 +1,163 @@
 'use client'
 
-import { Fragment, useEffect, useRef, useState } from 'react'
-import { stepIcons } from './Icons'
+import { useState } from 'react'
 
-interface Example {
+interface Benefit {
   icon: React.ReactNode
-  text: string
-}
-
-interface Step {
-  icon: React.ReactNode
-  title: string
+  headline: string
   description: string
-  examples: Example[]
 }
 
-// Small icons for examples
-const exampleIcons = {
-  email: (
-    <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="1" y="3" width="14" height="10" rx="1" />
-      <path d="M1 4l7 5 7-5" />
+// Larger outline icons (1.5px stroke, w-7 h-7)
+const benefitIcons = {
+  // Link/connection - No new software
+  noSoftware: (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
     </svg>
   ),
-  form: (
-    <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="2" y="1" width="12" height="14" rx="1" />
-      <path d="M5 5h6M5 8h6M5 11h4" />
+  // Puzzle piece - Custom solution
+  custom: (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 01-.657.643 48.39 48.39 0 01-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 01-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 00-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 01-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 00.657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 01-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 005.427-.63 48.05 48.05 0 00.582-4.717.532.532 0 00-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 00.658-.663 48.422 48.422 0 00-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 01-.61-.58v0z" />
     </svg>
   ),
-  calendar: (
-    <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="1" y="3" width="14" height="12" rx="1" />
-      <path d="M1 7h14M4 1v4M12 1v4" />
+  // Chat bubble - You describe
+  chat: (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
     </svg>
   ),
-  user: (
-    <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <circle cx="8" cy="5" r="3" />
-      <path d="M2 15c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+  // Rocket - Fast delivery
+  rocket: (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
     </svg>
   ),
-  document: (
-    <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M9 1H3a1 1 0 00-1 1v12a1 1 0 001 1h10a1 1 0 001-1V6L9 1z" />
-      <path d="M9 1v5h5" />
+  // Handshake/shield - Zero commitment
+  shield: (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
     </svg>
   ),
-  data: (
-    <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <ellipse cx="8" cy="4" rx="6" ry="2" />
-      <path d="M2 4v8c0 1.1 2.7 2 6 2s6-.9 6-2V4" />
-      <path d="M2 8c0 1.1 2.7 2 6 2s6-.9 6-2" />
+  // Tag - Pricing
+  price: (
+    <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6z" />
     </svg>
   ),
-  sync: (
-    <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M2 8a6 6 0 0110.3-4.2M14 8a6 6 0 01-10.3 4.2" />
-      <path d="M12 2v4h-4M4 14v-4h4" />
-    </svg>
-  ),
-  file: (
-    <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M9 1H3a1 1 0 00-1 1v12a1 1 0 001 1h10a1 1 0 001-1V6L9 1z" />
-      <path d="M9 1v5h5M5 9h6M5 12h4" />
-    </svg>
-  ),
-  bell: (
-    <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M12 6a4 4 0 00-8 0c0 4-2 5-2 5h12s-2-1-2-5" />
-      <path d="M9 13a1.5 1.5 0 01-3 0" />
-    </svg>
-  ),
-  check: (
-    <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <circle cx="8" cy="8" r="6" />
-      <path d="M5 8l2 2 4-4" />
-    </svg>
-  ),
-  log: (
-    <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="2" y="2" width="12" height="12" rx="1" />
-      <path d="M5 5h6M5 8h6M5 11h3" />
-    </svg>
-  ),
-  team: (
-    <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <circle cx="6" cy="5" r="2" />
-      <circle cx="11" cy="5" r="2" />
-      <path d="M1 13c0-2.2 1.8-4 4-4h2c.7 0 1.4.2 2 .5M8 13c0-2.2 1.8-4 4-4h1c2.2 0 4 1.8 4 4" />
+  // Filled price icon for featured card
+  priceFilled: (
+    <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+      <path fillRule="evenodd" d="M5.25 2.25a3 3 0 00-3 3v4.318a3 3 0 00.879 2.121l9.58 9.581c.92.92 2.39 1.186 3.548.428a19.595 19.595 0 005.656-5.656c.758-1.158.492-2.629-.428-3.548l-9.58-9.581a3 3 0 00-2.122-.879H5.25zM6.375 7.5a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z" clipRule="evenodd" />
     </svg>
   ),
 }
 
-const steps: Step[] = [
+const benefits: Benefit[] = [
   {
-    icon: stepIcons.trigger,
-    title: 'Gatilho',
-    description: 'Um evento inicia o processo automaticamente.',
-    examples: [
-      { icon: exampleIcons.email, text: 'Email recebido' },
-      { icon: exampleIcons.form, text: 'Formulário preenchido' },
-      { icon: exampleIcons.calendar, text: 'Agendamento criado' },
-    ],
+    icon: benefitIcons.noSoftware,
+    headline: 'Sem software novo',
+    description: 'Conectamos aos sistemas que você já usa. Sem instalação, sem treinamento.',
   },
   {
-    icon: stepIcons.process,
-    title: 'Processamento',
-    description: 'O sistema identifica e extrai informações.',
-    examples: [
-      { icon: exampleIcons.user, text: 'Nome e contato' },
-      { icon: exampleIcons.calendar, text: 'Datas e horários' },
-      { icon: exampleIcons.data, text: 'Valores e documentos' },
-    ],
+    icon: benefitIcons.custom,
+    headline: '100% personalizada',
+    description: 'Adaptada ao seu negócio, seus processos, suas necessidades.',
   },
   {
-    icon: stepIcons.action,
-    title: 'Ações',
-    description: 'Tarefas executadas automaticamente.',
-    examples: [
-      { icon: exampleIcons.sync, text: 'Atualiza sistemas' },
-      { icon: exampleIcons.file, text: 'Gera documentos' },
-      { icon: exampleIcons.bell, text: 'Envia notificações' },
-    ],
+    icon: benefitIcons.rocket,
+    headline: 'Pronto em dias, não meses',
+    description: 'Primeira automação funcionando rapidamente. Resultados imediatos.',
   },
   {
-    icon: stepIcons.result,
-    title: 'Resultado',
-    description: 'Processo concluído com sucesso.',
-    examples: [
-      { icon: exampleIcons.check, text: 'Tarefa finalizada' },
-      { icon: exampleIcons.log, text: 'Registro completo' },
-      { icon: exampleIcons.team, text: 'Equipe notificada' },
-    ],
+    icon: benefitIcons.shield,
+    headline: 'Zero compromisso',
+    description: 'Sem contratos longos. Cancele quando quiser.',
   },
 ]
 
-// Animated connector line between boxes
-function ConnectorLine({ isActive, isVisible }: { isActive: boolean; isVisible: boolean }) {
-  return (
-    <div
-      className="w-full h-[2px] relative"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transition: 'opacity 0.5s ease-out',
-      }}
-    >
-      {/* Base line (subtle gray) */}
-      <div className="absolute inset-0 bg-brand-border" />
-
-      {/* Animated accent line that grows from left to right */}
-      <div
-        className="absolute top-0 left-0 h-full bg-brand-accent transition-all duration-1000 ease-out"
-        style={{
-          width: isActive ? '100%' : '0%',
-        }}
-      />
-    </div>
-  )
-}
-
-function StepBox({ step, isLast, isLoaded }: { step: Step; isLast: boolean; isLoaded: boolean }) {
-  return (
-    <div
-      className={`p-6 border bg-white h-full relative overflow-hidden ${
-        isLast && isLoaded
-          ? 'border-l-2 border-l-brand-accent border-t border-r border-b border-t-brand-border border-r-brand-border border-b-brand-border'
-          : 'border-brand-border'
-      }`}
-    >
-      {/* Skeleton layer */}
-      <div
-        className="absolute inset-0 p-6 transition-opacity duration-700 ease-out"
-        style={{ opacity: isLoaded ? 0 : 1 }}
-      >
-        <div className="animate-pulse">
-          <div className="w-12 h-12 bg-gray-200 mb-4" />
-          <div className="h-5 bg-gray-200 w-24 mb-2" />
-          <div className="h-4 bg-gray-200 w-full mb-6" />
-          <div className="space-y-2">
-            <div className="h-3 bg-gray-200 w-3/4" />
-            <div className="h-3 bg-gray-200 w-2/3" />
-            <div className="h-3 bg-gray-200 w-3/4" />
-          </div>
-        </div>
-      </div>
-
-      {/* Content layer */}
-      <div
-        className="transition-all duration-700 ease-out"
-        style={{
-          opacity: isLoaded ? 1 : 0,
-          transform: isLoaded ? 'translateY(0)' : 'translateY(8px)',
-        }}
-      >
-        {/* Icon */}
-        <div
-          className={`w-12 h-12 flex items-center justify-center border mb-4 transition-colors duration-500 ${
-            isLast && isLoaded ? 'border-brand-accent text-brand-accent' : 'border-brand-black text-brand-black'
-          }`}
-        >
-          {step.icon}
-        </div>
-
-        {/* Title */}
-        <h4 className="text-base font-medium text-brand-black mb-1">{step.title}</h4>
-
-        {/* Short description */}
-        <p className="text-sm text-brand-text mb-4">{step.description}</p>
-
-        {/* Examples list */}
-        <ul className="space-y-2">
-          {step.examples.map((example, i) => (
-            <li key={i} className="flex items-center gap-2 text-sm text-brand-muted">
-              <span className="text-brand-text flex-shrink-0">{example.icon}</span>
-              <span>{example.text}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  )
-}
-
 export default function ComoFuncionaDemo() {
-  const [loadedSteps, setLoadedSteps] = useState(0)
-  const [isVisible, setIsVisible] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
-
-  // Intersection Observer for scroll reveal
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-    // If reduced motion, show all steps immediately
-    if (prefersReducedMotion) {
-      setIsVisible(true)
-      setLoadedSteps(4)
-      return
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.3 }
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  // Sequential loading animation
-  useEffect(() => {
-    if (!isVisible) return
-
-    // Load first step immediately
-    if (loadedSteps === 0) {
-      setLoadedSteps(1)
-      return
-    }
-
-    // Load remaining steps with 3s delay
-    if (loadedSteps < 4) {
-      const timer = setTimeout(() => {
-        setLoadedSteps((prev) => prev + 1)
-      }, 3000)
-
-      return () => clearTimeout(timer)
-    }
-  }, [isVisible, loadedSteps])
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  const PRICING_CARD_ID = 99
 
   return (
-    <div ref={ref}>
-      {/* Desktop: boxes with connector lines between them */}
-      <div className="hidden md:flex items-center">
-        {steps.map((step, i) => (
-          <Fragment key={i}>
-            {/* Step box */}
-            <div
-              className="flex-1"
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
-                transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${i * 100}ms`,
-              }}
-            >
-              <StepBox step={step} isLast={i === steps.length - 1} isLoaded={i < loadedSteps} />
-            </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Regular benefit cards */}
+      {benefits.map((benefit, index) => {
+        const isHovered = hoveredCard === index
 
-            {/* Connector line between boxes (not after last box) */}
-            {i < steps.length - 1 && (
-              <div className="w-12 px-2 flex items-center self-stretch">
-                <ConnectorLine isActive={i + 1 < loadedSteps} isVisible={isVisible} />
+        return (
+          <div
+            key={index}
+            className={`border p-8 bg-white transition-all duration-300 ${
+              isHovered ? 'border-brand-accent' : 'border-brand-border'
+            }`}
+            onMouseEnter={() => setHoveredCard(index)}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
+            <div className="flex items-start gap-5">
+              {/* Icon container with accent left border */}
+              <div
+                className={`w-14 h-14 flex-shrink-0 flex items-center justify-center border-l-[3px] border-t border-r border-b bg-neutral-50 transition-colors duration-300 ${
+                  isHovered
+                    ? 'border-l-brand-accent border-t-brand-accent border-r-brand-accent border-b-brand-accent text-brand-accent'
+                    : 'border-l-brand-accent border-t-brand-border border-r-brand-border border-b-brand-border text-brand-black'
+                }`}
+              >
+                {benefit.icon}
               </div>
-            )}
-          </Fragment>
-        ))}
-      </div>
 
-      {/* Mobile: single column with vertical connectors */}
-      <div className="md:hidden">
-        {steps.map((step, i) => (
-          <div key={i}>
-            {/* Step box */}
-            <div
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
-                transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${i * 100}ms`,
-              }}
-            >
-              <StepBox step={step} isLast={i === steps.length - 1} isLoaded={i < loadedSteps} />
-            </div>
-            {/* Vertical connector line (not after last item) */}
-            {i < steps.length - 1 && (
-              <div className="flex justify-center py-3">
-                <div className="relative w-px h-8">
-                  {/* Base line (subtle gray) */}
-                  <div className="absolute inset-0 bg-brand-border" />
-
-                  {/* Animated accent line that grows from top to bottom */}
-                  <div
-                    className="absolute top-0 left-0 w-full bg-brand-accent transition-all duration-1000 ease-out"
-                    style={{
-                      height: i + 1 < loadedSteps ? '100%' : '0%',
-                    }}
-                  />
-                </div>
+              {/* Content */}
+              <div className="flex-1 min-w-0">
+                <h3 className="text-lg font-semibold text-brand-black mb-2 leading-tight">
+                  {benefit.headline}
+                </h3>
+                <p className="text-sm text-brand-muted leading-relaxed">
+                  {benefit.description}
+                </p>
               </div>
-            )}
+            </div>
           </div>
-        ))}
+        )
+      })}
+
+      {/* Featured pricing card - full width */}
+      <div
+        className="md:col-span-2 border border-brand-accent bg-gradient-to-r from-white to-neutral-50 p-8 md:p-10 transition-all duration-300"
+        onMouseEnter={() => setHoveredCard(PRICING_CARD_ID)}
+        onMouseLeave={() => setHoveredCard(null)}
+      >
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          {/* Left side: icon + text */}
+          <div className="flex items-start gap-5">
+            <div className="w-14 h-14 flex-shrink-0 flex items-center justify-center bg-brand-accent text-white">
+              {benefitIcons.priceFilled}
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-brand-black mb-2">
+                Sem custo de desenvolvimento
+              </h3>
+              <p className="text-base text-brand-muted">
+                Nós cuidamos do funcionamento e manutenção
+              </p>
+            </div>
+          </div>
+
+          {/* Right side: price display */}
+          <div className="text-left md:text-right">
+            <span className="text-xs text-brand-muted uppercase tracking-wider">
+              A partir de
+            </span>
+            <span className="block text-3xl md:text-4xl font-bold text-brand-accent leading-tight">
+              R$900
+            </span>
+            <span className="text-sm text-brand-muted">
+              /mês por automação
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   )

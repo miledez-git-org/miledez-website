@@ -244,12 +244,24 @@ export default function VarejoContent() {
   }
 
   const integrations = [
+    { name: 'WhatsApp', icon: icons.whatsapp },
+    { name: 'Shopify', icon: icons.shopify },
+    { name: 'Nuvemshop', icon: icons.nuvemshop },
+    { name: 'WooCommerce', icon: icons.woocommerce },
+    { name: 'Mercado Livre', icon: icons.mercadoLivre },
+    { name: 'Amazon', icon: icons.amazon },
+    { name: 'Bling', icon: icons.bling },
+    { name: 'Tiny ERP', icon: icons.tinyErp },
+    { name: 'Correios', icon: icons.correios },
+    { name: 'Melhor Envio', icon: icons.melhorEnvio },
+    { name: 'PagSeguro', icon: icons.pagSeguro },
+    { name: 'Mercado Pago', icon: icons.mercadoPago },
+    { name: 'Instagram', icon: icons.instagram },
     { name: 'Excel', icon: icons.excel },
     { name: 'Google Sheets', icon: icons.googleSheets },
-    { name: 'PDF', icon: icons.pdf },
-    { name: 'WhatsApp', icon: icons.whatsapp },
     { name: 'Email', icon: icons.email },
     { name: 'Google Drive', icon: icons.googleDrive },
+    { name: 'PDF', icon: icons.pdf },
   ]
 
   return (
