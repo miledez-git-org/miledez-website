@@ -8,6 +8,7 @@ import DiagnosticoAutomacao from '@/components/DiagnosticoAutomacao'
 import HeroVisualization from '@/components/HeroVisualization'
 import IntegrationMesh from '@/components/IntegrationMesh'
 import ComoFuncionaDemo from '@/components/ComoFuncionaDemo'
+import WorkflowAutomationVisual from '@/components/WorkflowAutomationVisual'
 import BenefitsSection from '@/components/BenefitsSection'
 import ProcessSection from '@/components/ProcessSection'
 import IndustriesSection from '@/components/IndustriesSection'
@@ -94,6 +95,26 @@ export default function Home() {
         </div>
 
         <ComoFuncionaDemo />
+
+        <SectionNavButton href="#integracao-visual" label="Veja na pratica" />
+      </section>
+
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
+        <div className="h-px bg-brand-border" />
+      </div>
+
+      {/* Workflow Integration Visual */}
+      <section id="integracao-visual" className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
+        <div className="mb-12 md:mb-16 text-center">
+          <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">
+            Como a automacao se integra ao seu negocio
+          </h2>
+          <p className="mt-4 text-lg text-brand-muted max-w-2xl mx-auto">
+            Veja como seus sistemas existentes se conectam ao motor de automacao
+          </p>
+        </div>
+
+        <WorkflowAutomationVisual />
 
         <SectionNavButton href="#beneficios" label="Por que automatizar?" />
       </section>
