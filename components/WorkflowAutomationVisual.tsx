@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { icons, stepIcons } from './Icons'
 
 const ACCENT_COLOR = '#8b2020'
+const SUCCESS_COLOR = '#22c55e'
 
 // Step definitions
 const stepInfo = [
@@ -132,26 +133,29 @@ export default function WorkflowAutomationVisual() {
     return () => mediaQuery.removeEventListener('change', handler)
   }, [])
 
-  // Intersection Observer
+  // Intersection Observer - trigger earlier with lower threshold
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     )
     if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [])
 
-  // Animation cycle
+  // Animation cycle - start immediately when visible
   useEffect(() => {
     if (!isVisible || prefersReducedMotion) {
       if (prefersReducedMotion) setStep(4) // Show complete state
       return
     }
 
+    // Start animation immediately
+    setStep(1)
+
     const timer = setInterval(() => {
       setStep((prev) => (prev + 1) % 5)
-    }, 3500)
+    }, 3000)
 
     return () => clearInterval(timer)
   }, [isVisible, prefersReducedMotion])
@@ -181,8 +185,8 @@ export default function WorkflowAutomationVisual() {
 
         {/* TOP: Client Software */}
         <div className="flex flex-col items-center w-full">
-          <h3 className="text-xs font-medium text-brand-muted uppercase tracking-[0.2em] mb-6 md:mb-8">
-            Software do Cliente
+          <h3 className="text-sm md:text-base font-semibold text-brand-text uppercase tracking-[0.2em] mb-6 md:mb-8">
+            Sistemas atuais do Cliente
           </h3>
 
           {/* Desktop: 4 columns */}
@@ -307,13 +311,13 @@ export default function WorkflowAutomationVisual() {
               )}
             </AnimatePresence>
 
-            {/* Animated Dots Up (Step 3) */}
+            {/* Animated Dots Up (Step 3) - Green for return path */}
             {step === 3 && !prefersReducedMotion && (
               <>
                 {/* To Calendar */}
                 <motion.circle
                   r="8"
-                  fill={ACCENT_COLOR}
+                  fill={SUCCESS_COLOR}
                   initial={{ cx: 600, cy: 400 }}
                   animate={{
                     cx: [600, 600, 450, 450],
@@ -324,7 +328,7 @@ export default function WorkflowAutomationVisual() {
                 {/* To CRM */}
                 <motion.circle
                   r="8"
-                  fill={ACCENT_COLOR}
+                  fill={SUCCESS_COLOR}
                   initial={{ cx: 600, cy: 400 }}
                   animate={{
                     cx: [600, 600, 750, 750],
@@ -335,7 +339,7 @@ export default function WorkflowAutomationVisual() {
                 {/* To ERP */}
                 <motion.circle
                   r="8"
-                  fill={ACCENT_COLOR}
+                  fill={SUCCESS_COLOR}
                   initial={{ cx: 600, cy: 400 }}
                   animate={{
                     cx: [600, 600, 1050, 1050],
@@ -390,12 +394,17 @@ export default function WorkflowAutomationVisual() {
             animate={{ scale: step === 2 ? 1.02 : 1 }}
             transition={{ duration: 0.3 }}
             className={`
-              relative flex flex-col md:flex-row items-center justify-center
-              gap-4 md:gap-8 lg:gap-12 px-6 md:px-14 py-6 md:py-8
+              relative flex flex-col items-center justify-center
+              gap-4 md:gap-6 px-6 md:px-14 py-6 md:py-8
               bg-white border transition-all duration-300
               ${step === 4 ? 'border-brand-success shadow-success-glow' : step === 2 ? 'border-brand-accent shadow-accent-glow' : 'border-brand-border'}
             `}
           >
+            {/* Title inside box, above icons */}
+            <h3 className="text-sm md:text-base font-semibold text-brand-text uppercase tracking-[0.2em] text-center">
+              Processo de automação customizado para cliente
+            </h3>
+
             {/* Desktop: Horizontal layout */}
             <div className="hidden md:flex items-center gap-8 lg:gap-12">
               <AutomationStep
@@ -440,10 +449,6 @@ export default function WorkflowAutomationVisual() {
               />
             </div>
           </motion.div>
-
-          <h3 className="text-xs md:text-sm font-medium text-brand-muted uppercase tracking-[0.2em] mt-6 md:mt-8">
-            Motor de Automação mil&dez
-          </h3>
         </div>
 
       </div>
