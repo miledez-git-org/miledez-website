@@ -117,6 +117,22 @@ export const icons = {
       <rect x="14" y="22" width="4" height="4"/>
     </svg>
   ),
+  crm: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <circle cx="20" cy="12" r="6"/>
+      <path d="M8 32v-2a8 8 0 0116 0v2"/>
+      <circle cx="30" cy="18" r="4"/>
+      <path d="M32 32v-1a5 5 0 00-5-5"/>
+    </svg>
+  ),
+  database: (
+    <svg viewBox="0 0 40 40" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <ellipse cx="20" cy="10" rx="12" ry="4"/>
+      <path d="M8 10v20c0 2.2 5.4 4 12 4s12-1.8 12-4V10"/>
+      <path d="M8 18c0 2.2 5.4 4 12 4s12-1.8 12-4"/>
+      <path d="M8 26c0 2.2 5.4 4 12 4s12-1.8 12-4"/>
+    </svg>
+  ),
 }
 
 // Step icons for workflow animations
