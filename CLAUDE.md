@@ -1,8 +1,10 @@
 # CLAUDE.md - Website Domain
 
-> **Workspace Context:** For agency-wide guidance, see the root [CLAUDE.md](../CLAUDE.md) and [mildez-agency-framework.md](../mildez-agency-framework.md)
+> **Workspace Context:** For agency-wide guidance, see the root [CLAUDE.md](../../CLAUDE.md) and [WORKSPACE.md](../../WORKSPACE.md)
 
 This file provides development guidance for the mil&dez website.
+
+**Location:** `_tools/website/` (port 3000)
 
 ## Build & Development Commands
 
@@ -44,7 +46,7 @@ Use `@/` for imports from project root: `import { icons } from '@/components/Ico
 
 ## Design System
 
-**LOCKED - See `../brand/brand-direction-locked.md` for complete specifications**
+**LOCKED - See `../../brand/brand-direction-locked.md` for complete specifications**
 
 Use `/brand:colors` command for quick color reference, or `/brand:check` to verify compliance.
 
