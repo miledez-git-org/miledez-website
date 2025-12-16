@@ -1,11 +1,10 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SectionNavButton from '@/components/SectionNavButton'
 import DiagnosticoAutomacao from '@/components/DiagnosticoAutomacao'
-import HeroVisualization from '@/components/HeroVisualization'
 import IntegrationMesh from '@/components/IntegrationMesh'
 import ComoFuncionaDemo from '@/components/ComoFuncionaDemo'
 import WorkflowAutomationVisual from '@/components/WorkflowAutomationVisual'
@@ -16,6 +15,50 @@ import AnalyticsDashboard from '@/components/AnalyticsDashboard'
 import { icons } from '@/components/Icons'
 
 export default function Home() {
+  // Typewriter state
+  const [displayText, setDisplayText] = useState('')
+  const [phraseIndex, setPhraseIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  const phrases = [
+    'novos softwares.',
+    'interrupções.',
+    'custos iniciais.',
+    'riscos. Só resultados.'
+  ]
+
+  // Typewriter effect
+  useEffect(() => {
+    const currentPhrase = phrases[phraseIndex]
+
+    let timeout: NodeJS.Timeout
+
+    if (!isDeleting) {
+      if (displayText.length < currentPhrase.length) {
+        timeout = setTimeout(() => {
+          setDisplayText(currentPhrase.substring(0, displayText.length + 1))
+        }, 50 + Math.random() * 30)
+      } else {
+        timeout = setTimeout(() => {
+          setIsDeleting(true)
+        }, 2200)
+      }
+    } else {
+      if (displayText.length > 0) {
+        timeout = setTimeout(() => {
+          setDisplayText(displayText.substring(0, displayText.length - 1))
+        }, 25)
+      } else {
+        timeout = setTimeout(() => {
+          setIsDeleting(false)
+          setPhraseIndex((prev) => (prev + 1) % phrases.length)
+        }, 300)
+      }
+    }
+
+    return () => clearTimeout(timeout)
+  }, [displayText, isDeleting, phraseIndex])
+
   // Staggered reveal observer for elements with .fade-in-up class
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -57,30 +100,47 @@ export default function Home() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-40 md:pt-48 pb-24 md:pb-32 px-6 md:px-10 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="max-w-xl">
-            <h1 className="text-[3.5rem] font-medium leading-tight mb-8 text-brand-black tracking-[-0.03em]">
-              Automatizamos seus processos.<br />Você foca no que importa.
-            </h1>
-            <p className="text-xl mb-12 max-w-lg text-brand-text leading-relaxed">
-              Conectamos seus sistemas, eliminamos trabalho manual e fazemos sua operação funcionar sozinha.
+      <section className="min-h-screen bg-white flex items-center relative">
+        <div className="max-w-6xl mx-auto px-6 md:px-10 w-full">
+
+          {/* Fixed headline */}
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-light tracking-tight text-neutral-900 leading-[1.1]">
+            Qualquer processo,<br />
+            <span style={{ color: '#8b2020' }}>automatizado.</span>
+          </h1>
+
+          {/* Separator */}
+          <div className="w-12 h-px bg-neutral-300 mt-10 md:mt-12" />
+
+          {/* Typewriter area */}
+          <div className="mt-8 md:mt-10">
+            <p className="text-2xl md:text-3xl font-light tracking-tight">
+              <span className="font-medium" style={{ color: '#8b2020' }}>Sem</span>
+              <span className="text-neutral-600 ml-1">{displayText}</span>
+              <span
+                className="inline-block w-[2px] h-7 bg-neutral-400 ml-1 align-middle"
+                style={{ animation: 'blink 1s step-end infinite' }}
+              />
             </p>
+          </div>
+
+          {/* CTA */}
+          <div className="mt-12 md:mt-14">
             <a
               href="#contato"
-              className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
+              className="inline-block px-8 py-4 text-white transition-all hover:shadow-lg"
+              style={{ backgroundColor: '#8b2020' }}
             >
               Agendar conversa
             </a>
           </div>
 
-          {/* Hero Visualization - hidden on mobile */}
-          <div className="hidden lg:block">
-            <HeroVisualization />
-          </div>
         </div>
 
-        <SectionNavButton href="#como-funciona" label="Como funciona" />
+        {/* Scroll indicator at bottom of viewport */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <SectionNavButton href="#como-funciona" label="Como funciona" />
+        </div>
       </section>
 
       <div className="max-w-6xl mx-auto px-6 md:px-10">
