@@ -23,7 +23,7 @@ const config: Config = {
         },
         'bg-base': '#FCFCFC',
         'bg-surface': '#FFFFFF',
-        'bg-muted': '#F7F8FA',
+        'bg-muted': '#f9f9f9',
         'highlight': '#F0F2F5',
         'testimonial-bg': '#FFFCF9',
         'border-subtle': 'rgba(0,0,0,0.08)',

@@ -143,149 +143,128 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
-
       {/* Why choose mil&dez */}
-      <section id="como-funciona" className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
-        <div className="mb-12 md:mb-16">
-          <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Motivos para começar ainda hoje</h2>
-          <p className="mt-4 text-lg text-brand-muted">Seu trabalho totalmente transformado</p>
+      <section id="como-funciona" className="py-24 md:py-32 bg-bg-muted">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <div className="mb-12 md:mb-16">
+            <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Motivos para começar ainda hoje</h2>
+            <p className="mt-4 text-lg text-brand-muted">Seu trabalho totalmente transformado</p>
+          </div>
+
+          <ComoFuncionaDemo />
+
+          <SectionNavButton href="#integracao-visual" label="Veja na pratica" />
         </div>
-
-        <ComoFuncionaDemo />
-
-        <SectionNavButton href="#integracao-visual" label="Veja na pratica" />
       </section>
-
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
 
       {/* Workflow Integration Visual */}
-      <section id="integracao-visual" className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
-        <div className="mb-12 md:mb-16 text-center">
-          <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">
-            Como a automacao se integra ao seu negocio
-          </h2>
-          <p className="mt-4 text-lg text-brand-muted max-w-2xl mx-auto">
-            Veja como seus sistemas existentes se conectam ao motor de automacao
-          </p>
+      <section id="integracao-visual" className="py-24 md:py-32 bg-white">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <div className="mb-12 md:mb-16 text-center">
+            <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">
+              Como a automacao se integra ao seu negocio
+            </h2>
+            <p className="mt-4 text-lg text-brand-muted max-w-2xl mx-auto">
+              Veja como seus sistemas existentes se conectam ao motor de automacao
+            </p>
+          </div>
+
+          <WorkflowAutomationVisual />
+
+          <SectionNavButton href="#beneficios" label="Por que automatizar?" />
         </div>
-
-        <WorkflowAutomationVisual />
-
-        <SectionNavButton href="#beneficios" label="Por que automatizar?" />
       </section>
-
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
 
       {/* Benefits - Bento Grid */}
-      <section id="beneficios" className="py-32 px-6 md:px-10 max-w-6xl mx-auto">
-        <BenefitsSection />
+      <section id="beneficios" className="py-32 bg-bg-muted">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <BenefitsSection />
 
-        <SectionNavButton href="#integracoes" label="Integrações" />
+          <SectionNavButton href="#integracoes" label="Integrações" />
+        </div>
       </section>
-
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
 
       {/* Integrations - Mesh Layout */}
-      <section id="integracoes" className="py-32 px-6 md:px-10 max-w-6xl mx-auto">
-        <div className="mb-16 text-center">
-          <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Integrações</h2>
-          <p className="mt-4 text-lg font-medium text-brand-muted">Conectamos as ferramentas que você já usa</p>
+      <section id="integracoes" className="py-32 bg-white">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <div className="mb-16 text-center">
+            <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Integrações</h2>
+            <p className="mt-4 text-lg font-medium text-brand-muted">Conectamos as ferramentas que você já usa</p>
+          </div>
+
+          <IntegrationMesh integrations={integrations} />
+
+          <SectionNavButton href="#processo" label="Nosso processo" />
         </div>
-
-        <IntegrationMesh integrations={integrations} />
-
-        <SectionNavButton href="#processo" label="Nosso processo" />
       </section>
-
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
 
       {/* Process */}
-      <section id="processo" className="py-32 px-6 md:px-10 max-w-6xl mx-auto">
-        <ProcessSection />
+      <section id="processo" className="py-32 bg-bg-muted">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <ProcessSection />
 
-        <SectionNavButton href="#resultados" label="Resultados" />
+          <SectionNavButton href="#resultados" label="Resultados" />
+        </div>
       </section>
-
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
 
       {/* Analytics Dashboard */}
-      <div id="resultados">
+      <section id="resultados" className="bg-white">
         <AnalyticsDashboard />
-      </div>
-
-      {/* Divider before Diagnostic - HIDDEN */}
-      <div className="hidden max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
+      </section>
 
       {/* Diagnostic Tool - HIDDEN */}
-      <section id="diagnostico" className="hidden py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-          <div className="lg:sticky lg:top-32 lg:self-start">
-            <span className="inline-block text-xs font-medium text-brand-accent uppercase tracking-wider mb-4">
-              Ferramenta gratuita
-            </span>
-            <h2 className="text-[2rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
-              Diagnóstico de Automação
-            </h2>
-            <p className="text-lg text-brand-text leading-relaxed mb-4">
-              Descubra em 2 minutos o potencial de automação do seu negócio e receba recomendações personalizadas.
-            </p>
-            <p className="text-sm text-brand-muted">
-              5 perguntas simples. Resultado imediato.
-            </p>
+      <section id="diagnostico" className="hidden py-24 md:py-32 bg-bg-muted">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+            <div className="lg:sticky lg:top-32 lg:self-start">
+              <span className="inline-block text-xs font-medium text-brand-accent uppercase tracking-wider mb-4">
+                Ferramenta gratuita
+              </span>
+              <h2 className="text-[2rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
+                Diagnóstico de Automação
+              </h2>
+              <p className="text-lg text-brand-text leading-relaxed mb-4">
+                Descubra em 2 minutos o potencial de automação do seu negócio e receba recomendações personalizadas.
+              </p>
+              <p className="text-sm text-brand-muted">
+                5 perguntas simples. Resultado imediato.
+              </p>
+            </div>
+
+            <div>
+              <DiagnosticoAutomacao />
+            </div>
           </div>
 
-          <div>
-            <DiagnosticoAutomacao />
-          </div>
+          <SectionNavButton href="#industrias" label="Indústrias" />
         </div>
-
-        <SectionNavButton href="#industrias" label="Indústrias" />
       </section>
-
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
 
       {/* Industries */}
-      <section id="industrias" className="py-32 px-6 md:px-10 max-w-6xl mx-auto">
-        <IndustriesSection />
+      <section id="industrias" className="py-32 bg-bg-muted">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <IndustriesSection />
 
-        <SectionNavButton href="#contato" label="Contato" />
+          <SectionNavButton href="#contato" label="Contato" />
+        </div>
       </section>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
-
       {/* CTA */}
-      <section id="contato" className="py-24 md:py-36 px-6 md:px-10 max-w-6xl mx-auto text-center">
-        <h2 className="text-[2.5rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
-          Vamos automatizar sua operação?
-        </h2>
-        <p className="text-lg max-w-md mx-auto mb-12 text-brand-text">
-          Conversa sem compromisso. Entendemos seu negócio e mostramos o que é possível.
-        </p>
-        <a
-          href="mailto:contato@miledez.com.br"
-          className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
-        >
-          Iniciar conversa
-        </a>
+      <section id="contato" className="py-24 md:py-36 bg-white">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto text-center">
+          <h2 className="text-[2.5rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
+            Vamos automatizar sua operação?
+          </h2>
+          <p className="text-lg max-w-md mx-auto mb-12 text-brand-text">
+            Conversa sem compromisso. Entendemos seu negócio e mostramos o que é possível.
+          </p>
+          <a
+            href="mailto:contato@miledez.com.br"
+            className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
+          >
+            Iniciar conversa
+          </a>
+        </div>
       </section>
 
       <Footer />

@@ -270,82 +270,75 @@ export default function SaudeContent() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 md:pt-48 pb-24 md:pb-32 px-6 md:px-10 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-brand-accent">
-              <span className="text-sm font-semibold uppercase tracking-widest text-brand-accent">
-                Saúde e Clínicas
-              </span>
+      <section className="pt-32 md:pt-48 pb-24 md:pb-32 bg-white">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-brand-accent">
+                <span className="text-sm font-semibold uppercase tracking-widest text-brand-accent">
+                  Saúde e Clínicas
+                </span>
+              </div>
+              <h1 className="text-[3.5rem] font-medium leading-tight mb-8 text-brand-black tracking-[-0.03em]">
+                Menos papelada.<br />Mais tempo para pacientes.
+              </h1>
+              <p className="text-xl mb-12 max-w-lg text-brand-text leading-relaxed">
+                Automatizamos documentação, faturamento e conformidade. Você foca no atendimento.
+              </p>
+              <a
+                href="#contato"
+                className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
+              >
+                Agendar conversa
+              </a>
             </div>
-            <h1 className="text-[3.5rem] font-medium leading-tight mb-8 text-brand-black tracking-[-0.03em]">
-              Menos papelada.<br />Mais tempo para pacientes.
-            </h1>
-            <p className="text-xl mb-12 max-w-lg text-brand-text leading-relaxed">
-              Automatizamos documentação, faturamento e conformidade. Você foca no atendimento.
-            </p>
-            <a
-              href="#contato"
-              className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
-            >
-              Agendar conversa
-            </a>
+            <IndustryHeroVisualization industry="saude" />
           </div>
-          <IndustryHeroVisualization industry="saude" />
+          <SectionNavButton href="#workflows" label="O que automatizamos" />
         </div>
-        <SectionNavButton href="#workflows" label="O que automatizamos" />
       </section>
-
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
 
       {/* Pain Points */}
-      <section className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
-        <div className="mb-16">
-          <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Os desafios do dia a dia</h2>
+      <section className="py-24 md:py-32 bg-bg-muted">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <div className="mb-16">
+            <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Os desafios do dia a dia</h2>
+          </div>
+
+          <ChallengeCards />
         </div>
-
-        <ChallengeCards />
       </section>
-
-
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
 
       {/* Workflows */}
-      <section id="workflows" className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
-        <div className="mb-20">
-          <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">O que automatizamos</h2>
-          <p className="text-lg text-brand-text">Processos que funcionam sozinhos, liberando sua equipe</p>
-        </div>
+      <section id="workflows" className="py-24 md:py-32 bg-white">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <div className="mb-20">
+            <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">O que automatizamos</h2>
+            <p className="text-lg text-brand-text">Processos que funcionam sozinhos, liberando sua equipe</p>
+          </div>
 
-        <div className="space-y-16">
-          {Object.entries(workflows).map(([key, workflow], index) => (
-            <div key={key}>
-              <div className="mb-8 flex items-center gap-4">
-                <span className="flex-shrink-0 w-7 h-7 flex items-center justify-center bg-brand-accent text-white text-sm font-medium">
-                  {index + 1}
-                </span>
-                <div>
-                  <h3 className="text-xl font-medium text-brand-black leading-7">{workflow.title}</h3>
-                  <p className="text-brand-muted">{workflow.subtitle}</p>
+          <div className="space-y-16">
+            {Object.entries(workflows).map(([key, workflow], index) => (
+              <div key={key}>
+                <div className="mb-8 flex items-center gap-4">
+                  <span className="flex-shrink-0 w-7 h-7 flex items-center justify-center bg-brand-accent text-white text-sm font-medium">
+                    {index + 1}
+                  </span>
+                  <div>
+                    <h3 className="text-xl font-medium text-brand-black leading-7">{workflow.title}</h3>
+                    <p className="text-brand-muted">{workflow.subtitle}</p>
+                  </div>
                 </div>
+                <WorkflowDemo steps={workflow.steps} />
               </div>
-              <WorkflowDemo steps={workflow.steps} />
-            </div>
-          ))}
+            ))}
+          </div>
+          <SectionNavButton href="#resultados" label="Resultados" />
         </div>
-        <SectionNavButton href="#resultados" label="Resultados" />
       </section>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
-
       {/* Results */}
-      <section id="resultados" className="py-32">
+      <section id="resultados" className="py-32 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <h2 className="text-[2rem] font-medium mb-12 text-brand-black tracking-[-0.02em]">Resultados típicos</h2>
 
@@ -363,39 +356,35 @@ export default function SaudeContent() {
         </div>
       </section>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
-
       {/* Integrations */}
-      <section id="integracoes" className="py-24 md:py-32 px-6 md:px-10 max-w-6xl mx-auto">
-        <div className="mb-16">
-          <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">Ferramentas que você já usa</h2>
-          <p className="text-brand-text">Integramos sem trocar seus sistemas</p>
-        </div>
+      <section id="integracoes" className="py-24 md:py-32 bg-white">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <div className="mb-16">
+            <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">Ferramentas que você já usa</h2>
+            <p className="text-brand-text">Integramos sem trocar seus sistemas</p>
+          </div>
 
-        <IndustryIntegrations integrations={integrations} />
-        <SectionNavButton href="#contato" label="Contato" />
+          <IndustryIntegrations integrations={integrations} />
+          <SectionNavButton href="#contato" label="Contato" />
+        </div>
       </section>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="h-px bg-brand-border" />
-      </div>
-
       {/* CTA */}
-      <section id="contato" className="py-24 md:py-36 px-6 md:px-10 max-w-6xl mx-auto text-center">
-        <h2 className="text-[2.5rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
-          Vamos simplificar sua administração?
-        </h2>
-        <p className="text-lg max-w-md mx-auto mb-12 text-brand-text">
-          Conversa sem compromisso. Entendemos sua clínica e mostramos o que é possível automatizar.
-        </p>
-        <a
-          href="mailto:contato@miledez.com.br"
-          className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
-        >
-          Iniciar conversa
-        </a>
+      <section id="contato" className="py-24 md:py-36 bg-bg-muted">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto text-center">
+          <h2 className="text-[2.5rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
+            Vamos simplificar sua administração?
+          </h2>
+          <p className="text-lg max-w-md mx-auto mb-12 text-brand-text">
+            Conversa sem compromisso. Entendemos sua clínica e mostramos o que é possível automatizar.
+          </p>
+          <a
+            href="mailto:contato@miledez.com.br"
+            className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
+          >
+            Iniciar conversa
+          </a>
+        </div>
       </section>
 
       <Footer />
