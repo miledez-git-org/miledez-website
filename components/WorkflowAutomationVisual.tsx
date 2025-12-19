@@ -7,13 +7,13 @@ import { icons, stepIcons } from './Icons'
 const ACCENT_COLOR = '#8b2020'
 const SUCCESS_COLOR = '#22c55e'
 
-// Step definitions
+// Step definitions - aligned with stage indicators
 const stepInfo = [
-  { label: 'Monitorando Ambiente', description: 'Aguardando gatilhos...' },
-  { label: 'Dados Extraídos', description: 'Novo email recebido. Extraindo dados.' },
-  { label: 'Executando Automação', description: 'Aplicando regras e executando lógica.' },
-  { label: 'Sincronizando Sistemas', description: 'Atualizando Calendário, CRM e ERP.' },
-  { label: 'Fluxo Concluído', description: 'Todas as ações executadas com sucesso.' },
+  { label: 'Monitorando Ambiente', description: 'Aguardando gatilhos...', stage: null },
+  { label: 'Gatilho', description: 'Novo email recebido. Extraindo dados.', stage: 'trigger' },
+  { label: 'Processar', description: 'Aplicando regras e executando lógica.', stage: 'process' },
+  { label: 'Sincronizando Sistemas', description: 'Atualizando Calendário, CRM e ERP.', stage: 'action' },
+  { label: 'Ação', description: 'Todas as ações executadas com sucesso.', stage: 'complete' },
 ]
 
 // App definitions
@@ -68,36 +68,43 @@ function AppIcon({
   )
 }
 
-// Automation Step Component
-function AutomationStep({
-  icon,
-  label,
-  active,
-  pulsing
-}: {
-  icon: React.ReactNode
-  label: string
-  active: boolean
-  pulsing?: boolean
-}) {
-  return (
-    <div className={`flex flex-col items-center gap-3 md:gap-4 transition-opacity duration-300 ${active ? 'opacity-100' : 'opacity-30'}`}>
-      <div className={`p-2 ${pulsing ? 'bg-brand-accent-light' : ''}`}>
-        <div className={`w-6 h-6 md:w-8 md:h-8 [&>svg]:w-full [&>svg]:h-full ${pulsing ? 'text-brand-accent animate-spin-slow' : 'text-brand-black'}`}>
-          {icon}
-        </div>
-      </div>
-      <span className="text-[10px] md:text-xs uppercase font-medium tracking-widest text-brand-text">{label}</span>
-    </div>
-  )
-}
+// Stage Indicator Overlay Component - shows icon overlaid above the central panel
+function StageIndicator({ stage }: { stage: string | null }) {
+  if (!stage) return null
 
-// Arrow Component
-function Arrow() {
+  const getIcon = () => {
+    switch (stage) {
+      case 'trigger':
+        return stepIcons.trigger
+      case 'process':
+        return stepIcons.process
+      case 'action':
+      case 'complete':
+        return stepIcons.action
+      default:
+        return null
+    }
+  }
+
+  const isProcessing = stage === 'process'
+  const isComplete = stage === 'complete'
+
   return (
-    <svg className="w-5 h-5 md:w-6 md:h-6 text-brand-border" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-    </svg>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+      className="absolute -top-5 md:-top-6 inset-x-0 flex justify-center z-40"
+    >
+      <div className={`
+        w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-white
+        [&>svg]:w-full [&>svg]:h-full
+        ${isProcessing ? 'animate-spin-slow' : ''}
+        ${isComplete ? 'text-brand-success' : 'text-brand-accent'}
+      `}>
+        {getIcon()}
+      </div>
+    </motion.div>
   )
 }
 
@@ -255,43 +262,43 @@ export default function WorkflowAutomationVisual() {
             viewBox="0 0 1200 400"
             preserveAspectRatio="none"
           >
-            {/* Path Down: Email (150) -> Engine center (600) */}
+            {/* Path Down: Email (150) -> Center (600, 200) */}
             <path
-              d="M 150 0 V 200 H 600 V 400"
+              d="M 150 0 V 200 H 600"
               fill="none"
               stroke="#d4d4d4"
               strokeWidth="1.5"
               vectorEffect="non-scaling-stroke"
             />
 
-            {/* Path Up: Engine -> Calendar (450) */}
+            {/* Path: Center -> Calendar (450) */}
             <path
-              d="M 600 400 V 200 H 450 V 0"
+              d="M 600 200 H 450 V 0"
               fill="none"
               stroke="#d4d4d4"
               strokeWidth="1.5"
               vectorEffect="non-scaling-stroke"
             />
 
-            {/* Path Up: Engine -> CRM (750) */}
+            {/* Path: Center -> CRM (750) */}
             <path
-              d="M 600 400 V 200 H 750 V 0"
+              d="M 600 200 H 750 V 0"
               fill="none"
               stroke="#d4d4d4"
               strokeWidth="1.5"
               vectorEffect="non-scaling-stroke"
             />
 
-            {/* Path Up: Engine -> ERP (1050) */}
+            {/* Path: Center -> ERP (1050) */}
             <path
-              d="M 600 400 V 200 H 1050 V 0"
+              d="M 600 200 H 1050 V 0"
               fill="none"
               stroke="#d4d4d4"
               strokeWidth="1.5"
               vectorEffect="non-scaling-stroke"
             />
 
-            {/* Animated Dot Down (Step 1) */}
+            {/* Animated Dot Down (Step 1) - Email to Center */}
             <AnimatePresence>
               {step === 1 && !prefersReducedMotion && (
                 <motion.circle
@@ -299,53 +306,53 @@ export default function WorkflowAutomationVisual() {
                   fill={ACCENT_COLOR}
                   initial={{ cx: 150, cy: 0 }}
                   animate={{
-                    cx: [150, 150, 600, 600],
-                    cy: [0, 200, 200, 400]
+                    cx: [150, 150, 600],
+                    cy: [0, 200, 200]
                   }}
                   transition={{
-                    duration: 2.5,
+                    duration: 2,
                     ease: 'linear',
-                    times: [0, 0.235, 0.765, 1]
+                    times: [0, 0.4, 1]
                   }}
                 />
               )}
             </AnimatePresence>
 
-            {/* Animated Dots Up (Step 3) - Green for return path */}
+            {/* Animated Dots Out (Step 3) - Center to targets */}
             {step === 3 && !prefersReducedMotion && (
               <>
                 {/* To Calendar */}
                 <motion.circle
                   r="8"
                   fill={SUCCESS_COLOR}
-                  initial={{ cx: 600, cy: 400 }}
+                  initial={{ cx: 600, cy: 200 }}
                   animate={{
-                    cx: [600, 600, 450, 450],
-                    cy: [400, 200, 200, 0]
+                    cx: [600, 450, 450],
+                    cy: [200, 200, 0]
                   }}
-                  transition={{ duration: 1.5, ease: 'linear', times: [0, 0.36, 0.64, 1] }}
+                  transition={{ duration: 1.5, ease: 'linear', times: [0, 0.4, 1] }}
                 />
                 {/* To CRM */}
                 <motion.circle
                   r="8"
                   fill={SUCCESS_COLOR}
-                  initial={{ cx: 600, cy: 400 }}
+                  initial={{ cx: 600, cy: 200 }}
                   animate={{
-                    cx: [600, 600, 750, 750],
-                    cy: [400, 200, 200, 0]
+                    cx: [600, 750, 750],
+                    cy: [200, 200, 0]
                   }}
-                  transition={{ duration: 1.5, ease: 'linear', times: [0, 0.36, 0.64, 1] }}
+                  transition={{ duration: 1.5, ease: 'linear', times: [0, 0.4, 1] }}
                 />
                 {/* To ERP */}
                 <motion.circle
                   r="8"
                   fill={SUCCESS_COLOR}
-                  initial={{ cx: 600, cy: 400 }}
+                  initial={{ cx: 600, cy: 200 }}
                   animate={{
-                    cx: [600, 600, 1050, 1050],
-                    cy: [400, 200, 200, 0]
+                    cx: [600, 1050, 1050],
+                    cy: [200, 200, 0]
                   }}
-                  transition={{ duration: 1.5, ease: 'linear', times: [0, 0.235, 0.765, 1] }}
+                  transition={{ duration: 1.5, ease: 'linear', times: [0, 0.6, 1] }}
                 />
               </>
             )}
@@ -356,13 +363,18 @@ export default function WorkflowAutomationVisual() {
             <MobileConnector isActive={step === 1 || step === 3} />
           </div>
 
-          {/* Central Context Panel */}
+          {/* Central Context Panel with Stage Indicator Overlay */}
           <div className={`
-            absolute z-30 flex flex-col items-center justify-center
+            relative z-30 flex flex-col items-center justify-center
             bg-white p-6 md:p-8 border transition-all duration-300
             min-w-[280px] md:min-w-[340px]
-            ${step === 4 ? 'border-brand-success' : step === 2 ? 'border-brand-accent' : 'border-brand-border'}
+            ${step === 4 ? 'border-brand-success' : step >= 1 ? 'border-brand-accent' : 'border-brand-border'}
           `}>
+            {/* Stage Indicator Overlay */}
+            <AnimatePresence mode="wait">
+              <StageIndicator key={`stage-${step}`} stage={stepInfo[step]?.stage || null} />
+            </AnimatePresence>
+
             <AnimatePresence mode="wait">
               <motion.div
                 key={step}
@@ -370,7 +382,7 @@ export default function WorkflowAutomationVisual() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
                 transition={{ duration: 0.4 }}
-                className="flex flex-col items-center text-center"
+                className="flex flex-col items-center text-center pt-4"
               >
                 <span className={`text-xs md:text-sm font-medium uppercase tracking-widest mb-2 ${step === 4 ? 'text-brand-success' : 'text-brand-accent'}`}>
                   {stepInfo[step]?.label}
@@ -381,74 +393,6 @@ export default function WorkflowAutomationVisual() {
               </motion.div>
             </AnimatePresence>
           </div>
-        </div>
-
-        {/* Mobile: Another connector */}
-        <div className="md:hidden">
-          <MobileConnector isActive={step === 1 || step === 3} />
-        </div>
-
-        {/* BOTTOM: Automation Engine */}
-        <div className="flex flex-col items-center w-full mt-4 md:mt-8">
-          <motion.div
-            animate={{ scale: step === 2 ? 1.02 : 1 }}
-            transition={{ duration: 0.3 }}
-            className={`
-              relative flex flex-col items-center justify-center
-              gap-4 md:gap-6 px-6 md:px-14 py-6 md:py-8
-              bg-white border transition-all duration-300
-              ${step === 4 ? 'border-brand-success shadow-success-glow' : step === 2 ? 'border-brand-accent shadow-accent-glow' : 'border-brand-border'}
-            `}
-          >
-            {/* Title inside box, above icons */}
-            <h3 className="text-sm md:text-base font-semibold text-brand-text uppercase tracking-[0.2em] text-center">
-              Processo de automação customizado para cliente
-            </h3>
-
-            {/* Desktop: Horizontal layout */}
-            <div className="hidden md:flex items-center gap-8 lg:gap-12">
-              <AutomationStep
-                icon={stepIcons.trigger}
-                label="Gatilho"
-                active={step >= 1}
-              />
-              <Arrow />
-              <AutomationStep
-                icon={stepIcons.process}
-                label="Processar"
-                active={step >= 2}
-                pulsing={step === 2}
-              />
-              <Arrow />
-              <AutomationStep
-                icon={stepIcons.action}
-                label="Ação"
-                active={step >= 3}
-              />
-            </div>
-
-            {/* Mobile: Vertical layout */}
-            <div className="md:hidden flex flex-col items-center gap-4">
-              <AutomationStep
-                icon={stepIcons.trigger}
-                label="Gatilho"
-                active={step >= 1}
-              />
-              <div className="w-px h-4 bg-brand-border" />
-              <AutomationStep
-                icon={stepIcons.process}
-                label="Processar"
-                active={step >= 2}
-                pulsing={step === 2}
-              />
-              <div className="w-px h-4 bg-brand-border" />
-              <AutomationStep
-                icon={stepIcons.action}
-                label="Ação"
-                active={step >= 3}
-              />
-            </div>
-          </motion.div>
         </div>
 
       </div>
