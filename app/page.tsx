@@ -12,7 +12,6 @@ import BenefitsSection from '@/components/BenefitsSection'
 import ProcessSection from '@/components/ProcessSection'
 import IndustriesSection from '@/components/IndustriesSection'
 import AnalyticsDashboard from '@/components/AnalyticsDashboard'
-import { icons } from '@/components/Icons'
 
 export default function Home() {
   // Typewriter state
@@ -76,24 +75,6 @@ export default function Home() {
 
     return () => observer.disconnect()
   }, [])
-
-  const integrations = [
-    { name: 'WhatsApp', icon: icons.whatsapp },
-    { name: 'Gmail', icon: icons.gmail },
-    { name: 'Outlook', icon: icons.outlook },
-    { name: 'Google Drive', icon: icons.googleDrive },
-    { name: 'OneDrive', icon: icons.oneDrive },
-    { name: 'Excel', icon: icons.excel },
-    { name: 'Word', icon: icons.word },
-    { name: 'PDF', icon: icons.pdf },
-    { name: 'Google Calendar', icon: icons.googleCalendar },
-    { name: 'OpenAI', icon: icons.openai },
-    { name: 'Google Sheets', icon: icons.googleSheets },
-    { name: 'Slack', icon: icons.slack },
-    { name: 'Notion', icon: icons.notion },
-    { name: 'Zapier', icon: icons.zapier },
-    { name: 'Trello', icon: icons.trello },
-  ]
 
   return (
     <div className="min-h-screen bg-white">
@@ -192,7 +173,7 @@ export default function Home() {
             <p className="mt-4 text-lg font-medium text-brand-muted">Conectamos as ferramentas que você já usa</p>
           </div>
 
-          <IntegrationMesh integrations={integrations} />
+          <IntegrationMesh />
 
           <SectionNavButton href="#processo" label="Nosso processo" />
         </div>

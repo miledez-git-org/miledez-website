@@ -1,18 +1,35 @@
 'use client'
 
+import Image from 'next/image'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
-import { icons } from '@/components/Icons'
 
 interface Integration {
   name: string
-  icon: React.ReactNode
+  logo: string
 }
 
-interface IntegrationMeshProps {
-  integrations: Integration[]
-}
+// Curated integrations with actual logos - relevant for B2B workflow automation
+const integrations: Integration[] = [
+  // Inner ring (6) - Most commonly used in B2B automation
+  { name: 'WhatsApp', logo: '/logos/whatsapp.svg' },
+  { name: 'Gmail', logo: '/logos/gmail.svg' },
+  { name: 'Google Sheets', logo: '/logos/google-sheets.svg' },
+  { name: 'Slack', logo: '/logos/slack.svg' },
+  { name: 'HubSpot', logo: '/logos/hubspot.svg' },
+  { name: 'n8n', logo: '/logos/n8n.svg' },
+  // Outer ring (9) - Additional popular integrations
+  { name: 'Excel', logo: '/logos/excel.svg' },
+  { name: 'Notion', logo: '/logos/notion.svg' },
+  { name: 'Trello', logo: '/logos/trello.svg' },
+  { name: 'Zapier', logo: '/logos/zapier.svg' },
+  { name: 'Google Calendar', logo: '/logos/google-calendar.svg' },
+  { name: 'Google Drive', logo: '/logos/google-drive.svg' },
+  { name: 'OpenAI', logo: '/logos/openai.svg' },
+  { name: 'Make', logo: '/logos/make.svg' },
+  { name: 'Salesforce', logo: '/logos/salesforce.svg' },
+]
 
-export default function IntegrationMesh({ integrations }: IntegrationMeshProps) {
+export default function IntegrationMesh() {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.3 })
 
   // Calculate positions for circular arrangement
@@ -27,7 +44,8 @@ export default function IntegrationMesh({ integrations }: IntegrationMeshProps) 
   // Center coordinates (relative to container center)
   const centerX = 200
   const centerY = 200
-  const radius = 140
+  const innerRadius = 140 * 0.6
+  const outerRadius = 140
 
   // Slice integrations into groups for different rings
   const innerRing = integrations.slice(0, 6)
@@ -43,7 +61,7 @@ export default function IntegrationMesh({ integrations }: IntegrationMeshProps) 
       >
         {/* Inner ring connections */}
         {innerRing.map((_, index) => {
-          const pos = getPosition(index, innerRing.length, radius * 0.6)
+          const pos = getPosition(index, innerRing.length, innerRadius)
           return (
             <path
               key={`inner-line-${index}`}
@@ -62,7 +80,7 @@ export default function IntegrationMesh({ integrations }: IntegrationMeshProps) 
 
         {/* Outer ring connections */}
         {outerRing.map((_, index) => {
-          const pos = getPosition(index, outerRing.length, radius)
+          const pos = getPosition(index, outerRing.length, outerRadius)
           return (
             <path
               key={`outer-line-${index}`}
@@ -123,8 +141,13 @@ export default function IntegrationMesh({ integrations }: IntegrationMeshProps) 
               }}
               title={integration.name}
             >
-              <div className="text-brand-black group-hover:text-brand-accent transition-colors scale-75">
-                {integration.icon}
+              <div className="w-7 h-7 relative">
+                <Image
+                  src={integration.logo}
+                  alt={integration.name}
+                  fill
+                  className="object-contain"
+                />
               </div>
             </div>
           )
@@ -147,8 +170,13 @@ export default function IntegrationMesh({ integrations }: IntegrationMeshProps) 
               }}
               title={integration.name}
             >
-              <div className="text-brand-black group-hover:text-brand-accent transition-colors scale-[0.6]">
-                {integration.icon}
+              <div className="w-5 h-5 relative">
+                <Image
+                  src={integration.logo}
+                  alt={integration.name}
+                  fill
+                  className="object-contain"
+                />
               </div>
             </div>
           )
