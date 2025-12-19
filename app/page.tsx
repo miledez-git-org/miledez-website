@@ -4,11 +4,10 @@ import { useEffect, useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SectionNavButton from '@/components/SectionNavButton'
-import DiagnosticoAutomacao from '@/components/DiagnosticoAutomacao'
-import IntegrationMesh from '@/components/IntegrationMesh'
 import ComoFuncionaDemo from '@/components/ComoFuncionaDemo'
 import WorkflowAutomationVisual from '@/components/WorkflowAutomationVisual'
-import BenefitsSection from '@/components/BenefitsSection'
+import { LogoMarqueeSection } from '@/components/LogoMarquee'
+import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
 import IndustriesSection from '@/components/IndustriesSection'
 import AnalyticsDashboard from '@/components/AnalyticsDashboard'
@@ -90,6 +89,11 @@ export default function Home() {
             <span style={{ color: '#8b2020' }}>automatizado.</span>
           </h1>
 
+          {/* Subheadline */}
+          <p className="mt-6 text-xl md:text-2xl text-brand-muted font-light">
+            Para PMEs que querem crescer sem aumentar a equipe
+          </p>
+
           {/* Separator */}
           <div className="w-12 h-px bg-neutral-300 mt-10 md:mt-12" />
 
@@ -105,14 +109,20 @@ export default function Home() {
             </p>
           </div>
 
-          {/* CTA */}
-          <div className="mt-12 md:mt-14">
+          {/* CTAs */}
+          <div className="mt-12 md:mt-14 flex flex-wrap gap-4">
             <a
               href="#contato"
               className="inline-block px-8 py-4 text-white transition-all hover:shadow-lg"
               style={{ backgroundColor: '#8b2020' }}
             >
               Agendar conversa
+            </a>
+            <a
+              href="#integracao-visual"
+              className="inline-block px-8 py-4 text-brand-black border border-brand-border transition-all hover:border-brand-accent hover:text-brand-accent"
+            >
+              Ver como funciona
             </a>
           </div>
 
@@ -152,29 +162,14 @@ export default function Home() {
 
           <WorkflowAutomationVisual />
 
-          <SectionNavButton href="#beneficios" label="Por que automatizar?" />
+          <SectionNavButton href="#integracoes" label="Nossas integrações" />
         </div>
       </section>
 
-      {/* Benefits - Bento Grid */}
-      <section id="beneficios" className="py-32 bg-bg-muted">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <BenefitsSection />
-
-          <SectionNavButton href="#integracoes" label="Integrações" />
-        </div>
-      </section>
-
-      {/* Integrations - Mesh Layout */}
-      <section id="integracoes" className="py-32 bg-white">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="mb-16 text-center">
-            <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Integrações</h2>
-            <p className="mt-4 text-lg font-medium text-brand-muted">Conectamos as ferramentas que você já usa</p>
-          </div>
-
-          <IntegrationMesh />
-
+      {/* Integrations - LogoMarquee */}
+      <section id="integracoes" className="bg-bg-muted">
+        <LogoMarqueeSection />
+        <div className="px-6 md:px-10 max-w-6xl mx-auto pb-16">
           <SectionNavButton href="#processo" label="Nosso processo" />
         </div>
       </section>
@@ -193,58 +188,38 @@ export default function Home() {
         <AnalyticsDashboard />
       </section>
 
-      {/* Diagnostic Tool - HIDDEN */}
-      <section id="diagnostico" className="hidden py-24 md:py-32 bg-bg-muted">
+      {/* Pricing */}
+      <section id="precos" className="py-32 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-            <div className="lg:sticky lg:top-32 lg:self-start">
-              <span className="inline-block text-xs font-medium text-brand-accent uppercase tracking-wider mb-4">
-                Ferramenta gratuita
-              </span>
-              <h2 className="text-[2rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
-                Diagnóstico de Automação
-              </h2>
-              <p className="text-lg text-brand-text leading-relaxed mb-4">
-                Descubra em 2 minutos o potencial de automação do seu negócio e receba recomendações personalizadas.
-              </p>
-              <p className="text-sm text-brand-muted">
-                5 perguntas simples. Resultado imediato.
-              </p>
-            </div>
-
-            <div>
-              <DiagnosticoAutomacao />
-            </div>
-          </div>
-
-          <SectionNavButton href="#industrias" label="Indústrias" />
-        </div>
-      </section>
-
-      {/* Industries */}
-      <section id="industrias" className="py-32 bg-bg-muted">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <IndustriesSection />
+          <PricingSection />
 
           <SectionNavButton href="#contato" label="Contato" />
         </div>
       </section>
 
-      {/* CTA */}
-      <section id="contato" className="py-24 md:py-36 bg-white">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto text-center">
-          <h2 className="text-[2.5rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
-            Vamos automatizar sua operação?
-          </h2>
-          <p className="text-lg max-w-md mx-auto mb-12 text-brand-text">
-            Conversa sem compromisso. Entendemos seu negócio e mostramos o que é possível.
-          </p>
-          <a
-            href="mailto:contato@miledez.com.br"
-            className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
-          >
-            Iniciar conversa
-          </a>
+      {/* Industries + Contact (merged closing section) */}
+      <section id="contato" className="py-24 md:py-32 bg-white">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          {/* Industries */}
+          <div className="mb-20">
+            <IndustriesSection />
+          </div>
+
+          {/* CTA */}
+          <div className="text-center pt-12 border-t border-brand-border">
+            <h2 className="text-[2.5rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
+              Vamos automatizar sua operação?
+            </h2>
+            <p className="text-lg max-w-md mx-auto mb-12 text-brand-text">
+              Conversa sem compromisso. Entendemos seu negócio e mostramos o que é possível.
+            </p>
+            <a
+              href="mailto:contato@miledez.com.br"
+              className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
+            >
+              Iniciar conversa
+            </a>
+          </div>
         </div>
       </section>
 

@@ -17,7 +17,7 @@ const benefits = [
     headline: 'Libere sua equipe do trabalho repetitivo',
     description:
       'Tarefas administrativas e repetitivas consomem o tempo mais valioso da sua equipe. Automações eliminam esse trabalho — sua equipe foca em clientes, vendas e crescimento.',
-    stat: '40%',
+    stat: '40%*',
     statLabel: 'do tempo da equipe economizado',
   },
   {
@@ -35,7 +35,7 @@ const benefits = [
     headline: 'Resultados consistentes e superiores',
     description:
       'Respostas a clientes, processamento de documentos, geração de insights — tudo executado com velocidade e precisão impossíveis para humanos. Qualidade que impulsiona o crescimento.',
-    stat: '10x',
+    stat: '10x*',
     statLabel: 'mais rápido que processos manuais',
   },
   {
@@ -44,7 +44,7 @@ const benefits = [
     headline: 'Venda mais sem contratar mais',
     description:
       'Aumente sua capacidade de atendimento e vendas sem aumentar a folha de pagamento. Cresça sua operação mantendo a mesma equipe — ou até reduzindo.',
-    stat: '+300%',
+    stat: '+300%*',
     statLabel: 'de capacidade operacional',
   },
 ]
@@ -145,7 +145,7 @@ export default function BenefitsSection() {
           {/* Featured Stat Block */}
           <div className="mt-6">
             <span className="block text-4xl md:text-5xl font-bold text-brand-accent leading-tight">
-              {count <= 5 ? count : 5}x a {count}x
+              {count <= 5 ? count : 5}x a {count}x*
             </span>
             <span className="block text-sm text-brand-muted mt-2">
               {featuredBenefit.statLabel}
@@ -153,6 +153,11 @@ export default function BenefitsSection() {
           </div>
         </div>
       </div>
+
+      {/* Footnote */}
+      <p className="mt-8 text-center text-xs text-brand-muted">
+        *Resultados típicos baseados em automações similares
+      </p>
     </>
   )
 }

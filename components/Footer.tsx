@@ -19,7 +19,7 @@ export default function Footer() {
             Comece sua jornada de automação hoje. Conversa sem compromisso.
           </p>
           <a
-            href="mailto:contato@mildez.com"
+            href="mailto:contato@miledez.com.br"
             className="inline-block px-10 py-5 text-base font-medium bg-white text-brand-accent hover:bg-white/90 transition-colors"
           >
             Iniciar conversa
@@ -66,22 +66,35 @@ export default function Footer() {
                 Varejo
               </Link>
               <a
-                href="mailto:contato@mildez.com"
+                href="mailto:contato@miledez.com.br"
                 className="text-sm text-white/80 hover:text-white transition-colors"
               >
-                contato@mildez.com
+                contato@miledez.com.br
+              </a>
+              <a
+                href="https://wa.me/5531983529257"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-white/80 hover:text-white transition-colors"
+              >
+                WhatsApp
               </a>
             </div>
           </div>
 
           {/* Bottom bar */}
-          <div className="mt-8 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-            <span className="text-xs text-white/50">
-              © 2025 mil&dez. Todos os direitos reservados.
-            </span>
-            <span className="text-xs text-white/50">
-              Designed in Brazil
-            </span>
+          <div className="mt-8 pt-8 border-t border-white/10 flex flex-col gap-4">
+            <div className="text-xs text-white/50 text-center md:text-left">
+              Rua Irmaos Kennedy 200 ap. 301, Belo Horizonte, MG · CNPJ: 44.584.460/0001-80
+            </div>
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <span className="text-xs text-white/50">
+                © 2025 mil&dez. Todos os direitos reservados.
+              </span>
+              <span className="text-xs text-white/50">
+                Designed in Brazil
+              </span>
+            </div>
           </div>
         </div>
       </div>

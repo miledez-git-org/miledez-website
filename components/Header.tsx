@@ -2,14 +2,21 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Header() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white z-50 border-b border-brand-border">
+    <header className={`fixed top-0 left-0 right-0 bg-white z-50 border-b border-brand-border transition-shadow ${scrolled ? 'shadow-sm' : ''}`}>
       <nav className="max-w-6xl mx-auto px-6 md:px-10 py-5 flex justify-between items-center">
         <Link href="/" className="flex items-center">
           <span
@@ -42,17 +49,17 @@ export default function Header() {
         </button>
 
         {/* Desktop navigation */}
-        <div className="hidden md:flex gap-10 text-sm">
+        <div className="hidden md:flex items-center gap-10 text-sm">
           <Link
             href="/"
-            className="relative group text-brand-muted hover:text-brand-black transition-colors"
+            className="relative group text-brand-muted hover:text-brand-black transition-colors py-2"
           >
             Início
             <span className="absolute left-0 bottom-0 w-0 h-[1.5px] bg-brand-black transition-all duration-300 group-hover:w-full" />
           </Link>
 
           <div className="relative group">
-            <button className="flex items-center gap-1 text-brand-muted hover:text-brand-black transition-colors">
+            <button className="flex items-center gap-1 text-brand-muted hover:text-brand-black transition-colors py-2">
               Indústrias
               <svg viewBox="0 0 24 24" className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M6 9l6 6 6-6" />
@@ -75,8 +82,16 @@ export default function Header() {
           </div>
 
           <Link
+            href="/#precos"
+            className="relative group text-brand-muted hover:text-brand-black transition-colors py-2"
+          >
+            Preços
+            <span className="absolute left-0 bottom-0 w-0 h-[1.5px] bg-brand-black transition-all duration-300 group-hover:w-full" />
+          </Link>
+
+          <Link
             href="/#contato"
-            className="text-brand-accent"
+            className="bg-brand-accent text-white px-5 py-2 hover:bg-brand-accent-dark transition-colors"
           >
             Contato
           </Link>
@@ -119,8 +134,15 @@ export default function Header() {
               Varejo e E-commerce
             </Link>
             <Link
+              href="/#precos"
+              className="py-3 text-brand-muted hover:text-brand-black transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Preços
+            </Link>
+            <Link
               href="/#contato"
-              className="py-3 text-brand-accent"
+              className="mt-2 bg-brand-accent text-white px-5 py-3 text-center hover:bg-brand-accent-dark transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Contato
