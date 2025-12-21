@@ -12,6 +12,7 @@ import ProcessSection from '@/components/ProcessSection'
 import IndustriesSection from '@/components/IndustriesSection'
 import AnalyticsDashboard from '@/components/AnalyticsDashboard'
 import FlipCardsSection from '@/components/FlipCardsSection'
+import HeroWorkflowDemo from '@/components/HeroWorkflowDemo'
 
 export default function Home() {
   // Typewriter state
@@ -82,51 +83,61 @@ export default function Home() {
 
       {/* Hero */}
       <section className="min-h-screen bg-white flex items-center relative">
-        <div className="max-w-6xl mx-auto px-6 md:px-10 w-full">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-          {/* Fixed headline */}
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-light tracking-tight text-neutral-900 leading-[1.1]">
-            Qualquer processo,<br />
-            <span style={{ color: '#8b2020' }}>automatizado.</span>
-          </h1>
+            {/* Left column - Hero content */}
+            <div>
+              {/* Fixed headline */}
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-neutral-900 leading-[1.1]">
+                Qualquer processo,<br />
+                <span style={{ color: '#8b2020' }}>automatizado.</span>
+              </h1>
 
-          {/* Subheadline */}
-          <p className="mt-6 text-xl md:text-2xl text-brand-muted font-light">
-            Para PMEs que querem crescer sem aumentar a equipe
-          </p>
+              {/* Subheadline */}
+              <p className="mt-6 text-xl md:text-2xl text-brand-muted font-light">
+                Para PMEs que querem crescer sem aumentar a equipe
+              </p>
 
-          {/* Separator */}
-          <div className="w-12 h-px bg-neutral-300 mt-10 md:mt-12" />
+              {/* Separator */}
+              <div className="w-12 h-px bg-neutral-300 mt-10 md:mt-12" />
 
-          {/* Typewriter area */}
-          <div className="mt-8 md:mt-10">
-            <p className="text-2xl md:text-3xl font-light tracking-tight">
-              <span className="font-medium" style={{ color: '#8b2020' }}>Sem</span>
-              <span className="text-neutral-600 ml-1">{displayText}</span>
-              <span
-                className="inline-block w-[2px] h-7 bg-neutral-400 ml-1 align-middle"
-                style={{ animation: 'blink 1s step-end infinite' }}
-              />
-            </p>
+              {/* Typewriter area */}
+              <div className="mt-8 md:mt-10">
+                <p className="text-2xl md:text-3xl font-light tracking-tight">
+                  <span className="font-medium" style={{ color: '#8b2020' }}>Sem</span>
+                  <span className="text-neutral-600 ml-1">{displayText}</span>
+                  <span
+                    className="inline-block w-[2px] h-7 bg-neutral-400 ml-1 align-middle"
+                    style={{ animation: 'blink 1s step-end infinite' }}
+                  />
+                </p>
+              </div>
+
+              {/* CTAs */}
+              <div className="mt-12 md:mt-14 flex flex-wrap gap-4">
+                <a
+                  href="#contato"
+                  className="inline-block px-8 py-4 text-white transition-all hover:shadow-lg"
+                  style={{ backgroundColor: '#8b2020' }}
+                >
+                  Agendar conversa
+                </a>
+                <a
+                  href="#integracao-visual"
+                  className="inline-block px-8 py-4 text-brand-black border border-brand-border transition-all hover:border-brand-accent hover:text-brand-accent"
+                >
+                  Ver como funciona
+                </a>
+              </div>
+            </div>
+
+            {/* Right column - Workflow Demo */}
+            <div className="hidden lg:block">
+              <HeroWorkflowDemo />
+            </div>
+
           </div>
-
-          {/* CTAs */}
-          <div className="mt-12 md:mt-14 flex flex-wrap gap-4">
-            <a
-              href="#contato"
-              className="inline-block px-8 py-4 text-white transition-all hover:shadow-lg"
-              style={{ backgroundColor: '#8b2020' }}
-            >
-              Agendar conversa
-            </a>
-            <a
-              href="#integracao-visual"
-              className="inline-block px-8 py-4 text-brand-black border border-brand-border transition-all hover:border-brand-accent hover:text-brand-accent"
-            >
-              Ver como funciona
-            </a>
-          </div>
-
         </div>
 
         {/* Scroll indicator at bottom of viewport */}
