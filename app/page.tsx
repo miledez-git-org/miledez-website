@@ -11,6 +11,7 @@ import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
 import IndustriesSection from '@/components/IndustriesSection'
 import AnalyticsDashboard from '@/components/AnalyticsDashboard'
+import FlipCardsSection from '@/components/FlipCardsSection'
 
 export default function Home() {
   // Typewriter state
@@ -130,9 +131,14 @@ export default function Home() {
 
         {/* Scroll indicator at bottom of viewport */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <SectionNavButton href="#como-funciona" label="Como funciona" />
+          <SectionNavButton href="#flip-cards" label="Seu único trabalho" />
         </div>
       </section>
+
+      {/* Flip Cards Section */}
+      <div id="flip-cards">
+        <FlipCardsSection />
+      </div>
 
       {/* Why choose mil&dez */}
       <section id="como-funciona" className="py-24 md:py-32 bg-bg-muted">
