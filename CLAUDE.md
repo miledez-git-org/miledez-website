@@ -25,16 +25,36 @@ This is a Next.js 14 static website for mil&dez, a Brazilian B2B automation agen
 - **Server/Client Separation**: Each route has:
   - `page.tsx` - Server component for metadata and SEO
   - `*Content.tsx` - Client component (`'use client'`) for interactive content
-- **Routes**: `/` (landing), `/saude` (healthcare), `/servicos` (services), `/varejo` (retail)
+- **Routes**: `/` (landing), `/saude` (healthcare), `/servicos` (services), `/varejo` (retail), `/apresentacao` (presentation)
 
 ### Key Components
 
+**Layout & Navigation:**
 - `components/Header.tsx` - Fixed navigation with logo, desktop nav, mobile hamburger menu
 - `components/Footer.tsx` - Site footer (server component)
-- `components/WorkflowAnimation.tsx` - Reusable animated workflow visualization with Intersection Observer
-- `components/DiagnosticoAutomacao.tsx` - Interactive automation quiz with ROI calculator
 - `components/SectionNavButton.tsx` - Navigation buttons between sections
+
+**Interactive:**
+- `components/DiagnosticoAutomacao.tsx` - Interactive automation quiz with ROI calculator
+- `components/WorkflowAutomationVisual.tsx` - Animated workflow visualization with Intersection Observer
+
+**Sections:**
+- `components/TechnologyPartners.tsx` - Technology partner logos display
+- `components/PricingSection.tsx` - Pricing/plans section
+- `components/LogoMarquee.tsx` - Scrolling partner logos
+- `components/IntegrationMesh.tsx` - Integration visualization (uses real company logos)
+- `components/BenefitsSection.tsx` - Benefits/outcomes display
+- `components/ProcessSection.tsx` - Process visualization
+
+**Design System:**
 - `components/Icons.tsx` - All SVG icons (outline style, 1.5px stroke)
+- `components/AnimatedIcons.tsx` - Animated icon variants
+
+### Custom Hooks
+
+- `hooks/useCountUp.ts` - Number animation counter
+- `hooks/useMediaQuery.ts` - Responsive media queries
+- `hooks/useScrollReveal.ts` - Scroll reveal animations
 
 ### Assets
 
@@ -50,13 +70,29 @@ Use `@/` for imports from project root: `import { icons } from '@/components/Ico
 
 Use `/brand:colors` command for quick color reference, or `/brand:check` to verify compliance.
 
-## Animation Pattern
+## Animation Patterns
 
-Workflow animations use Intersection Observer with threshold 0.3 to trigger on viewport entry. See `WorkflowAnimation.tsx` for the reusable pattern with:
+### Workflow Animations
+Workflow animations use Intersection Observer with threshold 0.3 to trigger on viewport entry. See `WorkflowAutomationVisual.tsx` for the reusable pattern with:
 - Sequential fade-in for step elements
 - Static connection lines (always visible)
 - Animated data pulse dots moving along connections
+- Stage indicator overlays
+
+### TypeWriter Animation
+Hero sections use a TypeWriter effect for dynamic text. Located in hero components.
 
 ## Static Export Note
 
 The site is configured for static export. To add API routes or SSR, remove `output: 'export'` from next.config.js and set `images.unoptimized: false`.
+
+## Recent Changes
+
+| Date | Change |
+|------|--------|
+| 2025-12-19 | Homepage optimized: 12 sections → 8 |
+| 2025-12-18 | Real company logos in IntegrationMesh |
+| 2025-12-17 | Stage indicator overlays in workflow animation |
+| 2025-12-16 | Alternating section backgrounds added |
+| 2025-12-15 | Header logo updated to Manrope 32px |
+| 2025-12-14 | TypeWriter animation in hero section |
