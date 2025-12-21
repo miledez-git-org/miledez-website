@@ -167,7 +167,13 @@ export function LogoMarqueeHero() {
   )
 }
 
-export function LogoMarqueeSection() {
+export function LogoMarqueeSection({ variant = 'section' }: { variant?: 'section' | 'inline' }) {
+  if (variant === 'inline') {
+    // Inline variant: no wrapper, for embedding in other sections
+    return <LogoMarquee speed={30} logoHeight={32} gap={64} />
+  }
+
+  // Default section variant with full wrapper
   return (
     <section className="py-16">
       <div className="max-w-6xl mx-auto px-6 md:px-10 mb-8">

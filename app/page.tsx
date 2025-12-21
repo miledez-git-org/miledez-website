@@ -168,14 +168,14 @@ export default function Home() {
 
           <WorkflowAutomationVisual />
 
-          <SectionNavButton href="#integracoes" label="Nossas integrações" />
-        </div>
-      </section>
+          {/* Logo Slider - integrations */}
+          <div className="mt-16 pt-12 border-t border-brand-border">
+            <p className="text-xs font-medium text-brand-muted uppercase tracking-[0.15em] text-center mb-8">
+              Integramos com as ferramentas que você já usa
+            </p>
+            <LogoMarqueeSection variant="inline" />
+          </div>
 
-      {/* Integrations - LogoMarquee */}
-      <section id="integracoes" className="bg-bg-muted">
-        <LogoMarqueeSection />
-        <div className="px-6 md:px-10 max-w-6xl mx-auto pb-16">
           <SectionNavButton href="#processo" label="Nosso processo" />
         </div>
       </section>
