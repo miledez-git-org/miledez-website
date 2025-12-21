@@ -4,13 +4,6 @@ import { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { icons } from './Icons'
 
-// Color constants matching brand
-const ACCENT_COLOR = '#8B2B2B'
-const SUCCESS_COLOR = '#10B981'
-const BORDER_COLOR = '#E5E5E5'
-const TEXT_PRIMARY = '#1F2937'
-const TEXT_SECONDARY = '#6B7280'
-
 // Badge types
 type BadgeType = 'trigger' | 'condition' | 'action'
 
@@ -22,10 +15,10 @@ interface WorkflowCard {
   description: string
   badge: BadgeType
   offsetX: number
-  offsetY: number
 }
 
 // Workflow cards data - Lead capture automation scenario
+// Increased offsets since cards are now narrower
 const workflowCards: WorkflowCard[] = [
   {
     id: 1,
@@ -34,8 +27,7 @@ const workflowCards: WorkflowCard[] = [
     title: 'Novo formulário recebido',
     description: 'Receber novo lead via formulário',
     badge: 'trigger',
-    offsetX: 20,
-    offsetY: 0,
+    offsetX: 40,
   },
   {
     id: 2,
@@ -44,8 +36,7 @@ const workflowCards: WorkflowCard[] = [
     title: 'Validar informações',
     description: 'Verificar dados e qualificar lead',
     badge: 'condition',
-    offsetX: -15,
-    offsetY: 0,
+    offsetX: 0,
   },
   {
     id: 3,
@@ -54,8 +45,7 @@ const workflowCards: WorkflowCard[] = [
     title: 'Criar lead no CRM',
     description: 'Atualizar registro no Pipedrive',
     badge: 'action',
-    offsetX: 35,
-    offsetY: 0,
+    offsetX: 60,
   },
   {
     id: 4,
@@ -64,8 +54,7 @@ const workflowCards: WorkflowCard[] = [
     title: 'Enviar email de boas-vindas',
     description: 'Mensagem automática de confirmação',
     badge: 'action',
-    offsetX: 0,
-    offsetY: 0,
+    offsetX: 20,
   },
   {
     id: 5,
@@ -74,8 +63,7 @@ const workflowCards: WorkflowCard[] = [
     title: 'Notificar equipe comercial',
     description: 'Alerta para time de vendas',
     badge: 'action',
-    offsetX: 25,
-    offsetY: 0,
+    offsetX: 50,
   },
 ]
 
@@ -119,67 +107,26 @@ function Badge({ type, isActive }: { type: BadgeType; isActive: boolean }) {
   )
 }
 
-// Status indicator component
-function StatusIndicator({ status }: { status: 'waiting' | 'processing' | 'completed' }) {
-  if (status === 'waiting') return null
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.8 }}
-      className="absolute -top-2 -right-2 z-10"
-    >
-      {status === 'processing' && (
-        <div className="w-5 h-5 rounded-full bg-white border-2 border-brand-accent flex items-center justify-center">
-          <div className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
-        </div>
-      )}
-      {status === 'completed' && (
-        <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center">
-          <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-      )}
-    </motion.div>
-  )
-}
-
 // Individual workflow card component
 function WorkflowCardComponent({
   card,
   isActive,
   isCompleted,
-  isProcessing,
   index,
 }: {
   card: WorkflowCard
   isActive: boolean
   isCompleted: boolean
-  isProcessing: boolean
   index: number
 }) {
-  const status = isCompleted ? 'completed' : isProcessing ? 'processing' : 'waiting'
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.4 }}
       style={{ marginLeft: `${card.offsetX}px` }}
-      className="relative"
+      className="relative max-w-[320px]"
     >
-      {/* Connector dot on top of card */}
-      {index > 0 && (
-        <div
-          className={`
-            absolute -top-3 left-8 w-2 h-2 rounded-full border-2 transition-colors duration-300
-            ${isActive || isCompleted ? 'bg-brand-accent border-brand-accent' : 'bg-white border-gray-300'}
-          `}
-        />
-      )}
-
       {/* Card */}
       <div
         className={`
@@ -194,10 +141,6 @@ function WorkflowCardComponent({
             : '0 4px 12px rgba(0, 0, 0, 0.08)',
         }}
       >
-        <AnimatePresence>
-          <StatusIndicator status={status} />
-        </AnimatePresence>
-
         {/* Line 1: Icon + Title + Badge */}
         <div className="flex items-center gap-3 mb-2">
           <div
@@ -230,60 +173,38 @@ function WorkflowCardComponent({
           {card.description}
         </p>
       </div>
-
-      {/* Connector dot on bottom of card */}
-      {index < workflowCards.length - 1 && (
-        <div
-          className={`
-            absolute -bottom-3 left-8 w-2 h-2 rounded-full border-2 transition-colors duration-300
-            ${isCompleted ? 'bg-green-500 border-green-500' : isActive ? 'bg-brand-accent border-brand-accent' : 'bg-white border-gray-300'}
-          `}
-        />
-      )}
     </motion.div>
   )
 }
 
-// Connector line between cards with animated pulse
+// Connector line between cards - simple static line with color change
 function ConnectorLine({
   isActive,
   isCompleted,
-  fromCard,
+  fromOffsetX,
+  toOffsetX,
 }: {
   isActive: boolean
   isCompleted: boolean
-  fromCard: WorkflowCard
+  fromOffsetX: number
+  toOffsetX: number
 }) {
+  // Calculate the center point for the connector
+  // The connector should start from the center-left area of the card
+  const connectorLeft = fromOffsetX + 24 // 24px = roughly center of icon area
+
   return (
     <div
-      className="relative h-8 flex items-center"
-      style={{ marginLeft: `${fromCard.offsetX + 32}px` }}
+      className="relative h-6 flex items-center"
+      style={{ marginLeft: `${connectorLeft}px` }}
     >
-      {/* Static line */}
+      {/* Static vertical line */}
       <div
         className={`
           w-0.5 h-full transition-colors duration-300
           ${isCompleted ? 'bg-green-400' : isActive ? 'bg-brand-accent' : 'bg-gray-200'}
         `}
       />
-
-      {/* Animated pulse dot */}
-      {isActive && (
-        <motion.div
-          className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-brand-accent"
-          initial={{ top: 0, opacity: 0 }}
-          animate={{
-            top: ['0%', '100%'],
-            opacity: [0, 1, 1, 0],
-          }}
-          transition={{
-            duration: 0.8,
-            ease: 'linear',
-            repeat: Infinity,
-            repeatDelay: 0.2,
-          }}
-        />
-      )}
     </div>
   )
 }
@@ -363,14 +284,13 @@ export default function HeroWorkflowDemo() {
   // Helper functions to determine card states
   const isCardActive = (cardIndex: number) => currentPhase === cardIndex
   const isCardCompleted = (cardIndex: number) => currentPhase > cardIndex
-  const isCardProcessing = (cardIndex: number) => currentPhase === cardIndex
   const isConnectorActive = (connectorIndex: number) => currentPhase === connectorIndex + 1
   const isConnectorCompleted = (connectorIndex: number) => currentPhase > connectorIndex + 1
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-[480px] mx-auto lg:mx-0"
+      className="relative w-full max-w-[420px] mx-auto lg:mx-0"
       aria-label="Demonstração de automação de captação de leads"
     >
       <span className="sr-only">
@@ -381,14 +301,6 @@ export default function HeroWorkflowDemo() {
       <div
         className={`transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
       >
-        {/* Header */}
-        <div className="flex items-center gap-2 mb-4">
-          <div className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
-          <span className="text-xs font-medium text-brand-muted uppercase tracking-wider">
-            Automação de Leads
-          </span>
-        </div>
-
         {/* Workflow cards with connectors */}
         <div className="space-y-0">
           {workflowCards.map((card, index) => (
@@ -397,14 +309,14 @@ export default function HeroWorkflowDemo() {
                 card={card}
                 isActive={isCardActive(index)}
                 isCompleted={isCardCompleted(index)}
-                isProcessing={isCardProcessing(index)}
                 index={index}
               />
               {index < workflowCards.length - 1 && (
                 <ConnectorLine
                   isActive={isConnectorActive(index)}
                   isCompleted={isConnectorCompleted(index)}
-                  fromCard={card}
+                  fromOffsetX={card.offsetX}
+                  toOffsetX={workflowCards[index + 1].offsetX}
                 />
               )}
             </div>
@@ -418,7 +330,7 @@ export default function HeroWorkflowDemo() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="mt-4 flex items-center justify-center gap-2 py-2 px-4 bg-green-50 rounded-lg border border-green-200"
+              className="mt-4 flex items-center justify-center gap-2 py-2 px-4 bg-green-50 rounded-lg border border-green-200 max-w-[320px] ml-auto mr-auto"
             >
               <div className="w-4 h-4 rounded-full bg-green-500 flex items-center justify-center">
                 <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
