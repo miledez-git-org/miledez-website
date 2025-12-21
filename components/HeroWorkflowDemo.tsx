@@ -1,11 +1,8 @@
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { icons } from './Icons'
-
-// Badge types
-type BadgeType = 'trigger' | 'condition' | 'action'
 
 interface WorkflowCard {
   id: number
@@ -13,12 +10,10 @@ interface WorkflowCard {
   iconLabel: string
   title: string
   description: string
-  badge: BadgeType
   offsetX: number
 }
 
 // Workflow cards data - Lead capture automation scenario
-// Increased offsets since cards are now narrower
 const workflowCards: WorkflowCard[] = [
   {
     id: 1,
@@ -26,7 +21,6 @@ const workflowCards: WorkflowCard[] = [
     iconLabel: 'Gmail',
     title: 'Novo formulário recebido',
     description: 'Receber novo lead via formulário',
-    badge: 'trigger',
     offsetX: 40,
   },
   {
@@ -35,7 +29,6 @@ const workflowCards: WorkflowCard[] = [
     iconLabel: 'Lógica',
     title: 'Validar informações',
     description: 'Verificar dados e qualificar lead',
-    badge: 'condition',
     offsetX: 0,
   },
   {
@@ -44,7 +37,6 @@ const workflowCards: WorkflowCard[] = [
     iconLabel: 'CRM',
     title: 'Criar lead no CRM',
     description: 'Atualizar registro no Pipedrive',
-    badge: 'action',
     offsetX: 60,
   },
   {
@@ -53,7 +45,6 @@ const workflowCards: WorkflowCard[] = [
     iconLabel: 'Email',
     title: 'Enviar email de boas-vindas',
     description: 'Mensagem automática de confirmação',
-    badge: 'action',
     offsetX: 20,
   },
   {
@@ -62,61 +53,21 @@ const workflowCards: WorkflowCard[] = [
     iconLabel: 'WhatsApp',
     title: 'Notificar equipe comercial',
     description: 'Alerta para time de vendas',
-    badge: 'action',
     offsetX: 50,
   },
 ]
 
-// Badge component
-function Badge({ type, isActive }: { type: BadgeType; isActive: boolean }) {
-  const config = {
-    trigger: {
-      label: 'Gatilho',
-      bgActive: 'bg-amber-100',
-      textActive: 'text-amber-700',
-      bgInactive: 'bg-gray-100',
-      textInactive: 'text-gray-500',
-    },
-    condition: {
-      label: 'Condição',
-      bgActive: 'bg-blue-100',
-      textActive: 'text-blue-700',
-      bgInactive: 'bg-gray-100',
-      textInactive: 'text-gray-500',
-    },
-    action: {
-      label: 'Ação',
-      bgActive: 'bg-green-100',
-      textActive: 'text-green-700',
-      bgInactive: 'bg-gray-100',
-      textInactive: 'text-gray-500',
-    },
-  }
+// Card width constant for positioning calculations
+const CARD_WIDTH = 280
 
-  const { label, bgActive, textActive, bgInactive, textInactive } = config[type]
-
-  return (
-    <span
-      className={`
-        px-2 py-0.5 text-[10px] font-medium rounded-full transition-colors duration-300
-        ${isActive ? `${bgActive} ${textActive}` : `${bgInactive} ${textInactive}`}
-      `}
-    >
-      {label}
-    </span>
-  )
-}
-
-// Individual workflow card component
+// Individual workflow card component - skeleton style when inactive
 function WorkflowCardComponent({
   card,
   isActive,
-  isCompleted,
   index,
 }: {
   card: WorkflowCard
   isActive: boolean
-  isCompleted: boolean
   index: number
 }) {
   return (
@@ -124,85 +75,82 @@ function WorkflowCardComponent({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.4 }}
-      style={{ marginLeft: `${card.offsetX}px` }}
-      className="relative max-w-[320px]"
+      style={{ marginLeft: `${card.offsetX}px`, width: `${CARD_WIDTH}px` }}
+      className="relative"
     >
       {/* Card */}
       <div
         className={`
-          relative bg-white rounded-xl p-4 transition-all duration-300
-          border shadow-sm
-          ${isActive ? 'border-brand-accent shadow-accent-glow' : isCompleted ? 'border-green-400' : 'border-[#E5E5E5]'}
-          ${isActive ? 'scale-[1.02]' : 'scale-100'}
+          relative bg-white rounded-xl p-4 transition-all duration-500
+          border border-gray-200
         `}
         style={{
-          boxShadow: isActive
-            ? '0 4px 20px rgba(139, 43, 43, 0.15)'
-            : '0 4px 12px rgba(0, 0, 0, 0.08)',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
         }}
       >
-        {/* Line 1: Icon + Title + Badge */}
+        {/* Line 1: Icon + Title */}
         <div className="flex items-center gap-3 mb-2">
+          {/* Icon - skeleton or visible */}
           <div
             className={`
-              w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-lg transition-colors duration-300
+              w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-lg transition-all duration-500
               [&>svg]:w-5 [&>svg]:h-5
-              ${isActive ? 'text-brand-accent bg-brand-accent-light' : 'text-gray-500 bg-gray-100'}
+              ${isActive ? 'bg-gray-100 text-gray-700' : 'bg-gray-100 text-gray-300'}
             `}
           >
             {card.icon}
           </div>
-          <span
-            className={`
-              flex-1 text-sm font-semibold transition-colors duration-300
-              ${isActive ? 'text-brand-black' : 'text-gray-700'}
-            `}
-          >
-            {card.title}
-          </span>
-          <Badge type={card.badge} isActive={isActive || isCompleted} />
+
+          {/* Title - skeleton or visible */}
+          <div className="flex-1 relative">
+            {isActive ? (
+              <span className="text-sm font-semibold text-gray-800 transition-all duration-500">
+                {card.title}
+              </span>
+            ) : (
+              <div className="h-4 bg-gray-200 rounded w-full" />
+            )}
+          </div>
         </div>
 
-        {/* Line 2: Description */}
-        <p
-          className={`
-            text-xs leading-relaxed pl-11 transition-colors duration-300
-            ${isActive ? 'text-gray-600' : 'text-gray-400'}
-          `}
-        >
-          {card.description}
-        </p>
+        {/* Line 2: Description - skeleton or visible */}
+        <div className="pl-11">
+          {isActive ? (
+            <p className="text-xs leading-relaxed text-gray-500 transition-all duration-500">
+              {card.description}
+            </p>
+          ) : (
+            <div className="space-y-1.5">
+              <div className="h-3 bg-gray-100 rounded w-4/5" />
+            </div>
+          )}
+        </div>
       </div>
     </motion.div>
   )
 }
 
-// Connector line between cards - simple static line with color change
+// Connector line between cards - centered on card
 function ConnectorLine({
   isActive,
-  isCompleted,
-  fromOffsetX,
-  toOffsetX,
+  cardOffsetX,
 }: {
   isActive: boolean
-  isCompleted: boolean
-  fromOffsetX: number
-  toOffsetX: number
+  cardOffsetX: number
 }) {
-  // Calculate the center point for the connector
-  // The connector should start from the center-left area of the card
-  const connectorLeft = fromOffsetX + 24 // 24px = roughly center of icon area
+  // Position connector at center of card
+  const connectorLeft = cardOffsetX + (CARD_WIDTH / 2)
 
   return (
     <div
-      className="relative h-6 flex items-center"
+      className="relative h-6"
       style={{ marginLeft: `${connectorLeft}px` }}
     >
       {/* Static vertical line */}
       <div
         className={`
-          w-0.5 h-full transition-colors duration-300
-          ${isCompleted ? 'bg-green-400' : isActive ? 'bg-brand-accent' : 'bg-gray-200'}
+          w-0.5 h-full transition-colors duration-500
+          ${isActive ? 'bg-gray-400' : 'bg-gray-200'}
         `}
       />
     </div>
@@ -282,15 +230,15 @@ export default function HeroWorkflowDemo() {
   }, [isVisible, prefersReducedMotion])
 
   // Helper functions to determine card states
-  const isCardActive = (cardIndex: number) => currentPhase === cardIndex
-  const isCardCompleted = (cardIndex: number) => currentPhase > cardIndex
-  const isConnectorActive = (connectorIndex: number) => currentPhase === connectorIndex + 1
-  const isConnectorCompleted = (connectorIndex: number) => currentPhase > connectorIndex + 1
+  // Card is active if current phase >= card index (stays visible once activated)
+  const isCardActive = (cardIndex: number) => currentPhase >= cardIndex && currentPhase <= 5
+  // Connector is active once the next card is activated
+  const isConnectorActive = (connectorIndex: number) => currentPhase > connectorIndex
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-[420px] mx-auto lg:mx-0"
+      className="relative w-full max-w-[400px] mx-auto lg:mx-0"
       aria-label="Demonstração de automação de captação de leads"
     >
       <span className="sr-only">
@@ -308,41 +256,17 @@ export default function HeroWorkflowDemo() {
               <WorkflowCardComponent
                 card={card}
                 isActive={isCardActive(index)}
-                isCompleted={isCardCompleted(index)}
                 index={index}
               />
               {index < workflowCards.length - 1 && (
                 <ConnectorLine
                   isActive={isConnectorActive(index)}
-                  isCompleted={isConnectorCompleted(index)}
-                  fromOffsetX={card.offsetX}
-                  toOffsetX={workflowCards[index + 1].offsetX}
+                  cardOffsetX={card.offsetX}
                 />
               )}
             </div>
           ))}
         </div>
-
-        {/* Footer status */}
-        <AnimatePresence>
-          {currentPhase === 5 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="mt-4 flex items-center justify-center gap-2 py-2 px-4 bg-green-50 rounded-lg border border-green-200 max-w-[320px] ml-auto mr-auto"
-            >
-              <div className="w-4 h-4 rounded-full bg-green-500 flex items-center justify-center">
-                <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <span className="text-xs font-medium text-green-700">
-                Fluxo concluído com sucesso
-              </span>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
 
       {/* Decorative background elements */}
