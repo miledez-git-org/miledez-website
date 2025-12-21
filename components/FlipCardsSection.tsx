@@ -168,7 +168,7 @@ export default function FlipCardsSection() {
                 position: 'relative',
                 transformStyle: 'preserve-3d',
                 transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
-                transform: `rotateX(${isFlipped ? 180 : 0}deg)`,
+                transform: `rotateY(${isFlipped ? 180 : 0}deg)`,
                 opacity: isVisible ? 1 : 0,
                 transitionDelay: isVisible ? `${index * 0.1}s` : '0s',
               }}
@@ -334,7 +334,7 @@ export default function FlipCardsSection() {
                   position: 'absolute',
                   inset: 0,
                   backfaceVisibility: 'hidden',
-                  transform: 'rotateX(180deg)',
+                  transform: 'rotateY(180deg)',
                   backgroundColor: '#8b2020',
                   padding: '40px 32px',
                   display: 'flex',
