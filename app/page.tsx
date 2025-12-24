@@ -3,16 +3,16 @@
 import { useEffect } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import SectionNavButton from '@/components/SectionNavButton'
 import ComoFuncionaDemo from '@/components/ComoFuncionaDemo'
 import WorkflowAutomationVisual from '@/components/WorkflowAutomationVisual'
 import WorkflowTiersDemo from '@/components/WorkflowTiersDemo'
 import { LogoMarqueeSection } from '@/components/LogoMarquee'
 import PricingSection from '@/components/PricingSection'
-import ProcessSection from '@/components/ProcessSection'
+// import ProcessSection from '@/components/ProcessSection' // Kept for future use
+import ProcessSectionEnhanced from '@/components/ProcessSectionEnhanced'
 import IndustriesSection from '@/components/IndustriesSection'
 import AnalyticsDashboard from '@/components/AnalyticsDashboard'
-import FlipCardsSection from '@/components/FlipCardsSection'
+// import FlipCardsSection from '@/components/FlipCardsSection' // Kept for future use
 import HeroWorkflowDemo from '@/components/HeroWorkflowDemo'
 
 export default function Home() {
@@ -82,14 +82,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll indicator at bottom of viewport */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <SectionNavButton href="#beneficios" label="O que muda" />
-        </div>
       </section>
 
       {/* Benefits Section - What changes in your company */}
-      <section id="beneficios" className="py-24 md:py-32 bg-bg-muted">
+      <section id="beneficios" className="py-32 md:py-40 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="mb-12 md:mb-16 text-center">
             <h2 className="text-[2.5rem] md:text-[3rem] font-medium text-brand-black tracking-[-0.02em]">O que muda na sua empresa</h2>
@@ -97,13 +93,11 @@ export default function Home() {
           </div>
 
           <ComoFuncionaDemo />
-
-          <SectionNavButton href="#integracao-visual" label="Como funciona" />
         </div>
       </section>
 
       {/* How It Works - Workflow Tiers Demo */}
-      <section id="integracao-visual" className="py-24 md:py-32 bg-white">
+      <section id="integracao-visual" className="py-32 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="mb-12 md:mb-16 text-center">
             <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">
@@ -123,29 +117,27 @@ export default function Home() {
             </p>
             <LogoMarqueeSection variant="inline" />
           </div>
-
-          <SectionNavButton href="#flip-cards" label="Seu único trabalho" />
         </div>
       </section>
 
-      {/* Flip Cards Section */}
-      <div id="flip-cards">
+      {/* Process Section - Enhanced */}
+      <div id="processo">
+        <ProcessSectionEnhanced />
+      </div>
+
+      {/* Old Flip Cards Section - Kept for future use
+      <div id="flip-cards" className="py-32 md:py-40">
         <FlipCardsSection />
       </div>
+      */}
 
-      {/* Navigation to Process */}
-      <div className="py-8 bg-white text-center">
-        <SectionNavButton href="#processo" label="Nosso processo" />
-      </div>
-
-      {/* Process */}
-      <section id="processo" className="py-32 bg-bg-muted">
+      {/* Old Process Section - Kept for future use
+      <section id="processo-old" className="py-32 md:py-40 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ProcessSection />
-
-          <SectionNavButton href="#resultados" label="Resultados" />
         </div>
       </section>
+      */}
 
       {/* Analytics Dashboard */}
       <section id="resultados" className="bg-white">
@@ -153,16 +145,14 @@ export default function Home() {
       </section>
 
       {/* Pricing */}
-      <section id="precos" className="py-32 bg-bg-muted">
+      <section id="precos" className="py-32 md:py-40 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <PricingSection />
-
-          <SectionNavButton href="#contato" label="Contato" />
         </div>
       </section>
 
       {/* Industries + Contact (merged closing section) */}
-      <section id="contato" className="py-24 md:py-32 bg-white">
+      <section id="contato" className="py-32 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           {/* Industries */}
           <div className="mb-20">

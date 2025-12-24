@@ -3,7 +3,6 @@
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import WorkflowDemo, { exampleIcons } from '@/components/WorkflowDemo'
-import SectionNavButton from '@/components/SectionNavButton'
 import ChallengeCard from '@/components/industry/ChallengeCard'
 import MetricsGrid from '@/components/industry/MetricsGrid'
 import IndustryHeroVisualization from '@/components/industry/IndustryHeroVisualization'
@@ -293,12 +292,11 @@ export default function VarejoContent() {
             </div>
             <IndustryHeroVisualization industry="varejo" />
           </div>
-          <SectionNavButton href="#workflows" label="O que automatizamos" />
         </div>
       </section>
 
       {/* Pain Points */}
-      <section className="py-24 md:py-32 bg-bg-muted">
+      <section className="py-32 md:py-40 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="mb-16">
             <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">A operação que não para</h2>
@@ -309,7 +307,7 @@ export default function VarejoContent() {
       </section>
 
       {/* Workflows */}
-      <section id="workflows" className="py-24 md:py-32 bg-white">
+      <section id="workflows" className="py-32 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="mb-20">
             <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">O que automatizamos</h2>
@@ -332,12 +330,11 @@ export default function VarejoContent() {
               </div>
             ))}
           </div>
-          <SectionNavButton href="#resultados" label="Resultados" />
         </div>
       </section>
 
       {/* Results */}
-      <section id="resultados" className="py-32 bg-bg-muted">
+      <section id="resultados" className="py-32 md:py-40 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <h2 className="text-[2rem] font-medium mb-12 text-brand-black tracking-[-0.02em]">Resultados típicos</h2>
 
@@ -351,12 +348,11 @@ export default function VarejoContent() {
               Você para de apagar incêndio e começa a pensar em crescimento: novos produtos, novos canais, melhor margem.
             </p>
           </div>
-          <SectionNavButton href="#integracoes" label="Integrações" />
         </div>
       </section>
 
       {/* Integrations */}
-      <section id="integracoes" className="py-24 md:py-32 bg-white">
+      <section id="integracoes" className="py-32 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="mb-16">
             <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">Ferramentas que você já usa</h2>
@@ -364,12 +360,11 @@ export default function VarejoContent() {
           </div>
 
           <IndustryIntegrations integrations={integrations} />
-          <SectionNavButton href="#contato" label="Contato" />
         </div>
       </section>
 
       {/* CTA */}
-      <section id="contato" className="py-24 md:py-36 bg-bg-muted">
+      <section id="contato" className="py-32 md:py-40 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto text-center">
           <h2 className="text-[2.5rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
             Vamos automatizar sua operação?
