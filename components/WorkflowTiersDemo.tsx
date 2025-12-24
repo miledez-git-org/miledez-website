@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { stepIcons } from './Icons'
@@ -138,50 +138,17 @@ const outputCards: WorkflowCard[] = [
   },
 ]
 
-// SVG Connector Path Component with slower animation
-function ConnectorPath({
-  d,
-  isActive,
-  delay = 0,
-}: {
-  d: string
-  isActive: boolean
-  delay?: number
-}) {
-  return (
-    <motion.path
-      d={d}
-      stroke="#9CA3AF"
-      strokeWidth={2}
-      strokeLinecap="round"
-      fill="none"
-      initial={{ pathLength: 0, opacity: 0 }}
-      animate={{
-        pathLength: isActive ? 1 : 0,
-        opacity: isActive ? 1 : 0,
-      }}
-      transition={{
-        pathLength: { duration: 0.8, delay, ease: 'easeOut' },
-        opacity: { duration: 0.3, delay },
-      }}
-    />
-  )
-}
-
 // Trigger Card (matches HeroWorkflowDemo card design)
 function TriggerCard({
   trigger,
   isActive,
-  cardRef,
 }: {
   trigger: TriggerOption
   isActive: boolean
-  cardRef: React.RefObject<HTMLDivElement>
 }) {
   return (
     <div className="flex justify-center">
       <motion.div
-        ref={cardRef}
         initial={{ opacity: 0, y: 12 }}
         animate={{
           opacity: 1,
@@ -320,16 +287,13 @@ function ProcessingCard({
   card,
   isActive,
   index,
-  cardRef,
 }: {
   card: WorkflowCard
   isActive: boolean
   index: number
-  cardRef: React.RefObject<HTMLDivElement>
 }) {
   return (
     <motion.div
-      ref={cardRef}
       initial={{ opacity: 0, y: 8 }}
       animate={{
         opacity: 1,
@@ -425,16 +389,13 @@ function OutputCard({
   card,
   isActive,
   index,
-  cardRef,
 }: {
   card: WorkflowCard
   isActive: boolean
   index: number
-  cardRef: React.RefObject<HTMLDivElement>
 }) {
   return (
     <motion.div
-      ref={cardRef}
       initial={{ opacity: 0, y: 8 }}
       animate={{
         opacity: 1,
@@ -525,188 +486,6 @@ function OutputCard({
   )
 }
 
-// Card positions type
-interface CardPositions {
-  trigger: { x: number; y: number; width: number; height: number } | null
-  processing: Array<{ x: number; y: number; width: number; height: number } | null>
-  outputs: Array<{ x: number; y: number; width: number; height: number } | null>
-}
-
-// SVG Connectors Component using measured positions
-function ConnectorsSVG({
-  containerRef,
-  positions,
-  processingActive,
-  outputsActive,
-  activeProcessCard,
-  activeOutputCard,
-}: {
-  containerRef: React.RefObject<HTMLDivElement>
-  positions: CardPositions
-  processingActive: boolean
-  outputsActive: boolean
-  activeProcessCard: number
-  activeOutputCard: number
-}) {
-  const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 })
-
-  useEffect(() => {
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect()
-      setSvgDimensions({ width: rect.width, height: rect.height })
-    }
-  }, [containerRef, positions])
-
-  if (svgDimensions.width === 0 || !positions.trigger) return null
-
-  const radius = 12 // Corner radius for smooth elbows
-
-  // Get trigger bottom center - exact edge
-  const triggerBottomX = positions.trigger.x + positions.trigger.width / 2
-  const triggerBottomY = positions.trigger.y + positions.trigger.height
-
-  // Get first processing card top for midpoint calculation
-  const firstProcessCard = positions.processing[0]
-  const processTopY = firstProcessCard ? firstProcessCard.y : triggerBottomY + 80
-
-  // Calculate midpoint between trigger bottom and processing top
-  const triggerToProcessMidY = triggerBottomY + (processTopY - triggerBottomY) / 2
-
-  // Last processing card (sync) for output connections
-  const syncCard = positions.processing[3]
-  const syncBottomX = syncCard ? syncCard.x + syncCard.width / 2 : 0
-  const syncBottomY = syncCard ? syncCard.y + syncCard.height : 0
-
-  // Get first output card top for midpoint calculation
-  const firstOutputCard = positions.outputs[0]
-  const outputTopY = firstOutputCard ? firstOutputCard.y : syncBottomY + 80
-
-  // Calculate midpoint between sync bottom and output top
-  const syncToOutputMidY = syncBottomY + (outputTopY - syncBottomY) / 2
-
-  return (
-    <svg
-      className="absolute inset-0 pointer-events-none overflow-visible"
-      width={svgDimensions.width}
-      height={svgDimensions.height}
-      style={{ zIndex: 0 }}
-    >
-      {/* Trigger vertical stem - draws first */}
-      {firstProcessCard && (
-        <ConnectorPath
-          d={`M ${triggerBottomX} ${triggerBottomY} L ${triggerBottomX} ${triggerToProcessMidY}`}
-          isActive={processingActive}
-          delay={0}
-        />
-      )}
-
-      {/* Trigger to processing branches - curve from midpoint to each card */}
-      {positions.processing.map((pos, index) => {
-        if (!pos) return null
-
-        const cardTopX = pos.x + pos.width / 2
-        const cardTopY = pos.y
-
-        // Build path from midpoint to card top (branches from stem)
-        let path: string
-
-        if (Math.abs(cardTopX - triggerBottomX) < 5) {
-          // Center aligned - continue straight down from midpoint
-          path = `M ${triggerBottomX} ${triggerToProcessMidY} L ${cardTopX} ${cardTopY}`
-        } else if (cardTopX < triggerBottomX) {
-          // Left side - horizontal left, then curve down to card
-          path = `M ${triggerBottomX} ${triggerToProcessMidY}
-                  L ${cardTopX + radius} ${triggerToProcessMidY}
-                  Q ${cardTopX} ${triggerToProcessMidY} ${cardTopX} ${triggerToProcessMidY + radius}
-                  L ${cardTopX} ${cardTopY}`
-        } else {
-          // Right side - horizontal right, then curve down to card
-          path = `M ${triggerBottomX} ${triggerToProcessMidY}
-                  L ${cardTopX - radius} ${triggerToProcessMidY}
-                  Q ${cardTopX} ${triggerToProcessMidY} ${cardTopX} ${triggerToProcessMidY + radius}
-                  L ${cardTopX} ${cardTopY}`
-        }
-
-        return (
-          <ConnectorPath
-            key={`trigger-to-process-${index}`}
-            d={path}
-            isActive={activeProcessCard >= index}
-            delay={0.2 + index * 0.25}
-          />
-        )
-      })}
-
-      {/* Horizontal connectors between processing cards - edge to edge */}
-      {[0, 1, 2].map((index) => {
-        const fromCard = positions.processing[index]
-        const toCard = positions.processing[index + 1]
-        if (!fromCard || !toCard) return null
-
-        // Connect right edge of fromCard to left edge of toCard
-        const startX = fromCard.x + fromCard.width
-        const endX = toCard.x
-        const y = fromCard.y + fromCard.height / 2
-
-        return (
-          <ConnectorPath
-            key={`horiz-${index}`}
-            d={`M ${startX} ${y} L ${endX} ${y}`}
-            isActive={activeProcessCard > index}
-            delay={0.4 + index * 0.2}
-          />
-        )
-      })}
-
-      {/* Sync vertical stem - draws when outputs phase starts */}
-      {syncCard && firstOutputCard && (
-        <ConnectorPath
-          d={`M ${syncBottomX} ${syncBottomY} L ${syncBottomX} ${syncToOutputMidY}`}
-          isActive={outputsActive}
-          delay={0}
-        />
-      )}
-
-      {/* Sync to output branches - curve from midpoint to each output card */}
-      {positions.outputs.map((pos, index) => {
-        if (!pos || !syncCard) return null
-
-        const cardTopX = pos.x + pos.width / 2
-        const cardTopY = pos.y
-
-        // Build path from midpoint to output card top (branches from stem)
-        let path: string
-
-        if (Math.abs(cardTopX - syncBottomX) < 5) {
-          // Center aligned - continue straight down from midpoint
-          path = `M ${syncBottomX} ${syncToOutputMidY} L ${cardTopX} ${cardTopY}`
-        } else if (cardTopX < syncBottomX) {
-          // Left side - horizontal left, then curve down to card
-          path = `M ${syncBottomX} ${syncToOutputMidY}
-                  L ${cardTopX + radius} ${syncToOutputMidY}
-                  Q ${cardTopX} ${syncToOutputMidY} ${cardTopX} ${syncToOutputMidY + radius}
-                  L ${cardTopX} ${cardTopY}`
-        } else {
-          // Right side - horizontal right, then curve down to card
-          path = `M ${syncBottomX} ${syncToOutputMidY}
-                  L ${cardTopX - radius} ${syncToOutputMidY}
-                  Q ${cardTopX} ${syncToOutputMidY} ${cardTopX} ${syncToOutputMidY + radius}
-                  L ${cardTopX} ${cardTopY}`
-        }
-
-        return (
-          <ConnectorPath
-            key={`sync-to-output-${index}`}
-            d={path}
-            isActive={activeOutputCard >= index}
-            delay={0.15 + index * 0.18}
-          />
-        )
-      })}
-    </svg>
-  )
-}
-
 // Main Component
 export default function WorkflowTiersDemo() {
   const [currentPhase, setCurrentPhase] = useState(-1)
@@ -715,66 +494,7 @@ export default function WorkflowTiersDemo() {
   const [activeOutputCard, setActiveOutputCard] = useState(-1)
   const [isVisible, setIsVisible] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-  const [cardPositions, setCardPositions] = useState<CardPositions>({
-    trigger: null,
-    processing: [null, null, null, null],
-    outputs: [null, null, null, null, null],
-  })
-
   const containerRef = useRef<HTMLDivElement>(null)
-  const triggerRef = useRef<HTMLDivElement>(null)
-  const processRefs = [
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-  ]
-  const outputRefs = [
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-    useRef<HTMLDivElement>(null),
-  ]
-
-  // Measure card positions
-  const measurePositions = useCallback(() => {
-    if (!containerRef.current) return
-
-    const containerRect = containerRef.current.getBoundingClientRect()
-
-    const getRelativePos = (ref: React.RefObject<HTMLDivElement>) => {
-      if (!ref.current) return null
-      const rect = ref.current.getBoundingClientRect()
-      return {
-        x: rect.left - containerRect.left,
-        y: rect.top - containerRect.top,
-        width: rect.width,
-        height: rect.height,
-      }
-    }
-
-    setCardPositions({
-      trigger: getRelativePos(triggerRef),
-      processing: processRefs.map(getRelativePos),
-      outputs: outputRefs.map(getRelativePos),
-    })
-  }, [])
-
-  // Measure on mount and resize
-  useEffect(() => {
-    measurePositions()
-    window.addEventListener('resize', measurePositions)
-    return () => window.removeEventListener('resize', measurePositions)
-  }, [measurePositions])
-
-  // Re-measure when visibility changes
-  useEffect(() => {
-    if (isVisible) {
-      // Small delay to ensure DOM is ready
-      setTimeout(measurePositions, 100)
-    }
-  }, [isVisible, measurePositions])
 
   // Check for reduced motion preference
   useEffect(() => {
@@ -875,18 +595,6 @@ export default function WorkflowTiersDemo() {
         Animacao demonstrando as etapas de uma automacao: gatilho, processamento e resultados.
       </span>
 
-      {/* SVG Connectors Layer - desktop only */}
-      <div className="hidden md:block">
-        <ConnectorsSVG
-          containerRef={containerRef}
-          positions={cardPositions}
-          processingActive={currentPhase >= 1}
-          outputsActive={currentPhase >= 2}
-          activeProcessCard={activeProcessCard}
-          activeOutputCard={activeOutputCard}
-        />
-      </div>
-
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
@@ -898,7 +606,6 @@ export default function WorkflowTiersDemo() {
           <TriggerCard
             trigger={currentTrigger}
             isActive={currentPhase >= 0}
-            cardRef={triggerRef}
           />
         </div>
 
@@ -912,7 +619,6 @@ export default function WorkflowTiersDemo() {
                 card={card}
                 isActive={activeProcessCard >= index}
                 index={index}
-                cardRef={processRefs[index]}
               />
             ))}
           </div>
@@ -925,7 +631,6 @@ export default function WorkflowTiersDemo() {
                 card={card}
                 isActive={activeProcessCard >= index}
                 index={index}
-                cardRef={processRefs[index]}
               />
             ))}
           </div>
@@ -941,7 +646,6 @@ export default function WorkflowTiersDemo() {
                 card={card}
                 isActive={activeOutputCard >= index}
                 index={index}
-                cardRef={outputRefs[index]}
               />
             ))}
           </div>
@@ -954,7 +658,6 @@ export default function WorkflowTiersDemo() {
                 card={card}
                 isActive={activeOutputCard >= index}
                 index={index}
-                cardRef={outputRefs[index]}
               />
             ))}
           </div>
@@ -963,7 +666,6 @@ export default function WorkflowTiersDemo() {
               card={outputCards[4]}
               isActive={activeOutputCard >= 4}
               index={4}
-              cardRef={outputRefs[4]}
             />
           </div>
         </div>

@@ -98,14 +98,9 @@ export default function Home() {
 
           <ComoFuncionaDemo />
 
-          <SectionNavButton href="#flip-cards" label="Como funciona" />
+          <SectionNavButton href="#integracao-visual" label="Como funciona" />
         </div>
       </section>
-
-      {/* Flip Cards Section */}
-      <div id="flip-cards">
-        <FlipCardsSection />
-      </div>
 
       {/* How It Works - Workflow Tiers Demo */}
       <section id="integracao-visual" className="py-24 md:py-32 bg-white">
@@ -129,9 +124,19 @@ export default function Home() {
             <LogoMarqueeSection variant="inline" />
           </div>
 
-          <SectionNavButton href="#processo" label="Nosso processo" />
+          <SectionNavButton href="#flip-cards" label="Seu único trabalho" />
         </div>
       </section>
+
+      {/* Flip Cards Section */}
+      <div id="flip-cards">
+        <FlipCardsSection />
+      </div>
+
+      {/* Navigation to Process */}
+      <div className="py-8 bg-white text-center">
+        <SectionNavButton href="#processo" label="Nosso processo" />
+      </div>
 
       {/* Process */}
       <section id="processo" className="py-32 bg-bg-muted">
