@@ -6,6 +6,15 @@ This file provides development guidance for the mil&dez website.
 
 **Location:** `_tools/website/` (port 3000)
 
+## Frontend Skill Requirement
+
+**IMPORTANT:** Always use `/frontend-design` skill when working on any frontend enhancements including:
+- New components or pages
+- UI/UX improvements
+- Styling changes
+- Animation updates
+- Layout modifications
+
 ## Build & Development Commands
 
 ```bash
