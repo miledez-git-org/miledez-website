@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SectionNavButton from '@/components/SectionNavButton'
@@ -15,50 +15,6 @@ import FlipCardsSection from '@/components/FlipCardsSection'
 import HeroWorkflowDemo from '@/components/HeroWorkflowDemo'
 
 export default function Home() {
-  // Typewriter state
-  const [displayText, setDisplayText] = useState('')
-  const [phraseIndex, setPhraseIndex] = useState(0)
-  const [isDeleting, setIsDeleting] = useState(false)
-
-  const phrases = [
-    'novos softwares.',
-    'interrupções.',
-    'custos iniciais.',
-    'riscos. Só resultados.'
-  ]
-
-  // Typewriter effect
-  useEffect(() => {
-    const currentPhrase = phrases[phraseIndex]
-
-    let timeout: NodeJS.Timeout
-
-    if (!isDeleting) {
-      if (displayText.length < currentPhrase.length) {
-        timeout = setTimeout(() => {
-          setDisplayText(currentPhrase.substring(0, displayText.length + 1))
-        }, 50 + Math.random() * 30)
-      } else {
-        timeout = setTimeout(() => {
-          setIsDeleting(true)
-        }, 2200)
-      }
-    } else {
-      if (displayText.length > 0) {
-        timeout = setTimeout(() => {
-          setDisplayText(displayText.substring(0, displayText.length - 1))
-        }, 25)
-      } else {
-        timeout = setTimeout(() => {
-          setIsDeleting(false)
-          setPhraseIndex((prev) => (prev + 1) % phrases.length)
-        }, 300)
-      }
-    }
-
-    return () => clearTimeout(timeout)
-  }, [displayText, isDeleting, phraseIndex])
-
   // Staggered reveal observer for elements with .fade-in-up class
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -87,7 +43,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
             {/* Left column - Hero content */}
-            <div>
+            <div className="flex flex-col justify-center">
               {/* Fixed headline */}
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-neutral-900 leading-[1.1]">
                 Qualquer processo,<br />
@@ -99,23 +55,8 @@ export default function Home() {
                 Para PMEs que querem crescer sem aumentar a equipe
               </p>
 
-              {/* Separator */}
-              <div className="w-12 h-px bg-neutral-300 mt-10 md:mt-12" />
-
-              {/* Typewriter area */}
-              <div className="mt-8 md:mt-10">
-                <p className="text-2xl md:text-3xl font-light tracking-tight">
-                  <span className="font-medium" style={{ color: '#8b2020' }}>Sem</span>
-                  <span className="text-neutral-600 ml-1">{displayText}</span>
-                  <span
-                    className="inline-block w-[2px] h-7 bg-neutral-400 ml-1 align-middle"
-                    style={{ animation: 'blink 1s step-end infinite' }}
-                  />
-                </p>
-              </div>
-
               {/* CTAs */}
-              <div className="mt-12 md:mt-14 flex flex-wrap gap-4">
+              <div className="mt-10 md:mt-12 flex flex-wrap gap-4">
                 <a
                   href="#contato"
                   className="inline-block px-8 py-4 text-white transition-all hover:shadow-lg"
