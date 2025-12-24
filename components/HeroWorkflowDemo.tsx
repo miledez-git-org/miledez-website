@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import { stepIcons } from './Icons'
 
@@ -331,6 +331,13 @@ export default function HeroWorkflowDemo() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
+  // Parallax effect for decorative elements
+  const { scrollY } = useScroll()
+  const parallaxY1 = useTransform(scrollY, [0, 500], [0, 30])
+  const parallaxY2 = useTransform(scrollY, [0, 500], [0, -20])
+  const parallaxRotate = useTransform(scrollY, [0, 500], [0, 5])
+  const parallaxScale = useTransform(scrollY, [0, 300], [1, 1.1])
+
   // Get current workflow cards
   const currentWorkflow = workflows[currentWorkflowIndex]
   const workflowCards = currentWorkflow.cards
@@ -462,9 +469,31 @@ export default function HeroWorkflowDemo() {
         </AnimatePresence>
       </motion.div>
 
-      {/* Decorative background elements */}
-      <div className="absolute -top-6 -right-6 w-32 h-32 border border-brand-border/30 rounded-xl -z-10" />
-      <div className="absolute -bottom-4 -left-4 w-20 h-20 border border-brand-border/20 rounded-lg -z-10" />
+      {/* Decorative background elements with parallax */}
+      <motion.div
+        className="absolute -top-6 -right-6 w-32 h-32 border border-brand-border/30 rounded-xl -z-10"
+        style={{
+          y: prefersReducedMotion ? 0 : parallaxY1,
+          rotate: prefersReducedMotion ? 0 : parallaxRotate,
+        }}
+        aria-hidden="true"
+      />
+      <motion.div
+        className="absolute -bottom-4 -left-4 w-20 h-20 border border-brand-border/20 rounded-lg -z-10"
+        style={{
+          y: prefersReducedMotion ? 0 : parallaxY2,
+        }}
+        aria-hidden="true"
+      />
+      {/* Additional decorative element for depth */}
+      <motion.div
+        className="absolute top-1/2 -right-12 w-16 h-16 border border-brand-accent/10 rounded-full -z-10"
+        style={{
+          y: prefersReducedMotion ? 0 : parallaxY2,
+          scale: prefersReducedMotion ? 1 : parallaxScale,
+        }}
+        aria-hidden="true"
+      />
     </div>
   )
 }

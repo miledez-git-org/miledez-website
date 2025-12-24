@@ -14,6 +14,7 @@ import IndustriesSection from '@/components/IndustriesSection'
 import AnalyticsDashboard from '@/components/AnalyticsDashboard'
 // import FlipCardsSection from '@/components/FlipCardsSection' // Kept for future use
 import HeroWorkflowDemo from '@/components/HeroWorkflowDemo'
+import ScrollProgress from '@/components/ScrollProgress'
 
 export default function Home() {
   // Staggered reveal observer for elements with .fade-in-up class
@@ -36,6 +37,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Global interactive elements */}
+      <ScrollProgress />
+
       <Header />
 
       {/* Hero */}

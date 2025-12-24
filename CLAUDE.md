@@ -46,6 +46,8 @@ This is a Next.js 14 static website for mil&dez, a Brazilian B2B automation agen
 **Interactive:**
 - `components/DiagnosticoAutomacao.tsx` - Interactive automation quiz with ROI calculator
 - `components/WorkflowAutomationVisual.tsx` - Animated workflow visualization with Intersection Observer
+- `components/ScrollProgress.tsx` - Scroll progress indicator bar
+- `components/PageTransition.tsx` - Page transition animations wrapper
 
 **Sections:**
 - `components/TechnologyPartners.tsx` - Technology partner logos display
@@ -64,6 +66,7 @@ This is a Next.js 14 static website for mil&dez, a Brazilian B2B automation agen
 - `hooks/useCountUp.ts` - Number animation counter
 - `hooks/useMediaQuery.ts` - Responsive media queries
 - `hooks/useScrollReveal.ts` - Scroll reveal animations
+- `hooks/useParallax.ts` - Parallax scroll effects
 
 ### Assets
 
@@ -126,6 +129,22 @@ Workflow animations use Intersection Observer with threshold 0.3 to trigger on v
 ### TypeWriter Animation
 Hero sections use a TypeWriter effect for dynamic text. Located in hero components.
 
+### Advanced Interactions
+
+**Scroll Progress** (`components/ScrollProgress.tsx`):
+- Shows after scrolling past 50% of viewport
+- Smooth animated progress bar at top of page
+- Respects reduced motion preference
+
+**Page Transitions** (`app/template.tsx` + `components/PageTransition.tsx`):
+- Smooth fade transitions between routes
+- Uses Next.js App Router template pattern
+- Respects reduced motion preference
+
+**Parallax Effects** (`hooks/useParallax.ts`):
+- Decorative elements in hero section have subtle parallax
+- Auto-disabled on touch devices and reduced motion
+
 ## Static Export Note
 
 The site is configured for static export. To add API routes or SSR, remove `output: 'export'` from next.config.js and set `images.unoptimized: false`.
@@ -134,6 +153,7 @@ The site is configured for static export. To add API routes or SSR, remove `outp
 
 | Date | Change |
 |------|--------|
+| 2025-12-24 | Advanced interactions: Scroll progress, page transitions, parallax effects |
 | 2025-12-24 | Typography system: Manrope extended to headlines (heading-display, heading-section classes) |
 | 2025-12-24 | Accessibility: Focus trap in mobile menu, keyboard navigation, aria-hidden on decoratives |
 | 2025-12-24 | Button states: btn-primary/btn-secondary classes with hover/active transitions |
