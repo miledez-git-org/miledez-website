@@ -21,9 +21,9 @@ export default function ChallengeCard({
     <div
       className="group p-6 border border-brand-border transition-colors hover:bg-highlight"
       style={{
-        transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
         opacity: isVisible ? 1 : 0,
-        transition: `transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 100}ms, opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 100}ms`,
+        transition: `transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 150}ms, opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 150}ms`,
       }}
     >
       {/* Icon Container */}

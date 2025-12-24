@@ -39,6 +39,13 @@ const config: Config = {
           'Arial',
           'sans-serif',
         ],
+        display: [
+          'var(--font-manrope)',
+          'var(--font-inter)',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'sans-serif',
+        ],
         serif: [
           'Georgia',
           'Cambria',

@@ -8,7 +8,7 @@ interface UseScrollRevealOptions {
 }
 
 export function useScrollReveal(options: UseScrollRevealOptions = {}) {
-  const { threshold = 0.5, once = true } = options
+  const { threshold = 0.3, once = true } = options
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 

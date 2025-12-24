@@ -46,9 +46,9 @@ export default function Home() {
             {/* Left column - Hero content */}
             <div className="flex flex-col justify-center">
               {/* Fixed headline */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-neutral-900 leading-[1.1]">
+              <h1 className="heading-display text-5xl md:text-6xl lg:text-7xl text-brand-black">
                 Qualquer processo,<br />
-                <span style={{ color: '#8b2020' }}>automatizado.</span>
+                <span className="text-brand-accent">automatizado.</span>
               </h1>
 
               {/* Subheadline */}
@@ -60,14 +60,13 @@ export default function Home() {
               <div className="mt-10 md:mt-12 flex flex-wrap gap-4">
                 <a
                   href="#contato"
-                  className="inline-block px-8 py-4 text-white transition-all hover:shadow-lg"
-                  style={{ backgroundColor: '#8b2020' }}
+                  className="btn-primary inline-block px-10 py-5 text-white bg-brand-accent hover:bg-brand-accent-dark"
                 >
                   Agendar conversa
                 </a>
                 <a
                   href="#integracao-visual"
-                  className="inline-block px-8 py-4 text-brand-black border border-brand-border transition-all hover:border-brand-accent hover:text-brand-accent"
+                  className="btn-secondary inline-block px-8 py-4 text-brand-black border border-brand-border hover:border-brand-accent hover:text-brand-accent"
                 >
                   Ver como funciona
                 </a>
@@ -88,7 +87,7 @@ export default function Home() {
       <section id="beneficios" className="py-32 md:py-40 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="mb-12 md:mb-16 text-center">
-            <h2 className="text-[2.5rem] md:text-[3rem] font-medium text-brand-black tracking-[-0.02em]">O que muda na sua empresa</h2>
+            <h2 className="heading-section text-[2.5rem] md:text-[3rem] text-brand-black">O que muda na sua empresa</h2>
             <p className="mt-4 text-lg md:text-xl text-brand-muted">Resultados que começam em dias, não meses</p>
           </div>
 
@@ -100,7 +99,7 @@ export default function Home() {
       <section id="integracao-visual" className="py-32 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="mb-12 md:mb-16 text-center">
-            <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">
+            <h2 className="heading-section text-[2rem] text-brand-black">
               Veja a automacao em acao
             </h2>
             <p className="mt-4 text-lg text-brand-muted max-w-2xl mx-auto">
@@ -161,7 +160,7 @@ export default function Home() {
 
           {/* CTA */}
           <div className="text-center pt-12 border-t border-brand-border">
-            <h2 className="text-[2.5rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
+            <h2 className="heading-section text-[2.5rem] mb-6 text-brand-black">
               Vamos automatizar sua operação?
             </h2>
             <p className="text-lg max-w-md mx-auto mb-12 text-brand-text">
@@ -169,7 +168,7 @@ export default function Home() {
             </p>
             <a
               href="mailto:contato@miledez.com.br"
-              className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
+              className="btn-primary inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark"
             >
               Iniciar conversa
             </a>

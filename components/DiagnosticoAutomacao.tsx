@@ -236,7 +236,10 @@ export default function DiagnosticoAutomacao() {
   const [showResults, setShowResults] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [focusedIndex, setFocusedIndex] = useState(-1)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const optionRefs = useRef<(HTMLButtonElement | null)[]>([])
 
   const currentQuestion = questions[currentStep]
   const isMultiple = currentQuestion?.type === 'multiple'
@@ -246,11 +249,90 @@ export default function DiagnosticoAutomacao() {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setIsDropdownOpen(false)
+        setFocusedIndex(-1)
       }
     }
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
+
+  // Reset focused index when dropdown opens/closes
+  useEffect(() => {
+    if (isDropdownOpen) {
+      setFocusedIndex(0)
+      // Focus first option after dropdown opens
+      setTimeout(() => optionRefs.current[0]?.focus(), 0)
+    } else {
+      setFocusedIndex(-1)
+    }
+  }, [isDropdownOpen])
+
+  // Handle keyboard navigation
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!isDropdownOpen) {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+        e.preventDefault()
+        setIsDropdownOpen(true)
+      }
+      return
+    }
+
+    const optionsCount = currentQuestion.options.length + (isMultiple ? 1 : 0) // +1 for confirm button
+
+    switch (e.key) {
+      case 'Escape':
+        e.preventDefault()
+        setIsDropdownOpen(false)
+        triggerRef.current?.focus()
+        break
+      case 'ArrowDown':
+        e.preventDefault()
+        setFocusedIndex(prev => {
+          const next = prev < optionsCount - 1 ? prev + 1 : 0
+          optionRefs.current[next]?.focus()
+          return next
+        })
+        break
+      case 'ArrowUp':
+        e.preventDefault()
+        setFocusedIndex(prev => {
+          const next = prev > 0 ? prev - 1 : optionsCount - 1
+          optionRefs.current[next]?.focus()
+          return next
+        })
+        break
+      case 'Home':
+        e.preventDefault()
+        setFocusedIndex(0)
+        optionRefs.current[0]?.focus()
+        break
+      case 'End':
+        e.preventDefault()
+        const lastIndex = optionsCount - 1
+        setFocusedIndex(lastIndex)
+        optionRefs.current[lastIndex]?.focus()
+        break
+      case 'Enter':
+      case ' ':
+        e.preventDefault()
+        if (focusedIndex >= 0 && focusedIndex < currentQuestion.options.length) {
+          const option = currentQuestion.options[focusedIndex]
+          if (isMultiple) {
+            handleMultipleToggle(option.value)
+          } else {
+            handleSingleAnswer(currentQuestion.id, option.value)
+          }
+        } else if (isMultiple && focusedIndex === currentQuestion.options.length) {
+          // Confirm button for multi-select
+          handleMultipleConfirm()
+        }
+        break
+      case 'Tab':
+        // Allow tab to close dropdown and move focus
+        setIsDropdownOpen(false)
+        break
+    }
+  }
 
   const handleSingleAnswer = (questionId: string, value: string) => {
     setIsAnimating(true)
@@ -334,11 +416,15 @@ export default function DiagnosticoAutomacao() {
           )}
 
           {/* Custom Dropdown */}
-          <div className="relative" ref={dropdownRef}>
+          <div className="relative" ref={dropdownRef} onKeyDown={handleKeyDown}>
             {/* Dropdown Trigger */}
             <button
+              ref={triggerRef}
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className={`w-full text-left px-6 py-4 border transition-colors flex items-center justify-between ${
+              aria-haspopup="listbox"
+              aria-expanded={isDropdownOpen}
+              aria-controls="dropdown-listbox"
+              className={`w-full text-left px-6 py-4 border transition-colors flex items-center justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 ${
                 isDropdownOpen ? 'border-brand-black' : 'border-brand-border hover:border-brand-black'
               }`}
             >
@@ -356,6 +442,7 @@ export default function DiagnosticoAutomacao() {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1.5"
+                aria-hidden="true"
               >
                 <path d="M6 9l6 6 6-6" />
               </svg>
@@ -363,21 +450,33 @@ export default function DiagnosticoAutomacao() {
 
             {/* Dropdown Options Panel */}
             {isDropdownOpen && (
-              <div className="absolute z-10 w-full mt-0 bg-white border border-t-0 border-brand-border">
-                {currentQuestion.options.map((option) => {
+              <div
+                id="dropdown-listbox"
+                role="listbox"
+                aria-label={currentQuestion.question}
+                aria-multiselectable={isMultiple}
+                className="absolute z-10 w-full mt-0 bg-white border border-t-0 border-brand-border"
+              >
+                {currentQuestion.options.map((option, index) => {
                   const isSelected = isMultiple && multipleSelections.includes(option.value)
+                  const isFocused = focusedIndex === index
 
                   return (
                     <button
                       key={option.value}
+                      ref={(el) => { optionRefs.current[index] = el }}
+                      role="option"
+                      aria-selected={isSelected}
                       onClick={() => isMultiple
                         ? handleMultipleToggle(option.value)
                         : handleSingleAnswer(currentQuestion.id, option.value)
                       }
-                      className={`w-full text-left px-6 py-3 border-b border-brand-border last:border-b-0 transition-colors flex items-center justify-between group ${
+                      className={`w-full text-left px-6 py-3 border-b border-brand-border last:border-b-0 transition-colors flex items-center justify-between group focus-visible:outline-none ${
                         isSelected
                           ? 'bg-brand-accent-light border-l-2 border-l-brand-accent'
-                          : 'hover:bg-gray-50'
+                          : isFocused
+                            ? 'bg-gray-100'
+                            : 'hover:bg-gray-50'
                       }`}
                     >
                       <span className={`transition-colors ${
@@ -386,11 +485,14 @@ export default function DiagnosticoAutomacao() {
                         {option.label}
                       </span>
                       {isMultiple && (
-                        <div className={`w-5 h-5 border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
-                          isSelected
-                            ? 'border-brand-accent bg-brand-accent'
-                            : 'border-brand-light group-hover:border-brand-black'
-                        }`}>
+                        <div
+                          className={`w-5 h-5 border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
+                            isSelected
+                              ? 'border-brand-accent bg-brand-accent'
+                              : 'border-brand-light group-hover:border-brand-black'
+                          }`}
+                          aria-hidden="true"
+                        >
                           {isSelected && (
                             <svg viewBox="0 0 24 24" className="w-3 h-3 text-white" fill="none" stroke="currentColor" strokeWidth="3">
                               <path d="M5 13l4 4L19 7" />
@@ -405,13 +507,14 @@ export default function DiagnosticoAutomacao() {
                 {/* Confirm button for multi-select */}
                 {isMultiple && (
                   <button
+                    ref={(el) => { optionRefs.current[currentQuestion.options.length] = el }}
                     onClick={handleMultipleConfirm}
                     disabled={multipleSelections.length === 0}
-                    className={`w-full px-6 py-4 text-sm font-medium transition-colors ${
+                    className={`w-full px-6 py-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white ${
                       multipleSelections.length > 0
                         ? 'bg-brand-accent text-white hover:bg-brand-accent-dark'
                         : 'bg-brand-border text-brand-muted cursor-not-allowed'
-                    }`}
+                    } ${focusedIndex === currentQuestion.options.length ? 'ring-2 ring-inset ring-white' : ''}`}
                   >
                     Confirmar ({multipleSelections.length} selecionado{multipleSelections.length !== 1 ? 's' : ''})
                   </button>

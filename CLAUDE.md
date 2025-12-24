@@ -75,9 +75,44 @@ Use `@/` for imports from project root: `import { icons } from '@/components/Ico
 
 ## Design System
 
-**LOCKED - See `../../brand/brand-direction-locked.md` for complete specifications**
+**See `../../brand/brand-direction-locked.md` for complete specifications**
 
 Use `/brand:colors` command for quick color reference, or `/brand:check` to verify compliance.
+
+### Typography Classes
+
+Use these CSS classes for brand-consistent typography:
+
+| Class | Font | Weight | Usage |
+|-------|------|--------|-------|
+| `.heading-display` | Manrope | 300 | H1, hero headlines |
+| `.heading-section` | Manrope | 400 | H2, section headers |
+| `.heading-component` | Inter | 500 | H3, card titles |
+
+Also available: `font-display` Tailwind utility for Manrope font family.
+
+### Button Classes
+
+| Class | Usage |
+|-------|-------|
+| `.btn-primary` | Primary CTAs - adds hover scale, shadow, active states |
+| `.btn-secondary` | Secondary CTAs - adds hover/active scale transitions |
+
+Example:
+```jsx
+<a className="btn-primary bg-brand-accent text-white px-10 py-5">
+  Primary CTA
+</a>
+```
+
+### Accessibility Patterns
+
+All components should follow these patterns:
+- Use `aria-hidden="true"` on decorative SVGs and animations
+- Ensure 44x44px minimum touch targets on mobile
+- Implement focus trap for modals/mobile menus
+- Support Escape key to close overlays
+- Use `role="menu"` and `role="menuitem"` for navigation menus
 
 ## Animation Patterns
 
@@ -99,6 +134,11 @@ The site is configured for static export. To add API routes or SSR, remove `outp
 
 | Date | Change |
 |------|--------|
+| 2025-12-24 | Typography system: Manrope extended to headlines (heading-display, heading-section classes) |
+| 2025-12-24 | Accessibility: Focus trap in mobile menu, keyboard navigation, aria-hidden on decoratives |
+| 2025-12-24 | Button states: btn-primary/btn-secondary classes with hover/active transitions |
+| 2025-12-24 | Header: Backdrop blur on scroll, current page indicator, 44px touch targets |
+| 2025-12-24 | Brand guidelines updated with accessibility standards and animation timing |
 | 2025-12-19 | Homepage optimized: 12 sections → 8 |
 | 2025-12-18 | Real company logos in IntegrationMesh |
 | 2025-12-17 | Stage indicator overlays in workflow animation |

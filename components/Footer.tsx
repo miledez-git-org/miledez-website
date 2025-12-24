@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="relative max-w-6xl mx-auto">
         {/* Large CTA section */}
         <div className="mb-16 md:mb-24">
-          <h2 className="text-3xl md:text-4xl font-medium mb-6 text-white tracking-[-0.02em]">
+          <h2 className="heading-section text-3xl md:text-4xl mb-6 text-white">
             Pronto para automatizar?
           </h2>
           <p className="text-lg text-white/80 mb-8 max-w-md">
@@ -20,7 +20,7 @@ export default function Footer() {
           </p>
           <a
             href="mailto:contato@miledez.com.br"
-            className="inline-block px-10 py-5 text-base font-medium bg-white text-brand-accent hover:bg-white/90 transition-colors"
+            className="btn-secondary inline-block px-10 py-5 text-base font-medium bg-white text-brand-accent hover:bg-white/90"
           >
             Iniciar conversa
           </a>
