@@ -48,6 +48,8 @@ This is a Next.js 14 static website for mil&dez, a Brazilian B2B automation agen
 - `components/WorkflowAutomationVisual.tsx` - Animated workflow visualization with Intersection Observer
 - `components/ScrollProgress.tsx` - Scroll progress indicator bar
 - `components/PageTransition.tsx` - Page transition animations wrapper
+- `components/Skeleton.tsx` - Skeleton loading state components
+- `components/ErrorBoundary.tsx` - Error boundary for graceful error handling
 
 **Sections:**
 - `components/TechnologyPartners.tsx` - Technology partner logos display
@@ -145,6 +147,42 @@ Hero sections use a TypeWriter effect for dynamic text. Located in hero componen
 - Decorative elements in hero section have subtle parallax
 - Auto-disabled on touch devices and reduced motion
 
+### Loading States & Error Handling
+
+**Skeleton Components** (`components/Skeleton.tsx`):
+- `Skeleton` - Base skeleton with pulse/shimmer animation
+- `SkeletonText` - Multi-line text skeleton
+- `SkeletonCard` - Card with optional image placeholder
+- `SkeletonWorkflow` - Workflow steps skeleton
+- `SkeletonPricing` - Pricing card skeleton
+- `SkeletonHero` - Hero section skeleton
+- `SkeletonPage` - Full page loading skeleton
+
+**Error Boundaries** (`components/ErrorBoundary.tsx`):
+- `ErrorBoundary` - Class component wrapper for catching errors
+- `InlineErrorFallback` - Minimal inline error message
+- `SectionErrorFallback` - Section-level error state
+
+**Route-Level Handling**:
+- `app/error.tsx` - Global error page with retry button
+- `app/loading.tsx` - Route loading state with skeleton
+
+Usage example:
+```tsx
+import ErrorBoundary from '@/components/ErrorBoundary'
+import { SkeletonCard } from '@/components/Skeleton'
+
+// With custom fallback
+<ErrorBoundary fallback={<SkeletonCard />}>
+  <MyComponent />
+</ErrorBoundary>
+
+// With default error UI
+<ErrorBoundary showRetry onRetry={() => refetch()}>
+  <DataComponent />
+</ErrorBoundary>
+```
+
 ## Static Export Note
 
 The site is configured for static export. To add API routes or SSR, remove `output: 'export'` from next.config.js and set `images.unoptimized: false`.
@@ -153,6 +191,7 @@ The site is configured for static export. To add API routes or SSR, remove `outp
 
 | Date | Change |
 |------|--------|
+| 2025-12-24 | Loading states: Skeleton components, error boundaries, route-level handling |
 | 2025-12-24 | Advanced interactions: Scroll progress, page transitions, parallax effects |
 | 2025-12-24 | Typography system: Manrope extended to headlines (heading-display, heading-section classes) |
 | 2025-12-24 | Accessibility: Focus trap in mobile menu, keyboard navigation, aria-hidden on decoratives |
