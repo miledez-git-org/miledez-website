@@ -60,19 +60,19 @@ export default function ScrollProgress({
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Don't render if user prefers reduced motion
-  if (prefersReducedMotion) return null
-
   const positionStyles = position === 'top'
     ? 'top-0 left-0 right-0'
     : 'bottom-0 left-0 right-0'
 
+  // Hide visually but always render to avoid hydration mismatch
+  const shouldShow = isVisible && !prefersReducedMotion
+
   return (
     <motion.div
       className={`fixed z-50 ${positionStyles} ${className}`}
-      style={{ height }}
+      style={{ height, display: prefersReducedMotion ? 'none' : undefined }}
       initial={{ opacity: 0 }}
-      animate={{ opacity: isVisible ? 1 : 0 }}
+      animate={{ opacity: shouldShow ? 1 : 0 }}
       transition={{ duration: 0.3 }}
       aria-hidden="true"
     >

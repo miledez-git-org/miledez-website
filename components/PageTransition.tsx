@@ -24,16 +24,38 @@ const pageVariants = {
   },
 }
 
+// No animation variants for reduced motion or initial SSR
+const noAnimationVariants = {
+  initial: {
+    opacity: 1,
+    y: 0,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+  },
+  exit: {
+    opacity: 1,
+    y: 0,
+  },
+}
+
 const pageTransition = {
   type: 'tween' as const,
   ease: [0.25, 0.1, 0.25, 1] as const, // Smooth ease
   duration: 0.35,
 }
 
+const noTransition = {
+  duration: 0,
+}
+
 export default function PageTransition({ children, className = '' }: PageTransitionProps) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
+    setIsMounted(true)
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     setPrefersReducedMotion(mediaQuery.matches)
 
@@ -42,18 +64,19 @@ export default function PageTransition({ children, className = '' }: PageTransit
     return () => mediaQuery.removeEventListener('change', handler)
   }, [])
 
-  // If user prefers reduced motion, just render children without animation
-  if (prefersReducedMotion) {
-    return <>{children}</>
-  }
+  // Use appropriate variants based on motion preference
+  // Always render motion.div to avoid hydration mismatch between server/client
+  const shouldAnimate = isMounted && !prefersReducedMotion
+  const variants = shouldAnimate ? pageVariants : noAnimationVariants
+  const transition = shouldAnimate ? pageTransition : noTransition
 
   return (
     <motion.div
-      initial="initial"
+      initial={isMounted ? 'initial' : false}
       animate="animate"
       exit="exit"
-      variants={pageVariants}
-      transition={pageTransition}
+      variants={variants}
+      transition={transition}
       className={className}
     >
       {children}
