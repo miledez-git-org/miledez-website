@@ -1,9 +1,18 @@
+/* Google Fonts - loaded via CSS to avoid build-time network dependency */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* CSS Custom Properties */
 :root {
+  /* Font families - loaded via CSS @import above */
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-manrope: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Colors and theming */
   --bg-base: #FCFCFC;
   --bg-surface: #FFFFFF;
   --bg-muted: #F7F8FA;
