@@ -108,8 +108,9 @@ export default function IndustriesSection() {
             >
               {/* Card Container */}
               <div
-                className="relative h-full p-8 bg-white border border-brand-border transition-all duration-500 flex flex-col"
+                className="relative h-full p-8 border border-brand-border transition-all duration-500 flex flex-col"
                 style={{
+                  backgroundColor: '#fafafa',
                   transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
                   boxShadow: isHovered
                     ? '0 20px 40px rgba(0, 0, 0, 0.1)'
