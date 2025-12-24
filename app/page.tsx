@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import SectionNavButton from '@/components/SectionNavButton'
 import ComoFuncionaDemo from '@/components/ComoFuncionaDemo'
 import WorkflowAutomationVisual from '@/components/WorkflowAutomationVisual'
+import WorkflowTiersDemo from '@/components/WorkflowTiersDemo'
 import { LogoMarqueeSection } from '@/components/LogoMarquee'
 import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
@@ -106,19 +107,19 @@ export default function Home() {
         <FlipCardsSection />
       </div>
 
-      {/* Workflow Integration Visual */}
+      {/* How It Works - Workflow Tiers Demo */}
       <section id="integracao-visual" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="mb-12 md:mb-16 text-center">
             <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">
-              Como a automacao se integra ao seu negocio
+              Veja a automacao em acao
             </h2>
             <p className="mt-4 text-lg text-brand-muted max-w-2xl mx-auto">
-              Veja como seus sistemas existentes se conectam ao motor de automacao
+              Do gatilho ao resultado, tudo acontece automaticamente
             </p>
           </div>
 
-          <WorkflowAutomationVisual />
+          <WorkflowTiersDemo />
 
           {/* Logo Slider - integrations */}
           <div className="mt-16 pt-12 border-t border-brand-border">
