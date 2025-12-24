@@ -83,7 +83,21 @@ export default function Home() {
 
         {/* Scroll indicator at bottom of viewport */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <SectionNavButton href="#flip-cards" label="Seu único trabalho" />
+          <SectionNavButton href="#beneficios" label="O que muda" />
+        </div>
+      </section>
+
+      {/* Benefits Section - What changes in your company */}
+      <section id="beneficios" className="py-24 md:py-32 bg-bg-muted">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <div className="mb-12 md:mb-16 text-center">
+            <h2 className="text-[2.5rem] md:text-[3rem] font-medium text-brand-black tracking-[-0.02em]">O que muda na sua empresa</h2>
+            <p className="mt-4 text-lg md:text-xl text-brand-muted">Resultados que começam em dias, não meses</p>
+          </div>
+
+          <ComoFuncionaDemo />
+
+          <SectionNavButton href="#flip-cards" label="Como funciona" />
         </div>
       </section>
 
@@ -91,20 +105,6 @@ export default function Home() {
       <div id="flip-cards">
         <FlipCardsSection />
       </div>
-
-      {/* Why choose mil&dez */}
-      <section id="como-funciona" className="py-24 md:py-32 bg-bg-muted">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="mb-12 md:mb-16">
-            <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Motivos para começar ainda hoje</h2>
-            <p className="mt-4 text-lg text-brand-muted">Seu trabalho totalmente transformado</p>
-          </div>
-
-          <ComoFuncionaDemo />
-
-          <SectionNavButton href="#integracao-visual" label="Veja na pratica" />
-        </div>
-      </section>
 
       {/* Workflow Integration Visual */}
       <section id="integracao-visual" className="py-24 md:py-32 bg-white">
