@@ -147,16 +147,16 @@ function TriggerCard({
   isActive: boolean
 }) {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center px-4 md:px-0">
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{
           opacity: 1,
           y: isActive ? -2 : 0,
+          scale: isActive ? 1.02 : 1,
         }}
         transition={springTransition}
-        className="relative"
-        style={{ width: TRIGGER_CARD_WIDTH }}
+        className="relative w-full max-w-[280px]"
       >
         {/* Card - matching HeroWorkflowDemo exactly */}
         <motion.div
@@ -287,40 +287,48 @@ function ProcessingCard({
   card,
   isActive,
   index,
+  isMobile = false,
 }: {
   card: WorkflowCard
   isActive: boolean
   index: number
+  isMobile?: boolean
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 8 }}
+      initial={{ opacity: 0, y: 16, scale: 0.95 }}
       animate={{
         opacity: 1,
-        y: isActive ? -2 : 0,
+        y: isActive ? -4 : 0,
+        scale: isActive ? 1.03 : 1,
       }}
       transition={{
         ...springTransition,
-        delay: index * 0.08,
+        delay: index * 0.1,
       }}
-      className="flex-shrink-0"
-      style={{ width: PROCESS_CARD_WIDTH }}
+      className={isMobile ? "w-full" : "flex-shrink-0"}
+      style={isMobile ? undefined : { width: PROCESS_CARD_WIDTH }}
     >
       <motion.div
         animate={{
           boxShadow: isActive
-            ? '0 8px 24px rgba(0, 0, 0, 0.12)'
+            ? '0 12px 32px rgba(0, 0, 0, 0.15)'
             : '0 2px 8px rgba(0, 0, 0, 0.06)',
+          borderColor: isActive ? '#e5e7eb' : '#f3f4f6',
         }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.4 }}
         className="bg-white rounded-xl p-4 border border-gray-200"
       >
         <div className="flex items-center gap-3 mb-2">
-          {/* Icon */}
+          {/* Icon with pulse animation */}
           <motion.div
-            animate={{ color: isActive ? '#374151' : '#D1D5DB' }}
-            transition={fadeTransition}
-            className="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-lg bg-gray-100 [&>svg]:w-5 [&>svg]:h-5"
+            animate={{
+              color: isActive ? '#374151' : '#D1D5DB',
+              backgroundColor: isActive ? '#f3f4f6' : '#f9fafb',
+              scale: isActive ? 1.1 : 1,
+            }}
+            transition={{ ...fadeTransition, scale: { type: 'spring', stiffness: 400, damping: 20 } }}
+            className="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-lg [&>svg]:w-5 [&>svg]:h-5"
           >
             {card.icon}
           </motion.div>
@@ -389,40 +397,48 @@ function OutputCard({
   card,
   isActive,
   index,
+  isMobile = false,
 }: {
   card: WorkflowCard
   isActive: boolean
   index: number
+  isMobile?: boolean
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 8 }}
+      initial={{ opacity: 0, y: 16, scale: 0.95 }}
       animate={{
         opacity: 1,
-        y: isActive ? -2 : 0,
+        y: isActive ? -4 : 0,
+        scale: isActive ? 1.03 : 1,
       }}
       transition={{
         ...springTransition,
-        delay: index * 0.08,
+        delay: index * 0.1,
       }}
-      className="flex-shrink-0"
-      style={{ width: OUTPUT_CARD_WIDTH }}
+      className={isMobile ? "w-full" : "flex-shrink-0"}
+      style={isMobile ? undefined : { width: OUTPUT_CARD_WIDTH }}
     >
       <motion.div
         animate={{
           boxShadow: isActive
-            ? '0 8px 24px rgba(0, 0, 0, 0.12)'
+            ? '0 12px 32px rgba(0, 0, 0, 0.15)'
             : '0 2px 8px rgba(0, 0, 0, 0.06)',
+          borderColor: isActive ? '#e5e7eb' : '#f3f4f6',
         }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.4 }}
         className="bg-white rounded-xl p-3 border border-gray-200"
       >
         <div className="flex items-center gap-2 mb-1.5">
-          {/* Icon */}
+          {/* Icon with pulse animation */}
           <motion.div
-            animate={{ color: isActive ? '#374151' : '#D1D5DB' }}
-            transition={fadeTransition}
-            className="w-6 h-6 flex-shrink-0 flex items-center justify-center rounded-lg bg-gray-100 [&>svg]:w-4 [&>svg]:h-4"
+            animate={{
+              color: isActive ? '#374151' : '#D1D5DB',
+              backgroundColor: isActive ? '#f3f4f6' : '#f9fafb',
+              scale: isActive ? 1.1 : 1,
+            }}
+            transition={{ ...fadeTransition, scale: { type: 'spring', stiffness: 400, damping: 20 } }}
+            className="w-6 h-6 flex-shrink-0 flex items-center justify-center rounded-lg [&>svg]:w-4 [&>svg]:h-4"
           >
             {card.icon}
           </motion.div>
@@ -506,11 +522,11 @@ export default function WorkflowTiersDemo() {
     return () => mediaQuery.removeEventListener('change', handler)
   }, [])
 
-  // Intersection Observer
+  // Intersection Observer - lower threshold for better mobile triggering
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.3 }
+      { threshold: 0.1, rootMargin: '50px 0px' }
     )
     if (containerRef.current) observer.observe(containerRef.current)
     return () => observer.disconnect()
@@ -623,14 +639,15 @@ export default function WorkflowTiersDemo() {
             ))}
           </div>
 
-          {/* Mobile: 2x2 grid */}
-          <div className="grid grid-cols-2 gap-3 md:hidden px-4">
+          {/* Mobile: 2x2 grid with animations */}
+          <div className="grid grid-cols-2 gap-4 md:hidden px-4">
             {processingCards.map((card, index) => (
               <ProcessingCard
                 key={card.id}
                 card={card}
                 isActive={activeProcessCard >= index}
                 index={index}
+                isMobile={true}
               />
             ))}
           </div>
@@ -651,22 +668,26 @@ export default function WorkflowTiersDemo() {
           </div>
 
           {/* Mobile: 2-column grid with last item centered */}
-          <div className="grid grid-cols-2 gap-2 md:hidden px-4">
+          <div className="grid grid-cols-2 gap-3 md:hidden px-4">
             {outputCards.slice(0, 4).map((card, index) => (
               <OutputCard
                 key={card.id}
                 card={card}
                 isActive={activeOutputCard >= index}
                 index={index}
+                isMobile={true}
               />
             ))}
           </div>
-          <div className="flex justify-center mt-2 md:hidden px-4">
-            <OutputCard
-              card={outputCards[4]}
-              isActive={activeOutputCard >= 4}
-              index={4}
-            />
+          <div className="flex justify-center mt-3 md:hidden px-4">
+            <div className="w-1/2 max-w-[180px]">
+              <OutputCard
+                card={outputCards[4]}
+                isActive={activeOutputCard >= 4}
+                index={4}
+                isMobile={true}
+              />
+            </div>
           </div>
         </div>
       </motion.div>
