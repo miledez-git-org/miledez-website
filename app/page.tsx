@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ComoFuncionaDemo from '@/components/ComoFuncionaDemo'
-import WorkflowAutomationVisual from '@/components/WorkflowAutomationVisual'
+// import WorkflowAutomationVisual from '@/components/WorkflowAutomationVisual' // Kept for future use
 import WorkflowTiersDemo from '@/components/WorkflowTiersDemo'
 import { LogoMarqueeSection } from '@/components/LogoMarquee'
 import PricingSection from '@/components/PricingSection'

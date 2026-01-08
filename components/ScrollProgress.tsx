@@ -36,6 +36,9 @@ export default function ScrollProgress({
   // Transform to percentage (0-100)
   const percentage = useTransform(smoothProgress, [0, 1], [0, 100])
 
+  // Opacity transform for percentage indicator (must be called unconditionally)
+  const percentageOpacity = useTransform(smoothProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0])
+
   // Check for reduced motion
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -101,7 +104,7 @@ export default function ScrollProgress({
         <motion.div
           className="absolute right-4 -bottom-6 text-xs font-medium text-brand-muted"
           style={{
-            opacity: useTransform(smoothProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]),
+            opacity: percentageOpacity,
           }}
         >
           <motion.span>

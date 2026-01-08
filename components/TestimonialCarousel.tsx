@@ -107,7 +107,7 @@ export default function TestimonialCarousel() {
             >
               {/* Quote */}
               <p className="font-serif text-base italic text-brand-black leading-relaxed mb-6">
-                "{testimonial.quote}"
+                &ldquo;{testimonial.quote}&rdquo;
               </p>
 
               {/* Author */}

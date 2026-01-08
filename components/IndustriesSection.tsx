@@ -31,6 +31,7 @@ const backgroundIcons = {
 }
 
 // Industry-specific gradient backgrounds (kept for reference, not used currently)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const gradients = {
   health: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%)',
   services: 'linear-gradient(135deg, #fefce8 0%, #fef9c3 50%, #fef08a 100%)',
