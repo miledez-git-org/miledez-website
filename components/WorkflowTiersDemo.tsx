@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef, useLayoutEffect } from 'react'
+import { useEffect, useState, useRef, useLayoutEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
@@ -225,6 +225,23 @@ function OutputIcon({ type, active }: { type: string; active: boolean }) {
   )
 }
 
+// Mobile vertical connector line component
+function VerticalConnector({ active, color }: { active: boolean; color: 'blue' | 'green' }) {
+  const activeColor = color === 'blue' ? lineBlue : lineGreen
+  return (
+    <div className="flex justify-center py-2">
+      <div
+        className="w-0.5 h-8 rounded-full"
+        style={{
+          backgroundColor: active ? activeColor : lineGray,
+          opacity: active ? 1 : 0.4,
+          transition: `all 700ms ${smooth}`,
+        }}
+      />
+    </div>
+  )
+}
+
 // Main Component
 export default function WorkflowTiersDemo() {
   const [isPlaying, setIsPlaying] = useState(true)
@@ -233,12 +250,23 @@ export default function WorkflowTiersDemo() {
   const [currentTriggerIndex, setCurrentTriggerIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   const containerRef = useRef<HTMLDivElement>(null)
   const animationContainerRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLDivElement>(null)
   const processRefs = useRef<(HTMLDivElement | null)[]>([])
   const outputRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  // Check for mobile viewport
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // Check for reduced motion preference
   useEffect(() => {
@@ -260,86 +288,91 @@ export default function WorkflowTiersDemo() {
     return () => observer.disconnect()
   }, [])
 
-  // Calculate SVG paths based on actual card positions
+  // Calculate SVG paths based on actual card positions (desktop only)
+  const calculatePaths = useCallback(() => {
+    if (isMobile || !animationContainerRef.current || !triggerRef.current) return
+
+    const container = animationContainerRef.current.getBoundingClientRect()
+    const trigger = triggerRef.current.getBoundingClientRect()
+    const process = processRefs.current.map(ref => ref?.getBoundingClientRect())
+    const outputs = outputRefs.current.map(ref => ref?.getBoundingClientRect())
+
+    if (!process[0] || !process[2] || !outputs[0] || !outputs[1]) return
+
+    // Convert to relative coordinates
+    const rel = (rect: DOMRect) => ({
+      x: rect.left - container.left + rect.width / 2,
+      y: rect.top - container.top,
+      bottom: rect.top - container.top + rect.height,
+      left: rect.left - container.left,
+      right: rect.left - container.left + rect.width,
+      width: rect.width,
+      height: rect.height,
+    })
+
+    const t = rel(trigger)
+    const p0 = rel(process[0])
+    const p2 = rel(process[2])
+    const o0 = rel(outputs[0])
+    const o1 = rel(outputs[1])
+
+    const r = 12 // Corner radius
+
+    // Calculate the exact center of the GAP between the two output cards
+    const gapBetweenOutputs = o1.left - o0.right
+    const splitCenterX = o0.right + (gapBetweenOutputs / 2)
+    const branchY = o0.y - 45
+
+    setPaths({
+      // Path 1: Trigger bottom → down → curve left → first process card top
+      triggerToFirst: `
+        M ${t.x} ${t.bottom}
+        L ${t.x} ${p0.y - 25 - r}
+        Q ${t.x} ${p0.y - 25} ${t.x - r} ${p0.y - 25}
+        L ${p0.x + r} ${p0.y - 25}
+        Q ${p0.x} ${p0.y - 25} ${p0.x} ${p0.y - 25 + r}
+        L ${p0.x} ${p0.y}
+      `,
+
+      // Path 2: Horizontal line connecting process cards
+      processHorizontal: `
+        M ${p0.right + 8} ${p0.y + p0.height / 2}
+        L ${p2.left - 8} ${p0.y + p0.height / 2}
+      `,
+
+      // Path 3: From last process card → down → to center of gap between outputs
+      syncDownToCenter: `
+        M ${p2.x} ${p2.bottom}
+        L ${p2.x} ${branchY - r}
+        Q ${p2.x} ${branchY} ${p2.x - r} ${branchY}
+        L ${splitCenterX} ${branchY}
+      `,
+
+      // Path 4: Left branch - from center of gap down to PDF output
+      leftBranch: `
+        M ${splitCenterX} ${branchY}
+        L ${o0.x + r} ${branchY}
+        Q ${o0.x} ${branchY} ${o0.x} ${branchY + r}
+        L ${o0.x} ${o0.y}
+      `,
+
+      // Path 5: Right branch - from center of gap down to Archived output
+      rightBranch: `
+        M ${splitCenterX} ${branchY}
+        L ${o1.x - r} ${branchY}
+        Q ${o1.x} ${branchY} ${o1.x} ${branchY + r}
+        L ${o1.x} ${o1.y}
+      `,
+
+      containerWidth: container.width,
+      containerHeight: container.height,
+    })
+  }, [isMobile])
+
   useLayoutEffect(() => {
-    const calculatePaths = () => {
-      if (!animationContainerRef.current || !triggerRef.current) return
-
-      const container = animationContainerRef.current.getBoundingClientRect()
-      const trigger = triggerRef.current.getBoundingClientRect()
-      const process = processRefs.current.map(ref => ref?.getBoundingClientRect())
-      const outputs = outputRefs.current.map(ref => ref?.getBoundingClientRect())
-
-      if (!process[0] || !process[2] || !outputs[0] || !outputs[1]) return
-
-      // Convert to relative coordinates
-      const rel = (rect: DOMRect) => ({
-        x: rect.left - container.left + rect.width / 2,
-        y: rect.top - container.top,
-        bottom: rect.top - container.top + rect.height,
-        left: rect.left - container.left,
-        right: rect.left - container.left + rect.width,
-        width: rect.width,
-        height: rect.height,
-      })
-
-      const t = rel(trigger)
-      const p0 = rel(process[0])
-      const p2 = rel(process[2])
-      const o0 = rel(outputs[0])
-      const o1 = rel(outputs[1])
-
-      const r = 12 // Corner radius
-
-      // Calculate the exact center of the GAP between the two output cards
-      const gapBetweenOutputs = o1.left - o0.right
-      const splitCenterX = o0.right + (gapBetweenOutputs / 2)
-      const branchY = o0.y - 45
-
-      setPaths({
-        // Path 1: Trigger bottom → down → curve left → first process card top
-        triggerToFirst: `
-          M ${t.x} ${t.bottom}
-          L ${t.x} ${p0.y - 25 - r}
-          Q ${t.x} ${p0.y - 25} ${t.x - r} ${p0.y - 25}
-          L ${p0.x + r} ${p0.y - 25}
-          Q ${p0.x} ${p0.y - 25} ${p0.x} ${p0.y - 25 + r}
-          L ${p0.x} ${p0.y}
-        `,
-
-        // Path 2: Horizontal line connecting process cards
-        processHorizontal: `
-          M ${p0.right + 8} ${p0.y + p0.height / 2}
-          L ${p2.left - 8} ${p0.y + p0.height / 2}
-        `,
-
-        // Path 3: From last process card → down → to center of gap between outputs
-        syncDownToCenter: `
-          M ${p2.x} ${p2.bottom}
-          L ${p2.x} ${branchY - r}
-          Q ${p2.x} ${branchY} ${p2.x - r} ${branchY}
-          L ${splitCenterX} ${branchY}
-        `,
-
-        // Path 4: Left branch - from center of gap down to PDF output
-        leftBranch: `
-          M ${splitCenterX} ${branchY}
-          L ${o0.x + r} ${branchY}
-          Q ${o0.x} ${branchY} ${o0.x} ${branchY + r}
-          L ${o0.x} ${o0.y}
-        `,
-
-        // Path 5: Right branch - from center of gap down to Archived output
-        rightBranch: `
-          M ${splitCenterX} ${branchY}
-          L ${o1.x - r} ${branchY}
-          Q ${o1.x} ${branchY} ${o1.x} ${branchY + r}
-          L ${o1.x} ${o1.y}
-        `,
-
-        containerWidth: container.width,
-        containerHeight: container.height,
-      })
+    if (isMobile) {
+      setPaths(null)
+      return
     }
 
     calculatePaths()
@@ -353,7 +386,7 @@ export default function WorkflowTiersDemo() {
       clearTimeout(timer)
       clearTimeout(timer2)
     }
-  }, [isVisible])
+  }, [isMobile, isVisible, calculatePaths])
 
   // Animation loop with pause at completion
   useEffect(() => {
@@ -393,7 +426,6 @@ export default function WorkflowTiersDemo() {
     <div
       ref={containerRef}
       className="w-full max-w-4xl mx-auto relative"
-      style={{ minHeight: '540px' }}
       aria-label="Demonstração de automação de workflow"
     >
       <span className="sr-only">
@@ -428,14 +460,10 @@ export default function WorkflowTiersDemo() {
       >
         <div
           ref={animationContainerRef}
-          className="relative"
-          style={{
-            minHeight: '480px',
-            padding: '48px 40px 60px',
-          }}
+          className="relative px-4 py-8 md:px-10 md:py-12"
         >
-          {/* SVG Connectors */}
-          {paths && (
+          {/* SVG Connectors - Desktop only */}
+          {!isMobile && paths && (
             <svg
               width={paths.containerWidth}
               height={paths.containerHeight}
@@ -515,10 +543,10 @@ export default function WorkflowTiersDemo() {
           {/* Cards */}
           <div className="relative z-10">
             {/* Trigger Card - Animated entry */}
-            <div className="flex justify-center mb-16 md:mb-20">
+            <div className="flex justify-center">
               <div
                 ref={triggerRef}
-                className="relative w-full max-w-[280px]"
+                className="w-full max-w-[300px]"
                 style={{
                   opacity: triggerActive ? 1 : 0,
                   transform: triggerActive ? 'translateY(0) scale(1)' : 'translateY(-12px) scale(0.94)',
@@ -556,125 +584,264 @@ export default function WorkflowTiersDemo() {
               </div>
             </div>
 
+            {/* Mobile: Vertical connector after trigger */}
+            {isMobile && <VerticalConnector active={step >= 1} color="blue" />}
+
             {/* Process Cards */}
-            <div className="flex justify-center gap-6 md:gap-12 mb-20 md:mb-28 flex-wrap md:flex-nowrap px-4 md:px-0">
-              {processingCards.map((item, i) => {
-                const active = step >= i + 1
-                return (
-                  <div
-                    key={item.id}
-                    ref={el => { processRefs.current[i] = el }}
-                    className="w-full max-w-[160px] md:max-w-none md:w-auto"
-                    style={{
-                      opacity: active ? 1 : 0.35,
-                      transform: active ? 'translateY(0) scale(1)' : 'translateY(8px) scale(0.96)',
-                      transition: `all 800ms ${spring} ${i * 80}ms`,
-                    }}
-                  >
+            {/* Desktop: horizontal layout */}
+            {!isMobile && (
+              <div className="flex justify-center gap-8 my-16">
+                {processingCards.map((item, i) => {
+                  const active = step >= i + 1
+                  return (
                     <div
-                      className="bg-white rounded-xl p-4 flex items-center gap-3"
+                      key={item.id}
+                      ref={el => { processRefs.current[i] = el }}
                       style={{
-                        border: `2px solid ${active ? '#3b82f6' : '#e5e7eb'}`,
-                        boxShadow: active
-                          ? '0 4px 16px rgba(59, 130, 246, 0.12)'
-                          : '0 1px 2px rgba(0,0,0,0.03)',
-                        transition: `all 600ms ${smooth}`,
+                        opacity: active ? 1 : 0.35,
+                        transform: active ? 'translateY(0) scale(1)' : 'translateY(8px) scale(0.96)',
+                        transition: `all 800ms ${spring} ${i * 80}ms`,
                       }}
                     >
                       <div
-                        className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                        className="bg-white rounded-xl p-4 flex items-center gap-3"
                         style={{
-                          background: active ? 'rgba(59, 130, 246, 0.1)' : '#f3f4f6',
+                          border: `2px solid ${active ? '#3b82f6' : '#e5e7eb'}`,
+                          boxShadow: active
+                            ? '0 4px 16px rgba(59, 130, 246, 0.12)'
+                            : '0 1px 2px rgba(0,0,0,0.03)',
                           transition: `all 600ms ${smooth}`,
                         }}
                       >
-                        <ProcessIcon type={item.id} active={active} />
-                      </div>
-                      <div>
                         <div
-                          className="font-semibold text-sm"
+                          className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                           style={{
-                            color: active ? '#111827' : '#9ca3af',
-                            transition: `color 600ms ${smooth}`,
+                            background: active ? 'rgba(59, 130, 246, 0.1)' : '#f3f4f6',
+                            transition: `all 600ms ${smooth}`,
                           }}
                         >
-                          {item.title}
+                          <ProcessIcon type={item.id} active={active} />
                         </div>
-                        <div
-                          className="text-xs mt-0.5"
-                          style={{
-                            color: active ? '#6b7280' : '#d1d5db',
-                            transition: `color 600ms ${smooth}`,
-                          }}
-                        >
-                          {item.description}
+                        <div>
+                          <div
+                            className="font-semibold text-sm whitespace-nowrap"
+                            style={{
+                              color: active ? '#111827' : '#9ca3af',
+                              transition: `color 600ms ${smooth}`,
+                            }}
+                          >
+                            {item.title}
+                          </div>
+                          <div
+                            className="text-xs mt-0.5 whitespace-nowrap"
+                            style={{
+                              color: active ? '#6b7280' : '#d1d5db',
+                              transition: `color 600ms ${smooth}`,
+                            }}
+                          >
+                            {item.description}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )
-              })}
-            </div>
+                  )
+                })}
+              </div>
+            )}
+
+            {/* Mobile: vertical layout for process cards */}
+            {isMobile && (
+              <div className="flex flex-col items-center gap-2 my-4">
+                {processingCards.map((item, i) => {
+                  const active = step >= i + 1
+                  return (
+                    <div key={item.id} className="w-full flex flex-col items-center">
+                      <div
+                        ref={el => { processRefs.current[i] = el }}
+                        className="w-full max-w-[280px]"
+                        style={{
+                          opacity: active ? 1 : 0.35,
+                          transform: active ? 'translateY(0) scale(1)' : 'translateY(8px) scale(0.96)',
+                          transition: `all 800ms ${spring} ${i * 80}ms`,
+                        }}
+                      >
+                        <div
+                          className="bg-white rounded-xl p-4 flex items-center gap-3"
+                          style={{
+                            border: `2px solid ${active ? '#3b82f6' : '#e5e7eb'}`,
+                            boxShadow: active
+                              ? '0 4px 16px rgba(59, 130, 246, 0.12)'
+                              : '0 1px 2px rgba(0,0,0,0.03)',
+                            transition: `all 600ms ${smooth}`,
+                          }}
+                        >
+                          <div
+                            className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                            style={{
+                              background: active ? 'rgba(59, 130, 246, 0.1)' : '#f3f4f6',
+                              transition: `all 600ms ${smooth}`,
+                            }}
+                          >
+                            <ProcessIcon type={item.id} active={active} />
+                          </div>
+                          <div className="min-w-0">
+                            <div
+                              className="font-semibold text-sm"
+                              style={{
+                                color: active ? '#111827' : '#9ca3af',
+                                transition: `color 600ms ${smooth}`,
+                              }}
+                            >
+                              {item.title}
+                            </div>
+                            <div
+                              className="text-xs mt-0.5"
+                              style={{
+                                color: active ? '#6b7280' : '#d1d5db',
+                                transition: `color 600ms ${smooth}`,
+                              }}
+                            >
+                              {item.description}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {/* Connector between process cards */}
+                      {i < processingCards.length - 1 && (
+                        <VerticalConnector active={step >= i + 2} color="blue" />
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+
+            {/* Mobile: Vertical connector before outputs */}
+            {isMobile && <VerticalConnector active={step >= 4} color="green" />}
 
             {/* Output Cards */}
-            <div className="flex justify-center gap-12 md:gap-20 px-4 md:px-0">
-              {outputCards.map((item, i) => {
-                const active = step >= 4
-                return (
-                  <div
-                    key={item.id}
-                    ref={el => { outputRefs.current[i] = el }}
-                    className="w-full max-w-[140px] md:max-w-none md:w-auto"
-                    style={{
-                      opacity: active ? 1 : 0.3,
-                      transform: active ? 'translateY(0) scale(1)' : 'translateY(10px) scale(0.94)',
-                      transition: `all 800ms ${spring} ${i * 100}ms`,
-                    }}
-                  >
+            {/* Desktop: horizontal layout */}
+            {!isMobile && (
+              <div className="flex justify-center gap-16 mt-16">
+                {outputCards.map((item, i) => {
+                  const active = step >= 4
+                  return (
                     <div
-                      className="bg-white rounded-xl p-3 flex items-center gap-3"
+                      key={item.id}
+                      ref={el => { outputRefs.current[i] = el }}
                       style={{
-                        border: `2px solid ${active ? '#22c55e' : '#e5e7eb'}`,
-                        boxShadow: active
-                          ? '0 4px 16px rgba(34, 197, 94, 0.12)'
-                          : '0 1px 2px rgba(0,0,0,0.03)',
-                        transition: `all 600ms ${smooth}`,
+                        opacity: active ? 1 : 0.3,
+                        transform: active ? 'translateY(0) scale(1)' : 'translateY(10px) scale(0.94)',
+                        transition: `all 800ms ${spring} ${i * 100}ms`,
                       }}
                     >
                       <div
-                        className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+                        className="bg-white rounded-xl p-4 flex items-center gap-3"
                         style={{
-                          background: active ? 'rgba(34, 197, 94, 0.1)' : '#f3f4f6',
+                          border: `2px solid ${active ? '#22c55e' : '#e5e7eb'}`,
+                          boxShadow: active
+                            ? '0 4px 16px rgba(34, 197, 94, 0.12)'
+                            : '0 1px 2px rgba(0,0,0,0.03)',
                           transition: `all 600ms ${smooth}`,
                         }}
                       >
-                        <OutputIcon type={item.id} active={active} />
-                      </div>
-                      <div>
                         <div
-                          className="font-semibold text-sm"
+                          className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
                           style={{
-                            color: active ? '#22c55e' : '#9ca3af',
-                            transition: `color 600ms ${smooth}`,
+                            background: active ? 'rgba(34, 197, 94, 0.1)' : '#f3f4f6',
+                            transition: `all 600ms ${smooth}`,
                           }}
                         >
-                          {item.title}
+                          <OutputIcon type={item.id} active={active} />
                         </div>
-                        <div
-                          className="text-xs mt-0.5"
-                          style={{
-                            color: active ? '#6b7280' : '#d1d5db',
-                            transition: `color 600ms ${smooth}`,
-                          }}
-                        >
-                          {item.description}
+                        <div>
+                          <div
+                            className="font-semibold text-sm whitespace-nowrap"
+                            style={{
+                              color: active ? '#22c55e' : '#9ca3af',
+                              transition: `color 600ms ${smooth}`,
+                            }}
+                          >
+                            {item.title}
+                          </div>
+                          <div
+                            className="text-xs mt-0.5 whitespace-nowrap"
+                            style={{
+                              color: active ? '#6b7280' : '#d1d5db',
+                              transition: `color 600ms ${smooth}`,
+                            }}
+                          >
+                            {item.description}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )
-              })}
-            </div>
+                  )
+                })}
+              </div>
+            )}
+
+            {/* Mobile: horizontal layout for output cards (side by side) */}
+            {isMobile && (
+              <div className="flex justify-center gap-4">
+                {outputCards.map((item, i) => {
+                  const active = step >= 4
+                  return (
+                    <div
+                      key={item.id}
+                      ref={el => { outputRefs.current[i] = el }}
+                      className="flex-1 max-w-[160px]"
+                      style={{
+                        opacity: active ? 1 : 0.3,
+                        transform: active ? 'translateY(0) scale(1)' : 'translateY(10px) scale(0.94)',
+                        transition: `all 800ms ${spring} ${i * 100}ms`,
+                      }}
+                    >
+                      <div
+                        className="bg-white rounded-xl p-3 flex flex-col items-center gap-2 text-center"
+                        style={{
+                          border: `2px solid ${active ? '#22c55e' : '#e5e7eb'}`,
+                          boxShadow: active
+                            ? '0 4px 16px rgba(34, 197, 94, 0.12)'
+                            : '0 1px 2px rgba(0,0,0,0.03)',
+                          transition: `all 600ms ${smooth}`,
+                        }}
+                      >
+                        <div
+                          className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+                          style={{
+                            background: active ? 'rgba(34, 197, 94, 0.1)' : '#f3f4f6',
+                            transition: `all 600ms ${smooth}`,
+                          }}
+                        >
+                          <OutputIcon type={item.id} active={active} />
+                        </div>
+                        <div>
+                          <div
+                            className="font-semibold text-sm"
+                            style={{
+                              color: active ? '#22c55e' : '#9ca3af',
+                              transition: `color 600ms ${smooth}`,
+                            }}
+                          >
+                            {item.title}
+                          </div>
+                          <div
+                            className="text-xs mt-0.5"
+                            style={{
+                              color: active ? '#6b7280' : '#d1d5db',
+                              transition: `color 600ms ${smooth}`,
+                            }}
+                          >
+                            {item.description}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
           </div>
         </div>
       </motion.div>
