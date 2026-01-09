@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import ComoFuncionaDemo from '@/components/ComoFuncionaDemo'
 // import WorkflowAutomationVisual from '@/components/WorkflowAutomationVisual' // Kept for future use
 import WorkflowTiersDemo from '@/components/WorkflowTiersDemo'
+import WorkflowShowcase from '@/components/WorkflowShowcase'
 import { LogoMarqueeSection } from '@/components/LogoMarquee'
 import PricingSection from '@/components/PricingSection'
 // import ProcessSection from '@/components/ProcessSection' // Kept for future use
@@ -112,6 +113,19 @@ export default function Home() {
           </div>
 
           <WorkflowTiersDemo />
+
+          {/* Design Variations Showcase */}
+          <div className="mt-20 pt-16 border-t border-brand-border">
+            <div className="text-center mb-8">
+              <p className="text-xs font-medium text-brand-muted uppercase tracking-[0.15em] mb-2">
+                Visualizações Alternativas
+              </p>
+              <h3 className="text-xl font-semibold text-brand-black">
+                Diferentes formas de acompanhar seus fluxos
+              </h3>
+            </div>
+            <WorkflowShowcase />
+          </div>
 
           {/* Logo Slider - integrations */}
           <div className="mt-16 pt-12 border-t border-brand-border">
