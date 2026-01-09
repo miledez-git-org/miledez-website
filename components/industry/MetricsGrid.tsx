@@ -58,7 +58,7 @@ export default function MetricsGrid({ metrics }: MetricsGridProps) {
   return (
     <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
       {metrics.map((metric, index) => {
-        const delay = 100 + index * 100
+        const delay = 100 + index * 150
         const numericValue = parseValue(metric.value)
 
         return (
@@ -66,8 +66,9 @@ export default function MetricsGrid({ metrics }: MetricsGridProps) {
             key={index}
             className="text-center lg:text-left"
             style={{
-              transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
-              transition: `transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+              transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+              opacity: isVisible ? 1 : 0,
+              transition: `transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
             }}
           >
             {/* Value */}

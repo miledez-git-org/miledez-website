@@ -62,7 +62,7 @@ function AppIcon({
         {label}
       </span>
       {isSource && (
-        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-px h-4 bg-brand-border" />
+        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-px h-4 bg-brand-border" aria-hidden="true" />
       )}
     </div>
   )
@@ -256,11 +256,13 @@ export default function WorkflowAutomationVisual() {
         {/* MIDDLE: Connection Layer with SVG (Desktop) / Simple connectors (Mobile) */}
         <div className="relative w-full h-48 md:h-80 flex items-center justify-center mt-4">
 
-          {/* Desktop SVG Layer */}
+          {/* Desktop SVG Layer - Decorative connection lines */}
           <svg
             className="hidden md:block absolute top-0 left-0 w-full h-full overflow-visible"
             viewBox="0 0 1200 400"
             preserveAspectRatio="none"
+            aria-hidden="true"
+            role="presentation"
           >
             {/* Path Down: Email (150) -> Center (600, 200) */}
             <path
@@ -358,8 +360,8 @@ export default function WorkflowAutomationVisual() {
             )}
           </svg>
 
-          {/* Mobile: Simple vertical connector */}
-          <div className="md:hidden">
+          {/* Mobile: Simple vertical connector - Decorative */}
+          <div className="md:hidden" aria-hidden="true">
             <MobileConnector isActive={step === 1 || step === 3} />
           </div>
 
@@ -370,10 +372,12 @@ export default function WorkflowAutomationVisual() {
             min-w-[280px] md:min-w-[340px]
             ${step === 4 ? 'border-brand-success' : step >= 1 ? 'border-brand-accent' : 'border-brand-border'}
           `}>
-            {/* Stage Indicator Overlay */}
-            <AnimatePresence mode="wait">
-              <StageIndicator key={`stage-${step}`} stage={stepInfo[step]?.stage || null} />
-            </AnimatePresence>
+            {/* Stage Indicator Overlay - Decorative */}
+            <div aria-hidden="true">
+              <AnimatePresence mode="wait">
+                <StageIndicator key={`stage-${step}`} stage={stepInfo[step]?.stage || null} />
+              </AnimatePresence>
+            </div>
 
             <AnimatePresence mode="wait">
               <motion.div

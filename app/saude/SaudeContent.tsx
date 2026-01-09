@@ -1,10 +1,9 @@
 'use client'
 
-import Link from 'next/link'
+// import Link from 'next/link' // Kept for future use
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import WorkflowDemo, { exampleIcons } from '@/components/WorkflowDemo'
-import SectionNavButton from '@/components/SectionNavButton'
 import ChallengeCard from '@/components/industry/ChallengeCard'
 import MetricsGrid from '@/components/industry/MetricsGrid'
 import IndustryHeroVisualization from '@/components/industry/IndustryHeroVisualization'
@@ -279,7 +278,7 @@ export default function SaudeContent() {
                   Saúde e Clínicas
                 </span>
               </div>
-              <h1 className="text-[3.5rem] font-medium leading-tight mb-8 text-brand-black tracking-[-0.03em]">
+              <h1 className="heading-display text-[3.5rem] mb-8 text-brand-black">
                 Menos papelada.<br />Mais tempo para pacientes.
               </h1>
               <p className="text-xl mb-12 max-w-lg text-brand-text leading-relaxed">
@@ -287,22 +286,21 @@ export default function SaudeContent() {
               </p>
               <a
                 href="#contato"
-                className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
+                className="btn-primary inline-block px-10 py-5 text-sm font-medium text-white bg-brand-accent hover:bg-brand-accent-dark"
               >
                 Agendar conversa
               </a>
             </div>
             <IndustryHeroVisualization industry="saude" />
           </div>
-          <SectionNavButton href="#workflows" label="O que automatizamos" />
         </div>
       </section>
 
       {/* Pain Points */}
-      <section className="py-24 md:py-32 bg-bg-muted">
+      <section className="py-32 md:py-40 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="mb-16">
-            <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">Os desafios do dia a dia</h2>
+            <h2 className="heading-section text-[2rem] text-brand-black">Os desafios do dia a dia</h2>
           </div>
 
           <ChallengeCards />
@@ -310,10 +308,10 @@ export default function SaudeContent() {
       </section>
 
       {/* Workflows */}
-      <section id="workflows" className="py-24 md:py-32 bg-white">
+      <section id="workflows" className="py-32 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="mb-20">
-            <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">O que automatizamos</h2>
+            <h2 className="heading-section text-[2rem] mb-4 text-brand-black">O que automatizamos</h2>
             <p className="text-lg text-brand-text">Processos que funcionam sozinhos, liberando sua equipe</p>
           </div>
 
@@ -333,14 +331,13 @@ export default function SaudeContent() {
               </div>
             ))}
           </div>
-          <SectionNavButton href="#resultados" label="Resultados" />
         </div>
       </section>
 
       {/* Results */}
-      <section id="resultados" className="py-32 bg-bg-muted">
+      <section id="resultados" className="py-32 md:py-40 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <h2 className="text-[2rem] font-medium mb-12 text-brand-black tracking-[-0.02em]">Resultados típicos</h2>
+          <h2 className="heading-section text-[2rem] mb-12 text-brand-black">Resultados típicos</h2>
 
           <MetricsGrid metrics={metrics} />
 
@@ -352,27 +349,25 @@ export default function SaudeContent() {
               Auditorias deixam de ser emergência. Faturamento deixa de ser gargalo. Documentos param de sumir.
             </p>
           </div>
-          <SectionNavButton href="#integracoes" label="Integrações" />
         </div>
       </section>
 
       {/* Integrations */}
-      <section id="integracoes" className="py-24 md:py-32 bg-white">
+      <section id="integracoes" className="py-32 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="mb-16">
-            <h2 className="text-[2rem] font-medium mb-4 text-brand-black tracking-[-0.02em]">Ferramentas que você já usa</h2>
+            <h2 className="heading-section text-[2rem] mb-4 text-brand-black">Ferramentas que você já usa</h2>
             <p className="text-brand-text">Integramos sem trocar seus sistemas</p>
           </div>
 
           <IndustryIntegrations integrations={integrations} />
-          <SectionNavButton href="#contato" label="Contato" />
         </div>
       </section>
 
       {/* CTA */}
-      <section id="contato" className="py-24 md:py-36 bg-bg-muted">
+      <section id="contato" className="py-32 md:py-40 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto text-center">
-          <h2 className="text-[2.5rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
+          <h2 className="heading-section text-[2.5rem] mb-6 text-brand-black">
             Vamos simplificar sua administração?
           </h2>
           <p className="text-lg max-w-md mx-auto mb-12 text-brand-text">
@@ -380,7 +375,7 @@ export default function SaudeContent() {
           </p>
           <a
             href="mailto:contato@miledez.com.br"
-            className="inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
+            className="btn-primary inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark"
           >
             Iniciar conversa
           </a>

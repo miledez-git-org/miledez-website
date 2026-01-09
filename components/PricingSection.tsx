@@ -81,57 +81,17 @@ export default function PricingSection() {
         </p>
       </div>
 
-      {/* Value Propositions - Above Tiers */}
-      <div
-        className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12"
-        style={{
-          opacity: isVisible ? 1 : 0,
-          transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
-          transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
-        }}
-      >
-        {valueProps.map((prop, index) => (
-          <div
-            key={prop.title}
-            className="flex items-center gap-4 p-6 border border-brand-border bg-white"
-            style={{
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
-              transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${index * 80}ms`,
-            }}
-          >
-            <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center border border-brand-accent">
-              <svg
-                className="w-5 h-5 text-brand-accent"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={1.5}
-              >
-                <path d="M5 12l5 5L20 7" />
-              </svg>
-            </div>
-            <div>
-              <h4 className="text-base font-medium text-brand-black">
-                {prop.title}
-              </h4>
-              <p className="text-sm text-brand-muted mt-0.5">
-                {prop.description}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-
       {/* Pricing Tiers */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {tiers.map((tier, index) => (
           <div
             key={tier.name}
-            className={`border bg-white p-8 flex flex-col ${
-              tier.featured ? 'border-brand-accent' : 'border-brand-border'
-            }`}
+            className="p-8 flex flex-col"
             style={{
+              backgroundColor: '#8b2020',
+              boxShadow: tier.featured
+                ? '0 16px 48px rgba(139, 32, 32, 0.4), 0 4px 12px rgba(0, 0, 0, 0.1)'
+                : '0 12px 32px rgba(139, 32, 32, 0.3), 0 4px 8px rgba(0, 0, 0, 0.08)',
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
               transition: `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 100}ms`,
@@ -139,30 +99,31 @@ export default function PricingSection() {
           >
             {/* Tier Name */}
             <div className="mb-6">
-              <h3 className="text-sm font-medium text-brand-muted uppercase tracking-wider mb-2">
+              <h3 className="text-sm font-medium uppercase tracking-wider mb-2" style={{ color: 'rgba(255,255,255,0.6)' }}>
                 {tier.name}
               </h3>
-              <div className="text-2xl font-medium text-brand-black">
+              <div className="text-2xl font-medium text-white">
                 {tier.price}
               </div>
-              <div className="text-sm text-brand-muted mt-1">
+              <div className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.7)' }}>
                 {tier.description}
               </div>
             </div>
 
             {/* Divider */}
-            <div className="w-full h-px bg-brand-border mb-6" />
+            <div className="w-full h-px mb-6" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
 
             {/* Examples */}
-            <ul className="space-y-3 flex-grow mb-8">
+            <ul className="space-y-3 flex-grow">
               {tier.examples.map((example, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm text-brand-text">
+                <li key={i} className="flex items-start gap-3 text-sm" style={{ color: 'rgba(255,255,255,0.85)' }}>
                   <svg
-                    className="w-5 h-5 text-brand-accent flex-shrink-0 mt-0.5"
+                    className="w-5 h-5 flex-shrink-0 mt-0.5"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth={1.5}
+                    style={{ color: 'rgba(255,255,255,0.6)' }}
                   >
                     <path d="M5 12l5 5L20 7" />
                   </svg>
@@ -170,22 +131,65 @@ export default function PricingSection() {
                 </li>
               ))}
             </ul>
-
-            {/* CTA */}
-            <a
-              href="https://calendar.app.google/3nqUQJDPymSrksKM8"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`block w-full py-3 text-center text-sm font-medium transition-colors ${
-                tier.featured
-                  ? 'bg-brand-accent text-white hover:bg-brand-accent-dark'
-                  : 'border border-brand-border text-brand-black hover:border-brand-accent hover:text-brand-accent'
-              }`}
-            >
-              {tier.cta}
-            </a>
           </div>
         ))}
+      </div>
+
+      {/* Value Propositions - Below Tiers */}
+      <div
+        className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mt-16 pt-8"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+          transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s',
+        }}
+      >
+        {valueProps.map((prop, index) => (
+          <div
+            key={prop.title}
+            className="flex items-center gap-4"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(8px)',
+              transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${300 + index * 80}ms`,
+            }}
+          >
+            <svg
+              className="w-6 h-6 flex-shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2.5}
+              style={{ color: '#22c55e' }}
+            >
+              <path d="M5 12l5 5L20 7" />
+            </svg>
+            <span className="text-lg text-brand-text">
+              <span className="font-semibold text-brand-black">{prop.title}</span>
+              {' — '}
+              {prop.description}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {/* Single CTA Button */}
+      <div
+        className="mt-12 text-center"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+          transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s',
+        }}
+      >
+        <a
+          href="https://calendar.app.google/3nqUQJDPymSrksKM8"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-10 py-4 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
+        >
+          Agendar diagnóstico
+        </a>
       </div>
     </div>
   )

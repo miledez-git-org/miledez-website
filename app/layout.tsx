@@ -1,19 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Manrope } from 'next/font/google'
 import './globals.css'
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const manrope = Manrope({
-  subsets: ['latin'],
-  variable: '--font-manrope',
-  weight: ['300'],
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: 'mil&dez - Automação de Processos',
@@ -28,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={`${inter.variable} ${manrope.variable} font-sans antialiased`}>
+      <body className="font-sans antialiased" style={{ fontFamily: 'var(--font-inter)' }}>
         {children}
       </body>
     </html>
