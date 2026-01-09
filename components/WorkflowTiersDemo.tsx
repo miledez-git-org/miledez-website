@@ -28,6 +28,7 @@ interface PathsData {
   rightBranch: string
   containerWidth: number
   containerHeight: number
+  splitPoint: { x: number; y: number }
 }
 
 // Animation transitions
@@ -98,7 +99,7 @@ const processingCards: WorkflowCard[] = [
       </svg>
     ),
     title: 'Lendo dados',
-    description: 'Extrai informações',
+    description: 'Captura automática',
   },
   {
     id: 'transform',
@@ -111,7 +112,7 @@ const processingCards: WorkflowCard[] = [
       </svg>
     ),
     title: 'Transformando',
-    description: 'Formata dados',
+    description: 'Processado na nuvem',
   },
   {
     id: 'sync',
@@ -122,7 +123,7 @@ const processingCards: WorkflowCard[] = [
       </svg>
     ),
     title: 'Sincronizando',
-    description: 'Conecta sistemas',
+    description: 'Integra seus sistemas',
   },
 ]
 
@@ -137,7 +138,7 @@ const outputCards: WorkflowCard[] = [
       </svg>
     ),
     title: 'PDF gerado',
-    description: 'Documento criado',
+    description: 'Pronto para uso',
   },
   {
     id: 'archive',
@@ -147,7 +148,7 @@ const outputCards: WorkflowCard[] = [
       </svg>
     ),
     title: 'Arquivado',
-    description: 'Pasta organizada',
+    description: 'Organizado automaticamente',
   },
 ]
 
@@ -316,11 +317,7 @@ export default function WorkflowTiersDemo() {
     const o1 = rel(outputs[1])
 
     const r = 12 // Corner radius
-
-    // Calculate the exact center of the GAP between the two output cards
-    const gapBetweenOutputs = o1.left - o0.right
-    const splitCenterX = o0.right + (gapBetweenOutputs / 2)
-    const branchY = o0.y - 45
+    const branchY = o0.y - 45 // Y-position of the split point
 
     setPaths({
       // Path 1: Trigger bottom → down → curve left → first process card top
@@ -333,31 +330,29 @@ export default function WorkflowTiersDemo() {
         L ${p0.x} ${p0.y}
       `,
 
-      // Path 2: Horizontal line connecting process cards
+      // Path 2: Horizontal line connecting process cards (touching card edges)
       processHorizontal: `
-        M ${p0.right + 8} ${p0.y + p0.height / 2}
-        L ${p2.left - 8} ${p0.y + p0.height / 2}
+        M ${p0.right} ${p0.y + p0.height / 2}
+        L ${p2.left} ${p0.y + p0.height / 2}
       `,
 
-      // Path 3: From last process card → down → to center of gap between outputs
+      // Path 3: Main stem from last process card down to the split point
       syncDownToCenter: `
         M ${p2.x} ${p2.bottom}
-        L ${p2.x} ${branchY - r}
-        Q ${p2.x} ${branchY} ${p2.x - r} ${branchY}
-        L ${splitCenterX} ${branchY}
+        L ${p2.x} ${branchY}
       `,
 
-      // Path 4: Left branch - from center of gap down to PDF output
+      // Path 4: Left branch - from sync card center directly to PDF output (Y-junction left arm)
       leftBranch: `
-        M ${splitCenterX} ${branchY}
+        M ${p2.x} ${branchY}
         L ${o0.x + r} ${branchY}
         Q ${o0.x} ${branchY} ${o0.x} ${branchY + r}
         L ${o0.x} ${o0.y}
       `,
 
-      // Path 5: Right branch - from center of gap down to Archived output
+      // Path 5: Right branch - from sync card center directly to Archived output (Y-junction right arm)
       rightBranch: `
-        M ${splitCenterX} ${branchY}
+        M ${p2.x} ${branchY}
         L ${o1.x - r} ${branchY}
         Q ${o1.x} ${branchY} ${o1.x} ${branchY + r}
         L ${o1.x} ${o1.y}
@@ -365,6 +360,7 @@ export default function WorkflowTiersDemo() {
 
       containerWidth: container.width,
       containerHeight: container.height,
+      splitPoint: { x: p2.x, y: branchY },
     })
   }, [isMobile])
 
@@ -517,11 +513,46 @@ export default function WorkflowTiersDemo() {
                   opacity: step >= 4 ? 1 : 0.4,
                 }}
               />
+
+              {/* Split point indicator - Y-junction visual marker */}
+              <circle
+                cx={paths.splitPoint.x}
+                cy={paths.splitPoint.y}
+                r={4}
+                fill={step >= 4 ? lineGreen : lineGray}
+                style={{
+                  transition: `fill 700ms ${smooth}, opacity 700ms ${smooth}`,
+                  opacity: step >= 4 ? 1 : 0.5,
+                }}
+              />
             </svg>
           )}
 
           {/* Cards */}
           <div className="relative z-10">
+            {/* Phase 1: TRIGGER */}
+            <div className="text-center mb-3">
+              <span
+                className="inline-block px-3 py-1 text-xs font-semibold tracking-wider rounded-full"
+                style={{
+                  background: triggerActive ? 'rgba(245, 158, 11, 0.1)' : '#f3f4f6',
+                  color: triggerActive ? '#d97706' : '#9ca3af',
+                  transition: `all 600ms ${smooth}`,
+                }}
+              >
+                FASE 1 — GATILHO
+              </span>
+              <p
+                className="text-xs mt-1.5 max-w-xs mx-auto"
+                style={{
+                  color: triggerActive ? '#6b7280' : '#d1d5db',
+                  transition: `color 600ms ${smooth}`,
+                }}
+              >
+                O sistema monitora continuamente suas fontes de dados
+              </p>
+            </div>
+
             {/* Trigger Card - Animated entry */}
             <div className="flex justify-center">
               <div
@@ -567,10 +598,33 @@ export default function WorkflowTiersDemo() {
             {/* Mobile: Vertical connector after trigger */}
             {isMobile && <VerticalConnector active={step >= 1} color="blue" />}
 
+            {/* Phase 2: PROCESSING */}
+            <div className="text-center mt-12 mb-3 md:mt-0">
+              <span
+                className="inline-block px-3 py-1 text-xs font-semibold tracking-wider rounded-full"
+                style={{
+                  background: step >= 1 ? 'rgba(59, 130, 246, 0.1)' : '#f3f4f6',
+                  color: step >= 1 ? '#2563eb' : '#9ca3af',
+                  transition: `all 600ms ${smooth}`,
+                }}
+              >
+                FASE 2 — PROCESSAMENTO AUTOMÁTICO
+              </span>
+              <p
+                className="text-xs mt-1.5 max-w-sm mx-auto"
+                style={{
+                  color: step >= 1 ? '#6b7280' : '#d1d5db',
+                  transition: `color 600ms ${smooth}`,
+                }}
+              >
+                Executado na nuvem, sem consumir recursos do seu ambiente
+              </p>
+            </div>
+
             {/* Process Cards */}
             {/* Desktop: horizontal layout */}
             {!isMobile && (
-              <div className="flex justify-center gap-8 my-16">
+              <div className="flex justify-center gap-8 my-8">
                 {processingCards.map((item, i) => {
                   const active = step >= i + 1
                   return (
@@ -699,10 +753,33 @@ export default function WorkflowTiersDemo() {
             {/* Mobile: Vertical connector before outputs */}
             {isMobile && <VerticalConnector active={step >= 4} color="green" />}
 
+            {/* Phase 3: OUTPUTS */}
+            <div className="text-center mt-12 mb-3 md:mt-8">
+              <span
+                className="inline-block px-3 py-1 text-xs font-semibold tracking-wider rounded-full"
+                style={{
+                  background: step >= 4 ? 'rgba(34, 197, 94, 0.1)' : '#f3f4f6',
+                  color: step >= 4 ? '#16a34a' : '#9ca3af',
+                  transition: `all 600ms ${smooth}`,
+                }}
+              >
+                FASE 3 — RESULTADOS ENTREGUES
+              </span>
+              <p
+                className="text-xs mt-1.5 max-w-sm mx-auto"
+                style={{
+                  color: step >= 4 ? '#6b7280' : '#d1d5db',
+                  transition: `color 600ms ${smooth}`,
+                }}
+              >
+                Múltiplas ações executadas simultaneamente
+              </p>
+            </div>
+
             {/* Output Cards */}
             {/* Desktop: horizontal layout */}
             {!isMobile && (
-              <div className="flex justify-center gap-16 mt-16">
+              <div className="flex justify-center gap-16 mt-4">
                 {outputCards.map((item, i) => {
                   const active = step >= 4
                   return (
@@ -822,6 +899,63 @@ export default function WorkflowTiersDemo() {
                 })}
               </div>
             )}
+
+            {/* Summary: Key Advantages */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: step >= 4 ? 1 : 0, y: step >= 4 ? 0 : 10 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-10 pt-6 border-t border-gray-100"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                {/* Advantage 1: Independent Operation */}
+                <div className="flex items-start gap-3 p-3 rounded-lg bg-gray-50/50">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="1.5">
+                      <circle cx="12" cy="12" r="10"/>
+                      <path d="M12 6v6l4 2"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-gray-800">Operação 24/7</p>
+                    <p className="text-xs text-gray-500 mt-0.5">
+                      Roda automaticamente, sem intervenção manual
+                    </p>
+                  </div>
+                </div>
+
+                {/* Advantage 2: Off-Client Processing */}
+                <div className="flex items-start gap-3 p-3 rounded-lg bg-gray-50/50">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="1.5">
+                      <path d="M22 12H18L15 21L9 3L6 12H2"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-gray-800">Processamento Externo</p>
+                    <p className="text-xs text-gray-500 mt-0.5">
+                      Executado na nuvem, zero carga no seu ambiente
+                    </p>
+                  </div>
+                </div>
+
+                {/* Advantage 3: Minimal Client Engagement */}
+                <div className="flex items-start gap-3 p-3 rounded-lg bg-gray-50/50">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="1.5">
+                      <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                      <path d="M22 4L12 14.01l-3-3"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-gray-800">Engajamento Mínimo</p>
+                    <p className="text-xs text-gray-500 mt-0.5">
+                      Configure uma vez, funciona para sempre
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </motion.div>
