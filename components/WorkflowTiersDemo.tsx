@@ -1,9 +1,8 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useLayoutEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { stepIcons } from './Icons'
 
 // Types
 interface WorkflowCard {
@@ -21,104 +20,120 @@ interface TriggerOption {
   logos: string[]
 }
 
-// Animation transitions (matching HeroWorkflowDemo)
-const springTransition = {
-  type: 'spring' as const,
-  stiffness: 300,
-  damping: 30,
+interface PathsData {
+  triggerToFirst: string
+  processHorizontal: string
+  syncDownToCenter: string
+  leftBranch: string
+  rightBranch: string
+  containerWidth: number
+  containerHeight: number
 }
 
+// Animation transitions
 const fadeTransition = {
   duration: 0.4,
   ease: [0.25, 0.1, 0.25, 1] as const,
 }
 
-// Card dimensions
-const TRIGGER_CARD_WIDTH = 280
-const PROCESS_CARD_WIDTH = 180
-const OUTPUT_CARD_WIDTH = 150
+// Easing curves
+const smooth = 'cubic-bezier(0.4, 0, 0.2, 1)'
+const spring = 'cubic-bezier(0.22, 1, 0.36, 1)'
+
+// Line colors
+const lineGray = '#e5e7eb'
+const lineBlue = '#93c5fd'
+const lineGreen = '#86efac'
 
 // Trigger options with different logo sets (rotate through these)
 const triggerOptions: TriggerOption[] = [
   {
     id: 'email',
-    icon: stepIcons.mail,
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <path d="M14 2v6h6"/>
+      </svg>
+    ),
     title: 'Email recebido',
     description: 'Novo email chega na caixa',
     logos: ['gmail', 'google-drive', 'whatsapp', 'google-calendar', 'google-sheets'],
   },
   {
     id: 'form',
-    icon: stepIcons.document,
-    title: 'Formulario enviado',
-    description: 'Cliente preenche formulario',
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <path d="M14 2v6h6"/>
+      </svg>
+    ),
+    title: 'Formulário enviado',
+    description: 'Cliente preenche formulário',
     logos: ['gmail', 'google-drive', 'notion', 'hubspot', 'slack'],
   },
   {
     id: 'schedule',
-    icon: stepIcons.calendar,
-    title: 'Horario programado',
-    description: 'Automacao roda no horario',
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <path d="M14 2v6h6"/>
+      </svg>
+    ),
+    title: 'Horário programado',
+    description: 'Automação roda no horário',
     logos: ['shopify', 'mercado-livre', 'mercadopago', 'whatsapp', 'ifood'],
   },
 ]
 
-// Processing cards
+// Processing cards - reduced to 3 essential steps
 const processingCards: WorkflowCard[] = [
   {
     id: 'read',
-    icon: stepIcons.document,
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <path d="M14 2v6h6"/>
+        <path d="M16 13H8"/>
+        <path d="M16 17H8"/>
+      </svg>
+    ),
     title: 'Lendo dados',
-    description: 'Extrai informacoes',
-  },
-  {
-    id: 'validate',
-    icon: stepIcons.check,
-    title: 'Validando',
-    description: 'Verifica criterios',
+    description: 'Extrai informações',
   },
   {
     id: 'transform',
-    icon: stepIcons.refresh,
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M21 2v6h-6"/>
+        <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/>
+        <path d="M3 22v-6h6"/>
+        <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+      </svg>
+    ),
     title: 'Transformando',
     description: 'Formata dados',
   },
   {
     id: 'sync',
-    icon: stepIcons.sync,
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+      </svg>
+    ),
     title: 'Sincronizando',
     description: 'Conecta sistemas',
   },
 ]
 
-// Output cards
+// Output cards - reduced to 2 key outcomes
 const outputCards: WorkflowCard[] = [
-  {
-    id: 'crm',
-    icon: (
-      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.75">
-        <circle cx="12" cy="8" r="4"/>
-        <path d="M5 20v-1a5 5 0 0110 0v1"/>
-        <circle cx="18" cy="11" r="3"/>
-        <path d="M19 20v-1a3 3 0 00-3-3"/>
-      </svg>
-    ),
-    title: 'CRM atualizado',
-    description: 'Registro criado',
-  },
-  {
-    id: 'notify',
-    icon: stepIcons.bell,
-    title: 'Notificacao',
-    description: 'Alerta enviado',
-  },
   {
     id: 'pdf',
     icon: (
-      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.75">
-        <path d="M6 2h8l6 6v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2z"/>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
         <path d="M14 2v6h6"/>
-        <path d="M10 13h4M10 17h2"/>
       </svg>
     ),
     title: 'PDF gerado',
@@ -126,391 +141,104 @@ const outputCards: WorkflowCard[] = [
   },
   {
     id: 'archive',
-    icon: stepIcons.folder,
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+      </svg>
+    ),
     title: 'Arquivado',
     description: 'Pasta organizada',
   },
-  {
-    id: 'dashboard',
-    icon: stepIcons.chart,
-    title: 'Dashboard',
-    description: 'Metricas atualizadas',
-  },
 ]
 
-// Trigger Card (matches HeroWorkflowDemo card design)
-function TriggerCard({
-  trigger,
-  isActive,
-}: {
-  trigger: TriggerOption
-  isActive: boolean
-}) {
+// App logos display component
+function AppLogos({ logos, isActive }: { logos: string[]; isActive: boolean }) {
   return (
-    <div className="flex justify-center px-4 md:px-0">
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{
-          opacity: 1,
-          y: isActive ? -2 : 0,
-          scale: isActive ? 1.02 : 1,
-        }}
-        transition={springTransition}
-        className="relative w-full max-w-[280px]"
-      >
-        {/* Card - matching HeroWorkflowDemo exactly */}
-        <motion.div
-          animate={{
-            boxShadow: isActive
-              ? '0 8px 24px rgba(0, 0, 0, 0.12)'
-              : '0 2px 8px rgba(0, 0, 0, 0.06)',
-          }}
-          transition={{ duration: 0.3 }}
-          className="relative bg-white rounded-xl p-4 border border-gray-200"
-        >
-          <div className="flex items-center gap-3 mb-2">
-            {/* Icon - smooth color transition */}
-            <motion.div
-              animate={{ color: isActive ? '#374151' : '#D1D5DB' }}
-              transition={fadeTransition}
-              className="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-lg bg-gray-100 [&>svg]:w-5 [&>svg]:h-5"
-            >
-              {trigger.icon}
-            </motion.div>
-
-            {/* Title area - crossfade between skeleton and content */}
-            <div className="flex-1 relative h-5 overflow-hidden">
-              <AnimatePresence mode="wait">
-                {isActive ? (
-                  <motion.span
-                    key={`title-${trigger.id}`}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={fadeTransition}
-                    className="text-sm font-medium text-gray-800 block tracking-tight"
-                  >
-                    {trigger.title}
-                  </motion.span>
-                ) : (
-                  <motion.div
-                    key="skeleton-title"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="h-4 bg-gray-200 rounded w-full mt-0.5"
-                  />
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* Description - crossfade between skeleton and content */}
-          <div className="pl-11 h-4 overflow-hidden mb-3">
-            <AnimatePresence mode="wait">
-              {isActive ? (
-                <motion.p
-                  key={`desc-${trigger.id}`}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ ...fadeTransition, delay: 0.1 }}
-                  className="text-xs leading-relaxed text-gray-500"
-                >
-                  {trigger.description}
-                </motion.p>
-              ) : (
-                <motion.div
-                  key="skeleton-desc"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="h-3 bg-gray-100 rounded w-4/5"
+    <div className="flex items-center justify-center gap-3">
+      <AnimatePresence mode="wait">
+        {isActive ? (
+          <motion.div
+            key="logos-active"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ ...fadeTransition, delay: 0.15 }}
+            className="flex items-center justify-center gap-3"
+          >
+            {logos.map((logo) => (
+              <div
+                key={logo}
+                className="w-5 h-5 flex-shrink-0 flex items-center justify-center"
+              >
+                <Image
+                  src={`/logos/${logo}.svg`}
+                  alt={logo}
+                  width={20}
+                  height={20}
+                  className="w-full h-full object-contain"
                 />
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* Logos row */}
-          <div className="flex items-center justify-center pt-2 border-t border-gray-100">
-            <AnimatePresence mode="wait">
-              {isActive ? (
-                <motion.div
-                  key={`logos-${trigger.id}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ ...fadeTransition, delay: 0.15 }}
-                  className="flex items-center justify-center gap-3"
-                >
-                  {trigger.logos.map((logo) => (
-                    <div
-                      key={logo}
-                      className="w-5 h-5 flex-shrink-0 flex items-center justify-center"
-                    >
-                      <Image
-                        src={`/logos/${logo}.svg`}
-                        alt={logo}
-                        width={20}
-                        height={20}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                  ))}
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="skeleton-logos"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="flex items-center justify-center gap-3"
-                >
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <div key={i} className="w-5 h-5 bg-gray-100 rounded" />
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </motion.div>
-      </motion.div>
+              </div>
+            ))}
+          </motion.div>
+        ) : (
+          <motion.div
+            key="skeleton-logos"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center justify-center gap-3"
+          >
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div key={i} className="w-5 h-5 bg-gray-100 rounded" />
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
 
-// Processing Card (matches HeroWorkflowDemo card design)
-function ProcessingCard({
-  card,
-  isActive,
-  index,
-  isMobile = false,
-}: {
-  card: WorkflowCard
-  isActive: boolean
-  index: number
-  isMobile?: boolean
-}) {
+// Process Icon component with color state
+function ProcessIcon({ type, active }: { type: string; active: boolean }) {
+  const color = active ? '#3b82f6' : '#d1d5db'
+  const card = processingCards.find(c => c.id === type)
+  if (!card) return null
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16, scale: 0.95 }}
-      animate={{
-        opacity: 1,
-        y: isActive ? -4 : 0,
-        scale: isActive ? 1.03 : 1,
-      }}
-      transition={{
-        ...springTransition,
-        delay: index * 0.1,
-      }}
-      className={isMobile ? "w-full" : "flex-shrink-0"}
-      style={isMobile ? undefined : { width: PROCESS_CARD_WIDTH }}
-    >
-      <motion.div
-        animate={{
-          boxShadow: isActive
-            ? '0 12px 32px rgba(0, 0, 0, 0.15)'
-            : '0 2px 8px rgba(0, 0, 0, 0.06)',
-          borderColor: isActive ? '#e5e7eb' : '#f3f4f6',
-        }}
-        transition={{ duration: 0.4 }}
-        className="bg-white rounded-xl p-4 border border-gray-200"
-      >
-        <div className="flex items-center gap-3 mb-2">
-          {/* Icon with pulse animation */}
-          <motion.div
-            animate={{
-              color: isActive ? '#374151' : '#D1D5DB',
-              backgroundColor: isActive ? '#f3f4f6' : '#f9fafb',
-              scale: isActive ? 1.1 : 1,
-            }}
-            transition={{ ...fadeTransition, scale: { type: 'spring', stiffness: 400, damping: 20 } }}
-            className="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-lg [&>svg]:w-5 [&>svg]:h-5"
-          >
-            {card.icon}
-          </motion.div>
-
-          {/* Title */}
-          <div className="flex-1 relative h-5 overflow-hidden">
-            <AnimatePresence mode="wait">
-              {isActive ? (
-                <motion.span
-                  key={`title-${card.id}`}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={fadeTransition}
-                  className="text-sm font-medium text-gray-800 block tracking-tight"
-                >
-                  {card.title}
-                </motion.span>
-              ) : (
-                <motion.div
-                  key="skeleton-title"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="h-4 bg-gray-200 rounded w-full mt-0.5"
-                />
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* Description */}
-        <div className="pl-11 h-4 overflow-hidden">
-          <AnimatePresence mode="wait">
-            {isActive ? (
-              <motion.p
-                key={`desc-${card.id}`}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ ...fadeTransition, delay: 0.1 }}
-                className="text-xs leading-relaxed text-gray-500"
-              >
-                {card.description}
-              </motion.p>
-            ) : (
-              <motion.div
-                key="skeleton-desc"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="h-3 bg-gray-100 rounded w-4/5"
-              />
-            )}
-          </AnimatePresence>
-        </div>
-      </motion.div>
-    </motion.div>
+    <div style={{ color }}>
+      {card.icon}
+    </div>
   )
 }
 
-// Output Card (matches HeroWorkflowDemo card design)
-function OutputCard({
-  card,
-  isActive,
-  index,
-  isMobile = false,
-}: {
-  card: WorkflowCard
-  isActive: boolean
-  index: number
-  isMobile?: boolean
-}) {
+// Output Icon component with color state
+function OutputIcon({ type, active }: { type: string; active: boolean }) {
+  const color = active ? '#22c55e' : '#d1d5db'
+  const card = outputCards.find(c => c.id === type)
+  if (!card) return null
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16, scale: 0.95 }}
-      animate={{
-        opacity: 1,
-        y: isActive ? -4 : 0,
-        scale: isActive ? 1.03 : 1,
-      }}
-      transition={{
-        ...springTransition,
-        delay: index * 0.1,
-      }}
-      className={isMobile ? "w-full" : "flex-shrink-0"}
-      style={isMobile ? undefined : { width: OUTPUT_CARD_WIDTH }}
-    >
-      <motion.div
-        animate={{
-          boxShadow: isActive
-            ? '0 12px 32px rgba(0, 0, 0, 0.15)'
-            : '0 2px 8px rgba(0, 0, 0, 0.06)',
-          borderColor: isActive ? '#e5e7eb' : '#f3f4f6',
-        }}
-        transition={{ duration: 0.4 }}
-        className="bg-white rounded-xl p-3 border border-gray-200"
-      >
-        <div className="flex items-center gap-2 mb-1.5">
-          {/* Icon with pulse animation */}
-          <motion.div
-            animate={{
-              color: isActive ? '#374151' : '#D1D5DB',
-              backgroundColor: isActive ? '#f3f4f6' : '#f9fafb',
-              scale: isActive ? 1.1 : 1,
-            }}
-            transition={{ ...fadeTransition, scale: { type: 'spring', stiffness: 400, damping: 20 } }}
-            className="w-6 h-6 flex-shrink-0 flex items-center justify-center rounded-lg [&>svg]:w-4 [&>svg]:h-4"
-          >
-            {card.icon}
-          </motion.div>
-
-          {/* Title */}
-          <div className="flex-1 relative h-4 overflow-hidden">
-            <AnimatePresence mode="wait">
-              {isActive ? (
-                <motion.span
-                  key={`title-${card.id}`}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={fadeTransition}
-                  className="text-xs font-medium text-gray-800 block tracking-tight"
-                >
-                  {card.title}
-                </motion.span>
-              ) : (
-                <motion.div
-                  key="skeleton-title"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="h-3 bg-gray-200 rounded w-full mt-0.5"
-                />
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* Description */}
-        <div className="pl-8 h-3 overflow-hidden">
-          <AnimatePresence mode="wait">
-            {isActive ? (
-              <motion.p
-                key={`desc-${card.id}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ ...fadeTransition, delay: 0.05 }}
-                className="text-[10px] leading-relaxed text-gray-500"
-              >
-                {card.description}
-              </motion.p>
-            ) : (
-              <motion.div
-                key="skeleton-desc"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="h-2.5 bg-gray-100 rounded w-3/4"
-              />
-            )}
-          </AnimatePresence>
-        </div>
-      </motion.div>
-    </motion.div>
+    <div style={{ color }}>
+      {card.icon}
+    </div>
   )
 }
 
 // Main Component
 export default function WorkflowTiersDemo() {
-  const [currentPhase, setCurrentPhase] = useState(-1)
+  const [isPlaying, setIsPlaying] = useState(true)
+  const [step, setStep] = useState(-1) // Start at -1 so trigger animates in at step 0
+  const [paths, setPaths] = useState<PathsData | null>(null)
   const [currentTriggerIndex, setCurrentTriggerIndex] = useState(0)
-  const [activeProcessCard, setActiveProcessCard] = useState(-1)
-  const [activeOutputCard, setActiveOutputCard] = useState(-1)
   const [isVisible, setIsVisible] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+
   const containerRef = useRef<HTMLDivElement>(null)
+  const animationContainerRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLDivElement>(null)
+  const processRefs = useRef<(HTMLDivElement | null)[]>([])
+  const outputRefs = useRef<(HTMLDivElement | null)[]>([])
 
   // Check for reduced motion preference
   useEffect(() => {
@@ -522,7 +250,7 @@ export default function WorkflowTiersDemo() {
     return () => mediaQuery.removeEventListener('change', handler)
   }, [])
 
-  // Intersection Observer - lower threshold for better mobile triggering
+  // Intersection Observer - trigger animation when visible
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
@@ -532,161 +260,420 @@ export default function WorkflowTiersDemo() {
     return () => observer.disconnect()
   }, [])
 
-  // Animation cycle - SLOWED DOWN significantly
+  // Calculate SVG paths based on actual card positions
+  useLayoutEffect(() => {
+    const calculatePaths = () => {
+      if (!animationContainerRef.current || !triggerRef.current) return
+
+      const container = animationContainerRef.current.getBoundingClientRect()
+      const trigger = triggerRef.current.getBoundingClientRect()
+      const process = processRefs.current.map(ref => ref?.getBoundingClientRect())
+      const outputs = outputRefs.current.map(ref => ref?.getBoundingClientRect())
+
+      if (!process[0] || !process[2] || !outputs[0] || !outputs[1]) return
+
+      // Convert to relative coordinates
+      const rel = (rect: DOMRect) => ({
+        x: rect.left - container.left + rect.width / 2,
+        y: rect.top - container.top,
+        bottom: rect.top - container.top + rect.height,
+        left: rect.left - container.left,
+        right: rect.left - container.left + rect.width,
+        width: rect.width,
+        height: rect.height,
+      })
+
+      const t = rel(trigger)
+      const p0 = rel(process[0])
+      const p2 = rel(process[2])
+      const o0 = rel(outputs[0])
+      const o1 = rel(outputs[1])
+
+      const r = 12 // Corner radius
+
+      // Calculate the exact center of the GAP between the two output cards
+      const gapBetweenOutputs = o1.left - o0.right
+      const splitCenterX = o0.right + (gapBetweenOutputs / 2)
+      const branchY = o0.y - 45
+
+      setPaths({
+        // Path 1: Trigger bottom → down → curve left → first process card top
+        triggerToFirst: `
+          M ${t.x} ${t.bottom}
+          L ${t.x} ${p0.y - 25 - r}
+          Q ${t.x} ${p0.y - 25} ${t.x - r} ${p0.y - 25}
+          L ${p0.x + r} ${p0.y - 25}
+          Q ${p0.x} ${p0.y - 25} ${p0.x} ${p0.y - 25 + r}
+          L ${p0.x} ${p0.y}
+        `,
+
+        // Path 2: Horizontal line connecting process cards
+        processHorizontal: `
+          M ${p0.right + 8} ${p0.y + p0.height / 2}
+          L ${p2.left - 8} ${p0.y + p0.height / 2}
+        `,
+
+        // Path 3: From last process card → down → to center of gap between outputs
+        syncDownToCenter: `
+          M ${p2.x} ${p2.bottom}
+          L ${p2.x} ${branchY - r}
+          Q ${p2.x} ${branchY} ${p2.x - r} ${branchY}
+          L ${splitCenterX} ${branchY}
+        `,
+
+        // Path 4: Left branch - from center of gap down to PDF output
+        leftBranch: `
+          M ${splitCenterX} ${branchY}
+          L ${o0.x + r} ${branchY}
+          Q ${o0.x} ${branchY} ${o0.x} ${branchY + r}
+          L ${o0.x} ${o0.y}
+        `,
+
+        // Path 5: Right branch - from center of gap down to Archived output
+        rightBranch: `
+          M ${splitCenterX} ${branchY}
+          L ${o1.x - r} ${branchY}
+          Q ${o1.x} ${branchY} ${o1.x} ${branchY + r}
+          L ${o1.x} ${o1.y}
+        `,
+
+        containerWidth: container.width,
+        containerHeight: container.height,
+      })
+    }
+
+    calculatePaths()
+    window.addEventListener('resize', calculatePaths)
+
+    const timer = setTimeout(calculatePaths, 50)
+    const timer2 = setTimeout(calculatePaths, 150)
+
+    return () => {
+      window.removeEventListener('resize', calculatePaths)
+      clearTimeout(timer)
+      clearTimeout(timer2)
+    }
+  }, [isVisible])
+
+  // Animation loop with pause at completion
   useEffect(() => {
-    if (!isVisible || prefersReducedMotion) {
-      if (prefersReducedMotion) {
-        setCurrentPhase(3)
-        setActiveProcessCard(processingCards.length - 1)
-        setActiveOutputCard(outputCards.length - 1)
-      }
+    if (!isVisible || !isPlaying) return
+
+    if (prefersReducedMotion) {
+      setStep(4) // Show all active
       return
     }
 
-    // Reset state
-    setCurrentPhase(-1)
-    setActiveProcessCard(-1)
-    setActiveOutputCard(-1)
-
-    // Phase timing - MUCH SLOWER for better comprehension
-    const phases = [
-      { delay: 1200, action: () => setCurrentPhase(0) },   // Trigger reveals - longer initial pause
-      { delay: 2000, action: () => setCurrentPhase(1) },   // Processing tier starts - time to read trigger
-      // Sequential processing cards - slower reveal
-      { delay: 800, action: () => setActiveProcessCard(0) },
-      { delay: 1000, action: () => setActiveProcessCard(1) },
-      { delay: 1000, action: () => setActiveProcessCard(2) },
-      { delay: 1000, action: () => setActiveProcessCard(3) },
-      { delay: 1200, action: () => setCurrentPhase(2) },   // Outputs tier starts - pause after processing
-      // Cascade output cards - slower cascade
-      { delay: 600, action: () => setActiveOutputCard(0) },
-      { delay: 500, action: () => setActiveOutputCard(1) },
-      { delay: 500, action: () => setActiveOutputCard(2) },
-      { delay: 500, action: () => setActiveOutputCard(3) },
-      { delay: 500, action: () => setActiveOutputCard(4) },
-      { delay: 800, action: () => setCurrentPhase(3) },   // Complete
-      // Hold longer at complete state, then reset
-      { delay: 4000, action: () => {
-        setCurrentPhase(-1)
-        setActiveProcessCard(-1)
-        setActiveOutputCard(-1)
-        setCurrentTriggerIndex((prev) => (prev + 1) % triggerOptions.length)
-      }},
-    ]
-
-    const timeouts: NodeJS.Timeout[] = []
-    let cumulativeDelay = 0
-
-    phases.forEach(({ delay, action }) => {
-      cumulativeDelay += delay
-      timeouts.push(setTimeout(action, cumulativeDelay))
-    })
-
-    // Loop interval
-    const totalDuration = cumulativeDelay + 1000
-    const loopInterval = setInterval(() => {
-      let innerCumulativeDelay = 0
-      phases.forEach(({ delay, action }) => {
-        innerCumulativeDelay += delay
-        timeouts.push(setTimeout(action, innerCumulativeDelay))
-      })
-    }, totalDuration)
-
-    return () => {
-      timeouts.forEach(clearTimeout)
-      clearInterval(loopInterval)
+    // Initial delay before starting
+    if (step === -1) {
+      const timer = setTimeout(() => setStep(0), 600)
+      return () => clearTimeout(timer)
     }
-  }, [isVisible, prefersReducedMotion])
 
+    const timer = setTimeout(() => {
+      if (step >= 4) {
+        // 3 second pause at the end before restarting
+        setTimeout(() => {
+          setStep(-1)
+          setCurrentTriggerIndex((prev) => (prev + 1) % triggerOptions.length)
+        }, 3000)
+      } else {
+        setStep(prev => prev + 1)
+      }
+    }, step === 0 ? 1400 : 1200)
+
+    return () => clearTimeout(timer)
+  }, [isVisible, isPlaying, step, prefersReducedMotion])
+
+  // Check if trigger is active (step >= 0)
+  const triggerActive = step >= 0
   const currentTrigger = triggerOptions[currentTriggerIndex]
 
   return (
     <div
       ref={containerRef}
       className="w-full max-w-4xl mx-auto relative"
-      style={{ minHeight: '520px' }}
-      aria-label="Demonstracao de automacao de workflow"
+      style={{ minHeight: '540px' }}
+      aria-label="Demonstração de automação de workflow"
     >
       <span className="sr-only">
-        Animacao demonstrando as etapas de uma automacao: gatilho, processamento e resultados.
+        Animação demonstrando as etapas de uma automação: gatilho, processamento e resultados.
       </span>
 
+      {/* Controls */}
+      <div className="flex justify-center gap-2 mb-6">
+        <button
+          onClick={() => setIsPlaying(!isPlaying)}
+          className="px-4 py-2 rounded-lg border border-gray-200 bg-white text-gray-700 text-sm font-medium hover:bg-gray-50 transition-colors"
+        >
+          {isPlaying ? '⏸ Pausar' : '▶ Reproduzir'}
+        </button>
+        <button
+          onClick={() => {
+            setStep(-1)
+            setIsPlaying(true)
+          }}
+          className="px-4 py-2 rounded-lg border border-gray-200 bg-white text-gray-700 text-sm font-medium hover:bg-gray-50 transition-colors"
+        >
+          ↺ Reiniciar
+        </button>
+      </div>
+
+      {/* Animation Container */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 0.6 }}
-        className="relative z-10"
+        className="relative bg-white rounded-2xl shadow-lg overflow-hidden"
       >
-        {/* Trigger Card */}
-        <div className="mb-20">
-          <TriggerCard
-            trigger={currentTrigger}
-            isActive={currentPhase >= 0}
-          />
-        </div>
+        <div
+          ref={animationContainerRef}
+          className="relative"
+          style={{
+            minHeight: '480px',
+            padding: '48px 40px 60px',
+          }}
+        >
+          {/* SVG Connectors */}
+          {paths && (
+            <svg
+              width={paths.containerWidth}
+              height={paths.containerHeight}
+              className="absolute top-0 left-0 pointer-events-none overflow-visible"
+            >
+              {/* Path: Trigger → First Process Card */}
+              <path
+                d={paths.triggerToFirst}
+                fill="none"
+                stroke={step >= 1 ? lineBlue : lineGray}
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{
+                  transition: `stroke 700ms ${smooth}, opacity 700ms ${smooth}`,
+                  opacity: step >= 1 ? 1 : 0.4,
+                }}
+              />
 
-        {/* Processing Cards */}
-        <div className="mb-20">
-          {/* Desktop: horizontal row */}
-          <div className="hidden md:flex items-center justify-center gap-3">
-            {processingCards.map((card, index) => (
-              <ProcessingCard
-                key={card.id}
-                card={card}
-                isActive={activeProcessCard >= index}
-                index={index}
+              {/* Path: Horizontal Process Connector */}
+              <path
+                d={paths.processHorizontal}
+                fill="none"
+                stroke={step >= 2 ? lineBlue : lineGray}
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                style={{
+                  transition: `stroke 700ms ${smooth}, opacity 700ms ${smooth}`,
+                  opacity: step >= 2 ? 1 : 0.4,
+                }}
               />
-            ))}
-          </div>
 
-          {/* Mobile: 2x2 grid with animations */}
-          <div className="grid grid-cols-2 gap-4 md:hidden px-4">
-            {processingCards.map((card, index) => (
-              <ProcessingCard
-                key={card.id}
-                card={card}
-                isActive={activeProcessCard >= index}
-                index={index}
-                isMobile={true}
+              {/* Path: Sync down to center of gap */}
+              <path
+                d={paths.syncDownToCenter}
+                fill="none"
+                stroke={step >= 4 ? lineGreen : lineGray}
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{
+                  transition: `stroke 700ms ${smooth}, opacity 700ms ${smooth}`,
+                  opacity: step >= 4 ? 1 : 0.4,
+                }}
               />
-            ))}
-          </div>
-        </div>
 
-        {/* Output Cards */}
-        <div>
-          {/* Desktop: horizontal row */}
-          <div className="hidden md:flex items-center justify-center gap-2">
-            {outputCards.map((card, index) => (
-              <OutputCard
-                key={card.id}
-                card={card}
-                isActive={activeOutputCard >= index}
-                index={index}
+              {/* Path: Left branch to PDF */}
+              <path
+                d={paths.leftBranch}
+                fill="none"
+                stroke={step >= 4 ? lineGreen : lineGray}
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{
+                  transition: `stroke 700ms ${smooth}, opacity 700ms ${smooth}`,
+                  opacity: step >= 4 ? 1 : 0.4,
+                }}
               />
-            ))}
-          </div>
 
-          {/* Mobile: 2-column grid with last item centered */}
-          <div className="grid grid-cols-2 gap-3 md:hidden px-4">
-            {outputCards.slice(0, 4).map((card, index) => (
-              <OutputCard
-                key={card.id}
-                card={card}
-                isActive={activeOutputCard >= index}
-                index={index}
-                isMobile={true}
+              {/* Path: Right branch to Archived */}
+              <path
+                d={paths.rightBranch}
+                fill="none"
+                stroke={step >= 4 ? lineGreen : lineGray}
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{
+                  transition: `stroke 700ms ${smooth}, opacity 700ms ${smooth}`,
+                  opacity: step >= 4 ? 1 : 0.4,
+                }}
               />
-            ))}
-          </div>
-          <div className="flex justify-center mt-3 md:hidden px-4">
-            <div className="w-1/2 max-w-[180px]">
-              <OutputCard
-                card={outputCards[4]}
-                isActive={activeOutputCard >= 4}
-                index={4}
-                isMobile={true}
-              />
+            </svg>
+          )}
+
+          {/* Cards */}
+          <div className="relative z-10">
+            {/* Trigger Card - Animated entry */}
+            <div className="flex justify-center mb-16 md:mb-20">
+              <div
+                ref={triggerRef}
+                className="relative w-full max-w-[280px]"
+                style={{
+                  opacity: triggerActive ? 1 : 0,
+                  transform: triggerActive ? 'translateY(0) scale(1)' : 'translateY(-12px) scale(0.94)',
+                  transition: `all 900ms ${spring}`,
+                }}
+              >
+                <div
+                  className="relative bg-white rounded-xl p-5 text-center"
+                  style={{
+                    border: `2px solid ${triggerActive ? '#f59e0b' : '#e5e7eb'}`,
+                    boxShadow: triggerActive
+                      ? '0 4px 16px rgba(245, 158, 11, 0.15)'
+                      : '0 1px 3px rgba(0,0,0,0.04)',
+                    transition: `all 600ms ${smooth}`,
+                  }}
+                >
+                  <div className="flex items-center gap-3 justify-center">
+                    <div
+                      className="w-8 h-8 flex items-center justify-center rounded-lg bg-amber-50"
+                      style={{ color: '#f59e0b' }}
+                    >
+                      {currentTrigger.icon}
+                    </div>
+                    <span className="font-semibold text-gray-800 text-sm">
+                      {currentTrigger.title}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-xs text-gray-500">
+                    {currentTrigger.description}
+                  </p>
+                  <div className="mt-3 pt-3 border-t border-gray-100">
+                    <AppLogos logos={currentTrigger.logos} isActive={triggerActive} />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Process Cards */}
+            <div className="flex justify-center gap-6 md:gap-12 mb-20 md:mb-28 flex-wrap md:flex-nowrap px-4 md:px-0">
+              {processingCards.map((item, i) => {
+                const active = step >= i + 1
+                return (
+                  <div
+                    key={item.id}
+                    ref={el => { processRefs.current[i] = el }}
+                    className="w-full max-w-[160px] md:max-w-none md:w-auto"
+                    style={{
+                      opacity: active ? 1 : 0.35,
+                      transform: active ? 'translateY(0) scale(1)' : 'translateY(8px) scale(0.96)',
+                      transition: `all 800ms ${spring} ${i * 80}ms`,
+                    }}
+                  >
+                    <div
+                      className="bg-white rounded-xl p-4 flex items-center gap-3"
+                      style={{
+                        border: `2px solid ${active ? '#3b82f6' : '#e5e7eb'}`,
+                        boxShadow: active
+                          ? '0 4px 16px rgba(59, 130, 246, 0.12)'
+                          : '0 1px 2px rgba(0,0,0,0.03)',
+                        transition: `all 600ms ${smooth}`,
+                      }}
+                    >
+                      <div
+                        className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                        style={{
+                          background: active ? 'rgba(59, 130, 246, 0.1)' : '#f3f4f6',
+                          transition: `all 600ms ${smooth}`,
+                        }}
+                      >
+                        <ProcessIcon type={item.id} active={active} />
+                      </div>
+                      <div>
+                        <div
+                          className="font-semibold text-sm"
+                          style={{
+                            color: active ? '#111827' : '#9ca3af',
+                            transition: `color 600ms ${smooth}`,
+                          }}
+                        >
+                          {item.title}
+                        </div>
+                        <div
+                          className="text-xs mt-0.5"
+                          style={{
+                            color: active ? '#6b7280' : '#d1d5db',
+                            transition: `color 600ms ${smooth}`,
+                          }}
+                        >
+                          {item.description}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* Output Cards */}
+            <div className="flex justify-center gap-12 md:gap-20 px-4 md:px-0">
+              {outputCards.map((item, i) => {
+                const active = step >= 4
+                return (
+                  <div
+                    key={item.id}
+                    ref={el => { outputRefs.current[i] = el }}
+                    className="w-full max-w-[140px] md:max-w-none md:w-auto"
+                    style={{
+                      opacity: active ? 1 : 0.3,
+                      transform: active ? 'translateY(0) scale(1)' : 'translateY(10px) scale(0.94)',
+                      transition: `all 800ms ${spring} ${i * 100}ms`,
+                    }}
+                  >
+                    <div
+                      className="bg-white rounded-xl p-3 flex items-center gap-3"
+                      style={{
+                        border: `2px solid ${active ? '#22c55e' : '#e5e7eb'}`,
+                        boxShadow: active
+                          ? '0 4px 16px rgba(34, 197, 94, 0.12)'
+                          : '0 1px 2px rgba(0,0,0,0.03)',
+                        transition: `all 600ms ${smooth}`,
+                      }}
+                    >
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+                        style={{
+                          background: active ? 'rgba(34, 197, 94, 0.1)' : '#f3f4f6',
+                          transition: `all 600ms ${smooth}`,
+                        }}
+                      >
+                        <OutputIcon type={item.id} active={active} />
+                      </div>
+                      <div>
+                        <div
+                          className="font-semibold text-sm"
+                          style={{
+                            color: active ? '#22c55e' : '#9ca3af',
+                            transition: `color 600ms ${smooth}`,
+                          }}
+                        >
+                          {item.title}
+                        </div>
+                        <div
+                          className="text-xs mt-0.5"
+                          style={{
+                            color: active ? '#6b7280' : '#d1d5db',
+                            transition: `color 600ms ${smooth}`,
+                          }}
+                        >
+                          {item.description}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </div>
