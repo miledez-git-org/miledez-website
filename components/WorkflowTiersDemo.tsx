@@ -244,7 +244,6 @@ function VerticalConnector({ active, color }: { active: boolean; color: 'blue' |
 
 // Main Component
 export default function WorkflowTiersDemo() {
-  const [isPlaying, setIsPlaying] = useState(true)
   const [step, setStep] = useState(-1) // Start at -1 so trigger animates in at step 0
   const [paths, setPaths] = useState<PathsData | null>(null)
   const [currentTriggerIndex, setCurrentTriggerIndex] = useState(0)
@@ -390,7 +389,7 @@ export default function WorkflowTiersDemo() {
 
   // Animation loop with pause at completion
   useEffect(() => {
-    if (!isVisible || !isPlaying) return
+    if (!isVisible) return
 
     if (prefersReducedMotion) {
       setStep(4) // Show all active
@@ -416,7 +415,7 @@ export default function WorkflowTiersDemo() {
     }, step === 0 ? 1400 : 1200)
 
     return () => clearTimeout(timer)
-  }, [isVisible, isPlaying, step, prefersReducedMotion])
+  }, [isVisible, step, prefersReducedMotion])
 
   // Check if trigger is active (step >= 0)
   const triggerActive = step >= 0
@@ -431,25 +430,6 @@ export default function WorkflowTiersDemo() {
       <span className="sr-only">
         Animação demonstrando as etapas de uma automação: gatilho, processamento e resultados.
       </span>
-
-      {/* Controls */}
-      <div className="flex justify-center gap-2 mb-6">
-        <button
-          onClick={() => setIsPlaying(!isPlaying)}
-          className="px-4 py-2 rounded-lg border border-gray-200 bg-white text-gray-700 text-sm font-medium hover:bg-gray-50 transition-colors"
-        >
-          {isPlaying ? '⏸ Pausar' : '▶ Reproduzir'}
-        </button>
-        <button
-          onClick={() => {
-            setStep(-1)
-            setIsPlaying(true)
-          }}
-          className="px-4 py-2 rounded-lg border border-gray-200 bg-white text-gray-700 text-sm font-medium hover:bg-gray-50 transition-colors"
-        >
-          ↺ Reiniciar
-        </button>
-      </div>
 
       {/* Animation Container */}
       <motion.div
