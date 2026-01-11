@@ -37,24 +37,24 @@ export default function HeroWorkflowSimple() {
   const outputActive = step >= 2
 
   return (
-    <div className="relative w-full max-w-md mx-auto" style={{ fontFamily: "'Manrope', sans-serif" }}>
+    <div className="relative w-full max-w-lg mx-auto" style={{ fontFamily: "'Manrope', sans-serif" }}>
       {/* SVG Connectors */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
-        viewBox="0 0 400 200"
+        viewBox="0 0 500 320"
         preserveAspectRatio="xMidYMid meet"
       >
         {/* Trigger to Process connector */}
         <path
-          d="M 80 50 L 80 80 Q 80 90 90 90 L 200 90"
+          d="M 100 70 L 100 115 Q 100 130 115 130 L 240 130"
           fill="none"
           stroke={processActive ? LINE_ACTIVE : LINE_INACTIVE}
           strokeWidth="1.5"
           style={{ transition: 'stroke 600ms ease' }}
         />
         <circle
-          cx="80"
-          cy="50"
+          cx="100"
+          cy="70"
           r="3"
           fill={processActive ? LINE_ACTIVE : LINE_INACTIVE}
           style={{ transition: 'fill 600ms ease' }}
@@ -62,15 +62,15 @@ export default function HeroWorkflowSimple() {
 
         {/* Process to Output connector */}
         <path
-          d="M 200 90 L 310 90 Q 320 90 320 100 L 320 130"
+          d="M 240 130 L 380 130 Q 395 130 395 145 L 395 210"
           fill="none"
           stroke={outputActive ? LINE_ACTIVE : LINE_INACTIVE}
           strokeWidth="1.5"
           style={{ transition: 'stroke 600ms ease' }}
         />
         <circle
-          cx="320"
-          cy="130"
+          cx="395"
+          cy="210"
           r="3"
           fill={outputActive ? LINE_ACTIVE : LINE_INACTIVE}
           style={{ transition: 'fill 600ms ease' }}
@@ -78,14 +78,14 @@ export default function HeroWorkflowSimple() {
       </svg>
 
       {/* Cards Container */}
-      <div className="relative" style={{ minHeight: '200px' }}>
+      <div className="relative" style={{ minHeight: '320px' }}>
         {/* Trigger Card */}
         <div
           className="absolute"
           style={{
             top: 0,
             left: 0,
-            width: '160px',
+            width: '200px',
             opacity: triggerActive ? 1 : 0,
             transform: triggerActive ? 'translateY(0) scale(1)' : 'translateY(-8px) scale(0.96)',
             transition: 'all 600ms cubic-bezier(0.22, 1, 0.36, 1)',
@@ -119,9 +119,9 @@ export default function HeroWorkflowSimple() {
         <div
           className="absolute"
           style={{
-            top: '60px',
-            left: '120px',
-            width: '160px',
+            top: '100px',
+            left: '140px',
+            width: '200px',
             opacity: processActive ? 1 : 0.5,
             transform: processActive ? 'translateY(0) scale(1)' : 'translateY(8px) scale(0.96)',
             transition: 'all 600ms cubic-bezier(0.22, 1, 0.36, 1) 100ms',
@@ -171,9 +171,9 @@ export default function HeroWorkflowSimple() {
         <div
           className="absolute"
           style={{
-            top: '130px',
-            left: '240px',
-            width: '160px',
+            top: '210px',
+            left: '280px',
+            width: '200px',
             opacity: outputActive ? 1 : 0.5,
             transform: outputActive ? 'translateY(0) scale(1)' : 'translateY(8px) scale(0.96)',
             transition: 'all 600ms cubic-bezier(0.22, 1, 0.36, 1) 200ms',

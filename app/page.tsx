@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ValueProposition from '@/components/ValueProposition'
@@ -8,11 +8,12 @@ import WorkflowDemo from '@/components/WorkflowDemo'
 import { LogoMarqueeSection } from '@/components/LogoMarquee'
 import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
-import IndustriesSection from '@/components/IndustriesSection'
 import HeroWorkflowSimple from '@/components/HeroWorkflowSimple'
 import ScrollProgress from '@/components/ScrollProgress'
+import ContactModal from '@/components/ContactModal'
 
 export default function Home() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   // Staggered reveal observer for elements with .fade-in-up class
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -58,17 +59,17 @@ export default function Home() {
 
               {/* CTAs */}
               <div className="mt-10 md:mt-12 flex flex-wrap gap-4">
-                <a
-                  href="#contato"
+                <button
+                  onClick={() => setIsContactModalOpen(true)}
                   className="btn-primary inline-block px-10 py-5 text-white bg-brand-accent hover:bg-brand-accent-dark"
                 >
                   Começar agora
-                </a>
+                </button>
                 <a
-                  href="#como-funciona"
+                  href="#valor"
                   className="btn-secondary inline-block px-8 py-4 text-brand-black border border-brand-border hover:border-brand-accent hover:text-brand-accent"
                 >
-                  Ver como funciona
+                  Porque automatizar
                 </a>
               </div>
             </div>
@@ -133,13 +134,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Industries */}
-      <section id="setores" className="py-24 md:py-32 bg-white">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <IndustriesSection />
-        </div>
-      </section>
-
       {/* CTA */}
       <section id="contato" className="py-24 md:py-32 bg-brand-accent">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
@@ -159,6 +153,12 @@ export default function Home() {
       </section>
 
       <Footer />
+
+      {/* Contact Modal */}
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </div>
   )
 }
