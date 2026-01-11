@@ -12,59 +12,47 @@ interface MetricsGridProps {
   metrics: Metric[]
 }
 
-function MetricBar({ value, isVisible, delay }: { value: number; isVisible: boolean; delay: number }) {
+function AccentBar({ isVisible, delay }: { isVisible: boolean; delay: number }) {
   return (
-    <div className="w-full h-1 bg-brand-border mt-3">
-      <div
-        className="h-full bg-brand-accent"
-        style={{
-          width: `${value}%`,
-          transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
-          transformOrigin: 'left',
-          transition: `transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
-        }}
-      />
-    </div>
+    <div
+      className="h-0.5 bg-brand-accent mt-4"
+      style={{
+        width: isVisible ? '60%' : '0%',
+        transition: `width 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+      }}
+    />
   )
 }
 
-function MetricArrow({ isVisible, delay }: { isVisible: boolean; delay: number }) {
+function GrowthArrow({ isVisible, delay }: { isVisible: boolean; delay: number }) {
   return (
     <div
-      className="flex items-center gap-1 mt-3 text-brand-accent"
+      className="flex items-center gap-1.5 mt-4 text-brand-accent"
       style={{
         transform: isVisible ? 'translateY(0)' : 'translateY(8px)',
         opacity: isVisible ? 1 : 0,
         transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
       }}
     >
-      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
       </svg>
-      <span className="text-xs font-medium">Crescimento</span>
+      <span className="text-xs font-medium tracking-wide">Crescimento</span>
     </div>
   )
-}
-
-function parseValue(value: string): number {
-  // Extract numeric value from strings like "70%", "50%", "100%"
-  const match = value.match(/(\d+)/)
-  return match ? parseInt(match[1], 10) : 0
 }
 
 export default function MetricsGrid({ metrics }: MetricsGridProps) {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.3 })
 
   return (
-    <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+    <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-16">
       {metrics.map((metric, index) => {
         const delay = 100 + index * 150
-        const numericValue = parseValue(metric.value)
 
         return (
           <div
             key={index}
-            className="text-center lg:text-left"
             style={{
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
               opacity: isVisible ? 1 : 0,
@@ -72,26 +60,20 @@ export default function MetricsGrid({ metrics }: MetricsGridProps) {
             }}
           >
             {/* Value */}
-            <span
-              className="text-4xl lg:text-5xl font-medium text-brand-accent"
-              style={{
-                display: 'block',
-              }}
-            >
+            <span className="block text-4xl lg:text-5xl font-medium text-brand-accent tracking-tight">
               {metric.value}
             </span>
 
             {/* Label */}
-            <p className="mt-3 text-sm text-brand-text leading-relaxed">
+            <p className="mt-2 text-sm text-brand-muted leading-relaxed">
               {metric.label}
             </p>
 
             {/* Visualization based on type */}
-            {metric.type === 'percentage' && numericValue > 0 && (
-              <MetricBar value={numericValue} isVisible={isVisible} delay={delay + 200} />
-            )}
-            {metric.type === 'multiplier' && (
-              <MetricArrow isVisible={isVisible} delay={delay + 200} />
+            {metric.type === 'multiplier' ? (
+              <GrowthArrow isVisible={isVisible} delay={delay + 200} />
+            ) : (
+              <AccentBar isVisible={isVisible} delay={delay + 200} />
             )}
           </div>
         )

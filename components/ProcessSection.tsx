@@ -81,13 +81,13 @@ export default function ProcessSection() {
     return () => observer.disconnect()
   }, [])
 
-  // Animate through steps when visible
+  // Animate through steps when visible - slower animation (2500ms)
   useEffect(() => {
     if (!isVisible) return
 
     const interval = setInterval(() => {
       setActiveStep((prev) => (prev + 1) % (steps.length + 1))
-    }, 1200)
+    }, 2500)
 
     return () => clearInterval(interval)
   }, [isVisible])
@@ -104,71 +104,74 @@ export default function ProcessSection() {
         </h2>
       </div>
 
-      {/* Desktop Timeline */}
+      {/* Desktop Timeline - Rectangular Cards */}
       <div className="hidden lg:block relative">
-        {/* Progress Line Container */}
-        <div className="absolute top-[52px] left-0 right-0 h-0.5 bg-neutral-200">
+        {/* Connector line - positioned to connect card icons */}
+        <div className="absolute top-[40px] left-[calc(12.5%+20px)] right-[calc(12.5%+20px)] h-0.5 bg-neutral-200" style={{ zIndex: 0 }}>
           {/* Animated progress fill */}
           <div
-            className="h-full bg-brand-accent transition-all duration-1000 ease-out"
+            className="h-full bg-brand-accent transition-all ease-out"
             style={{
-              width: isVisible ? `${Math.min(activeStep, steps.length) * 25}%` : '0%',
+              width: isVisible ? `${Math.min(activeStep, steps.length) * 33.33}%` : '0%',
+              transitionDuration: '800ms',
             }}
           />
         </div>
 
-        {/* Steps */}
-        <div className="grid grid-cols-4 gap-8">
+        {/* Steps Grid */}
+        <div className="grid grid-cols-4 gap-6" style={{ zIndex: 1, position: 'relative' }}>
           {steps.map((step, index) => {
             const isActive = index < activeStep
             const isCurrent = index === activeStep - 1
 
             return (
-              <div key={index} className="relative text-center">
-                {/* Step marker */}
-                <div className="flex justify-center mb-6">
-                  <div
-                    className="relative z-10 w-[104px] h-[104px] rounded-full flex flex-col items-center justify-center transition-all duration-500"
-                    style={{
-                      backgroundColor: isActive ? '#8b2020' : '#fff',
-                      border: isActive ? 'none' : '2px solid #e0e0e0',
-                      boxShadow: isCurrent
-                        ? '0 0 0 4px rgba(139, 32, 32, 0.2), 0 4px 12px rgba(139, 32, 32, 0.15)'
-                        : isActive
-                          ? '0 4px 12px rgba(139, 32, 32, 0.2)'
-                          : '0 2px 4px rgba(0,0,0,0.04)',
-                      transform: isCurrent ? 'scale(1.05)' : 'scale(1)',
-                    }}
-                  >
-                    {/* Icon */}
+              <div key={index} className="text-center">
+                {/* Rectangular Card */}
+                <div
+                  className="bg-white p-6 transition-all duration-500"
+                  style={{
+                    boxShadow: isCurrent
+                      ? '0 0 0 2px rgba(139, 32, 32, 0.15), 0 8px 24px rgba(0,0,0,0.08)'
+                      : isActive
+                        ? '0 0 0 1px rgba(139, 32, 32, 0.1), 0 4px 12px rgba(0,0,0,0.06)'
+                        : '0 0 0 1px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.04)',
+                    transform: isCurrent ? 'translateY(-4px)' : 'translateY(0)',
+                  }}
+                >
+                  {/* Icon circle at top */}
+                  <div className="flex justify-center mb-4">
                     <div
-                      className="mb-1 transition-colors duration-300"
-                      style={{ color: isActive ? '#fff' : '#8b2020' }}
+                      className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500"
+                      style={{
+                        backgroundColor: isActive ? '#8b2020' : '#f5f5f5',
+                        color: isActive ? '#fff' : '#8b2020',
+                      }}
                     >
                       {step.icon}
                     </div>
-                    {/* Number */}
-                    <span
-                      className="text-2xl font-bold transition-colors duration-300"
-                      style={{ color: isActive ? '#fff' : '#8b2020' }}
-                    >
-                      {step.number}
-                    </span>
                   </div>
+
+                  {/* Number */}
+                  <span
+                    className="text-3xl font-bold transition-colors duration-500 block mb-2"
+                    style={{ color: isActive ? '#8b2020' : '#d4d4d4' }}
+                  >
+                    {step.number}
+                  </span>
+
+                  {/* Title */}
+                  <h3
+                    className="text-base font-semibold mb-2 transition-colors duration-500"
+                    style={{ color: isActive ? '#1a1a1a' : '#737373' }}
+                  >
+                    {step.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm text-brand-muted leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
-
-                {/* Title */}
-                <h3
-                  className="text-lg font-semibold mb-2 transition-colors duration-300"
-                  style={{ color: isActive ? '#1a1a1a' : '#5a5a5a' }}
-                >
-                  {step.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm text-brand-muted leading-relaxed max-w-[200px] mx-auto">
-                  {step.description}
-                </p>
               </div>
             )
           })}
@@ -183,7 +186,7 @@ export default function ProcessSection() {
           return (
             <div
               key={index}
-              className="relative bg-white p-6 border border-brand-border transition-all duration-300"
+              className="relative bg-white p-6 border border-brand-border transition-all duration-500"
               style={{
                 borderLeftColor: isActive ? '#8b2020' : '#e0e0e0',
                 borderLeftWidth: '4px',
@@ -191,7 +194,7 @@ export default function ProcessSection() {
             >
               {/* Step number badge */}
               <div
-                className="absolute -top-3 -left-3 w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300"
+                className="absolute -top-3 -left-3 w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-500"
                 style={{
                   backgroundColor: isActive ? '#8b2020' : '#fff',
                   color: isActive ? '#fff' : '#8b2020',
@@ -204,7 +207,7 @@ export default function ProcessSection() {
               {/* Content */}
               <div className="pt-2">
                 <div
-                  className="mb-3 transition-colors duration-300"
+                  className="mb-3 transition-colors duration-500"
                   style={{ color: isActive ? '#8b2020' : '#5a5a5a' }}
                 >
                   {step.icon}
@@ -235,9 +238,10 @@ export default function ProcessSection() {
         {/* Vertical line */}
         <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-neutral-200">
           <div
-            className="w-full bg-brand-accent transition-all duration-1000 ease-out"
+            className="w-full bg-brand-accent transition-all ease-out"
             style={{
               height: isVisible ? `${Math.min(activeStep, steps.length) * 25}%` : '0%',
+              transitionDuration: '800ms',
             }}
           />
         </div>
@@ -252,7 +256,7 @@ export default function ProcessSection() {
               <div key={index} className="relative flex gap-6">
                 {/* Step marker */}
                 <div
-                  className="relative z-10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300"
+                  className="relative z-10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500"
                   style={{
                     backgroundColor: isActive ? '#8b2020' : '#fff',
                     border: isActive ? 'none' : '2px solid #e0e0e0',
@@ -260,7 +264,7 @@ export default function ProcessSection() {
                   }}
                 >
                   <span
-                    className="text-sm font-bold transition-colors duration-300"
+                    className="text-sm font-bold transition-colors duration-500"
                     style={{ color: isActive ? '#fff' : '#8b2020' }}
                   >
                     {step.number}
@@ -271,13 +275,13 @@ export default function ProcessSection() {
                 <div className="flex-1 pt-1">
                   <div className="flex items-center gap-2 mb-2">
                     <div
-                      className="transition-colors duration-300"
+                      className="transition-colors duration-500"
                       style={{ color: isActive ? '#8b2020' : '#5a5a5a' }}
                     >
                       {step.icon}
                     </div>
                     <h3
-                      className="text-lg font-semibold transition-colors duration-300"
+                      className="text-lg font-semibold transition-colors duration-500"
                       style={{ color: isActive ? '#1a1a1a' : '#5a5a5a' }}
                     >
                       {step.title}

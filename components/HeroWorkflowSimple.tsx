@@ -38,9 +38,10 @@ export default function HeroWorkflowSimple() {
 
   return (
     <div className="relative w-full max-w-lg mx-auto" style={{ fontFamily: "'Manrope', sans-serif" }}>
-      {/* SVG Connectors */}
+      {/* SVG Connectors - z-index 0 so lines render behind cards */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{ zIndex: 0 }}
         viewBox="0 0 500 320"
         preserveAspectRatio="xMidYMid meet"
       >
@@ -77,8 +78,8 @@ export default function HeroWorkflowSimple() {
         />
       </svg>
 
-      {/* Cards Container */}
-      <div className="relative" style={{ minHeight: '320px' }}>
+      {/* Cards Container - z-index 1 so cards render above lines */}
+      <div className="relative" style={{ minHeight: '320px', zIndex: 1 }}>
         {/* Trigger Card */}
         <div
           className="absolute"

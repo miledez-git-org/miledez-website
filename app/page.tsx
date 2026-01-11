@@ -5,7 +5,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ValueProposition from '@/components/ValueProposition'
 import WorkflowDemo from '@/components/WorkflowDemo'
-import { LogoMarqueeSection } from '@/components/LogoMarquee'
+import LogoGrid from '@/components/LogoGrid'
 import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
 import HeroWorkflowSimple from '@/components/HeroWorkflowSimple'
@@ -63,7 +63,7 @@ export default function Home() {
                   onClick={() => setIsContactModalOpen(true)}
                   className="btn-primary inline-block px-10 py-5 text-white bg-brand-accent hover:bg-brand-accent-dark"
                 >
-                  Começar agora
+                  Falar conosco
                 </button>
                 <a
                   href="#valor"
@@ -123,7 +123,7 @@ export default function Home() {
           <p className="text-xs font-medium text-brand-muted uppercase tracking-[0.15em] text-center mb-8">
             Integramos com as ferramentas que você já usa
           </p>
-          <LogoMarqueeSection variant="inline" />
+          <LogoGrid />
         </div>
       </section>
 
@@ -147,7 +147,7 @@ export default function Home() {
             href="mailto:contato@miledez.com.br"
             className="inline-block px-10 py-5 text-base font-medium text-brand-accent bg-white hover:bg-neutral-100 transition-colors"
           >
-            Agendar diagnóstico gratuito
+            Agendar uma conversa
           </a>
         </div>
       </section>
