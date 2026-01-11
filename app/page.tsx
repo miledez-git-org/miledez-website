@@ -3,18 +3,13 @@
 import { useEffect } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import ComoFuncionaDemo from '@/components/ComoFuncionaDemo'
-// import WorkflowAutomationVisual from '@/components/WorkflowAutomationVisual' // Kept for future use
-import WorkflowTiersDemo from '@/components/WorkflowTiersDemo'
-import WorkflowShowcase from '@/components/WorkflowShowcase'
+import ValueProposition from '@/components/ValueProposition'
+import WorkflowDemo from '@/components/WorkflowDemo'
 import { LogoMarqueeSection } from '@/components/LogoMarquee'
 import PricingSection from '@/components/PricingSection'
-// import ProcessSection from '@/components/ProcessSection' // Kept for future use
-import ProcessSectionEnhanced from '@/components/ProcessSectionEnhanced'
+import ProcessSection from '@/components/ProcessSection'
 import IndustriesSection from '@/components/IndustriesSection'
-import AnalyticsDashboard from '@/components/AnalyticsDashboard'
-// import FlipCardsSection from '@/components/FlipCardsSection' // Kept for future use
-import HeroWorkflowDemo from '@/components/HeroWorkflowDemo'
+import HeroWorkflowSimple from '@/components/HeroWorkflowSimple'
 import ScrollProgress from '@/components/ScrollProgress'
 
 export default function Home() {
@@ -50,15 +45,15 @@ export default function Home() {
 
             {/* Left column - Hero content */}
             <div className="flex flex-col justify-center">
-              {/* Fixed headline */}
-              <h1 className="heading-display text-5xl md:text-6xl lg:text-7xl text-brand-black">
-                Qualquer processo,<br />
-                <span className="text-brand-accent">automatizado.</span>
+              {/* Headline */}
+              <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-brand-black leading-[1.1]">
+                Automação que funciona<br />
+                <span className="text-brand-accent">sem mudar seu sistema</span>
               </h1>
 
               {/* Subheadline */}
-              <p className="mt-6 text-xl md:text-2xl text-brand-muted font-light">
-                Para PMEs que querem crescer sem aumentar a equipe
+              <p className="mt-6 text-lg md:text-xl text-brand-muted font-light max-w-lg">
+                Implementamos em dias, não meses. Integração zero-code com as ferramentas que você já usa.
               </p>
 
               {/* CTAs */}
@@ -67,10 +62,10 @@ export default function Home() {
                   href="#contato"
                   className="btn-primary inline-block px-10 py-5 text-white bg-brand-accent hover:bg-brand-accent-dark"
                 >
-                  Agendar conversa
+                  Começar agora
                 </a>
                 <a
-                  href="#integracao-visual"
+                  href="#como-funciona"
                   className="btn-secondary inline-block px-8 py-4 text-brand-black border border-brand-border hover:border-brand-accent hover:text-brand-accent"
                 >
                   Ver como funciona
@@ -80,7 +75,7 @@ export default function Home() {
 
             {/* Right column - Workflow Demo */}
             <div className="hidden lg:block">
-              <HeroWorkflowDemo />
+              <HeroWorkflowSimple />
             </div>
 
           </div>
@@ -88,109 +83,78 @@ export default function Home() {
 
       </section>
 
-      {/* Benefits Section - What changes in your company */}
-      <section id="beneficios" className="py-32 md:py-40 bg-bg-muted">
+      {/* Value Proposition */}
+      <section id="valor" className="py-24 md:py-32 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="mb-12 md:mb-16 text-center">
-            <h2 className="heading-section text-[2.5rem] md:text-[3rem] text-brand-black">O que muda na sua empresa</h2>
-            <p className="mt-4 text-lg md:text-xl text-brand-muted">Resultados que começam em dias, não meses</p>
-          </div>
-
-          <ComoFuncionaDemo />
+          <ValueProposition />
         </div>
       </section>
 
-      {/* How It Works - Workflow Tiers Demo */}
-      <section id="integracao-visual" className="py-32 md:py-40 bg-white">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="mb-12 md:mb-16 text-center">
-            <h2 className="heading-section text-[2rem] text-brand-black">
-              Veja a automacao em acao
-            </h2>
-            <p className="mt-4 text-lg text-brand-muted max-w-2xl mx-auto">
-              Do gatilho ao resultado, tudo acontece automaticamente
-            </p>
-          </div>
-
-          <WorkflowTiersDemo />
-
-          {/* Design Variations Showcase */}
-          <div className="mt-20 pt-16 border-t border-brand-border">
-            <div className="text-center mb-8">
-              <p className="text-xs font-medium text-brand-muted uppercase tracking-[0.15em] mb-2">
-                Visualizações Alternativas
-              </p>
-              <h3 className="text-xl font-semibold text-brand-black">
-                Diferentes formas de acompanhar seus fluxos
-              </h3>
-            </div>
-            <WorkflowShowcase />
-          </div>
-
-          {/* Logo Slider - integrations */}
-          <div className="mt-16 pt-12 border-t border-brand-border">
-            <p className="text-xs font-medium text-brand-muted uppercase tracking-[0.15em] text-center mb-8">
-              Integramos com as ferramentas que você já usa
-            </p>
-            <LogoMarqueeSection variant="inline" />
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section - Enhanced */}
-      <div id="processo">
-        <ProcessSectionEnhanced />
-      </div>
-
-      {/* Old Flip Cards Section - Kept for future use
-      <div id="flip-cards" className="py-32 md:py-40">
-        <FlipCardsSection />
-      </div>
-      */}
-
-      {/* Old Process Section - Kept for future use
-      <section id="processo-old" className="py-32 md:py-40 bg-bg-muted">
+      {/* How It Works - Process */}
+      <section id="como-funciona" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ProcessSection />
         </div>
       </section>
-      */}
 
-      {/* Analytics Dashboard */}
-      <section id="resultados" className="bg-white">
-        <AnalyticsDashboard />
+      {/* Workflow Demo */}
+      <section id="demo" className="py-24 md:py-32 bg-bg-muted">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <div className="mb-12 md:mb-16 text-center">
+            <p className="text-xs font-semibold text-brand-muted uppercase tracking-[0.15em] mb-4">
+              Veja em ação
+            </p>
+            <h2 className="heading-section text-[2rem] md:text-[2.5rem] text-brand-black">
+              Do gatilho ao resultado
+            </h2>
+            <p className="mt-4 text-lg text-brand-muted max-w-xl mx-auto">
+              Tudo acontece automaticamente, sem intervenção manual
+            </p>
+          </div>
+
+          <WorkflowDemo />
+        </div>
+      </section>
+
+      {/* Integrations */}
+      <section id="integracoes" className="py-16 md:py-20 bg-white border-y border-brand-border">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <p className="text-xs font-medium text-brand-muted uppercase tracking-[0.15em] text-center mb-8">
+            Integramos com as ferramentas que você já usa
+          </p>
+          <LogoMarqueeSection variant="inline" />
+        </div>
       </section>
 
       {/* Pricing */}
-      <section id="precos" className="py-32 md:py-40 bg-bg-muted">
+      <section id="precos" className="py-24 md:py-32 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <PricingSection />
         </div>
       </section>
 
-      {/* Industries + Contact (merged closing section) */}
-      <section id="contato" className="py-32 md:py-40 bg-white">
+      {/* Industries */}
+      <section id="setores" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          {/* Industries */}
-          <div className="mb-20">
-            <IndustriesSection />
-          </div>
+          <IndustriesSection />
+        </div>
+      </section>
 
-          {/* CTA */}
-          <div className="text-center pt-12 border-t border-brand-border">
-            <h2 className="heading-section text-[2.5rem] mb-6 text-brand-black">
-              Vamos automatizar sua operação?
-            </h2>
-            <p className="text-lg max-w-md mx-auto mb-12 text-brand-text">
-              Conversa sem compromisso. Entendemos seu negócio e mostramos o que é possível.
-            </p>
-            <a
-              href="mailto:contato@miledez.com.br"
-              className="btn-primary inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark"
-            >
-              Iniciar conversa
-            </a>
-          </div>
+      {/* CTA */}
+      <section id="contato" className="py-24 md:py-32 bg-brand-accent">
+        <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
+          <h2 className="text-[2rem] md:text-[2.5rem] font-medium text-white mb-6">
+            Pronto para automatizar?
+          </h2>
+          <p className="text-lg text-white/80 max-w-lg mx-auto mb-10">
+            Sem compromisso, sem custo inicial. Conversamos sobre seus processos e mostramos o potencial de economia.
+          </p>
+          <a
+            href="mailto:contato@miledez.com.br"
+            className="inline-block px-10 py-5 text-base font-medium text-brand-accent bg-white hover:bg-neutral-100 transition-colors"
+          >
+            Agendar diagnóstico gratuito
+          </a>
         </div>
       </section>
 

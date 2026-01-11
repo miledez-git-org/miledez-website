@@ -1,73 +1,69 @@
 'use client'
 
-import { useScrollReveal } from '@/hooks/useScrollReveal'
+interface Step {
+  number: string
+  title: string
+  description: string
+}
 
-const steps = [
-  { num: '01', title: 'Diagnóstico', desc: 'Mapeamos seus processos atuais e identificamos gargalos' },
-  { num: '02', title: 'Proposta', desc: 'Apresentamos soluções específicas com ROI estimado' },
-  { num: '03', title: 'Implementação', desc: 'Construímos e configuramos as automações' },
-  { num: '04', title: 'Acompanhamento', desc: 'Monitoramos e otimizamos continuamente' },
+const steps: Step[] = [
+  {
+    number: '01',
+    title: 'Diagnóstico',
+    description: 'Analisamos seus processos e identificamos as maiores oportunidades de automação.',
+  },
+  {
+    number: '02',
+    title: 'Implementação',
+    description: 'Construímos e conectamos os workflows às suas ferramentas existentes.',
+  },
+  {
+    number: '03',
+    title: 'Resultados',
+    description: 'Você acompanha os ganhos em tempo real enquanto mantemos tudo funcionando.',
+  },
 ]
 
 export default function ProcessSection() {
-  const { ref, isVisible } = useScrollReveal({ threshold: 0.3 })
-
   return (
-    <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-32">
-      <div>
-        <h2 className="text-[2rem] font-medium mb-12 text-brand-black tracking-[-0.02em]">Nosso processo</h2>
-        <p className="text-lg text-brand-text leading-relaxed">
-          Entendemos sua operação, identificamos oportunidades de automação e implementamos soluções que funcionam.
+    <div>
+      {/* Header */}
+      <div className="mb-12 md:mb-16 text-center">
+        <p className="text-xs font-semibold text-brand-muted uppercase tracking-[0.15em] mb-4">
+          Como funciona
         </p>
+        <h2 className="text-[2rem] md:text-[2.5rem] font-medium text-brand-black tracking-[-0.02em]">
+          Processo simples, resultado rápido
+        </h2>
       </div>
-      <div className="space-y-0">
-        {steps.map((step, i) => (
-          <div
-            key={i}
-            className="relative"
-            style={{
-              transform: isVisible ? 'translateX(0)' : 'translateX(-16px)',
-              transition: `transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 100}ms`,
-            }}
-          >
-            {/* Connecting line */}
-            {i < steps.length - 1 && (
-              <svg
-                className="absolute left-3 top-12 w-px h-[calc(100%-24px)] text-brand-border"
-                preserveAspectRatio="none"
-              >
-                <line
-                  x1="0"
-                  y1="0"
-                  x2="0"
-                  y2="100%"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  style={{
-                    strokeDasharray: 100,
-                    strokeDashoffset: isVisible ? 0 : 100,
-                    transition: `stroke-dashoffset 0.8s ease-out ${300 + i * 150}ms`,
-                  }}
-                />
-              </svg>
+
+      {/* Steps */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        {steps.map((step, index) => (
+          <div key={index} className="relative">
+            {/* Connector line (hidden on mobile, visible md+) */}
+            {index < steps.length - 1 && (
+              <div
+                className="hidden md:block absolute top-8 left-[calc(50%+40px)] w-[calc(100%-80px)] h-px bg-brand-border"
+                aria-hidden="true"
+              />
             )}
 
-            <div className="flex gap-6 pb-8 border-b border-brand-border last:border-0">
-              {/* Step number */}
-              <span
-                className="text-base text-brand-accent font-medium"
-                style={{
-                  transform: isVisible ? 'scale(1)' : 'scale(0.8)',
-                  transition: `transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) ${i * 100}ms`,
-                }}
-              >
-                {step.num}
-              </span>
-
-              <div>
-                <h4 className="text-base font-medium mb-2 text-brand-black">{step.title}</h4>
-                <p className="text-base text-brand-text">{step.desc}</p>
+            <div className="text-center">
+              {/* Number */}
+              <div className="inline-flex items-center justify-center w-16 h-16 mb-6 border-2 border-brand-accent rounded-full">
+                <span className="text-lg font-bold text-brand-accent">{step.number}</span>
               </div>
+
+              {/* Title */}
+              <h3 className="text-xl font-semibold text-brand-black mb-3">
+                {step.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-base text-brand-muted leading-relaxed max-w-xs mx-auto">
+                {step.description}
+              </p>
             </div>
           </div>
         ))}

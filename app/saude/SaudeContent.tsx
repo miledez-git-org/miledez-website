@@ -3,7 +3,7 @@
 // import Link from 'next/link' // Kept for future use
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import WorkflowDemo, { exampleIcons } from '@/components/WorkflowDemo'
+import WorkflowDemoLegacy, { exampleIcons } from '@/components/WorkflowDemoLegacy'
 import ChallengeCard from '@/components/industry/ChallengeCard'
 import MetricsGrid from '@/components/industry/MetricsGrid'
 import IndustryHeroVisualization from '@/components/industry/IndustryHeroVisualization'
@@ -327,7 +327,7 @@ export default function SaudeContent() {
                     <p className="text-brand-muted">{workflow.subtitle}</p>
                   </div>
                 </div>
-                <WorkflowDemo steps={workflow.steps} />
+                <WorkflowDemoLegacy steps={workflow.steps} />
               </div>
             ))}
           </div>

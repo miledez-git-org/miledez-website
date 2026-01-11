@@ -10,24 +10,8 @@ export default function Footer() {
 
       {/* Content */}
       <div className="relative max-w-6xl mx-auto">
-        {/* Large CTA section */}
-        <div className="mb-16 md:mb-24">
-          <h2 className="heading-section text-3xl md:text-4xl mb-6 text-white">
-            Pronto para automatizar?
-          </h2>
-          <p className="text-lg text-white/80 mb-8 max-w-md">
-            Comece sua jornada de automação hoje. Conversa sem compromisso.
-          </p>
-          <a
-            href="mailto:contato@miledez.com.br"
-            className="btn-secondary inline-block px-10 py-5 text-base font-medium bg-white text-brand-accent hover:bg-white/90"
-          >
-            Iniciar conversa
-          </a>
-        </div>
-
         {/* Footer links */}
-        <div className="border-t border-white/20 pt-8">
+        <div>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             {/* Logo and tagline */}
             <div>
@@ -35,7 +19,7 @@ export default function Footer() {
                 mil&dez
               </div>
               <p className="text-sm text-white/60">
-                Automacao de processos para empresas
+                Automação de processos para empresas
               </p>
             </div>
 
@@ -45,19 +29,19 @@ export default function Footer() {
                 href="/"
                 className="text-sm text-white/80 hover:text-white transition-colors"
               >
-                Inicio
+                Início
               </Link>
               <Link
                 href="/saude"
                 className="text-sm text-white/80 hover:text-white transition-colors"
               >
-                Saude
+                Saúde
               </Link>
               <Link
                 href="/servicos"
                 className="text-sm text-white/80 hover:text-white transition-colors"
               >
-                Servicos
+                Serviços
               </Link>
               <Link
                 href="/varejo"
