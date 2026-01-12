@@ -118,11 +118,8 @@ export default function Home() {
       </section>
 
       {/* Integrations */}
-      <section id="integracoes" className="py-16 md:py-20 bg-white border-y border-brand-border">
+      <section id="integracoes" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <p className="text-xs font-medium text-brand-muted uppercase tracking-[0.15em] text-center mb-8">
-            Integramos com as ferramentas que você já usa
-          </p>
           <LogoGrid />
         </div>
       </section>

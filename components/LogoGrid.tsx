@@ -2,7 +2,7 @@
 
 /**
  * LogoGrid - Floating integration logos with soft shadows
- * 8x4 grid (32 logos), 48x48px boxes with 6px padding
+ * 8x4 grid (32 logos), 52x52px boxes with 10px padding (32x32 logo)
  * Design: Logo Cloud v2.0
  */
 
@@ -50,21 +50,37 @@ const logos = [
 
 export default function LogoGrid() {
   return (
-    <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4 justify-items-center">
-      {logos.map((logo) => (
-        <div
-          key={logo.name}
-          className="w-12 h-12 p-1.5 flex items-center justify-center bg-white rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow duration-200"
-          title={logo.name}
-        >
-          <img
-            src={logo.src}
-            alt={logo.name}
-            className="w-full h-full object-contain"
-            loading="lazy"
-          />
-        </div>
-      ))}
+    <div>
+      {/* Section Header */}
+      <div className="mb-12 md:mb-16 text-center">
+        <p className="text-xs font-semibold text-brand-muted uppercase tracking-[0.15em] mb-4">
+          Integrações
+        </p>
+        <h2 className="heading-section text-[2rem] md:text-[2.5rem] text-brand-black">
+          Conectamos suas ferramentas
+        </h2>
+        <p className="mt-4 text-lg text-brand-muted max-w-xl mx-auto">
+          Integração nativa com os sistemas que sua empresa já utiliza
+        </p>
+      </div>
+
+      {/* Logo Grid */}
+      <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4 justify-items-center">
+        {logos.map((logo) => (
+          <div
+            key={logo.name}
+            className="w-[52px] h-[52px] flex items-center justify-center bg-white rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.12)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.18)] transition-shadow duration-200"
+            title={logo.name}
+          >
+            <img
+              src={logo.src}
+              alt={logo.name}
+              className="w-8 h-8 object-contain opacity-60 grayscale-[30%] hover:opacity-100 hover:grayscale-0 transition-all duration-200"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
