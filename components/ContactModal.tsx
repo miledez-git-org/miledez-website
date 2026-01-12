@@ -140,7 +140,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               </p>
               <button
                 onClick={resetAndClose}
-                className="btn-primary px-8 py-3 text-white bg-brand-accent hover:bg-brand-accent-dark"
+                className="btn btn-primary btn-lg"
               >
                 Fechar
               </button>
@@ -227,7 +227,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 <button
                   type="submit"
                   disabled={formStatus === 'loading'}
-                  className="w-full btn-primary py-4 text-white bg-brand-accent hover:bg-brand-accent-dark disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full btn btn-primary btn-lg gap-2"
                 >
                   {formStatus === 'loading' ? (
                     <>

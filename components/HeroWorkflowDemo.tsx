@@ -193,30 +193,64 @@ function WorkflowCardComponent({
   )
 }
 
-// Connector line between cards - centered on card
+// Connector line between cards - uses SVG elbow path to connect different offsets
 function ConnectorLine({
   isActive,
-  cardOffsetX,
+  fromOffsetX,
+  toOffsetX,
 }: {
   isActive: boolean
-  cardOffsetX: number
+  fromOffsetX: number
+  toOffsetX: number
 }) {
-  // Position connector at center of card
-  const connectorLeft = cardOffsetX + (CARD_WIDTH / 2)
+  // Calculate center points of source and target cards
+  const fromCenterX = fromOffsetX + (CARD_WIDTH / 2)
+  const toCenterX = toOffsetX + (CARD_WIDTH / 2)
+
+  // SVG dimensions - need to accommodate the horizontal span
+  const minX = Math.min(fromCenterX, toCenterX)
+  const maxX = Math.max(fromCenterX, toCenterX)
+  const width = Math.max(maxX - minX + 4, 4) // minimum 4px width
+  const height = 24 // connector height
+
+  // Adjust coordinates relative to SVG viewBox
+  const startX = fromCenterX - minX + 2 // +2 for stroke padding
+  const endX = toCenterX - minX + 2
+  const midY = height / 2
+
+  // Create elbow path: vertical down, horizontal, vertical down
+  // If cards are aligned, just draw a straight line
+  const path = startX === endX
+    ? `M ${startX} 0 L ${startX} ${height}`
+    : `M ${startX} 0 L ${startX} ${midY} L ${endX} ${midY} L ${endX} ${height}`
 
   return (
     <div
-      className="relative h-6"
-      style={{ marginLeft: `${connectorLeft}px` }}
+      className="relative"
+      style={{
+        marginLeft: `${minX - 2}px`, // -2 for stroke padding
+        height: `${height}px`,
+        width: `${width}px`
+      }}
     >
-      {/* Static vertical line with smooth color transition */}
-      <motion.div
-        animate={{
-          backgroundColor: isActive ? '#9CA3AF' : '#E5E7EB',
-        }}
-        transition={{ duration: 0.5, ease: 'easeInOut' }}
-        className="w-0.5 h-full"
-      />
+      <svg
+        width={width}
+        height={height}
+        viewBox={`0 0 ${width} ${height}`}
+        className="overflow-visible"
+      >
+        <motion.path
+          d={path}
+          fill="none"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          animate={{
+            stroke: isActive ? '#9CA3AF' : '#E5E7EB',
+          }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+        />
+      </svg>
     </div>
   )
 }
@@ -447,7 +481,8 @@ export default function HeroWorkflowDemo() {
             {/* Connector line from industry card to first workflow card */}
             <ConnectorLine
               isActive={isCardActive(0)}
-              cardOffsetX={30}
+              fromOffsetX={30}
+              toOffsetX={workflowCards[0].offsetX}
             />
             {/* Workflow cards */}
             {workflowCards.map((card, index) => (
@@ -460,7 +495,8 @@ export default function HeroWorkflowDemo() {
                 {index < workflowCards.length - 1 && (
                   <ConnectorLine
                     isActive={isConnectorActive(index)}
-                    cardOffsetX={card.offsetX}
+                    fromOffsetX={card.offsetX}
+                    toOffsetX={workflowCards[index + 1].offsetX}
                   />
                 )}
               </div>

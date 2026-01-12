@@ -152,7 +152,7 @@ export default function Header() {
 
           <Link
             href="/#contato"
-            className="bg-brand-accent text-white px-5 py-2 hover:bg-brand-accent-dark transition-colors"
+            className="btn btn-primary btn-md"
           >
             Contato
           </Link>
@@ -214,7 +214,7 @@ export default function Header() {
             </Link>
             <Link
               href="/#contato"
-              className="mt-2 bg-brand-accent text-white px-5 py-3 min-h-[44px] flex items-center justify-center hover:bg-brand-accent-dark transition-colors"
+              className="mt-2 btn btn-primary btn-lg w-full"
               onClick={() => setMobileMenuOpen(false)}
               role="menuitem"
             >

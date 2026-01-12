@@ -1,94 +1,66 @@
 'use client'
 
 /**
- * LogoGrid - Static grid of integration logos
- * Shows 48+ colored logos in a responsive grid layout
- * Desktop: 8 columns, Tablet: 6 columns, Mobile: 4 columns
+ * LogoGrid - Floating integration logos with soft shadows
+ * 8x4 grid (32 logos), 48x48px boxes with 6px padding
+ * Design: Logo Cloud v2.0
  */
 
 const logos = [
-  // Communication
+  // Row 1 - Communication & Productivity
   { name: 'WhatsApp', src: '/logos/whatsapp.svg' },
   { name: 'Gmail', src: '/logos/gmail.svg' },
   { name: 'Outlook', src: '/logos/outlook.svg' },
-  { name: 'Slack', src: '/logos/slack.svg' },
-  { name: 'Teams', src: '/logos/teams.svg' },
-  { name: 'Discord', src: '/logos/discord.svg' },
-  { name: 'Telegram', src: '/logos/telegram.svg' },
-  { name: 'Zoom', src: '/logos/zoom.svg' },
-
-  // Cloud Storage & Docs
-  { name: 'Google Drive', src: '/logos/google-drive.svg' },
-  { name: 'OneDrive', src: '/logos/onedrive.svg' },
-  { name: 'Dropbox', src: '/logos/dropbox.svg' },
   { name: 'Google Sheets', src: '/logos/google-sheets.svg' },
   { name: 'Excel', src: '/logos/excel.svg' },
   { name: 'Word', src: '/logos/word.svg' },
-  { name: 'PowerPoint', src: '/logos/powerpoint.svg' },
-  { name: 'Notion', src: '/logos/notion.svg' },
-
-  // Project Management
-  { name: 'Trello', src: '/logos/trello.svg' },
-  { name: 'Asana', src: '/logos/asana.svg' },
-  { name: 'Monday', src: '/logos/monday.svg' },
-  { name: 'Jira', src: '/logos/jira.svg' },
-  { name: 'Airtable', src: '/logos/airtable.svg' },
   { name: 'Google Calendar', src: '/logos/google-calendar.svg' },
-  { name: 'Figma', src: '/logos/figma.svg' },
-  { name: 'DocuSign', src: '/logos/docusign.svg' },
+  { name: 'OneDrive', src: '/logos/onedrive.svg' },
 
-  // Payments (BR focus)
+  // Row 2 - Brazilian Payment & Finance
   { name: 'PIX', src: '/logos/pix.svg' },
-  { name: 'Nubank', src: '/logos/nubank.svg' },
   { name: 'MercadoPago', src: '/logos/mercadopago.svg' },
   { name: 'PagSeguro', src: '/logos/pagseguro.svg' },
-  { name: 'Stripe', src: '/logos/stripe.svg' },
-  { name: 'PayPal', src: '/logos/paypal.svg' },
   { name: 'ContaAzul', src: '/logos/contaazul.svg' },
-  { name: 'Bling', src: '/logos/bling.svg' },
-
-  // E-commerce & Logistics
-  { name: 'Mercado Livre', src: '/logos/mercado-livre.svg' },
-  { name: 'Amazon', src: '/logos/amazon.svg' },
-  { name: 'Shopify', src: '/logos/shopify.svg' },
-  { name: 'Nuvemshop', src: '/logos/nuvemshop.svg' },
-  { name: 'WooCommerce', src: '/logos/woocommerce.svg' },
+  { name: 'Alelo', src: '/logos/alelo.svg' },
   { name: 'iFood', src: '/logos/ifood.svg' },
+  { name: 'Mercado Livre', src: '/logos/mercado-livre.svg' },
   { name: 'Correios', src: '/logos/correios.svg' },
-  { name: 'Instagram', src: '/logos/instagram.svg' },
 
-  // CRM & Sales
-  { name: 'Pipedrive', src: '/logos/pipedrive.svg' },
-  { name: 'HubSpot', src: '/logos/hubspot.svg' },
+  // Row 3 - CRM & Sales
   { name: 'Salesforce', src: '/logos/salesforce.svg' },
-  { name: 'Zendesk', src: '/logos/zendesk.svg' },
+  { name: 'Shopify', src: '/logos/shopify.svg' },
+  { name: 'Amazon', src: '/logos/amazon.svg' },
+  { name: 'LinkedIn', src: '/logos/linkedin.svg' },
+  { name: 'DocuSign', src: '/logos/docusign.svg' },
   { name: 'Intercom', src: '/logos/intercom.svg' },
-  { name: 'Mailchimp', src: '/logos/mailchimp.svg' },
-  { name: 'Typeform', src: '/logos/typeform.svg' },
   { name: 'Doctoralia', src: '/logos/doctoralia.svg' },
-
-  // Automation & AI
-  { name: 'Zapier', src: '/logos/zapier.svg' },
-  { name: 'Make', src: '/logos/make.svg' },
-  { name: 'n8n', src: '/logos/n8n.svg' },
-  { name: 'OpenAI', src: '/logos/openai.svg' },
-  { name: 'Claude', src: '/logos/claude.svg' },
   { name: 'iClinic', src: '/logos/iclinic.svg' },
+
+  // Row 4 - Additional Integrations
+  { name: 'Slack', src: '/logos/slack.svg' },
+  { name: 'Trello', src: '/logos/trello.svg' },
+  { name: 'Notion', src: '/logos/notion.svg' },
+  { name: 'Stripe', src: '/logos/stripe.svg' },
+  { name: 'HubSpot', src: '/logos/hubspot.svg' },
+  { name: 'Pipedrive', src: '/logos/pipedrive.svg' },
+  { name: 'Zendesk', src: '/logos/zendesk.svg' },
+  { name: 'Zapier', src: '/logos/zapier.svg' },
 ]
 
 export default function LogoGrid() {
   return (
-    <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-9 lg:grid-cols-12 gap-x-6 gap-y-4 items-center justify-items-center">
+    <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4 justify-items-center">
       {logos.map((logo) => (
         <div
           key={logo.name}
-          className="flex items-center justify-center"
+          className="w-12 h-12 p-1.5 flex items-center justify-center bg-white rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow duration-200"
           title={logo.name}
         >
           <img
             src={logo.src}
             alt={logo.name}
-            className="h-6 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-200"
+            className="w-full h-full object-contain"
             loading="lazy"
           />
         </div>

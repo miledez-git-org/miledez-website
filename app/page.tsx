@@ -61,13 +61,13 @@ export default function Home() {
               <div className="mt-10 md:mt-12 flex flex-wrap gap-4">
                 <button
                   onClick={() => setIsContactModalOpen(true)}
-                  className="btn-primary inline-block px-10 py-5 text-white bg-brand-accent hover:bg-brand-accent-dark"
+                  className="btn btn-primary btn-xl"
                 >
                   Falar conosco
                 </button>
                 <a
                   href="#valor"
-                  className="btn-secondary inline-block px-8 py-4 text-brand-black border border-brand-border hover:border-brand-accent hover:text-brand-accent"
+                  className="btn btn-outline btn-lg"
                 >
                   Porque automatizar
                 </a>
@@ -145,7 +145,7 @@ export default function Home() {
           </p>
           <a
             href="mailto:contato@miledez.com.br"
-            className="inline-block px-10 py-5 text-base font-medium text-brand-accent bg-white hover:bg-neutral-100 transition-colors"
+            className="btn btn-inverted btn-xl"
           >
             Agendar uma conversa
           </a>

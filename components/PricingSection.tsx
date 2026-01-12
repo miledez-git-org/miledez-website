@@ -186,7 +186,7 @@ export default function PricingSection() {
           href="https://calendar.app.google/3nqUQJDPymSrksKM8"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block px-10 py-4 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark transition-colors"
+          className="btn btn-primary btn-xl"
         >
           Agendar diagnóstico
         </a>
