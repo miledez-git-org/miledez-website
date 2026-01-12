@@ -1,240 +1,266 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 
-interface BenefitCard {
-  id: number
-  headline: string
-  description: string
-  accentColor: string
-  icon: React.ReactNode
-  visual: React.ReactNode
-}
-
-// Animated visual components for each card
-function GearAnimation({ isActive }: { isActive: boolean }) {
+// Floating metric card component
+function MetricCard({
+  label,
+  value,
+  trend,
+  trendValue,
+  isVisible,
+  delay = 0,
+  className = '',
+}: {
+  label: string
+  value: string
+  trend?: 'up' | 'down'
+  trendValue?: string
+  isVisible: boolean
+  delay?: number
+  className?: string
+}) {
   return (
-    <div className="flex items-center gap-3 mt-4">
-      <div
-        className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center"
-        style={{
-          animation: isActive ? 'spin 8s linear infinite' : 'none',
-        }}
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b45309" strokeWidth="2">
-          <circle cx="12" cy="12" r="3" />
-          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
-        </svg>
-      </div>
-      <div
-        className="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center"
-        style={{
-          animation: isActive ? 'spin 6s linear infinite reverse' : 'none',
-        }}
-      >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="2">
-          <circle cx="12" cy="12" r="3" />
-          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
-        </svg>
-      </div>
-      <span className="text-sm text-amber-700 font-medium">Sob medida</span>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      animate={{
+        opacity: isVisible ? 1 : 0,
+        y: isVisible ? 0 : 20,
+        scale: isVisible ? 1 : 0.95,
+      }}
+      transition={{
+        duration: 0.5,
+        delay,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className={`bg-white rounded-xl p-4 border border-gray-100 ${className}`}
+      style={{
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04)',
+      }}
+    >
+      <p className="text-xs text-gray-500 mb-1 font-medium">{label}</p>
+      <p className="text-2xl font-bold text-gray-900 tracking-tight">{value}</p>
+      {trend && trendValue && (
+        <div className="flex items-center gap-1 mt-1.5">
+          <span className={`text-xs font-medium ${trend === 'up' ? 'text-emerald-600' : 'text-red-500'}`}>
+            {trend === 'up' ? '↗' : '↘'} {trendValue}
+          </span>
+          <div className="h-0.5 w-8 bg-gradient-to-r from-emerald-400 to-emerald-200 rounded-full" />
+        </div>
+      )}
+    </motion.div>
   )
 }
 
-function IntegrationAnimation({ isActive }: { isActive: boolean }) {
+// Integration logo badges
+function IntegrationLogos({ isVisible }: { isVisible: boolean }) {
   const logos = [
-    { bg: '#4285F4', letter: 'G' },
-    { bg: '#0A66C2', letter: 'in' },
-    { bg: '#25D366', letter: 'W' },
-    { bg: '#FF6B00', letter: 'H' },
+    { bg: '#4285F4', letter: 'G', name: 'Google' },
+    { bg: '#25D366', letter: 'W', name: 'WhatsApp' },
+    { bg: '#FF6B00', letter: 'H', name: 'HubSpot' },
+    { bg: '#0A66C2', letter: 'in', name: 'LinkedIn' },
   ]
 
   return (
-    <div className="flex items-center gap-2 mt-4">
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 15 }}
+      transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      className="bg-white rounded-xl px-4 py-3 border border-gray-100 inline-flex items-center gap-2"
+      style={{
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04)',
+      }}
+    >
       {logos.map((logo, i) => (
-        <div
-          key={i}
-          className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold"
-          style={{
-            backgroundColor: logo.bg,
-            opacity: isActive ? 1 : 0.5,
-            transform: isActive ? 'scale(1)' : 'scale(0.9)',
-            transition: `all 400ms ease ${i * 100}ms`,
-          }}
+        <motion.div
+          key={logo.name}
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: isVisible ? 1 : 0.8, opacity: isVisible ? 1 : 0 }}
+          transition={{ duration: 0.3, delay: 0.4 + i * 0.08 }}
+          className="w-7 h-7 rounded-md flex items-center justify-center text-white text-xs font-bold"
+          style={{ backgroundColor: logo.bg }}
         >
           {logo.letter}
-        </div>
+        </motion.div>
       ))}
-      <div
-        className="ml-1 flex items-center gap-1"
-        style={{
-          opacity: isActive ? 1 : 0,
-          transition: 'opacity 600ms ease 400ms',
-        }}
+      <motion.span
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isVisible ? 1 : 0 }}
+        transition={{ duration: 0.3, delay: 0.7 }}
+        className="text-emerald-600 text-sm font-medium ml-1"
       >
-        <span className="text-teal-600 text-lg">+</span>
-        <span className="text-sm text-teal-700 font-medium">Conectado</span>
-      </div>
-    </div>
+        +12
+      </motion.span>
+    </motion.div>
   )
 }
 
-function ProgressAnimation({ isActive }: { isActive: boolean }) {
+// Progress timeline card
+function TimelineCard({ isVisible }: { isVisible: boolean }) {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    if (isActive) {
-      const timer = setTimeout(() => setProgress(100), 100)
+    if (isVisible) {
+      const timer = setTimeout(() => setProgress(100), 300)
       return () => clearTimeout(timer)
     } else {
       setProgress(0)
     }
-  }, [isActive])
+  }, [isVisible])
 
   return (
-    <div className="mt-4">
+    <motion.div
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      animate={{
+        opacity: isVisible ? 1 : 0,
+        y: isVisible ? 0 : 20,
+        scale: isVisible ? 1 : 0.95,
+      }}
+      transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+      className="bg-white rounded-xl p-4 border border-gray-100"
+      style={{
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04)',
+        width: '180px',
+      }}
+    >
       <div className="flex items-center justify-between mb-2">
-        <span className="text-xs text-emerald-600 font-medium">Implementação</span>
-        <span className="text-xs text-emerald-700 font-bold">3 dias</span>
+        <span className="text-xs text-gray-500 font-medium">Implementação</span>
+        <span className="text-xs text-emerald-600 font-bold">3 dias</span>
       </div>
-      <div className="h-2 bg-emerald-100 rounded-full overflow-hidden">
+      <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
         <div
           className="h-full bg-emerald-500 rounded-full"
           style={{
             width: `${progress}%`,
-            transition: 'width 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
+            transition: 'width 1.2s cubic-bezier(0.22, 1, 0.36, 1)',
           }}
         />
       </div>
-      <div className="flex justify-between mt-1.5 text-xs text-emerald-600/60">
+      <div className="flex justify-between mt-1.5 text-[10px] text-gray-400">
         <span>Início</span>
         <span>Entrega</span>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
-function RiskFreeAnimation({ isActive }: { isActive: boolean }) {
+// Check badge component
+function CheckBadge({ text, isVisible, delay = 0 }: { text: string; isVisible: boolean; delay?: number }) {
   return (
-    <div className="flex items-center gap-3 mt-4">
-      <div
-        className="flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-lg"
-        style={{
-          opacity: isActive ? 1 : 0.5,
-          transform: isActive ? 'translateX(0)' : 'translateX(-8px)',
-          transition: 'all 400ms ease',
-        }}
-      >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#2563eb"
-          strokeWidth="2.5"
-          style={{
-            opacity: isActive ? 1 : 0,
-            transition: 'opacity 400ms ease 200ms',
-          }}
-        >
-          <path d="M20 6L9 17l-5-5" />
-        </svg>
-        <span className="text-sm font-bold text-blue-700">R$ 0</span>
-        <span className="text-xs text-blue-600">inicial</span>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9, x: -10 }}
+      animate={{
+        opacity: isVisible ? 1 : 0,
+        scale: isVisible ? 1 : 0.9,
+        x: isVisible ? 0 : -10,
+      }}
+      transition={{ duration: 0.4, delay, ease: [0.22, 1, 0.36, 1] }}
+      className="bg-white rounded-lg px-3 py-2 border border-gray-100 inline-flex items-center gap-2"
+      style={{
+        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.05)',
+      }}
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5">
+        <path d="M20 6L9 17l-5-5" />
+      </svg>
+      <span className="text-sm font-medium text-gray-700">{text}</span>
+    </motion.div>
+  )
+}
+
+// Section box component
+function ValueBox({
+  tag,
+  headline,
+  description,
+  floatingContent,
+  isVisible,
+  reverse = false,
+}: {
+  tag: string
+  headline: string
+  description: string
+  floatingContent: React.ReactNode
+  isVisible: boolean
+  reverse?: boolean
+}) {
+  return (
+    <div
+      className={`bg-neutral-50 rounded-xl p-8 lg:p-12 flex flex-col ${
+        reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'
+      } gap-8 lg:gap-12 items-center`}
+      style={{
+        border: '1px solid rgba(0, 0, 0, 0.04)',
+      }}
+    >
+      {/* Floating cards area */}
+      <div className="flex-1 w-full lg:w-auto min-h-[200px] relative flex items-center justify-center">
+        <div className="relative">{floatingContent}</div>
       </div>
-      <div
-        className="text-xs text-blue-600"
-        style={{
-          opacity: isActive ? 1 : 0,
-          transition: 'opacity 400ms ease 400ms',
-        }}
-      >
-        Cancele quando quiser
+
+      {/* Copy area */}
+      <div className={`flex-1 ${reverse ? 'lg:text-right' : ''}`}>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 10 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className={`inline-flex items-center gap-1.5 px-2.5 py-1 bg-white rounded-md border border-gray-200 mb-4 ${
+            reverse ? 'lg:ml-auto' : ''
+          }`}
+        >
+          <span className="text-xs font-medium text-gray-600">↗</span>
+          <span className="text-xs font-semibold text-gray-700 tracking-tight">{tag}</span>
+        </motion.div>
+
+        <motion.h3
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 10 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-2xl lg:text-[1.75rem] font-semibold text-brand-black mb-4 leading-tight"
+        >
+          {headline}
+        </motion.h3>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 10 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-base lg:text-lg leading-relaxed text-gray-600"
+        >
+          {description}
+        </motion.p>
       </div>
     </div>
   )
 }
-
-const benefits: BenefitCard[] = [
-  {
-    id: 1,
-    headline: 'Personalizado para seu negócio',
-    description: 'Soluções 100% customizadas para suas necessidades específicas. Nada de templates genéricos.',
-    accentColor: '#b45309', // amber
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-        <path d="M2 17l10 5 10-5" />
-        <path d="M2 12l10 5 10-5" />
-      </svg>
-    ),
-    visual: <GearAnimation isActive={false} />,
-  },
-  {
-    id: 2,
-    headline: 'Conectamos com seus sistemas',
-    description: 'Integramos com as ferramentas que você já usa. Você não precisa mudar nada na sua operação.',
-    accentColor: '#0d9488', // teal
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 17a3 3 0 100-6 3 3 0 000 6z" />
-        <path d="M17 14v3h3" />
-      </svg>
-    ),
-    visual: <IntegrationAnimation isActive={false} />,
-  },
-  {
-    id: 3,
-    headline: 'Pronto em dias, não semanas',
-    description: 'Implementação rápida sem projetos longos ou burocracia. Você vê resultados desde a primeira semana.',
-    accentColor: '#059669', // emerald
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-      </svg>
-    ),
-    visual: <ProgressAnimation isActive={false} />,
-  },
-  {
-    id: 4,
-    headline: 'Sem investimento, sem risco',
-    description: 'Apenas mensalidade. Cancele quando quiser, sem multas ou surpresas. Você só paga enquanto faz sentido.',
-    accentColor: '#2563eb', // blue
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <path d="M9 12l2 2 4-4" />
-      </svg>
-    ),
-    visual: <RiskFreeAnimation isActive={false} />,
-  },
-]
 
 export default function ValueProposition() {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
-  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set())
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+  const [visibleBoxes, setVisibleBoxes] = useState<Set<number>>(new Set())
+  const boxRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const cardId = Number(entry.target.getAttribute('data-card-id'))
+          const boxId = Number(entry.target.getAttribute('data-box-id'))
           if (entry.isIntersecting) {
-            setVisibleCards((prev) => new Set(prev).add(cardId))
+            setVisibleBoxes((prev) => new Set(prev).add(boxId))
           }
         })
       },
-      { threshold: 0.3 }
+      { threshold: 0.25 }
     )
 
-    cardRefs.current.forEach((ref) => {
+    boxRefs.current.forEach((ref) => {
       if (ref) observer.observe(ref)
     })
 
     return () => observer.disconnect()
   }, [])
+
+  const isBox1Visible = visibleBoxes.has(1)
+  const isBox2Visible = visibleBoxes.has(2)
 
   return (
     <div>
@@ -248,68 +274,70 @@ export default function ValueProposition() {
         </h2>
       </div>
 
-      {/* Benefits grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-        {benefits.map((benefit, index) => {
-          const isHovered = hoveredCard === benefit.id
-          const isVisible = visibleCards.has(benefit.id)
-          const isActive = isHovered || isVisible
-
-          return (
-            <div
-              key={benefit.id}
-              ref={(el) => { cardRefs.current[index] = el }}
-              data-card-id={benefit.id}
-              className="bg-white p-8 lg:p-10 transition-all duration-300 relative overflow-hidden"
-              style={{
-                borderLeft: `4px solid ${benefit.accentColor}`,
-                boxShadow: isHovered
-                  ? '0 0 0 1px rgba(0,0,0,0.03), 0 8px 24px rgba(0,0,0,0.08)'
-                  : '0 0 0 1px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06)',
-                transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
-              }}
-              onMouseEnter={() => setHoveredCard(benefit.id)}
-              onMouseLeave={() => setHoveredCard(null)}
-            >
-              {/* Icon */}
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-300"
-                style={{
-                  backgroundColor: `${benefit.accentColor}15`,
-                  color: benefit.accentColor,
-                }}
-              >
-                {benefit.icon}
+      {/* Value boxes */}
+      <div className="space-y-6 lg:space-y-8">
+        {/* Box 1: Customization + Integration */}
+        <div ref={(el) => { boxRefs.current[0] = el }} data-box-id={1}>
+          <ValueBox
+            tag="Personalizado"
+            headline="Feito Para o Seu Negócio, Conectado ao Seu Ecossistema"
+            description="Cada automação é construída sob medida para o seu processo. Integramos com as ferramentas que você já usa — CRM, planilhas, WhatsApp, e-mail — sem mudar sua operação."
+            isVisible={isBox1Visible}
+            floatingContent={
+              <div className="relative">
+                {/* Main metric card */}
+                <MetricCard
+                  label="Tarefas Automatizadas"
+                  value="847"
+                  trend="up"
+                  trendValue="+23%"
+                  isVisible={isBox1Visible}
+                  delay={0}
+                  className="relative z-10"
+                />
+                {/* Integration logos - floating below */}
+                <div className="absolute -bottom-4 -right-4 z-20">
+                  <IntegrationLogos isVisible={isBox1Visible} />
+                </div>
+                {/* Secondary metric card - offset behind */}
+                <div className="absolute -top-3 -left-12 z-0">
+                  <MetricCard
+                    label="Horas Economizadas"
+                    value="126h"
+                    isVisible={isBox1Visible}
+                    delay={0.2}
+                    className="opacity-90"
+                  />
+                </div>
               </div>
+            }
+          />
+        </div>
 
-              {/* Headline */}
-              <h3 className="text-xl font-semibold text-brand-black mb-3 leading-tight">
-                {benefit.headline}
-              </h3>
-
-              {/* Description */}
-              <p className="text-base leading-relaxed text-brand-muted">
-                {benefit.description}
-              </p>
-
-              {/* Animated visual element */}
-              <div className="mt-2">
-                {benefit.id === 1 && <GearAnimation isActive={isActive} />}
-                {benefit.id === 2 && <IntegrationAnimation isActive={isActive} />}
-                {benefit.id === 3 && <ProgressAnimation isActive={isActive} />}
-                {benefit.id === 4 && <RiskFreeAnimation isActive={isActive} />}
+        {/* Box 2: Speed + No Risk */}
+        <div ref={(el) => { boxRefs.current[1] = el }} data-box-id={2}>
+          <ValueBox
+            tag="Rápido"
+            headline="Funcionando em Dias, Sem Risco Financeiro"
+            description="Implementação ágil com resultados na primeira semana. Apenas mensalidade, sem investimento inicial. Cancele quando quiser — você só paga enquanto faz sentido."
+            isVisible={isBox2Visible}
+            reverse
+            floatingContent={
+              <div className="relative">
+                {/* Timeline progress card */}
+                <TimelineCard isVisible={isBox2Visible} />
+                {/* Check badges */}
+                <div className="absolute -top-2 -right-6">
+                  <CheckBadge text="R$ 0 inicial" isVisible={isBox2Visible} delay={0.4} />
+                </div>
+                <div className="absolute -bottom-3 -left-8">
+                  <CheckBadge text="Sem multas" isVisible={isBox2Visible} delay={0.5} />
+                </div>
               </div>
-            </div>
-          )
-        })}
+            }
+          />
+        </div>
       </div>
-
-      <style jsx>{`
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   )
 }
