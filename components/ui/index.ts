@@ -14,6 +14,9 @@
 // Primitives - Base interactive elements
 export * from './primitives'
 
+// Typography - Text and brand elements
+export * from './typography'
+
 // Feedback - Status and notification components
 export * from './feedback'
 
