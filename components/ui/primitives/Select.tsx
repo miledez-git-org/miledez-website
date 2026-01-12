@@ -1,0 +1,79 @@
+'use client'
+
+import { forwardRef } from 'react'
+import { cn } from '@/lib/utils'
+
+/**
+ * Select Component
+ *
+ * Matches UI Kit select specifications.
+ * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ *
+ * @example
+ * <Select>
+ *   <option value="">Choose...</option>
+ *   <option value="1">Option 1</option>
+ * </Select>
+ */
+
+export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  /** Error message (also applies error styling) */
+  error?: string
+}
+
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(
+  ({ error, className, children, ...props }, ref) => {
+    const hasError = !!error
+
+    return (
+      <div className="relative">
+        <select
+          ref={ref}
+          className={cn(
+            // Base styles from design-tokens.json
+            'h-11 w-full px-4 pr-10 text-base',
+            'bg-white rounded-md appearance-none',
+            'border transition-all duration-fast ease-smooth',
+            // Default border
+            'border-neutral-300',
+            // Hover state
+            'hover:border-neutral-400',
+            // Focus state
+            'focus:outline-none focus:border-accent-slate focus:ring-2 focus:ring-accent-slate-subtle',
+            // Error state
+            hasError && 'border-semantic-error focus:border-semantic-error focus:ring-semantic-error-light',
+            // Disabled
+            'disabled:bg-neutral-50 disabled:text-neutral-400 disabled:cursor-not-allowed',
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </select>
+
+        {/* Dropdown arrow */}
+        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 6L8 10L12 6"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+      </div>
+    )
+  }
+)
+
+Select.displayName = 'Select'
+
+export default Select
