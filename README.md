@@ -126,7 +126,7 @@ Full TypeScript support with strict mode enabled.
 
 ## Brand Reference
 
-**See `../brand/brand-direction-locked.md` for complete design specifications.**
+**See `../../global-resources/brand-assets/brand-essentials.md` for complete design specifications.**
 
 This document is the single source of truth for:
 - Logo usage and sizing
