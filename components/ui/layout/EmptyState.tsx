@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
  * EmptyState Component
  *
  * Placeholder for empty/no-data states.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <EmptyState

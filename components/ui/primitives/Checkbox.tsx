@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
  * Checkbox Component
  *
  * Matches UI Kit checkbox specifications.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Checkbox label="Accept terms and conditions" />

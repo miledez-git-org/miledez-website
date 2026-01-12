@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
  * Alert Component
  *
  * Matches UI Kit alert specifications.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Alert variant="success" title="Success!" message="Your changes have been saved." />

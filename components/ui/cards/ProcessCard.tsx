@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
  * ProcessCard Component
  *
  * Card for workflow steps with progress indicator.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html (v3.1)
+ * Reference: .claude/skills/frontend-design/SKILL.md (v3.1)
  *
  * @example
  * <ProcessCard

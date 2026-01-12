@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
  * Table Components
  *
  * Data table with header, body, and rows.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Table>

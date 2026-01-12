@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
  * Text Component
  *
  * Typography component for body text and captions.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Text>Default body text</Text>

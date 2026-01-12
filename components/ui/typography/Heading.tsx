@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
  * Heading Component
  *
  * Typography component for headings and display text.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Heading as="display1">Hero Title</Heading>

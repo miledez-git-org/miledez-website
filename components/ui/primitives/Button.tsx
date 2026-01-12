@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
  * Button Component
  *
  * Matches UI Kit button specifications exactly.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Button variant="primary" size="lg">Contact Us</Button>

@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
  * TestimonialCard Component
  *
  * Card for displaying customer testimonials.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <TestimonialCard

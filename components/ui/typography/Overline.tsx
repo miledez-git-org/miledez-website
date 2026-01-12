@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
  * Overline Component
  *
  * Small uppercase text for labels, categories, and section markers.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Overline>Nossos Serviços</Overline>

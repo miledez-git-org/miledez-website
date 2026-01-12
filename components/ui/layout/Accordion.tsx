@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
  * Accordion Component (FAQ style)
  *
  * Collapsible content sections.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Accordion>

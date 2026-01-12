@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
  * Input Component
  *
  * Matches UI Kit input specifications exactly.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Input placeholder="Email" type="email" />

@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
  * Timeline Component
  *
  * Vertical timeline with connected items.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Timeline>

@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
  * Avatar Component
  *
  * User avatar with initials or image.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Avatar>JD</Avatar>

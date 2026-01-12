@@ -7,7 +7,7 @@ import Link from 'next/link'
  * NavLink Component
  *
  * Navigation link with active state styling.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <NavLink href="/dashboard" active>Dashboard</NavLink>

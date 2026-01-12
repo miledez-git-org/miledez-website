@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
  * Tabs Component
  *
  * Tab navigation with content panels.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Tabs defaultValue="tab1">

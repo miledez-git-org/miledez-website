@@ -126,16 +126,15 @@ Full TypeScript support with strict mode enabled.
 
 ## Brand Reference
 
-**See `../../global-resources/brand-assets/brand-essentials.md` for complete design specifications.**
+**See `../../.claude/skills/frontend-design/` for brand guidelines and design tokens.**
 
-This document is the single source of truth for:
-- Logo usage and sizing
-- Color palette
-- Typography
-- Component styles
-- Layout principles
+This folder is the single source of truth for:
+- Brand colors and typography
+- Logo files
+- Style principles
+- Design tokens
 
-The brand direction applies to all mil&dez materials (website, social media, proposals, etc.).
+The brand foundation applies to all mil&dez outputs (website, presentations, proposals, etc.).
 
 ## Key Design Rules
 

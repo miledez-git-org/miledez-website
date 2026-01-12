@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
  * Progress Component
  *
  * Progress bar indicator.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Progress value={65} />

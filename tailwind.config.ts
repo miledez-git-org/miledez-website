@@ -12,7 +12,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // Design system tokens (auto-generated from design-tokens.json)
+      // Design system tokens (from brand-tokens.json)
       ...designSystemTheme,
       // Merge design system colors with legacy colors for backward compatibility
       colors: {

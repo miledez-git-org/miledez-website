@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
  * Toast Component
  *
  * Matches UI Kit toast specifications.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Toast variant="success" title="Saved" message="Your changes have been saved." />

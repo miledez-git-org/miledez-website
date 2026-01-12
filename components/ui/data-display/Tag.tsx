@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
  * Tag Component
  *
  * Removable tag/chip element.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Tag>React</Tag>

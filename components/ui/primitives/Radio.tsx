@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
  * Radio Component
  *
  * Matches UI Kit radio specifications.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Radio name="plan" value="basic" label="Basic Plan" />

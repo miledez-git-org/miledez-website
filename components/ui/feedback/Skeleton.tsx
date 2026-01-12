@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
  * Skeleton Component
  *
  * Matches UI Kit skeleton loading specifications.
- * Reference: global-resources/brand-assets/ui-kit/ui-kit.html
+ * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Skeleton variant="text" />
