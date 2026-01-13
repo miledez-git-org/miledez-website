@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="relative bg-brand-accent min-h-[50vh] md:min-h-[40vh] py-16 md:py-24 px-6 md:px-10 text-white overflow-hidden">
+    <footer className="relative bg-brand-primary min-h-[50vh] md:min-h-[40vh] py-16 md:py-24 px-6 md:px-10 text-white overflow-hidden">
       {/* Geometric texture overlay */}
       <div className="footer-texture absolute inset-0" />
 
@@ -75,9 +75,20 @@ export default function Footer() {
               <span className="text-xs text-white/50">
                 © 2025 mil&dez. Todos os direitos reservados.
               </span>
-              <span className="text-xs text-white/50">
-                Designed in Brazil
-              </span>
+              <div className="flex items-center gap-4">
+                <Link
+                  href="/politica-privacidade"
+                  className="text-xs text-white/50 hover:text-white/80 transition-colors"
+                >
+                  Privacidade
+                </Link>
+                <Link
+                  href="/termos"
+                  className="text-xs text-white/50 hover:text-white/80 transition-colors"
+                >
+                  Termos
+                </Link>
+              </div>
             </div>
           </div>
         </div>

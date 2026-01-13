@@ -84,7 +84,7 @@ export default function ScrollProgress({
 
       {/* Progress bar */}
       <motion.div
-        className="absolute inset-y-0 left-0 bg-brand-accent origin-left"
+        className="absolute inset-y-0 left-0 bg-brand-primary origin-left"
         style={{
           scaleX: smoothProgress,
         }}
@@ -92,7 +92,7 @@ export default function ScrollProgress({
 
       {/* Glow effect on the leading edge */}
       <motion.div
-        className="absolute inset-y-0 w-16 bg-gradient-to-r from-brand-accent/50 to-transparent"
+        className="absolute inset-y-0 w-16 bg-gradient-to-r from-brand-primary/50 to-transparent"
         style={{
           left: useTransform(smoothProgress, [0, 1], ['0%', 'calc(100% - 4rem)']),
           opacity: useTransform(smoothProgress, [0, 0.05, 0.95, 1], [0, 1, 1, 0]),

@@ -3,13 +3,13 @@
 import { useState, useEffect } from 'react'
 
 /**
- * HeroWorkflowSimple - Minimal horizontal workflow for hero section
+ * HeroWorkflowSimple - Minimal workflow animation for hero section
  * Shows: Trigger → Process → Output with animated elbow connectors
  *
- * Card layout (absolute positioning):
- * - Trigger: top=0, left=0, width=200px, height~60px
- * - Process: top=100, left=140, width=200px, height~80px (with progress bar)
- * - Output:  top=210, left=280, width=200px, height~60px
+ * Card layout (absolute positioning) - tighter horizontal stacking:
+ * - Trigger: top=0, left=0, width=180px, height≈64px
+ * - Process: top=80, left=50, width=180px, height≈96px (with progress bar)
+ * - Output:  top=190, left=100, width=180px, height≈64px
  *
  * Connector routing:
  * - Line 1: Bottom-center of Trigger → Left-center of Process
@@ -20,6 +20,16 @@ const ACCENT_BLUE = '#3b82f6'
 const ACCENT_GREEN = '#22c55e'
 const LINE_INACTIVE = '#e5e5e5'
 const LINE_ACTIVE = '#d4d4d4'
+
+// Card dimensions
+const CARD_WIDTH = 180
+const TRIGGER_HEIGHT = 64
+const PROCESS_HEIGHT = 96
+
+// Card positions - tighter horizontal stacking
+const TRIGGER = { top: 0, left: 0 }
+const PROCESS = { top: 80, left: 50 }
+const OUTPUT = { top: 190, left: 100 }
 
 export default function HeroWorkflowSimple() {
   const [step, setStep] = useState(-1)
@@ -47,33 +57,40 @@ export default function HeroWorkflowSimple() {
   const processActive = step >= 1
   const outputActive = step >= 2
 
-  // Calculate progress bar width based on animation state
-  // Starts at 0% when process becomes active, goes to 60%, then 100% when output is active
   const getProgressWidth = () => {
     if (!processActive) return '0%'
     if (outputActive) return '100%'
     return '60%'
   }
 
+  // Connector path calculations
+  // Line 1: Trigger bottom-center → Process left-center
+  const triggerBottomX = TRIGGER.left + CARD_WIDTH / 2 // 90
+  const triggerBottomY = TRIGGER.top + TRIGGER_HEIGHT // 64
+  const processLeftX = PROCESS.left // 50
+  const processLeftY = PROCESS.top + PROCESS_HEIGHT / 2 // 128
+
+  // Line 2: Process right-center → Output top-center
+  const processRightX = PROCESS.left + CARD_WIDTH // 230
+  const processRightY = PROCESS.top + PROCESS_HEIGHT / 2 // 128
+  const outputTopX = OUTPUT.left + CARD_WIDTH / 2 // 190
+  const outputTopY = OUTPUT.top // 190
+
   return (
-    <div className="relative w-full max-w-lg mx-auto" style={{ fontFamily: "'Manrope', sans-serif" }}>
+    <div className="relative w-full max-w-sm ml-auto" style={{ fontFamily: "'Manrope', sans-serif" }}>
       {/* SVG Connectors - z-index 0 so lines render behind cards */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
         style={{ zIndex: 0 }}
-        viewBox="0 0 500 320"
+        viewBox="0 0 320 280"
         preserveAspectRatio="xMidYMid meet"
       >
-        {/*
-          Line 1: Trigger (bottom-center) → Process (left-center)
-          Trigger card: top=0, left=0, width=200, height≈60
-          Bottom-center of trigger: x=100, y=60
-          Process card: top=100, left=140, width=200, height≈80
-          Left-center of process: x=140, y=140 (100 + 80/2)
-          Path: go down from trigger, then curve right to process left edge
-        */}
+        {/* Line 1: Trigger bottom → Process left (elbow connector) */}
         <path
-          d="M 100 60 L 100 100 Q 100 115 115 115 L 140 115 L 140 140"
+          d={`M ${triggerBottomX} ${triggerBottomY}
+              L ${triggerBottomX} ${(triggerBottomY + processLeftY) / 2}
+              Q ${triggerBottomX} ${processLeftY} ${(triggerBottomX + processLeftX) / 2} ${processLeftY}
+              L ${processLeftX} ${processLeftY}`}
           fill="none"
           stroke={processActive ? LINE_ACTIVE : LINE_INACTIVE}
           strokeWidth="1.5"
@@ -83,23 +100,19 @@ export default function HeroWorkflowSimple() {
         />
         {/* Start dot at trigger bottom */}
         <circle
-          cx="100"
-          cy="60"
+          cx={triggerBottomX}
+          cy={triggerBottomY}
           r="3"
           fill={processActive ? LINE_ACTIVE : LINE_INACTIVE}
           style={{ transition: 'fill 600ms ease' }}
         />
 
-        {/*
-          Line 2: Process (right-center) → Output (top-center)
-          Process card: top=100, left=140, width=200, height≈80
-          Right-center of process: x=340 (140+200), y=140 (100 + 80/2)
-          Output card: top=210, left=280, width=200
-          Top-center of output: x=380 (280+100), y=210
-          Path: go right from process, then curve down to output top
-        */}
+        {/* Line 2: Process right → Output top (elbow connector) */}
         <path
-          d="M 340 140 L 365 140 Q 380 140 380 155 L 380 210"
+          d={`M ${processRightX} ${processRightY}
+              L ${(processRightX + outputTopX) / 2} ${processRightY}
+              Q ${outputTopX} ${processRightY} ${outputTopX} ${(processRightY + outputTopY) / 2}
+              L ${outputTopX} ${outputTopY}`}
           fill="none"
           stroke={outputActive ? LINE_ACTIVE : LINE_INACTIVE}
           strokeWidth="1.5"
@@ -109,8 +122,8 @@ export default function HeroWorkflowSimple() {
         />
         {/* End dot at output top */}
         <circle
-          cx="380"
-          cy="210"
+          cx={outputTopX}
+          cy={outputTopY}
           r="3"
           fill={outputActive ? LINE_ACTIVE : LINE_INACTIVE}
           style={{ transition: 'fill 600ms ease' }}
@@ -118,14 +131,14 @@ export default function HeroWorkflowSimple() {
       </svg>
 
       {/* Cards Container - z-index 1 so cards render above lines */}
-      <div className="relative" style={{ minHeight: '320px', zIndex: 1 }}>
+      <div className="relative" style={{ minHeight: '280px', zIndex: 1 }}>
         {/* Trigger Card */}
         <div
           className="absolute"
           style={{
-            top: 0,
-            left: 0,
-            width: '200px',
+            top: TRIGGER.top,
+            left: TRIGGER.left,
+            width: `${CARD_WIDTH}px`,
             opacity: triggerActive ? 1 : 0.5,
             transform: triggerActive ? 'translateY(0) scale(1)' : 'translateY(0) scale(0.98)',
             transition: 'all 600ms cubic-bezier(0.22, 1, 0.36, 1)',
@@ -159,9 +172,9 @@ export default function HeroWorkflowSimple() {
         <div
           className="absolute"
           style={{
-            top: '100px',
-            left: '140px',
-            width: '200px',
+            top: PROCESS.top,
+            left: PROCESS.left,
+            width: `${CARD_WIDTH}px`,
             opacity: processActive ? 1 : 0.5,
             transform: processActive ? 'translateY(0) scale(1)' : 'translateY(8px) scale(0.96)',
             transition: 'all 600ms cubic-bezier(0.22, 1, 0.36, 1) 100ms',
@@ -189,7 +202,7 @@ export default function HeroWorkflowSimple() {
                 <p className="text-xs text-neutral-500">Processando</p>
               </div>
             </div>
-            {/* Progress indicator - always visible, animates from 0% */}
+            {/* Progress indicator */}
             <div className="mt-3">
               <div className="h-1 bg-neutral-100 rounded-full overflow-hidden">
                 <div
@@ -209,9 +222,9 @@ export default function HeroWorkflowSimple() {
         <div
           className="absolute"
           style={{
-            top: '210px',
-            left: '280px',
-            width: '200px',
+            top: OUTPUT.top,
+            left: OUTPUT.left,
+            width: `${CARD_WIDTH}px`,
             opacity: outputActive ? 1 : 0.5,
             transform: outputActive ? 'translateY(0) scale(1)' : 'translateY(8px) scale(0.96)',
             transition: 'all 600ms cubic-bezier(0.22, 1, 0.36, 1) 200ms',

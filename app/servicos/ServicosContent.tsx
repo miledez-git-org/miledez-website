@@ -272,8 +272,8 @@ export default function ServicosContent() {
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-brand-accent">
-                <span className="text-sm font-semibold uppercase tracking-widest text-brand-accent">
+              <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-brand-primary">
+                <span className="text-sm font-semibold uppercase tracking-widest text-brand-primary">
                   Serviços Profissionais
                 </span>
               </div>
@@ -285,7 +285,7 @@ export default function ServicosContent() {
               </p>
               <a
                 href="#contato"
-                className="btn-primary inline-block px-10 py-5 text-sm font-medium text-white bg-brand-accent hover:bg-brand-accent-dark"
+                className="btn-primary inline-block px-10 py-5 text-sm font-medium text-white bg-brand-primary hover:bg-brand-primary-dark"
               >
                 Agendar conversa
               </a>
@@ -318,7 +318,7 @@ export default function ServicosContent() {
             {Object.entries(workflows).map(([key, workflow], index) => (
               <div key={key}>
                 <div className="mb-8 flex items-center gap-4">
-                  <span className="flex-shrink-0 w-7 h-7 flex items-center justify-center bg-brand-accent text-white text-sm font-medium">
+                  <span className="flex-shrink-0 w-7 h-7 flex items-center justify-center bg-brand-primary text-white text-sm font-medium">
                     {index + 1}
                   </span>
                   <div>
@@ -374,7 +374,7 @@ export default function ServicosContent() {
           </p>
           <a
             href="mailto:contato@miledez.com.br"
-            className="btn-primary inline-block px-10 py-5 text-base font-medium text-white bg-brand-accent hover:bg-brand-accent-dark"
+            className="btn-primary inline-block px-10 py-5 text-base font-medium text-white bg-brand-primary hover:bg-brand-primary-dark"
           >
             Iniciar conversa
           </a>

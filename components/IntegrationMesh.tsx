@@ -117,7 +117,7 @@ export default function IntegrationMesh() {
           }}
         >
           <span
-            className="text-brand-accent text-4xl"
+            className="text-brand-primary text-4xl"
             style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 300 }}
           >
             &
@@ -130,7 +130,7 @@ export default function IntegrationMesh() {
           return (
             <div
               key={`inner-${index}`}
-              className="absolute w-12 h-12 bg-white border border-[rgba(0,0,0,0.08)] flex items-center justify-center group hover:border-brand-accent transition-colors"
+              className="absolute w-12 h-12 bg-white border border-[rgba(0,0,0,0.08)] flex items-center justify-center group hover:border-brand-primary transition-colors"
               style={{
                 left: `${50 + pos.x}%`,
                 top: `${50 + pos.y}%`,
@@ -159,7 +159,7 @@ export default function IntegrationMesh() {
           return (
             <div
               key={`outer-${index}`}
-              className="absolute w-10 h-10 bg-white border border-[rgba(0,0,0,0.08)] flex items-center justify-center group hover:border-brand-accent transition-colors"
+              className="absolute w-10 h-10 bg-white border border-[rgba(0,0,0,0.08)] flex items-center justify-center group hover:border-brand-primary transition-colors"
               style={{
                 left: `${50 + pos.x}%`,
                 top: `${50 + pos.y}%`,

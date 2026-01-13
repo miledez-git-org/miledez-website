@@ -15,7 +15,7 @@ interface MetricsGridProps {
 function AccentBar({ isVisible, delay }: { isVisible: boolean; delay: number }) {
   return (
     <div
-      className="h-0.5 bg-brand-accent mt-4"
+      className="h-0.5 bg-brand-primary mt-4"
       style={{
         width: isVisible ? '60%' : '0%',
         transition: `width 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
@@ -27,7 +27,7 @@ function AccentBar({ isVisible, delay }: { isVisible: boolean; delay: number }) 
 function GrowthArrow({ isVisible, delay }: { isVisible: boolean; delay: number }) {
   return (
     <div
-      className="flex items-center gap-1.5 mt-4 text-brand-accent"
+      className="flex items-center gap-1.5 mt-4 text-brand-primary"
       style={{
         transform: isVisible ? 'translateY(0)' : 'translateY(8px)',
         opacity: isVisible ? 1 : 0,
@@ -60,7 +60,7 @@ export default function MetricsGrid({ metrics }: MetricsGridProps) {
             }}
           >
             {/* Value */}
-            <span className="block text-4xl lg:text-5xl font-medium text-brand-accent tracking-tight">
+            <span className="block text-4xl lg:text-5xl font-medium text-brand-primary tracking-tight">
               {metric.value}
             </span>
 

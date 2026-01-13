@@ -61,13 +61,13 @@ export default function ProcessSectionEnhanced() {
               >
                 {/* Number Icon - Overlapping top-left corner */}
                 <div
-                  className="absolute top-0 left-0 w-14 h-14 flex items-center justify-center bg-white border-2 border-brand-accent z-10 transition-all duration-300"
+                  className="absolute top-0 left-0 w-14 h-14 flex items-center justify-center bg-white border-2 border-brand-primary z-10 transition-all duration-300"
                   style={{
                     borderRadius: '50%',
                     transform: isHovered ? 'scale(1.1)' : 'scale(1)',
                   }}
                 >
-                  <span className="text-xl font-bold text-brand-accent">
+                  <span className="text-xl font-bold text-brand-primary">
                     {step.number}
                   </span>
                 </div>

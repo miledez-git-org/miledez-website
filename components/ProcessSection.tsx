@@ -96,10 +96,10 @@ export default function ProcessSection() {
     <div ref={sectionRef}>
       {/* Header */}
       <div className="mb-12 md:mb-16 text-center">
-        <p className="text-xs font-semibold text-brand-muted uppercase tracking-[0.15em] mb-4">
+        <p className="text-xs font-semibold text-neutral-600 uppercase tracking-[0.15em] mb-4">
           Como funciona
         </p>
-        <h2 className="text-[2rem] md:text-[2.5rem] font-medium text-brand-black tracking-[-0.02em]">
+        <h2 className="text-[2rem] md:text-[2.5rem] font-medium text-neutral-900 tracking-[-0.02em]">
           Processo simples, resultado rápido
         </h2>
       </div>
@@ -110,7 +110,7 @@ export default function ProcessSection() {
         <div className="absolute top-[40px] left-[calc(12.5%+20px)] right-[calc(12.5%+20px)] h-0.5 bg-neutral-200" style={{ zIndex: 0 }}>
           {/* Animated progress fill */}
           <div
-            className="h-full bg-brand-accent transition-all ease-out"
+            className="h-full bg-brand-primary transition-all ease-out"
             style={{
               width: isVisible ? `${Math.min(activeStep, steps.length) * 33.33}%` : '0%',
               transitionDuration: '800ms',
@@ -141,11 +141,9 @@ export default function ProcessSection() {
                   {/* Icon circle at top */}
                   <div className="flex justify-center mb-4">
                     <div
-                      className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500"
-                      style={{
-                        backgroundColor: isActive ? '#8b2020' : '#f5f5f5',
-                        color: isActive ? '#fff' : '#8b2020',
-                      }}
+                      className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 ${
+                        isActive ? 'bg-brand-primary text-white' : 'bg-neutral-100 text-brand-primary'
+                      }`}
                     >
                       {step.icon}
                     </div>
@@ -153,22 +151,24 @@ export default function ProcessSection() {
 
                   {/* Number */}
                   <span
-                    className="text-3xl font-bold transition-colors duration-500 block mb-2"
-                    style={{ color: isActive ? '#8b2020' : '#d4d4d4' }}
+                    className={`text-3xl font-bold transition-colors duration-500 block mb-2 ${
+                      isActive ? 'text-brand-primary' : 'text-neutral-300'
+                    }`}
                   >
                     {step.number}
                   </span>
 
                   {/* Title */}
                   <h3
-                    className="text-base font-semibold mb-2 transition-colors duration-500"
-                    style={{ color: isActive ? '#1a1a1a' : '#737373' }}
+                    className={`text-base font-semibold mb-2 transition-colors duration-500 ${
+                      isActive ? 'text-neutral-900' : 'text-neutral-500'
+                    }`}
                   >
                     {step.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-sm text-brand-muted leading-relaxed">
+                  <p className="text-sm text-neutral-600 leading-relaxed">
                     {step.description}
                   </p>
                 </div>
@@ -186,20 +186,15 @@ export default function ProcessSection() {
           return (
             <div
               key={index}
-              className="relative bg-white p-6 border border-brand-border transition-all duration-500"
-              style={{
-                borderLeftColor: isActive ? '#8b2020' : '#e0e0e0',
-                borderLeftWidth: '4px',
-              }}
+              className={`relative bg-white p-6 border border-neutral-200 transition-all duration-500 border-l-4 ${
+                isActive ? 'border-l-brand-primary' : 'border-l-neutral-200'
+              }`}
             >
               {/* Step number badge */}
               <div
-                className="absolute -top-3 -left-3 w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-500"
-                style={{
-                  backgroundColor: isActive ? '#8b2020' : '#fff',
-                  color: isActive ? '#fff' : '#8b2020',
-                  border: isActive ? 'none' : '2px solid #e0e0e0',
-                }}
+                className={`absolute -top-3 -left-3 w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-500 ${
+                  isActive ? 'bg-brand-primary text-white border-0' : 'bg-white text-brand-primary border-2 border-neutral-200'
+                }`}
               >
                 {step.number}
               </div>
@@ -207,22 +202,23 @@ export default function ProcessSection() {
               {/* Content */}
               <div className="pt-2">
                 <div
-                  className="mb-3 transition-colors duration-500"
-                  style={{ color: isActive ? '#8b2020' : '#5a5a5a' }}
+                  className={`mb-3 transition-colors duration-500 ${
+                    isActive ? 'text-brand-primary' : 'text-neutral-600'
+                  }`}
                 >
                   {step.icon}
                 </div>
-                <h3 className="text-lg font-semibold text-brand-black mb-2">
+                <h3 className="text-lg font-semibold text-neutral-900 mb-2">
                   {step.title}
                 </h3>
-                <p className="text-sm text-brand-muted leading-relaxed">
+                <p className="text-sm text-neutral-600 leading-relaxed">
                   {step.description}
                 </p>
               </div>
 
               {/* Connector arrow (for first and third cards) */}
               {(index === 0 || index === 2) && (
-                <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 text-brand-border">
+                <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 text-neutral-200">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
@@ -238,7 +234,7 @@ export default function ProcessSection() {
         {/* Vertical line */}
         <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-neutral-200">
           <div
-            className="w-full bg-brand-accent transition-all ease-out"
+            className="w-full bg-brand-primary transition-all ease-out"
             style={{
               height: isVisible ? `${Math.min(activeStep, steps.length) * 25}%` : '0%',
               transitionDuration: '800ms',
@@ -256,16 +252,14 @@ export default function ProcessSection() {
               <div key={index} className="relative flex gap-6">
                 {/* Step marker */}
                 <div
-                  className="relative z-10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500"
-                  style={{
-                    backgroundColor: isActive ? '#8b2020' : '#fff',
-                    border: isActive ? 'none' : '2px solid #e0e0e0',
-                    boxShadow: isCurrent ? '0 0 0 4px rgba(139, 32, 32, 0.2)' : 'none',
-                  }}
+                  className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${
+                    isActive ? 'bg-brand-primary border-0' : 'bg-white border-2 border-neutral-200'
+                  } ${isCurrent ? 'ring-4 ring-brand-primary/20' : ''}`}
                 >
                   <span
-                    className="text-sm font-bold transition-colors duration-500"
-                    style={{ color: isActive ? '#fff' : '#8b2020' }}
+                    className={`text-sm font-bold transition-colors duration-500 ${
+                      isActive ? 'text-white' : 'text-brand-primary'
+                    }`}
                   >
                     {step.number}
                   </span>
@@ -275,19 +269,21 @@ export default function ProcessSection() {
                 <div className="flex-1 pt-1">
                   <div className="flex items-center gap-2 mb-2">
                     <div
-                      className="transition-colors duration-500"
-                      style={{ color: isActive ? '#8b2020' : '#5a5a5a' }}
+                      className={`transition-colors duration-500 ${
+                        isActive ? 'text-brand-primary' : 'text-neutral-600'
+                      }`}
                     >
                       {step.icon}
                     </div>
                     <h3
-                      className="text-lg font-semibold transition-colors duration-500"
-                      style={{ color: isActive ? '#1a1a1a' : '#5a5a5a' }}
+                      className={`text-lg font-semibold transition-colors duration-500 ${
+                        isActive ? 'text-neutral-900' : 'text-neutral-600'
+                      }`}
                     >
                       {step.title}
                     </h3>
                   </div>
-                  <p className="text-sm text-brand-muted leading-relaxed">
+                  <p className="text-sm text-neutral-600 leading-relaxed">
                     {step.description}
                   </p>
                 </div>

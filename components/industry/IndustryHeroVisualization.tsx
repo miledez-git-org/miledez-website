@@ -135,7 +135,7 @@ export default function IndustryHeroVisualization({ industry }: IndustryHeroVisu
       <div className="relative bg-white border border-[rgba(0,0,0,0.08)] p-6 animate-float">
         {/* Window header */}
         <div className="flex items-center gap-2 mb-6 pb-4 border-b border-[rgba(0,0,0,0.08)]">
-          <div className="w-2 h-2 bg-brand-accent" />
+          <div className="w-2 h-2 bg-brand-primary" />
           <span className="text-xs font-medium text-brand-muted uppercase tracking-wider">
             {config.title}
           </span>
@@ -156,7 +156,7 @@ export default function IndustryHeroVisualization({ industry }: IndustryHeroVisu
               <div
                 className={`w-10 h-10 flex items-center justify-center border transition-colors duration-300 ${
                   activeStep === index
-                    ? 'border-brand-accent bg-brand-accent-light'
+                    ? 'border-brand-primary bg-brand-primary-light'
                     : 'border-brand-border bg-white'
                 }`}
               >
@@ -177,11 +177,11 @@ export default function IndustryHeroVisualization({ industry }: IndustryHeroVisu
                 <div className="flex-1 flex items-center justify-end">
                   <div
                     className={`h-px flex-1 max-w-8 transition-all duration-300 ${
-                      activeStep > index ? 'bg-brand-accent' : 'bg-brand-border'
+                      activeStep > index ? 'bg-brand-primary' : 'bg-brand-border'
                     }`}
                   />
                   {activeStep === index && (
-                    <div className="w-1.5 h-1.5 bg-brand-accent ml-1 animate-pulse" />
+                    <div className="w-1.5 h-1.5 bg-brand-primary ml-1 animate-pulse" />
                   )}
                 </div>
               )}

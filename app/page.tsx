@@ -41,19 +41,19 @@ export default function Home() {
 
       {/* Hero */}
       <section className="min-h-screen bg-white flex items-center relative">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-8 lg:gap-16 items-center">
 
             {/* Left column - Hero content */}
             <div className="flex flex-col justify-center">
               {/* Headline */}
               <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-brand-black leading-[1.1]">
                 Automação que funciona<br />
-                <span className="text-brand-accent">sem mudar seu sistema</span>
+                <span className="text-brand-primary">sem mudar seu sistema</span>
               </h1>
 
               {/* Subheadline */}
-              <p className="mt-6 text-lg md:text-xl text-brand-muted font-light max-w-lg">
+              <p className="mt-6 text-lg md:text-xl text-neutral-600 font-normal leading-relaxed max-w-xl">
                 Implementamos em dias, não meses. Integração zero-code com as ferramentas que você já usa.
               </p>
 
@@ -84,6 +84,9 @@ export default function Home() {
 
       </section>
 
+      {/* Section divider */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+
       {/* Value Proposition */}
       <section id="valor" className="py-24 md:py-32 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
@@ -91,12 +94,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section divider */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+
       {/* How It Works - Process */}
       <section id="como-funciona" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ProcessSection />
         </div>
       </section>
+
+      {/* Section divider */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* Workflow Demo */}
       <section id="demo" className="py-24 md:py-32 bg-bg-muted">
@@ -117,12 +126,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section divider */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+
       {/* Integrations */}
       <section id="integracoes" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <LogoGrid />
         </div>
       </section>
+
+      {/* Section divider */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* Pricing */}
       <section id="precos" className="py-24 md:py-32 bg-bg-muted">
@@ -131,21 +146,24 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section divider */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+
       {/* CTA */}
-      <section id="contato" className="py-24 md:py-32 bg-brand-accent">
+      <section id="contato" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
-          <h2 className="text-[2rem] md:text-[2.5rem] font-medium text-white mb-6">
+          <h2 className="text-[2rem] md:text-[2.5rem] font-medium text-neutral-900 mb-6">
             Pronto para automatizar?
           </h2>
-          <p className="text-lg text-white/80 max-w-lg mx-auto mb-10">
+          <p className="text-lg text-neutral-600 max-w-lg mx-auto mb-10">
             Sem compromisso, sem custo inicial. Conversamos sobre seus processos e mostramos o potencial de economia.
           </p>
-          <a
-            href="mailto:contato@miledez.com.br"
-            className="btn btn-inverted btn-xl"
+          <button
+            onClick={() => setIsContactModalOpen(true)}
+            className="btn btn-primary btn-xl"
           >
-            Agendar uma conversa
-          </a>
+            Falar conosco
+          </button>
         </div>
       </section>
 

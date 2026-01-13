@@ -38,7 +38,7 @@ function ConnectorLine({ isVisible }: { isVisible: boolean }) {
 
       {/* Accent line */}
       <div
-        className="absolute top-0 left-0 h-full bg-brand-accent transition-all duration-700 ease-out"
+        className="absolute top-0 left-0 h-full bg-brand-primary transition-all duration-700 ease-out"
         style={{
           width: isVisible ? '100%' : '0%',
         }}
@@ -52,14 +52,14 @@ function StepBox({ step, isLast, isVisible }: { step: Step; isLast: boolean; isV
     <div
       className={`p-6 border bg-white h-full ${
         isLast && isVisible
-          ? 'border-l-2 border-l-brand-accent border-t border-r border-b border-t-brand-border border-r-brand-border border-b-brand-border'
+          ? 'border-l-2 border-l-brand-primary border-t border-r border-b border-t-brand-border border-r-brand-border border-b-brand-border'
           : 'border-brand-border'
       }`}
     >
       {/* Icon */}
       <div
         className={`w-12 h-12 flex items-center justify-center border mb-4 transition-colors duration-500 ${
-          isLast && isVisible ? 'border-brand-accent text-brand-accent' : 'border-brand-black text-brand-black'
+          isLast && isVisible ? 'border-brand-primary text-brand-primary' : 'border-brand-black text-brand-black'
         }`}
       >
         {step.icon}
@@ -165,7 +165,7 @@ export default function WorkflowDemoLegacy({ steps }: WorkflowDemoLegacyProps) {
 
                   {/* Accent line that grows from top to bottom */}
                   <div
-                    className="absolute top-0 left-0 w-full bg-brand-accent transition-all duration-700 ease-out"
+                    className="absolute top-0 left-0 w-full bg-brand-primary transition-all duration-700 ease-out"
                     style={{
                       height: isVisible ? '100%' : '0%',
                     }}

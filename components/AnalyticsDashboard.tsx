@@ -24,7 +24,7 @@ function MetricCard({ label, value, trend, isVisible, delay }: MetricCardProps) 
           {label}
         </span>
         {trend && (
-          <span className={trend === 'up' ? 'text-emerald-600' : 'text-brand-accent'}>
+          <span className={trend === 'up' ? 'text-emerald-600' : 'text-brand-primary'}>
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               {trend === 'up' ? (
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
@@ -110,7 +110,7 @@ export default function AnalyticsDashboard() {
             transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
           }}
         >
-          <span className="inline-block text-xs font-medium text-brand-accent uppercase tracking-wider mb-4">
+          <span className="inline-block text-xs font-medium text-brand-primary uppercase tracking-wider mb-4">
             Interfaces personalizadas
           </span>
           <h2 className="text-[2rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">

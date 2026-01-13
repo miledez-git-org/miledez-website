@@ -166,7 +166,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent transition-colors"
+                    className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors"
                     placeholder="Seu nome"
                   />
                 </div>
@@ -182,7 +182,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent transition-colors"
+                    className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors"
                     placeholder="seu@email.com"
                   />
                 </div>
@@ -197,7 +197,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent transition-colors"
+                    className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors"
                     placeholder="(11) 99999-9999"
                   />
                 </div>
@@ -213,7 +213,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent transition-colors resize-none"
+                    className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors resize-none"
                     placeholder="Conte um pouco sobre sua empresa e os processos que gostaria de automatizar..."
                   />
                 </div>

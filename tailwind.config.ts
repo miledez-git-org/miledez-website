@@ -1,9 +1,6 @@
 import type { Config } from 'tailwindcss'
 import { designSystemTheme } from './components/ui/tokens/generated-theme'
 
-// Cast design system theme to allow property access
-const dsColors = designSystemTheme?.colors as Record<string, unknown> | undefined
-
 const config: Config = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -14,37 +11,8 @@ const config: Config = {
     extend: {
       // Design system tokens (from brand-tokens.json)
       ...designSystemTheme,
-      // Merge design system colors with legacy colors for backward compatibility
-      colors: {
-        ...dsColors,
-        // Brand colors - merge design system + legacy
-        'brand': {
-          // Design system tokens
-          ...(dsColors?.brand as Record<string, string> ?? {}),
-          // Legacy tokens (deprecated - migrate to design system tokens)
-          'black': '#1a1a1a',
-          'dark': '#2d2d2d',
-          'text': '#3d3d3d',
-          'muted': '#5a5a5a',
-          'light': '#6e6e6e',
-          'border': '#e0e0e0',
-          'accent': '#8b2020',
-          'accent-light': '#fef2f2',
-          'accent-dark': '#7a1b1b',
-          'success': '#16a34a',
-          'success-light': '#f0fdf4',
-        },
-        // Legacy background colors
-        'bg-base': '#FCFCFC',
-        'bg-surface': '#FFFFFF',
-        'bg-muted': '#f9f9f9',
-        'highlight': '#F0F2F5',
-        'testimonial-bg': '#FFFCF9',
-        'border-subtle': 'rgba(0,0,0,0.08)',
-        'border-emphasis': 'rgba(0,0,0,0.15)',
-      },
       fontFamily: {
-        ...(designSystemTheme?.fontFamily as Record<string, string[]> ?? {}),
+        ...(designSystemTheme?.fontFamily ?? {}),
         sans: [
           'var(--font-inter)',
           '-apple-system',
@@ -73,7 +41,7 @@ const config: Config = {
         '128': '8rem',
       },
       boxShadow: {
-        ...(designSystemTheme?.boxShadow as Record<string, string> ?? {}),
+        ...(designSystemTheme?.boxShadow ?? {}),
         'accent-glow': '0 0 20px rgba(139, 32, 32, 0.3)',
         'accent-glow-strong': '0 0 30px rgba(139, 32, 32, 0.4)',
         'success-glow': '0 0 20px rgba(22, 163, 74, 0.3)',
