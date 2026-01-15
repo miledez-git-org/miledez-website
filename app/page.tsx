@@ -42,19 +42,19 @@ export default function Home() {
       {/* Hero */}
       <section className="min-h-screen bg-white flex items-center relative">
         <div className="max-w-7xl mx-auto px-4 md:px-6 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-20 items-center">
 
             {/* Left column - Hero content */}
             <div className="flex flex-col justify-center">
               {/* Headline */}
               <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-brand-black leading-[1.1]">
-                Automação que funciona<br />
-                <span className="text-brand-primary">sem mudar seu sistema</span>
+                Automação inteligente<br />
+                <span className="text-brand-primary">que trabalha por você</span>
               </h1>
 
               {/* Subheadline */}
               <p className="mt-6 text-lg md:text-xl text-neutral-600 font-normal leading-relaxed max-w-xl">
-                Implementamos em dias, não meses. Integração zero-code com as ferramentas que você já usa.
+                Transforme processos manuais em fluxos automatizados. Conectamos seus sistemas existentes e entregamos resultados em dias — não meses.
               </p>
 
               {/* CTAs */}
@@ -63,19 +63,19 @@ export default function Home() {
                   onClick={() => setIsContactModalOpen(true)}
                   className="btn btn-primary btn-xl"
                 >
-                  Falar conosco
+                  Agendar demonstração
                 </button>
                 <a
                   href="#valor"
                   className="btn btn-outline btn-lg"
                 >
-                  Porque automatizar
+                  Ver casos de uso
                 </a>
               </div>
             </div>
 
             {/* Right column - Workflow Demo */}
-            <div className="hidden lg:block">
+            <div className="hidden lg:flex items-center justify-center">
               <HeroWorkflowStatic />
             </div>
 

@@ -90,8 +90,8 @@ function WorkflowCard({
       {/* Card body - larger with more padding */}
       <div
         className={`
-          bg-neutral-100 rounded-xl px-10 py-8
-          shadow-[0_1px_1px_rgba(139,32,32,0.11),0_2px_2px_rgba(139,32,32,0.11),0_4px_4px_rgba(139,32,32,0.11),0_8px_8px_rgba(139,32,32,0.11),0_16px_16px_rgba(139,32,32,0.11),0_32px_32px_rgba(139,32,32,0.11)]
+          bg-white rounded-xl px-10 py-8
+          shadow-[0_1px_2px_rgba(139,32,32,0.08),0_2px_4px_rgba(139,32,32,0.08),0_4px_8px_rgba(139,32,32,0.06),0_8px_16px_rgba(139,32,32,0.04)]
           border border-neutral-200
           min-w-[180px]
         `}
