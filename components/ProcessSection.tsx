@@ -95,13 +95,14 @@ export default function ProcessSection() {
   return (
     <div ref={sectionRef}>
       {/* Header */}
-      <div className="mb-12 md:mb-16 text-center">
-        <p className="text-xs font-semibold text-neutral-600 uppercase tracking-[0.15em] mb-4">
-          Como funciona
-        </p>
-        <h2 className="text-[2rem] md:text-[2.5rem] font-medium text-neutral-900 tracking-[-0.02em]">
-          Processo simples, resultado rápido
+      <div className="mb-10 md:mb-12 text-center">
+        <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
+          Processo simples,<br />
+          <span className="text-brand-primary">resultado rápido</span>
         </h2>
+        <p className="mt-4 text-lg text-brand-muted max-w-xl mx-auto">
+          Da conversa inicial à automação funcionando em poucos dias
+        </p>
       </div>
 
       {/* Desktop Timeline - Rectangular Cards */}

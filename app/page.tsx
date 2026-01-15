@@ -88,7 +88,7 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* Value Proposition */}
-      <section id="valor" className="py-24 md:py-32 bg-bg-muted">
+      <section id="valor" className="py-16 md:py-24 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ValueProposition />
         </div>
@@ -98,7 +98,7 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* How It Works - Process */}
-      <section id="como-funciona" className="py-24 md:py-32 bg-white">
+      <section id="como-funciona" className="py-16 md:py-24 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ProcessSection />
         </div>
@@ -108,17 +108,15 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* Workflow Demo */}
-      <section id="demo" className="py-24 md:py-32 bg-bg-muted">
+      <section id="demo" className="py-16 md:py-24 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="mb-12 md:mb-16 text-center">
-            <p className="text-xs font-semibold text-brand-muted uppercase tracking-[0.15em] mb-4">
-              Veja em ação
-            </p>
-            <h2 className="heading-section text-[2rem] md:text-[2.5rem] text-brand-black">
-              Do gatilho ao resultado
+          <div className="mb-10 md:mb-12 text-center">
+            <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
+              Do gatilho ao resultado,<br />
+              <span className="text-brand-primary">sem tocar em código</span>
             </h2>
             <p className="mt-4 text-lg text-brand-muted max-w-xl mx-auto">
-              Tudo acontece automaticamente, sem intervenção manual
+              Conectamos suas ferramentas e automatizamos o fluxo completo
             </p>
           </div>
 
@@ -130,7 +128,7 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* Integrations */}
-      <section id="integracoes" className="py-24 md:py-32 bg-white">
+      <section id="integracoes" className="py-16 md:py-24 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <LogoGrid />
         </div>
@@ -140,7 +138,7 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* Pricing */}
-      <section id="precos" className="py-24 md:py-32 bg-bg-muted">
+      <section id="precos" className="py-16 md:py-24 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <PricingSection />
         </div>
@@ -150,14 +148,17 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* CTA */}
-      <section id="contato" className="py-24 md:py-32 bg-white">
+      <section id="contato" className="py-16 md:py-24 bg-white">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
-          <h2 className="text-[2rem] md:text-[2.5rem] font-medium text-neutral-900 mb-6">
-            Pronto para automatizar?
-          </h2>
-          <p className="text-lg text-neutral-600 max-w-lg mx-auto mb-10">
-            Sem compromisso, sem custo inicial. Conversamos sobre seus processos e mostramos o potencial de economia.
-          </p>
+          <div className="mb-10 md:mb-12">
+            <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
+              Pronto para automatizar?<br />
+              <span className="text-brand-primary">Vamos conversar</span>
+            </h2>
+            <p className="mt-4 text-lg text-brand-muted max-w-xl mx-auto">
+              Sem compromisso, sem custo inicial. Mostramos o potencial de economia para seu negócio.
+            </p>
+          </div>
           <button
             onClick={() => setIsContactModalOpen(true)}
             className="btn btn-primary btn-xl"

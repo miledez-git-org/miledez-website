@@ -81,11 +81,6 @@ function WorkflowCard({
   icons,
   variant = 'default',
 }: WorkflowCardProps) {
-  const borderClass =
-    variant === 'success'
-      ? 'border-2 border-green-300'
-      : 'border border-neutral-200'
-
   return (
     <div className="relative">
       {/* Floating icons */}
@@ -97,8 +92,8 @@ function WorkflowCard({
       <div
         className={`
           bg-neutral-100 rounded-xl px-10 py-8
-          shadow-[0_4px_24px_rgba(0,0,0,0.10)]
-          ${borderClass}
+          shadow-[0_1px_1px_rgba(139,32,32,0.11),0_2px_2px_rgba(139,32,32,0.11),0_4px_4px_rgba(139,32,32,0.11),0_8px_8px_rgba(139,32,32,0.11),0_16px_16px_rgba(139,32,32,0.11),0_32px_32px_rgba(139,32,32,0.11)]
+          border border-neutral-200
           min-w-[180px]
         `}
       >
@@ -106,7 +101,7 @@ function WorkflowCard({
           {title}
         </h3>
         {subtitle && (
-          <p className="font-display text-xs text-neutral-400 text-center mt-1">
+          <p className="font-display text-xs text-neutral-500 text-center mt-1">
             {subtitle}
           </p>
         )}

@@ -52,12 +52,10 @@ export default function LogoGrid() {
   return (
     <div>
       {/* Section Header */}
-      <div className="mb-12 md:mb-16 text-center">
-        <p className="text-xs font-semibold text-brand-muted uppercase tracking-[0.15em] mb-4">
-          Integrações
-        </p>
-        <h2 className="heading-section text-[2rem] md:text-[2.5rem] text-brand-black">
-          Conectamos suas ferramentas
+      <div className="mb-10 md:mb-12 text-center">
+        <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
+          Conectamos suas ferramentas,<br />
+          <span className="text-brand-primary">sem complicação</span>
         </h2>
         <p className="mt-4 text-lg text-brand-muted max-w-xl mx-auto">
           Integração nativa com os sistemas que sua empresa já utiliza

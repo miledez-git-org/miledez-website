@@ -72,12 +72,13 @@ export default function PricingSection() {
   return (
     <div ref={ref}>
       {/* Header */}
-      <div className="mb-12 md:mb-16 text-center">
-        <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">
-          Investimento proporcional ao seu retorno
+      <div className="mb-10 md:mb-12 text-center">
+        <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
+          Preço justo,<br />
+          <span className="text-brand-primary">retorno garantido</span>
         </h2>
-        <p className="mt-4 text-lg text-brand-muted max-w-2xl mx-auto">
-          Preço justo baseado na complexidade e escala do seu negócio
+        <p className="mt-4 text-lg text-brand-muted max-w-xl mx-auto">
+          Baseado na complexidade e escala do seu negócio
         </p>
       </div>
 
