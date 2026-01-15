@@ -1,7 +1,7 @@
 // Design System Theme
 // Source: .claude/skills/frontend-design/brand-tokens.json
-// Version: 3.1.0
-// Last synced: 2026-01-12T08:07:39.228Z
+// Version: 3.2.0
+// Last synced: 2026-01-14
 
 import type { Config } from 'tailwindcss'
 
@@ -86,6 +86,8 @@ export const designSystemTheme: NonNullable<Config['theme']>['extend'] = {
     card: '0 2px 8px rgba(0,0,0,0.04)',
     'card-hover': '0 8px 30px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04)',
     'card-float': '0 12px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.05)',
+    'card-soft': '0 4px 20px rgba(0,0,0,0.06)',
+    'card-icon': '0 2px 10px rgba(0,0,0,0.08)',
   },
   transitionTimingFunction: {
     smooth: 'cubic-bezier(0.4, 0, 0.2, 1)',

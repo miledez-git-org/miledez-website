@@ -8,7 +8,7 @@ import WorkflowDemo from '@/components/WorkflowDemo'
 import LogoGrid from '@/components/LogoGrid'
 import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
-import HeroWorkflowSimple from '@/components/HeroWorkflowSimple'
+import HeroWorkflowStatic from '@/components/HeroWorkflowStatic'
 import ScrollProgress from '@/components/ScrollProgress'
 import ContactModal from '@/components/ContactModal'
 
@@ -42,7 +42,7 @@ export default function Home() {
       {/* Hero */}
       <section className="min-h-screen bg-white flex items-center relative">
         <div className="max-w-7xl mx-auto px-4 md:px-6 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-8 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-12 items-center">
 
             {/* Left column - Hero content */}
             <div className="flex flex-col justify-center">
@@ -76,7 +76,7 @@ export default function Home() {
 
             {/* Right column - Workflow Demo */}
             <div className="hidden lg:block">
-              <HeroWorkflowSimple />
+              <HeroWorkflowStatic />
             </div>
 
           </div>
