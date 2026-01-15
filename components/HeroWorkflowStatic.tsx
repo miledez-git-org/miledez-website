@@ -79,7 +79,7 @@ function WorkflowCard({
   title,
   subtitle,
   icons,
-  variant = 'default',
+  variant: _variant = 'default',
 }: WorkflowCardProps) {
   return (
     <div className="relative">
