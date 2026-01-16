@@ -88,7 +88,7 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* Value Proposition */}
-      <section id="valor" className="py-16 md:py-24 bg-bg-muted">
+      <section id="valor" className="py-16 md:py-[180px] bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ValueProposition />
         </div>
@@ -98,7 +98,7 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* How It Works - Process */}
-      <section id="como-funciona" className="py-16 md:py-24 bg-white">
+      <section id="como-funciona" className="py-16 md:py-[180px] bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ProcessSection />
         </div>
@@ -108,7 +108,7 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* Workflow Demo */}
-      <section id="demo" className="py-16 md:py-24 bg-bg-muted">
+      <section id="demo" className="py-16 md:py-[180px] bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="mb-10 md:mb-12 text-center">
             <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
@@ -128,7 +128,7 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* Integrations */}
-      <section id="integracoes" className="py-16 md:py-24 bg-white">
+      <section id="integracoes" className="py-16 md:py-[180px] bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <LogoGrid />
         </div>
@@ -138,7 +138,7 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* Pricing */}
-      <section id="precos" className="py-16 md:py-24 bg-bg-muted">
+      <section id="precos" className="py-16 md:py-[180px] bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <PricingSection />
         </div>
@@ -148,7 +148,7 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* CTA */}
-      <section id="contato" className="py-16 md:py-24 bg-white">
+      <section id="contato" className="py-16 md:py-[180px] bg-white">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
           <div className="mb-10 md:mb-12">
             <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
