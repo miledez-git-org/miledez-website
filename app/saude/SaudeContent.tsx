@@ -1,12 +1,10 @@
 'use client'
 
-// import Link from 'next/link' // Kept for future use
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import WorkflowDemoLegacy, { exampleIcons } from '@/components/WorkflowDemoLegacy'
 import ChallengeCard from '@/components/industry/ChallengeCard'
 import MetricsGrid from '@/components/industry/MetricsGrid'
-import IndustryHeroVisualization from '@/components/industry/IndustryHeroVisualization'
+import { WorkflowVisual, getIndustryPreset, saudeWorkflows } from '@/components/WorkflowVisual'
 import IndustryIntegrations from '@/components/industry/IndustryIntegrations'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { icons, stepIcons } from '@/components/Icons'
@@ -56,193 +54,6 @@ function ChallengeCards() {
 }
 
 export default function SaudeContent() {
-  const workflows = {
-    documents: {
-      title: 'Coleta de Documentos',
-      subtitle: 'Prontuário completo sem trabalho manual',
-      steps: [
-        {
-          icon: stepIcons.user,
-          title: 'Novo paciente',
-          description: 'Um cadastro inicia o processo de coleta.',
-          examples: [
-            { icon: exampleIcons.form, text: 'Ficha preenchida' },
-            { icon: exampleIcons.calendar, text: 'Consulta agendada' },
-            { icon: exampleIcons.user, text: 'Dados básicos capturados' },
-          ],
-        },
-        {
-          icon: stepIcons.mail,
-          title: 'Formulário enviado',
-          description: 'Ficha de anamnese enviada automaticamente.',
-          examples: [
-            { icon: exampleIcons.email, text: 'Email personalizado' },
-            { icon: exampleIcons.form, text: 'Link para preenchimento' },
-            { icon: exampleIcons.bell, text: 'Lembrete se não responder' },
-          ],
-        },
-        {
-          icon: stepIcons.folder,
-          title: 'Docs organizados',
-          description: 'Arquivos classificados automaticamente.',
-          examples: [
-            { icon: exampleIcons.folder, text: 'Pasta do paciente' },
-            { icon: exampleIcons.document, text: 'Exames anexados' },
-            { icon: exampleIcons.data, text: 'Histórico atualizado' },
-          ],
-        },
-        {
-          icon: stepIcons.check,
-          title: 'Prontuário completo',
-          description: 'Tudo pronto para o atendimento.',
-          examples: [
-            { icon: exampleIcons.check, text: 'Documentos validados' },
-            { icon: exampleIcons.bell, text: 'Pendências sinalizadas' },
-            { icon: exampleIcons.team, text: 'Equipe notificada' },
-          ],
-        },
-      ],
-    },
-    billing: {
-      title: 'Faturamento de Convênios',
-      subtitle: 'Menos glosas, reembolso mais rápido',
-      steps: [
-        {
-          icon: stepIcons.result,
-          title: 'Consulta finalizada',
-          description: 'Dados do atendimento registrados.',
-          examples: [
-            { icon: exampleIcons.form, text: 'Procedimento registrado' },
-            { icon: exampleIcons.user, text: 'Paciente identificado' },
-            { icon: exampleIcons.calendar, text: 'Data e hora capturados' },
-          ],
-        },
-        {
-          icon: stepIcons.document,
-          title: 'Guia formatada',
-          description: 'Documento conforme exigências do convênio.',
-          examples: [
-            { icon: exampleIcons.document, text: 'TISS preenchida' },
-            { icon: exampleIcons.data, text: 'Códigos validados' },
-            { icon: exampleIcons.check, text: 'Campos obrigatórios ok' },
-          ],
-        },
-        {
-          icon: stepIcons.mail,
-          title: 'Envio automático',
-          description: 'Submissão ao portal do convênio.',
-          examples: [
-            { icon: exampleIcons.sync, text: 'Upload ao portal' },
-            { icon: exampleIcons.log, text: 'Protocolo registrado' },
-            { icon: exampleIcons.clock, text: 'Prazo monitorado' },
-          ],
-        },
-        {
-          icon: stepIcons.check,
-          title: 'Status rastreado',
-          description: 'Acompanhamento até o pagamento.',
-          examples: [
-            { icon: exampleIcons.check, text: 'Aprovação confirmada' },
-            { icon: exampleIcons.money, text: 'Pagamento recebido' },
-            { icon: exampleIcons.bell, text: 'Glosas alertadas' },
-          ],
-        },
-      ],
-    },
-    compliance: {
-      title: 'Organização e Conformidade',
-      subtitle: 'Pronto para auditoria, sempre',
-      steps: [
-        {
-          icon: stepIcons.document,
-          title: 'Documento recebido',
-          description: 'Qualquer formato é aceito.',
-          examples: [
-            { icon: exampleIcons.file, text: 'PDF ou imagem' },
-            { icon: exampleIcons.email, text: 'Anexo de email' },
-            { icon: exampleIcons.document, text: 'Scan de papel' },
-          ],
-        },
-        {
-          icon: stepIcons.process,
-          title: 'Auto-classificado',
-          description: 'IA identifica o tipo do documento.',
-          examples: [
-            { icon: exampleIcons.data, text: 'Categoria detectada' },
-            { icon: exampleIcons.user, text: 'Paciente identificado' },
-            { icon: exampleIcons.calendar, text: 'Data extraída' },
-          ],
-        },
-        {
-          icon: stepIcons.calendar,
-          title: 'Retenção definida',
-          description: 'Prazo legal configurado automaticamente.',
-          examples: [
-            { icon: exampleIcons.clock, text: 'Prazo calculado' },
-            { icon: exampleIcons.log, text: 'Regra aplicada' },
-            { icon: exampleIcons.folder, text: 'Arquivo organizado' },
-          ],
-        },
-        {
-          icon: stepIcons.check,
-          title: 'Alertas agendados',
-          description: 'Aviso antes do vencimento.',
-          examples: [
-            { icon: exampleIcons.bell, text: 'Lembrete 30 dias antes' },
-            { icon: exampleIcons.email, text: 'Notificação enviada' },
-            { icon: exampleIcons.check, text: 'Renovação orientada' },
-          ],
-        },
-      ],
-    },
-    collections: {
-      title: 'Cobrança e Acompanhamento',
-      subtitle: 'Menos inadimplência, menos trabalho',
-      steps: [
-        {
-          icon: stepIcons.creditCard,
-          title: 'Fatura gerada',
-          description: 'Automática após o atendimento.',
-          examples: [
-            { icon: exampleIcons.document, text: 'Valor calculado' },
-            { icon: exampleIcons.user, text: 'Dados do paciente' },
-            { icon: exampleIcons.calendar, text: 'Vencimento definido' },
-          ],
-        },
-        {
-          icon: stepIcons.calendar,
-          title: 'Prazo monitorado',
-          description: 'Contagem regressiva automática.',
-          examples: [
-            { icon: exampleIcons.clock, text: 'Dias restantes' },
-            { icon: exampleIcons.data, text: 'Status atualizado' },
-            { icon: exampleIcons.log, text: 'Histórico registrado' },
-          ],
-        },
-        {
-          icon: stepIcons.bell,
-          title: 'Lembretes enviados',
-          description: 'Escalonamento automático de cobranças.',
-          examples: [
-            { icon: exampleIcons.email, text: 'Email cordial' },
-            { icon: exampleIcons.bell, text: 'WhatsApp amigável' },
-            { icon: exampleIcons.calendar, text: 'Segundo lembrete' },
-          ],
-        },
-        {
-          icon: stepIcons.check,
-          title: 'Status atualizado',
-          description: 'Baixa automática ao receber.',
-          examples: [
-            { icon: exampleIcons.check, text: 'Pagamento confirmado' },
-            { icon: exampleIcons.money, text: 'Valor conciliado' },
-            { icon: exampleIcons.log, text: 'Registro completo' },
-          ],
-        },
-      ],
-    },
-  }
-
   const integrations = [
     { name: 'WhatsApp', icon: icons.whatsapp },
     { name: 'Doctoralia', icon: icons.doctoralia },
@@ -291,7 +102,10 @@ export default function SaudeContent() {
                 Agendar conversa
               </a>
             </div>
-            <IndustryHeroVisualization industry="saude" />
+            <WorkflowVisual 
+              {...getIndustryPreset('saude')} 
+              className="hidden lg:block w-full max-w-lg"
+            />
           </div>
         </div>
       </section>
@@ -309,27 +123,41 @@ export default function SaudeContent() {
 
       {/* Workflows */}
       <section id="workflows" className="py-32 md:py-40 bg-white">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="mb-20">
-            <h2 className="heading-section text-[2rem] mb-4 text-brand-black">O que automatizamos</h2>
-            <p className="text-lg text-brand-text">Processos que funcionam sozinhos, liberando sua equipe</p>
+        <div className="px-6 md:px-10 max-w-7xl mx-auto">
+          <div className="mb-16 text-center">
+            <h2 className="heading-section text-[2rem] mb-4 text-brand-black">Automacoes para sua clinica</h2>
+            <p className="text-lg text-brand-text max-w-2xl mx-auto">
+              Processos que funcionam sozinhos, do cadastro ao pagamento
+            </p>
           </div>
 
-          <div className="space-y-16">
-            {Object.entries(workflows).map(([key, workflow], index) => (
-              <div key={key}>
-                <div className="mb-8 flex items-center gap-4">
-                  <span className="flex-shrink-0 w-7 h-7 flex items-center justify-center bg-brand-primary text-white text-sm font-medium">
-                    {index + 1}
-                  </span>
-                  <div>
-                    <h3 className="text-xl font-medium text-brand-black leading-7">{workflow.title}</h3>
-                    <p className="text-brand-muted">{workflow.subtitle}</p>
-                  </div>
-                </div>
-                <WorkflowDemoLegacy steps={workflow.steps} />
-              </div>
-            ))}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* First 2 workflows - horizontal layout (simpler) */}
+            <WorkflowVisual 
+              title={saudeWorkflows.documents.title}
+              steps={saudeWorkflows.documents.steps}
+              layout="horizontal"
+              variant="card"
+            />
+            <WorkflowVisual 
+              title={saudeWorkflows.billing.title}
+              steps={saudeWorkflows.billing.steps}
+              layout="horizontal"
+              variant="card"
+            />
+            {/* Last 2 workflows - horizontal layout (consistent) */}
+            <WorkflowVisual 
+              title={saudeWorkflows.compliance.title}
+              steps={saudeWorkflows.compliance.steps}
+              layout="horizontal"
+              variant="card"
+            />
+            <WorkflowVisual 
+              title={saudeWorkflows.collections.title}
+              steps={saudeWorkflows.collections.steps}
+              layout="horizontal"
+              variant="card"
+            />
           </div>
         </div>
       </section>

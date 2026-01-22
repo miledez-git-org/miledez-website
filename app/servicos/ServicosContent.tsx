@@ -2,10 +2,9 @@
 
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import WorkflowDemoLegacy, { exampleIcons } from '@/components/WorkflowDemoLegacy'
 import ChallengeCard from '@/components/industry/ChallengeCard'
 import MetricsGrid from '@/components/industry/MetricsGrid'
-import IndustryHeroVisualization from '@/components/industry/IndustryHeroVisualization'
+import { WorkflowVisual, getIndustryPreset, servicosWorkflows } from '@/components/WorkflowVisual'
 import IndustryIntegrations from '@/components/industry/IndustryIntegrations'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { icons, stepIcons } from '@/components/Icons'
@@ -55,193 +54,6 @@ function ChallengeCards() {
 }
 
 export default function ServicosContent() {
-  const workflows = {
-    onboarding: {
-      title: 'Onboarding de Clientes',
-      subtitle: 'Pasta do cliente pronta desde o primeiro dia',
-      steps: [
-        {
-          icon: stepIcons.user,
-          title: 'Novo cliente',
-          description: 'Contrato assinado inicia o processo.',
-          examples: [
-            { icon: exampleIcons.document, text: 'Contrato recebido' },
-            { icon: exampleIcons.user, text: 'Dados cadastrados' },
-            { icon: exampleIcons.calendar, text: 'Início definido' },
-          ],
-        },
-        {
-          icon: stepIcons.mail,
-          title: 'Kit enviado',
-          description: 'Boas-vindas e checklist automáticos.',
-          examples: [
-            { icon: exampleIcons.email, text: 'Email de boas-vindas' },
-            { icon: exampleIcons.form, text: 'Checklist de docs' },
-            { icon: exampleIcons.bell, text: 'Lembretes programados' },
-          ],
-        },
-        {
-          icon: stepIcons.folder,
-          title: 'Pasta criada',
-          description: 'Estrutura organizada por tipo.',
-          examples: [
-            { icon: exampleIcons.folder, text: 'Pasta do projeto' },
-            { icon: exampleIcons.document, text: 'Templates prontos' },
-            { icon: exampleIcons.data, text: 'Estrutura padronizada' },
-          ],
-        },
-        {
-          icon: stepIcons.check,
-          title: 'Pronto para iniciar',
-          description: 'Tudo configurado para o projeto.',
-          examples: [
-            { icon: exampleIcons.check, text: 'Documentos completos' },
-            { icon: exampleIcons.bell, text: 'Pendências sinalizadas' },
-            { icon: exampleIcons.team, text: 'Equipe notificada' },
-          ],
-        },
-      ],
-    },
-    contracts: {
-      title: 'Gestão de Contratos',
-      subtitle: 'Nenhum contrato vence sem você saber',
-      steps: [
-        {
-          icon: stepIcons.document,
-          title: 'Contrato cadastrado',
-          description: 'Data de vencimento registrada.',
-          examples: [
-            { icon: exampleIcons.document, text: 'Contrato digitalizado' },
-            { icon: exampleIcons.calendar, text: 'Validade definida' },
-            { icon: exampleIcons.money, text: 'Valor registrado' },
-          ],
-        },
-        {
-          icon: stepIcons.calendar,
-          title: 'Alertas programados',
-          description: 'Notificações 60, 30 e 15 dias antes.',
-          examples: [
-            { icon: exampleIcons.bell, text: 'Alerta 60 dias' },
-            { icon: exampleIcons.bell, text: 'Alerta 30 dias' },
-            { icon: exampleIcons.bell, text: 'Alerta 15 dias' },
-          ],
-        },
-        {
-          icon: stepIcons.document,
-          title: 'Proposta gerada',
-          description: 'Renovação pré-preenchida.',
-          examples: [
-            { icon: exampleIcons.document, text: 'Proposta criada' },
-            { icon: exampleIcons.data, text: 'Histórico incluído' },
-            { icon: exampleIcons.money, text: 'Reajuste calculado' },
-          ],
-        },
-        {
-          icon: stepIcons.check,
-          title: 'Renovação garantida',
-          description: 'Status sempre atualizado.',
-          examples: [
-            { icon: exampleIcons.check, text: 'Assinatura confirmada' },
-            { icon: exampleIcons.sync, text: 'Sistema atualizado' },
-            { icon: exampleIcons.log, text: 'Histórico registrado' },
-          ],
-        },
-      ],
-    },
-    billing: {
-      title: 'Faturamento por Projeto',
-      subtitle: 'Cobrança consistente, pagamento mais rápido',
-      steps: [
-        {
-          icon: stepIcons.result,
-          title: 'Marco atingido',
-          description: 'Entrega ou fim do mês dispara o processo.',
-          examples: [
-            { icon: exampleIcons.check, text: 'Entrega concluída' },
-            { icon: exampleIcons.calendar, text: 'Fim do período' },
-            { icon: exampleIcons.data, text: 'Horas registradas' },
-          ],
-        },
-        {
-          icon: stepIcons.process,
-          title: 'Dados compilados',
-          description: 'Horas, entregas e valores reunidos.',
-          examples: [
-            { icon: exampleIcons.clock, text: 'Horas totalizadas' },
-            { icon: exampleIcons.document, text: 'Entregas listadas' },
-            { icon: exampleIcons.money, text: 'Valores calculados' },
-          ],
-        },
-        {
-          icon: stepIcons.creditCard,
-          title: 'Fatura enviada',
-          description: 'Formatada e entregue ao cliente.',
-          examples: [
-            { icon: exampleIcons.document, text: 'NF emitida' },
-            { icon: exampleIcons.email, text: 'Email enviado' },
-            { icon: exampleIcons.calendar, text: 'Vencimento definido' },
-          ],
-        },
-        {
-          icon: stepIcons.check,
-          title: 'Pagamento rastreado',
-          description: 'Lembretes automáticos até receber.',
-          examples: [
-            { icon: exampleIcons.bell, text: 'Lembrete enviado' },
-            { icon: exampleIcons.check, text: 'Pagamento confirmado' },
-            { icon: exampleIcons.money, text: 'Valor conciliado' },
-          ],
-        },
-      ],
-    },
-    reports: {
-      title: 'Relatórios para Clientes',
-      subtitle: 'Profissionalismo sem esforço manual',
-      steps: [
-        {
-          icon: stepIcons.calendar,
-          title: 'Data programada',
-          description: 'Semanal, mensal ou por projeto.',
-          examples: [
-            { icon: exampleIcons.calendar, text: 'Frequência definida' },
-            { icon: exampleIcons.clock, text: 'Horário agendado' },
-            { icon: exampleIcons.bell, text: 'Disparo automático' },
-          ],
-        },
-        {
-          icon: stepIcons.refresh,
-          title: 'Dados coletados',
-          description: 'Métricas puxadas automaticamente.',
-          examples: [
-            { icon: exampleIcons.data, text: 'KPIs atualizados' },
-            { icon: exampleIcons.chart, text: 'Gráficos gerados' },
-            { icon: exampleIcons.sync, text: 'Fontes sincronizadas' },
-          ],
-        },
-        {
-          icon: stepIcons.document,
-          title: 'Relatório formatado',
-          description: 'Layout profissional consistente.',
-          examples: [
-            { icon: exampleIcons.document, text: 'Template aplicado' },
-            { icon: exampleIcons.file, text: 'PDF gerado' },
-            { icon: exampleIcons.check, text: 'Revisão automática' },
-          ],
-        },
-        {
-          icon: stepIcons.check,
-          title: 'Entrega automática',
-          description: 'Cliente recebe no prazo.',
-          examples: [
-            { icon: exampleIcons.email, text: 'Email enviado' },
-            { icon: exampleIcons.check, text: 'Entrega confirmada' },
-            { icon: exampleIcons.log, text: 'Histórico registrado' },
-          ],
-        },
-      ],
-    },
-  }
-
   const integrations = [
     { name: 'WhatsApp', icon: icons.whatsapp },
     { name: 'Gmail', icon: icons.gmail },
@@ -290,7 +102,10 @@ export default function ServicosContent() {
                 Agendar conversa
               </a>
             </div>
-            <IndustryHeroVisualization industry="servicos" />
+            <WorkflowVisual 
+              {...getIndustryPreset('servicos')} 
+              className="hidden lg:block w-full max-w-lg"
+            />
           </div>
         </div>
       </section>
@@ -308,27 +123,39 @@ export default function ServicosContent() {
 
       {/* Workflows */}
       <section id="workflows" className="py-32 md:py-40 bg-white">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="mb-20">
+        <div className="px-6 md:px-10 max-w-7xl mx-auto">
+          <div className="mb-16 text-center">
             <h2 className="heading-section text-[2rem] mb-4 text-brand-black">O que automatizamos</h2>
-            <p className="text-lg text-brand-text">Processos que funcionam sozinhos, liberando seu tempo</p>
+            <p className="text-lg text-brand-text max-w-2xl mx-auto">
+              Processos que funcionam sozinhos, liberando seu tempo
+            </p>
           </div>
 
-          <div className="space-y-16">
-            {Object.entries(workflows).map(([key, workflow], index) => (
-              <div key={key}>
-                <div className="mb-8 flex items-center gap-4">
-                  <span className="flex-shrink-0 w-7 h-7 flex items-center justify-center bg-brand-primary text-white text-sm font-medium">
-                    {index + 1}
-                  </span>
-                  <div>
-                    <h3 className="text-xl font-medium text-brand-black leading-7">{workflow.title}</h3>
-                    <p className="text-brand-muted">{workflow.subtitle}</p>
-                  </div>
-                </div>
-                <WorkflowDemoLegacy steps={workflow.steps} />
-              </div>
-            ))}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <WorkflowVisual 
+              title={servicosWorkflows.onboarding.title}
+              steps={servicosWorkflows.onboarding.steps}
+              layout="horizontal"
+              variant="card"
+            />
+            <WorkflowVisual 
+              title={servicosWorkflows.contracts.title}
+              steps={servicosWorkflows.contracts.steps}
+              layout="horizontal"
+              variant="card"
+            />
+            <WorkflowVisual 
+              title={servicosWorkflows.billing.title}
+              steps={servicosWorkflows.billing.steps}
+              layout="horizontal"
+              variant="card"
+            />
+            <WorkflowVisual 
+              title={servicosWorkflows.reports.title}
+              steps={servicosWorkflows.reports.steps}
+              layout="horizontal"
+              variant="card"
+            />
           </div>
         </div>
       </section>
