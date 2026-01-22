@@ -54,11 +54,12 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     setFormStatus('loading')
 
     try {
-      // Using Formspree - replace with your form endpoint
+      // Using Formspree
       const response = await fetch('https://formspree.io/f/xpwzgkvl', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({
           name: formData.name,

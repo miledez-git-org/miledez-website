@@ -140,7 +140,7 @@ export default function Home() {
       {/* Pricing */}
       <section id="precos" className="py-16 md:py-[180px] bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <PricingSection />
+          <PricingSection onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 

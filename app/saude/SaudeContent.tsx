@@ -1,7 +1,9 @@
 'use client'
 
+import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import ContactModal from '@/components/ContactModal'
 import ChallengeCard from '@/components/industry/ChallengeCard'
 import MetricsGrid from '@/components/industry/MetricsGrid'
 import { WorkflowVisual, getIndustryPreset, saudeWorkflows } from '@/components/WorkflowVisual'
@@ -54,6 +56,8 @@ function ChallengeCards() {
 }
 
 export default function SaudeContent() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false)
+  
   const integrations = [
     { name: 'WhatsApp', icon: icons.whatsapp },
     { name: 'Doctoralia', icon: icons.doctoralia },
@@ -95,12 +99,12 @@ export default function SaudeContent() {
               <p className="text-xl mb-12 max-w-lg text-brand-text leading-relaxed">
                 Automatizamos documentação, faturamento e conformidade. Você foca no atendimento.
               </p>
-              <a
-                href="#contato"
-                className="btn-primary inline-block px-10 py-5 text-sm font-medium text-white bg-brand-primary hover:bg-brand-primary-dark"
+              <button
+                onClick={() => setIsContactModalOpen(true)}
+                className="btn btn-primary btn-xl"
               >
                 Agendar conversa
-              </a>
+              </button>
             </div>
             <WorkflowVisual 
               {...getIndustryPreset('saude')} 
@@ -201,16 +205,21 @@ export default function SaudeContent() {
           <p className="text-lg max-w-md mx-auto mb-12 text-brand-text">
             Conversa sem compromisso. Entendemos sua clínica e mostramos o que é possível automatizar.
           </p>
-          <a
-            href="mailto:contato@miledez.com.br"
-            className="btn-primary inline-block px-10 py-5 text-base font-medium text-white bg-brand-primary hover:bg-brand-primary-dark"
+          <button
+            onClick={() => setIsContactModalOpen(true)}
+            className="btn btn-primary btn-xl"
           >
-            Iniciar conversa
-          </a>
+            Falar conosco
+          </button>
         </div>
       </section>
 
       <Footer />
+
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </div>
   )
 }

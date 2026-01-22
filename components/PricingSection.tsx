@@ -2,6 +2,10 @@
 
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
+interface PricingSectionProps {
+  onContactClick: () => void
+}
+
 interface PricingTier {
   name: string
   price: string
@@ -66,7 +70,7 @@ const valueProps = [
   },
 ]
 
-export default function PricingSection() {
+export default function PricingSection({ onContactClick }: PricingSectionProps) {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.2 })
 
   return (
@@ -183,14 +187,12 @@ export default function PricingSection() {
           transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s',
         }}
       >
-        <a
-          href="https://calendar.app.google/3nqUQJDPymSrksKM8"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={onContactClick}
           className="btn btn-primary btn-xl"
         >
-          Agendar diagnóstico
-        </a>
+          Falar conosco
+        </button>
       </div>
     </div>
   )
