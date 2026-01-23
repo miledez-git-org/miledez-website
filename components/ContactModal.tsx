@@ -55,7 +55,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
     try {
       // Using Formspree
-      const response = await fetch('https://formspree.io/f/xpwzgkvl', {
+      const response = await fetch('https://formspree.io/f/xdaeedap', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
