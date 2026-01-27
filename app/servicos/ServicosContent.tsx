@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 import ContactModal from '@/components/ContactModal'
 import ChallengeCard from '@/components/industry/ChallengeCard'
 import MetricsGrid from '@/components/industry/MetricsGrid'
-import { WorkflowVisual, getIndustryPreset, servicosWorkflows } from '@/components/WorkflowVisual'
+import { WorkflowVisual, WorkflowVisualCompact, getHeroPreset, servicosWorkflows } from '@/components/WorkflowVisual'
 import IndustryIntegrations from '@/components/industry/IndustryIntegrations'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { icons, stepIcons } from '@/components/Icons'
@@ -106,9 +106,9 @@ export default function ServicosContent() {
                 Agendar conversa
               </button>
             </div>
-            <WorkflowVisual 
-              {...getIndustryPreset('servicos')} 
-              className="hidden lg:block w-full max-w-lg"
+            <WorkflowVisualCompact
+              {...getHeroPreset('servicos')}
+              className="hidden lg:block w-full max-w-md"
             />
           </div>
         </div>

@@ -63,3 +63,19 @@ export interface WorkflowConnectorProps {
   /** Whether this is the last connector (connects to the final/result step) */
   isLast: boolean
 }
+
+// Simplified step interface for hero section workflows (no examples)
+export interface HeroWorkflowStep {
+  icon: IconType
+  label: string
+  sublabel?: string
+}
+
+export interface WorkflowVisualCompactProps {
+  /** Title displayed at the top of the workflow */
+  title: string
+  /** Array of workflow steps (3 steps recommended) */
+  steps: HeroWorkflowStep[]
+  /** Additional CSS classes */
+  className?: string
+}

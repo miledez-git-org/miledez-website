@@ -1,8 +1,13 @@
-import { WorkflowStep } from './types'
+import { WorkflowStep, HeroWorkflowStep } from './types'
 
 export interface WorkflowPreset {
   title: string
   steps: WorkflowStep[]
+}
+
+export interface HeroWorkflowPreset {
+  title: string
+  steps: HeroWorkflowStep[]
 }
 
 export type Industry = 'saude' | 'servicos' | 'varejo'
@@ -150,6 +155,79 @@ export const industryPresets: Record<Industry, WorkflowPreset> = {
  */
 export function getIndustryPreset(industry: Industry): WorkflowPreset {
   return industryPresets[industry]
+}
+
+/**
+ * Simplified 3-step workflow presets for hero sections
+ */
+export const heroPresets: Record<Industry, HeroWorkflowPreset> = {
+  saude: {
+    title: 'Automacao de Documentos',
+    steps: [
+      {
+        icon: 'user',
+        label: 'Novo paciente',
+        sublabel: 'Cadastro inicia o processo',
+      },
+      {
+        icon: 'process',
+        label: 'Processado automaticamente',
+        sublabel: 'Formularios, docs e organizacao',
+      },
+      {
+        icon: 'check',
+        label: 'Prontuario completo',
+        sublabel: 'Pronto para atendimento',
+      },
+    ],
+  },
+  servicos: {
+    title: 'Gestao de Contratos',
+    steps: [
+      {
+        icon: 'user',
+        label: 'Cliente cadastrado',
+        sublabel: 'Dados registrados no sistema',
+      },
+      {
+        icon: 'process',
+        label: 'Contrato gerenciado',
+        sublabel: 'Geracao, alertas e renovacao',
+      },
+      {
+        icon: 'check',
+        label: 'Renovado automaticamente',
+        sublabel: 'Continuidade garantida',
+      },
+    ],
+  },
+  varejo: {
+    title: 'Processamento de Pedidos',
+    steps: [
+      {
+        icon: 'cart',
+        label: 'Novo pedido',
+        sublabel: 'Venda confirmada',
+      },
+      {
+        icon: 'process',
+        label: 'Processamento automatico',
+        sublabel: 'Estoque, nota e envio',
+      },
+      {
+        icon: 'check',
+        label: 'Cliente notificado',
+        sublabel: 'Rastreamento em tempo real',
+      },
+    ],
+  },
+}
+
+/**
+ * Get a simplified hero workflow preset for a specific industry
+ */
+export function getHeroPreset(industry: Industry): HeroWorkflowPreset {
+  return heroPresets[industry]
 }
 
 /**

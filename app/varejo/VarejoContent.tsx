@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 import ContactModal from '@/components/ContactModal'
 import ChallengeCard from '@/components/industry/ChallengeCard'
 import MetricsGrid from '@/components/industry/MetricsGrid'
-import { WorkflowVisual, getIndustryPreset, varejoWorkflows } from '@/components/WorkflowVisual'
+import { WorkflowVisual, WorkflowVisualCompact, getHeroPreset, varejoWorkflows } from '@/components/WorkflowVisual'
 import IndustryIntegrations from '@/components/industry/IndustryIntegrations'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { icons, stepIcons } from '@/components/Icons'
@@ -106,9 +106,9 @@ export default function VarejoContent() {
                 Agendar conversa
               </button>
             </div>
-            <WorkflowVisual 
-              {...getIndustryPreset('varejo')} 
-              className="hidden lg:block w-full max-w-lg"
+            <WorkflowVisualCompact
+              {...getHeroPreset('varejo')}
+              className="hidden lg:block w-full max-w-md"
             />
           </div>
         </div>
