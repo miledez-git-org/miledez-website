@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 /**
- * WorkflowDemo - Full workflow demonstration with auto-cycling industries
- * Features: Elbow connectors, animated cards, automatic industry switching
+ * WorkflowDemo - Full workflow demonstration with industry tabs
+ * Features: Elbow connectors, animated cards, industry variations
  */
 
 const ACCENT_BLUE = '#3b82f6'
@@ -68,60 +68,32 @@ const variations: Variation[] = [
 export default function WorkflowDemo() {
   const [activeVariation, setActiveVariation] = useState(0)
   const [step, setStep] = useState(-1)
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  // Intersection observer for triggering animations
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true)
-          }
-        })
-      },
-      { threshold: 0.3 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
 
   // Reset animation when variation changes
   useEffect(() => {
     setStep(-1)
   }, [activeVariation])
 
-  // Animation loop with slower timing
+  // Animation loop
   useEffect(() => {
-    if (!isVisible) return
-
     if (step === -1) {
-      const timer = setTimeout(() => setStep(0), 800)
+      const timer = setTimeout(() => setStep(0), 600)
       return () => clearTimeout(timer)
     }
 
     const timer = setTimeout(
       () => {
         if (step >= 5) {
-          // Longer pause at end before restart/switching (4000ms)
-          setTimeout(() => {
-            // Auto-cycle to next industry
-            setActiveVariation((prev) => (prev + 1) % variations.length)
-          }, 4000)
+          setTimeout(() => setStep(-1), 3000)
         } else {
           setStep((prev) => prev + 1)
         }
       },
-      step === 0 ? 2000 : 2200 // Slower step timing
+      step === 0 ? 1000 : 1200
     )
 
     return () => clearTimeout(timer)
-  }, [step, isVisible])
+  }, [step])
 
   const variation = variations[activeVariation]
   const triggerActive = step >= 0
@@ -132,20 +104,25 @@ export default function WorkflowDemo() {
   const output2Active = step >= 5
 
   return (
-    <div ref={sectionRef} style={{ fontFamily: "'Manrope', sans-serif" }}>
-      {/* Industry indicator - subtle pills instead of buttons */}
-      <div className="flex justify-center gap-3 mb-8">
+    <div style={{ fontFamily: "'Manrope', sans-serif" }}>
+      {/* Tabs */}
+      <div className="flex justify-center gap-2 mb-8">
         {variations.map((v) => (
-          <div
+          <button
             key={v.id}
-            className="px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-500"
+            onClick={() => setActiveVariation(v.id)}
+            className="px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300"
             style={{
-              background: activeVariation === v.id ? '#8b2020' : 'transparent',
-              color: activeVariation === v.id ? '#fff' : '#a3a3a3',
+              background: activeVariation === v.id ? '#8b2020' : '#fff',
+              color: activeVariation === v.id ? '#fff' : '#525252',
+              boxShadow:
+                activeVariation === v.id
+                  ? `0 4px 14px rgba(139, 32, 32, 0.35)`
+                  : '0 0 0 1px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.06)',
             }}
           >
             {v.name}
-          </div>
+          </button>
         ))}
       </div>
 
@@ -158,7 +135,7 @@ export default function WorkflowDemo() {
           minHeight: '520px',
         }}
       >
-        {/* SVG Connectors - z-index 0 so lines render behind cards */}
+        {/* SVG Connectors - adjusted for better alignment */}
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none"
           style={{ zIndex: 0 }}
@@ -173,14 +150,14 @@ export default function WorkflowDemo() {
             y2="125"
             stroke={process1Active ? LINE_ACTIVE : LINE_INACTIVE}
             strokeWidth="2"
-            style={{ transition: 'stroke 800ms ease' }}
+            style={{ transition: 'stroke 600ms ease' }}
           />
           <circle
             cx="450"
             cy="85"
             r="4"
             fill={process1Active ? LINE_ACTIVE : LINE_INACTIVE}
-            style={{ transition: 'fill 800ms ease' }}
+            style={{ transition: 'fill 600ms ease' }}
           />
 
           {/* Left branch to Process 1 */}
@@ -189,14 +166,14 @@ export default function WorkflowDemo() {
             fill="none"
             stroke={process1Active ? LINE_ACTIVE : LINE_INACTIVE}
             strokeWidth="2"
-            style={{ transition: 'stroke 800ms ease' }}
+            style={{ transition: 'stroke 600ms ease' }}
           />
           <circle
             cx="175"
             cy="175"
             r="4"
             fill={process1Active ? LINE_ACTIVE : LINE_INACTIVE}
-            style={{ transition: 'fill 800ms ease' }}
+            style={{ transition: 'fill 600ms ease' }}
           />
 
           {/* Center branch to Process 2 */}
@@ -207,14 +184,14 @@ export default function WorkflowDemo() {
             y2="175"
             stroke={process2Active ? LINE_ACTIVE : LINE_INACTIVE}
             strokeWidth="2"
-            style={{ transition: 'stroke 800ms ease' }}
+            style={{ transition: 'stroke 600ms ease' }}
           />
           <circle
             cx="450"
             cy="175"
             r="4"
             fill={process2Active ? LINE_ACTIVE : LINE_INACTIVE}
-            style={{ transition: 'fill 800ms ease' }}
+            style={{ transition: 'fill 600ms ease' }}
           />
 
           {/* Right branch to Process 3 */}
@@ -223,14 +200,14 @@ export default function WorkflowDemo() {
             fill="none"
             stroke={process3Active ? LINE_ACTIVE : LINE_INACTIVE}
             strokeWidth="2"
-            style={{ transition: 'stroke 800ms ease' }}
+            style={{ transition: 'stroke 600ms ease' }}
           />
           <circle
             cx="725"
             cy="175"
             r="4"
             fill={process3Active ? LINE_ACTIVE : LINE_INACTIVE}
-            style={{ transition: 'fill 800ms ease' }}
+            style={{ transition: 'fill 600ms ease' }}
           />
 
           {/* Process to Output Rail */}
@@ -241,14 +218,14 @@ export default function WorkflowDemo() {
             y2="350"
             stroke={output1Active ? LINE_ACTIVE : LINE_INACTIVE}
             strokeWidth="2"
-            style={{ transition: 'stroke 800ms ease' }}
+            style={{ transition: 'stroke 600ms ease' }}
           />
           <circle
             cx="450"
             cy="310"
             r="4"
             fill={output1Active ? LINE_ACTIVE : LINE_INACTIVE}
-            style={{ transition: 'fill 800ms ease' }}
+            style={{ transition: 'fill 600ms ease' }}
           />
 
           {/* Left branch to Output 1 */}
@@ -257,14 +234,14 @@ export default function WorkflowDemo() {
             fill="none"
             stroke={output1Active ? LINE_ACTIVE : LINE_INACTIVE}
             strokeWidth="2"
-            style={{ transition: 'stroke 800ms ease' }}
+            style={{ transition: 'stroke 600ms ease' }}
           />
           <circle
             cx="300"
             cy="400"
             r="4"
             fill={output1Active ? LINE_ACTIVE : LINE_INACTIVE}
-            style={{ transition: 'fill 800ms ease' }}
+            style={{ transition: 'fill 600ms ease' }}
           />
 
           {/* Right branch to Output 2 */}
@@ -273,18 +250,18 @@ export default function WorkflowDemo() {
             fill="none"
             stroke={output2Active ? LINE_ACTIVE : LINE_INACTIVE}
             strokeWidth="2"
-            style={{ transition: 'stroke 800ms ease' }}
+            style={{ transition: 'stroke 600ms ease' }}
           />
           <circle
             cx="600"
             cy="400"
             r="4"
             fill={output2Active ? LINE_ACTIVE : LINE_INACTIVE}
-            style={{ transition: 'fill 800ms ease' }}
+            style={{ transition: 'fill 600ms ease' }}
           />
         </svg>
 
-        {/* Cards - z-index 1 so they render above lines */}
+        {/* Cards */}
         <div className="relative" style={{ zIndex: 1 }}>
           {/* Trigger Card */}
           <div className="flex justify-center mb-16">
@@ -294,14 +271,14 @@ export default function WorkflowDemo() {
           {/* Process Cards Row */}
           <div className="grid grid-cols-3 gap-6 mb-16">
             <ProcessCard active={process1Active} data={variation.process[0]} delay={0} />
-            <ProcessCard active={process2Active} data={variation.process[1]} delay={150} />
-            <ProcessCard active={process3Active} data={variation.process[2]} delay={300} />
+            <ProcessCard active={process2Active} data={variation.process[1]} delay={100} />
+            <ProcessCard active={process3Active} data={variation.process[2]} delay={200} />
           </div>
 
           {/* Output Cards Row */}
           <div className="flex justify-center gap-8">
             <OutputCard active={output1Active} data={variation.outputs[0]} delay={0} />
-            <OutputCard active={output2Active} data={variation.outputs[1]} delay={150} />
+            <OutputCard active={output2Active} data={variation.outputs[1]} delay={100} />
           </div>
         </div>
       </div>
@@ -324,7 +301,7 @@ export default function WorkflowDemo() {
             className="w-0.5 h-8"
             style={{
               background: process1Active ? LINE_ACTIVE : LINE_INACTIVE,
-              transition: 'background 800ms ease',
+              transition: 'background 600ms ease',
             }}
           />
         </div>
@@ -332,8 +309,8 @@ export default function WorkflowDemo() {
         {/* Process Cards */}
         <div className="space-y-4 mb-4">
           <ProcessCard active={process1Active} data={variation.process[0]} delay={0} />
-          <ProcessCard active={process2Active} data={variation.process[1]} delay={150} />
-          <ProcessCard active={process3Active} data={variation.process[2]} delay={300} />
+          <ProcessCard active={process2Active} data={variation.process[1]} delay={100} />
+          <ProcessCard active={process3Active} data={variation.process[2]} delay={200} />
         </div>
 
         {/* Connector */}
@@ -342,7 +319,7 @@ export default function WorkflowDemo() {
             className="w-0.5 h-8"
             style={{
               background: output1Active ? LINE_ACTIVE : LINE_INACTIVE,
-              transition: 'background 800ms ease',
+              transition: 'background 600ms ease',
             }}
           />
         </div>
@@ -350,7 +327,7 @@ export default function WorkflowDemo() {
         {/* Output Cards */}
         <div className="space-y-4">
           <OutputCard active={output1Active} data={variation.outputs[0]} delay={0} />
-          <OutputCard active={output2Active} data={variation.outputs[1]} delay={150} />
+          <OutputCard active={output2Active} data={variation.outputs[1]} delay={100} />
         </div>
       </div>
 
@@ -377,7 +354,7 @@ export default function WorkflowDemo() {
 function TriggerCard({ active, data }: { active: boolean; data: { title: string; subtitle: string } }) {
   return (
     <div
-      className="bg-white rounded-xl px-6 py-5 border-2 transition-all duration-700"
+      className="bg-white rounded-xl px-6 py-5 border-2 transition-all duration-500"
       style={{
         borderColor: active ? ACCENT_BLUE : '#f0f0f0',
         boxShadow: active
@@ -389,7 +366,7 @@ function TriggerCard({ active, data }: { active: boolean; data: { title: string;
     >
       <div className="flex items-center gap-4">
         <div
-          className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500"
+          className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300"
           style={{ background: active ? `${ACCENT_BLUE}15` : '#f5f5f5' }}
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={ACCENT_BLUE} strokeWidth="2">
@@ -416,7 +393,7 @@ function ProcessCard({
 }) {
   return (
     <div
-      className="bg-white rounded-xl p-5 border transition-all duration-700"
+      className="bg-white rounded-xl p-5 border transition-all duration-500"
       style={{
         borderColor: active ? '#e5e5e5' : '#f5f5f5',
         boxShadow: '0 0 0 1px rgba(0,0,0,0.03), 0 4px 16px rgba(0,0,0,0.06)',
@@ -426,7 +403,7 @@ function ProcessCard({
       }}
     >
       <p
-        className="text-sm font-semibold mb-1 transition-colors duration-500"
+        className="text-sm font-semibold mb-1 transition-colors duration-300"
         style={{ color: active ? '#171717' : '#a3a3a3' }}
       >
         {data.title}
@@ -463,13 +440,13 @@ function ScanAnimation({ active }: { active: boolean }) {
         <div
           className="absolute left-0 right-0 h-0.5 bg-blue-500"
           style={{
-            animation: active ? 'scan 2s ease-in-out infinite' : 'none',
+            animation: active ? 'scan 1.5s ease-in-out infinite' : 'none',
             top: '20%',
           }}
         />
       </div>
       <span
-        className="text-xs font-medium text-blue-600 ml-2 transition-opacity duration-500"
+        className="text-xs font-medium text-blue-600 ml-2 transition-opacity duration-300"
         style={{ opacity: active ? 1 : 0 }}
       >
         Lendo...
@@ -484,7 +461,7 @@ function GearAnimation({ active }: { active: boolean }) {
       <div
         className="w-6 h-6 text-blue-500"
         style={{
-          animation: active ? 'spin 3s linear infinite' : 'none',
+          animation: active ? 'spin 2s linear infinite' : 'none',
         }}
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -495,7 +472,7 @@ function GearAnimation({ active }: { active: boolean }) {
       <div
         className="w-4 h-4 text-blue-400"
         style={{
-          animation: active ? 'spin 2s linear infinite reverse' : 'none',
+          animation: active ? 'spin 1.5s linear infinite reverse' : 'none',
         }}
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -504,7 +481,7 @@ function GearAnimation({ active }: { active: boolean }) {
         </svg>
       </div>
       <span
-        className="text-xs font-medium text-blue-600 ml-1 transition-opacity duration-500"
+        className="text-xs font-medium text-blue-600 ml-1 transition-opacity duration-300"
         style={{ opacity: active ? 1 : 0 }}
       >
         Processando
@@ -523,7 +500,7 @@ function SyncAnimation({ active }: { active: boolean }) {
             key={i}
             className="w-2 h-2 rounded-full bg-blue-500"
             style={{
-              animation: active ? `syncPulse 1.5s ease-in-out infinite ${i * 0.3}s` : 'none',
+              animation: active ? `syncPulse 1s ease-in-out infinite ${i * 0.2}s` : 'none',
             }}
           />
         ))}
@@ -537,14 +514,14 @@ function SyncAnimation({ active }: { active: boolean }) {
         strokeWidth="2"
         className="ml-1"
         style={{
-          animation: active ? 'spin 3s linear infinite' : 'none',
+          animation: active ? 'spin 2s linear infinite' : 'none',
         }}
       >
         <path d="M23 4v6h-6M1 20v-6h6" />
         <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15" />
       </svg>
       <span
-        className="text-xs font-medium text-blue-600 ml-1 transition-opacity duration-500"
+        className="text-xs font-medium text-blue-600 ml-1 transition-opacity duration-300"
         style={{ opacity: active ? 1 : 0 }}
       >
         Sincronizando
@@ -564,7 +541,7 @@ function OutputCard({
 }) {
   return (
     <div
-      className="bg-white rounded-2xl p-6 transition-all duration-700"
+      className="bg-white rounded-2xl p-6 transition-all duration-500"
       style={{
         border: active ? `3px solid ${ACCENT_GREEN}` : '2px solid #e5e5e5',
         boxShadow: active
@@ -579,7 +556,7 @@ function OutputCard({
       {/* Success header */}
       <div className="flex items-center gap-3 mb-4">
         <div
-          className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-700"
+          className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500"
           style={{
             background: active ? `${ACCENT_GREEN}15` : '#f5f5f5',
             transform: active ? 'scale(1)' : 'scale(0.8)',
@@ -601,15 +578,15 @@ function OutputCard({
               style={{
                 strokeDasharray: 30,
                 strokeDashoffset: active ? 0 : 30,
-                transition: 'stroke-dashoffset 800ms ease-out',
-                transitionDelay: active ? `${delay + 300}ms` : '0ms',
+                transition: 'stroke-dashoffset 600ms ease-out',
+                transitionDelay: active ? `${delay + 200}ms` : '0ms',
               }}
             />
           </svg>
         </div>
         <div>
           <p
-            className="text-base font-semibold transition-colors duration-500"
+            className="text-base font-semibold transition-colors duration-300"
             style={{ color: active ? '#171717' : '#a3a3a3' }}
           >
             {data.title}
@@ -625,8 +602,8 @@ function OutputCard({
           style={{
             opacity: active ? 1 : 0,
             transform: active ? 'translateY(0)' : 'translateY(8px)',
-            transition: 'all 600ms ease',
-            transitionDelay: active ? `${delay + 500}ms` : '0ms',
+            transition: 'all 400ms ease',
+            transitionDelay: active ? `${delay + 400}ms` : '0ms',
           }}
         >
           <span className="text-xs text-neutral-500">
