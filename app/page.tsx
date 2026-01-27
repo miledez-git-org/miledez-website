@@ -97,18 +97,8 @@ export default function Home() {
       {/* Section divider */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
-      {/* How It Works - Process */}
-      <section id="como-funciona" className="py-16 md:py-[180px] bg-white">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <ProcessSection />
-        </div>
-      </section>
-
-      {/* Section divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
-
       {/* Workflow Demo */}
-      <section id="demo" className="py-16 md:py-[180px] bg-bg-muted">
+      <section id="demo" className="py-16 md:py-[180px] bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="mb-10 md:mb-12 text-center">
             <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
@@ -128,9 +118,19 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* Integrations */}
-      <section id="integracoes" className="py-16 md:py-[180px] bg-white">
+      <section id="integracoes" className="py-16 md:py-[180px] bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <LogoGrid />
+        </div>
+      </section>
+
+      {/* Section divider */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+
+      {/* How It Works - Process */}
+      <section id="como-funciona" className="py-16 md:py-[180px] bg-white">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <ProcessSection />
         </div>
       </section>
 

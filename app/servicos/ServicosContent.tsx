@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 import ContactModal from '@/components/ContactModal'
 import ChallengeCard from '@/components/industry/ChallengeCard'
 import MetricsGrid from '@/components/industry/MetricsGrid'
-import { WorkflowVisual, WorkflowVisualCompact, getHeroPreset, servicosWorkflows } from '@/components/WorkflowVisual'
+import { WorkflowVisualCompact, getHeroPreset, servicosWorkflowsCompact } from '@/components/WorkflowVisual'
 import IndustryIntegrations from '@/components/industry/IndustryIntegrations'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { icons, stepIcons } from '@/components/Icons'
@@ -136,29 +136,21 @@ export default function ServicosContent() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <WorkflowVisual 
-              title={servicosWorkflows.onboarding.title}
-              steps={servicosWorkflows.onboarding.steps}
-              layout="horizontal"
-              variant="card"
+            <WorkflowVisualCompact
+              title={servicosWorkflowsCompact.onboarding.title}
+              steps={servicosWorkflowsCompact.onboarding.steps}
             />
-            <WorkflowVisual 
-              title={servicosWorkflows.contracts.title}
-              steps={servicosWorkflows.contracts.steps}
-              layout="horizontal"
-              variant="card"
+            <WorkflowVisualCompact
+              title={servicosWorkflowsCompact.contracts.title}
+              steps={servicosWorkflowsCompact.contracts.steps}
             />
-            <WorkflowVisual 
-              title={servicosWorkflows.billing.title}
-              steps={servicosWorkflows.billing.steps}
-              layout="horizontal"
-              variant="card"
+            <WorkflowVisualCompact
+              title={servicosWorkflowsCompact.billing.title}
+              steps={servicosWorkflowsCompact.billing.steps}
             />
-            <WorkflowVisual 
-              title={servicosWorkflows.reports.title}
-              steps={servicosWorkflows.reports.steps}
-              layout="horizontal"
-              variant="card"
+            <WorkflowVisualCompact
+              title={servicosWorkflowsCompact.reports.title}
+              steps={servicosWorkflowsCompact.reports.steps}
             />
           </div>
         </div>

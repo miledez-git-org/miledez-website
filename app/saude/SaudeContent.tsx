@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 import ContactModal from '@/components/ContactModal'
 import ChallengeCard from '@/components/industry/ChallengeCard'
 import MetricsGrid from '@/components/industry/MetricsGrid'
-import { WorkflowVisual, WorkflowVisualCompact, getHeroPreset, saudeWorkflows } from '@/components/WorkflowVisual'
+import { WorkflowVisualCompact, getHeroPreset, saudeWorkflowsCompact } from '@/components/WorkflowVisual'
 import IndustryIntegrations from '@/components/industry/IndustryIntegrations'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { icons, stepIcons } from '@/components/Icons'
@@ -136,31 +136,21 @@ export default function SaudeContent() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* First 2 workflows - horizontal layout (simpler) */}
-            <WorkflowVisual 
-              title={saudeWorkflows.documents.title}
-              steps={saudeWorkflows.documents.steps}
-              layout="horizontal"
-              variant="card"
+            <WorkflowVisualCompact
+              title={saudeWorkflowsCompact.documents.title}
+              steps={saudeWorkflowsCompact.documents.steps}
             />
-            <WorkflowVisual 
-              title={saudeWorkflows.billing.title}
-              steps={saudeWorkflows.billing.steps}
-              layout="horizontal"
-              variant="card"
+            <WorkflowVisualCompact
+              title={saudeWorkflowsCompact.billing.title}
+              steps={saudeWorkflowsCompact.billing.steps}
             />
-            {/* Last 2 workflows - horizontal layout (consistent) */}
-            <WorkflowVisual 
-              title={saudeWorkflows.compliance.title}
-              steps={saudeWorkflows.compliance.steps}
-              layout="horizontal"
-              variant="card"
+            <WorkflowVisualCompact
+              title={saudeWorkflowsCompact.compliance.title}
+              steps={saudeWorkflowsCompact.compliance.steps}
             />
-            <WorkflowVisual 
-              title={saudeWorkflows.collections.title}
-              steps={saudeWorkflows.collections.steps}
-              layout="horizontal"
-              variant="card"
+            <WorkflowVisualCompact
+              title={saudeWorkflowsCompact.collections.title}
+              steps={saudeWorkflowsCompact.collections.steps}
             />
           </div>
         </div>

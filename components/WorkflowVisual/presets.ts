@@ -231,6 +231,126 @@ export function getHeroPreset(industry: Industry): HeroWorkflowPreset {
 }
 
 /**
+ * Simplified 4-step workflow presets for workflow sections (vertical card layout)
+ */
+export const saudeWorkflowsCompact = {
+  documents: {
+    title: 'Coleta de Documentos',
+    steps: [
+      { icon: 'user' as const, label: 'Novo paciente', sublabel: 'Cadastro inicia o processo' },
+      { icon: 'mail' as const, label: 'Formulario enviado', sublabel: 'Anamnese automatica' },
+      { icon: 'folder' as const, label: 'Docs organizados', sublabel: 'Classificacao automatica' },
+      { icon: 'check' as const, label: 'Prontuario completo', sublabel: 'Pronto para atendimento' },
+    ],
+  },
+  billing: {
+    title: 'Faturamento de Convenios',
+    steps: [
+      { icon: 'document' as const, label: 'Consulta finalizada', sublabel: 'Dados registrados' },
+      { icon: 'file' as const, label: 'Guia formatada', sublabel: 'Conforme convenio' },
+      { icon: 'mail' as const, label: 'Envio automatico', sublabel: 'Submissao ao portal' },
+      { icon: 'check' as const, label: 'Status rastreado', sublabel: 'Ate o pagamento' },
+    ],
+  },
+  compliance: {
+    title: 'Conformidade e Auditoria',
+    steps: [
+      { icon: 'document' as const, label: 'Documento recebido', sublabel: 'Qualquer formato' },
+      { icon: 'process' as const, label: 'Auto-classificado', sublabel: 'IA identifica tipo' },
+      { icon: 'calendar' as const, label: 'Retencao definida', sublabel: 'Prazo legal automatico' },
+      { icon: 'check' as const, label: 'Alertas agendados', sublabel: 'Aviso antes do vencimento' },
+    ],
+  },
+  collections: {
+    title: 'Cobranca Automatizada',
+    steps: [
+      { icon: 'creditCard' as const, label: 'Fatura gerada', sublabel: 'Automatica apos consulta' },
+      { icon: 'calendar' as const, label: 'Prazo monitorado', sublabel: 'Contagem regressiva' },
+      { icon: 'bell' as const, label: 'Lembretes enviados', sublabel: 'Escalonamento automatico' },
+      { icon: 'check' as const, label: 'Baixa automatica', sublabel: 'Ao receber pagamento' },
+    ],
+  },
+}
+
+export const servicosWorkflowsCompact = {
+  onboarding: {
+    title: 'Onboarding de Clientes',
+    steps: [
+      { icon: 'user' as const, label: 'Novo cliente', sublabel: 'Contrato assinado' },
+      { icon: 'mail' as const, label: 'Kit enviado', sublabel: 'Boas-vindas automatico' },
+      { icon: 'folder' as const, label: 'Pasta criada', sublabel: 'Estrutura organizada' },
+      { icon: 'check' as const, label: 'Pronto para iniciar', sublabel: 'Tudo configurado' },
+    ],
+  },
+  contracts: {
+    title: 'Gestao de Contratos',
+    steps: [
+      { icon: 'document' as const, label: 'Contrato cadastrado', sublabel: 'Vencimento registrado' },
+      { icon: 'calendar' as const, label: 'Alertas programados', sublabel: '60, 30 e 15 dias antes' },
+      { icon: 'document' as const, label: 'Proposta gerada', sublabel: 'Renovacao pre-preenchida' },
+      { icon: 'check' as const, label: 'Renovacao garantida', sublabel: 'Status sempre atualizado' },
+    ],
+  },
+  billing: {
+    title: 'Faturamento por Projeto',
+    steps: [
+      { icon: 'result' as const, label: 'Marco atingido', sublabel: 'Entrega dispara processo' },
+      { icon: 'process' as const, label: 'Dados compilados', sublabel: 'Horas e valores reunidos' },
+      { icon: 'creditCard' as const, label: 'Fatura enviada', sublabel: 'Formatada e entregue' },
+      { icon: 'check' as const, label: 'Pagamento rastreado', sublabel: 'Lembretes ate receber' },
+    ],
+  },
+  reports: {
+    title: 'Relatorios para Clientes',
+    steps: [
+      { icon: 'calendar' as const, label: 'Data programada', sublabel: 'Semanal ou mensal' },
+      { icon: 'sync' as const, label: 'Dados coletados', sublabel: 'Metricas automaticas' },
+      { icon: 'document' as const, label: 'Relatorio formatado', sublabel: 'Layout profissional' },
+      { icon: 'check' as const, label: 'Entrega automatica', sublabel: 'Cliente recebe no prazo' },
+    ],
+  },
+}
+
+export const varejoWorkflowsCompact = {
+  inventory: {
+    title: 'Gestao de Estoque',
+    steps: [
+      { icon: 'box' as const, label: 'Nivel monitorado', sublabel: 'Estoque em tempo real' },
+      { icon: 'bell' as const, label: 'Alerta disparado', sublabel: 'Nivel minimo atingido' },
+      { icon: 'document' as const, label: 'Pedido sugerido', sublabel: 'Reposicao pre-calculada' },
+      { icon: 'check' as const, label: 'Estoque equilibrado', sublabel: 'Sem rupturas, sem excesso' },
+    ],
+  },
+  orders: {
+    title: 'Processamento de Pedidos',
+    steps: [
+      { icon: 'cart' as const, label: 'Pedido recebido', sublabel: 'Venda confirmada' },
+      { icon: 'box' as const, label: 'Separacao iniciada', sublabel: 'Lista de picking gerada' },
+      { icon: 'truck' as const, label: 'Envio registrado', sublabel: 'Codigo de rastreio' },
+      { icon: 'check' as const, label: 'Cliente notificado', sublabel: 'Atualizacoes automaticas' },
+    ],
+  },
+  financial: {
+    title: 'Conciliacao Financeira',
+    steps: [
+      { icon: 'creditCard' as const, label: 'Venda registrada', sublabel: 'Dados capturados' },
+      { icon: 'sync' as const, label: 'Pagamento verificado', sublabel: 'Cruzamento com extrato' },
+      { icon: 'document' as const, label: 'Relatorio gerado', sublabel: 'Consolidacao por periodo' },
+      { icon: 'check' as const, label: 'Divergencias alertadas', sublabel: 'Diferencas identificadas' },
+    ],
+  },
+  reports: {
+    title: 'Relatorios de Vendas',
+    steps: [
+      { icon: 'calendar' as const, label: 'Periodo fechado', sublabel: 'Dia, semana ou mes' },
+      { icon: 'sync' as const, label: 'Dados consolidados', sublabel: 'Vendas, margens e estoque' },
+      { icon: 'chart' as const, label: 'Analise pronta', sublabel: 'Graficos e indicadores' },
+      { icon: 'check' as const, label: 'Relatorio entregue', sublabel: 'No seu email, no horario' },
+    ],
+  },
+}
+
+/**
  * Saude page workflow presets for "O que automatizamos" section
  */
 export const saudeWorkflows = {

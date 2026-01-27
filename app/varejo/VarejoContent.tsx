@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 import ContactModal from '@/components/ContactModal'
 import ChallengeCard from '@/components/industry/ChallengeCard'
 import MetricsGrid from '@/components/industry/MetricsGrid'
-import { WorkflowVisual, WorkflowVisualCompact, getHeroPreset, varejoWorkflows } from '@/components/WorkflowVisual'
+import { WorkflowVisualCompact, getHeroPreset, varejoWorkflowsCompact } from '@/components/WorkflowVisual'
 import IndustryIntegrations from '@/components/industry/IndustryIntegrations'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { icons, stepIcons } from '@/components/Icons'
@@ -136,29 +136,21 @@ export default function VarejoContent() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <WorkflowVisual 
-              title={varejoWorkflows.inventory.title}
-              steps={varejoWorkflows.inventory.steps}
-              layout="horizontal"
-              variant="card"
+            <WorkflowVisualCompact
+              title={varejoWorkflowsCompact.inventory.title}
+              steps={varejoWorkflowsCompact.inventory.steps}
             />
-            <WorkflowVisual 
-              title={varejoWorkflows.orders.title}
-              steps={varejoWorkflows.orders.steps}
-              layout="horizontal"
-              variant="card"
+            <WorkflowVisualCompact
+              title={varejoWorkflowsCompact.orders.title}
+              steps={varejoWorkflowsCompact.orders.steps}
             />
-            <WorkflowVisual 
-              title={varejoWorkflows.financial.title}
-              steps={varejoWorkflows.financial.steps}
-              layout="horizontal"
-              variant="card"
+            <WorkflowVisualCompact
+              title={varejoWorkflowsCompact.financial.title}
+              steps={varejoWorkflowsCompact.financial.steps}
             />
-            <WorkflowVisual 
-              title={varejoWorkflows.reports.title}
-              steps={varejoWorkflows.reports.steps}
-              layout="horizontal"
-              variant="card"
+            <WorkflowVisualCompact
+              title={varejoWorkflowsCompact.reports.title}
+              steps={varejoWorkflowsCompact.reports.steps}
             />
           </div>
         </div>

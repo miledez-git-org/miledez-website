@@ -144,11 +144,11 @@ export default function WorkflowVisualCompact({
   return (
     <div className={`bg-white border border-neutral-200 rounded-lg shadow-card p-6 ${className}`}>
       {/* Header */}
-      <div className="flex items-center gap-2 mb-6 pb-4 border-b border-neutral-200">
-        <div className="w-2 h-2 bg-brand-primary rounded-sm" />
-        <span className="text-sm font-semibold text-neutral-700 uppercase tracking-wide">
+      <div className="mb-6">
+        <span className="text-lg font-bold text-neutral-900 uppercase tracking-wide">
           {title}
         </span>
+        <div className="h-1 bg-brand-primary mt-3 rounded-full" />
       </div>
 
       {/* Steps as cards with connectors */}
