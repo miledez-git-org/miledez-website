@@ -60,11 +60,13 @@ public/
 
 ## Design System
 
+For all visual and written outputs, follow the `miledez-design-system` skill.
+
 | Element | Value |
 |---------|-------|
 | **Primary** | `#8b2020` (burgundy) |
-| **Text** | `#171717` (headings), `#525252` (body) |
-| **Font** | Manrope (300-500) for display, Inter for UI |
+| **Text** | `#1A1A1A` (headings), `#6B6B6B` (body) |
+| **Font** | Manrope (headings), Source Sans 3 (body) |
 | **Style** | Warm, professional, minimal |
 
 Component library in `components/ui/`. Use existing components before creating new ones.
