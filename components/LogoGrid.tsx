@@ -52,7 +52,7 @@ export default function LogoGrid() {
   return (
     <div>
       {/* Section Header */}
-      <div className="mb-10 md:mb-12 text-center">
+      <div className="mb-14 md:mb-16 text-center">
         <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
           Conectamos suas ferramentas,<br />
           <span className="text-brand-primary">sem complicação</span>

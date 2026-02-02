@@ -100,7 +100,7 @@ export default function Home() {
       {/* Workflow Demo */}
       <section id="demo" className="py-16 md:py-[180px] bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="mb-10 md:mb-12 text-center">
+          <div className="mb-14 md:mb-16 text-center">
             <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
               Do gatilho ao resultado,<br />
               <span className="text-brand-primary">sem tocar em código</span>
@@ -150,7 +150,7 @@ export default function Home() {
       {/* CTA */}
       <section id="contato" className="py-16 md:py-[180px] bg-white">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
-          <div className="mb-10 md:mb-12">
+          <div className="mb-14 md:mb-16">
             <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
               Pronto para automatizar?<br />
               <span className="text-brand-primary">Vamos conversar</span>
