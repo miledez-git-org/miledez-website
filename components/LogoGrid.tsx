@@ -1,9 +1,9 @@
 'use client'
 
 /**
- * LogoGrid - Floating integration logos with soft shadows
- * 8x4 grid (32 logos), 52x52px boxes with 10px padding (32x32 logo)
- * Design: Logo Cloud v2.0
+ * LogoGrid - Icon Wall with dotted grid background
+ * Clean, boxless logo display with full color and hover effects
+ * Design: Icon Wall v1.0
  */
 
 const logos = [
@@ -62,22 +62,30 @@ export default function LogoGrid() {
         </p>
       </div>
 
-      {/* Logo Grid */}
-      <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4 justify-items-center">
-        {logos.map((logo) => (
-          <div
-            key={logo.name}
-            className="w-[52px] h-[52px] flex items-center justify-center bg-white rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.12)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.18)] transition-shadow duration-200"
-            title={logo.name}
-          >
-            <img
-              src={logo.src}
-              alt={logo.name}
-              className="w-8 h-8 object-contain opacity-60 grayscale-[30%] hover:opacity-100 hover:grayscale-0 transition-all duration-200"
-              loading="lazy"
-            />
-          </div>
-        ))}
+      {/* Logo Grid with Dotted Background */}
+      <div
+        className="relative py-12 px-6 -mx-6 rounded-2xl"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(139, 32, 32, 0.15) 1px, transparent 1px)',
+          backgroundSize: '24px 24px',
+        }}
+      >
+        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-8 md:gap-10 justify-items-center">
+          {logos.map((logo) => (
+            <div
+              key={logo.name}
+              className="group flex items-center justify-center cursor-default"
+              title={logo.name}
+            >
+              <img
+                src={logo.src}
+                alt={logo.name}
+                className="w-10 h-10 md:w-12 md:h-12 object-contain transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(139,32,32,0.35)]"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
