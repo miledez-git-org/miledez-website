@@ -9,6 +9,7 @@ import LogoGrid from '@/components/LogoGrid'
 import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
 import HeroWorkflowStatic from '@/components/HeroWorkflowStatic'
+import WorkflowAnimationSection from '@/components/WorkflowAnimationSection'
 import ScrollProgress from '@/components/ScrollProgress'
 import ContactModal from '@/components/ContactModal'
 
@@ -93,6 +94,12 @@ export default function Home() {
           <ValueProposition />
         </div>
       </section>
+
+      {/* Section divider */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+
+      {/* Workflow Animation - How it works */}
+      <WorkflowAnimationSection />
 
       {/* Section divider */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
