@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mil&dez — Workflow Card System</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Source+Sans+3:wght@400;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --color-burgundy: #8b2020;
+    --color-charcoal: #1A1A1A;
+    --color-gray: #6B6B6B;
+    --color-light-gray: #F5F5F5;
+    --color-border: #E0E0E0;
+    --color-white: #FFFFFF;
+    --font-heading: 'Manrope', sans-serif;
+    --font-body: 'Source Sans 3', sans-serif;
+    --trigger: #2D5A7B;
+    --process: #8b2020;
+    --result: #2D6B4A;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--color-white);
+    color: var(--color-charcoal);
+    padding: 40px;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (max-width: 599px) { body { padding: 16px; } }
+
+  .page { max-width: 960px; margin: 0 auto; }
+
+  .page-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+  .page-desc {
+    font-size: 14px;
+    color: var(--color-gray);
+    line-height: 1.55;
+    max-width: 560px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 599px) {
+    .page-title { font-size: 18px; }
+    .page-desc { font-size: 13px; margin-bottom: 28px; }
+  }
+
+  .legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--color-gray);
+  }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+  .section { margin-bottom: 56px; }
+  @media (max-width: 599px) { .section { margin-bottom: 36px; } }
+  .section-label {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 11px;
+    color: var(--color-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+
+  .preview-area {
+    background: var(--color-light-gray);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+  }
+  @media (max-width: 599px) { .preview-area { padding: 20px; } }
+
+  .workflow-area {
+    background: var(--color-light-gray);
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+  }
+  @media (max-width: 599px) { .workflow-area { padding: 16px; flex-direction: column; } }
+
+  /* ═══════════════════════════════════════
+     CARD
+     ═══════════════════════════════════════ */
+  .card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-shrink: 0;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  }
+
+  .card .c-header { display: flex; align-items: center; gap: 8px; }
+  .card .c-step {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.55);
+  }
+  .card .c-action {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-white);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .card .c-body { display: flex; flex-direction: column; flex: 1; }
+  .card .c-what {
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--color-charcoal);
+    line-height: 1.45;
+  }
+  .card .c-tools { display: flex; flex-wrap: wrap; }
+  .card .c-stage {
+    font-family: var(--font-body);
+    color: var(--color-gray);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-top: 1px solid var(--color-border);
+  }
+  .card .c-stage .c-arrow { font-weight: 600; font-size: 13px; }
+
+  .card.type-trigger .c-header { background: var(--trigger); }
+  .card.type-trigger .c-stage .c-arrow { color: var(--trigger); }
+  .card.type-process .c-header { background: var(--process); }
+  .card.type-process .c-stage .c-arrow { color: var(--process); }
+  .card.type-result .c-header { background: var(--result); }
+  .card.type-result .c-stage .c-arrow { color: var(--result); }
+
+  /* ─── Solo ─── */
+  .card.solo { width: 210px; }
+  .card.solo .c-header { padding: 10px 16px; }
+  .card.solo .c-step { font-size: 10px; }
+  .card.solo .c-action { font-size: 12px; }
+  .card.solo .c-body { padding: 14px 16px; gap: 12px; }
+  .card.solo .c-what { font-size: 13px; }
+  .card.solo .c-tools { gap: 12px; }
+  .card.solo .c-stage { font-size: 12px; margin-top: 10px; padding-top: 10px; }
+  .card.solo .icon-box { width: 22px; height: 22px; }
+  .card.solo .icon-box span { font-size: 10px; }
+  .card.solo .icon-name { font-size: 11px; }
+  @media (max-width: 599px) { .card.solo { width: 100%; max-width: 280px; } }
+
+  /* ─── Compact ─── */
+  .card.compact { width: 160px; min-height: 160px; }
+  .card.compact .c-header { padding: 7px 12px; }
+  .card.compact .c-step { font-size: 8px; }
+  .card.compact .c-action { font-size: 9px; }
+  .card.compact .c-body { padding: 10px 12px; gap: 8px; flex: 1; }
+  .card.compact .c-what { font-size: 11px; line-height: 1.4; }
+  .card.compact .c-tools { gap: 8px; margin-top: auto; }
+  .card.compact .c-stage { font-size: 10px; margin-top: 6px; padding-top: 6px; }
+  .card.compact .icon-box { width: 16px; height: 16px; }
+  .card.compact .icon-box span { font-size: 7px; }
+  .card.compact .icon-name { font-size: 9px; }
+  @media (max-width: 599px) {
+    .card.compact { width: 100%; max-width: 240px; min-height: auto; }
+  }
+
+  /* ═══════════════════════════════════════
+     ICONS
+     ═══════════════════════════════════════ */
+  .icon-box {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 3px;
+  }
+  .icon-box span {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .icon-labeled { display: flex; align-items: center; gap: 5px; }
+  .icon-labeled .icon-name {
+    font-family: var(--font-body);
+    color: var(--color-gray);
+    white-space: nowrap;
+  }
+
+  /* ═══════════════════════════════════════
+     CONNECTOR — flush to card edges
+     ═══════════════════════════════════════ */
+  .workflow-step { display: flex; align-items: center; }
+  @media (max-width: 599px) { .workflow-step { flex-direction: column; } }
+
+  .connector {
+    width: 32px;
+    height: 1px;
+    background: var(--color-border);
+    flex-shrink: 0;
+  }
+  @media (max-width: 599px) {
+    .connector {
+      width: 1px;
+      height: 24px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="page-title">Workflow Card System</div>
+  <div class="page-desc">
+    Action-specific headers, concise descriptions, and tool icons that show
+    exactly what connects to the client's environment at each step.
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--trigger);"></div> Gatilho</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--process);"></div> Processamento</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--result);"></div> Resultado</div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Single card</div>
+    <div class="preview-area" id="solo-area"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Workflow — 4-step example</div>
+    <div class="workflow-area" id="workflow-area"></div>
+  </div>
+</div>
+
+<script>
+const ICONS = {
+  gmail:    { color: '#EA4335', letter: 'G', name: 'Gmail' },
+  sheets:   { color: '#34A853', letter: 'S', name: 'Sheets' },
+  whatsapp: { color: '#25D366', letter: 'W', name: 'WhatsApp' },
+  excel:    { color: '#217346', letter: 'E', name: 'Excel' },
+  pdf:      { color: '#FF0000', letter: 'P', name: 'PDF' },
+  pix:      { color: '#32BCAD', letter: '₱', name: 'Pix' },
+  calendar: { color: '#4285F4', letter: 'C', name: 'Calendar' },
+  slack:    { color: '#4A154B', letter: 'S', name: 'Slack' },
+};
+
+const STAGE_LABELS = {
+  trigger: 'Gatilho · Processo iniciado',
+  process: 'Tarefa automatizada',
+  result:  'Resultado · Entrega final',
+};
+
+const SOLO = {
+  step: '01',
+  type: 'trigger',
+  header: 'Formulário preenchido',
+  what: 'Dados do paciente coletados no formulário de entrada',
+  icons: ['gmail', 'sheets'],
+};
+
+const WORKFLOW = [
+  {
+    step: '01', type: 'trigger',
+    header: 'Formulário preenchido',
+    what: 'Dados do paciente coletados no formulário de entrada',
+    icons: ['gmail', 'sheets'],
+  },
+  {
+    step: '02', type: 'process',
+    header: 'Dados validados',
+    what: 'Campos obrigatórios verificados e inconsistências sinalizadas',
+    icons: ['sheets'],
+  },
+  {
+    step: '03', type: 'process',
+    header: 'Relatório gerado',
+    what: 'Ficha do paciente compilada com histórico clínico',
+    icons: ['excel', 'pdf'],
+  },
+  {
+    step: '04', type: 'result',
+    header: 'Cadastro confirmado',
+    what: 'Confirmação enviada por e-mail e WhatsApp ao paciente',
+    icons: ['gmail', 'whatsapp'],
+  },
+];
+
+const STAGE_ICONS = {
+  trigger: '⚡',
+  process: '⚙',
+  result:  '✓',
+};
+
+function iconHTML(icons, size) {
+  return icons.map(key => {
+    const ic = ICONS[key];
+    if (!ic) return '';
+    return `<div class="icon-box" style="width:${size}px;height:${size}px;">
+      <span style="font-size:${Math.round(size * 0.45)}px;color:${ic.color};">${ic.letter}</span>
+    </div>`;
+  }).join('');
+}
+
+function card(d, mode) {
+  const stageLabel = STAGE_LABELS[d.type];
+  const iconSize = mode === 'compact' ? 16 : 22;
+  return `<div class="card ${mode} type-${d.type}">
+    <div class="c-header">
+      <span class="c-step">${d.step}</span>
+      <span class="c-action">${d.header}</span>
+    </div>
+    <div class="c-body">
+      <div class="c-what">${d.what}</div>
+      <div class="c-tools">${iconHTML(d.icons, iconSize)}</div>
+      <div class="c-stage">
+        <span class="c-arrow">${STAGE_ICONS[d.type]}</span> ${stageLabel}
+      </div>
+    </div>
+  </div>`;
+}
+
+document.getElementById('solo-area').innerHTML = card(SOLO, 'solo');
+
+document.getElementById('workflow-area').innerHTML = WORKFLOW.map((s, i) => {
+  const con = i > 0 ? '<div class="connector"></div>' : '';
+  return `<div class="workflow-step">${con}${card(s, 'compact')}</div>`;
+}).join('');
+</script>
+</body>
+</html>
