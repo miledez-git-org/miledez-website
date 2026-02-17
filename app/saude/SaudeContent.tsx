@@ -6,7 +6,9 @@ import Footer from '@/components/Footer'
 import ContactModal from '@/components/ContactModal'
 import ChallengeCard from '@/components/industry/ChallengeCard'
 import MetricsGrid from '@/components/industry/MetricsGrid'
-import { WorkflowVisualCompact, getHeroPreset, saudeWorkflowsCompact } from '@/components/WorkflowVisual'
+import { WorkflowVisualCompact, getHeroPreset } from '@/components/WorkflowVisual'
+import WorkflowCardFlow from '@/components/WorkflowVisual/WorkflowCardFlow'
+import { saudeCardWorkflows } from '@/components/WorkflowVisual/saudeCardData'
 import IndustryIntegrations from '@/components/industry/IndustryIntegrations'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { icons, stepIcons } from '@/components/Icons'
@@ -129,30 +131,28 @@ export default function SaudeContent() {
       <section id="workflows" className="py-32 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <div className="mb-16 text-center">
-            <h2 className="heading-section text-[2rem] mb-4 text-brand-black">Automacoes para sua clinica</h2>
+            <h2 className="heading-section text-[2rem] mb-4 text-brand-black">Automações para sua clínica</h2>
             <p className="text-lg text-brand-text max-w-2xl mx-auto">
               Processos que funcionam sozinhos, do cadastro ao pagamento
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <WorkflowVisualCompact
-              title={saudeWorkflowsCompact.documents.title}
-              steps={saudeWorkflowsCompact.documents.steps}
-            />
-            <WorkflowVisualCompact
-              title={saudeWorkflowsCompact.billing.title}
-              steps={saudeWorkflowsCompact.billing.steps}
-            />
-            <WorkflowVisualCompact
-              title={saudeWorkflowsCompact.compliance.title}
-              steps={saudeWorkflowsCompact.compliance.steps}
-            />
-            <WorkflowVisualCompact
-              title={saudeWorkflowsCompact.collections.title}
-              steps={saudeWorkflowsCompact.collections.steps}
-            />
-          </div>
+          <WorkflowCardFlow
+            title={saudeCardWorkflows.cadastro.title}
+            cards={saudeCardWorkflows.cadastro.cards}
+          />
+          <WorkflowCardFlow
+            title={saudeCardWorkflows.faturamento.title}
+            cards={saudeCardWorkflows.faturamento.cards}
+          />
+          <WorkflowCardFlow
+            title={saudeCardWorkflows.conformidade.title}
+            cards={saudeCardWorkflows.conformidade.cards}
+          />
+          <WorkflowCardFlow
+            title={saudeCardWorkflows.cobranca.title}
+            cards={saudeCardWorkflows.cobranca.cards}
+          />
         </div>
       </section>
 
