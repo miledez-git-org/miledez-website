@@ -1,5 +1,5 @@
 ---
-description: Smart sync workspace repo (commit/push/pull)
+description: Smart sync workspace repo (commit/push/pull). Use when user says 'save', 'sync', 'push my changes', 'save my work', or 'commit and push'.
 ---
 
 Perform intelligent bidirectional synchronization for the workspace repository.
@@ -8,19 +8,29 @@ Perform intelligent bidirectional synchronization for the workspace repository.
 
 | Name | Path | Remote |
 |------|------|--------|
-| mil&dez Website | `.` (root) | origin/main |
+| mil&dez Website | `.` (root) | origin |
 
 ## Sync Algorithm
 
 Execute these steps in order:
 
-### Step 1: Fetch Remote State
+### Step 1: Detect Current Branch
 
 ```bash
-git fetch origin main
+BRANCH=$(git branch --show-current)
 ```
 
-### Step 2: Check for Uncommitted Local Changes
+Use the detected branch throughout. Do not hardcode `main`.
+
+### Step 2: Fetch Remote State
+
+```bash
+git fetch origin "$BRANCH"
+```
+
+If the branch has no remote tracking yet, skip the fetch.
+
+### Step 3: Check for Uncommitted Local Changes
 
 ```bash
 git status --porcelain
@@ -29,9 +39,15 @@ git status --porcelain
 If files are returned, stage and commit with auto-descriptive message:
 
 ```bash
-git add -A
+git add -u
+git add [new files that should be tracked]
 git commit -m "save: updated [dirs/files] | YYYY-MM-DD HH:MM"
 ```
+
+**Important:** Use `git add -u` for tracked files. For new files, review them individually — never blindly `git add -A`. Skip files matching these patterns:
+- `.env*`, `*.local` (secrets/environment)
+- `node_modules/`, `.next/`, `out/` (build artifacts)
+- `*.log` (debug logs)
 
 **Commit message generation:**
 - Extract top-level directories/files from changed paths
@@ -40,26 +56,26 @@ git commit -m "save: updated [dirs/files] | YYYY-MM-DD HH:MM"
 
 Example: `save: updated components/, app/ | 2025-12-22 14:30`
 
-### Step 3: Analyze Divergence
+### Step 4: Analyze Divergence
 
 ```bash
 # Count commits local has that remote doesn't
-LOCAL_AHEAD=$(git rev-list origin/main..HEAD --count)
+LOCAL_AHEAD=$(git rev-list "origin/$BRANCH..HEAD" --count)
 
 # Count commits remote has that local doesn't
-REMOTE_AHEAD=$(git rev-list HEAD..origin/main --count)
+REMOTE_AHEAD=$(git rev-list "HEAD..origin/$BRANCH" --count)
 ```
 
-### Step 4: Execute Based on State
+### Step 5: Execute Based on State
 
 | Local Ahead | Remote Ahead | Action |
 |-------------|--------------|--------|
 | 0 | 0 | Already in sync - no action |
-| >0 | 0 | Push: `git push origin main` |
-| 0 | >0 | Pull: `git pull origin main --ff-only` |
+| >0 | 0 | Push: `git push -u origin $BRANCH` |
+| 0 | >0 | Pull: `git pull origin $BRANCH --ff-only` |
 | >0 | >0 | **CONFLICT** - Stop and notify user |
 
-### Step 5: Record Status
+### Step 6: Record Status
 
 Collect results for summary table.
 
@@ -84,12 +100,13 @@ If the repository has diverged (both local and remote have unique commits):
 ## Workspace Save
 
 Timestamp: [YYYY-MM-DD HH:MM]
+Branch: [branch-name]
 
 ### Sync Summary
 
-| Repository | Status | Action | Details |
-|------------|--------|--------|---------|
-| mil&dez Website | [status] | [action] | [files/commit] |
+| Repository | Branch | Status | Action | Details |
+|------------|--------|--------|--------|---------|
+| mil&dez Website | [branch] | [status] | [action] | [files/commit] |
 
 ### Conflicts (if any)
 
