@@ -1,5 +1,5 @@
 /* Google Fonts - loaded via CSS to avoid build-time network dependency */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap');
 
 @tailwind base;
@@ -9,7 +9,7 @@
 /* CSS Custom Properties */
 :root {
   /* Font families - loaded via CSS @import above */
-  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-source-sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-manrope: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Colors and theming */
@@ -26,21 +26,21 @@
 
 /* Brand Typography - Heading Classes */
 .heading-display {
-  font-family: var(--font-manrope), var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
-  font-weight: 400;
+  font-family: var(--font-manrope), var(--font-source-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 500;
   letter-spacing: -0.025em;
   line-height: 1.15;
 }
 
 .heading-section {
-  font-family: var(--font-manrope), var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-manrope), var(--font-source-sans), -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 400;
   letter-spacing: -0.02em;
   line-height: 1.2;
 }
 
 .heading-component {
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-source-sans), -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1.3;
@@ -220,7 +220,7 @@ html {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-source-sans), -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 500;
   border-radius: 6px;
   transition: background-color 150ms ease-out, transform 150ms ease-out, box-shadow 150ms ease-out, border-color 150ms ease-out, color 150ms ease-out;

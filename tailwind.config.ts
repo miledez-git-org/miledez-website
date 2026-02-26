@@ -14,7 +14,7 @@ const config: Config = {
       fontFamily: {
         ...(designSystemTheme?.fontFamily ?? {}),
         sans: [
-          'var(--font-inter)',
+          'var(--font-source-sans)',
           '-apple-system',
           'BlinkMacSystemFont',
           'Segoe UI',
@@ -24,7 +24,7 @@ const config: Config = {
         ],
         display: [
           'var(--font-manrope)',
-          'var(--font-inter)',
+          'var(--font-source-sans)',
           '-apple-system',
           'BlinkMacSystemFont',
           'sans-serif',

@@ -18,7 +18,7 @@ export default function Footer() {
               <div className="text-2xl font-medium tracking-tight mb-2">
                 mil&dez
               </div>
-              <p className="text-sm text-white/60">
+              <p className="text-sm text-white/80">
                 Automação de processos para empresas
               </p>
             </div>
@@ -68,23 +68,23 @@ export default function Footer() {
 
           {/* Bottom bar */}
           <div className="mt-8 pt-8 border-t border-white/10 flex flex-col gap-4">
-            <div className="text-xs text-white/50 text-center md:text-left">
+            <div className="text-xs text-white/70 text-center md:text-left">
               Rua Irmaos Kennedy 200 ap. 301, Belo Horizonte, MG · CNPJ: 44.584.460/0001-80
             </div>
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <span className="text-xs text-white/50">
+              <span className="text-xs text-white/70">
                 © 2025 mil&dez. Todos os direitos reservados.
               </span>
               <div className="flex items-center gap-4">
                 <Link
                   href="/politica-privacidade"
-                  className="text-xs text-white/50 hover:text-white/80 transition-colors"
+                  className="text-xs text-white/70 hover:text-white/90 transition-colors"
                 >
                   Privacidade
                 </Link>
                 <Link
                   href="/termos"
-                  className="text-xs text-white/50 hover:text-white/80 transition-colors"
+                  className="text-xs text-white/70 hover:text-white/90 transition-colors"
                 >
                   Termos
                 </Link>

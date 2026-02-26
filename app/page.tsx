@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ValueProposition from '@/components/ValueProposition'
-import WorkflowDemo from '@/components/WorkflowDemo'
 import LogoGrid from '@/components/LogoGrid'
 import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
@@ -40,6 +39,7 @@ export default function Home() {
 
       <Header />
 
+      <main id="main-content">
       {/* Hero */}
       <section className="min-h-screen bg-white flex items-center relative">
         <div className="max-w-7xl mx-auto px-4 md:px-6 w-full">
@@ -75,7 +75,33 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right column - Workflow Demo */}
+            {/* Right column - Workflow Demo (mobile simplified) */}
+            <div className="flex lg:hidden justify-center">
+              <div className="flex items-center gap-3">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center mb-1.5">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b2020" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
+                  </div>
+                  <span className="text-[11px] font-medium text-brand-black">Gatilho</span>
+                </div>
+                <svg width="20" height="10" viewBox="0 0 20 10" className="text-brand-primary flex-shrink-0"><path d="M2 5h14M13 1l4 4-4 4" stroke="currentColor" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center mb-1.5">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b2020" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                  </div>
+                  <span className="text-[11px] font-medium text-brand-black">Automação</span>
+                </div>
+                <svg width="20" height="10" viewBox="0 0 20 10" className="text-brand-primary flex-shrink-0"><path d="M2 5h14M13 1l4 4-4 4" stroke="currentColor" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center mb-1.5">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b2020" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+                  </div>
+                  <span className="text-[11px] font-medium text-brand-black">Resultado</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right column - Workflow Demo (desktop) */}
             <div className="hidden lg:flex items-center justify-center">
               <HeroWorkflowStatic />
             </div>
@@ -89,9 +115,9 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* Value Proposition */}
-      <section id="valor" className="py-16 md:py-[180px] bg-bg-muted">
+      <section id="valor" className="py-16 md:py-24 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <ValueProposition />
+          <ValueProposition onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
@@ -101,31 +127,12 @@ export default function Home() {
       {/* Workflow Animation - How it works */}
       <WorkflowAnimationSection />
 
-      {/* Section divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
-
-      {/* Workflow Demo */}
-      <section id="demo" className="py-16 md:py-[180px] bg-white">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="mb-14 md:mb-16 text-center">
-            <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
-              Do gatilho ao resultado,<br />
-              <span className="text-brand-primary">sem tocar em código</span>
-            </h2>
-            <p className="mt-4 text-lg text-brand-muted max-w-xl mx-auto">
-              Conectamos suas ferramentas e automatizamos o fluxo completo
-            </p>
-          </div>
-
-          <WorkflowDemo />
-        </div>
-      </section>
 
       {/* Section divider */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* Integrations */}
-      <section id="integracoes" className="py-16 md:py-[180px] bg-bg-muted">
+      <section id="integracoes" className="py-16 md:py-24 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <LogoGrid />
         </div>
@@ -135,7 +142,7 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* How It Works - Process */}
-      <section id="como-funciona" className="py-16 md:py-[180px] bg-white">
+      <section id="como-funciona" className="py-16 md:py-24 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ProcessSection />
         </div>
@@ -145,7 +152,7 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* Pricing */}
-      <section id="precos" className="py-16 md:py-[180px] bg-bg-muted">
+      <section id="precos" className="py-16 md:py-24 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <PricingSection onContactClick={() => setIsContactModalOpen(true)} />
         </div>
@@ -155,7 +162,7 @@ export default function Home() {
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* CTA */}
-      <section id="contato" className="py-16 md:py-[180px] bg-white">
+      <section id="contato" className="py-16 md:py-24 bg-white">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
           <div className="mb-14 md:mb-16">
             <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
@@ -170,10 +177,12 @@ export default function Home() {
             onClick={() => setIsContactModalOpen(true)}
             className="btn btn-primary btn-xl"
           >
-            Falar conosco
+            Agendar demonstração
           </button>
         </div>
       </section>
+
+      </main>
 
       <Footer />
 

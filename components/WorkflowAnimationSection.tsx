@@ -1,200 +1,71 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 /**
  * WorkflowAnimationSection - Animated workflow pipeline demonstration
  * Shows different automation workflows cycling through with staggered card animations
+ * Clickable tabs + auto-play/pause for user control
  */
-
-// Inline SVG Icons (consistent with project's icon style)
-const IconCalendar = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="4" width="18" height="18" rx="2" />
-    <path d="M16 2v4M8 2v4M3 10h18" />
-  </svg>
-)
-
-const IconDocument = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-    <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
-  </svg>
-)
-
-const IconMail = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-    <path d="M22 6l-10 7L2 6" />
-  </svg>
-)
-
-const IconCheck = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10" />
-    <path d="M9 12l2 2 4-4" />
-  </svg>
-)
-
-const IconMessage = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />
-  </svg>
-)
-
-const IconFilter = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
-  </svg>
-)
-
-const IconBell = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
-    <path d="M13.73 21a2 2 0 01-3.46 0" />
-  </svg>
-)
-
-const IconUpload = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
-    <polyline points="17 8 12 3 7 8" />
-    <line x1="12" y1="3" x2="12" y2="15" />
-  </svg>
-)
-
-const IconFolder = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
-  </svg>
-)
-
-const IconCloud = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z" />
-  </svg>
-)
-
-const IconChart = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="18" y1="20" x2="18" y2="10" />
-    <line x1="12" y1="20" x2="12" y2="4" />
-    <line x1="6" y1="20" x2="6" y2="14" />
-  </svg>
-)
-
-const IconZap = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-  </svg>
-)
-
-const IconPix = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12.7 2.3a1 1 0 00-1.4 0L7.3 6.3a1 1 0 000 1.4l4 4a1 1 0 001.4 0l4-4a1 1 0 000-1.4L12.7 2.3z" />
-    <path d="M12.7 16.3a1 1 0 00-1.4 0l-4 4a1 1 0 000 1.4l4 4a1 1 0 001.4 0l4-4a1 1 0 000-1.4l-4-4z" opacity="0.5" />
-    <path d="M6.3 7.3L2.3 11.3a1 1 0 000 1.4l4 4" />
-    <path d="M17.7 7.3l4 4a1 1 0 010 1.4l-4 4" />
-  </svg>
-)
-
-const IconGrid = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="3" width="18" height="18" rx="1" />
-    <line x1="3" y1="9" x2="21" y2="9" />
-    <line x1="3" y1="15" x2="21" y2="15" />
-    <line x1="9" y1="3" x2="9" y2="21" />
-    <line x1="15" y1="3" x2="15" y2="21" />
-  </svg>
-)
-
-const IconScan = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M3 7V5a2 2 0 012-2h2" />
-    <path d="M17 3h2a2 2 0 012 2v2" />
-    <path d="M21 17v2a2 2 0 01-2 2h-2" />
-    <path d="M7 21H5a2 2 0 01-2-2v-2" />
-    <line x1="7" y1="10" x2="17" y2="10" />
-    <line x1="7" y1="14" x2="17" y2="14" />
-  </svg>
-)
-
-type IconKey = 'calendar' | 'document' | 'mail' | 'check' | 'message' | 'filter' | 'bell' | 'upload' | 'folder' | 'cloud' | 'chart' | 'zap' | 'pix' | 'grid' | 'scan'
-
-const iconMap: Record<IconKey, React.ReactNode> = {
-  calendar: <IconCalendar />,
-  document: <IconDocument />,
-  mail: <IconMail />,
-  check: <IconCheck />,
-  message: <IconMessage />,
-  filter: <IconFilter />,
-  bell: <IconBell />,
-  upload: <IconUpload />,
-  folder: <IconFolder />,
-  cloud: <IconCloud />,
-  chart: <IconChart />,
-  zap: <IconZap />,
-  pix: <IconPix />,
-  grid: <IconGrid />,
-  scan: <IconScan />,
-}
 
 // Workflow Data
 interface WorkflowModule {
-  type: string
   label: string
   sub: string
-  icon: IconKey
+  logo: string
   trigger?: boolean
 }
 
 interface Workflow {
   title: string
   desc: string
+  outcome: string
   modules: WorkflowModule[]
 }
 
 const WORKFLOWS: Workflow[] = [
   {
-    title: 'Cobrança Automática',
-    desc: 'Faturamento e cobrança sem intervenção manual',
+    title: 'Cobrança sem esforço',
+    desc: 'Faturamento e cobrança acontecem sozinhos',
+    outcome: '4h economizadas por semana',
     modules: [
-      { type: 'Gatilho', label: 'Vencimento', sub: 'Agenda detecta', icon: 'calendar', trigger: true },
-      { type: 'Criar', label: 'Gerar Boleto', sub: 'PDF automático', icon: 'document' },
-      { type: 'Enviar', label: 'Cobrar Cliente', sub: 'Via Gmail', icon: 'mail' },
-      { type: 'Receber', label: 'Pagamento Pix', sub: 'Confirmação', icon: 'pix' },
-      { type: 'Validar', label: 'Conciliar', sub: 'Conferir valores', icon: 'check' },
-      { type: 'Registrar', label: 'Atualizar', sub: 'Google Sheets', icon: 'grid' },
+      { label: 'Agenda', sub: 'Vencimento detectado', logo: 'google-calendar.svg', trigger: true },
+      { label: 'Gmail', sub: 'Cliente recebe o boleto', logo: 'gmail.svg' },
+      { label: 'Pix', sub: 'Pagamento confirmado', logo: 'pix.svg' },
+      { label: 'Planilha', sub: 'Registro atualizado', logo: 'google-sheets.svg' },
     ],
   },
   {
-    title: 'Atendimento Automático',
-    desc: 'Respostas rápidas e encaminhamento inteligente',
+    title: 'Onboarding de clientes',
+    desc: 'Novos clientes prontos sem trabalho manual',
+    outcome: 'Clientes prontos em minutos',
     modules: [
-      { type: 'Gatilho', label: 'Mensagem', sub: 'WhatsApp', icon: 'message', trigger: true },
-      { type: 'Classificar', label: 'Filtrar Pedido', sub: 'Por tipo', icon: 'filter' },
-      { type: 'Responder', label: 'Resposta IA', sub: 'Automática', icon: 'zap' },
-      { type: 'Notificar', label: 'Alertar Equipe', sub: 'Notificação', icon: 'bell' },
+      { label: 'Gmail', sub: 'Novo cliente chega', logo: 'gmail.svg', trigger: true },
+      { label: 'Drive', sub: 'Pasta criada com docs', logo: 'google-drive.svg' },
+      { label: 'Planilha', sub: 'Dados organizados', logo: 'google-sheets.svg' },
+      { label: 'Equipe', sub: 'Time é avisado', logo: 'slack.svg' },
     ],
   },
   {
-    title: 'Relatório Mensal',
+    title: 'Relatórios prontos',
     desc: 'Dados compilados e enviados automaticamente',
+    outcome: '1 dia inteiro livre por mês',
     modules: [
-      { type: 'Gatilho', label: 'Fim do Mês', sub: 'Automático', icon: 'calendar', trigger: true },
-      { type: 'Analisar', label: 'Compilar Dados', sub: 'Múltiplas fontes', icon: 'chart' },
-      { type: 'Enviar', label: 'Relatório', sub: 'Email para equipe', icon: 'mail' },
+      { label: 'Calendário', sub: 'Fim do período', logo: 'google-calendar.svg', trigger: true },
+      { label: 'Planilha', sub: 'Dados reunidos', logo: 'google-sheets.svg' },
+      { label: 'IA', sub: 'Resumo gerado', logo: 'openai.svg' },
+      { label: 'E-mail', sub: 'Equipe recebe tudo', logo: 'gmail.svg' },
     ],
   },
   {
-    title: 'Gestão de Documentos',
-    desc: 'Receba, organize e armazene automaticamente',
+    title: 'Documentos organizados',
+    desc: 'Receba, classifique e armazene sem tocar',
+    outcome: '0 documentos perdidos',
     modules: [
-      { type: 'Gatilho', label: 'Documento', sub: 'Recebido por email', icon: 'upload', trigger: true },
-      { type: 'Extrair', label: 'Leitura OCR', sub: 'Dados do arquivo', icon: 'scan' },
-      { type: 'Organizar', label: 'Categorizar', sub: 'Auto-classificação', icon: 'folder' },
-      { type: 'Armazenar', label: 'Google Drive', sub: 'Backup seguro', icon: 'cloud' },
-      { type: 'Notificar', label: 'Avisar Equipe', sub: 'Notificação', icon: 'bell' },
+      { label: 'E-mail', sub: 'Documento chega', logo: 'gmail.svg', trigger: true },
+      { label: 'IA', sub: 'Leitura automática', logo: 'openai.svg' },
+      { label: 'Drive', sub: 'Salvo na pasta certa', logo: 'google-drive.svg' },
+      { label: 'Equipe', sub: 'Responsável avisado', logo: 'slack.svg' },
     ],
   },
 ]
@@ -208,10 +79,52 @@ export default function WorkflowAnimationSection() {
   const [wIdx, setWIdx] = useState(0)
   const [visible, setVisible] = useState(0)
   const [phase, setPhase] = useState<'idle' | 'building' | 'showing' | 'fading'>('idle')
+  const [isPaused, setIsPaused] = useState(false)
+  const resumeTimerRef = useRef<NodeJS.Timeout | null>(null)
 
   const wf = WORKFLOWS[wIdx]
   const total = wf.modules.length
   const isFading = phase === 'fading'
+
+  const clearResumeTimer = () => {
+    if (resumeTimerRef.current) {
+      clearTimeout(resumeTimerRef.current)
+      resumeTimerRef.current = null
+    }
+  }
+
+  const startResumeTimer = (ms: number) => {
+    clearResumeTimer()
+    resumeTimerRef.current = setTimeout(() => {
+      setIsPaused(false)
+    }, ms)
+  }
+
+  const handleTabClick = (i: number) => {
+    if (i === wIdx) return
+    clearResumeTimer()
+    setIsPaused(true)
+    setWIdx(i)
+    setVisible(1)
+    setPhase('building')
+    startResumeTimer(8000)
+  }
+
+  const handlePipelineEnter = () => {
+    clearResumeTimer()
+    setIsPaused(true)
+    startResumeTimer(8000)
+  }
+
+  const handlePipelineLeave = () => {
+    clearResumeTimer()
+    startResumeTimer(3000)
+  }
+
+  // Cleanup resume timer on unmount
+  useEffect(() => {
+    return () => clearResumeTimer()
+  }, [])
 
   // Initial delay before first build
   useEffect(() => {
@@ -231,7 +144,9 @@ export default function WorkflowAnimationSection() {
         }
         break
       case 'showing':
-        t = setTimeout(() => setPhase('fading'), HOLD)
+        if (!isPaused) {
+          t = setTimeout(() => setPhase('fading'), HOLD)
+        }
         break
       case 'fading':
         t = setTimeout(() => {
@@ -244,7 +159,7 @@ export default function WorkflowAnimationSection() {
         break
     }
     return () => clearTimeout(t)
-  }, [phase, visible, total])
+  }, [phase, visible, total, isPaused])
 
   const getCardClass = (i: number) => {
     const base = 'wf-anim-card'
@@ -270,27 +185,34 @@ export default function WorkflowAnimationSection() {
             Como funciona
           </p>
           <h2 className="font-display font-bold text-[clamp(28px,4vw,38px)] tracking-tight text-brand-black mb-3.5 leading-[1.15]">
-            Automação sob medida
+            Seu negócio no<br />
+            <span className="text-brand-primary">piloto automático</span>
           </h2>
           <p className="text-base leading-relaxed text-brand-muted">
-            Combinamos módulos de automação para criar o fluxo ideal para o seu
-            negócio — do gatilho à entrega.
+            Veja como tarefas repetitivas do dia a dia passam a acontecer
+            sozinhas — sem esforço da sua equipe.
           </p>
         </div>
 
-        {/* Current workflow label */}
-        <div
-          className="text-center mb-9 transition-opacity duration-[450ms] ease-out"
-          style={{ opacity: phase === 'idle' || isFading ? 0 : 1 }}
-        >
-          <span className="block font-display font-semibold text-[17px] text-brand-primary mb-0.5">
-            {wf.title}
-          </span>
-          <span className="text-[13px] text-brand-muted">{wf.desc}</span>
+        {/* Workflow tabs */}
+        <div className="wf-anim-tabs">
+          {WORKFLOWS.map((w, i) => (
+            <button
+              key={i}
+              className={`wf-anim-tab${i === wIdx ? ' active' : ''}`}
+              onClick={() => handleTabClick(i)}
+            >
+              {w.title}
+            </button>
+          ))}
         </div>
 
         {/* Pipeline */}
-        <div className="flex items-center justify-center flex-nowrap py-2 min-h-[170px] wf-anim-pipeline">
+        <div
+          className="flex items-center justify-center flex-nowrap py-2 min-h-[170px] wf-anim-pipeline"
+          onMouseEnter={handlePipelineEnter}
+          onMouseLeave={handlePipelineLeave}
+        >
           {wf.modules.map((mod, i) => (
             <div className="flex items-center wf-anim-step" key={`${wIdx}-${i}`}>
               {/* Card */}
@@ -298,16 +220,17 @@ export default function WorkflowAnimationSection() {
                 className={`${getCardClass(i)}${mod.trigger ? ' trigger' : ''}`}
                 style={{ animationDelay: `${i * 0.09}s` }}
               >
-                <span className={`wf-anim-type${mod.trigger ? ' trigger' : ''}`}>
-                  {mod.type}
-                </span>
-                <div className="text-brand-primary mb-2 flex items-center justify-center h-[26px]">
-                  {iconMap[mod.icon]}
-                </div>
-                <span className="font-display font-semibold text-[12.5px] text-brand-black mb-0.5 leading-tight">
+                <img
+                  className="wf-anim-card-logo"
+                  src={`/logos/${mod.logo}`}
+                  alt={mod.label}
+                  width={28}
+                  height={28}
+                />
+                <span className="wf-anim-card-label">
                   {mod.label}
                 </span>
-                <span className="text-[10.5px] text-brand-muted leading-tight">
+                <span className="wf-anim-card-sub">
                   {mod.sub}
                 </span>
               </div>
@@ -343,24 +266,17 @@ export default function WorkflowAnimationSection() {
           ))}
         </div>
 
-        {/* Progress dots */}
-        <div className="flex gap-2 mt-11">
-          {WORKFLOWS.map((w, i) => (
-            <div
-              key={i}
-              className={`wf-anim-progress-dot${i === wIdx ? ' active' : ''}`}
-              title={w.title}
-            />
-          ))}
-        </div>
-
-        {/* Module count indicator */}
-        <p
-          className="mt-3.5 text-xs text-brand-muted font-display font-medium tracking-[0.02em] transition-opacity duration-[400ms] ease-out"
+        {/* Outcome badge */}
+        <div
+          className="wf-anim-outcome"
           style={{ opacity: phase === 'idle' || isFading ? 0 : 1 }}
         >
-          {total} {total === 1 ? 'módulo' : 'módulos'} neste fluxo
-        </p>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <circle cx="7" cy="7" r="6.5" stroke="#8b2020" strokeWidth="1" />
+            <path d="M4.5 7L6.5 9L9.5 5.5" stroke="#8b2020" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          </svg>
+          <span>{wf.outcome}</span>
+        </div>
       </section>
     </>
   )
@@ -368,10 +284,47 @@ export default function WorkflowAnimationSection() {
 
 // Animation styles (required for complex animations not easily done in Tailwind)
 const animationStyles = `
+/* Tabs */
+.wf-anim-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+  padding: 0 20px;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.wf-anim-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.wf-anim-tab {
+  font-family: var(--font-manrope), 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 100px;
+  border: 1px solid #D4D4D4;
+  background: #FFFFFF;
+  color: #6B6B6B;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+.wf-anim-tab:hover {
+  border-color: #8b2020;
+  color: #8b2020;
+}
+.wf-anim-tab.active {
+  background: #8b2020;
+  border-color: #8b2020;
+  color: #FFFFFF;
+}
+
 /* Card base */
 .wf-anim-card {
-  width: 118px;
-  padding: 14px 10px 12px;
+  width: 150px;
+  padding: 18px 12px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -381,6 +334,7 @@ const animationStyles = `
   position: relative;
   opacity: 0;
   transform: translateY(18px);
+  border-radius: 6px;
 }
 
 .wf-anim-card.visible {
@@ -411,29 +365,34 @@ const animationStyles = `
   border-left: 2.5px solid #8b2020;
 }
 
-/* Card type badge */
-.wf-anim-type {
-  font-family: var(--font-manrope), 'Manrope', sans-serif;
-  font-size: 8.5px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #6B6B6B;
+/* Card inner elements */
+.wf-anim-card-logo {
+  width: 28px;
+  height: 28px;
   margin-bottom: 10px;
-  padding: 2px 7px;
-  background: #F5F5F5;
+  object-fit: contain;
 }
 
-.wf-anim-type.trigger {
-  background: #8b2020;
-  color: #FFFFFF;
+.wf-anim-card-label {
+  font-family: var(--font-manrope), 'Manrope', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin-bottom: 3px;
+  line-height: 1.2;
+}
+
+.wf-anim-card-sub {
+  font-size: 11.5px;
+  color: #6B6B6B;
+  line-height: 1.3;
 }
 
 /* Connector */
 .wf-anim-conn {
   display: flex;
   align-items: center;
-  width: 38px;
+  width: 44px;
   margin: 0 3px;
   position: relative;
   opacity: 0;
@@ -489,40 +448,48 @@ const animationStyles = `
   100% { left: calc(100% - 4px); opacity: 0; }
 }
 
-/* Progress dots */
-.wf-anim-progress-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #E0E0E0;
-  transition: all 0.45s ease;
+/* Outcome badge */
+.wf-anim-outcome {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 24px;
+  padding: 8px 18px;
+  border-radius: 100px;
+  background: rgba(139, 32, 32, 0.06);
+  transition: opacity 0.4s ease;
 }
-
-.wf-anim-progress-dot.active {
-  background: #8b2020;
-  width: 22px;
-  border-radius: 4px;
+.wf-anim-outcome span {
+  font-family: var(--font-manrope), 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #8b2020;
 }
 
 /* Responsive - Tablet */
 @media (max-width: 860px) {
   .wf-anim-card {
-    width: 100px;
-    padding: 12px 8px 10px;
+    width: 128px;
+    padding: 14px 10px 12px;
   }
-  .wf-anim-card .font-display {
-    font-size: 11px;
+  .wf-anim-card-logo {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 8px;
   }
-  .wf-anim-card .text-\\[10\\.5px\\] {
-    font-size: 9.5px;
+  .wf-anim-card-label {
+    font-size: 12px;
   }
-  .wf-anim-card svg {
-    width: 18px;
-    height: 18px;
+  .wf-anim-card-sub {
+    font-size: 10.5px;
   }
   .wf-anim-conn {
-    width: 28px;
+    width: 32px;
     margin: 0 2px;
+  }
+  .wf-anim-tab {
+    font-size: 12px;
+    padding: 6px 13px;
   }
 }
 
@@ -535,18 +502,19 @@ const animationStyles = `
     flex-direction: column;
   }
   .wf-anim-card {
-    width: 140px;
-    padding: 14px 12px 12px;
+    width: 160px;
+    padding: 16px 14px 14px;
   }
-  .wf-anim-card .font-display {
-    font-size: 12.5px;
+  .wf-anim-card-logo {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 10px;
   }
-  .wf-anim-card .text-\\[10\\.5px\\] {
-    font-size: 10.5px;
+  .wf-anim-card-label {
+    font-size: 13.5px;
   }
-  .wf-anim-card svg {
-    width: 22px;
-    height: 22px;
+  .wf-anim-card-sub {
+    font-size: 11.5px;
   }
 
   .wf-anim-conn {
@@ -579,6 +547,16 @@ const animationStyles = `
     12% { opacity: 0.75; }
     88% { opacity: 0.75; }
     100% { top: calc(100% - 4px); opacity: 0; }
+  }
+
+  .wf-anim-tabs {
+    margin-bottom: 20px;
+    padding: 0 16px;
+    gap: 6px;
+  }
+  .wf-anim-tab {
+    font-size: 12px;
+    padding: 6px 12px;
   }
 }
 `

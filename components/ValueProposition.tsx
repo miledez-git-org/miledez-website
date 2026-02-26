@@ -2,6 +2,10 @@
 
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
+interface ValuePropositionProps {
+  onContactClick?: () => void
+}
+
 interface Metric {
   value: string
   label: string
@@ -26,7 +30,7 @@ function AccentBar({ isVisible, delay }: { isVisible: boolean; delay: number }) 
   )
 }
 
-export default function ValueProposition() {
+export default function ValueProposition({ onContactClick }: ValuePropositionProps) {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.3 })
 
   return (
@@ -78,12 +82,12 @@ export default function ValueProposition() {
 
       {/* CTAs */}
       <div className="flex flex-col sm:flex-row gap-3 justify-center mt-16">
-        <a
-          href="#contato"
-          className="inline-flex items-center justify-center px-6 py-3 bg-brand-primary hover:bg-brand-primary-dark text-white font-medium rounded-lg transition-colors"
+        <button
+          onClick={onContactClick}
+          className="btn btn-primary btn-lg"
         >
-          Agendar conversa
-        </a>
+          Agendar demonstração
+        </button>
         <a
           href="#como-funciona"
           className="inline-flex items-center justify-center px-6 py-3 bg-white border border-neutral-200 text-neutral-600 hover:bg-neutral-50 font-medium rounded-lg transition-colors"

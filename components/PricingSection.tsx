@@ -104,13 +104,13 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
           >
             {/* Tier Name */}
             <div className="mb-6">
-              <h3 className="text-sm font-medium uppercase tracking-wider mb-2" style={{ color: 'rgba(255,255,255,0.6)' }}>
+              <h3 className="text-sm font-medium uppercase tracking-wider mb-2" style={{ color: 'rgba(255,255,255,0.85)' }}>
                 {tier.name}
               </h3>
               <div className="text-2xl font-medium text-white">
                 {tier.price}
               </div>
-              <div className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.7)' }}>
+              <div className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.85)' }}>
                 {tier.description}
               </div>
             </div>
@@ -121,14 +121,14 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
             {/* Examples */}
             <ul className="space-y-3 flex-grow">
               {tier.examples.map((example, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm" style={{ color: 'rgba(255,255,255,0.85)' }}>
+                <li key={i} className="flex items-start gap-3 text-sm" style={{ color: 'rgba(255,255,255,0.9)' }}>
                   <svg
                     className="w-5 h-5 flex-shrink-0 mt-0.5"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth={1.5}
-                    style={{ color: 'rgba(255,255,255,0.6)' }}
+                    style={{ color: 'rgba(255,255,255,0.8)' }}
                   >
                     <path d="M5 12l5 5L20 7" />
                   </svg>
@@ -136,6 +136,13 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
                 </li>
               ))}
             </ul>
+
+            <button
+              onClick={onContactClick}
+              className="mt-6 w-full py-3 px-6 text-sm font-medium text-white border border-white/30 rounded-md hover:bg-white/10 transition-colors"
+            >
+              {tier.cta}
+            </button>
           </div>
         ))}
       </div>
