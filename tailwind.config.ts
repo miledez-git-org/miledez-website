@@ -42,8 +42,8 @@ const config: Config = {
       },
       boxShadow: {
         ...(designSystemTheme?.boxShadow ?? {}),
-        'accent-glow': '0 0 20px rgba(139, 32, 32, 0.3)',
-        'accent-glow-strong': '0 0 30px rgba(139, 32, 32, 0.4)',
+        'accent-glow': '0 0 20px rgba(6, 57, 47, 0.3)',
+        'accent-glow-strong': '0 0 30px rgba(6, 57, 47, 0.4)',
         'success-glow': '0 0 20px rgba(22, 163, 74, 0.3)',
       },
       keyframes: {

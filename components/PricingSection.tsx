@@ -93,10 +93,10 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
             key={tier.name}
             className="p-8 flex flex-col"
             style={{
-              backgroundColor: '#8b2020',
+              backgroundColor: '#06392f',
               boxShadow: tier.featured
-                ? '0 16px 48px rgba(139, 32, 32, 0.4), 0 4px 12px rgba(0, 0, 0, 0.1)'
-                : '0 12px 32px rgba(139, 32, 32, 0.3), 0 4px 8px rgba(0, 0, 0, 0.08)',
+                ? '0 16px 48px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08)'
+                : '0 12px 32px rgba(0, 0, 0, 0.10), 0 4px 8px rgba(0, 0, 0, 0.06)',
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
               transition: `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 100}ms`,

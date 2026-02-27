@@ -8,10 +8,14 @@ import type { Config } from 'tailwindcss'
 export const designSystemTheme: NonNullable<Config['theme']>['extend'] = {
   colors: {
     brand: {
-      primary: '#8b2020',
-      'primary-dark': '#6a1818',
-      'primary-light': '#c53030',
-      'primary-subtle': 'rgba(139, 32, 32, 0.08)',
+      primary: '#06392f',
+      'primary-dark': '#042a22',
+      'primary-light': '#0a5c4a',
+      'primary-subtle': 'rgba(6, 57, 47, 0.08)',
+      secondary: '#16232A',
+      'secondary-light': '#1e3040',
+      black: '#16232A',
+      muted: '#4a5568',
     },
     accent: {
       slate: '#4a5568',

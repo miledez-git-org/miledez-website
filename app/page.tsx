@@ -75,34 +75,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right column - Workflow Demo (mobile simplified) */}
-            <div className="flex lg:hidden justify-center">
-              <div className="flex items-center gap-3">
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center mb-1.5">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b2020" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
-                  </div>
-                  <span className="text-[11px] font-medium text-brand-black">Gatilho</span>
-                </div>
-                <svg width="20" height="10" viewBox="0 0 20 10" className="text-brand-primary flex-shrink-0"><path d="M2 5h14M13 1l4 4-4 4" stroke="currentColor" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center mb-1.5">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b2020" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-                  </div>
-                  <span className="text-[11px] font-medium text-brand-black">Automação</span>
-                </div>
-                <svg width="20" height="10" viewBox="0 0 20 10" className="text-brand-primary flex-shrink-0"><path d="M2 5h14M13 1l4 4-4 4" stroke="currentColor" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center mb-1.5">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b2020" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
-                  </div>
-                  <span className="text-[11px] font-medium text-brand-black">Resultado</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right column - Workflow Demo (desktop) */}
-            <div className="hidden lg:flex items-center justify-center">
+            {/* Right column - Workflow Demo */}
+            <div className="flex items-center justify-center">
               <HeroWorkflowStatic />
             </div>
 
@@ -114,18 +88,18 @@ export default function Home() {
       {/* Section divider */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
+      {/* Workflow Animation - How it works */}
+      <WorkflowAnimationSection />
+
+      {/* Section divider */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+
       {/* Value Proposition */}
       <section id="valor" className="py-16 md:py-24 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ValueProposition onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
-
-      {/* Section divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
-
-      {/* Workflow Animation - How it works */}
-      <WorkflowAnimationSection />
 
 
       {/* Section divider */}

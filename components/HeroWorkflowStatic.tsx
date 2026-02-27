@@ -2,174 +2,83 @@
 
 import Image from 'next/image'
 
-/**
- * HeroWorkflowStatic - Floating icons workflow visualization
- * Layout: Trigger (top-left) → Process (right offset) → Result (left offset, not aligned)
- * 3 icons per card, spread positioning to avoid overlaps
- */
-
-// Icon configurations - 3 per card with spread positions
-const TRIGGER_ICONS = [
-  { icon: '/icons/whatsapp.svg', position: 'top-left' },
-  { icon: '/icons/gmail.svg', position: 'right-middle' },
-  { icon: '/icons/google-calendar.svg', position: 'bottom-left' },
-]
-
-const PROCESS_ICONS = [
-  { icon: '/icons/google-sheets.svg', position: 'left-middle' },
-  { icon: '/icons/excel.svg', position: 'top-right' },
-  { icon: '/icons/notion.svg', position: 'bottom-right' },
-]
-
-const RESULT_ICONS = [
-  { icon: '/icons/shopify.svg', position: 'top-center' },
-  { icon: '/icons/google-drive.svg', position: 'right-middle' },
-  { icon: '/icons/pix.svg', position: 'bottom-left' },
-]
-
-// Floating icon box component
-interface FloatingIconProps {
-  icon: string
-  position: string
-}
-
-function FloatingIcon({ icon, position }: FloatingIconProps) {
-  // Position styles - spread around card edges, not just corners
-  const positionStyles: Record<string, string> = {
-    'top-left': 'absolute -top-4 -left-4',
-    'top-center': 'absolute -top-4 left-1/2 -translate-x-1/2',
-    'top-right': 'absolute -top-4 -right-4',
-    'right-middle': 'absolute top-1/2 -right-4 -translate-y-1/2',
-    'bottom-right': 'absolute -bottom-4 -right-4',
-    'bottom-center': 'absolute -bottom-4 left-1/2 -translate-x-1/2',
-    'bottom-left': 'absolute -bottom-4 -left-4',
-    'left-middle': 'absolute top-1/2 -left-4 -translate-y-1/2',
-  }
-
+function FloatingIcon({ src, alt, className }: { src: string; alt: string; className: string }) {
   return (
     <div
       className={`
-        ${positionStyles[position]}
-        w-11 h-11 bg-white rounded-lg
-        shadow-card-icon
-        flex items-center justify-center
-        z-10
+        absolute ${className}
+        w-[42px] h-[42px] bg-white rounded-lg
+        shadow-[0_2px_8px_rgba(0,0,0,0.08),0_1px_2px_rgba(0,0,0,0.04)]
+        flex items-center justify-center z-10
       `}
     >
-      <Image
-        src={icon}
-        alt=""
-        width={26}
-        height={26}
-        className="shrink-0"
-      />
+      <Image src={src} alt={alt} width={24} height={24} className="shrink-0" />
     </div>
   )
 }
 
-// Workflow card with floating icons
-interface WorkflowCardProps {
-  title: string
-  subtitle?: string
-  icons: Array<{ icon: string; position: string }>
-  variant?: 'default' | 'success'
-}
-
-function WorkflowCard({
-  title,
-  subtitle,
-  icons,
-}: WorkflowCardProps) {
+function ConnectorPaths() {
   return (
-    <div className="relative">
-      {/* Floating icons */}
-      {icons.map((item, i) => (
-        <FloatingIcon key={i} icon={item.icon} position={item.position} />
-      ))}
-
-      {/* Card body - larger with more padding */}
-      <div
-        className={`
-          bg-white rounded-xl px-10 py-8
-          shadow-[0_1px_2px_rgba(139,32,32,0.08),0_2px_4px_rgba(139,32,32,0.08),0_4px_8px_rgba(139,32,32,0.06),0_8px_16px_rgba(139,32,32,0.04)]
-          border border-neutral-200
-          min-w-[180px]
-        `}
-      >
-        <h3 className="font-display text-base font-semibold text-neutral-900 text-center">
-          {title}
-        </h3>
-        {subtitle && (
-          <p className="font-display text-xs text-neutral-500 text-center mt-1">
-            {subtitle}
-          </p>
-        )}
-      </div>
-    </div>
-  )
-}
-
-// SVG connector lines with rounded elbows
-function ConnectorLines() {
-  return (
-    <svg
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 0 }}
-    >
-      {/* Line from Card 1 (Trigger) to Card 2 (Process) - down then right */}
+    <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
+      {/* Card 1 bottom → Card 2 left: down then rounded right elbow */}
       <path
-        d="M 90 115 L 90 175 Q 90 190 105 190 L 210 190"
+        d="M 105 130 L 105 230 Q 105 245 120 245 L 175 245"
         fill="none"
-        stroke="#e5e5e5"
-        strokeWidth="2"
-        strokeLinecap="round"
+        stroke="#d4d4d4"
+        strokeWidth="1.5"
       />
-
-      {/* Line from Card 2 (Process) to Card 3 (Result) - down then left */}
+      {/* Card 2 bottom → Card 3 top: down then rounded left elbow */}
       <path
-        d="M 300 270 L 300 340 Q 300 355 285 355 L 140 355"
+        d="M 230 290 L 230 355 Q 230 370 215 370 L 135 370"
         fill="none"
-        stroke="#e5e5e5"
-        strokeWidth="2"
-        strokeLinecap="round"
+        stroke="#d4d4d4"
+        strokeWidth="1.5"
       />
     </svg>
   )
 }
 
-// Main component
 export default function HeroWorkflowStatic() {
   return (
-    <div className="relative w-full h-[480px]">
-      {/* Connector lines (behind cards) */}
-      <ConnectorLines />
+    <div className="w-[285px] h-[360px] sm:w-[323px] sm:h-[408px] lg:w-[380px] lg:h-[480px] mx-auto relative">
+      <div className="absolute top-0 left-0 w-[380px] h-[480px] origin-top-left scale-75 sm:scale-[0.85] lg:scale-100">
+        <ConnectorPaths />
 
-      {/* Card 1 - Trigger (top-left) */}
-      <div className="absolute top-0 left-0">
-        <WorkflowCard
-          title="Gatilho"
-          subtitle="Evento inicial"
-          icons={TRIGGER_ICONS}
-        />
-      </div>
+        {/* Card 1 - Gatilho (top-left) */}
+        <div className="absolute top-[45px] left-[25px]">
+          <FloatingIcon src="/icons/whatsapp.svg" alt="WhatsApp" className="-top-5 -left-5" />
+          <FloatingIcon src="/icons/gmail.svg" alt="Gmail" className="top-0 -right-6" />
+          <FloatingIcon src="/icons/google-calendar.svg" alt="Google Calendar" className="-bottom-5 -left-8" />
 
-      {/* Card 2 - Process (middle, offset right - increased) */}
-      <div className="absolute top-[155px] left-[210px]">
-        <WorkflowCard
-          title="Processamento"
-          subtitle="Automação"
-          icons={PROCESS_ICONS}
-        />
-      </div>
+          <div className="bg-white rounded-xl px-8 py-5 shadow-[0_2px_8px_rgba(0,0,0,0.08),0_1px_2px_rgba(0,0,0,0.04)] border border-neutral-100 text-center w-[170px]">
+            <p className="text-base font-semibold text-brand-black font-display">Gatilho</p>
+            <p className="text-sm text-neutral-600 mt-1">Evento inicial</p>
+          </div>
+        </div>
 
-      {/* Card 3 - Result (bottom, offset left but not aligned with Trigger) */}
-      <div className="absolute top-[310px] left-[60px]">
-        <WorkflowCard
-          title="Resultado"
-          subtitle="Ação executada"
-          icons={RESULT_ICONS}
-          variant="success"
-        />
+        {/* Card 2 - Processamento (middle-right, offset) */}
+        <div className="absolute top-[205px] left-[175px]">
+          <FloatingIcon src="/icons/google-sheets.svg" alt="Google Sheets" className="top-3 -left-7" />
+          <FloatingIcon src="/icons/excel.svg" alt="Excel" className="-top-5 -right-3" />
+          <FloatingIcon src="/icons/notion.svg" alt="Notion" className="-bottom-5 -right-7" />
+
+          <div className="bg-white rounded-xl px-6 py-5 shadow-[0_2px_8px_rgba(0,0,0,0.08),0_1px_2px_rgba(0,0,0,0.04)] border border-neutral-100 text-center w-[170px]">
+            <p className="text-base font-semibold text-brand-black font-display">Processamento</p>
+            <p className="text-sm text-neutral-600 mt-1">Automação</p>
+          </div>
+        </div>
+
+        {/* Card 3 - Resultado (bottom-left) */}
+        <div className="absolute top-[365px] left-[40px]">
+          <FloatingIcon src="/icons/shopify.svg" alt="Shopify" className="-top-5 left-6" />
+          <FloatingIcon src="/icons/google-drive.svg" alt="Google Drive" className="top-0 -right-6" />
+          <FloatingIcon src="/icons/pix.svg" alt="Pix" className="-bottom-5 -left-5" />
+
+          <div className="bg-white rounded-xl px-8 py-5 shadow-[0_2px_8px_rgba(0,0,0,0.08),0_1px_2px_rgba(0,0,0,0.04)] border border-neutral-100 text-center w-[170px]">
+            <p className="text-base font-semibold text-brand-black font-display">Resultado</p>
+            <p className="text-sm text-neutral-600 mt-1">Ação executada</p>
+          </div>
+        </div>
       </div>
     </div>
   )

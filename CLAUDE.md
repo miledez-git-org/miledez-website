@@ -2,6 +2,9 @@
 
 Agency website for mil&dez - Brazilian B2B AI workflow automation agency.
 
+> **Agency context:** Part of the mil&dez platform.
+> See `miledez-main/CLAUDE.md` for agency-wide conventions and project index.
+
 **Live site:** miledez.com.br  
 **Deployment:** Vercel (auto-deploy from main)
 

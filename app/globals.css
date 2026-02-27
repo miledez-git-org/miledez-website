@@ -20,8 +20,8 @@
   --border-emphasis: rgba(0,0,0,0.15);
   --highlight: #F0F2F5;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --brand-accent: #8b2020;
-  --brand-accent-dark: #6b1a1a;
+  --brand-accent: #06392f;
+  --brand-accent-dark: #042a22;
 }
 
 /* Brand Typography - Heading Classes */
@@ -173,7 +173,7 @@ html {
 }
 
 ::selection {
-  background-color: #8b2020;
+  background-color: #06392f;
   color: #ffffff;
 }
 
@@ -265,12 +265,12 @@ html {
 .btn-primary:hover {
   background-color: var(--brand-accent-dark);
   transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(139, 32, 32, 0.25);
+  box-shadow: 0 4px 12px rgba(6, 57, 47, 0.25);
 }
 
 .btn-primary:active {
   transform: scale(0.98);
-  box-shadow: 0 2px 6px rgba(139, 32, 32, 0.2);
+  box-shadow: 0 2px 6px rgba(6, 57, 47, 0.2);
 }
 
 .btn-primary:disabled {
@@ -379,7 +379,7 @@ html {
 }
 
 .btn-ghost-brand:hover {
-  background-color: rgba(139, 32, 32, 0.08);
+  background-color: rgba(6, 57, 47, 0.08);
   color: var(--brand-accent-dark);
 }
 

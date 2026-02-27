@@ -132,9 +132,9 @@ export default function ProcessSection() {
                   className="bg-white p-6 transition-all duration-500"
                   style={{
                     boxShadow: isCurrent
-                      ? '0 0 0 2px rgba(139, 32, 32, 0.15), 0 8px 24px rgba(0,0,0,0.08)'
+                      ? '0 0 0 2px rgba(6, 57, 47, 0.15), 0 8px 24px rgba(0,0,0,0.08)'
                       : isActive
-                        ? '0 0 0 1px rgba(139, 32, 32, 0.1), 0 4px 12px rgba(0,0,0,0.06)'
+                        ? '0 0 0 1px rgba(6, 57, 47, 0.1), 0 4px 12px rgba(0,0,0,0.06)'
                         : '0 0 0 1px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.04)',
                     transform: isCurrent ? 'translateY(-4px)' : 'translateY(0)',
                   }}

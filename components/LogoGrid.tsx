@@ -66,7 +66,7 @@ export default function LogoGrid() {
       <div
         className="relative py-12 px-6 -mx-6 rounded-2xl"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(139, 32, 32, 0.15) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, rgba(0, 0, 0, 0.06) 1px, transparent 1px)',
           backgroundSize: '24px 24px',
         }}
       >
@@ -80,7 +80,7 @@ export default function LogoGrid() {
               <img
                 src={logo.src}
                 alt={logo.name}
-                className="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(139,32,32,0.35)]"
+                className="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(6,57,47,0.35)]"
                 loading="lazy"
               />
             </div>
