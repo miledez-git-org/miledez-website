@@ -7,8 +7,8 @@ import ValueProposition from '@/components/ValueProposition'
 import LogoGrid from '@/components/LogoGrid'
 import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
-import HeroWorkflowStatic from '@/components/HeroWorkflowStatic'
-import WorkflowAnimationSection from '@/components/WorkflowAnimationSection'
+import HeroConstellation from '@/components/HeroConstellation'
+import WorkflowExplainerSection from '@/components/WorkflowExplainerSection'
 import ScrollProgress from '@/components/ScrollProgress'
 import ContactModal from '@/components/ContactModal'
 
@@ -75,9 +75,9 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right column - Workflow Demo */}
+            {/* Right column - Constellation visual */}
             <div className="flex items-center justify-center">
-              <HeroWorkflowStatic />
+              <HeroConstellation />
             </div>
 
           </div>
@@ -88,14 +88,14 @@ export default function Home() {
       {/* Section divider */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
-      {/* Workflow Animation - How it works */}
-      <WorkflowAnimationSection />
+      {/* Workflow Explainer - How automations work */}
+      <WorkflowExplainerSection />
 
       {/* Section divider */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
 
       {/* Value Proposition */}
-      <section id="valor" className="py-16 md:py-24 bg-bg-muted">
+      <section id="valor" className="py-16 md:py-24 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ValueProposition onContactClick={() => setIsContactModalOpen(true)} />
         </div>
