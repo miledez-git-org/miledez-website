@@ -36,8 +36,8 @@ export default function ValueProposition({ onContactClick }: ValuePropositionPro
   return (
     <div>
       {/* Section header */}
-      <div className="mb-14 md:mb-16 text-center">
-        <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
+      <div className="mb-12 md:mb-14 text-center">
+        <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
           Resultados em dias,<br />
           <span className="text-brand-primary">não meses</span>
         </h2>

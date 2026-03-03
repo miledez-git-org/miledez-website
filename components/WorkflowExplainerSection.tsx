@@ -139,16 +139,16 @@ export default function WorkflowExplainerSection() {
   }, [isVisible, isPaused])
 
   return (
-    <section className="bg-bg-muted py-14 md:py-20">
-      <div className="max-w-5xl mx-auto px-6 md:px-10">
+    <section className="bg-bg-muted py-20 md:py-28">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
 
         {/* Section header */}
-        <div className="mb-8 md:mb-10 text-center">
-          <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
+        <div className="mb-12 md:mb-14 text-center">
+          <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             Como funciona uma<br />
             <span className="text-brand-primary">automação</span>
           </h2>
-          <p className="mt-3 text-lg text-brand-muted max-w-md mx-auto">
+          <p className="mt-4 text-lg text-brand-muted max-w-md mx-auto">
             Todo processo repetitivo vira um fluxo automático — do gatilho ao resultado.
           </p>
         </div>

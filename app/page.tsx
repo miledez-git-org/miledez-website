@@ -42,7 +42,7 @@ export default function Home() {
       <main id="main-content">
       {/* Hero */}
       <section className="min-h-screen bg-white flex items-center relative">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 w-full">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-20 items-center">
 
             {/* Left column - Hero content */}
@@ -85,74 +85,55 @@ export default function Home() {
 
       </section>
 
-      {/* Section divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
-
       {/* Workflow Explainer - How automations work */}
       <WorkflowExplainerSection />
 
-      {/* Section divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
-
       {/* Value Proposition */}
-      <section id="valor" className="py-16 md:py-24 bg-white">
+      <section id="valor" className="py-20 md:py-28 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ValueProposition onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
-
-      {/* Section divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
-
       {/* Integrations */}
-      <section id="integracoes" className="py-16 md:py-24 bg-bg-muted">
+      <section id="integracoes" className="py-20 md:py-28 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <LogoGrid />
         </div>
       </section>
 
-      {/* Section divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
-
       {/* How It Works - Process */}
-      <section id="como-funciona" className="py-16 md:py-24 bg-white">
+      <section id="como-funciona" className="py-20 md:py-28 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ProcessSection />
         </div>
       </section>
 
-      {/* Section divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
-
       {/* Pricing */}
-      <section id="precos" className="py-16 md:py-24 bg-bg-muted">
+      <section id="precos" className="py-20 md:py-28 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <PricingSection onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
-      {/* Section divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
-
       {/* CTA */}
-      <section id="contato" className="py-16 md:py-24 bg-white">
+      <section id="contato" className="py-20 md:py-28 bg-white">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
-          <div className="mb-14 md:mb-16">
-            <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
-              Pronto para automatizar?<br />
-              <span className="text-brand-primary">Vamos conversar</span>
-            </h2>
-            <p className="mt-4 text-lg text-brand-muted max-w-xl mx-auto">
-              Sem compromisso, sem custo inicial. Mostramos o potencial de economia para seu negócio.
-            </p>
+          <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
+            Pronto para automatizar?<br />
+            <span className="text-brand-primary">Vamos conversar</span>
+          </h2>
+          <p className="mt-4 text-lg text-brand-muted max-w-xl mx-auto">
+            Sem compromisso, sem custo inicial. Mostramos o potencial de economia para seu negócio.
+          </p>
+          <div className="mt-10 md:mt-12">
+            <button
+              onClick={() => setIsContactModalOpen(true)}
+              className="btn btn-primary btn-xl"
+            >
+              Agendar demonstração
+            </button>
           </div>
-          <button
-            onClick={() => setIsContactModalOpen(true)}
-            className="btn btn-primary btn-xl"
-          >
-            Agendar demonstração
-          </button>
         </div>
       </section>
 

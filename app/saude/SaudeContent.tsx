@@ -86,7 +86,7 @@ export default function SaudeContent() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 md:pt-48 pb-24 md:pb-32 bg-white">
+      <section className="pt-28 md:pt-40 pb-20 md:pb-28 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="max-w-2xl">
@@ -95,10 +95,10 @@ export default function SaudeContent() {
                   Saúde e Clínicas
                 </span>
               </div>
-              <h1 className="heading-display text-[3.5rem] mb-8 text-brand-black">
+              <h1 className="heading-display text-4xl md:text-5xl lg:text-[3.5rem] mb-6 text-brand-black">
                 Menos papelada.<br />Mais tempo para pacientes.
               </h1>
-              <p className="text-xl mb-12 max-w-lg text-brand-text leading-relaxed">
+              <p className="text-xl mb-10 max-w-lg text-brand-text leading-relaxed">
                 Automatizamos documentação, faturamento e conformidade. Você foca no atendimento.
               </p>
               <button
@@ -117,10 +117,10 @@ export default function SaudeContent() {
       </section>
 
       {/* Pain Points */}
-      <section className="py-32 md:py-40 bg-bg-muted">
+      <section className="py-20 md:py-28 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="mb-16">
-            <h2 className="heading-section text-[2rem] text-brand-black">Os desafios do dia a dia</h2>
+          <div className="mb-12 md:mb-14">
+            <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black">Os desafios do dia a dia</h2>
           </div>
 
           <ChallengeCards />
@@ -128,11 +128,11 @@ export default function SaudeContent() {
       </section>
 
       {/* Workflows */}
-      <section id="workflows" className="py-32 md:py-40 bg-white">
+      <section id="workflows" className="py-20 md:py-28 bg-white">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
-          <div className="mb-16 text-center">
-            <h2 className="heading-section text-[2rem] mb-4 text-brand-black">Automações para sua clínica</h2>
-            <p className="text-lg text-brand-text max-w-2xl mx-auto">
+          <div className="mb-12 md:mb-14 text-center">
+            <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black">Automações para sua clínica</h2>
+            <p className="mt-4 text-lg text-brand-text max-w-2xl mx-auto">
               Processos que funcionam sozinhos, do cadastro ao pagamento
             </p>
           </div>
@@ -157,9 +157,9 @@ export default function SaudeContent() {
       </section>
 
       {/* Results */}
-      <section id="resultados" className="py-32 md:py-40 bg-bg-muted">
+      <section id="resultados" className="py-20 md:py-28 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <h2 className="heading-section text-[2rem] mb-12 text-brand-black">Resultados típicos</h2>
+          <h2 className="heading-display text-[2rem] md:text-[2.5rem] mb-12 md:mb-14 text-brand-black">Resultados típicos</h2>
 
           <MetricsGrid metrics={metrics} />
 
@@ -175,11 +175,11 @@ export default function SaudeContent() {
       </section>
 
       {/* Integrations */}
-      <section id="integracoes" className="py-32 md:py-40 bg-white">
+      <section id="integracoes" className="py-20 md:py-28 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="mb-16">
-            <h2 className="heading-section text-[2rem] mb-4 text-brand-black">Ferramentas que você já usa</h2>
-            <p className="text-brand-text">Integramos sem trocar seus sistemas</p>
+          <div className="mb-12 md:mb-14">
+            <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black">Ferramentas que você já usa</h2>
+            <p className="mt-4 text-brand-text">Integramos sem trocar seus sistemas</p>
           </div>
 
           <IndustryIntegrations integrations={integrations} />
@@ -187,20 +187,22 @@ export default function SaudeContent() {
       </section>
 
       {/* CTA */}
-      <section id="contato" className="py-32 md:py-40 bg-bg-muted">
+      <section id="contato" className="py-20 md:py-28 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto text-center">
-          <h2 className="heading-section text-[2.5rem] mb-6 text-brand-black">
+          <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black">
             Vamos simplificar sua administração?
           </h2>
-          <p className="text-lg max-w-md mx-auto mb-12 text-brand-text">
+          <p className="mt-4 text-lg max-w-md mx-auto text-brand-text">
             Conversa sem compromisso. Entendemos sua clínica e mostramos o que é possível automatizar.
           </p>
-          <button
-            onClick={() => setIsContactModalOpen(true)}
-            className="btn btn-primary btn-xl"
-          >
-            Falar conosco
-          </button>
+          <div className="mt-10 md:mt-12">
+            <button
+              onClick={() => setIsContactModalOpen(true)}
+              className="btn btn-primary btn-xl"
+            >
+              Falar conosco
+            </button>
+          </div>
         </div>
       </section>
 

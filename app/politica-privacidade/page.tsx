@@ -13,7 +13,7 @@ export default function PoliticaPrivacidadePage() {
       <Header />
       <main className="min-h-screen bg-white pt-32 pb-20">
         <div className="max-w-3xl mx-auto px-6 md:px-10">
-          <h1 className="text-3xl md:text-4xl font-semibold text-neutral-900 mb-8">
+          <h1 className="heading-display text-3xl md:text-4xl text-neutral-900 mb-8">
             Política de Privacidade
           </h1>
 

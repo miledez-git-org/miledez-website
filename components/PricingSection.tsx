@@ -76,8 +76,8 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
   return (
     <div ref={ref}>
       {/* Header */}
-      <div className="mb-14 md:mb-16 text-center">
-        <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
+      <div className="mb-12 md:mb-14 text-center">
+        <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
           Preço justo,<br />
           <span className="text-brand-primary">retorno garantido</span>
         </h2>
