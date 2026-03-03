@@ -24,8 +24,6 @@ const VB_H = 400
 const CX = VB_W / 2
 const CY = VB_H / 2
 
-const BRAND_PRIMARY = '#06392f'
-
 // Icon sizes and opacities for inactive/active states
 const ICON_INACTIVE_SIZE = 22
 const ICON_ACTIVE_SIZE = 34
