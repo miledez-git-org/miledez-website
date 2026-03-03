@@ -118,8 +118,9 @@ export default function HeroConstellation() {
   const svgRef = useRef<SVGSVGElement>(null)
   const timeRef = useRef(0)
 
-  // Refs for each icon group (<g>) and image (<image>)
+  // Refs for each icon group (<g>), background rect, and image (<image>)
   const groupRefs = useRef<(SVGGElement | null)[]>([])
+  const bgRefs = useRef<(SVGRectElement | null)[]>([])
   const imageRefs = useRef<(SVGImageElement | null)[]>([])
 
   // Single connector path
@@ -376,6 +377,15 @@ export default function HeroConstellation() {
       const size = ICON_INACTIVE_SIZE + (ICON_ACTIVE_SIZE - ICON_INACTIVE_SIZE) * activation
       const halfSize = size / 2
 
+      // Update background rect to mask the connector line behind the icon
+      const bg = bgRefs.current[i]
+      if (bg) {
+        bg.setAttribute('width', String(size + 4))
+        bg.setAttribute('height', String(size + 4))
+        bg.setAttribute('x', String(-(size + 4) / 2))
+        bg.setAttribute('y', String(-(size + 4) / 2))
+      }
+
       img.setAttribute('width', String(size))
       img.setAttribute('height', String(size))
       img.setAttribute('x', String(-halfSize))
@@ -474,6 +484,15 @@ export default function HeroConstellation() {
               ref={(el) => { groupRefs.current[i] = el }}
               transform={`translate(${pos.x}, ${pos.y})`}
             >
+              <rect
+                ref={(el) => { bgRefs.current[i] = el }}
+                width={size + 4}
+                height={size + 4}
+                x={-(size + 4) / 2}
+                y={-(size + 4) / 2}
+                rx={4}
+                fill="#FFFFFF"
+              />
               <image
                 ref={(el) => { imageRefs.current[i] = el }}
                 href={`/icons/${node.icon}.svg`}
