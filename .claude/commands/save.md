@@ -2,23 +2,30 @@
 description: Smart sync workspace repo (commit/push/pull)
 ---
 
-Perform intelligent bidirectional synchronization for the workspace repository.
+Perform intelligent synchronization for the workspace repository.
 
-## Repository
+## Auto-Detection
 
-| Name | Path | Remote |
-|------|------|--------|
-| mil&dez Website | `.` (root) | origin/main |
+Detect repository context automatically:
+
+```bash
+REPO_NAME=$(basename "$(git rev-parse --show-toplevel)")
+BRANCH=$(git branch --show-current)
+HAS_REMOTE=$(git remote -v 2>/dev/null | head -1)
+```
 
 ## Sync Algorithm
 
 Execute these steps in order:
 
-### Step 1: Fetch Remote State
+### Step 1: Check Remote Configuration
 
 ```bash
-git fetch origin main
+git remote -v
 ```
+
+- If no remote is configured, operate in **local-only mode** (skip fetch/push/pull)
+- If a remote exists, proceed with full sync
 
 ### Step 2: Check for Uncommitted Local Changes
 
@@ -38,28 +45,27 @@ git commit -m "save: updated [dirs/files] | YYYY-MM-DD HH:MM"
 - Deduplicate and join with commas
 - Append current timestamp
 
-Example: `save: updated components/, app/ | 2025-12-22 14:30`
+Example: `save: updated src/, prisma/ | 2025-12-22 14:30`
 
-### Step 3: Analyze Divergence
+### Step 3: Remote Sync (only if remote is configured)
 
 ```bash
-# Count commits local has that remote doesn't
-LOCAL_AHEAD=$(git rev-list origin/main..HEAD --count)
+git fetch origin $BRANCH
 
-# Count commits remote has that local doesn't
-REMOTE_AHEAD=$(git rev-list HEAD..origin/main --count)
+LOCAL_AHEAD=$(git rev-list origin/$BRANCH..HEAD --count)
+REMOTE_AHEAD=$(git rev-list HEAD..origin/$BRANCH --count)
 ```
 
-### Step 4: Execute Based on State
+#### Execute Based on State
 
 | Local Ahead | Remote Ahead | Action |
 |-------------|--------------|--------|
 | 0 | 0 | Already in sync - no action |
-| >0 | 0 | Push: `git push origin main` |
-| 0 | >0 | Pull: `git pull origin main --ff-only` |
+| >0 | 0 | Push: `git push origin $BRANCH` |
+| 0 | >0 | Pull: `git pull origin $BRANCH --ff-only` |
 | >0 | >0 | **CONFLICT** - Stop and notify user |
 
-### Step 5: Record Status
+### Step 4: Record Status
 
 Collect results for summary table.
 
@@ -73,6 +79,7 @@ If the repository has diverged (both local and remote have unique commits):
 
 ## Error Handling
 
+- **No remote configured**: Commit locally, mark as `Committed (local only)`
 - **Network timeout**: Mark as `Error: Network unavailable`
 - **Authentication failure**: Mark as `Error: Auth failed`
 - **Protected branch rejection**: Mark as `Error: Push rejected`
@@ -89,11 +96,11 @@ Timestamp: [YYYY-MM-DD HH:MM]
 
 | Repository | Status | Action | Details |
 |------------|--------|--------|---------|
-| mil&dez Website | [status] | [action] | [files/commit] |
+| $REPO_NAME | [status] | [action] | [files/commit] |
 
 ### Conflicts (if any)
 
-**[Repository]**: Local and remote have diverged.
+**$REPO_NAME**: Local and remote have diverged.
 - Local ahead by: [n] commits
 - Remote ahead by: [n] commits
 - Resolution: Run `git pull --rebase` or merge manually
@@ -105,6 +112,7 @@ Timestamp: [YYYY-MM-DD HH:MM]
 |--------|---------|
 | Pushed | Local changes committed and pushed to remote |
 | Pulled | Remote changes merged to local (fast-forward) |
+| Committed (local only) | Changes committed locally, no remote configured |
 | Up to date | No changes in either direction |
 | CONFLICT | Diverged history - manual intervention required |
 | Error | Network, auth, or permission issue |

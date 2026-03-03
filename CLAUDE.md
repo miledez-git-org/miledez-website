@@ -1,35 +1,32 @@
 # mil&dez Website
 
-Agency website for mil&dez - Brazilian B2B AI workflow automation agency.
+Agency website for mil&dez — Brazilian B2B AI workflow automation agency.
 
-> **Agency context:** Part of the mil&dez platform.
-> See `miledez-main/CLAUDE.md` for agency-wide conventions and project index.
+> Agency context: Part of the mil&dez platform.
 
-**Live site:** miledez.com.br  
-**Deployment:** Vercel (auto-deploy from main)
+## Links
 
----
+- **Production:** miledez.com.br
+- **Local Dev:** http://localhost:3000
 
 ## Tech Stack
 
-- Next.js 14.2.35
-- React 18.3
-- Tailwind CSS 3.4
-- Framer Motion 12
-- TypeScript
+| Layer | Technology |
+|-------|------------|
+| Framework | Next.js 14.2.35 (App Router) |
+| UI | React 18.3, Framer Motion 12 |
+| Styling | Tailwind CSS 3.4 |
+| Language | TypeScript |
+| Deployment | Vercel (auto-deploy from main) |
 
----
-
-## Development
+## Commands
 
 ```bash
 npm install     # Install dependencies
-npm run dev     # Start dev server (localhost:3000)
+npm run dev     # Start dev server
 npm run build   # Production build
 npm run lint    # Run ESLint
 ```
-
----
 
 ## Project Structure
 
@@ -59,39 +56,36 @@ public/
   icons/                    # Icon SVGs
 ```
 
----
+## Key Patterns
 
-## Design System
+- **ContactModal** — Lead capture form (Formspree integration)
+- **WorkflowVisual** — Animated workflow demonstrations
+- **PricingSection** — Pricing tiers display (requires `onContactClick` prop)
+- **LogoGrid** — Integration partners showcase
+- Component library in `components/ui/` — use existing components before creating new ones
 
-For all visual and written outputs, follow the `miledez-design-system` skill.
+## Rules
 
-| Element | Value |
-|---------|-------|
-| **Primary** | `#8b2020` (burgundy) |
-| **Text** | `#1A1A1A` (headings), `#6B6B6B` (body) |
-| **Font** | Manrope (headings), Source Sans 3 (body) |
-| **Style** | Warm, professional, minimal |
+- `eslint-config-next` version must match Next.js version to avoid build errors
 
-Component library in `components/ui/`. Use existing components before creating new ones.
+## Agency Conventions
+<!-- conventions-sync: 2026-03-03 -->
 
----
+**Design system:** Use the `miledez-design-system` skill for all visual outputs.
+- Accent: `#8b2020` (burgundy) | Fonts: Manrope (headings), Source Sans 3 (body)
+- Backgrounds: white main, `#F5F5F5` alternating | Icons: SVG line (Lucide/Phosphor)
 
-## Key Components
+**Language:** Client-facing content in Portuguese (BR). Code, comments, technical docs in English.
 
-- `ContactModal` - Lead capture form (Formspree integration)
-- `WorkflowVisual` - Animated workflow demonstrations
-- `PricingSection` - Pricing tiers display (requires onContactClick prop)
-- `LogoGrid` - Integration partners showcase
+**Response style:** Concise and actionable. Tables for comparisons. Numbered items for follow-up.
 
----
+**User preferences:**
+- Flat folder structures over nested categorization
+- Confirm before destructive commands (rm, mv) — user runs manually
 
-## Dependency Note
-
-`eslint-config-next` version must match Next.js version to avoid build errors.
-
----
-
-## Language
-
-- Website content: Portuguese (Brazilian)
-- Code/comments: English
+**Session workflow:**
+1. Start: Read CLAUDE.md + check memory. Run `git status` for uncommitted work.
+2. Plan: Use plan mode for non-trivial tasks. Use task lists for multi-step work.
+3. Execute: After plan approval, switch to bypass-permissions mode.
+4. Save: Run `/save` before ending session.
+5. Memory: Record architecture decisions and resolved issues to memory before session end.
