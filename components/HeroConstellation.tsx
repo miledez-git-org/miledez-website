@@ -3,9 +3,11 @@
 import { useRef, useEffect, useCallback, useState } from 'react'
 import { useAnimationFrame } from 'framer-motion'
 
-// --- Node configuration ---
+// --- Icon node configuration ---
 
-interface NodeConfig {
+interface IconNodeConfig {
+  /** Icon filename in /public/icons/ */
+  icon: string
   /** Semi-major axis (horizontal radius) */
   a: number
   /** Semi-minor axis (vertical radius) */
@@ -14,61 +16,134 @@ interface NodeConfig {
   speed: number
   /** Starting angle offset in radians */
   phase: number
-  /** Circle radius in px */
-  size: number
-  /** Base fill color */
-  color: string
 }
+
+// SVG viewBox dimensions
+const VB_W = 400
+const VB_H = 400
+const CX = VB_W / 2
+const CY = VB_H / 2
 
 const BRAND_PRIMARY = '#06392f'
 
-const NODES: NodeConfig[] = [
-  // Outer ring — large, slow
-  { a: 155, b: 130, speed: 0.015, phase: 0, size: 5, color: '#d4d4d4' },
-  { a: 140, b: 145, speed: -0.012, phase: 2.1, size: 4, color: '#d4d4d4' },
-  { a: 160, b: 120, speed: 0.01, phase: 4.2, size: 6, color: '#a3a3a3' },
-  // Middle ring
-  { a: 95, b: 100, speed: -0.02, phase: 0.8, size: 5, color: '#d4d4d4' },
-  { a: 105, b: 85, speed: 0.018, phase: 3.5, size: 4, color: '#a3a3a3' },
-  // Inner ring — smaller, slightly faster
-  { a: 55, b: 50, speed: 0.025, phase: 1.5, size: 5, color: '#d4d4d4' },
-  { a: 45, b: 55, speed: -0.022, phase: 4.0, size: 4, color: '#d4d4d4' },
-  // Accent nodes — brand-tinted
-  { a: 120, b: 110, speed: 0.014, phase: 5.2, size: 5, color: 'rgba(6,57,47,0.35)' },
-  { a: 70, b: 75, speed: -0.019, phase: 2.8, size: 4, color: 'rgba(6,57,47,0.35)' },
+// Icon sizes and opacities for inactive/active states
+const ICON_INACTIVE_SIZE = 22
+const ICON_ACTIVE_SIZE = 34
+const ICON_INACTIVE_OPACITY = 0.3
+const ICON_ACTIVE_OPACITY = 1.0
+
+// Chain animation timing (seconds)
+const CHAIN_IDLE_MIN = 0.4
+const CHAIN_IDLE_MAX = 0.8
+const CHAIN_DRAW_SPEED = 0.8 // seconds per segment
+const CHAIN_HOLD_DURATION = 1.0
+const CHAIN_FADE_DURATION = 0.6
+const FIRST_ICON_FADE_DURATION = 0.3 // seconds for first icon to fade in
+
+// Chain sizes
+const CHAIN_SIZE_DESKTOP = [3, 4] as const // min, max icons per chain
+const CHAIN_SIZE_MOBILE = [2, 3] as const
+
+// Cooldown: icons skip next N cycles after participating
+const COOLDOWN_CYCLES = 2
+
+// Minimum distance between any two icons (px) — used for runtime repulsion
+const MIN_ICON_DIST = 44
+
+// Outer ring (5) — large, slow — phases evenly spaced at ~1.257 rad (2π/5)
+const OUTER_RING: IconNodeConfig[] = [
+  { icon: 'whatsapp', a: 165, b: 155, speed: 0.012, phase: 0 },
+  { icon: 'gmail', a: 155, b: 160, speed: -0.010, phase: 1.257 },
+  { icon: 'shopify', a: 170, b: 148, speed: 0.011, phase: 2.513 },
+  { icon: 'salesforce', a: 160, b: 162, speed: -0.009, phase: 3.770 },
+  { icon: 'slack', a: 163, b: 152, speed: 0.010, phase: 5.027 },
 ]
 
-// Mobile uses first 5 nodes only
-const MOBILE_NODE_COUNT = 5
+// Middle ring (5) — medium — phases offset by 0.628 rad from outer ring
+const MIDDLE_RING: IconNodeConfig[] = [
+  { icon: 'google-sheets', a: 108, b: 110, speed: -0.017, phase: 0.628 },
+  { icon: 'notion', a: 118, b: 100, speed: 0.015, phase: 1.885 },
+  { icon: 'pipedrive', a: 112, b: 106, speed: -0.014, phase: 3.142 },
+  { icon: 'stripe', a: 120, b: 102, speed: 0.016, phase: 4.398 },
+  { icon: 'hubspot', a: 110, b: 115, speed: -0.015, phase: 5.655 },
+]
 
-// Connection distance threshold (squared, to avoid sqrt per frame)
-const CONNECTION_DIST_SQ = 110 * 110
+// Inner ring (4) — phases at ~1.571 rad (2π/4)
+const INNER_RING: IconNodeConfig[] = [
+  { icon: 'n8n', a: 68, b: 65, speed: 0.020, phase: 0.4 },
+  { icon: 'google-calendar', a: 60, b: 70, speed: -0.018, phase: 1.971 },
+  { icon: 'telegram', a: 65, b: 62, speed: 0.019, phase: 3.542 },
+  { icon: 'airtable', a: 62, b: 68, speed: -0.017, phase: 5.112 },
+]
 
-// SVG viewBox dimensions
-const VB_W = 380
-const VB_H = 420
-const CX = VB_W / 2
-const CY = VB_H / 2
+// Desktop: all 14, Mobile: outer + middle (10)
+const NODES_DESKTOP = [...OUTER_RING, ...MIDDLE_RING, ...INNER_RING]
+const NODES_MOBILE = [...OUTER_RING, ...MIDDLE_RING]
+
+// --- Chain animation state machine ---
+
+type ChainPhase = 'idle' | 'drawing' | 'holding' | 'fading'
+
+interface ChainState {
+  phase: ChainPhase
+  /** Time when current phase started */
+  phaseStart: number
+  /** Pre-computed idle wait duration (set once on entering idle) */
+  idleDuration: number
+  /** Indices of icons in the current chain */
+  chainIndices: number[]
+  /** Per-icon activation progress (0 = inactive, 1 = fully active) */
+  iconProgress: number[]
+  /** Chain path fade multiplier (1 = visible, 0 = gone) */
+  pathOpacity: number
+  /** How far along the drawing phase (0..totalSegments) */
+  drawProgress: number
+  /** Cooldown map: icon index → remaining cycles */
+  cooldowns: Map<number, number>
+}
+
+/** Fisher-Yates shuffle (in-place) */
+function shuffleArray<T>(arr: T[]): T[] {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[arr[i], arr[j]] = [arr[j], arr[i]]
+  }
+  return arr
+}
+
+/** Pick random int in [min, max] inclusive */
+function randInt(min: number, max: number): number {
+  return min + Math.floor(Math.random() * (max - min + 1))
+}
 
 export default function HeroConstellation() {
   const svgRef = useRef<SVGSVGElement>(null)
   const timeRef = useRef(0)
-  const nodeRefs = useRef<(SVGCircleElement | null)[]>([])
-  const lineRefs = useRef<(SVGLineElement | null)[]>([])
-  const pulseCircleRef = useRef<SVGCircleElement>(null)
-  const pulseRingRef = useRef<SVGCircleElement>(null)
 
-  // Track pulse state via refs (no re-renders)
-  const pulseState = useRef({
-    activeNode: -1,
-    startTime: 0,
-    nextPulseAt: 3, // seconds until first pulse
+  // Refs for each icon group (<g>) and image (<image>)
+  const groupRefs = useRef<(SVGGElement | null)[]>([])
+  const imageRefs = useRef<(SVGImageElement | null)[]>([])
+
+  // Single connector path
+  const chainPathRef = useRef<SVGPathElement>(null)
+
+  // Chain animation state (all in refs, no re-renders)
+  const chainRef = useRef<ChainState>({
+    phase: 'idle',
+    phaseStart: 0,
+    idleDuration: CHAIN_IDLE_MIN + Math.random() * (CHAIN_IDLE_MAX - CHAIN_IDLE_MIN),
+    chainIndices: [],
+    iconProgress: [],
+    pathOpacity: 0,
+    drawProgress: 0,
+    cooldowns: new Map(),
   })
+
+  // Positions cache (updated every frame)
+  const positionsRef = useRef<{ x: number; y: number }[]>([])
 
   // Reduced motion detection
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-
-  // Mobile detection
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -88,14 +163,48 @@ export default function HeroConstellation() {
     }
   }, [])
 
-  const nodeCount = isMobile ? MOBILE_NODE_COUNT : NODES.length
+  const nodes = isMobile ? NODES_MOBILE : NODES_DESKTOP
+  const nodeCount = nodes.length
+  const chainSizeRange = isMobile ? CHAIN_SIZE_MOBILE : CHAIN_SIZE_DESKTOP
 
   // Compute static positions for reduced-motion or initial SSR
   const getStaticPos = useCallback(
-    (node: NodeConfig) => ({
+    (node: IconNodeConfig) => ({
       x: CX + node.a * Math.cos(node.phase),
       y: CY + node.b * Math.sin(node.phase),
     }),
+    []
+  )
+
+  // Select next chain icons, respecting cooldowns
+  const selectChainIcons = useCallback(
+    (count: number, totalNodes: number, cooldowns: Map<number, number>): number[] => {
+      // Build eligible pool
+      const eligible = []
+      for (let i = 0; i < totalNodes; i++) {
+        if (!cooldowns.has(i)) eligible.push(i)
+      }
+
+      // If pool is too small, clear oldest cooldowns
+      while (eligible.length < count && cooldowns.size > 0) {
+        // Find the icon with the lowest remaining cooldown
+        let minCd = Infinity
+        let minIdx = -1
+        cooldowns.forEach((cd, idx) => {
+          if (cd < minCd) {
+            minCd = cd
+            minIdx = idx
+          }
+        })
+        if (minIdx >= 0) {
+          cooldowns.delete(minIdx)
+          eligible.push(minIdx)
+        }
+      }
+
+      shuffleArray(eligible)
+      return eligible.slice(0, count)
+    },
     []
   )
 
@@ -104,111 +213,230 @@ export default function HeroConstellation() {
     if (prefersReducedMotion) return
     if (!svgRef.current) return
 
-    const dt = delta / 1000 // seconds
+    // Clamp dt to avoid jumps when tab is backgrounded
+    const dt = Math.min(delta / 1000, 0.1)
     timeRef.current += dt
-
     const t = timeRef.current
+
     const positions: { x: number; y: number }[] = []
 
-    // Update node positions
+    // Calculate orbital positions
     for (let i = 0; i < nodeCount; i++) {
-      const node = NODES[i]
-      const el = nodeRefs.current[i]
-      if (!el) continue
-
+      const node = nodes[i]
       const x = CX + node.a * Math.cos(t * node.speed + node.phase)
       const y = CY + node.b * Math.sin(t * node.speed + node.phase)
       positions.push({ x, y })
-
-      el.setAttribute('cx', String(x))
-      el.setAttribute('cy', String(y))
     }
 
-    // Update connecting lines (desktop only)
-    if (!isMobile) {
-      let lineIdx = 0
-      for (let i = 0; i < positions.length; i++) {
-        for (let j = i + 1; j < positions.length; j++) {
-          const dx = positions[i].x - positions[j].x
-          const dy = positions[i].y - positions[j].y
-          const distSq = dx * dx + dy * dy
+    // Repulsion pass: push apart any icons closer than MIN_ICON_DIST
+    for (let i = 0; i < nodeCount; i++) {
+      for (let j = i + 1; j < nodeCount; j++) {
+        const dx = positions[j].x - positions[i].x
+        const dy = positions[j].y - positions[i].y
+        const dist = Math.sqrt(dx * dx + dy * dy)
+        if (dist < MIN_ICON_DIST && dist > 0) {
+          const overlap = (MIN_ICON_DIST - dist) / 2
+          const nx = dx / dist
+          const ny = dy / dist
+          positions[i].x -= nx * overlap
+          positions[i].y -= ny * overlap
+          positions[j].x += nx * overlap
+          positions[j].y += ny * overlap
+        }
+      }
+    }
 
-          const lineEl = lineRefs.current[lineIdx]
-          if (lineEl) {
-            if (distSq < CONNECTION_DIST_SQ) {
-              // Opacity fades as distance approaches threshold
-              const ratio = 1 - distSq / CONNECTION_DIST_SQ
-              const opacity = ratio * 0.4 // max 0.4 opacity
-              lineEl.setAttribute('x1', String(positions[i].x))
-              lineEl.setAttribute('y1', String(positions[i].y))
-              lineEl.setAttribute('x2', String(positions[j].x))
-              lineEl.setAttribute('y2', String(positions[j].y))
-              lineEl.setAttribute('opacity', String(opacity))
+    // Apply repulsion-adjusted positions to DOM
+    for (let i = 0; i < nodeCount; i++) {
+      const g = groupRefs.current[i]
+      if (g) {
+        g.setAttribute('transform', `translate(${positions[i].x}, ${positions[i].y})`)
+      }
+    }
+
+    positionsRef.current = positions
+
+    // --- Chain animation state machine ---
+    const cs = chainRef.current
+    const elapsed = t - cs.phaseStart
+
+    switch (cs.phase) {
+      case 'idle': {
+        // Wait for pre-computed idle duration to pass
+        if (elapsed >= cs.idleDuration) {
+          // Transition to drawing
+          const chainSize = randInt(chainSizeRange[0], chainSizeRange[1])
+          const indices = selectChainIcons(chainSize, nodeCount, cs.cooldowns)
+
+          cs.phase = 'drawing'
+          cs.phaseStart = t
+          cs.chainIndices = indices
+          cs.iconProgress = new Array(indices.length).fill(0)
+          cs.drawProgress = 0
+          cs.pathOpacity = 0.5
+        }
+
+        // Ensure path is hidden during idle
+        if (chainPathRef.current) {
+          chainPathRef.current.setAttribute('opacity', '0')
+        }
+        break
+      }
+
+      case 'drawing': {
+        const totalSegments = cs.chainIndices.length - 1
+        const totalDrawTime = totalSegments * CHAIN_DRAW_SPEED
+        const progress = Math.min(elapsed / totalDrawTime, 1)
+        cs.drawProgress = progress * totalSegments
+
+        // Activate icons as the line reaches them
+        for (let i = 0; i < cs.chainIndices.length; i++) {
+          if (i === 0) {
+            // First icon fades in smoothly over FIRST_ICON_FADE_DURATION
+            cs.iconProgress[i] = Math.min(1, elapsed / FIRST_ICON_FADE_DURATION)
+          } else {
+            // Icon i activates when segment i-1 → i is being drawn
+            const segmentProgress = cs.drawProgress - (i - 1)
+            cs.iconProgress[i] = Math.max(0, Math.min(1, segmentProgress))
+          }
+        }
+
+        // Build and update path
+        updateChainPath(cs, positions)
+
+        if (progress >= 1) {
+          // All segments drawn, transition to holding
+          cs.phase = 'holding'
+          cs.phaseStart = t
+          // Ensure all icons are fully active
+          cs.iconProgress.fill(1)
+        }
+        break
+      }
+
+      case 'holding': {
+        // Keep chain visible, icons still orbit
+        updateChainPath(cs, positions)
+
+        if (elapsed >= CHAIN_HOLD_DURATION) {
+          cs.phase = 'fading'
+          cs.phaseStart = t
+        }
+        break
+      }
+
+      case 'fading': {
+        const fadeProgress = Math.min(elapsed / CHAIN_FADE_DURATION, 1)
+        // Ease out
+        const fadeMultiplier = 1 - fadeProgress * fadeProgress
+
+        cs.pathOpacity = 0.5 * fadeMultiplier
+
+        // Fade icon activations
+        for (let i = 0; i < cs.iconProgress.length; i++) {
+          cs.iconProgress[i] = fadeMultiplier
+        }
+
+        updateChainPath(cs, positions)
+
+        if (fadeProgress >= 1) {
+          // Add cooldowns for participating icons
+          for (const idx of cs.chainIndices) {
+            cs.cooldowns.set(idx, COOLDOWN_CYCLES)
+          }
+          // Decrement all existing cooldowns
+          cs.cooldowns.forEach((cd, idx) => {
+            if (cd <= 1) {
+              cs.cooldowns.delete(idx)
             } else {
-              lineEl.setAttribute('opacity', '0')
+              cs.cooldowns.set(idx, cd - 1)
             }
-          }
-          lineIdx++
+          })
+
+          // Reset to idle with a fresh random duration
+          cs.phase = 'idle'
+          cs.phaseStart = t
+          cs.idleDuration = CHAIN_IDLE_MIN + Math.random() * (CHAIN_IDLE_MAX - CHAIN_IDLE_MIN)
+          cs.chainIndices = []
+          cs.iconProgress = []
+          cs.drawProgress = 0
+          cs.pathOpacity = 0
         }
+        break
       }
     }
 
-    // Pulse logic
-    const ps = pulseState.current
-    if (ps.activeNode === -1) {
-      // No active pulse — check if it's time for a new one
-      if (t >= ps.nextPulseAt) {
-        ps.activeNode = Math.floor(Math.random() * nodeCount)
-        ps.startTime = t
-      }
-    } else {
-      // Active pulse — animate
-      const elapsed = t - ps.startTime
-      const duration = 1.2 // seconds for full pulse cycle
+    // Update icon appearances based on activation
+    for (let i = 0; i < nodeCount; i++) {
+      const img = imageRefs.current[i]
+      if (!img) continue
 
-      if (elapsed > duration) {
-        // Pulse complete — hide and schedule next
-        ps.activeNode = -1
-        ps.nextPulseAt = t + 3 + Math.random() * 3 // 3-6s until next
+      const chainIdx = cs.chainIndices.indexOf(i)
+      const activation = chainIdx >= 0 ? cs.iconProgress[chainIdx] : 0
 
-        if (pulseCircleRef.current) pulseCircleRef.current.setAttribute('opacity', '0')
-        if (pulseRingRef.current) pulseRingRef.current.setAttribute('opacity', '0')
+      // Lerp size
+      const size = ICON_INACTIVE_SIZE + (ICON_ACTIVE_SIZE - ICON_INACTIVE_SIZE) * activation
+      const halfSize = size / 2
+
+      img.setAttribute('width', String(size))
+      img.setAttribute('height', String(size))
+      img.setAttribute('x', String(-halfSize))
+      img.setAttribute('y', String(-halfSize))
+
+      // Lerp opacity
+      const opacity = ICON_INACTIVE_OPACITY + (ICON_ACTIVE_OPACITY - ICON_INACTIVE_OPACITY) * activation
+      img.setAttribute('opacity', String(opacity))
+
+      // Toggle grayscale filter
+      if (activation > 0.5) {
+        img.removeAttribute('filter')
       } else {
-        const pos = positions[ps.activeNode]
-        if (pos) {
-          const progress = elapsed / duration
-
-          // Pulse dot: scale up then down
-          if (pulseCircleRef.current) {
-            const scale = 1 + 0.5 * Math.sin(progress * Math.PI)
-            const dotOpacity = Math.sin(progress * Math.PI)
-            pulseCircleRef.current.setAttribute('cx', String(pos.x))
-            pulseCircleRef.current.setAttribute('cy', String(pos.y))
-            pulseCircleRef.current.setAttribute('r', String(NODES[ps.activeNode].size * scale))
-            pulseCircleRef.current.setAttribute('opacity', String(dotOpacity * 0.8))
-          }
-
-          // Expanding ring
-          if (pulseRingRef.current) {
-            const ringRadius = NODES[ps.activeNode].size + progress * 20
-            const ringOpacity = (1 - progress) * 0.3
-            pulseRingRef.current.setAttribute('cx', String(pos.x))
-            pulseRingRef.current.setAttribute('cy', String(pos.y))
-            pulseRingRef.current.setAttribute('r', String(ringRadius))
-            pulseRingRef.current.setAttribute('opacity', String(ringOpacity))
-          }
-        }
+        img.setAttribute('filter', 'url(#icon-inactive)')
       }
     }
   })
 
-  // Max possible line pairs: n*(n-1)/2
-  const maxLines = (nodeCount * (nodeCount - 1)) / 2
+  // Helper: build/update the chain connector path (straight lines, center-to-center)
+  function updateChainPath(
+    cs: ChainState,
+    positions: { x: number; y: number }[]
+  ) {
+    const pathEl = chainPathRef.current
+    if (!pathEl || cs.chainIndices.length < 2) return
+
+    const points = cs.chainIndices.map((idx) => positions[idx]).filter(Boolean)
+    if (points.length < 2) return
+
+    // Straight line segments between icon centers
+    let d = `M ${points[0].x},${points[0].y}`
+    for (let i = 1; i < points.length; i++) {
+      d += ` L ${points[i].x},${points[i].y}`
+    }
+
+    pathEl.setAttribute('d', d)
+    pathEl.setAttribute('opacity', String(cs.pathOpacity))
+
+    // Only apply dash animation during drawing phase
+    if (cs.phase === 'drawing') {
+      let totalLength = 0
+      for (let i = 1; i < points.length; i++) {
+        const dx = points[i].x - points[i - 1].x
+        const dy = points[i].y - points[i - 1].y
+        totalLength += Math.sqrt(dx * dx + dy * dy)
+      }
+      const visibleLength = (cs.drawProgress / Math.max(cs.chainIndices.length - 1, 1)) * totalLength
+      pathEl.setAttribute('stroke-dasharray', String(totalLength))
+      pathEl.setAttribute('stroke-dashoffset', String(totalLength - visibleLength))
+    } else {
+      pathEl.removeAttribute('stroke-dasharray')
+      pathEl.removeAttribute('stroke-dashoffset')
+    }
+  }
 
   return (
     <div
       role="presentation"
-      className="w-full aspect-[380/420] max-w-[380px] lg:max-w-none"
+      className="w-full aspect-square max-w-[400px] lg:max-w-none"
     >
       <svg
         ref={svgRef}
@@ -216,48 +444,51 @@ export default function HeroConstellation() {
         className="w-full h-full"
         aria-hidden="true"
       >
-        {/* Connecting lines (pre-allocated, hidden by default) */}
-        {!isMobile &&
-          Array.from({ length: maxLines }).map((_, i) => (
-            <line
-              key={`line-${i}`}
-              ref={(el) => { lineRefs.current[i] = el }}
-              stroke="#e5e5e5"
-              strokeWidth="0.8"
-              opacity="0"
-            />
-          ))}
+        <defs>
+          <filter id="icon-inactive">
+            <feColorMatrix type="saturate" values="0" />
+          </filter>
+        </defs>
 
-        {/* Nodes */}
-        {NODES.slice(0, nodeCount).map((node, i) => {
-          const pos = getStaticPos(node)
+        {/* Chain connector path (rendered first = behind icons) */}
+        <path
+          ref={chainPathRef}
+          fill="none"
+          stroke="#9CA3AF"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0"
+        />
+
+        {/* Icon nodes */}
+        {nodes.map((node, i) => {
+          const pos = prefersReducedMotion
+            ? getStaticPos(node)
+            : { x: CX + node.a * Math.cos(node.phase), y: CY + node.b * Math.sin(node.phase) }
+
+          const size = ICON_INACTIVE_SIZE
+          const halfSize = size / 2
+
           return (
-            <circle
-              key={`node-${i}`}
-              ref={(el) => { nodeRefs.current[i] = el }}
-              cx={pos.x}
-              cy={pos.y}
-              r={node.size}
-              fill={node.color}
-            />
+            <g
+              key={node.icon}
+              ref={(el) => { groupRefs.current[i] = el }}
+              transform={`translate(${pos.x}, ${pos.y})`}
+            >
+              <image
+                ref={(el) => { imageRefs.current[i] = el }}
+                href={`/icons/${node.icon}.svg`}
+                width={size}
+                height={size}
+                x={-halfSize}
+                y={-halfSize}
+                opacity={prefersReducedMotion ? 0.5 : ICON_INACTIVE_OPACITY}
+                filter="url(#icon-inactive)"
+              />
+            </g>
           )
         })}
-
-        {/* Pulse overlay elements */}
-        <circle
-          ref={pulseCircleRef}
-          r={5}
-          fill={BRAND_PRIMARY}
-          opacity="0"
-        />
-        <circle
-          ref={pulseRingRef}
-          r={5}
-          fill="none"
-          stroke={BRAND_PRIMARY}
-          strokeWidth="1"
-          opacity="0"
-        />
       </svg>
     </div>
   )
