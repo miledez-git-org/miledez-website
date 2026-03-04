@@ -63,15 +63,15 @@ function PhaseLabel({ label, description }: { label: string; description: string
 
 function NodeCard({ node }: { node: PipelineNode }) {
   return (
-    <div className="flex items-center gap-3 bg-white rounded-lg px-5 py-4 border border-neutral-200 shadow-card hover:shadow-card-hover transition-shadow duration-200 w-[200px] h-[56px]">
+    <div className="flex items-center justify-center gap-3 bg-white rounded-lg px-5 py-4 border border-neutral-200 shadow-card hover:shadow-card-hover transition-shadow duration-200 w-[280px] h-[56px]">
       <img
         src={`/logos/${node.logo}`}
         alt=""
-        width={28}
-        height={28}
+        width={32}
+        height={32}
         className="flex-shrink-0"
       />
-      <span className="text-[14px] font-medium text-brand-black leading-snug">
+      <span className="text-[15px] font-medium text-brand-black leading-snug">
         {node.label}
       </span>
     </div>
@@ -80,7 +80,7 @@ function NodeCard({ node }: { node: PipelineNode }) {
 
 function HorizontalArrow() {
   return (
-    <div className="flex items-center flex-shrink-0 px-2" style={{ width: '52px' }}>
+    <div className="flex items-center flex-shrink-0 px-2" style={{ width: '72px' }}>
       <div className="flex-1 h-px bg-neutral-300" />
       <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
         <path
@@ -139,7 +139,7 @@ export default function WorkflowExplainerSection() {
   }, [isVisible, isPaused])
 
   return (
-    <section className="bg-bg-muted py-20 md:py-28">
+    <section className="bg-bg-muted py-24 md:py-36">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
 
         {/* Section header */}
@@ -167,14 +167,14 @@ export default function WorkflowExplainerSection() {
               {PHASES.map((phase, colIndex) => (
                 <Fragment key={phase.key}>
                   <motion.div
-                    className="w-[200px] text-center min-h-[52px] flex items-end justify-center"
+                    className="w-[280px] text-center min-h-[52px] flex items-end justify-center"
                     initial={{ opacity: 0, x: -12 }}
                     animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -12 }}
                     transition={{ duration: 0.45, delay: colIndex * 0.14, ease: EASE }}
                   >
                     <PhaseLabel label={phase.label} description={phase.description} />
                   </motion.div>
-                  {colIndex < 2 && <div style={{ width: '52px' }} />}
+                  {colIndex < 2 && <div style={{ width: '72px' }} />}
                 </Fragment>
               ))}
             </div>
@@ -184,7 +184,7 @@ export default function WorkflowExplainerSection() {
               {PHASES.map((phase, colIndex) => (
                 <Fragment key={phase.key}>
                   <motion.div
-                    className="w-[200px]"
+                    className="w-[280px]"
                     initial={{ opacity: 0, y: 16 }}
                     animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
                     transition={{ duration: 0.5, delay: colIndex * 0.14 + 0.08, ease: EASE }}
@@ -239,7 +239,7 @@ export default function WorkflowExplainerSection() {
                     animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
                     transition={{ duration: 0.5, delay: stepIndex * 0.14 + 0.06, ease: EASE }}
                   >
-                    <div className="relative h-[56px] w-[200px] overflow-hidden">
+                    <div className="relative h-[56px] w-[280px] overflow-hidden">
                       <AnimatePresence initial={false}>
                         <motion.div
                           key={`m-${stepIndex}-${activeIndices[stepIndex]}`}

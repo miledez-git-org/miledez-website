@@ -47,7 +47,7 @@ export default function ValueProposition({ onContactClick }: ValuePropositionPro
       </div>
 
       {/* Metrics Grid - centered with title */}
-      <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-16 max-w-3xl mx-auto">
+      <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-20 max-w-5xl mx-auto">
         {metrics.map((metric, index) => {
           const delay = 100 + index * 150
 

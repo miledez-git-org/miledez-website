@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="relative bg-brand-primary min-h-[50vh] md:min-h-[40vh] py-16 md:py-24 px-6 md:px-10 text-white overflow-hidden">
+    <footer className="relative bg-brand-primary min-h-[50vh] md:min-h-[40vh] py-20 md:py-28 px-6 md:px-10 text-white overflow-hidden">
       {/* Geometric texture overlay */}
       <div className="footer-texture absolute inset-0" />
 

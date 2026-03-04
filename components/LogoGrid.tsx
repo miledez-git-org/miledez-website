@@ -52,7 +52,7 @@ export default function LogoGrid() {
   return (
     <div>
       {/* Section Header */}
-      <div className="mb-12 md:mb-14 text-center">
+      <div className="mb-8 md:mb-10 text-center">
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
           Conectamos suas ferramentas,<br />
           <span className="text-brand-primary">sem complicação</span>
@@ -64,13 +64,13 @@ export default function LogoGrid() {
 
       {/* Logo Grid with Dotted Background */}
       <div
-        className="relative py-12 px-6 -mx-6 rounded-2xl"
+        className="relative py-8 px-6 -mx-6 rounded-2xl"
         style={{
           backgroundImage: 'radial-gradient(circle, rgba(0, 0, 0, 0.06) 1px, transparent 1px)',
           backgroundSize: '24px 24px',
         }}
       >
-        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-8 md:gap-10 justify-items-center">
+        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-5 md:gap-7 justify-items-center">
           {logos.map((logo) => (
             <div
               key={logo.name}
@@ -80,7 +80,7 @@ export default function LogoGrid() {
               <img
                 src={logo.src}
                 alt={logo.name}
-                className="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(6,57,47,0.35)]"
+                className="w-7 h-7 md:w-8 md:h-8 object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(6,57,47,0.35)]"
                 loading="lazy"
               />
             </div>

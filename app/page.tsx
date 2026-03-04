@@ -89,35 +89,35 @@ export default function Home() {
       <WorkflowExplainerSection />
 
       {/* Value Proposition */}
-      <section id="valor" className="py-20 md:py-28 bg-white">
+      <section id="valor" className="py-24 md:py-36 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ValueProposition onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
       {/* Integrations */}
-      <section id="integracoes" className="py-20 md:py-28 bg-bg-muted">
+      <section id="integracoes" className="py-16 md:py-24 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <LogoGrid />
         </div>
       </section>
 
       {/* How It Works - Process */}
-      <section id="como-funciona" className="py-20 md:py-28 bg-white">
+      <section id="como-funciona" className="py-24 md:py-36 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ProcessSection />
         </div>
       </section>
 
       {/* Pricing */}
-      <section id="precos" className="py-20 md:py-28 bg-bg-muted">
+      <section id="precos" className="py-24 md:py-36 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <PricingSection onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
       {/* CTA */}
-      <section id="contato" className="py-20 md:py-28 bg-white">
+      <section id="contato" className="py-24 md:py-36 bg-white">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             Pronto para automatizar?<br />
