@@ -90,3 +90,26 @@ public/
 3. Execute: After plan approval, switch to bypass-permissions mode.
 4. Save: Run `/save` before ending session.
 5. Memory: Record architecture decisions and resolved issues to memory before session end.
+
+**Plan workflow:**
+When you create or complete a plan (plan mode, architecture analysis, or any multi-step design), automatically save two files to the local `plans/` folder:
+1. **Plan file:** `plans/{slug}-plan.md` — the full plan document
+2. **Todo file:** `plans/{slug}-todo.md` — actionable checklist derived from the plan
+
+Naming rules:
+- Slug: 2-4 words, kebab-case, descriptive of content (e.g., `auth-refactor`, `dashboard-redesign`, `lead-scoring-v2`)
+- Plan files end with `-plan.md`, todo files end with `-todo.md`
+- Matching slugs link plan and todo (e.g., `auth-refactor-plan.md` + `auth-refactor-todo.md`)
+
+Todo file format:
+- Heading: `# {Plan Title} — Todo`
+- Reference: `> Plan: [{slug}-plan.md](./{slug}-plan.md)`
+- Organize tasks by phase/section from the plan
+- Use `- [ ]` checkboxes for each actionable step
+- Keep items concrete and single-action
+
+Agent behavior:
+- Save to the project's local `plans/` folder (never to `~/.claude/plans/`)
+- Generate both files automatically — do not ask for file-save confirmation
+- If updating an existing plan, overwrite the plan file and regenerate the todo
+- When a plan spans multiple sub-projects, save to the active session's project
