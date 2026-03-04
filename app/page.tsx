@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import ValueProposition from '@/components/ValueProposition'
+import ValuePropositionB from '@/components/ValuePropositionB'
 import LogoGrid from '@/components/LogoGrid'
 import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
@@ -91,7 +91,7 @@ export default function Home() {
       {/* Value Proposition */}
       <section id="valor" className="py-24 md:py-36 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <ValueProposition onContactClick={() => setIsContactModalOpen(true)} />
+          <ValuePropositionB onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
