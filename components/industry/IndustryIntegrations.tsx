@@ -1,11 +1,10 @@
 'use client'
 
-import { ReactNode } from 'react'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 interface Integration {
   name: string
-  icon: ReactNode
+  logo: string
 }
 
 interface IndustryIntegrationsProps {
@@ -30,14 +29,12 @@ export default function IndustryIntegrations({ integrations }: IndustryIntegrati
             }}
           >
             <div
-              className="w-14 h-14 bg-white border border-[rgba(0,0,0,0.08)] flex items-center justify-center group hover:border-[#16232A] transition-colors"
+              className="w-14 h-14 bg-white rounded-lg flex items-center justify-center"
               title={integration.name}
             >
-              <div className="text-brand-black group-hover:text-[#16232A] transition-colors">
-                {integration.icon}
-              </div>
+              <img src={`/logos/${integration.logo}.svg`} alt={integration.name} className="w-8 h-8 object-contain" />
             </div>
-            <span className="text-xs text-center text-brand-muted leading-tight">
+            <span className="text-xs text-center text-neutral-500 leading-tight">
               {integration.name}
             </span>
           </div>
@@ -56,12 +53,10 @@ export default function IndustryIntegrations({ integrations }: IndustryIntegrati
               transition: `opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${index * 40}ms, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${index * 40}ms`,
             }}
           >
-            <div className="w-12 h-12 border border-[rgba(0,0,0,0.08)] flex items-center justify-center group hover:border-[#16232A] transition-colors">
-              <div className="text-brand-black group-hover:text-[#16232A] transition-colors scale-90">
-                {integration.icon}
-              </div>
+            <div className="w-12 h-12 rounded-lg flex items-center justify-center">
+              <img src={`/logos/${integration.logo}.svg`} alt={integration.name} className="w-6 h-6 object-contain" />
             </div>
-            <span className="text-[11px] text-brand-muted text-center leading-tight">
+            <span className="text-[11px] text-neutral-500 text-center leading-tight">
               {integration.name}
             </span>
           </div>

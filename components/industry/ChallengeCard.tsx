@@ -19,20 +19,23 @@ export default function ChallengeCard({
 }: ChallengeCardProps) {
   return (
     <div
-      className="group p-6 border border-brand-border transition-colors hover:bg-highlight"
+      className="group relative bg-white rounded-lg p-8 shadow-card hover:shadow-card-hover transition-shadow"
       style={{
         transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
         opacity: isVisible ? 1 : 0,
         transition: `transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 150}ms, opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 150}ms`,
       }}
     >
+      {/* Orange top accent bar */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-brand-primary rounded-t-lg" />
+
       {/* Icon Container */}
-      <div className="w-12 h-12 mb-6 flex items-center justify-center border border-brand-black text-brand-black">
+      <div className="w-12 h-12 mb-6 flex items-center justify-center rounded-lg bg-brand-primary-subtle text-brand-primary">
         {icon}
       </div>
 
       {/* Title */}
-      <h3 className="text-lg font-medium mb-4 text-brand-black">
+      <h3 className="text-lg font-semibold mb-4 text-brand-black">
         {title}
       </h3>
 

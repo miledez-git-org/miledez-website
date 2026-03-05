@@ -9,6 +9,7 @@ import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
 import HeroConstellation from '@/components/HeroConstellation'
 import WorkflowExplainerSection from '@/components/WorkflowExplainerSection'
+import BusinessProfilesSection from '@/components/BusinessProfilesSection'
 import ScrollProgress from '@/components/ScrollProgress'
 import ContactModal from '@/components/ContactModal'
 
@@ -92,6 +93,13 @@ export default function Home() {
       <section id="valor" className="py-28 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ValuePropositionB onContactClick={() => setIsContactModalOpen(true)} />
+        </div>
+      </section>
+
+      {/* Business Profiles - Who is this for */}
+      <section id="perfis" className="py-28 md:py-40 bg-white">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+          <BusinessProfilesSection />
         </div>
       </section>
 

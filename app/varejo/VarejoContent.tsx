@@ -9,7 +9,7 @@ import MetricsGrid from '@/components/industry/MetricsGrid'
 import { WorkflowVisualCompact, getHeroPreset, varejoWorkflowsCompact } from '@/components/WorkflowVisual'
 import IndustryIntegrations from '@/components/industry/IndustryIntegrations'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
-import { icons, stepIcons } from '@/components/Icons'
+import { stepIcons } from '@/components/Icons'
 
 const challenges = [
   {
@@ -59,24 +59,24 @@ export default function VarejoContent() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   
   const integrations = [
-    { name: 'WhatsApp', icon: icons.whatsapp },
-    { name: 'Shopify', icon: icons.shopify },
-    { name: 'Nuvemshop', icon: icons.nuvemshop },
-    { name: 'WooCommerce', icon: icons.woocommerce },
-    { name: 'Mercado Livre', icon: icons.mercadoLivre },
-    { name: 'Amazon', icon: icons.amazon },
-    { name: 'Bling', icon: icons.bling },
-    { name: 'Tiny ERP', icon: icons.tinyErp },
-    { name: 'Correios', icon: icons.correios },
-    { name: 'Melhor Envio', icon: icons.melhorEnvio },
-    { name: 'PagSeguro', icon: icons.pagSeguro },
-    { name: 'Mercado Pago', icon: icons.mercadoPago },
-    { name: 'Instagram', icon: icons.instagram },
-    { name: 'Excel', icon: icons.excel },
-    { name: 'Google Sheets', icon: icons.googleSheets },
-    { name: 'Email', icon: icons.email },
-    { name: 'Google Drive', icon: icons.googleDrive },
-    { name: 'PDF', icon: icons.pdf },
+    { name: 'WhatsApp', logo: 'whatsapp' },
+    { name: 'Shopify', logo: 'shopify' },
+    { name: 'Nuvemshop', logo: 'nuvemshop' },
+    { name: 'WooCommerce', logo: 'woocommerce' },
+    { name: 'Mercado Livre', logo: 'mercado-livre' },
+    { name: 'Amazon', logo: 'amazon' },
+    { name: 'Bling', logo: 'bling' },
+    { name: 'Correios', logo: 'correios' },
+    { name: 'PagSeguro', logo: 'pagseguro' },
+    { name: 'Mercado Pago', logo: 'mercadopago' },
+    { name: 'Instagram', logo: 'instagram' },
+    { name: 'Excel', logo: 'excel' },
+    { name: 'Google Sheets', logo: 'google-sheets' },
+    { name: 'Google Drive', logo: 'google-drive' },
+    { name: 'Pix', logo: 'pix' },
+    { name: 'Gmail', logo: 'gmail' },
+    { name: 'Trello', logo: 'trello' },
+    { name: 'Notion', logo: 'notion' },
   ]
 
   return (
@@ -128,14 +128,14 @@ export default function VarejoContent() {
       {/* Workflows */}
       <section id="workflows" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
-          <div className="mb-12 md:mb-14 text-center">
+          <div className="mb-12 md:mb-14">
             <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black">O que automatizamos</h2>
-            <p className="mt-4 text-lg text-neutral-600 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-neutral-600">
               Processos que funcionam enquanto voce vende
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <WorkflowVisualCompact
               title={varejoWorkflowsCompact.inventory.title}
               steps={varejoWorkflowsCompact.inventory.steps}
@@ -159,17 +159,17 @@ export default function VarejoContent() {
       {/* Results */}
       <section id="resultados" className="py-24 md:py-32 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <h2 className="heading-display text-[2rem] md:text-[2.5rem] mb-12 md:mb-14 text-brand-black">Resultados típicos</h2>
-
-          <MetricsGrid metrics={metrics} />
-
-          <div className="mt-16 max-w-2xl">
-            <p className="text-xl leading-relaxed text-neutral-600">
-              Seu estoque se mantém equilibrado. Pedidos fluem sem gargalos. O financeiro fecha sozinho.
-            </p>
-            <p className="text-xl leading-relaxed mt-6 text-neutral-600">
-              Você para de apagar incêndio e começa a pensar em crescimento: novos produtos, novos canais, melhor margem.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            <div>
+              <h2 className="heading-display text-[2rem] md:text-[2.5rem] mb-6 text-brand-black">Resultados típicos</h2>
+              <p className="text-xl leading-relaxed text-neutral-600">
+                Seu estoque se mantém equilibrado. Pedidos fluem sem gargalos. O financeiro fecha sozinho.
+              </p>
+              <p className="text-xl leading-relaxed mt-6 text-neutral-600">
+                Você para de apagar incêndio e começa a pensar em crescimento: novos produtos, novos canais, melhor margem.
+              </p>
+            </div>
+            <MetricsGrid metrics={metrics} />
           </div>
         </div>
       </section>

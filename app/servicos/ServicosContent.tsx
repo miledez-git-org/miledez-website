@@ -9,7 +9,7 @@ import MetricsGrid from '@/components/industry/MetricsGrid'
 import { WorkflowVisualCompact, getHeroPreset, servicosWorkflowsCompact } from '@/components/WorkflowVisual'
 import IndustryIntegrations from '@/components/industry/IndustryIntegrations'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
-import { icons, stepIcons } from '@/components/Icons'
+import { stepIcons } from '@/components/Icons'
 
 const challenges = [
   {
@@ -59,24 +59,24 @@ export default function ServicosContent() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   
   const integrations = [
-    { name: 'WhatsApp', icon: icons.whatsapp },
-    { name: 'Gmail', icon: icons.gmail },
-    { name: 'Outlook', icon: icons.outlook },
-    { name: 'Google Calendar', icon: icons.googleCalendar },
-    { name: 'Google Drive', icon: icons.googleDrive },
-    { name: 'OneDrive', icon: icons.oneDrive },
-    { name: 'Excel', icon: icons.excel },
-    { name: 'Word', icon: icons.word },
-    { name: 'Google Sheets', icon: icons.googleSheets },
-    { name: 'PDF', icon: icons.pdf },
-    { name: 'Trello', icon: icons.trello },
-    { name: 'Notion', icon: icons.notion },
-    { name: 'Slack', icon: icons.slack },
-    { name: 'Zoom', icon: icons.zoom },
-    { name: 'ContaAzul', icon: icons.contaAzul },
-    { name: 'Nibo', icon: icons.nibo },
-    { name: 'Pipedrive', icon: icons.pipedrive },
-    { name: 'ClickSign', icon: icons.clickSign },
+    { name: 'WhatsApp', logo: 'whatsapp' },
+    { name: 'Gmail', logo: 'gmail' },
+    { name: 'Outlook', logo: 'outlook' },
+    { name: 'Google Calendar', logo: 'google-calendar' },
+    { name: 'Google Drive', logo: 'google-drive' },
+    { name: 'OneDrive', logo: 'onedrive' },
+    { name: 'Excel', logo: 'excel' },
+    { name: 'Word', logo: 'word' },
+    { name: 'Google Sheets', logo: 'google-sheets' },
+    { name: 'Trello', logo: 'trello' },
+    { name: 'Notion', logo: 'notion' },
+    { name: 'Slack', logo: 'slack' },
+    { name: 'Zoom', logo: 'zoom' },
+    { name: 'ContaAzul', logo: 'contaazul' },
+    { name: 'Pipedrive', logo: 'pipedrive' },
+    { name: 'DocuSign', logo: 'docusign' },
+    { name: 'HubSpot', logo: 'hubspot' },
+    { name: 'Asana', logo: 'asana' },
   ]
 
   return (
@@ -128,14 +128,14 @@ export default function ServicosContent() {
       {/* Workflows */}
       <section id="workflows" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
-          <div className="mb-12 md:mb-14 text-center">
+          <div className="mb-12 md:mb-14">
             <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black">O que automatizamos</h2>
-            <p className="mt-4 text-lg text-neutral-600 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-neutral-600">
               Processos que funcionam sozinhos, liberando seu tempo
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <WorkflowVisualCompact
               title={servicosWorkflowsCompact.onboarding.title}
               steps={servicosWorkflowsCompact.onboarding.steps}
@@ -159,17 +159,17 @@ export default function ServicosContent() {
       {/* Results */}
       <section id="resultados" className="py-24 md:py-32 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <h2 className="heading-display text-[2rem] md:text-[2.5rem] mb-12 md:mb-14 text-brand-black">Resultados típicos</h2>
-
-          <MetricsGrid metrics={metrics} />
-
-          <div className="mt-16 max-w-2xl">
-            <p className="text-xl leading-relaxed text-neutral-600">
-              Seu tempo volta a ser investido no que gera receita: atender clientes, fechar projetos, entregar resultados.
-            </p>
-            <p className="text-xl leading-relaxed mt-6 text-neutral-600">
-              A administração acontece em segundo plano. Contratos se renovam, faturas saem no prazo, clientes recebem relatórios sem você precisar lembrar.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            <div>
+              <h2 className="heading-display text-[2rem] md:text-[2.5rem] mb-6 text-brand-black">Resultados típicos</h2>
+              <p className="text-xl leading-relaxed text-neutral-600">
+                Seu tempo volta a ser investido no que gera receita: atender clientes, fechar projetos, entregar resultados.
+              </p>
+              <p className="text-xl leading-relaxed mt-6 text-neutral-600">
+                A administração acontece em segundo plano. Contratos se renovam, faturas saem no prazo, clientes recebem relatórios sem você precisar lembrar.
+              </p>
+            </div>
+            <MetricsGrid metrics={metrics} />
           </div>
         </div>
       </section>

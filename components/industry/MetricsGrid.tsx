@@ -15,9 +15,8 @@ interface MetricsGridProps {
 function AccentBar({ isVisible, delay }: { isVisible: boolean; delay: number }) {
   return (
     <div
-      className="h-0.5 mt-4"
+      className="h-0.5 mt-4 bg-brand-primary"
       style={{
-        backgroundColor: '#16232A',
         width: isVisible ? '60%' : '0%',
         transition: `width 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
       }}
@@ -28,9 +27,8 @@ function AccentBar({ isVisible, delay }: { isVisible: boolean; delay: number }) 
 function GrowthArrow({ isVisible, delay }: { isVisible: boolean; delay: number }) {
   return (
     <div
-      className="flex items-center gap-1.5 mt-4"
+      className="flex items-center gap-1.5 mt-4 text-brand-primary"
       style={{
-        color: '#16232A',
         transform: isVisible ? 'translateY(0)' : 'translateY(8px)',
         opacity: isVisible ? 1 : 0,
         transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
@@ -48,7 +46,7 @@ export default function MetricsGrid({ metrics }: MetricsGridProps) {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.3 })
 
   return (
-    <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-16">
+    <div ref={ref} className="grid grid-cols-2 gap-8">
       {metrics.map((metric, index) => {
         const delay = 100 + index * 150
 
@@ -62,7 +60,7 @@ export default function MetricsGrid({ metrics }: MetricsGridProps) {
             }}
           >
             {/* Value */}
-            <span className="block text-4xl lg:text-5xl font-medium tracking-tight" style={{ color: '#16232A' }}>
+            <span className="block text-4xl lg:text-5xl font-medium tracking-tight text-brand-primary">
               {metric.value}
             </span>
 

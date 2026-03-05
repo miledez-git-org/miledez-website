@@ -69,6 +69,7 @@ export interface HeroWorkflowStep {
   icon: IconType
   label: string
   sublabel?: string
+  logos?: string[]
 }
 
 export interface WorkflowVisualCompactProps {
