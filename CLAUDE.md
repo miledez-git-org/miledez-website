@@ -86,6 +86,8 @@ public/
 
 **Language:** Client-facing content in Portuguese (BR). Code, comments, technical docs in English.
 
+**Copy tone:** Client-facing text must use simple, conversational Brazilian Portuguese. No English buzzwords ("call", "ROI", "feedback"), no corporate jargon. The audience is non-technical business owners — write like you're explaining to a friend.
+
 **Response style:** Concise and actionable. Tables for comparisons. Numbered items for follow-up.
 
 **User preferences:**
