@@ -14,7 +14,7 @@ const steps: ProcessStep[] = [
     number: '01',
     title: 'Conversa inicial',
     description:
-      'Marcamos uma call rápida para conhecer seu negócio e entender onde a automação pode gerar mais resultado pra você.',
+      'Marcamos uma conversa rápida pra conhecer seu dia a dia e entender onde a automação pode te ajudar mais.',
     duration: '30 min · gratuito',
   },
   {
