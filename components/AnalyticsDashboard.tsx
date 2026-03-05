@@ -52,8 +52,8 @@ function SparklineChart({ isVisible, delay }: { isVisible: boolean; delay: numbe
       {/* Gradient fill */}
       <defs>
         <linearGradient id="sparklineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#8b2020" stopOpacity="0.2" />
-          <stop offset="100%" stopColor="#8b2020" stopOpacity="0" />
+          <stop offset="0%" stopColor="#085042" stopOpacity="0.2" />
+          <stop offset="100%" stopColor="#085042" stopOpacity="0" />
         </linearGradient>
       </defs>
 
@@ -71,7 +71,7 @@ function SparklineChart({ isVisible, delay }: { isVisible: boolean; delay: numbe
       <path
         d="M0,35 L20,28 L40,32 L60,20 L80,24 L100,12 L120,8"
         fill="none"
-        stroke="#8b2020"
+        stroke="#085042"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -87,7 +87,7 @@ function SparklineChart({ isVisible, delay }: { isVisible: boolean; delay: numbe
         cx="120"
         cy="8"
         r="3"
-        fill="#8b2020"
+        fill="#085042"
         style={{
           opacity: isVisible ? 1 : 0,
           transition: `opacity 0.3s ease-out ${delay + 1000}ms`,
@@ -116,10 +116,10 @@ export default function AnalyticsDashboard() {
           <h2 className="text-[2rem] font-medium mb-6 text-brand-black tracking-[-0.02em]">
             Painéis e interfaces sob medida
           </h2>
-          <p className="text-lg text-brand-text leading-relaxed mb-6">
+          <p className="text-lg text-neutral-600 leading-relaxed mb-6">
             Criamos dashboards personalizados para visualizar os dados do seu negócio. Desenvolvemos páginas web e formulários integrados aos seus fluxos de automação.
           </p>
-          <p className="text-base text-brand-muted">
+          <p className="text-base text-neutral-600">
             Construímos soluções front-end customizadas quando necessário, sempre como parte da sua automação.
           </p>
         </div>

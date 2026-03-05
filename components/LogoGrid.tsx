@@ -55,9 +55,9 @@ export default function LogoGrid() {
       <div className="mb-8 md:mb-10 text-center">
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
           Conectamos suas ferramentas,<br />
-          <span className="text-brand-primary">sem complicação</span>
+          <span className="text-brand-black">sem complicação</span>
         </h2>
-        <p className="mt-4 text-lg text-brand-muted max-w-xl mx-auto">
+        <p className="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
           Integração nativa com os sistemas que sua empresa já utiliza
         </p>
       </div>

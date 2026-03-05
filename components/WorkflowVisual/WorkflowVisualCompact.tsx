@@ -148,7 +148,7 @@ export default function WorkflowVisualCompact({
         <span className="text-lg font-bold text-neutral-900 uppercase tracking-wide">
           {title}
         </span>
-        <div className="h-1 bg-brand-primary mt-3 rounded-full" />
+        <div className="h-1 bg-[#16232A] mt-3 rounded-full" />
       </div>
 
       {/* Steps as cards with connectors */}
@@ -180,7 +180,7 @@ export default function WorkflowVisualCompact({
                     rounded-lg
                     ${isLast
                       ? ''
-                      : 'border-neutral-200 text-brand-primary'
+                      : 'border-neutral-200 text-[#16232A]'
                     }
                   `}
                   style={isLast ? {

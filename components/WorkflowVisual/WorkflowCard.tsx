@@ -14,7 +14,7 @@ export interface WorkflowCardData {
 
 const STEP_TYPE_COLORS: Record<StepType, string> = {
   trigger: '#2D5A7B',
-  process: '#8b2020',
+  process: '#16232A',
   result: '#2D6B4A',
 }
 
@@ -63,7 +63,7 @@ export default function WorkflowCard({ card, variant = 'compact' }: WorkflowCard
   const iconGap = isSolo ? 'gap-3' : 'gap-2'
   const stepNumSize = isSolo ? 'text-[10px]' : 'text-[8px]'
   const headerLabelSize = isSolo ? 'text-xs' : 'text-[9px]'
-  const whatSize = isSolo ? 'text-[13px] leading-[1.45]' : 'text-[11px] leading-[1.4]'
+  const whatSize = isSolo ? 'text-base leading-[1.45]' : 'text-[11px] leading-[1.4]'
   const stageIconSize = isSolo ? 'text-[13px]' : 'text-[13px]'
   const stageLabelSize = isSolo ? 'text-xs' : 'text-[10px]'
   const stageMarginTop = isSolo ? 'mt-[10px] pt-[10px]' : 'mt-[6px] pt-[6px]'

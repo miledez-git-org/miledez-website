@@ -64,15 +64,24 @@ public/
 - **LogoGrid** — Integration partners showcase
 - Component library in `components/ui/` — use existing components before creating new ones
 
+## Color Usage
+
+- Use Tailwind `brand-*` classes (e.g. `bg-brand-primary`, `text-brand-secondary`) — never hardcode hex values
+- Primary orange: `brand-primary` / `brand-primary-dark` / `brand-primary-light` / `brand-primary-subtle`
+- Secondary teal: `brand-secondary` / `brand-secondary-dark` / `brand-secondary-light` / `brand-secondary-subtle`
+- Body text: `text-neutral-600` (not `text-brand-muted`)
+- Glow shadows: `shadow-accent-glow`, `shadow-secondary-glow`
+
 ## Rules
 
 - `eslint-config-next` version must match Next.js version to avoid build errors
+- `generated-theme.ts` is the single source of truth for Tailwind color tokens — update it (not individual components) when changing brand colors
 
 ## Agency Conventions
 <!-- conventions-sync: 2026-03-03 -->
 
 **Design system:** Use the `miledez-design-system` skill for all visual outputs.
-- Accent: `#8b2020` (burgundy) | Fonts: Manrope (headings), Source Sans 3 (body)
+- Primary: `#eb5100` (orange) | Secondary: `#085042` (deep teal) | Fonts: Manrope (headings), Source Sans 3 (body)
 - Backgrounds: white main, `#F5F5F5` alternating | Icons: SVG line (Lucide/Phosphor)
 
 **Language:** Client-facing content in Portuguese (BR). Code, comments, technical docs in English.

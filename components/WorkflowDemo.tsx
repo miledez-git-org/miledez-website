@@ -113,11 +113,11 @@ export default function WorkflowDemo() {
             onClick={() => setActiveVariation(v.id)}
             className="px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300"
             style={{
-              background: activeVariation === v.id ? '#8b2020' : '#fff',
+              background: activeVariation === v.id ? '#d14800' : '#fff',
               color: activeVariation === v.id ? '#fff' : '#525252',
               boxShadow:
                 activeVariation === v.id
-                  ? `0 4px 14px rgba(139, 32, 32, 0.35)`
+                  ? `0 4px 14px rgba(209, 72, 0, 0.35)`
                   : '0 0 0 1px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.06)',
             }}
           >

@@ -96,7 +96,7 @@ function WorkflowRow({ workflow, index }: { workflow: Workflow; index: number })
                 >
                   <path
                     d="M1.5 1L5.5 5L1.5 9"
-                    stroke="#06392f"
+                    stroke="#085042"
                     strokeWidth="1.4"
                     fill="none"
                     strokeLinecap="round"
@@ -121,9 +121,9 @@ export default function WorkflowAnimationSection() {
         <div className="mb-14 md:mb-16">
           <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             Seu negócio no<br />
-            <span className="text-brand-primary">piloto automático</span>
+            <span className="text-[#16232A]">piloto automático</span>
           </h2>
-          <p className="mt-4 text-lg text-brand-muted max-w-xl">
+          <p className="mt-4 text-lg text-neutral-600 max-w-xl">
             Veja como tarefas repetitivas do dia a dia passam a acontecer
             sozinhas — sem esforço da sua equipe.
           </p>
@@ -174,7 +174,7 @@ const staticStyles = `
 }
 
 .wf-static-card.trigger {
-  border-left: 2.5px solid #06392f;
+  border-left: 2.5px solid #085042;
 }
 
 .wf-static-card-logo {

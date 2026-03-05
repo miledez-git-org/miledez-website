@@ -84,7 +84,7 @@ export default function ValuePropositionB({ onContactClick }: ValuePropositionBP
         >
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             Resultados em dias,<br />
-            <span className="text-brand-primary">não meses</span>
+            <span className="text-[#16232A]">não meses</span>
           </h2>
 
           <div className="mt-6 space-y-4 text-lg text-neutral-600 leading-relaxed max-w-lg">
@@ -125,7 +125,7 @@ export default function ValuePropositionB({ onContactClick }: ValuePropositionBP
                 }}
               >
                 {/* Icon */}
-                <div className="flex-shrink-0 w-10 h-10 text-brand-primary flex items-center justify-center">
+                <div className="flex-shrink-0 w-10 h-10 text-[#d14800] flex items-center justify-center">
                   {benefit.icon}
                 </div>
 
@@ -134,7 +134,7 @@ export default function ValuePropositionB({ onContactClick }: ValuePropositionBP
                   <h3 className="text-lg font-semibold text-brand-black">
                     {benefit.title}
                   </h3>
-                  <p className="mt-1 text-base text-neutral-500 leading-relaxed">
+                  <p className="mt-1 text-base text-neutral-600 leading-relaxed">
                     {benefit.description}
                   </p>
                 </div>

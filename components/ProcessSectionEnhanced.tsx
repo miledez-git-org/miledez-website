@@ -42,7 +42,7 @@ export default function ProcessSectionEnhanced() {
           <h2 className="text-[2.5rem] md:text-[3rem] font-medium text-brand-black tracking-[-0.02em]">
             Processo
           </h2>
-          <p className="mt-4 text-lg md:text-xl text-brand-muted max-w-2xl mx-auto">
+          <p className="mt-4 text-lg md:text-xl text-neutral-600 max-w-2xl mx-auto">
             Entendemos sua operação, identificamos oportunidades de automação e implementamos soluções que funcionam.
           </p>
         </div>
@@ -61,13 +61,13 @@ export default function ProcessSectionEnhanced() {
               >
                 {/* Number Icon - Overlapping top-left corner */}
                 <div
-                  className="absolute top-0 left-0 w-14 h-14 flex items-center justify-center bg-white border-2 border-brand-primary z-10 transition-all duration-300"
+                  className="absolute top-0 left-0 w-14 h-14 flex items-center justify-center bg-white border-2 border-[#16232A] z-10 transition-all duration-300"
                   style={{
                     borderRadius: '50%',
                     transform: isHovered ? 'scale(1.1)' : 'scale(1)',
                   }}
                 >
-                  <span className="text-xl font-bold text-brand-primary">
+                  <span className="text-xl font-bold text-[#16232A]">
                     {step.number}
                   </span>
                 </div>
@@ -76,12 +76,12 @@ export default function ProcessSectionEnhanced() {
                 <div
                   className="h-full flex flex-col transition-all duration-300"
                   style={{
-                    backgroundColor: '#8b2020',
+                    backgroundColor: '#16232A',
                     padding: '40px 32px',
                     transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
                     boxShadow: isHovered
-                      ? '0 24px 48px rgba(139, 32, 32, 0.45), 0 8px 16px rgba(0, 0, 0, 0.1)'
-                      : '0 12px 32px rgba(139, 32, 32, 0.3), 0 4px 8px rgba(0, 0, 0, 0.08)',
+                      ? '0 24px 48px rgba(22, 35, 42, 0.45), 0 8px 16px rgba(0, 0, 0, 0.1)'
+                      : '0 12px 32px rgba(22, 35, 42, 0.3), 0 4px 8px rgba(0, 0, 0, 0.08)',
                   }}
                 >
                   {/* Title */}

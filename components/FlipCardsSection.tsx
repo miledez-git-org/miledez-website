@@ -108,7 +108,7 @@ export default function FlipCardsSection() {
           style={{
             fontSize: 'clamp(36px, 6vw, 56px)',
             fontWeight: '700',
-            color: '#8b2020',
+            color: '#16232A',
             margin: '0 0 20px',
             lineHeight: 1.05,
             letterSpacing: '-0.03em',
@@ -182,7 +182,7 @@ export default function FlipCardsSection() {
                   backgroundColor: isFuture ? 'rgba(255,255,255,0.6)' : '#fff',
                   border: isFuture ? '2px dashed #ccc' : isPast ? '1px solid #eee' : 'none',
                   boxShadow: isActive
-                    ? '0 30px 80px rgba(139, 32, 32, 0.2), 0 15px 30px rgba(0,0,0,0.1)'
+                    ? '0 30px 80px rgba(22, 35, 42, 0.2), 0 15px 30px rgba(0,0,0,0.1)'
                     : isPast
                       ? '0 4px 20px rgba(0,0,0,0.06)'
                       : 'none',
@@ -210,7 +210,7 @@ export default function FlipCardsSection() {
                   style={{
                     fontSize: isPast ? '14px' : isActive ? '16px' : '14px',
                     fontWeight: '700',
-                    color: isFuture ? '#ccc' : '#8b2020',
+                    color: isFuture ? '#ccc' : '#16232A',
                     marginBottom: isPast ? '12px' : '20px',
                     transition: 'all 0.6s ease',
                   }}
@@ -256,7 +256,7 @@ export default function FlipCardsSection() {
                       style={{
                         fontSize: isActive ? '36px' : '24px',
                         fontWeight: '700',
-                        color: isFuture ? '#e5e5e5' : '#8b2020',
+                        color: isFuture ? '#e5e5e5' : '#16232A',
                         margin: '0 0 auto',
                         lineHeight: 1.1,
                         transition: 'all 0.6s ease',
@@ -280,7 +280,7 @@ export default function FlipCardsSection() {
                   >
                     {step.frontTitle}
                     <br />
-                    <span style={{ color: '#8b2020' }}>{step.frontHighlight}</span>
+                    <span style={{ color: '#16232A' }}>{step.frontHighlight}</span>
                   </h3>
                 )}
 
@@ -297,7 +297,7 @@ export default function FlipCardsSection() {
                       style={{
                         fontSize: isPast ? '20px' : isActive ? '32px' : '24px',
                         fontWeight: '700',
-                        color: isPast ? '#8b2020' : '#000',
+                        color: isPast ? '#16232A' : '#000',
                         transition: 'all 0.6s ease',
                       }}
                     >
@@ -315,7 +315,7 @@ export default function FlipCardsSection() {
                       right: '20px',
                       width: '24px',
                       height: '24px',
-                      backgroundColor: '#8b2020',
+                      backgroundColor: '#16232A',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -335,11 +335,11 @@ export default function FlipCardsSection() {
                   inset: 0,
                   backfaceVisibility: 'hidden',
                   transform: 'rotateY(180deg)',
-                  backgroundColor: '#8b2020',
+                  backgroundColor: '#16232A',
                   padding: '40px 32px',
                   display: 'flex',
                   flexDirection: 'column',
-                  boxShadow: '0 30px 80px rgba(139, 32, 32, 0.4)',
+                  boxShadow: '0 30px 80px rgba(22, 35, 42, 0.4)',
                 }}
               >
                 {/* Number */}
@@ -430,7 +430,7 @@ export default function FlipCardsSection() {
             style={{
               width: '12px',
               height: '12px',
-              backgroundColor: activeStep >= step ? '#8b2020' : '#ddd',
+              backgroundColor: activeStep >= step ? '#16232A' : '#ddd',
               transition: 'all 0.4s ease',
               transform: activeStep === step ? 'scale(1.3)' : 'scale(1)',
             }}
@@ -458,32 +458,32 @@ export default function FlipCardsSection() {
         >
           Você investe <strong style={{ color: '#000' }}>10 minutos</strong> descrevendo o problema.
           <br />
-          Nós investimos <strong style={{ color: '#8b2020' }}>tudo</strong> pra resolver.
+          Nós investimos <strong style={{ color: '#16232A' }}>tudo</strong> pra resolver.
         </p>
         <a
           href="#contato"
           style={{
             display: 'inline-block',
             padding: '20px 48px',
-            backgroundColor: '#8b2020',
+            backgroundColor: '#d14800',
             border: 'none',
             color: '#fff',
             fontSize: '16px',
             fontWeight: '600',
             cursor: 'pointer',
             transition: 'all 0.2s ease',
-            boxShadow: '0 8px 30px rgba(139, 32, 32, 0.3)',
+            boxShadow: '0 8px 30px rgba(209, 72, 0, 0.3)',
             textDecoration: 'none',
           }}
           onMouseEnter={(e) => {
             const target = e.target as HTMLElement
             target.style.transform = 'translateY(-3px)'
-            target.style.boxShadow = '0 12px 40px rgba(139, 32, 32, 0.4)'
+            target.style.boxShadow = '0 12px 40px rgba(209, 72, 0, 0.4)'
           }}
           onMouseLeave={(e) => {
             const target = e.target as HTMLElement
             target.style.transform = 'translateY(0)'
-            target.style.boxShadow = '0 8px 30px rgba(139, 32, 32, 0.3)'
+            target.style.boxShadow = '0 8px 30px rgba(209, 72, 0, 0.3)'
           }}
         >
           Descrever meu sonho

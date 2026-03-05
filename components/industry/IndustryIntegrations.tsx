@@ -30,10 +30,10 @@ export default function IndustryIntegrations({ integrations }: IndustryIntegrati
             }}
           >
             <div
-              className="w-14 h-14 bg-white border border-[rgba(0,0,0,0.08)] flex items-center justify-center group hover:border-brand-primary transition-colors"
+              className="w-14 h-14 bg-white border border-[rgba(0,0,0,0.08)] flex items-center justify-center group hover:border-[#16232A] transition-colors"
               title={integration.name}
             >
-              <div className="text-brand-black group-hover:text-brand-primary transition-colors">
+              <div className="text-brand-black group-hover:text-[#16232A] transition-colors">
                 {integration.icon}
               </div>
             </div>
@@ -56,8 +56,8 @@ export default function IndustryIntegrations({ integrations }: IndustryIntegrati
               transition: `opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${index * 40}ms, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${index * 40}ms`,
             }}
           >
-            <div className="w-12 h-12 border border-[rgba(0,0,0,0.08)] flex items-center justify-center group hover:border-brand-primary transition-colors">
-              <div className="text-brand-black group-hover:text-brand-primary transition-colors scale-90">
+            <div className="w-12 h-12 border border-[rgba(0,0,0,0.08)] flex items-center justify-center group hover:border-[#16232A] transition-colors">
+              <div className="text-brand-black group-hover:text-[#16232A] transition-colors scale-90">
                 {integration.icon}
               </div>
             </div>

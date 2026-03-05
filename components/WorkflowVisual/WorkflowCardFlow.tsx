@@ -11,7 +11,7 @@ interface WorkflowCardFlowProps {
 
 const LEGEND_ITEMS = [
   { color: '#2D5A7B', icon: '\u26a1', label: 'Gatilho' },
-  { color: '#8b2020', icon: '\u2699', label: 'Processo' },
+  { color: '#16232A', icon: '\u2699', label: 'Processo' },
   { color: '#2D6B4A', icon: '\u2713', label: 'Resultado' },
 ]
 

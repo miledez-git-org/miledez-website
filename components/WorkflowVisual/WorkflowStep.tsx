@@ -152,7 +152,7 @@ export default function WorkflowStep({
   if (!isVertical) {
     // Green for last connector, red (brand-primary) for others
     const isLastConnector = index === 2 // 3rd connector (before 4th/last step)
-    const connectorColor = isLastConnector ? 'oklch(52.7% 0.154 150.069)' : '#8b2020'
+    const connectorColor = isLastConnector ? 'oklch(52.7% 0.154 150.069)' : '#16232A'
     
     return (
       <div className="flex items-start flex-1">
@@ -165,7 +165,7 @@ export default function WorkflowStep({
               bg-neutral-50 
               border-2 
               rounded-lg
-              ${isLast ? '' : 'border-neutral-200 text-brand-primary'}
+              ${isLast ? '' : 'border-neutral-200 text-[#16232A]'}
             `}
             style={isLast ? { 
               borderColor: 'oklch(52.7% 0.154 150.069)',
@@ -259,7 +259,7 @@ export default function WorkflowStep({
             bg-neutral-50 
             border-2 
             rounded-lg
-            ${isLast ? '' : 'border-neutral-200 text-brand-primary'}
+            ${isLast ? '' : 'border-neutral-200 text-[#16232A]'}
           `}
           style={isLast ? { 
             borderColor: 'oklch(52.7% 0.154 150.069)',
@@ -276,7 +276,7 @@ export default function WorkflowStep({
           {step.label}
         </p>
         {step.sublabel && (
-          <p className="text-sm text-neutral-500 mt-0.5 whitespace-nowrap">
+          <p className="text-sm text-neutral-600 mt-0.5 whitespace-nowrap">
             {step.sublabel}
           </p>
         )}
@@ -284,7 +284,7 @@ export default function WorkflowStep({
         {/* Examples list */}
         {step.examples && step.examples.length > 0 && (
           <div className="mt-3">
-            <div className="w-8 h-0.5 bg-brand-primary mb-3" />
+            <div className="w-8 h-0.5 bg-[#16232A] mb-3" />
             <ul className="space-y-1.5">
               {step.examples.map((example, i) => (
                 <li key={i} className="flex items-center gap-2 text-sm text-neutral-600 whitespace-nowrap">

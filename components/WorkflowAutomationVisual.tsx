@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { icons, stepIcons } from './Icons'
 
-const ACCENT_COLOR = '#8b2020'
+const ACCENT_COLOR = '#eb5100'
 const SUCCESS_COLOR = '#22c55e'
 
 // Step definitions - aligned with stage indicators

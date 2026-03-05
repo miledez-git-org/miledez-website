@@ -79,9 +79,9 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
       <div className="mb-12 md:mb-14 text-center">
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
           Preço justo,<br />
-          <span className="text-brand-primary">retorno garantido</span>
+          <span className="text-[#16232A]">retorno garantido</span>
         </h2>
-        <p className="mt-4 text-lg text-brand-muted max-w-xl mx-auto">
+        <p className="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
           Baseado na complexidade e escala do seu negócio
         </p>
       </div>
@@ -93,7 +93,7 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
             key={tier.name}
             className="p-8 flex flex-col"
             style={{
-              backgroundColor: '#06392f',
+              backgroundColor: '#16232A',
               boxShadow: tier.featured
                 ? '0 16px 48px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08)'
                 : '0 12px 32px rgba(0, 0, 0, 0.10), 0 4px 8px rgba(0, 0, 0, 0.06)',

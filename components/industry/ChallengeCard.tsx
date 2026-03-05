@@ -37,7 +37,7 @@ export default function ChallengeCard({
       </h3>
 
       {/* Description */}
-      <p className="text-sm leading-relaxed text-brand-text">
+      <p className="text-base leading-relaxed text-neutral-600">
         {description}
       </p>
     </div>

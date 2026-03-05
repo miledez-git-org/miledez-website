@@ -50,7 +50,7 @@ export default function Home() {
               {/* Headline */}
               <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-brand-black leading-[1.1]">
                 Automação inteligente<br />
-                <span className="text-brand-primary">que trabalha por você</span>
+                <span className="text-brand-black">que trabalha por você</span>
               </h1>
 
               {/* Subheadline */}
@@ -89,41 +89,41 @@ export default function Home() {
       <WorkflowExplainerSection />
 
       {/* Value Proposition */}
-      <section id="valor" className="py-24 md:py-36 bg-white">
+      <section id="valor" className="py-28 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ValuePropositionB onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
       {/* Integrations */}
-      <section id="integracoes" className="py-16 md:py-24 bg-bg-muted">
+      <section id="integracoes" className="py-20 md:py-28 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <LogoGrid />
         </div>
       </section>
 
       {/* How It Works - Process */}
-      <section id="como-funciona" className="py-24 md:py-36 bg-white">
+      <section id="como-funciona" className="py-28 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ProcessSection />
         </div>
       </section>
 
       {/* Pricing */}
-      <section id="precos" className="py-24 md:py-36 bg-bg-muted">
+      <section id="precos" className="py-28 md:py-40 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <PricingSection onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
       {/* CTA */}
-      <section id="contato" className="py-24 md:py-36 bg-white">
+      <section id="contato" className="py-28 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             Pronto para automatizar?<br />
-            <span className="text-brand-primary">Vamos conversar</span>
+            <span className="text-brand-black">Vamos conversar</span>
           </h2>
-          <p className="mt-4 text-lg text-brand-muted max-w-xl mx-auto">
+          <p className="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
             Sem compromisso, sem custo inicial. Mostramos o potencial de economia para seu negócio.
           </p>
           <div className="mt-10 md:mt-12">
