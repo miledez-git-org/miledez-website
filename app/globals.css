@@ -20,8 +20,8 @@
   --border-emphasis: rgba(0,0,0,0.15);
   --highlight: #F0F2F5;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --brand-accent: #eb5100;
-  --brand-accent-dark: #c74400;
+  --brand-accent: #d14800;
+  --brand-accent-dark: #b33d00;
   --brand-secondary: #085042;
   --brand-secondary-dark: #063d32;
 }
@@ -255,7 +255,7 @@ html {
   line-height: 1.5;
 }
 
-/* Primary Brand Button - Orange */
+/* Primary Brand Button - Burgundy */
 .btn-primary {
   background-color: var(--brand-accent);
   color: #ffffff;
@@ -267,12 +267,12 @@ html {
 .btn-primary:hover {
   background-color: var(--brand-accent-dark);
   transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(235, 81, 0, 0.25);
+  box-shadow: 0 4px 12px rgba(209, 72, 0, 0.25);
 }
 
 .btn-primary:active {
   transform: scale(0.98);
-  box-shadow: 0 2px 6px rgba(235, 81, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(209, 72, 0, 0.2);
 }
 
 .btn-primary:disabled {
@@ -352,7 +352,7 @@ html {
   background-color: rgba(0, 0, 0, 0.04);
 }
 
-/* Outline Brand - Orange border */
+/* Outline Brand - Burgundy border */
 .btn-outline-brand {
   background-color: transparent;
   color: var(--brand-accent);
@@ -371,7 +371,7 @@ html {
   transform: scale(0.98);
 }
 
-/* Ghost Brand - Orange text */
+/* Ghost Brand - Burgundy text */
 .btn-ghost-brand {
   background-color: transparent;
   color: var(--brand-accent);
@@ -381,7 +381,7 @@ html {
 }
 
 .btn-ghost-brand:hover {
-  background-color: rgba(235, 81, 0, 0.08);
+  background-color: rgba(209, 72, 0, 0.08);
   color: var(--brand-accent-dark);
 }
 

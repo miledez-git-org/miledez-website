@@ -9,6 +9,7 @@ import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
 import HeroConstellation from '@/components/HeroConstellation'
 import WorkflowExplainerSection from '@/components/WorkflowExplainerSection'
+import PainPointSection from '@/components/PainPointSection'
 import BusinessProfilesSection from '@/components/BusinessProfilesSection'
 import TestimonialCarousel from '@/components/TestimonialCarousel'
 import ScrollProgress from '@/components/ScrollProgress'
@@ -89,8 +90,11 @@ export default function Home() {
 
       </section>
 
-      {/* Value Proposition (merged with Pain Points) */}
-      <section id="valor" className="py-20 md:py-28 bg-neutral-50">
+      {/* Pain Points */}
+      <PainPointSection />
+
+      {/* Value Proposition */}
+      <section id="valor" className="py-20 md:py-28 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ValuePropositionB onContactClick={() => setIsContactModalOpen(true)} />
         </div>
@@ -104,7 +108,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 md:py-28 bg-neutral-50">
+      <section className="py-20 md:py-28 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <TestimonialCarousel />
         </div>
@@ -114,7 +118,7 @@ export default function Home() {
       <WorkflowExplainerSection />
 
       {/* Integrations */}
-      <section id="integracoes" className="py-20 md:py-28 bg-neutral-50">
+      <section id="integracoes" className="py-16 md:py-20 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <LogoGrid />
         </div>
@@ -128,7 +132,7 @@ export default function Home() {
       </section>
 
       {/* Pricing */}
-      <section id="precos" className="py-20 md:py-28 bg-neutral-50">
+      <section id="precos" className="py-20 md:py-28 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <PricingSection onContactClick={() => setIsContactModalOpen(true)} />
         </div>
@@ -138,7 +142,8 @@ export default function Home() {
       <section id="contato" className="py-16 md:py-20 bg-white">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
-            Pronto para automatizar? Vamos conversar
+            Pronto para automatizar?<br />
+            <span className="text-brand-black">Vamos conversar</span>
           </h2>
           <p className="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
             Criamos uma automação de teste gratuita para seu negócio. Sem compromisso, sem custo.

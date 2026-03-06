@@ -75,14 +75,19 @@ export default function Header() {
   }, [pathname])
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 bg-brand-black border-b border-white/10 transition-all ${scrolled ? 'shadow-sm' : ''}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 border-b border-white/10 transition-all ${scrolled ? 'shadow-sm' : ''}`} style={{ backgroundColor: '#274855' }}>
       <nav className="max-w-7xl mx-auto px-4 md:px-6 py-5 flex justify-between items-center">
         <Link href="/" className="flex items-center">
           <span
-            className="text-white font-light text-[32px] tracking-logo"
-            style={{ fontFamily: 'var(--font-manrope)' }}
+            className="text-white"
+            style={{
+              fontFamily: 'var(--font-manrope)',
+              fontWeight: 300,
+              fontSize: '32px',
+              letterSpacing: '-0.03em',
+            }}
           >
-            mil<span className="text-brand-primary">&</span>dez
+            mil<span className="text-[#d14800]">&</span>dez
           </span>
         </Link>
 
@@ -111,7 +116,7 @@ export default function Header() {
             className={`relative group py-2 transition-colors ${isActive('/') ? 'text-white' : 'text-white/70 hover:text-white'}`}
           >
             Início
-            <span className={`absolute left-0 bottom-0 h-[1.5px] bg-brand-primary transition-all duration-300 ${isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+            <span className={`absolute left-0 bottom-0 h-[1.5px] bg-[#d14800] transition-all duration-300 ${isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
           </Link>
 
           <div className="relative group">
@@ -123,7 +128,7 @@ export default function Header() {
             </button>
 
             <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[200px]">
-              <div className="bg-brand-black border border-white/10 p-2 flex flex-col gap-1">
+              <div className="bg-[#274855] border border-white/10 p-2 flex flex-col gap-1">
                 <Link href="/saude" className="px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 text-left transition-colors">
                   Saúde e Clínicas
                 </Link>
@@ -142,12 +147,13 @@ export default function Header() {
             className="relative group text-white/70 hover:text-white transition-colors py-2"
           >
             Preços
-            <span className="absolute left-0 bottom-0 w-0 h-[1.5px] bg-brand-primary transition-all duration-300 group-hover:w-full" />
+            <span className="absolute left-0 bottom-0 w-0 h-[1.5px] bg-[#d14800] transition-all duration-300 group-hover:w-full" />
           </Link>
 
           <Link
             href="/#contato"
-            className="btn btn-md bg-brand-primary hover:bg-brand-primary-dark text-white transition-colors"
+            className="btn btn-md text-white"
+            style={{ backgroundColor: '#d14800' }}
           >
             Contato
           </Link>
@@ -159,7 +165,8 @@ export default function Header() {
         <div
           id="mobile-menu"
           ref={mobileMenuRef}
-          className="md:hidden bg-brand-black border-t border-white/10"
+          className="md:hidden border-t border-white/10"
+          style={{ backgroundColor: '#274855' }}
           role="menu"
         >
           <div className="px-6 py-4 flex flex-col gap-1">
@@ -209,7 +216,8 @@ export default function Header() {
             </Link>
             <Link
               href="/#contato"
-              className="mt-2 btn btn-lg w-full bg-brand-primary hover:bg-brand-primary-dark text-white transition-colors"
+              className="mt-2 btn btn-lg w-full text-white"
+              style={{ backgroundColor: '#d14800' }}
               onClick={() => setMobileMenuOpen(false)}
               role="menuitem"
             >

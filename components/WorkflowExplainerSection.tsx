@@ -60,7 +60,7 @@ function PhaseLabel({ label, description }: { label: string; description: string
       >
         {label}
       </span>
-      <span className="text-sm text-neutral-600 leading-relaxed mt-1">
+      <span className="text-[13px] text-neutral-600 leading-relaxed mt-1">
         {description}
       </span>
     </div>
@@ -157,11 +157,12 @@ export default function WorkflowExplainerSection() {
       <div className="max-w-6xl mx-auto px-6 md:px-10">
 
         {/* Section header */}
-        <div className="mb-12 md:mb-14">
+        <div className="mb-12 md:mb-14 text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
-            Como funciona uma automação
+            Como funciona uma<br />
+            <span className="text-[#274855]">automação</span>
           </h2>
-          <p className="mt-4 text-lg text-neutral-600 max-w-lg">
+          <p className="mt-4 text-lg text-neutral-600 max-w-md mx-auto">
             Todo processo repetitivo vira um fluxo automático — do gatilho ao resultado.
           </p>
         </div>

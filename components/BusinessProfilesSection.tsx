@@ -142,7 +142,7 @@ export default function BusinessProfilesSection() {
     <div ref={ref}>
       {/* Section header */}
       <div
-        className="mb-12 md:mb-14"
+        className="text-center mb-16"
         style={{
           transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
           opacity: isVisible ? 1 : 0,
@@ -150,9 +150,10 @@ export default function BusinessProfilesSection() {
         }}
       >
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
-          Negócios como o seu já automatizam com a gente
+          Negócios como o seu<br />
+          já automatizam com a gente
         </h2>
-        <p className="mt-4 text-lg text-neutral-600 max-w-lg">
+        <p className="mt-4 text-lg text-neutral-600 max-w-2xl mx-auto">
           De clínicas a cooperativas — automação funciona em qualquer escala.
         </p>
       </div>
@@ -162,7 +163,7 @@ export default function BusinessProfilesSection() {
         {profiles.map((profile, index) => (
           <div
             key={index}
-            className="rounded-xl px-7 py-8 bg-brand-black shadow-card hover:shadow-card-hover transition-all duration-base ease-spring hover:-translate-y-0.5"
+            className="rounded-xl px-7 py-8 bg-[#274855] shadow-card hover:shadow-card-hover transition-all duration-base ease-spring hover:-translate-y-0.5"
             style={{
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
               opacity: isVisible ? 1 : 0,
