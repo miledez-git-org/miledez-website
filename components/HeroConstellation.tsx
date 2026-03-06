@@ -52,18 +52,18 @@ const MIN_ICON_DIST = 44
 const OUTER_RING: IconNodeConfig[] = [
   { icon: 'whatsapp', a: 165, b: 155, speed: 0.012, phase: 0 },
   { icon: 'gmail', a: 155, b: 160, speed: -0.010, phase: 1.257 },
-  { icon: 'contaazul', a: 170, b: 148, speed: 0.011, phase: 2.513 },
-  { icon: 'pix', a: 160, b: 162, speed: -0.009, phase: 3.770 },
-  { icon: 'outlook', a: 163, b: 152, speed: 0.010, phase: 5.027 },
+  { icon: 'shopify', a: 170, b: 148, speed: 0.011, phase: 2.513 },
+  { icon: 'salesforce', a: 160, b: 162, speed: -0.009, phase: 3.770 },
+  { icon: 'slack', a: 163, b: 152, speed: 0.010, phase: 5.027 },
 ]
 
 // Middle ring (5) — medium — phases offset by 0.628 rad from outer ring
 const MIDDLE_RING: IconNodeConfig[] = [
   { icon: 'google-sheets', a: 108, b: 110, speed: -0.017, phase: 0.628 },
   { icon: 'notion', a: 118, b: 100, speed: 0.015, phase: 1.885 },
-  { icon: 'iclinic', a: 112, b: 106, speed: -0.014, phase: 3.142 },
-  { icon: 'mercadopago', a: 120, b: 102, speed: 0.016, phase: 4.398 },
-  { icon: 'excel', a: 110, b: 115, speed: -0.015, phase: 5.655 },
+  { icon: 'pipedrive', a: 112, b: 106, speed: -0.014, phase: 3.142 },
+  { icon: 'stripe', a: 120, b: 102, speed: 0.016, phase: 4.398 },
+  { icon: 'hubspot', a: 110, b: 115, speed: -0.015, phase: 5.655 },
 ]
 
 // Inner ring (4) — phases at ~1.571 rad (2π/4)
@@ -71,7 +71,7 @@ const INNER_RING: IconNodeConfig[] = [
   { icon: 'n8n', a: 68, b: 65, speed: 0.020, phase: 0.4 },
   { icon: 'google-calendar', a: 60, b: 70, speed: -0.018, phase: 1.971 },
   { icon: 'telegram', a: 65, b: 62, speed: 0.019, phase: 3.542 },
-  { icon: 'google-drive', a: 62, b: 68, speed: -0.017, phase: 5.112 },
+  { icon: 'airtable', a: 62, b: 68, speed: -0.017, phase: 5.112 },
 ]
 
 // Desktop: all 14, Mobile: outer + middle (10)

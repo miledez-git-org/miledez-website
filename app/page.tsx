@@ -11,9 +11,7 @@ import HeroConstellation from '@/components/HeroConstellation'
 import WorkflowExplainerSection from '@/components/WorkflowExplainerSection'
 import PainPointSection from '@/components/PainPointSection'
 import BusinessProfilesSection from '@/components/BusinessProfilesSection'
-import TestimonialCarousel from '@/components/TestimonialCarousel'
 import ScrollProgress from '@/components/ScrollProgress'
-import WhatsAppButton from '@/components/WhatsAppButton'
 import ContactModal from '@/components/ContactModal'
 
 export default function Home() {
@@ -40,7 +38,6 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       {/* Global interactive elements */}
       <ScrollProgress />
-      <WhatsAppButton />
 
       <Header />
 
@@ -72,7 +69,7 @@ export default function Home() {
                   Agendar demonstração
                 </button>
                 <a
-                  href="#perfis"
+                  href="#valor"
                   className="btn btn-outline btn-lg"
                 >
                   Ver casos de uso
@@ -93,53 +90,46 @@ export default function Home() {
       {/* Pain Points */}
       <PainPointSection />
 
+      {/* Workflow Explainer - How automations work */}
+      <WorkflowExplainerSection />
+
       {/* Value Proposition */}
-      <section id="valor" className="py-20 md:py-28 bg-white">
+      <section id="valor" className="py-28 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ValuePropositionB onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
       {/* Business Profiles - Who is this for */}
-      <section id="perfis" className="py-20 md:py-28 bg-white">
+      <section id="perfis" className="py-28 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <BusinessProfilesSection />
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 md:py-28 bg-bg-muted">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <TestimonialCarousel />
-        </div>
-      </section>
-
-      {/* Workflow Explainer - How automations work */}
-      <WorkflowExplainerSection />
-
       {/* Integrations */}
-      <section id="integracoes" className="py-16 md:py-20 bg-bg-muted">
+      <section id="integracoes" className="py-20 md:py-28 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <LogoGrid />
         </div>
       </section>
 
       {/* How It Works - Process */}
-      <section id="como-funciona" className="py-20 md:py-28 bg-white">
+      <section id="como-funciona" className="py-28 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <ProcessSection />
         </div>
       </section>
 
       {/* Pricing */}
-      <section id="precos" className="py-20 md:py-28 bg-bg-muted">
+      <section id="precos" className="py-28 md:py-40 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <PricingSection onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
       {/* CTA */}
-      <section id="contato" className="py-16 md:py-20 bg-white">
+      <section id="contato" className="py-28 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             Pronto para automatizar?<br />

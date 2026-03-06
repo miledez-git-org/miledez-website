@@ -153,7 +153,7 @@ export default function WorkflowExplainerSection() {
   }, [isVisible, isPaused])
 
   return (
-    <section className="bg-white py-20 md:py-28">
+    <section className="bg-white py-28 md:py-40">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
 
         {/* Section header */}

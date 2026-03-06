@@ -29,7 +29,7 @@ export default function PainPointSection() {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.3 })
 
   return (
-    <section className="bg-bg-muted py-20 md:py-28">
+    <section className="bg-bg-muted py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <div className="mb-12 md:mb-14 text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
