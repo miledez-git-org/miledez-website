@@ -1,6 +1,7 @@
 'use client'
 
 import { useScrollReveal } from '@/hooks/useScrollReveal'
+import { stepIcons } from '@/components/Icons'
 
 interface ValuePropositionBProps {
   onContactClick?: () => void
@@ -11,6 +12,27 @@ interface BenefitItem {
   title: string
   description: string
 }
+
+const painPoints = [
+  {
+    icon: stepIcons.calendar,
+    title: 'Tarefas repetitivas todo dia',
+    description:
+      'Preencher planilhas, enviar lembretes, organizar documentos. Sua equipe gasta horas em tarefas que poderiam acontecer sozinhas.',
+  },
+  {
+    icon: stepIcons.folder,
+    title: 'Informação espalhada',
+    description:
+      'Dados no e-mail, no WhatsApp, na planilha, no sistema. Quando precisa de algo, ninguém sabe onde está.',
+  },
+  {
+    icon: stepIcons.refresh,
+    title: 'Erros e retrabalho',
+    description:
+      'Dados digitados errado, prazos esquecidos, cobranças atrasadas. Pequenos erros que custam tempo e dinheiro.',
+  },
+]
 
 const ClockIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -100,12 +122,47 @@ const benefits: BenefitItem[] = [
 ]
 
 export default function ValuePropositionB({ onContactClick }: ValuePropositionBProps) {
-  const { ref, isVisible } = useScrollReveal({ threshold: 0.2 })
+  const { ref, isVisible } = useScrollReveal({ threshold: 0.15 })
 
   return (
     <div ref={ref}>
-      <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-start">
-        {/* Left column - Narrative */}
+      {/* Section header */}
+      <div className="mb-12 md:mb-14">
+        <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
+          Resultados em dias, não meses
+        </h2>
+      </div>
+
+      {/* Two-column: pain points (left) + solution narrative (right) */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-20 items-start">
+        {/* Left column - Pain points */}
+        <div className="space-y-0">
+          {painPoints.map((point, index) => (
+            <div
+              key={index}
+              className={`flex gap-4 py-6 ${index < painPoints.length - 1 ? 'border-b border-neutral-100' : ''}`}
+              style={{
+                transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+                opacity: isVisible ? 1 : 0,
+                transition: `transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${index * 100}ms, opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${index * 100}ms`,
+              }}
+            >
+              <div className="flex-shrink-0 w-10 h-10 text-brand-primary flex items-center justify-center">
+                {point.icon}
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-brand-black">
+                  {point.title}
+                </h3>
+                <p className="mt-1 text-base text-neutral-600 leading-relaxed">
+                  {point.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Right column - Solution narrative */}
         <div
           style={{
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
@@ -113,12 +170,7 @@ export default function ValuePropositionB({ onContactClick }: ValuePropositionBP
             transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 100ms, opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 100ms',
           }}
         >
-          <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
-            Resultados em dias,<br />
-            <span className="text-[#274855]">não meses</span>
-          </h2>
-
-          <div className="mt-6 space-y-4 text-lg text-neutral-600 leading-relaxed max-w-lg">
+          <div className="space-y-4 text-lg text-neutral-600 leading-relaxed max-w-lg">
             <p>
               Somos uma agência de automação que entrega soluções prontas para usar. Você não precisa de equipe de TI, não precisa entender de tecnologia, e não precisa esperar meses para ver resultados.
             </p>
@@ -139,40 +191,37 @@ export default function ValuePropositionB({ onContactClick }: ValuePropositionBP
             </button>
           </div>
         </div>
+      </div>
 
-        {/* Right column - Stacked benefit items */}
-        <div className="space-y-0">
-          {benefits.map((benefit, index) => {
-            const delay = 200 + index * 100
+      {/* Benefits grid below */}
+      <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-0">
+        {benefits.map((benefit, index) => {
+          const delay = 300 + index * 80
 
-            return (
-              <div
-                key={index}
-                className={`flex gap-4 py-5 ${index < benefits.length - 1 ? 'border-b border-neutral-100' : ''}`}
-                style={{
-                  transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
-                  opacity: isVisible ? 1 : 0,
-                  transition: `transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
-                }}
-              >
-                {/* Icon */}
-                <div className="flex-shrink-0 w-10 h-10 text-brand-primary flex items-center justify-center">
-                  {benefit.icon}
-                </div>
-
-                {/* Content */}
-                <div>
-                  <h3 className="text-lg font-semibold text-brand-black">
-                    {benefit.title}
-                  </h3>
-                  <p className="mt-1 text-base text-neutral-600 leading-relaxed">
-                    {benefit.description}
-                  </p>
-                </div>
+          return (
+            <div
+              key={index}
+              className={`flex gap-4 py-5 ${index < benefits.length - 3 ? 'border-b border-neutral-100' : ''} ${index < 3 ? 'border-b border-neutral-100 lg:border-b' : 'lg:border-b-0'}`}
+              style={{
+                transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+                opacity: isVisible ? 1 : 0,
+                transition: `transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+              }}
+            >
+              <div className="flex-shrink-0 w-10 h-10 text-brand-primary flex items-center justify-center">
+                {benefit.icon}
               </div>
-            )
-          })}
-        </div>
+              <div>
+                <h3 className="text-base font-semibold text-brand-black">
+                  {benefit.title}
+                </h3>
+                <p className="mt-1 text-sm text-neutral-600 leading-relaxed">
+                  {benefit.description}
+                </p>
+              </div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )

@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="relative min-h-[50vh] md:min-h-[40vh] py-20 md:py-28 px-6 md:px-10 text-white overflow-hidden" style={{ backgroundColor: '#274855' }}>
+    <footer className="relative min-h-[50vh] md:min-h-[40vh] py-20 md:py-28 px-6 md:px-10 bg-brand-black text-white overflow-hidden">
       {/* Geometric texture overlay */}
       <div className="footer-texture absolute inset-0" />
 
@@ -15,8 +15,11 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             {/* Logo and tagline */}
             <div>
-              <div className="text-2xl font-medium tracking-tight mb-2">
-                mil&dez
+              <div
+                className="text-2xl font-light tracking-logo mb-2"
+                style={{ fontFamily: 'var(--font-manrope)' }}
+              >
+                mil<span className="text-brand-primary">&</span>dez
               </div>
               <p className="text-sm text-white/80">
                 seu trabalho no automático
@@ -68,23 +71,23 @@ export default function Footer() {
 
           {/* Bottom bar */}
           <div className="mt-8 pt-8 border-t border-white/10 flex flex-col gap-4">
-            <div className="text-xs text-white/70 text-center md:text-left">
+            <div className="text-sm text-white/70 text-center md:text-left">
               Rua Irmaos Kennedy 200 ap. 301, Belo Horizonte, MG · CNPJ: 44.584.460/0001-80
             </div>
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <span className="text-xs text-white/70">
+              <span className="text-sm text-white/70">
                 © 2026 mil&dez. Todos os direitos reservados.
               </span>
               <div className="flex items-center gap-4">
                 <Link
                   href="/politica-privacidade"
-                  className="text-xs text-white/70 hover:text-white/90 transition-colors"
+                  className="text-sm text-white/70 hover:text-white/90 transition-colors"
                 >
                   Privacidade
                 </Link>
                 <Link
                   href="/termos"
-                  className="text-xs text-white/70 hover:text-white/90 transition-colors"
+                  className="text-sm text-white/70 hover:text-white/90 transition-colors"
                 >
                   Termos
                 </Link>

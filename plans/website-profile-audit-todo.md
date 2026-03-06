@@ -36,17 +36,17 @@
 - [x] Check and fix accents on `/servicos` workflow visualizations
 - [x] Check and fix accents on new `/agronegocio` workflow visualizations
 
-## Medium — Content & Structure
+## Medium — Content & Structure (DONE)
 
-- [ ] Add intelligence services info (pricing tier or dedicated section)
-- [ ] Add social proof section (client count, industries served, or placeholder for testimonials)
-- [ ] Reduce excessive vertical padding between homepage sections
-- [ ] Replace enterprise tool logos in hero visual with SMB-relevant ones (WhatsApp, Google Sheets, ContaAzul, iClinic)
-- [ ] Rethink homepage section order: pain → outcome → mechanism → proof → process → pricing → CTA
-- [ ] Ensure "Ver casos de uso" hero CTA links to concrete use case content
+- [x] Add intelligence services info (pricing tier or dedicated section)
+- [x] Add social proof section (client count, industries served, or placeholder for testimonials)
+- [x] Reduce excessive vertical padding between homepage sections
+- [x] Replace enterprise tool logos in hero visual with SMB-relevant ones (WhatsApp, Google Sheets, ContaAzul, iClinic)
+- [x] Rethink homepage section order: pain → outcome → mechanism → proof → process → pricing → CTA
+- [x] Ensure "Ver casos de uso" hero CTA links to concrete use case content
 
-## Low — Polish
+## Low — Polish (DONE)
 
-- [ ] Update footer copyright year to 2026
-- [ ] Add WhatsApp as a direct contact channel (floating button or footer link with wa.me)
-- [ ] Feature WhatsApp more prominently in workflow examples
+- [x] Update footer copyright year to 2026
+- [x] Add WhatsApp as a direct contact channel (floating button or footer link with wa.me)
+- [x] Feature WhatsApp more prominently in workflow examples

@@ -46,8 +46,8 @@ export default function ProcessSection() {
   return (
     <div ref={ref}>
       {/* Header */}
-      <div className="mb-16 lg:mb-20">
-        <h2 className="heading-display text-[2rem] md:text-[2.5rem] lg:text-[3rem] text-brand-black leading-tight">
+      <div className="mb-12 md:mb-14">
+        <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
           Como trabalhamos
         </h2>
         <p className="mt-4 text-lg text-neutral-600 max-w-lg">

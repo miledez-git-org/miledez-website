@@ -34,7 +34,7 @@ npm run lint    # Run ESLint
 app/                        # Next.js App Router pages
   saude/                    # Healthcare industry page
   servicos/                 # Professional services page
-  varejo/                   # Retail/e-commerce page
+  agronegocio/              # Agronegocio industry page
   termos/                   # Terms of service
   politica-privacidade/     # Privacy policy
 components/

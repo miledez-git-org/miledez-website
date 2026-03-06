@@ -164,13 +164,13 @@ WhatsApp is the primary business communication tool for the target audience. It'
 | 7 | Add concrete solution examples to homepage | High | Medium | **DONE** (2026-03-06) |
 | 8 | Surface free test/trial automation offer | High | Low | **DONE** (2026-03-06) |
 | 9 | Fix missing accent marks on industry pages | High | Low | **DONE** (2026-03-06) |
-| 10 | Add intelligence services to pricing or elsewhere | Medium | Low | |
-| 11 | Add social proof (even minimal) | Medium | Medium | |
-| 12 | Reduce excessive whitespace between sections | Medium | Low | |
-| 13 | Update hero visual with SMB-relevant tools | Medium | Medium | |
-| 14 | Update copyright to 2026 | Low | Trivial | |
-| 15 | Make WhatsApp more prominent | Low | Low | |
-| 16 | Rethink section order (pain → outcome → mechanism) | Medium | Medium |
+| 10 | Add intelligence services to pricing or elsewhere | Medium | Low | **DONE** (2026-03-06) |
+| 11 | Add social proof (even minimal) | Medium | Medium | **DONE** (2026-03-06) |
+| 12 | Reduce excessive whitespace between sections | Medium | Low | **DONE** (2026-03-06) |
+| 13 | Update hero visual with SMB-relevant tools | Medium | Medium | **DONE** (2026-03-06) |
+| 14 | Update copyright to 2026 | Low | Trivial | **DONE** (2026-03-06) |
+| 15 | Make WhatsApp more prominent | Low | Low | **DONE** (2026-03-06) |
+| 16 | Rethink section order (pain → outcome → mechanism) | Medium | Medium | **DONE** (2026-03-06) |
 
 ### Implementation Notes (2026-03-06)
 
@@ -194,3 +194,16 @@ WhatsApp is the primary business communication tool for the target audience. It'
 - `app/page.tsx`: Added PainPointSection between Hero and WorkflowExplainer; bottom CTA → "Quero testar grátis" + free test messaging
 - `ContactModal.tsx`: Subtitle updated to mention free test automation
 - **NEW** `PainPointSection.tsx`: 3-card pain-point section reusing ChallengeCard + stepIcons
+
+**Issues #10–#16 resolved (2026-03-06). Changes across 8 files (+1 new):**
+
+- `PricingSection.tsx`: Added 4th "Inteligência" tier (R$3k–R$15k+), grid changed from 3-col to 2x2
+- `TestimonialCarousel.tsx`: Updated testimonials to match verticals (agro + accounting replacing retail + generic), added stats bar, fixed `bg-testimonial-bg` → `bg-white`, fixed `text-xs` → `text-sm`
+- `PainPointSection.tsx`: Reduced padding `py-24 md:py-32` → `py-20 md:py-28`
+- `WorkflowExplainerSection.tsx`: Reduced padding `py-28 md:py-40` → `py-20 md:py-28`
+- `HeroConstellation.tsx`: Replaced 7 enterprise icons (shopify, salesforce, slack, pipedrive, stripe, hubspot, airtable) with SMB tools (contaazul, pix, outlook, iclinic, mercadopago, excel, google-drive)
+- `Footer.tsx`: Copyright updated to © 2026
+- **NEW** `WhatsAppButton.tsx`: Floating WhatsApp button (fixed bottom-right, appears after scrolling past hero, spring animation)
+- `app/page.tsx`: Section reorder (Pain → Value → Profiles → Testimonials → Workflow → Logos → Process → Pricing → CTA), standardized padding, hero CTA `#valor` → `#perfis`, added WhatsAppButton + TestimonialCarousel imports
+
+**All 16 audit issues now resolved.**
