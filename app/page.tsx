@@ -50,13 +50,13 @@ export default function Home() {
             <div className="flex flex-col justify-center">
               {/* Headline */}
               <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-brand-black leading-[1.1]">
-                Automação inteligente<br />
-                <span className="text-brand-black">que trabalha por você</span>
+                seu trabalho<br />
+                <span className="text-brand-primary">no automático</span>
               </h1>
 
               {/* Subheadline */}
               <p className="mt-6 text-lg md:text-xl text-neutral-600 font-normal leading-relaxed max-w-xl">
-                Transforme processos manuais em fluxos automatizados. Conectamos seus sistemas existentes e entregamos resultados em dias — não meses.
+                Conectamos seus sistemas e automatizamos os processos que tomam seu tempo. Resultados em dias — não meses.
               </p>
 
               {/* CTAs */}

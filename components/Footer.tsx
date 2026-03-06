@@ -19,7 +19,7 @@ export default function Footer() {
                 mil&dez
               </div>
               <p className="text-sm text-white/80">
-                Automação de processos para empresas
+                seu trabalho no automático
               </p>
             </div>
 
@@ -44,10 +44,10 @@ export default function Footer() {
                 Serviços
               </Link>
               <Link
-                href="/varejo"
+                href="/agronegocio"
                 className="text-sm text-white/80 hover:text-white transition-colors"
               >
-                Varejo
+                Agronegócio
               </Link>
               <a
                 href="mailto:contato@miledez.com.br"

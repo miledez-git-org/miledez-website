@@ -135,8 +135,8 @@ export default function Header() {
                 <Link href="/servicos" className="px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 text-left transition-colors">
                   Serviços Profissionais
                 </Link>
-                <Link href="/varejo" className="px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 text-left transition-colors">
-                  Varejo e E-commerce
+                <Link href="/agronegocio" className="px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 text-left transition-colors">
+                  Agronegócio
                 </Link>
               </div>
             </div>
@@ -199,12 +199,12 @@ export default function Header() {
               Serviços Profissionais
             </Link>
             <Link
-              href="/varejo"
-              className={`py-3 pl-4 min-h-[44px] flex items-center transition-colors ${isActive('/varejo') ? 'text-white font-medium' : 'text-white/70 hover:text-white'}`}
+              href="/agronegocio"
+              className={`py-3 pl-4 min-h-[44px] flex items-center transition-colors ${isActive('/agronegocio') ? 'text-white font-medium' : 'text-white/70 hover:text-white'}`}
               onClick={() => setMobileMenuOpen(false)}
               role="menuitem"
             >
-              Varejo e E-commerce
+              Agronegócio
             </Link>
             <Link
               href="/#precos"

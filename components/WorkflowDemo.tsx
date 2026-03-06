@@ -51,16 +51,16 @@ const variations: Variation[] = [
   },
   {
     id: 2,
-    name: 'Varejo',
-    trigger: { title: 'Pedido realizado', subtitle: 'E-commerce' },
+    name: 'Agro',
+    trigger: { title: 'Pedido de insumos', subtitle: 'Fornecedor' },
     process: [
-      { title: 'Verificando estoque', subtitle: 'Disponibilidade', animationType: 'scan' },
-      { title: 'Processando', subtitle: 'Separação', animationType: 'gear' },
-      { title: 'Gerando etiqueta', subtitle: 'Envio preparado', animationType: 'sync' },
+      { title: 'Cotando preços', subtitle: 'Comparativo', animationType: 'scan' },
+      { title: 'Processando', subtitle: 'Melhor opção', animationType: 'gear' },
+      { title: 'Registrando entrega', subtitle: 'Estoque atualizado', animationType: 'sync' },
     ],
     outputs: [
-      { title: 'Estoque atualizado', subtitle: 'Baixa automática', metric: '0.9s' },
-      { title: 'Cliente notificado', subtitle: 'Tracking enviado', metric: '100%' },
+      { title: 'Estoque atualizado', subtitle: 'Entrada registrada', metric: '1.2s' },
+      { title: 'Equipe notificada', subtitle: 'Campo informado', metric: '100%' },
     ],
   },
 ]

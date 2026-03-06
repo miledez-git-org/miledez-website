@@ -35,11 +35,11 @@ const CalculatorIcon = () => (
   </svg>
 )
 
-const ShoppingBagIcon = () => (
+const LeafIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-    <line x1="3" y1="6" x2="21" y2="6" />
-    <path d="M16 10a4 4 0 0 1-8 0" />
+    <path d="M12 22V12" />
+    <path d="M12 12c0-5.5 5.5-9.5 11-9.5-1.5 5.5-5.5 9.5-11 9.5z" />
+    <path d="M12 16c0-4-4-7-8-7 1 4 4 7 8 7z" />
   </svg>
 )
 
@@ -50,14 +50,15 @@ const HeartPulseIcon = () => (
   </svg>
 )
 
-const StoreIcon = () => (
+const WarehouseIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M3 9l1-4h16l1 4" />
-    <path d="M3 9v1a3 3 0 0 0 6 0V9" />
-    <path d="M9 9v1a3 3 0 0 0 6 0V9" />
-    <path d="M15 9v1a3 3 0 0 0 6 0V9" />
-    <path d="M4 10v10h16V10" />
-    <path d="M9 20v-6h6v6" />
+    <path d="M3 21V8l9-5 9 5v13" />
+    <path d="M3 21h18" />
+    <path d="M9 21v-6h6v6" />
+    <path d="M7 11h2" />
+    <path d="M15 11h2" />
+    <path d="M7 15h2" />
+    <path d="M15 15h2" />
   </svg>
 )
 
@@ -93,14 +94,14 @@ const profiles: BusinessProfile[] = [
     benefitDetail: 'Mais produtividade e menos retrabalho (5x)',
   },
   {
-    type: 'Loja de Roupas Online',
-    icon: <ShoppingBagIcon />,
-    size: '800 pedidos/mês',
-    location: 'Belo Horizonte, MG',
-    price: 'R$2.000',
+    type: 'Cooperativa de Café',
+    icon: <LeafIcon />,
+    size: '50 produtores',
+    location: 'Sul de Minas, MG',
+    price: 'R$3.000',
     priceLabel: '/mês',
-    benefit: 'R$15.000/mês',
-    benefitDetail: 'Vendas recuperadas e redução de erros operacionais (7.5x)',
+    benefit: 'R$18.000/mês',
+    benefitDetail: 'Coordenação de fornecedores e documentação no automático (6x)',
   },
   {
     type: 'Clínica de Fisioterapia',
@@ -113,24 +114,24 @@ const profiles: BusinessProfile[] = [
     benefitDetail: 'Menos glosas e maior eficiência operacional (6x)',
   },
   {
-    type: 'Rede de Pet Shops',
-    icon: <StoreIcon />,
-    size: '3 unidades, 40 funcionários',
-    location: 'São Paulo, SP',
+    type: 'Distribuidora de Insumos Agrícolas',
+    icon: <WarehouseIcon />,
+    size: '15 funcionários',
+    location: 'Triângulo Mineiro, MG',
     price: 'R$2.000',
     priceLabel: '/mês',
-    benefit: 'R$8.000/mês',
-    benefitDetail: 'Estoque otimizado e gestão centralizada (4x)',
+    benefit: 'R$10.000/mês',
+    benefitDetail: 'Pedidos e estoque automatizados, zero retrabalho (5x)',
   },
   {
-    type: 'Hospital Regional',
+    type: 'Clínica Médica',
     icon: <HospitalIcon />,
-    size: '150 leitos',
-    location: 'São Paulo, SP',
-    price: 'R$5.000',
+    size: '20 profissionais',
+    location: 'Belo Horizonte, MG',
+    price: 'R$2.000',
     priceLabel: '/mês',
-    benefit: 'R$50.000/mês',
-    benefitDetail: 'Ocupação de leitos e integração de sistemas (10x)',
+    benefit: 'R$12.000/mês',
+    benefitDetail: 'Faturamento e documentação sem esforço manual (6x)',
   },
 ]
 
@@ -153,7 +154,7 @@ export default function BusinessProfilesSection() {
           já automatizam com a gente
         </h2>
         <p className="mt-4 text-lg text-neutral-600 max-w-2xl mx-auto">
-          De escritórios com 5 pessoas a hospitais com 150 leitos — automação funciona em qualquer escala.
+          De clínicas a cooperativas — automação funciona em qualquer escala.
         </p>
       </div>
 

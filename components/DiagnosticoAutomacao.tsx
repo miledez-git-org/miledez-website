@@ -57,7 +57,7 @@ const questions: Question[] = [
     options: [
       { label: 'Saúde e Clínicas', value: 'saude' },
       { label: 'Serviços Profissionais (Advocacia, Consultoria)', value: 'servicos' },
-      { label: 'Varejo e E-commerce', value: 'varejo' },
+      { label: 'Agronegócio', value: 'agronegocio' },
       { label: 'Outro setor', value: 'outro' },
     ],
   },
@@ -194,10 +194,10 @@ function calculateBusinessCase(
       { title: 'Timesheet para Faturamento', description: 'Horas trabalhadas direto para fatura', href: '/servicos#workflows' },
       { title: 'Onboarding de Clientes', description: 'Setup automático de pastas e docs', href: '/servicos#workflows' },
     ],
-    varejo: [
-      { title: 'Gestão de Estoque', description: 'Alertas de reposição automáticos', href: '/varejo#workflows' },
-      { title: 'Processamento de Pedidos', description: 'Do pedido ao envio automatizado', href: '/varejo#workflows' },
-      { title: 'Conciliação Financeira', description: 'Vendas e pagamentos reconciliados', href: '/varejo#workflows' },
+    agronegocio: [
+      { title: 'Coordenação de Fornecedores', description: 'Cotação e acompanhamento automáticos', href: '/agronegocio#workflows' },
+      { title: 'Rastreabilidade e Conformidade', description: 'Documentação sempre em dia', href: '/agronegocio#workflows' },
+      { title: 'Comunicação Campo-Escritório', description: 'Dados do campo organizados', href: '/agronegocio#workflows' },
     ],
     outro: [
       { title: 'Integração de Dados', description: 'Conecte planilhas e sistemas', href: '/#integracoes' },

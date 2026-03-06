@@ -10,7 +10,7 @@ export interface HeroWorkflowPreset {
   steps: HeroWorkflowStep[]
 }
 
-export type Industry = 'saude' | 'servicos' | 'varejo'
+export type Industry = 'saude' | 'servicos' | 'agronegocio'
 
 export const industryPresets: Record<Industry, WorkflowPreset> = {
   saude: {
@@ -103,47 +103,47 @@ export const industryPresets: Record<Industry, WorkflowPreset> = {
       },
     ],
   },
-  varejo: {
-    title: 'Processamento de Pedidos',
+  agronegocio: {
+    title: 'Coordenacao de Fornecedores',
     steps: [
       {
-        icon: 'cart',
-        label: 'Novo pedido',
-        sublabel: 'Entrada registrada no sistema.',
+        icon: 'document',
+        label: 'Pedido recebido',
+        sublabel: 'Solicitacao registrada no sistema.',
         examples: [
-          { icon: 'form', text: 'Dados do cliente' },
-          { icon: 'box', text: 'Itens selecionados' },
-          { icon: 'creditCard', text: 'Pagamento confirmado' },
+          { icon: 'form', text: 'Dados do fornecedor' },
+          { icon: 'box', text: 'Insumos solicitados' },
+          { icon: 'calendar', text: 'Prazo definido' },
         ],
       },
       {
-        icon: 'box',
-        label: 'Estoque verificado',
-        sublabel: 'Disponibilidade confirmada.',
+        icon: 'sync',
+        label: 'Cotacao automatica',
+        sublabel: 'Comparativo de precos gerado.',
         examples: [
-          { icon: 'data', text: 'Quantidade checada' },
-          { icon: 'sync', text: 'Reserva automatica' },
-          { icon: 'bell', text: 'Alerta de baixo estoque' },
+          { icon: 'data', text: 'Precos atualizados' },
+          { icon: 'document', text: 'Historico de compras' },
+          { icon: 'check', text: 'Melhor opcao destacada' },
         ],
       },
       {
-        icon: 'truck',
-        label: 'Envio processado',
-        sublabel: 'Logistica acionada automaticamente.',
+        icon: 'bell',
+        label: 'Entrega monitorada',
+        sublabel: 'Acompanhamento ate a chegada.',
         examples: [
-          { icon: 'document', text: 'Nota fiscal gerada' },
-          { icon: 'form', text: 'Etiqueta impressa' },
-          { icon: 'truck', text: 'Transportadora notificada' },
+          { icon: 'calendar', text: 'Prazo acompanhado' },
+          { icon: 'bell', text: 'Alerta de atraso' },
+          { icon: 'mail', text: 'Fornecedor notificado' },
         ],
       },
       {
         icon: 'check',
-        label: 'Cliente notificado',
-        sublabel: 'Acompanhamento em tempo real.',
+        label: 'Estoque atualizado',
+        sublabel: 'Registro automatico na entrada.',
         examples: [
-          { icon: 'mail', text: 'Email de confirmacao' },
-          { icon: 'sync', text: 'Rastreamento ativo' },
-          { icon: 'check', text: 'Entrega confirmada' },
+          { icon: 'check', text: 'Quantidade conferida' },
+          { icon: 'data', text: 'Estoque atualizado' },
+          { icon: 'document', text: 'Nota fiscal arquivada' },
         ],
       },
     ],
@@ -207,26 +207,26 @@ export const heroPresets: Record<Industry, HeroWorkflowPreset> = {
       },
     ],
   },
-  varejo: {
-    title: 'Processamento de Pedidos',
+  agronegocio: {
+    title: 'Coordenacao de Fornecedores',
     steps: [
       {
-        icon: 'cart',
-        label: 'Novo pedido',
-        sublabel: 'Venda confirmada',
-        logos: ['shopify', 'mercado-livre'],
+        icon: 'document',
+        label: 'Pedido registrado',
+        sublabel: 'Solicitacao de insumos',
+        logos: ['whatsapp', 'google-sheets'],
       },
       {
         icon: 'process',
-        label: 'Processamento automatico',
-        sublabel: 'Estoque, nota e envio',
-        logos: ['excel', 'correios'],
+        label: 'Cotacao e acompanhamento',
+        sublabel: 'Comparativo e prazos',
+        logos: ['excel', 'google-drive'],
       },
       {
         icon: 'check',
-        label: 'Cliente notificado',
-        sublabel: 'Rastreamento em tempo real',
-        logos: ['whatsapp', 'gmail'],
+        label: 'Estoque atualizado',
+        sublabel: 'Entrada registrada',
+        logos: ['google-sheets', 'contaazul'],
       },
     ],
   },
@@ -320,41 +320,32 @@ export const servicosWorkflowsCompact = {
   },
 }
 
-export const varejoWorkflowsCompact = {
-  inventory: {
-    title: 'Gestao de Estoque',
+export const agronegocioWorkflowsCompact = {
+  supplierCoordination: {
+    title: 'Coordenacao de Fornecedores',
     steps: [
-      { icon: 'box' as const, label: 'Nivel monitorado', sublabel: 'Estoque em tempo real', logos: ['google-sheets', 'excel'] },
-      { icon: 'bell' as const, label: 'Alerta disparado', sublabel: 'Nivel minimo atingido', logos: ['whatsapp', 'gmail'] },
-      { icon: 'document' as const, label: 'Pedido sugerido', sublabel: 'Reposicao pre-calculada', logos: ['excel', 'google-sheets'] },
-      { icon: 'check' as const, label: 'Estoque equilibrado', sublabel: 'Sem rupturas, sem excesso', logos: ['google-sheets', 'excel'] },
+      { icon: 'document' as const, label: 'Pedido registrado', sublabel: 'Solicitacao de insumos', logos: ['whatsapp', 'google-sheets'] },
+      { icon: 'sync' as const, label: 'Cotacao automatica', sublabel: 'Comparativo de precos', logos: ['excel', 'google-sheets'] },
+      { icon: 'bell' as const, label: 'Entrega monitorada', sublabel: 'Prazos acompanhados', logos: ['google-calendar', 'whatsapp'] },
+      { icon: 'check' as const, label: 'Estoque atualizado', sublabel: 'Entrada registrada', logos: ['google-sheets', 'contaazul'] },
     ],
   },
-  orders: {
-    title: 'Processamento de Pedidos',
+  traceability: {
+    title: 'Rastreabilidade e Conformidade',
     steps: [
-      { icon: 'cart' as const, label: 'Pedido recebido', sublabel: 'Venda confirmada', logos: ['shopify', 'mercado-livre'] },
-      { icon: 'box' as const, label: 'Separacao iniciada', sublabel: 'Lista de picking gerada', logos: ['google-sheets', 'excel'] },
-      { icon: 'truck' as const, label: 'Envio registrado', sublabel: 'Codigo de rastreio', logos: ['correios', 'gmail'] },
-      { icon: 'check' as const, label: 'Cliente notificado', sublabel: 'Atualizacoes automaticas', logos: ['whatsapp', 'gmail'] },
+      { icon: 'document' as const, label: 'Documento recebido', sublabel: 'Licenca ou certificado', logos: ['gmail', 'google-drive'] },
+      { icon: 'process' as const, label: 'Auto-classificado', sublabel: 'Tipo identificado', logos: ['google-drive', 'google-sheets'] },
+      { icon: 'calendar' as const, label: 'Vencimento registrado', sublabel: 'Prazo monitorado', logos: ['google-calendar', 'excel'] },
+      { icon: 'check' as const, label: 'Alerta programado', sublabel: 'Aviso antes do vencimento', logos: ['gmail', 'whatsapp'] },
     ],
   },
-  financial: {
-    title: 'Conciliacao Financeira',
+  fieldOffice: {
+    title: 'Comunicacao Campo-Escritorio',
     steps: [
-      { icon: 'creditCard' as const, label: 'Venda registrada', sublabel: 'Dados capturados', logos: ['mercadopago', 'pix'] },
-      { icon: 'sync' as const, label: 'Pagamento verificado', sublabel: 'Cruzamento com extrato', logos: ['excel', 'google-sheets'] },
-      { icon: 'document' as const, label: 'Relatorio gerado', sublabel: 'Consolidacao por periodo', logos: ['google-sheets', 'excel'] },
-      { icon: 'check' as const, label: 'Divergencias alertadas', sublabel: 'Diferencas identificadas', logos: ['whatsapp', 'excel'] },
-    ],
-  },
-  reports: {
-    title: 'Relatorios de Vendas',
-    steps: [
-      { icon: 'calendar' as const, label: 'Periodo fechado', sublabel: 'Dia, semana ou mes', logos: ['google-calendar', 'google-sheets'] },
-      { icon: 'sync' as const, label: 'Dados consolidados', sublabel: 'Vendas, margens e estoque', logos: ['excel', 'google-sheets'] },
-      { icon: 'chart' as const, label: 'Analise pronta', sublabel: 'Graficos e indicadores', logos: ['google-sheets', 'notion'] },
-      { icon: 'check' as const, label: 'Relatorio entregue', sublabel: 'No seu email, no horario', logos: ['gmail', 'google-sheets'] },
+      { icon: 'mail' as const, label: 'Relato do campo', sublabel: 'Mensagem ou foto recebida', logos: ['whatsapp', 'gmail'] },
+      { icon: 'process' as const, label: 'Dados extraidos', sublabel: 'Informacao organizada', logos: ['google-sheets', 'google-drive'] },
+      { icon: 'document' as const, label: 'Relatorio gerado', sublabel: 'Consolidacao automatica', logos: ['google-sheets', 'excel'] },
+      { icon: 'check' as const, label: 'Equipe notificada', sublabel: 'Escritorio atualizado', logos: ['gmail', 'whatsapp'] },
     ],
   },
 }
@@ -546,185 +537,140 @@ export const saudeWorkflows = {
 }
 
 /**
- * Varejo page workflow presets for "O que automatizamos" section
+ * Agronegocio page workflow presets for "O que automatizamos" section
  */
-export const varejoWorkflows = {
-  inventory: {
-    title: 'Gestao de Estoque',
+export const agronegocioWorkflows = {
+  supplierCoordination: {
+    title: 'Coordenacao de Fornecedores',
     steps: [
-      {
-        icon: 'box' as const,
-        label: 'Nivel monitorado',
-        sublabel: 'Estoque em tempo real.',
-        examples: [
-          { icon: 'box' as const, text: 'Quantidade atual' },
-          { icon: 'data' as const, text: 'Historico de vendas' },
-          { icon: 'chart' as const, text: 'Tendencia de consumo' },
-        ],
-      },
-      {
-        icon: 'bell' as const,
-        label: 'Alerta disparado',
-        sublabel: 'Nivel minimo atingido.',
-        examples: [
-          { icon: 'bell' as const, text: 'Notificacao enviada' },
-          { icon: 'tag' as const, text: 'Produto identificado' },
-          { icon: 'data' as const, text: 'Quantidade sugerida' },
-        ],
-      },
       {
         icon: 'document' as const,
-        label: 'Pedido sugerido',
-        sublabel: 'Reposicao pre-calculada.',
+        label: 'Pedido registrado',
+        sublabel: 'Solicitacao de insumos.',
         examples: [
-          { icon: 'document' as const, text: 'Lista de compras' },
-          { icon: 'creditCard' as const, text: 'Custo estimado' },
-          { icon: 'calendar' as const, text: 'Prazo de entrega' },
-        ],
-      },
-      {
-        icon: 'check' as const,
-        label: 'Estoque equilibrado',
-        sublabel: 'Sem rupturas, sem excesso.',
-        examples: [
-          { icon: 'check' as const, text: 'Niveis normalizados' },
-          { icon: 'creditCard' as const, text: 'Capital otimizado' },
-          { icon: 'document' as const, text: 'Registro atualizado' },
-        ],
-      },
-    ],
-  },
-  orders: {
-    title: 'Processamento de Pedidos',
-    steps: [
-      {
-        icon: 'cart' as const,
-        label: 'Pedido recebido',
-        sublabel: 'Venda confirmada.',
-        examples: [
-          { icon: 'document' as const, text: 'Pedido registrado' },
-          { icon: 'user' as const, text: 'Cliente identificado' },
-          { icon: 'creditCard' as const, text: 'Pagamento confirmado' },
-        ],
-      },
-      {
-        icon: 'box' as const,
-        label: 'Separacao iniciada',
-        sublabel: 'Lista de picking gerada.',
-        examples: [
-          { icon: 'document' as const, text: 'Lista de itens' },
-          { icon: 'box' as const, text: 'Local no estoque' },
-          { icon: 'check' as const, text: 'Conferencia orientada' },
-        ],
-      },
-      {
-        icon: 'truck' as const,
-        label: 'Envio registrado',
-        sublabel: 'Codigo de rastreio.',
-        examples: [
-          { icon: 'truck' as const, text: 'Transportadora' },
-          { icon: 'data' as const, text: 'Codigo de rastreio' },
-          { icon: 'calendar' as const, text: 'Previsao de entrega' },
-        ],
-      },
-      {
-        icon: 'check' as const,
-        label: 'Cliente notificado',
-        sublabel: 'Atualizacoes automaticas.',
-        examples: [
-          { icon: 'mail' as const, text: 'Email de confirmacao' },
-          { icon: 'bell' as const, text: 'WhatsApp com rastreio' },
-          { icon: 'check' as const, text: 'Entrega confirmada' },
-        ],
-      },
-    ],
-  },
-  financial: {
-    title: 'Conciliacao Financeira',
-    steps: [
-      {
-        icon: 'creditCard' as const,
-        label: 'Venda registrada',
-        sublabel: 'Dados capturados.',
-        examples: [
-          { icon: 'creditCard' as const, text: 'Valor da venda' },
-          { icon: 'calendar' as const, text: 'Data e hora' },
-          { icon: 'data' as const, text: 'Forma de pagamento' },
+          { icon: 'form' as const, text: 'Dados do fornecedor' },
+          { icon: 'box' as const, text: 'Insumos listados' },
+          { icon: 'calendar' as const, text: 'Prazo definido' },
         ],
       },
       {
         icon: 'sync' as const,
-        label: 'Pagamento verificado',
-        sublabel: 'Cruzamento com extrato.',
+        label: 'Cotacao automatica',
+        sublabel: 'Comparativo de precos.',
         examples: [
-          { icon: 'sync' as const, text: 'Conciliacao automatica' },
-          { icon: 'creditCard' as const, text: 'Taxas calculadas' },
-          { icon: 'check' as const, text: 'Valores batidos' },
+          { icon: 'data' as const, text: 'Precos atualizados' },
+          { icon: 'document' as const, text: 'Historico de compras' },
+          { icon: 'check' as const, text: 'Melhor opcao destacada' },
+        ],
+      },
+      {
+        icon: 'bell' as const,
+        label: 'Entrega monitorada',
+        sublabel: 'Acompanhamento ate a chegada.',
+        examples: [
+          { icon: 'calendar' as const, text: 'Prazo acompanhado' },
+          { icon: 'bell' as const, text: 'Alerta de atraso' },
+          { icon: 'mail' as const, text: 'Fornecedor notificado' },
+        ],
+      },
+      {
+        icon: 'check' as const,
+        label: 'Estoque atualizado',
+        sublabel: 'Registro automatico na entrada.',
+        examples: [
+          { icon: 'check' as const, text: 'Quantidade conferida' },
+          { icon: 'data' as const, text: 'Estoque atualizado' },
+          { icon: 'document' as const, text: 'Nota fiscal arquivada' },
+        ],
+      },
+    ],
+  },
+  traceability: {
+    title: 'Rastreabilidade e Conformidade',
+    steps: [
+      {
+        icon: 'document' as const,
+        label: 'Documento recebido',
+        sublabel: 'Licenca ou certificado.',
+        examples: [
+          { icon: 'file' as const, text: 'PDF ou imagem' },
+          { icon: 'mail' as const, text: 'Anexo de email' },
+          { icon: 'document' as const, text: 'Scan de papel' },
+        ],
+      },
+      {
+        icon: 'process' as const,
+        label: 'Auto-classificado',
+        sublabel: 'Tipo identificado.',
+        examples: [
+          { icon: 'data' as const, text: 'Categoria detectada' },
+          { icon: 'document' as const, text: 'Propriedade identificada' },
+          { icon: 'calendar' as const, text: 'Validade extraida' },
+        ],
+      },
+      {
+        icon: 'calendar' as const,
+        label: 'Vencimento registrado',
+        sublabel: 'Prazo monitorado.',
+        examples: [
+          { icon: 'clock' as const, text: 'Prazo calculado' },
+          { icon: 'document' as const, text: 'Regra aplicada' },
+          { icon: 'folder' as const, text: 'Arquivo organizado' },
+        ],
+      },
+      {
+        icon: 'check' as const,
+        label: 'Alerta programado',
+        sublabel: 'Aviso antes do vencimento.',
+        examples: [
+          { icon: 'bell' as const, text: 'Lembrete 30 dias' },
+          { icon: 'mail' as const, text: 'Notificacao enviada' },
+          { icon: 'check' as const, text: 'Renovacao orientada' },
+        ],
+      },
+    ],
+  },
+  fieldOffice: {
+    title: 'Comunicacao Campo-Escritorio',
+    steps: [
+      {
+        icon: 'mail' as const,
+        label: 'Relato do campo',
+        sublabel: 'Mensagem ou foto recebida.',
+        examples: [
+          { icon: 'mail' as const, text: 'WhatsApp recebido' },
+          { icon: 'file' as const, text: 'Foto anexada' },
+          { icon: 'data' as const, text: 'Dados do campo' },
+        ],
+      },
+      {
+        icon: 'process' as const,
+        label: 'Dados extraidos',
+        sublabel: 'Informacao organizada.',
+        examples: [
+          { icon: 'data' as const, text: 'Texto extraido' },
+          { icon: 'document' as const, text: 'Planilha preenchida' },
+          { icon: 'folder' as const, text: 'Pasta atualizada' },
         ],
       },
       {
         icon: 'document' as const,
         label: 'Relatorio gerado',
-        sublabel: 'Consolidacao por periodo.',
+        sublabel: 'Consolidacao automatica.',
         examples: [
-          { icon: 'chart' as const, text: 'Total recebido' },
-          { icon: 'data' as const, text: 'Por forma de pagamento' },
-          { icon: 'creditCard' as const, text: 'Taxas descontadas' },
+          { icon: 'chart' as const, text: 'Dados consolidados' },
+          { icon: 'document' as const, text: 'Formato profissional' },
+          { icon: 'file' as const, text: 'PDF gerado' },
         ],
       },
       {
         icon: 'check' as const,
-        label: 'Divergencias alertadas',
-        sublabel: 'Diferencas identificadas.',
-        examples: [
-          { icon: 'bell' as const, text: 'Alerta de diferenca' },
-          { icon: 'document' as const, text: 'Detalhes do erro' },
-          { icon: 'check' as const, text: 'Correcao orientada' },
-        ],
-      },
-    ],
-  },
-  reports: {
-    title: 'Relatorios de Vendas',
-    steps: [
-      {
-        icon: 'calendar' as const,
-        label: 'Periodo fechado',
-        sublabel: 'Dia, semana ou mes.',
-        examples: [
-          { icon: 'calendar' as const, text: 'Frequencia definida' },
-          { icon: 'clock' as const, text: 'Horario programado' },
-          { icon: 'bell' as const, text: 'Disparo automatico' },
-        ],
-      },
-      {
-        icon: 'sync' as const,
-        label: 'Dados consolidados',
-        sublabel: 'Vendas, margens e estoque.',
-        examples: [
-          { icon: 'creditCard' as const, text: 'Faturamento total' },
-          { icon: 'chart' as const, text: 'Margem calculada' },
-          { icon: 'box' as const, text: 'Posicao de estoque' },
-        ],
-      },
-      {
-        icon: 'chart' as const,
-        label: 'Analise pronta',
-        sublabel: 'Graficos e indicadores.',
-        examples: [
-          { icon: 'chart' as const, text: 'Comparativo periodo' },
-          { icon: 'tag' as const, text: 'Produtos destaque' },
-          { icon: 'data' as const, text: 'Tendencias visiveis' },
-        ],
-      },
-      {
-        icon: 'check' as const,
-        label: 'Relatorio entregue',
-        sublabel: 'No seu email, no horario.',
+        label: 'Equipe notificada',
+        sublabel: 'Escritorio atualizado.',
         examples: [
           { icon: 'mail' as const, text: 'Email enviado' },
-          { icon: 'file' as const, text: 'PDF anexado' },
-          { icon: 'document' as const, text: 'Historico guardado' },
+          { icon: 'bell' as const, text: 'Alerta no WhatsApp' },
+          { icon: 'check' as const, text: 'Registro completo' },
         ],
       },
     ],

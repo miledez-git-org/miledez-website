@@ -153,21 +153,34 @@ WhatsApp is the primary business communication tool for the target audience. It'
 
 ## F. Summary — Priority Action Items
 
-| # | Issue | Severity | Effort |
-|---|---|---|---|
-| 1 | Replace Varejo vertical with Agronegocio | Critical | High |
-| 2 | Use official tagline "seu trabalho no automático" | Critical | Low |
-| 3 | Fix BusinessProfilesSection examples to match verticals | Critical | Medium |
-| 4 | Add pain-point section to homepage (before mechanism) | High | Medium |
-| 5 | Add "Brazil-native" and "100% customized" as prominent selling points | High | Low |
-| 6 | Replace "retorno garantido" with safer copy | High | Low |
-| 7 | Add concrete solution examples to homepage | High | Medium |
-| 8 | Surface free test/trial automation offer | High | Low |
-| 9 | Fix missing accent marks on industry pages | High | Low |
-| 10 | Add intelligence services to pricing or elsewhere | Medium | Low |
-| 11 | Add social proof (even minimal) | Medium | Medium |
-| 12 | Reduce excessive whitespace between sections | Medium | Low |
-| 13 | Update hero visual with SMB-relevant tools | Medium | Medium |
-| 14 | Update copyright to 2026 | Low | Trivial |
-| 15 | Make WhatsApp more prominent | Low | Low |
+| # | Issue | Severity | Effort | Status |
+|---|---|---|---|---|
+| 1 | Replace Varejo vertical with Agronegocio | Critical | High | **DONE** (2026-03-06) |
+| 2 | Use official tagline "seu trabalho no automático" | Critical | Low | **DONE** (2026-03-06) |
+| 3 | Fix BusinessProfilesSection examples to match verticals | Critical | Medium | **DONE** (2026-03-06) |
+| 4 | Add pain-point section to homepage (before mechanism) | High | Medium | |
+| 5 | Add "Brazil-native" and "100% customized" as prominent selling points | High | Low | |
+| 6 | Replace "retorno garantido" with safer copy | High | Low | |
+| 7 | Add concrete solution examples to homepage | High | Medium | |
+| 8 | Surface free test/trial automation offer | High | Low | |
+| 9 | Fix missing accent marks on industry pages | High | Low | |
+| 10 | Add intelligence services to pricing or elsewhere | Medium | Low | |
+| 11 | Add social proof (even minimal) | Medium | Medium | |
+| 12 | Reduce excessive whitespace between sections | Medium | Low | |
+| 13 | Update hero visual with SMB-relevant tools | Medium | Medium | |
+| 14 | Update copyright to 2026 | Low | Trivial | |
+| 15 | Make WhatsApp more prominent | Low | Low | |
 | 16 | Rethink section order (pain → outcome → mechanism) | Medium | Medium |
+
+### Implementation Notes (2026-03-06)
+
+**Issues #1, #2, #3 resolved in a single session. Changes across 11 files:**
+
+- `presets.ts`: Industry type + all varejo presets → agronegocio (Coordenação de Fornecedores, Rastreabilidade, Campo-Escritório)
+- `app/agronegocio/`: New page + full content rewrite (was `app/varejo/`)
+- `Header.tsx` + `Footer.tsx`: Nav links + footer tagline
+- `IndustriesSection.tsx`: Leaf icon, agro card data
+- `WorkflowDemo.tsx` + `HeroWorkflowDemo.tsx`: Agro tab/workflow replacing Varejo
+- `DiagnosticoAutomacao.tsx`: Agronegócio option + recommendations
+- `BusinessProfilesSection.tsx`: 3 cards replaced (Cooperativa de Café, Distribuidora de Insumos, Clínica Médica), new icons, updated subtitle
+- `app/page.tsx`: Hero headline → "seu trabalho / no automático" + subheadline

@@ -20,12 +20,11 @@ const backgroundIcons = {
       <path d="M20 26v4h8v-4" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
-  retail: (
+  agro: (
     <svg className="w-full h-full" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={1}>
-      <path d="M12 14h24l-3 28H15L12 14z" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M18 14V10a6 6 0 1112 0v4" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="24" cy="28" r="4" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M24 24v-2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M24 42V24" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M24 24c0-8 8-14 16-14-2 8-8 14-16 14z" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M24 30c0-6-6-10-12-10 1.5 6 6 10 12 10z" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   ),
 }
@@ -35,14 +34,14 @@ const backgroundIcons = {
 const gradients = {
   health: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%)',
   services: 'linear-gradient(135deg, #fefce8 0%, #fef9c3 50%, #fef08a 100%)',
-  retail: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%)',
+  agro: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%)',
 }
 
 // Industry-specific accent colors
 const accents = {
   health: '#0284c7',
   services: '#ca8a04',
-  retail: '#16a34a',
+  agro: '#16a34a',
 }
 
 const industries = [
@@ -63,12 +62,12 @@ const industries = [
     statLabel: 'mais contratos gerenciados',
   },
   {
-    id: 'retail',
-    name: 'Varejo e E-commerce',
-    href: '/varejo',
-    desc: 'Estoque, pedidos, financeiro',
-    stat: '24h',
-    statLabel: 'operação ininterrupta',
+    id: 'agro',
+    name: 'Agronegócio',
+    href: '/agronegocio',
+    desc: 'Fornecedores, conformidade, campo-escritório',
+    stat: '80%',
+    statLabel: 'menos tempo coordenando',
   },
 ]
 

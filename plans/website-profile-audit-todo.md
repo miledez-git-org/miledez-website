@@ -2,20 +2,27 @@
 
 > Plan: [website-profile-audit-plan.md](./website-profile-audit-plan.md)
 
-## Critical — Vertical & Identity
+## Critical — Vertical & Identity (DONE)
 
-- [ ] Create `/agronegocio` page with full content (hero, pain points, workflows, results, integrations)
-- [ ] Remove or archive `/varejo` page
-- [ ] Update nav dropdown: replace "Varejo e E-commerce" with "Agronegocio"
-- [ ] Update footer links: replace "Varejo" with "Agronegocio"
-- [ ] Replace hero headline or sub with tagline "seu trabalho no automático"
-- [ ] Update footer tagline to use "seu trabalho no automático"
+- [x] Create `/agronegocio` page with full content (hero, pain points, workflows, results, integrations)
+- [x] Remove or archive `/varejo` page
+- [x] Update nav dropdown: replace "Varejo e E-commerce" with "Agronegocio"
+- [x] Update footer links: replace "Varejo" with "Agronegocio"
+- [x] Replace hero headline or sub with tagline "seu trabalho no automático"
+- [x] Update footer tagline to use "seu trabalho no automático"
+- [x] Update WorkflowVisual presets (Industry type, industryPresets, heroPresets, compact, full)
+- [x] Update IndustriesSection (icon, card data, accent color)
+- [x] Update WorkflowDemo (Agro tab replacing Varejo)
+- [x] Update HeroWorkflowDemo (Agronegócio workflow replacing Varejo)
+- [x] Update DiagnosticoAutomacao (option label + recommendations)
 
-## Critical — Business Profiles
+## Critical — Business Profiles (DONE)
 
-- [ ] Replace "Loja de Roupas Online" card with agronegocio example (e.g., Cooperativa de Café)
-- [ ] Replace "Rede de Pet Shops" card with agronegocio example (e.g., Distribuidora de Insumos)
-- [ ] Resize "Hospital Regional" to smaller healthcare profile (e.g., Clínica Médica, 20 profissionais)
+- [x] Replace "Loja de Roupas Online" card with Cooperativa de Café (50 produtores, Sul de Minas, 6x)
+- [x] Replace "Rede de Pet Shops" card with Distribuidora de Insumos Agrícolas (15 funcionários, Triângulo Mineiro, 5x)
+- [x] Resize "Hospital Regional" to Clínica Médica (20 profissionais, BH, 6x)
+- [x] Update subtitle: "De clínicas a cooperativas — automação funciona em qualquer escala."
+- [x] Replace ShoppingBagIcon/StoreIcon with LeafIcon/WarehouseIcon
 
 ## High — Selling Points & Copy
 

@@ -68,14 +68,14 @@ const workflows: Workflow[] = [
     ],
   },
   {
-    name: 'Conciliação Financeira',
-    industry: 'Varejo e E-commerce',
-    industryLogos: ['shopify', 'mercado-livre', 'mercadopago', 'whatsapp', 'ifood'],
+    name: 'Coordenação de Fornecedores',
+    industry: 'Agronegócio',
+    industryLogos: ['whatsapp', 'google-sheets', 'excel', 'google-drive', 'contaazul'],
     cards: [
-      { id: 1, icon: stepIcons.creditCard, iconLabel: 'Venda', title: 'Venda registrada', description: 'Dados capturados automaticamente.', offsetX: 10 },
-      { id: 2, icon: stepIcons.sync, iconLabel: 'Verificar', title: 'Pagamento verificado', description: 'Cruzamento com extrato bancário.', offsetX: 55 },
-      { id: 3, icon: stepIcons.document, iconLabel: 'Relatório', title: 'Relatório gerado', description: 'Consolidação por período.', offsetX: 25 },
-      { id: 4, icon: stepIcons.check, iconLabel: 'Alerta', title: 'Divergências alertadas', description: 'Diferenças identificadas na hora.', offsetX: 45 },
+      { id: 1, icon: stepIcons.document, iconLabel: 'Pedido', title: 'Pedido registrado', description: 'Solicitação de insumos cadastrada.', offsetX: 10 },
+      { id: 2, icon: stepIcons.sync, iconLabel: 'Cotação', title: 'Cotação automática', description: 'Comparativo de preços gerado.', offsetX: 55 },
+      { id: 3, icon: stepIcons.bell, iconLabel: 'Entrega', title: 'Entrega monitorada', description: 'Acompanhamento até a chegada.', offsetX: 25 },
+      { id: 4, icon: stepIcons.check, iconLabel: 'Estoque', title: 'Estoque atualizado', description: 'Registro automático na entrada.', offsetX: 45 },
     ],
   },
 ]
