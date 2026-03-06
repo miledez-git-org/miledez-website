@@ -9,6 +9,7 @@ import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
 import HeroConstellation from '@/components/HeroConstellation'
 import WorkflowExplainerSection from '@/components/WorkflowExplainerSection'
+import PainPointSection from '@/components/PainPointSection'
 import BusinessProfilesSection from '@/components/BusinessProfilesSection'
 import ScrollProgress from '@/components/ScrollProgress'
 import ContactModal from '@/components/ContactModal'
@@ -86,6 +87,9 @@ export default function Home() {
 
       </section>
 
+      {/* Pain Points */}
+      <PainPointSection />
+
       {/* Workflow Explainer - How automations work */}
       <WorkflowExplainerSection />
 
@@ -132,14 +136,14 @@ export default function Home() {
             <span className="text-brand-black">Vamos conversar</span>
           </h2>
           <p className="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
-            Sem compromisso, sem custo inicial. Mostramos o potencial de economia para seu negócio.
+            Criamos uma automação de teste gratuita para seu negócio. Sem compromisso, sem custo.
           </p>
           <div className="mt-10 md:mt-12">
             <button
               onClick={() => setIsContactModalOpen(true)}
               className="btn btn-primary btn-xl"
             >
-              Agendar demonstração
+              Quero testar grátis
             </button>
           </div>
         </div>

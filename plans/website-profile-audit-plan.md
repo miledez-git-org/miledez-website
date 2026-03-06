@@ -158,12 +158,12 @@ WhatsApp is the primary business communication tool for the target audience. It'
 | 1 | Replace Varejo vertical with Agronegocio | Critical | High | **DONE** (2026-03-06) |
 | 2 | Use official tagline "seu trabalho no automático" | Critical | Low | **DONE** (2026-03-06) |
 | 3 | Fix BusinessProfilesSection examples to match verticals | Critical | Medium | **DONE** (2026-03-06) |
-| 4 | Add pain-point section to homepage (before mechanism) | High | Medium | |
-| 5 | Add "Brazil-native" and "100% customized" as prominent selling points | High | Low | |
-| 6 | Replace "retorno garantido" with safer copy | High | Low | |
-| 7 | Add concrete solution examples to homepage | High | Medium | |
-| 8 | Surface free test/trial automation offer | High | Low | |
-| 9 | Fix missing accent marks on industry pages | High | Low | |
+| 4 | Add pain-point section to homepage (before mechanism) | High | Medium | **DONE** (2026-03-06) |
+| 5 | Add "Brazil-native" and "100% customized" as prominent selling points | High | Low | **DONE** (2026-03-06) |
+| 6 | Replace "retorno garantido" with safer copy | High | Low | **DONE** (2026-03-06) |
+| 7 | Add concrete solution examples to homepage | High | Medium | **DONE** (2026-03-06) |
+| 8 | Surface free test/trial automation offer | High | Low | **DONE** (2026-03-06) |
+| 9 | Fix missing accent marks on industry pages | High | Low | **DONE** (2026-03-06) |
 | 10 | Add intelligence services to pricing or elsewhere | Medium | Low | |
 | 11 | Add social proof (even minimal) | Medium | Medium | |
 | 12 | Reduce excessive whitespace between sections | Medium | Low | |
@@ -184,3 +184,13 @@ WhatsApp is the primary business communication tool for the target audience. It'
 - `DiagnosticoAutomacao.tsx`: Agronegócio option + recommendations
 - `BusinessProfilesSection.tsx`: 3 cards replaced (Cooperativa de Café, Distribuidora de Insumos, Clínica Médica), new icons, updated subtitle
 - `app/page.tsx`: Hero headline → "seu trabalho / no automático" + subheadline
+
+**Issues #4–#9 resolved (2026-03-06). Changes across 7 files (+1 new):**
+
+- `presets.ts`: Fixed 40+ missing Portuguese accent marks across all workflow presets (saude, servicos, agronegocio — compact and full)
+- `PricingSection.tsx`: "retorno garantido" → "retorno comprovado"
+- `WorkflowExplainerSection.tsx`: Abstract NODE_SETS replaced with concrete cross-industry examples (healthcare/services/agro); SUB_PROCESS_NODES updated; bg changed to `bg-white` for alternating pattern
+- `ValuePropositionB.tsx`: Added 2 new benefit cards ("100% personalizado" + "Feito para o Brasil"), fixed hardcoded color → `text-brand-primary`, CTA → "Teste grátis uma automação"
+- `app/page.tsx`: Added PainPointSection between Hero and WorkflowExplainer; bottom CTA → "Quero testar grátis" + free test messaging
+- `ContactModal.tsx`: Subtitle updated to mention free test automation
+- **NEW** `PainPointSection.tsx`: 3-card pain-point section reusing ChallengeCard + stepIcons

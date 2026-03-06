@@ -152,7 +152,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 Vamos conversar
               </h2>
               <p className="text-brand-muted mb-6">
-                Preencha o formulário e entraremos em contato para agendar um diagnóstico gratuito.
+                Preencha o formulário e entraremos em contato para criar uma automação de teste gratuita para sua empresa.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">

@@ -61,7 +61,7 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
       <div className="mb-12 md:mb-14 text-center">
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
           Preço justo,<br />
-          <span className="text-[#274855]">retorno garantido</span>
+          <span className="text-[#274855]">retorno comprovado</span>
         </h2>
         <p className="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
           Baseado na complexidade e escala do seu negócio

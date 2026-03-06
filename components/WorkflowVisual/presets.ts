@@ -14,7 +14,7 @@ export type Industry = 'saude' | 'servicos' | 'agronegocio'
 
 export const industryPresets: Record<Industry, WorkflowPreset> = {
   saude: {
-    title: 'Automacao de Documentos',
+    title: 'Automação de Documentos',
     steps: [
       {
         icon: 'user',
@@ -23,12 +23,12 @@ export const industryPresets: Record<Industry, WorkflowPreset> = {
         examples: [
           { icon: 'form', text: 'Ficha preenchida' },
           { icon: 'calendar', text: 'Consulta agendada' },
-          { icon: 'user', text: 'Dados basicos capturados' },
+          { icon: 'user', text: 'Dados básicos capturados' },
         ],
       },
       {
         icon: 'mail',
-        label: 'Formulario enviado',
+        label: 'Formulário enviado',
         sublabel: 'Ficha de anamnese enviada automaticamente.',
         examples: [
           { icon: 'mail', text: 'Email personalizado' },
@@ -43,30 +43,30 @@ export const industryPresets: Record<Industry, WorkflowPreset> = {
         examples: [
           { icon: 'folder', text: 'Pasta do paciente' },
           { icon: 'document', text: 'Exames anexados' },
-          { icon: 'data', text: 'Historico atualizado' },
+          { icon: 'data', text: 'Histórico atualizado' },
         ],
       },
       {
         icon: 'check',
-        label: 'Prontuario completo',
+        label: 'Prontuário completo',
         sublabel: 'Tudo pronto para o atendimento.',
         examples: [
           { icon: 'check', text: 'Documentos validados' },
-          { icon: 'bell', text: 'Pendencias sinalizadas' },
+          { icon: 'bell', text: 'Pendências sinalizadas' },
           { icon: 'team', text: 'Equipe notificada' },
         ],
       },
     ],
   },
   servicos: {
-    title: 'Gestao de Contratos',
+    title: 'Gestão de Contratos',
     steps: [
       {
         icon: 'user',
         label: 'Cliente cadastrado',
         sublabel: 'Dados registrados no sistema.',
         examples: [
-          { icon: 'form', text: 'Formulario preenchido' },
+          { icon: 'form', text: 'Formulário preenchido' },
           { icon: 'document', text: 'Documentos anexados' },
           { icon: 'data', text: 'Perfil criado' },
         ],
@@ -83,12 +83,12 @@ export const industryPresets: Record<Industry, WorkflowPreset> = {
       },
       {
         icon: 'calendar',
-        label: 'Alerta de renovacao',
-        sublabel: 'Notificacao antes do vencimento.',
+        label: 'Alerta de renovação',
+        sublabel: 'Notificação antes do vencimento.',
         examples: [
-          { icon: 'clock', text: '30 dias de antecedencia' },
-          { icon: 'bell', text: 'Lembrete automatico' },
-          { icon: 'mail', text: 'Email ao responsavel' },
+          { icon: 'clock', text: '30 dias de antecedência' },
+          { icon: 'bell', text: 'Lembrete automático' },
+          { icon: 'mail', text: 'Email ao responsável' },
         ],
       },
       {
@@ -97,19 +97,19 @@ export const industryPresets: Record<Industry, WorkflowPreset> = {
         sublabel: 'Continuidade garantida.',
         examples: [
           { icon: 'sync', text: 'Contrato atualizado' },
-          { icon: 'document', text: 'Nova versao gerada' },
+          { icon: 'document', text: 'Nova versão gerada' },
           { icon: 'check', text: 'Assinatura digital' },
         ],
       },
     ],
   },
   agronegocio: {
-    title: 'Coordenacao de Fornecedores',
+    title: 'Coordenação de Fornecedores',
     steps: [
       {
         icon: 'document',
         label: 'Pedido recebido',
-        sublabel: 'Solicitacao registrada no sistema.',
+        sublabel: 'Solicitação registrada no sistema.',
         examples: [
           { icon: 'form', text: 'Dados do fornecedor' },
           { icon: 'box', text: 'Insumos solicitados' },
@@ -118,12 +118,12 @@ export const industryPresets: Record<Industry, WorkflowPreset> = {
       },
       {
         icon: 'sync',
-        label: 'Cotacao automatica',
-        sublabel: 'Comparativo de precos gerado.',
+        label: 'Cotação automática',
+        sublabel: 'Comparativo de preços gerado.',
         examples: [
-          { icon: 'data', text: 'Precos atualizados' },
-          { icon: 'document', text: 'Historico de compras' },
-          { icon: 'check', text: 'Melhor opcao destacada' },
+          { icon: 'data', text: 'Preços atualizados' },
+          { icon: 'document', text: 'Histórico de compras' },
+          { icon: 'check', text: 'Melhor opção destacada' },
         ],
       },
       {
@@ -139,7 +139,7 @@ export const industryPresets: Record<Industry, WorkflowPreset> = {
       {
         icon: 'check',
         label: 'Estoque atualizado',
-        sublabel: 'Registro automatico na entrada.',
+        sublabel: 'Registro automático na entrada.',
         examples: [
           { icon: 'check', text: 'Quantidade conferida' },
           { icon: 'data', text: 'Estoque atualizado' },
@@ -162,7 +162,7 @@ export function getIndustryPreset(industry: Industry): WorkflowPreset {
  */
 export const heroPresets: Record<Industry, HeroWorkflowPreset> = {
   saude: {
-    title: 'Automacao de Documentos',
+    title: 'Automação de Documentos',
     steps: [
       {
         icon: 'user',
@@ -173,19 +173,19 @@ export const heroPresets: Record<Industry, HeroWorkflowPreset> = {
       {
         icon: 'process',
         label: 'Processado automaticamente',
-        sublabel: 'Formularios, docs e organizacao',
+        sublabel: 'Formulários, docs e organização',
         logos: ['gmail', 'google-drive'],
       },
       {
         icon: 'check',
-        label: 'Prontuario completo',
+        label: 'Prontuário completo',
         sublabel: 'Pronto para atendimento',
         logos: ['google-drive', 'excel'],
       },
     ],
   },
   servicos: {
-    title: 'Gestao de Contratos',
+    title: 'Gestão de Contratos',
     steps: [
       {
         icon: 'user',
@@ -196,7 +196,7 @@ export const heroPresets: Record<Industry, HeroWorkflowPreset> = {
       {
         icon: 'process',
         label: 'Contrato gerenciado',
-        sublabel: 'Geracao, alertas e renovacao',
+        sublabel: 'Geração, alertas e renovação',
         logos: ['docusign', 'google-calendar'],
       },
       {
@@ -208,17 +208,17 @@ export const heroPresets: Record<Industry, HeroWorkflowPreset> = {
     ],
   },
   agronegocio: {
-    title: 'Coordenacao de Fornecedores',
+    title: 'Coordenação de Fornecedores',
     steps: [
       {
         icon: 'document',
         label: 'Pedido registrado',
-        sublabel: 'Solicitacao de insumos',
+        sublabel: 'Solicitação de insumos',
         logos: ['whatsapp', 'google-sheets'],
       },
       {
         icon: 'process',
-        label: 'Cotacao e acompanhamento',
+        label: 'Cotação e acompanhamento',
         sublabel: 'Comparativo e prazos',
         logos: ['excel', 'google-drive'],
       },
@@ -247,17 +247,17 @@ export const saudeWorkflowsCompact = {
     title: 'Coleta de Documentos',
     steps: [
       { icon: 'user' as const, label: 'Novo paciente', sublabel: 'Cadastro inicia o processo', logos: ['whatsapp', 'google-sheets'] },
-      { icon: 'mail' as const, label: 'Formulario enviado', sublabel: 'Anamnese automatica', logos: ['gmail', 'typeform'] },
-      { icon: 'folder' as const, label: 'Docs organizados', sublabel: 'Classificacao automatica', logos: ['google-drive', 'google-sheets'] },
-      { icon: 'check' as const, label: 'Prontuario completo', sublabel: 'Pronto para atendimento', logos: ['google-drive', 'excel'] },
+      { icon: 'mail' as const, label: 'Formulário enviado', sublabel: 'Anamnese automática', logos: ['gmail', 'typeform'] },
+      { icon: 'folder' as const, label: 'Docs organizados', sublabel: 'Classificação automática', logos: ['google-drive', 'google-sheets'] },
+      { icon: 'check' as const, label: 'Prontuário completo', sublabel: 'Pronto para atendimento', logos: ['google-drive', 'excel'] },
     ],
   },
   billing: {
-    title: 'Faturamento de Convenios',
+    title: 'Faturamento de Convênios',
     steps: [
       { icon: 'document' as const, label: 'Consulta finalizada', sublabel: 'Dados registrados', logos: ['google-sheets', 'excel'] },
-      { icon: 'file' as const, label: 'Guia formatada', sublabel: 'Conforme convenio', logos: ['excel', 'word'] },
-      { icon: 'mail' as const, label: 'Envio automatico', sublabel: 'Submissao ao portal', logos: ['gmail', 'outlook'] },
+      { icon: 'file' as const, label: 'Guia formatada', sublabel: 'Conforme convênio', logos: ['excel', 'word'] },
+      { icon: 'mail' as const, label: 'Envio automático', sublabel: 'Submissão ao portal', logos: ['gmail', 'outlook'] },
       { icon: 'check' as const, label: 'Status rastreado', sublabel: 'Ate o pagamento', logos: ['google-sheets', 'contaazul'] },
     ],
   },
@@ -266,17 +266,17 @@ export const saudeWorkflowsCompact = {
     steps: [
       { icon: 'document' as const, label: 'Documento recebido', sublabel: 'Qualquer formato', logos: ['gmail', 'google-drive'] },
       { icon: 'process' as const, label: 'Auto-classificado', sublabel: 'IA identifica tipo', logos: ['openai', 'google-drive'] },
-      { icon: 'calendar' as const, label: 'Retencao definida', sublabel: 'Prazo legal automatico', logos: ['google-calendar', 'excel'] },
+      { icon: 'calendar' as const, label: 'Retenção definida', sublabel: 'Prazo legal automático', logos: ['google-calendar', 'excel'] },
       { icon: 'check' as const, label: 'Alertas agendados', sublabel: 'Aviso antes do vencimento', logos: ['google-calendar', 'gmail'] },
     ],
   },
   collections: {
-    title: 'Cobranca Automatizada',
+    title: 'Cobrança Automatizada',
     steps: [
-      { icon: 'creditCard' as const, label: 'Fatura gerada', sublabel: 'Automatica apos consulta', logos: ['contaazul', 'excel'] },
+      { icon: 'creditCard' as const, label: 'Fatura gerada', sublabel: 'Automática apos consulta', logos: ['contaazul', 'excel'] },
       { icon: 'calendar' as const, label: 'Prazo monitorado', sublabel: 'Contagem regressiva', logos: ['google-calendar', 'google-sheets'] },
-      { icon: 'bell' as const, label: 'Lembretes enviados', sublabel: 'Escalonamento automatico', logos: ['whatsapp', 'gmail'] },
-      { icon: 'check' as const, label: 'Baixa automatica', sublabel: 'Ao receber pagamento', logos: ['contaazul', 'whatsapp'] },
+      { icon: 'bell' as const, label: 'Lembretes enviados', sublabel: 'Escalonamento automático', logos: ['whatsapp', 'gmail'] },
+      { icon: 'check' as const, label: 'Baixa automática', sublabel: 'Ao receber pagamento', logos: ['contaazul', 'whatsapp'] },
     ],
   },
 }
@@ -286,18 +286,18 @@ export const servicosWorkflowsCompact = {
     title: 'Onboarding de Clientes',
     steps: [
       { icon: 'user' as const, label: 'Novo cliente', sublabel: 'Contrato assinado', logos: ['gmail', 'google-drive'] },
-      { icon: 'mail' as const, label: 'Kit enviado', sublabel: 'Boas-vindas automatico', logos: ['gmail', 'notion'] },
+      { icon: 'mail' as const, label: 'Kit enviado', sublabel: 'Boas-vindas automático', logos: ['gmail', 'notion'] },
       { icon: 'folder' as const, label: 'Pasta criada', sublabel: 'Estrutura organizada', logos: ['google-drive', 'notion'] },
       { icon: 'check' as const, label: 'Pronto para iniciar', sublabel: 'Tudo configurado', logos: ['notion', 'gmail'] },
     ],
   },
   contracts: {
-    title: 'Gestao de Contratos',
+    title: 'Gestão de Contratos',
     steps: [
       { icon: 'document' as const, label: 'Contrato cadastrado', sublabel: 'Vencimento registrado', logos: ['google-drive', 'docusign'] },
       { icon: 'calendar' as const, label: 'Alertas programados', sublabel: '60, 30 e 15 dias antes', logos: ['google-calendar', 'gmail'] },
-      { icon: 'document' as const, label: 'Proposta gerada', sublabel: 'Renovacao pre-preenchida', logos: ['docusign', 'excel'] },
-      { icon: 'check' as const, label: 'Renovacao garantida', sublabel: 'Status sempre atualizado', logos: ['docusign', 'google-drive'] },
+      { icon: 'document' as const, label: 'Proposta gerada', sublabel: 'Renovação pre-preenchida', logos: ['docusign', 'excel'] },
+      { icon: 'check' as const, label: 'Renovação garantida', sublabel: 'Status sempre atualizado', logos: ['docusign', 'google-drive'] },
     ],
   },
   billing: {
@@ -310,22 +310,22 @@ export const servicosWorkflowsCompact = {
     ],
   },
   reports: {
-    title: 'Relatorios para Clientes',
+    title: 'Relatórios para Clientes',
     steps: [
       { icon: 'calendar' as const, label: 'Data programada', sublabel: 'Semanal ou mensal', logos: ['google-calendar', 'notion'] },
-      { icon: 'sync' as const, label: 'Dados coletados', sublabel: 'Metricas automaticas', logos: ['google-sheets', 'excel'] },
-      { icon: 'document' as const, label: 'Relatorio formatado', sublabel: 'Layout profissional', logos: ['google-sheets', 'gmail'] },
-      { icon: 'check' as const, label: 'Entrega automatica', sublabel: 'Cliente recebe no prazo', logos: ['gmail', 'google-drive'] },
+      { icon: 'sync' as const, label: 'Dados coletados', sublabel: 'Métricas automaticas', logos: ['google-sheets', 'excel'] },
+      { icon: 'document' as const, label: 'Relatório formatado', sublabel: 'Layout profissional', logos: ['google-sheets', 'gmail'] },
+      { icon: 'check' as const, label: 'Entrega automática', sublabel: 'Cliente recebe no prazo', logos: ['gmail', 'google-drive'] },
     ],
   },
 }
 
 export const agronegocioWorkflowsCompact = {
   supplierCoordination: {
-    title: 'Coordenacao de Fornecedores',
+    title: 'Coordenação de Fornecedores',
     steps: [
-      { icon: 'document' as const, label: 'Pedido registrado', sublabel: 'Solicitacao de insumos', logos: ['whatsapp', 'google-sheets'] },
-      { icon: 'sync' as const, label: 'Cotacao automatica', sublabel: 'Comparativo de precos', logos: ['excel', 'google-sheets'] },
+      { icon: 'document' as const, label: 'Pedido registrado', sublabel: 'Solicitação de insumos', logos: ['whatsapp', 'google-sheets'] },
+      { icon: 'sync' as const, label: 'Cotação automática', sublabel: 'Comparativo de preços', logos: ['excel', 'google-sheets'] },
       { icon: 'bell' as const, label: 'Entrega monitorada', sublabel: 'Prazos acompanhados', logos: ['google-calendar', 'whatsapp'] },
       { icon: 'check' as const, label: 'Estoque atualizado', sublabel: 'Entrada registrada', logos: ['google-sheets', 'contaazul'] },
     ],
@@ -333,19 +333,19 @@ export const agronegocioWorkflowsCompact = {
   traceability: {
     title: 'Rastreabilidade e Conformidade',
     steps: [
-      { icon: 'document' as const, label: 'Documento recebido', sublabel: 'Licenca ou certificado', logos: ['gmail', 'google-drive'] },
+      { icon: 'document' as const, label: 'Documento recebido', sublabel: 'Licença ou certificado', logos: ['gmail', 'google-drive'] },
       { icon: 'process' as const, label: 'Auto-classificado', sublabel: 'Tipo identificado', logos: ['google-drive', 'google-sheets'] },
       { icon: 'calendar' as const, label: 'Vencimento registrado', sublabel: 'Prazo monitorado', logos: ['google-calendar', 'excel'] },
       { icon: 'check' as const, label: 'Alerta programado', sublabel: 'Aviso antes do vencimento', logos: ['gmail', 'whatsapp'] },
     ],
   },
   fieldOffice: {
-    title: 'Comunicacao Campo-Escritorio',
+    title: 'Comunicação Campo-Escritório',
     steps: [
       { icon: 'mail' as const, label: 'Relato do campo', sublabel: 'Mensagem ou foto recebida', logos: ['whatsapp', 'gmail'] },
       { icon: 'process' as const, label: 'Dados extraidos', sublabel: 'Informacao organizada', logos: ['google-sheets', 'google-drive'] },
-      { icon: 'document' as const, label: 'Relatorio gerado', sublabel: 'Consolidacao automatica', logos: ['google-sheets', 'excel'] },
-      { icon: 'check' as const, label: 'Equipe notificada', sublabel: 'Escritorio atualizado', logos: ['gmail', 'whatsapp'] },
+      { icon: 'document' as const, label: 'Relatório gerado', sublabel: 'Consolidação automática', logos: ['google-sheets', 'excel'] },
+      { icon: 'check' as const, label: 'Equipe notificada', sublabel: 'Escritório atualizado', logos: ['gmail', 'whatsapp'] },
     ],
   },
 }
@@ -369,38 +369,38 @@ export const saudeWorkflows = {
       },
       {
         icon: 'mail' as const,
-        label: 'Formulario enviado',
-        sublabel: 'Anamnese automatica.',
+        label: 'Formulário enviado',
+        sublabel: 'Anamnese automática.',
         examples: [
           { icon: 'mail' as const, text: 'Email personalizado' },
           { icon: 'form' as const, text: 'Link para preencher' },
-          { icon: 'bell' as const, text: 'Lembrete automatico' },
+          { icon: 'bell' as const, text: 'Lembrete automático' },
         ],
       },
       {
         icon: 'folder' as const,
         label: 'Docs organizados',
-        sublabel: 'Classificacao automatica.',
+        sublabel: 'Classificação automática.',
         examples: [
           { icon: 'folder' as const, text: 'Pasta do paciente' },
           { icon: 'document' as const, text: 'Exames anexados' },
-          { icon: 'data' as const, text: 'Historico atualizado' },
+          { icon: 'data' as const, text: 'Histórico atualizado' },
         ],
       },
       {
         icon: 'check' as const,
-        label: 'Prontuario completo',
+        label: 'Prontuário completo',
         sublabel: 'Pronto para atendimento.',
         examples: [
           { icon: 'check' as const, text: 'Docs validados' },
-          { icon: 'bell' as const, text: 'Pendencias alertadas' },
+          { icon: 'bell' as const, text: 'Pendências alertadas' },
           { icon: 'team' as const, text: 'Equipe notificada' },
         ],
       },
     ],
   },
   billing: {
-    title: 'Faturamento de Convenios',
+    title: 'Faturamento de Convênios',
     steps: [
       {
         icon: 'document' as const,
@@ -415,17 +415,17 @@ export const saudeWorkflows = {
       {
         icon: 'file' as const,
         label: 'Guia formatada',
-        sublabel: 'Conforme convenio.',
+        sublabel: 'Conforme convênio.',
         examples: [
           { icon: 'document' as const, text: 'TISS preenchida' },
-          { icon: 'data' as const, text: 'Codigos validados' },
-          { icon: 'check' as const, text: 'Campos obrigatorios ok' },
+          { icon: 'data' as const, text: 'Códigos validados' },
+          { icon: 'check' as const, text: 'Campos obrigatórios ok' },
         ],
       },
       {
         icon: 'mail' as const,
-        label: 'Envio automatico',
-        sublabel: 'Submissao ao portal.',
+        label: 'Envio automático',
+        sublabel: 'Submissão ao portal.',
         examples: [
           { icon: 'sync' as const, text: 'Upload ao portal' },
           { icon: 'document' as const, text: 'Protocolo registrado' },
@@ -437,7 +437,7 @@ export const saudeWorkflows = {
         label: 'Status rastreado',
         sublabel: 'Ate o pagamento.',
         examples: [
-          { icon: 'check' as const, text: 'Aprovacao confirmada' },
+          { icon: 'check' as const, text: 'Aprovação confirmada' },
           { icon: 'creditCard' as const, text: 'Pagamento recebido' },
           { icon: 'bell' as const, text: 'Glosas alertadas' },
         ],
@@ -469,8 +469,8 @@ export const saudeWorkflows = {
       },
       {
         icon: 'calendar' as const,
-        label: 'Retencao definida',
-        sublabel: 'Prazo legal automatico.',
+        label: 'Retenção definida',
+        sublabel: 'Prazo legal automático.',
         examples: [
           { icon: 'clock' as const, text: 'Prazo calculado' },
           { icon: 'document' as const, text: 'Regra aplicada' },
@@ -483,19 +483,19 @@ export const saudeWorkflows = {
         sublabel: 'Aviso antes do vencimento.',
         examples: [
           { icon: 'bell' as const, text: 'Lembrete 30 dias' },
-          { icon: 'mail' as const, text: 'Notificacao enviada' },
-          { icon: 'check' as const, text: 'Renovacao orientada' },
+          { icon: 'mail' as const, text: 'Notificação enviada' },
+          { icon: 'check' as const, text: 'Renovação orientada' },
         ],
       },
     ],
   },
   collections: {
-    title: 'Cobranca Automatizada',
+    title: 'Cobrança Automatizada',
     steps: [
       {
         icon: 'creditCard' as const,
         label: 'Fatura gerada',
-        sublabel: 'Automatica apos consulta.',
+        sublabel: 'Automática apos consulta.',
         examples: [
           { icon: 'document' as const, text: 'Valor calculado' },
           { icon: 'user' as const, text: 'Dados do paciente' },
@@ -509,13 +509,13 @@ export const saudeWorkflows = {
         examples: [
           { icon: 'clock' as const, text: 'Dias restantes' },
           { icon: 'data' as const, text: 'Status atualizado' },
-          { icon: 'document' as const, text: 'Historico registrado' },
+          { icon: 'document' as const, text: 'Histórico registrado' },
         ],
       },
       {
         icon: 'bell' as const,
         label: 'Lembretes enviados',
-        sublabel: 'Escalonamento automatico.',
+        sublabel: 'Escalonamento automático.',
         examples: [
           { icon: 'mail' as const, text: 'Email cordial' },
           { icon: 'bell' as const, text: 'WhatsApp amigavel' },
@@ -524,7 +524,7 @@ export const saudeWorkflows = {
       },
       {
         icon: 'check' as const,
-        label: 'Baixa automatica',
+        label: 'Baixa automática',
         sublabel: 'Ao receber pagamento.',
         examples: [
           { icon: 'check' as const, text: 'Pagamento confirmado' },
@@ -541,12 +541,12 @@ export const saudeWorkflows = {
  */
 export const agronegocioWorkflows = {
   supplierCoordination: {
-    title: 'Coordenacao de Fornecedores',
+    title: 'Coordenação de Fornecedores',
     steps: [
       {
         icon: 'document' as const,
         label: 'Pedido registrado',
-        sublabel: 'Solicitacao de insumos.',
+        sublabel: 'Solicitação de insumos.',
         examples: [
           { icon: 'form' as const, text: 'Dados do fornecedor' },
           { icon: 'box' as const, text: 'Insumos listados' },
@@ -555,12 +555,12 @@ export const agronegocioWorkflows = {
       },
       {
         icon: 'sync' as const,
-        label: 'Cotacao automatica',
-        sublabel: 'Comparativo de precos.',
+        label: 'Cotação automática',
+        sublabel: 'Comparativo de preços.',
         examples: [
-          { icon: 'data' as const, text: 'Precos atualizados' },
-          { icon: 'document' as const, text: 'Historico de compras' },
-          { icon: 'check' as const, text: 'Melhor opcao destacada' },
+          { icon: 'data' as const, text: 'Preços atualizados' },
+          { icon: 'document' as const, text: 'Histórico de compras' },
+          { icon: 'check' as const, text: 'Melhor opção destacada' },
         ],
       },
       {
@@ -576,7 +576,7 @@ export const agronegocioWorkflows = {
       {
         icon: 'check' as const,
         label: 'Estoque atualizado',
-        sublabel: 'Registro automatico na entrada.',
+        sublabel: 'Registro automático na entrada.',
         examples: [
           { icon: 'check' as const, text: 'Quantidade conferida' },
           { icon: 'data' as const, text: 'Estoque atualizado' },
@@ -591,7 +591,7 @@ export const agronegocioWorkflows = {
       {
         icon: 'document' as const,
         label: 'Documento recebido',
-        sublabel: 'Licenca ou certificado.',
+        sublabel: 'Licença ou certificado.',
         examples: [
           { icon: 'file' as const, text: 'PDF ou imagem' },
           { icon: 'mail' as const, text: 'Anexo de email' },
@@ -624,14 +624,14 @@ export const agronegocioWorkflows = {
         sublabel: 'Aviso antes do vencimento.',
         examples: [
           { icon: 'bell' as const, text: 'Lembrete 30 dias' },
-          { icon: 'mail' as const, text: 'Notificacao enviada' },
-          { icon: 'check' as const, text: 'Renovacao orientada' },
+          { icon: 'mail' as const, text: 'Notificação enviada' },
+          { icon: 'check' as const, text: 'Renovação orientada' },
         ],
       },
     ],
   },
   fieldOffice: {
-    title: 'Comunicacao Campo-Escritorio',
+    title: 'Comunicação Campo-Escritório',
     steps: [
       {
         icon: 'mail' as const,
@@ -655,8 +655,8 @@ export const agronegocioWorkflows = {
       },
       {
         icon: 'document' as const,
-        label: 'Relatorio gerado',
-        sublabel: 'Consolidacao automatica.',
+        label: 'Relatório gerado',
+        sublabel: 'Consolidação automática.',
         examples: [
           { icon: 'chart' as const, text: 'Dados consolidados' },
           { icon: 'document' as const, text: 'Formato profissional' },
@@ -666,7 +666,7 @@ export const agronegocioWorkflows = {
       {
         icon: 'check' as const,
         label: 'Equipe notificada',
-        sublabel: 'Escritorio atualizado.',
+        sublabel: 'Escritório atualizado.',
         examples: [
           { icon: 'mail' as const, text: 'Email enviado' },
           { icon: 'bell' as const, text: 'Alerta no WhatsApp' },
@@ -697,7 +697,7 @@ export const servicosWorkflows = {
       {
         icon: 'mail' as const,
         label: 'Kit enviado',
-        sublabel: 'Boas-vindas automatico.',
+        sublabel: 'Boas-vindas automático.',
         examples: [
           { icon: 'mail' as const, text: 'Email de boas-vindas' },
           { icon: 'form' as const, text: 'Checklist de docs' },
@@ -720,14 +720,14 @@ export const servicosWorkflows = {
         sublabel: 'Tudo configurado.',
         examples: [
           { icon: 'check' as const, text: 'Documentos completos' },
-          { icon: 'bell' as const, text: 'Pendencias sinalizadas' },
+          { icon: 'bell' as const, text: 'Pendências sinalizadas' },
           { icon: 'team' as const, text: 'Equipe notificada' },
         ],
       },
     ],
   },
   contracts: {
-    title: 'Gestao de Contratos',
+    title: 'Gestão de Contratos',
     steps: [
       {
         icon: 'document' as const,
@@ -752,21 +752,21 @@ export const servicosWorkflows = {
       {
         icon: 'document' as const,
         label: 'Proposta gerada',
-        sublabel: 'Renovacao pre-preenchida.',
+        sublabel: 'Renovação pre-preenchida.',
         examples: [
           { icon: 'document' as const, text: 'Proposta criada' },
-          { icon: 'data' as const, text: 'Historico incluido' },
+          { icon: 'data' as const, text: 'Histórico incluido' },
           { icon: 'creditCard' as const, text: 'Reajuste calculado' },
         ],
       },
       {
         icon: 'check' as const,
-        label: 'Renovacao garantida',
+        label: 'Renovação garantida',
         sublabel: 'Status sempre atualizado.',
         examples: [
           { icon: 'check' as const, text: 'Assinatura confirmada' },
           { icon: 'sync' as const, text: 'Sistema atualizado' },
-          { icon: 'document' as const, text: 'Historico registrado' },
+          { icon: 'document' as const, text: 'Histórico registrado' },
         ],
       },
     ],
@@ -779,8 +779,8 @@ export const servicosWorkflows = {
         label: 'Marco atingido',
         sublabel: 'Entrega dispara processo.',
         examples: [
-          { icon: 'check' as const, text: 'Entrega concluida' },
-          { icon: 'calendar' as const, text: 'Fim do periodo' },
+          { icon: 'check' as const, text: 'Entrega concluída' },
+          { icon: 'calendar' as const, text: 'Fim do período' },
           { icon: 'data' as const, text: 'Horas registradas' },
         ],
       },
@@ -817,7 +817,7 @@ export const servicosWorkflows = {
     ],
   },
   reports: {
-    title: 'Relatorios para Clientes',
+    title: 'Relatórios para Clientes',
     steps: [
       {
         icon: 'calendar' as const,
@@ -825,38 +825,38 @@ export const servicosWorkflows = {
         sublabel: 'Semanal ou mensal.',
         examples: [
           { icon: 'calendar' as const, text: 'Frequencia definida' },
-          { icon: 'clock' as const, text: 'Horario agendado' },
-          { icon: 'bell' as const, text: 'Disparo automatico' },
+          { icon: 'clock' as const, text: 'Horário agendado' },
+          { icon: 'bell' as const, text: 'Disparo automático' },
         ],
       },
       {
         icon: 'sync' as const,
         label: 'Dados coletados',
-        sublabel: 'Metricas automaticas.',
+        sublabel: 'Métricas automaticas.',
         examples: [
           { icon: 'data' as const, text: 'KPIs atualizados' },
-          { icon: 'chart' as const, text: 'Graficos gerados' },
+          { icon: 'chart' as const, text: 'Gráficos gerados' },
           { icon: 'sync' as const, text: 'Fontes sincronizadas' },
         ],
       },
       {
         icon: 'document' as const,
-        label: 'Relatorio formatado',
+        label: 'Relatório formatado',
         sublabel: 'Layout profissional.',
         examples: [
           { icon: 'document' as const, text: 'Template aplicado' },
           { icon: 'file' as const, text: 'PDF gerado' },
-          { icon: 'check' as const, text: 'Revisao automatica' },
+          { icon: 'check' as const, text: 'Revisão automática' },
         ],
       },
       {
         icon: 'check' as const,
-        label: 'Entrega automatica',
+        label: 'Entrega automática',
         sublabel: 'Cliente recebe no prazo.',
         examples: [
           { icon: 'mail' as const, text: 'Email enviado' },
           { icon: 'check' as const, text: 'Entrega confirmada' },
-          { icon: 'document' as const, text: 'Historico registrado' },
+          { icon: 'document' as const, text: 'Histórico registrado' },
         ],
       },
     ],

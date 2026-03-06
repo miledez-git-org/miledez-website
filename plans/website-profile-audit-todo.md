@@ -24,17 +24,17 @@
 - [x] Update subtitle: "De clínicas a cooperativas — automação funciona em qualquer escala."
 - [x] Replace ShoppingBagIcon/StoreIcon with LeafIcon/WarehouseIcon
 
-## High — Selling Points & Copy
+## High — Selling Points & Copy (DONE)
 
-- [ ] Add homepage pain-point section (before WorkflowExplainerSection)
-- [ ] Add "Brazil-native" as a ValuePropositionB card (LGPD, TISS, ANS, Brazilian tools)
-- [ ] Promote "100% customized" from body text to a ValuePropositionB card
-- [ ] Replace "retorno garantido" in PricingSection heading with safer copy
-- [ ] Replace abstract WorkflowExplainer examples with concrete ones from agency profile
-- [ ] Add free test/trial messaging to CTAs (e.g., "Teste grátis antes de contratar")
-- [ ] Fix missing accents on `/saude` workflow visualizations
-- [ ] Check and fix accents on `/servicos` workflow visualizations
-- [ ] Check and fix accents on new `/agronegocio` workflow visualizations
+- [x] Add homepage pain-point section (before WorkflowExplainerSection)
+- [x] Add "Brazil-native" as a ValuePropositionB card (LGPD, TISS, ANS, Brazilian tools)
+- [x] Promote "100% customized" from body text to a ValuePropositionB card
+- [x] Replace "retorno garantido" in PricingSection heading with safer copy
+- [x] Replace abstract WorkflowExplainer examples with concrete ones from agency profile
+- [x] Add free test/trial messaging to CTAs (e.g., "Teste grátis antes de contratar")
+- [x] Fix missing accents on `/saude` workflow visualizations
+- [x] Check and fix accents on `/servicos` workflow visualizations
+- [x] Check and fix accents on new `/agronegocio` workflow visualizations
 
 ## Medium — Content & Structure
 

@@ -27,26 +27,26 @@ const PHASES = [
 // Each column cycles through its own set of nodes
 const NODE_SETS: [PipelineNode[], PipelineNode[], PipelineNode[]] = [
   [
-    { label: 'E-mail chega', logo: 'gmail.svg' },
-    { label: 'Formulário enviado', logo: 'google-sheets.svg' },
-    { label: 'Evento agendado', logo: 'google-calendar.svg' },
+    { label: 'Consulta agendada', logo: 'google-calendar.svg' },
+    { label: 'Contrato perto de vencer', logo: 'google-sheets.svg' },
+    { label: 'Pedido de insumo recebido', logo: 'whatsapp.svg' },
   ],
   [
-    { label: 'IA analisa conteúdo', logo: 'openai.svg' },
-    { label: 'Dados extraídos', logo: 'excel.svg' },
-    { label: 'Registros atualizados', logo: 'google-sheets.svg' },
+    { label: 'Lembrete enviado via WhatsApp', logo: 'whatsapp.svg' },
+    { label: 'Renovação preparada', logo: 'google-drive.svg' },
+    { label: 'Cotações comparadas', logo: 'google-sheets.svg' },
   ],
   [
-    { label: 'Equipe notificada', logo: 'whatsapp.svg' },
-    { label: 'Relatório pronto', logo: 'gmail.svg' },
-    { label: 'Pagamento processado', logo: 'pix.svg' },
+    { label: 'Paciente confirmado', logo: 'whatsapp.svg' },
+    { label: 'Contrato renovado', logo: 'gmail.svg' },
+    { label: 'Melhor preço escolhido', logo: 'google-sheets.svg' },
   ],
 ]
 
 // Sub-process cards shown below the middle "Processo" column
 const SUB_PROCESS_NODES: PipelineNode[] = [
-  { label: 'Pasta criada', logo: 'google-drive.svg' },
-  { label: 'Fontes pesquisadas', logo: 'chrome.svg' },
+  { label: 'Prontuário atualizado', logo: 'google-drive.svg' },
+  { label: 'Relatório mensal gerado', logo: 'excel.svg' },
 ]
 
 // --- Sub-components ---
@@ -153,7 +153,7 @@ export default function WorkflowExplainerSection() {
   }, [isVisible, isPaused])
 
   return (
-    <section className="bg-bg-muted py-28 md:py-40">
+    <section className="bg-white py-28 md:py-40">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
 
         {/* Section header */}
