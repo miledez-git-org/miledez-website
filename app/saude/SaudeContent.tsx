@@ -88,8 +88,8 @@ export default function SaudeContent() {
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
             <div className="max-w-xl flex-1">
-              <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-[#16232A]">
-                <span className="text-sm font-semibold uppercase tracking-widest text-[#16232A]">
+              <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-[#274855]">
+                <span className="text-sm font-semibold uppercase tracking-widest text-[#274855]">
                   Saúde e Clínicas
                 </span>
               </div>

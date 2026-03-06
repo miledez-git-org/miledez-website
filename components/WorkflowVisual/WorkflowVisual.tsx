@@ -29,7 +29,7 @@ export default function WorkflowVisual({
     <div className={`${variantStyles[variant]} ${className}`}>
       {/* Header */}
       <div className="flex items-center gap-2 mb-6 pb-4 border-b border-neutral-200">
-        <div className="w-2 h-2 bg-[#16232A] rounded-sm" />
+        <div className="w-2 h-2 bg-[#274855] rounded-sm" />
         <span className={titleStyles[variant]}>
           {title}
         </span>

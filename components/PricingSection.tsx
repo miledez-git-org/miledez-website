@@ -11,7 +11,6 @@ interface PricingTier {
   price: string
   description: string
   examples: string[]
-  cta: string
   featured?: boolean
 }
 
@@ -26,7 +25,6 @@ const tiers: PricingTier[] = [
       'Sincronização entre CRM e planilha',
       'Lembretes automáticos de follow-up',
     ],
-    cta: 'Começar agora',
   },
   {
     name: 'Média',
@@ -38,7 +36,6 @@ const tiers: PricingTier[] = [
       'Dashboard em tempo real',
       'Atendimento com IA no WhatsApp',
     ],
-    cta: 'Agendar diagnóstico',
     featured: true,
   },
   {
@@ -51,24 +48,9 @@ const tiers: PricingTier[] = [
       'IA avançada e alto volume',
       'Desenvolvimento personalizado',
     ],
-    cta: 'Falar com especialista',
   },
 ]
 
-const valueProps = [
-  {
-    title: 'Sem contratos',
-    description: 'Cancele quando quiser, sem multas',
-  },
-  {
-    title: 'Diagnóstico gratuito',
-    description: 'Entenda seu potencial antes de investir',
-  },
-  {
-    title: 'Retorno garantido',
-    description: 'Automação só faz sentido se pagar o investimento',
-  },
-]
 
 export default function PricingSection({ onContactClick }: PricingSectionProps) {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.2 })
@@ -79,7 +61,7 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
       <div className="mb-12 md:mb-14 text-center">
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
           Preço justo,<br />
-          <span className="text-[#16232A]">retorno garantido</span>
+          <span className="text-[#274855]">retorno garantido</span>
         </h2>
         <p className="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
           Baseado na complexidade e escala do seu negócio
@@ -93,7 +75,7 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
             key={tier.name}
             className="p-8 flex flex-col"
             style={{
-              backgroundColor: '#16232A',
+              backgroundColor: '#274855',
               boxShadow: tier.featured
                 ? '0 16px 48px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08)'
                 : '0 12px 32px rgba(0, 0, 0, 0.10), 0 4px 8px rgba(0, 0, 0, 0.06)',
@@ -137,57 +119,13 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
               ))}
             </ul>
 
-            <button
-              onClick={onContactClick}
-              className="mt-6 w-full py-3 px-6 text-sm font-medium text-white border border-white/30 rounded-md hover:bg-white/10 transition-colors"
-            >
-              {tier.cta}
-            </button>
-          </div>
-        ))}
-      </div>
-
-      {/* Value Propositions - Below Tiers */}
-      <div
-        className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mt-16 pt-8"
-        style={{
-          opacity: isVisible ? 1 : 0,
-          transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
-          transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s',
-        }}
-      >
-        {valueProps.map((prop, index) => (
-          <div
-            key={prop.title}
-            className="flex items-center gap-4"
-            style={{
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateY(0)' : 'translateY(8px)',
-              transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${300 + index * 80}ms`,
-            }}
-          >
-            <svg
-              className="w-6 h-6 flex-shrink-0"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2.5}
-              style={{ color: '#22c55e' }}
-            >
-              <path d="M5 12l5 5L20 7" />
-            </svg>
-            <span className="text-lg text-brand-text">
-              <span className="font-semibold text-brand-black">{prop.title}</span>
-              {' — '}
-              {prop.description}
-            </span>
           </div>
         ))}
       </div>
 
       {/* Single CTA Button */}
       <div
-        className="mt-12 text-center"
+        className="mt-10 text-center"
         style={{
           opacity: isVisible ? 1 : 0,
           transform: isVisible ? 'translateY(0)' : 'translateY(16px)',

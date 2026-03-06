@@ -14,7 +14,7 @@ export interface WorkflowCardData {
 
 const STEP_TYPE_COLORS: Record<StepType, string> = {
   trigger: '#2D5A7B',
-  process: '#16232A',
+  process: '#274855',
   result: '#2D6B4A',
 }
 

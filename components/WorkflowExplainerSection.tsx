@@ -43,6 +43,12 @@ const NODE_SETS: [PipelineNode[], PipelineNode[], PipelineNode[]] = [
   ],
 ]
 
+// Sub-process cards shown below the middle "Processo" column
+const SUB_PROCESS_NODES: PipelineNode[] = [
+  { label: 'Pasta criada', logo: 'google-drive.svg' },
+  { label: 'Fontes pesquisadas', logo: 'chrome.svg' },
+]
+
 // --- Sub-components ---
 
 function PhaseLabel({ label, description }: { label: string; description: string }) {
@@ -61,9 +67,9 @@ function PhaseLabel({ label, description }: { label: string; description: string
   )
 }
 
-function NodeCard({ node }: { node: PipelineNode }) {
+function NodeCard({ node, align = 'center' }: { node: PipelineNode; align?: 'center' | 'left' }) {
   return (
-    <div className="flex items-center justify-center gap-3 bg-white rounded-lg px-5 py-4 border border-neutral-200 shadow-card hover:shadow-card-hover transition-shadow duration-200 w-[280px] h-[56px]">
+    <div className={`flex items-center ${align === 'left' ? 'justify-start' : 'justify-center'} gap-3 bg-white rounded-lg px-5 py-4 border border-neutral-200 shadow-card hover:shadow-card-hover transition-shadow duration-200 w-[280px] h-[56px]`}>
       <img
         src={`/logos/${node.logo}`}
         alt=""
@@ -112,6 +118,14 @@ function VerticalArrow() {
   )
 }
 
+function VerticalLine({ height = 24 }: { height?: number }) {
+  return (
+    <div className="flex justify-center" style={{ height }}>
+      <div className="w-px h-full" style={{ backgroundColor: CONNECTOR_COLOR }} />
+    </div>
+  )
+}
+
 // --- Component ---
 
 export default function WorkflowExplainerSection() {
@@ -146,7 +160,7 @@ export default function WorkflowExplainerSection() {
         <div className="mb-12 md:mb-14 text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             Como funciona uma<br />
-            <span className="text-[#16232A]">automação</span>
+            <span className="text-[#274855]">automação</span>
           </h2>
           <p className="mt-4 text-lg text-neutral-600 max-w-md mx-auto">
             Todo processo repetitivo vira um fluxo automático — do gatilho ao resultado.
@@ -199,7 +213,7 @@ export default function WorkflowExplainerSection() {
                           exit={{ opacity: 0, y: -20 }}
                           transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}
                         >
-                          <NodeCard node={NODE_SETS[colIndex][activeIndices[colIndex]]} />
+                          <NodeCard node={NODE_SETS[colIndex][activeIndices[colIndex]]} align={colIndex === 1 ? 'left' : 'center'} />
                         </motion.div>
                       </AnimatePresence>
                     </div>
@@ -217,6 +231,31 @@ export default function WorkflowExplainerSection() {
                   )}
                 </Fragment>
               ))}
+            </div>
+
+            {/* Sub-process cards below the middle column */}
+            <div className="flex items-center justify-center">
+              {/* Invisible spacer matching left column + arrow */}
+              <div className="w-[280px] flex-shrink-0" />
+              <div className="flex-shrink-0" style={{ width: '72px' }} />
+              {/* Sub-process cards aligned with middle column */}
+              <div className="w-[280px] flex-shrink-0 flex flex-col items-center">
+                {SUB_PROCESS_NODES.map((node, i) => (
+                  <motion.div
+                    key={`sub-${i}`}
+                    className="flex flex-col items-center"
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+                    transition={{ duration: 0.5, delay: 0.5 + i * 0.14, ease: EASE }}
+                  >
+                    <VerticalLine />
+                    <NodeCard node={node} align="left" />
+                  </motion.div>
+                ))}
+              </div>
+              {/* Invisible spacer matching arrow + right column */}
+              <div className="flex-shrink-0" style={{ width: '72px' }} />
+              <div className="w-[280px] flex-shrink-0" />
             </div>
           </div>
 
@@ -254,6 +293,20 @@ export default function WorkflowExplainerSection() {
                       </AnimatePresence>
                     </div>
                   </motion.div>
+
+                  {/* Sub-process cards after the Process phase (index 1) */}
+                  {stepIndex === 1 && SUB_PROCESS_NODES.map((node, i) => (
+                    <motion.div
+                      key={`m-sub-${i}`}
+                      className="flex flex-col items-center"
+                      initial={{ opacity: 0, y: 14 }}
+                      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+                      transition={{ duration: 0.5, delay: 0.5 + i * 0.14, ease: EASE }}
+                    >
+                      <VerticalLine />
+                      <NodeCard node={node} align="left" />
+                    </motion.div>
+                  ))}
                 </div>
 
                 {stepIndex < 2 && (

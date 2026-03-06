@@ -7,8 +7,10 @@ interface BusinessProfile {
   icon: React.ReactNode
   size: string
   location: string
-  automations: string[]
-  priceHint: string
+  price: string
+  priceLabel: string
+  benefit: string
+  benefitDetail: string
 }
 
 // Inline SVG icons (Lucide-style, 24x24)
@@ -69,78 +71,66 @@ const HospitalIcon = () => (
   </svg>
 )
 
-const CheckIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="20 6 9 17 4 12" />
-  </svg>
-)
-
 const profiles: BusinessProfile[] = [
   {
     type: 'Clínica Odontológica',
     icon: <ToothIcon />,
     size: '12 profissionais',
     location: 'Belo Horizonte, MG',
-    automations: [
-      'Confirmação de consulta por WhatsApp',
-      'Relatório semanal de faturamento',
-    ],
-    priceHint: 'a partir de R$900/mês',
+    price: 'R$900',
+    priceLabel: '/mês',
+    benefit: 'R$6.000/mês',
+    benefitDetail: 'Consultas recuperadas e menos tempo administrativo (7x)',
   },
   {
     type: 'Escritório de Contabilidade',
     icon: <CalculatorIcon />,
     size: '6 colaboradores',
-    location: 'Curitiba, PR',
-    automations: [
-      'Coleta automática de documentos',
-      'Alerta de prazos fiscais',
-    ],
-    priceHint: 'a partir de R$900/mês',
+    location: 'Belo Horizonte, MG',
+    price: 'R$900',
+    priceLabel: '/mês',
+    benefit: 'R$4.500/mês',
+    benefitDetail: 'Mais produtividade e menos retrabalho (5x)',
   },
   {
     type: 'Loja de Roupas Online',
     icon: <ShoppingBagIcon />,
-    size: '~800 pedidos/mês',
-    location: 'São Paulo, SP',
-    automations: [
-      'Sincronização estoque + marketplace',
-      'Rastreamento automático por WhatsApp',
-    ],
-    priceHint: 'a partir de R$2.000/mês',
+    size: '800 pedidos/mês',
+    location: 'Belo Horizonte, MG',
+    price: 'R$2.000',
+    priceLabel: '/mês',
+    benefit: 'R$15.000/mês',
+    benefitDetail: 'Vendas recuperadas e redução de erros operacionais (7.5x)',
   },
   {
     type: 'Clínica de Fisioterapia',
     icon: <HeartPulseIcon />,
     size: '25 profissionais',
-    location: 'Recife, PE',
-    automations: [
-      'Prontuário eletrônico integrado',
-      'Aprovação de convênio automatizada',
-    ],
-    priceHint: 'a partir de R$2.000/mês',
+    location: 'Belo Horizonte, MG',
+    price: 'R$2.000',
+    priceLabel: '/mês',
+    benefit: 'R$12.000/mês',
+    benefitDetail: 'Menos glosas e maior eficiência operacional (6x)',
   },
   {
     type: 'Rede de Pet Shops',
     icon: <StoreIcon />,
     size: '3 unidades, 40 funcionários',
-    location: 'Goiânia, GO',
-    automations: [
-      'Dashboard consolidado de vendas',
-      'Reposição de estoque automatizada',
-    ],
-    priceHint: 'a partir de R$2.000/mês',
+    location: 'São Paulo, SP',
+    price: 'R$2.000',
+    priceLabel: '/mês',
+    benefit: 'R$8.000/mês',
+    benefitDetail: 'Estoque otimizado e gestão centralizada (4x)',
   },
   {
     type: 'Hospital Regional',
     icon: <HospitalIcon />,
     size: '150 leitos',
-    location: 'Campinas, SP',
-    automations: [
-      'Gestão de leitos com IA',
-      'Integração entre sistemas legados',
-    ],
-    priceHint: 'sob consulta',
+    location: 'São Paulo, SP',
+    price: 'R$5.000',
+    priceLabel: '/mês',
+    benefit: 'R$50.000/mês',
+    benefitDetail: 'Ocupação de leitos e integração de sistemas (10x)',
   },
 ]
 
@@ -172,48 +162,49 @@ export default function BusinessProfilesSection() {
         {profiles.map((profile, index) => (
           <div
             key={index}
-            className="border border-neutral-200 rounded-xl p-6 hover:shadow-md transition-shadow duration-300"
+            className="rounded-xl px-7 py-8 bg-[#274855] shadow-card hover:shadow-card-hover transition-all duration-base ease-spring hover:-translate-y-0.5"
             style={{
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
               opacity: isVisible ? 1 : 0,
               transition: `transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${150 + index * 80}ms, opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${150 + index * 80}ms`,
             }}
           >
-            {/* Icon + Business type */}
-            <div className="flex items-center gap-3 mb-3">
-              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-brand-primary-subtle text-brand-primary flex items-center justify-center">
-                {profile.icon}
+            {/* Icon */}
+            <div className="mb-3 text-[#fafafa]">
+              {profile.icon}
+            </div>
+
+            {/* Business identity */}
+            <h3 className="text-xl font-semibold text-white leading-snug mb-1">
+              {profile.type}
+            </h3>
+            <p className="text-base text-[#fafafa] mb-6">
+              {profile.size} · {profile.location}
+            </p>
+
+            {/* Divider */}
+            <div className="border-t border-white/20 mb-8" />
+
+            {/* Cost & Return side by side */}
+            <div className="flex items-end gap-6 mb-8">
+              <div>
+                <p className="text-base text-[#fafafa] mb-1">Investimento</p>
+                <p className="text-2xl font-bold text-white whitespace-nowrap">
+                  {profile.price}<span className="text-base font-normal text-[#fafafa]">{profile.priceLabel}</span>
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-brand-black leading-snug">
-                {profile.type}
-              </h3>
+              <div>
+                <p className="text-base text-[#fafafa] mb-1">Retorno</p>
+                <p className="text-2xl font-bold text-[#6ee7b7] whitespace-nowrap">
+                  {profile.benefit}
+                </p>
+              </div>
             </div>
 
-            {/* Size + Location */}
-            <div className="text-sm text-neutral-500 mb-4">
-              <span>{profile.size}</span>
-              <span className="mx-1.5">·</span>
-              <span>{profile.location}</span>
-            </div>
-
-            {/* Automations */}
-            <ul className="space-y-2 mb-4">
-              {profile.automations.map((automation, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-neutral-600">
-                  <span className="flex-shrink-0 mt-0.5 text-brand-primary">
-                    <CheckIcon />
-                  </span>
-                  {automation}
-                </li>
-              ))}
-            </ul>
-
-            {/* Price hint */}
-            <div className="pt-3 border-t border-neutral-100">
-              <span className="text-xs font-medium text-neutral-400 uppercase tracking-wide">
-                {profile.priceHint}
-              </span>
-            </div>
+            {/* Benefit explanation */}
+            <p className="text-base text-[#fafafa]">
+              {profile.benefitDetail}
+            </p>
           </div>
         ))}
       </div>

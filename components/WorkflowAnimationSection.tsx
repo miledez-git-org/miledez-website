@@ -121,7 +121,7 @@ export default function WorkflowAnimationSection() {
         <div className="mb-14 md:mb-16">
           <h2 className="font-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             Seu negócio no<br />
-            <span className="text-[#16232A]">piloto automático</span>
+            <span className="text-[#274855]">piloto automático</span>
           </h2>
           <p className="mt-4 text-lg text-neutral-600 max-w-xl">
             Veja como tarefas repetitivas do dia a dia passam a acontecer

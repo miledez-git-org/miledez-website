@@ -108,7 +108,7 @@ export default function FlipCardsSection() {
           style={{
             fontSize: 'clamp(36px, 6vw, 56px)',
             fontWeight: '700',
-            color: '#16232A',
+            color: '#274855',
             margin: '0 0 20px',
             lineHeight: 1.05,
             letterSpacing: '-0.03em',
@@ -210,7 +210,7 @@ export default function FlipCardsSection() {
                   style={{
                     fontSize: isPast ? '14px' : isActive ? '16px' : '14px',
                     fontWeight: '700',
-                    color: isFuture ? '#ccc' : '#16232A',
+                    color: isFuture ? '#ccc' : '#274855',
                     marginBottom: isPast ? '12px' : '20px',
                     transition: 'all 0.6s ease',
                   }}
@@ -256,7 +256,7 @@ export default function FlipCardsSection() {
                       style={{
                         fontSize: isActive ? '36px' : '24px',
                         fontWeight: '700',
-                        color: isFuture ? '#e5e5e5' : '#16232A',
+                        color: isFuture ? '#e5e5e5' : '#274855',
                         margin: '0 0 auto',
                         lineHeight: 1.1,
                         transition: 'all 0.6s ease',
@@ -280,7 +280,7 @@ export default function FlipCardsSection() {
                   >
                     {step.frontTitle}
                     <br />
-                    <span style={{ color: '#16232A' }}>{step.frontHighlight}</span>
+                    <span style={{ color: '#274855' }}>{step.frontHighlight}</span>
                   </h3>
                 )}
 
@@ -297,7 +297,7 @@ export default function FlipCardsSection() {
                       style={{
                         fontSize: isPast ? '20px' : isActive ? '32px' : '24px',
                         fontWeight: '700',
-                        color: isPast ? '#16232A' : '#000',
+                        color: isPast ? '#274855' : '#000',
                         transition: 'all 0.6s ease',
                       }}
                     >
@@ -315,7 +315,7 @@ export default function FlipCardsSection() {
                       right: '20px',
                       width: '24px',
                       height: '24px',
-                      backgroundColor: '#16232A',
+                      backgroundColor: '#274855',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -335,7 +335,7 @@ export default function FlipCardsSection() {
                   inset: 0,
                   backfaceVisibility: 'hidden',
                   transform: 'rotateY(180deg)',
-                  backgroundColor: '#16232A',
+                  backgroundColor: '#274855',
                   padding: '40px 32px',
                   display: 'flex',
                   flexDirection: 'column',
@@ -430,7 +430,7 @@ export default function FlipCardsSection() {
             style={{
               width: '12px',
               height: '12px',
-              backgroundColor: activeStep >= step ? '#16232A' : '#ddd',
+              backgroundColor: activeStep >= step ? '#274855' : '#ddd',
               transition: 'all 0.4s ease',
               transform: activeStep === step ? 'scale(1.3)' : 'scale(1)',
             }}
@@ -458,7 +458,7 @@ export default function FlipCardsSection() {
         >
           Você investe <strong style={{ color: '#000' }}>10 minutos</strong> descrevendo o problema.
           <br />
-          Nós investimos <strong style={{ color: '#16232A' }}>tudo</strong> pra resolver.
+          Nós investimos <strong style={{ color: '#274855' }}>tudo</strong> pra resolver.
         </p>
         <a
           href="#contato"

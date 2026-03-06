@@ -16,7 +16,7 @@ export const designSystemTheme: NonNullable<Config['theme']>['extend'] = {
       'secondary-dark': '#063d32',
       'secondary-light': '#0a6654',
       'secondary-subtle': 'rgba(8, 80, 66, 0.08)',
-      black: '#16232A',
+      black: '#274855',
       muted: '#525252',
     },
     accent: {
