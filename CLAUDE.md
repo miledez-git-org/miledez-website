@@ -82,7 +82,7 @@ public/
 - If dev server returns 404s on `_next/static/` assets, delete `.next/` and restart: `rm -rf .next && npm run dev`
 
 ## Agency Conventions
-<!-- conventions-sync: 2026-03-03 -->
+<!-- conventions-sync: 2026-03-06 -->
 
 **Design system:** Use the `miledez-design-system` skill for all visual outputs.
 - Primary: `#eb5100` (orange) | Secondary: `#085042` (deep teal) | Fonts: Manrope (headings), Source Sans 3 (body)
@@ -98,6 +98,8 @@ public/
 - Flat folder structures over nested categorization
 - Confirm before destructive commands (rm, mv) — user runs manually
 - `/sandbox` folders are off-limits — do not read or reference unless explicitly asked
+- `/archive` folders are off-limits — do not read or reference unless explicitly asked
+- `miledez-business-intelligence/` is off-limits — do not read or reference unless explicitly asked
 
 **Session workflow:**
 1. Start: Read CLAUDE.md + check memory. Run `git status` for uncommitted work.
