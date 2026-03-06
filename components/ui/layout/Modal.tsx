@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils'
  * Modal Component
  *
  * Dialog/modal overlay with header, body, and footer.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Modal open={isOpen} onClose={handleClose}>

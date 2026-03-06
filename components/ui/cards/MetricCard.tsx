@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils'
  * MetricCard Component
  *
  * Animated card for dashboard KPIs with micro-visualizations.
- * Reference: .claude/skills/frontend-design/SKILL.md (v3.1)
  *
  * @example
  * <MetricCard

@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils'
  * Badge Component
  *
  * Matches UI Kit badge specifications exactly.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Badge variant="success">Active</Badge>

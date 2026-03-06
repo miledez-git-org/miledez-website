@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils'
  * Tag Component
  *
  * Removable tag/chip element.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Tag>React</Tag>

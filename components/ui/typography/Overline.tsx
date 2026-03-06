@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils'
  * Overline Component
  *
  * Small uppercase text for labels, categories, and section markers.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Overline>Nossos Serviços</Overline>

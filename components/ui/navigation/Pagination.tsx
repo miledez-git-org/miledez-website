@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils'
  * Pagination Component
  *
  * Page navigation with numbered pages.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Pagination

@@ -1,5 +1,4 @@
 // Design System Theme
-// Source: .claude/skills/frontend-design/brand-tokens.json
 // Version: 3.2.0
 // Last synced: 2026-01-14
 

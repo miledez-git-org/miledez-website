@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils'
  * Sidebar Component
  *
  * Collapsible sidebar navigation.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Sidebar collapsed={isCollapsed}>

@@ -126,9 +126,7 @@ Full TypeScript support with strict mode enabled.
 
 ## Brand Reference
 
-**See `../../.claude/skills/frontend-design/` for brand guidelines and design tokens.**
-
-This folder is the single source of truth for:
+The design system is the single source of truth for:
 - Brand colors and typography
 - Logo files
 - Style principles

@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils'
  * PricingCard Component
  *
  * Card for displaying pricing plans.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <PricingCard

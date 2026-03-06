@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils'
  * Logo Component
  *
  * mil&dez brand logo with Manrope Light (300), letter-spacing: -0.03em
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Logo />

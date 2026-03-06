@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils'
  * Toggle (Switch) Component
  *
  * Matches UI Kit toggle specifications.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Toggle label="Enable notifications" />

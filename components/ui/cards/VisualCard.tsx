@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils'
  *
  * Card with large visual area (dashed border style) for showcasing
  * icons, illustrations, or previews.
- * Reference: .claude/skills/frontend-design/SKILL.md (v3.1)
  *
  * @example
  * <VisualCard

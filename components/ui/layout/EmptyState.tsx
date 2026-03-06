@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils'
  * EmptyState Component
  *
  * Placeholder for empty/no-data states.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <EmptyState

@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils'
  * Tabs Component
  *
  * Tab navigation with content panels.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Tabs defaultValue="tab1">

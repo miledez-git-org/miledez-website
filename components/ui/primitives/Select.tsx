@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils'
  * Select Component
  *
  * Matches UI Kit select specifications.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Select>

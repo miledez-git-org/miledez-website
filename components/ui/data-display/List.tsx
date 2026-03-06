@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils'
  * List Components
  *
  * Vertical list with items.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <List>

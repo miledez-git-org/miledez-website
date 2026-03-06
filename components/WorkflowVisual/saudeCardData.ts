@@ -1,7 +1,7 @@
 import type { WorkflowCardData } from './WorkflowCard'
 
 /**
- * Healthcare workflow card data following the card-design-guide spec.
+ * Healthcare workflow card data.
  * Each workflow: first = trigger, middle = process, last = result.
  * Headers: 2-4 word past participle labels.
  * What lines: 4-8 word descriptions.

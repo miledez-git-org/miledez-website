@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils'
  * ProcessCard Component
  *
  * Card for workflow steps with progress indicator.
- * Reference: .claude/skills/frontend-design/SKILL.md (v3.1)
  *
  * @example
  * <ProcessCard

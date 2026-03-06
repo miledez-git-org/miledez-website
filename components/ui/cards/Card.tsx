@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils'
  * Card Component
  *
  * Base card with header, body, and footer sections.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Card>

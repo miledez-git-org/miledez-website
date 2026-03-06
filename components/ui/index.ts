@@ -2,7 +2,6 @@
  * mil&dez UI Component Library
  *
  * React components implementing the brand design system.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * Usage:
  *   import { Button, Badge, Input, Card, Modal } from '@/components/ui'

@@ -5,7 +5,6 @@ import Link from 'next/link'
  * Breadcrumb Component
  *
  * Navigation breadcrumb trail.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Breadcrumb>

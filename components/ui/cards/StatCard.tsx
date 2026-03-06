@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils'
  * StatCard Component
  *
  * Card for displaying key statistics/metrics.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <StatCard

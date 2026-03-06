@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils'
  * FeatureCard Component
  *
  * Card for showcasing features with icon, title, and description.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <FeatureCard

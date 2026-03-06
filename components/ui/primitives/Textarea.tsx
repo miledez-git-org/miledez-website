@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils'
  * Textarea Component
  *
  * Matches UI Kit textarea specifications.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Textarea placeholder="Your message" rows={4} />

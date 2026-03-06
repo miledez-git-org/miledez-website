@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils'
  * Tooltip Component
  *
  * Matches UI Kit tooltip specifications.
- * Reference: .claude/skills/frontend-design/SKILL.md
  *
  * @example
  * <Tooltip content="This is a tooltip">
