@@ -76,6 +76,10 @@ public/
 
 - `eslint-config-next` version must match Next.js version to avoid build errors
 - `generated-theme.ts` is the single source of truth for Tailwind color tokens — update it (not individual components) when changing brand colors
+- **Min font size:** 14px (`text-sm`) absolute minimum for low-priority info; 16px (`text-base`) for all other text. Never use `text-xs`.
+- **Icons:** Always plain outline SVGs (stroke, no fill). Never wrap icons in colored background containers (`bg-brand-*-subtle`). Color via parent text class only.
+- **Build trace error:** `npm run build` may fail on `_not-found/page.js.nft.json` — this is a pre-existing Next.js trace collection bug, not a code error. Pages still generate correctly.
+- If dev server returns 404s on `_next/static/` assets, delete `.next/` and restart: `rm -rf .next && npm run dev`
 
 ## Agency Conventions
 <!-- conventions-sync: 2026-03-03 -->
