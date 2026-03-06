@@ -86,8 +86,8 @@ export default function ServicosContent() {
       {/* Hero */}
       <section className="pt-28 md:pt-40 pb-20 md:pb-28 bg-white">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div className="max-w-2xl">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+            <div className="max-w-xl flex-1">
               <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-[#16232A]">
                 <span className="text-sm font-semibold uppercase tracking-widest text-[#16232A]">
                   Serviços Profissionais
@@ -108,7 +108,7 @@ export default function ServicosContent() {
             </div>
             <WorkflowVisualCompact
               {...getHeroPreset('servicos')}
-              className="hidden lg:block w-full max-w-md"
+              className="hidden lg:block"
             />
           </div>
         </div>
@@ -127,7 +127,7 @@ export default function ServicosContent() {
 
       {/* Workflows */}
       <section id="workflows" className="py-24 md:py-32 bg-white">
-        <div className="px-6 md:px-10 max-w-7xl mx-auto">
+        <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <div className="mb-12 md:mb-14">
             <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black">O que automatizamos</h2>
             <p className="mt-4 text-lg text-neutral-600">
@@ -135,22 +135,21 @@ export default function ServicosContent() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
             <WorkflowVisualCompact
               title={servicosWorkflowsCompact.onboarding.title}
+              subtitle="Boas-vindas e estrutura criadas sozinhas"
               steps={servicosWorkflowsCompact.onboarding.steps}
             />
             <WorkflowVisualCompact
               title={servicosWorkflowsCompact.contracts.title}
+              subtitle="Alertas e renovações no piloto automático"
               steps={servicosWorkflowsCompact.contracts.steps}
             />
             <WorkflowVisualCompact
               title={servicosWorkflowsCompact.billing.title}
+              subtitle="Da entrega à cobrança, sem atraso"
               steps={servicosWorkflowsCompact.billing.steps}
-            />
-            <WorkflowVisualCompact
-              title={servicosWorkflowsCompact.reports.title}
-              steps={servicosWorkflowsCompact.reports.steps}
             />
           </div>
         </div>

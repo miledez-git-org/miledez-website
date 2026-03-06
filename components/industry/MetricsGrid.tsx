@@ -65,7 +65,7 @@ export default function MetricsGrid({ metrics }: MetricsGridProps) {
             </span>
 
             {/* Label */}
-            <p className="mt-6 text-base font-medium text-neutral-600 leading-relaxed">
+            <p className="mt-1 text-lg font-semibold text-neutral-600 leading-relaxed">
               {metric.label}
             </p>
 

@@ -75,6 +75,8 @@ export interface HeroWorkflowStep {
 export interface WorkflowVisualCompactProps {
   /** Title displayed at the top of the workflow */
   title: string
+  /** Short description below the title */
+  subtitle?: string
   /** Array of workflow steps (3 steps recommended) */
   steps: HeroWorkflowStep[]
   /** Additional CSS classes */
