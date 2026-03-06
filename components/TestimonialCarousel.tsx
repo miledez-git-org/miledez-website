@@ -18,22 +18,22 @@ const testimonials: Testimonial[] = [
     company: 'Clínica Viva Saúde',
   },
   {
-    quote: 'Eliminamos completamente os erros de faturamento. O ROI foi positivo já no segundo mês de operação.',
+    quote: 'Eliminamos completamente os erros de faturamento. O retorno foi positivo já no segundo mês de operação.',
     author: 'Ricardo Almeida',
-    role: 'CFO',
-    company: 'TechServ Consultoria',
+    role: 'Sócio-diretor',
+    company: 'Almeida & Costa Advogados',
   },
   {
-    quote: 'O controle de estoque automático nos economiza 20 horas semanais. Nunca mais perdemos uma venda por falta de produto.',
-    author: 'Carla Mendes',
+    quote: 'A coordenação com fornecedores agora acontece sozinha. Economizamos 15 horas por semana que antes iam em ligação e planilha.',
+    author: 'João Pedro Mendes',
     role: 'Gerente de Operações',
-    company: 'Loja Express',
+    company: 'Cooperativa Vale do Café',
   },
   {
     quote: 'A integração entre nossos sistemas foi perfeita. Agora temos visibilidade total da operação em tempo real.',
-    author: 'Fernando Costa',
-    role: 'CEO',
-    company: 'Grupo Inovação',
+    author: 'Ana Beatriz Costa',
+    role: 'Diretora',
+    company: 'ContaPrime Contabilidade',
   },
 ]
 
@@ -61,9 +61,18 @@ export default function TestimonialCarousel() {
     >
       {/* Section header */}
       <div className="mb-12 text-center">
-        <h2 className="text-[2rem] font-medium text-brand-black tracking-[-0.02em]">
+        <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
           O que nossos clientes dizem
         </h2>
+      </div>
+
+      {/* Stats bar */}
+      <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 mb-10 text-sm text-neutral-600">
+        <span className="font-medium">50+ automações entregues</span>
+        <span className="hidden md:inline text-neutral-300" aria-hidden="true">&middot;</span>
+        <span className="font-medium">3 setores atendidos</span>
+        <span className="hidden md:inline text-neutral-300" aria-hidden="true">&middot;</span>
+        <span className="font-medium">Belo Horizonte, MG</span>
       </div>
 
       {/* Carousel container */}
@@ -99,7 +108,7 @@ export default function TestimonialCarousel() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-80 bg-testimonial-bg border border-[rgba(0,0,0,0.08)] p-6"
+              className="flex-shrink-0 w-80 bg-white border border-[rgba(0,0,0,0.08)] p-6"
               style={{
                 transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(16px) scale(0.98)',
                 transition: `transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 100}ms`,
@@ -114,7 +123,7 @@ export default function TestimonialCarousel() {
               <div className="flex items-center gap-3">
                 {/* Avatar placeholder */}
                 <div className="w-10 h-10 bg-brand-border flex items-center justify-center">
-                  <span className="text-xs font-medium text-brand-muted">
+                  <span className="text-sm font-medium text-brand-muted">
                     {testimonial.author.split(' ').map(n => n[0]).join('')}
                   </span>
                 </div>
@@ -123,7 +132,7 @@ export default function TestimonialCarousel() {
                   <p className="text-sm font-medium text-brand-black">
                     {testimonial.author}
                   </p>
-                  <p className="text-xs text-brand-muted">
+                  <p className="text-sm text-brand-muted">
                     {testimonial.role}, {testimonial.company}
                   </p>
                 </div>

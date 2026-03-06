@@ -39,6 +39,17 @@ const tiers: PricingTier[] = [
     featured: true,
   },
   {
+    name: 'Inteligência',
+    price: 'R$3.000 - R$15.000+',
+    description: 'por mês',
+    examples: [
+      'Alertas de mudanças regulatórias',
+      'Monitoramento de concorrentes',
+      'Relatórios estratégicos mensais',
+      'Análise de tendências do setor',
+    ],
+  },
+  {
     name: 'Sob Medida',
     price: 'Sob consulta',
     description: 'para grandes projetos',
@@ -69,7 +80,7 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
       </div>
 
       {/* Pricing Tiers */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {tiers.map((tier, index) => (
           <div
             key={tier.name}

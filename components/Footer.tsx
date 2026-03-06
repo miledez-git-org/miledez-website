@@ -73,7 +73,7 @@ export default function Footer() {
             </div>
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <span className="text-xs text-white/70">
-                © 2025 mil&dez. Todos os direitos reservados.
+                © 2026 mil&dez. Todos os direitos reservados.
               </span>
               <div className="flex items-center gap-4">
                 <Link
