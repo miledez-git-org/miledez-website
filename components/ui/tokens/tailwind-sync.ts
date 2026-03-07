@@ -154,6 +154,7 @@ const normalizedScriptDir = scriptDir.startsWith('/') && scriptDir.includes(':')
   ? scriptDir.slice(1)
   : scriptDir
 
+const tokensPath = path.resolve(normalizedScriptDir, './brand-tokens.json')
 const outputPath = path.resolve(normalizedScriptDir, './generated-theme.ts')
 
 console.log('Reading tokens from:', tokensPath)
