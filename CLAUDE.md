@@ -66,9 +66,10 @@ public/
 
 ## Color Usage
 
-- Use Tailwind `brand-*` classes (e.g. `bg-brand-primary`, `text-brand-secondary`) — never hardcode hex values
-- Primary orange: `brand-primary` / `brand-primary-dark` / `brand-primary-light` / `brand-primary-subtle`
-- Secondary teal: `brand-secondary` / `brand-secondary-dark` / `brand-secondary-light` / `brand-secondary-subtle`
+- Use Tailwind `brand-*` classes — never hardcode hex values
+- **Note:** CSS class names are swapped vs. brand convention. `brand-primary` = orange (#eb5100), `brand-secondary` = teal (#085042). A token rename is pending to align with the brand (teal = primary, orange = secondary).
+- Orange: `brand-primary` / `brand-primary-dark` / `brand-primary-light` / `brand-primary-subtle`
+- Teal: `brand-secondary` / `brand-secondary-dark` / `brand-secondary-light` / `brand-secondary-subtle`
 - Body text: `text-neutral-600` (not `text-brand-muted`)
 - Glow shadows: `shadow-accent-glow`, `shadow-secondary-glow`
 
@@ -82,11 +83,11 @@ public/
 - If dev server returns 404s on `_next/static/` assets, delete `.next/` and restart: `rm -rf .next && npm run dev`
 
 ## Agency Conventions
-<!-- conventions-sync: 2026-03-06 -->
+<!-- conventions-sync: 2026-03-18 -->
 
 **Design system:** Use the `miledez-design-system` skill for all visual outputs.
-- Primary: `#eb5100` (orange) | Secondary: `#085042` (deep teal) | Fonts: Manrope (headings), Source Sans 3 (body)
-- Backgrounds: white main, `#F5F5F5` alternating | Icons: SVG line (Lucide/Phosphor)
+- Primary: `#085042` (deep teal) | Secondary: `#eb5100` (orange) | Fonts: Manrope (headings), Source Sans 3 (body)
+- Backgrounds: `#fafafa` page, `#ffffff` cards, `#f5f5f7` surfaces | Icons: SVG line (Lucide/Phosphor)
 
 **Language:** Client-facing content in Portuguese (BR). Code, comments, technical docs in English.
 

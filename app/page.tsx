@@ -43,7 +43,7 @@ export default function Home() {
 
       <main id="main-content">
       {/* Hero */}
-      <section className="min-h-screen bg-white flex items-center relative">
+      <section className="min-h-screen bg-white flex items-center relative pt-24 md:pt-0">
         <div className="max-w-7xl mx-auto px-6 md:px-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-20 items-center">
 
