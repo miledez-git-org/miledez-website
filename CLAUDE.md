@@ -34,7 +34,7 @@ npm run lint    # Run ESLint
 app/                        # Next.js App Router pages
   saude/                    # Healthcare industry page
   servicos/                 # Professional services page
-  varejo/                   # Retail/e-commerce page
+  agronegocio/              # Agribusiness industry page
   termos/                   # Terms of service
   politica-privacidade/     # Privacy policy
 components/
@@ -91,7 +91,7 @@ public/
 
 **Language:** Client-facing content in Portuguese (BR). Code, comments, technical docs in English.
 
-**Copy tone:** Client-facing text must use simple, conversational Brazilian Portuguese. No English buzzwords ("call", "ROI", "feedback"), no corporate jargon. The audience is non-technical business owners — write like you're explaining to a friend.
+**Copy tone:** Use the `miledez-brand-voice` skill for all client-facing text. Key rules: Brazilian Portuguese only, zero English buzzwords, conversational professional register, outcome over mechanism. The skill has the full vocabulary glossary, word count limits per channel, and copy patterns.
 
 **Response style:** Concise and actionable. Tables for comparisons. Numbered items for follow-up.
 
