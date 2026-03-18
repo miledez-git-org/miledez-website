@@ -60,6 +60,7 @@ public/
 
 - **ContactModal** — Lead capture form (Formspree integration)
 - **WorkflowVisual** — Animated workflow demonstrations
+- **HeroConstellation** — Static icon network with animated connecting lines (chain draw/hold/fade state machine). Icons have fixed positions; chains are pre-defined sequences that cycle deterministically.
 - **PricingSection** — Pricing tiers display (requires `onContactClick` prop)
 - **LogoGrid** — Integration partners showcase
 - Component library in `components/ui/` — use existing components before creating new ones
@@ -75,6 +76,7 @@ public/
 
 ## Rules
 
+- **Don't run `npm run build` while dev server is running** — it corrupts `.next/` cache. Stop the dev server first, or expect to `rm -rf .next && npm run dev` after.
 - `eslint-config-next` version must match Next.js version to avoid build errors
 - `generated-theme.ts` is the single source of truth for Tailwind color tokens — update it (not individual components) when changing brand colors
 - **Min font size:** 14px (`text-sm`) absolute minimum for low-priority info; 16px (`text-base`) for all other text. Never use `text-xs`.
