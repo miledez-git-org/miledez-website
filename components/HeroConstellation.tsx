@@ -1,28 +1,19 @@
 'use client'
 
-import { useRef, useEffect, useCallback, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { useAnimationFrame } from 'framer-motion'
 
-// --- Icon node configuration ---
+// --- Static icon node configuration ---
 
-interface IconNodeConfig {
-  /** Icon filename in /public/icons/ */
+interface IconNode {
   icon: string
-  /** Semi-major axis (horizontal radius) */
-  a: number
-  /** Semi-minor axis (vertical radius) */
-  b: number
-  /** Angular speed multiplier (lower = slower) */
-  speed: number
-  /** Starting angle offset in radians */
-  phase: number
+  x: number
+  y: number
 }
 
 // SVG viewBox dimensions
 const VB_W = 400
 const VB_H = 400
-const CX = VB_W / 2
-const CY = VB_H / 2
 
 // Icon sizes and opacities for inactive/active states
 const ICON_INACTIVE_SIZE = 22
@@ -38,45 +29,56 @@ const CHAIN_HOLD_DURATION = 1.0
 const CHAIN_FADE_DURATION = 0.6
 const FIRST_ICON_FADE_DURATION = 0.3 // seconds for first icon to fade in
 
-// Chain sizes
-const CHAIN_SIZE_DESKTOP = [3, 4] as const // min, max icons per chain
-const CHAIN_SIZE_MOBILE = [2, 3] as const
-
-// Cooldown: icons skip next N cycles after participating
-const COOLDOWN_CYCLES = 2
-
-// Minimum distance between any two icons (px) — used for runtime repulsion
-const MIN_ICON_DIST = 44
-
-// Outer ring (5) — large, slow — phases evenly spaced at ~1.257 rad (2π/5)
-const OUTER_RING: IconNodeConfig[] = [
-  { icon: 'whatsapp', a: 165, b: 155, speed: 0.012, phase: 0 },
-  { icon: 'gmail', a: 155, b: 160, speed: -0.010, phase: 1.257 },
-  { icon: 'shopify', a: 170, b: 148, speed: 0.011, phase: 2.513 },
-  { icon: 'salesforce', a: 160, b: 162, speed: -0.009, phase: 3.770 },
-  { icon: 'slack', a: 163, b: 152, speed: 0.010, phase: 5.027 },
+// Desktop: 14 static icon positions in the 400x400 viewBox
+const DESKTOP_NODES: IconNode[] = [
+  { icon: 'whatsapp',        x: 55,  y: 80  },  // 0
+  { icon: 'gmail',           x: 185, y: 45  },  // 1
+  { icon: 'shopify',         x: 330, y: 55  },  // 2
+  { icon: 'salesforce',      x: 355, y: 185 },  // 3
+  { icon: 'slack',           x: 340, y: 320 },  // 4
+  { icon: 'google-sheets',   x: 80,  y: 190 },  // 5
+  { icon: 'notion',          x: 190, y: 155 },  // 6
+  { icon: 'pipedrive',       x: 290, y: 145 },  // 7
+  { icon: 'stripe',          x: 285, y: 265 },  // 8
+  { icon: 'hubspot',         x: 145, y: 310 },  // 9
+  { icon: 'n8n',             x: 200, y: 240 },  // 10
+  { icon: 'google-calendar', x: 105, y: 115 },  // 11
+  { icon: 'telegram',        x: 220, y: 340 },  // 12
+  { icon: 'airtable',        x: 60,  y: 290 },  // 13
 ]
 
-// Middle ring (5) — medium — phases offset by 0.628 rad from outer ring
-const MIDDLE_RING: IconNodeConfig[] = [
-  { icon: 'google-sheets', a: 108, b: 110, speed: -0.017, phase: 0.628 },
-  { icon: 'notion', a: 118, b: 100, speed: 0.015, phase: 1.885 },
-  { icon: 'pipedrive', a: 112, b: 106, speed: -0.014, phase: 3.142 },
-  { icon: 'stripe', a: 120, b: 102, speed: 0.016, phase: 4.398 },
-  { icon: 'hubspot', a: 110, b: 115, speed: -0.015, phase: 5.655 },
+// Mobile: 10 icons (drop inner ring), pulled slightly inward
+const MOBILE_NODES: IconNode[] = [
+  { icon: 'whatsapp',        x: 70,  y: 85  },  // 0
+  { icon: 'gmail',           x: 195, y: 50  },  // 1
+  { icon: 'shopify',         x: 320, y: 60  },  // 2
+  { icon: 'salesforce',      x: 340, y: 185 },  // 3
+  { icon: 'slack',           x: 325, y: 310 },  // 4
+  { icon: 'google-sheets',   x: 90,  y: 195 },  // 5
+  { icon: 'notion',          x: 200, y: 160 },  // 6
+  { icon: 'pipedrive',       x: 285, y: 150 },  // 7
+  { icon: 'stripe',          x: 275, y: 260 },  // 8
+  { icon: 'hubspot',         x: 150, y: 305 },  // 9
 ]
 
-// Inner ring (4) — phases at ~1.571 rad (2π/4)
-const INNER_RING: IconNodeConfig[] = [
-  { icon: 'n8n', a: 68, b: 65, speed: 0.020, phase: 0.4 },
-  { icon: 'google-calendar', a: 60, b: 70, speed: -0.018, phase: 1.971 },
-  { icon: 'telegram', a: 65, b: 62, speed: 0.019, phase: 3.542 },
-  { icon: 'airtable', a: 62, b: 68, speed: -0.017, phase: 5.112 },
+// Pre-defined chain sequences (desktop) — verified: no line crossings
+const DESKTOP_CHAINS: number[][] = [
+  [0, 11, 6, 7],       // whatsapp -> calendar -> notion -> pipedrive
+  [2, 3, 8, 4],        // shopify -> salesforce -> stripe -> slack
+  [5, 13, 9, 12],      // sheets -> airtable -> hubspot -> telegram
+  [1, 6, 10, 9],       // gmail -> notion -> n8n -> hubspot
+  [11, 5, 10, 8],      // calendar -> sheets -> n8n -> stripe
+  [0, 5, 9, 12, 4],   // whatsapp -> sheets -> hubspot -> telegram -> slack
 ]
 
-// Desktop: all 14, Mobile: outer + middle (10)
-const NODES_DESKTOP = [...OUTER_RING, ...MIDDLE_RING, ...INNER_RING]
-const NODES_MOBILE = [...OUTER_RING, ...MIDDLE_RING]
+// Pre-defined chain sequences (mobile) — indices 0-9 only
+const MOBILE_CHAINS: number[][] = [
+  [0, 5, 6, 7],        // whatsapp -> sheets -> notion -> pipedrive
+  [2, 3, 8, 4],        // shopify -> salesforce -> stripe -> slack
+  [1, 6, 8, 4],        // gmail -> notion -> stripe -> slack
+  [5, 9, 8],           // sheets -> hubspot -> stripe
+  [0, 6, 7, 3],        // whatsapp -> notion -> pipedrive -> salesforce
+]
 
 // --- Chain animation state machine ---
 
@@ -84,34 +86,12 @@ type ChainPhase = 'idle' | 'drawing' | 'holding' | 'fading'
 
 interface ChainState {
   phase: ChainPhase
-  /** Time when current phase started */
   phaseStart: number
-  /** Pre-computed idle wait duration (set once on entering idle) */
   idleDuration: number
-  /** Indices of icons in the current chain */
   chainIndices: number[]
-  /** Per-icon activation progress (0 = inactive, 1 = fully active) */
   iconProgress: number[]
-  /** Chain path fade multiplier (1 = visible, 0 = gone) */
   pathOpacity: number
-  /** How far along the drawing phase (0..totalSegments) */
   drawProgress: number
-  /** Cooldown map: icon index → remaining cycles */
-  cooldowns: Map<number, number>
-}
-
-/** Fisher-Yates shuffle (in-place) */
-function shuffleArray<T>(arr: T[]): T[] {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[arr[i], arr[j]] = [arr[j], arr[i]]
-  }
-  return arr
-}
-
-/** Pick random int in [min, max] inclusive */
-function randInt(min: number, max: number): number {
-  return min + Math.floor(Math.random() * (max - min + 1))
 }
 
 export default function HeroConstellation() {
@@ -135,11 +115,10 @@ export default function HeroConstellation() {
     iconProgress: [],
     pathOpacity: 0,
     drawProgress: 0,
-    cooldowns: new Map(),
   })
 
-  // Positions cache (updated every frame)
-  const positionsRef = useRef<{ x: number; y: number }[]>([])
+  // Tracks which pre-defined chain to use next (cycling)
+  const chainIndexRef = useRef(0)
 
   // Reduced motion detection
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
@@ -162,98 +141,31 @@ export default function HeroConstellation() {
     }
   }, [])
 
-  const nodes = isMobile ? NODES_MOBILE : NODES_DESKTOP
+  // Reset chain state when switching between mobile/desktop
+  useEffect(() => {
+    chainIndexRef.current = 0
+    const cs = chainRef.current
+    cs.phase = 'idle'
+    cs.phaseStart = timeRef.current
+    cs.idleDuration = CHAIN_IDLE_MIN
+    cs.chainIndices = []
+    cs.iconProgress = []
+    cs.drawProgress = 0
+    cs.pathOpacity = 0
+  }, [isMobile])
+
+  const nodes = isMobile ? MOBILE_NODES : DESKTOP_NODES
+  const chains = isMobile ? MOBILE_CHAINS : DESKTOP_CHAINS
   const nodeCount = nodes.length
-  const chainSizeRange = isMobile ? CHAIN_SIZE_MOBILE : CHAIN_SIZE_DESKTOP
 
-  // Compute static positions for reduced-motion or initial SSR
-  const getStaticPos = useCallback(
-    (node: IconNodeConfig) => ({
-      x: CX + node.a * Math.cos(node.phase),
-      y: CY + node.b * Math.sin(node.phase),
-    }),
-    []
-  )
-
-  // Select next chain icons, respecting cooldowns
-  const selectChainIcons = useCallback(
-    (count: number, totalNodes: number, cooldowns: Map<number, number>): number[] => {
-      // Build eligible pool
-      const eligible = []
-      for (let i = 0; i < totalNodes; i++) {
-        if (!cooldowns.has(i)) eligible.push(i)
-      }
-
-      // If pool is too small, clear oldest cooldowns
-      while (eligible.length < count && cooldowns.size > 0) {
-        // Find the icon with the lowest remaining cooldown
-        let minCd = Infinity
-        let minIdx = -1
-        cooldowns.forEach((cd, idx) => {
-          if (cd < minCd) {
-            minCd = cd
-            minIdx = idx
-          }
-        })
-        if (minIdx >= 0) {
-          cooldowns.delete(minIdx)
-          eligible.push(minIdx)
-        }
-      }
-
-      shuffleArray(eligible)
-      return eligible.slice(0, count)
-    },
-    []
-  )
-
-  // Main animation loop
+  // Main animation loop (chain state machine + icon appearance only — no position updates)
   useAnimationFrame((_, delta) => {
     if (prefersReducedMotion) return
     if (!svgRef.current) return
 
-    // Clamp dt to avoid jumps when tab is backgrounded
     const dt = Math.min(delta / 1000, 0.1)
     timeRef.current += dt
     const t = timeRef.current
-
-    const positions: { x: number; y: number }[] = []
-
-    // Calculate orbital positions
-    for (let i = 0; i < nodeCount; i++) {
-      const node = nodes[i]
-      const x = CX + node.a * Math.cos(t * node.speed + node.phase)
-      const y = CY + node.b * Math.sin(t * node.speed + node.phase)
-      positions.push({ x, y })
-    }
-
-    // Repulsion pass: push apart any icons closer than MIN_ICON_DIST
-    for (let i = 0; i < nodeCount; i++) {
-      for (let j = i + 1; j < nodeCount; j++) {
-        const dx = positions[j].x - positions[i].x
-        const dy = positions[j].y - positions[i].y
-        const dist = Math.sqrt(dx * dx + dy * dy)
-        if (dist < MIN_ICON_DIST && dist > 0) {
-          const overlap = (MIN_ICON_DIST - dist) / 2
-          const nx = dx / dist
-          const ny = dy / dist
-          positions[i].x -= nx * overlap
-          positions[i].y -= ny * overlap
-          positions[j].x += nx * overlap
-          positions[j].y += ny * overlap
-        }
-      }
-    }
-
-    // Apply repulsion-adjusted positions to DOM
-    for (let i = 0; i < nodeCount; i++) {
-      const g = groupRefs.current[i]
-      if (g) {
-        g.setAttribute('transform', `translate(${positions[i].x}, ${positions[i].y})`)
-      }
-    }
-
-    positionsRef.current = positions
 
     // --- Chain animation state machine ---
     const cs = chainRef.current
@@ -261,21 +173,19 @@ export default function HeroConstellation() {
 
     switch (cs.phase) {
       case 'idle': {
-        // Wait for pre-computed idle duration to pass
         if (elapsed >= cs.idleDuration) {
-          // Transition to drawing
-          const chainSize = randInt(chainSizeRange[0], chainSizeRange[1])
-          const indices = selectChainIcons(chainSize, nodeCount, cs.cooldowns)
+          // Pick next pre-defined chain (cycling)
+          const chainSequence = chains[chainIndexRef.current % chains.length]
+          chainIndexRef.current++
 
           cs.phase = 'drawing'
           cs.phaseStart = t
-          cs.chainIndices = indices
-          cs.iconProgress = new Array(indices.length).fill(0)
+          cs.chainIndices = chainSequence
+          cs.iconProgress = new Array(chainSequence.length).fill(0)
           cs.drawProgress = 0
           cs.pathOpacity = 0.5
         }
 
-        // Ensure path is hidden during idle
         if (chainPathRef.current) {
           chainPathRef.current.setAttribute('opacity', '0')
         }
@@ -288,34 +198,27 @@ export default function HeroConstellation() {
         const progress = Math.min(elapsed / totalDrawTime, 1)
         cs.drawProgress = progress * totalSegments
 
-        // Activate icons as the line reaches them
         for (let i = 0; i < cs.chainIndices.length; i++) {
           if (i === 0) {
-            // First icon fades in smoothly over FIRST_ICON_FADE_DURATION
             cs.iconProgress[i] = Math.min(1, elapsed / FIRST_ICON_FADE_DURATION)
           } else {
-            // Icon i activates when segment i-1 → i is being drawn
             const segmentProgress = cs.drawProgress - (i - 1)
             cs.iconProgress[i] = Math.max(0, Math.min(1, segmentProgress))
           }
         }
 
-        // Build and update path
-        updateChainPath(cs, positions)
+        updateChainPath(cs, nodes)
 
         if (progress >= 1) {
-          // All segments drawn, transition to holding
           cs.phase = 'holding'
           cs.phaseStart = t
-          // Ensure all icons are fully active
           cs.iconProgress.fill(1)
         }
         break
       }
 
       case 'holding': {
-        // Keep chain visible, icons still orbit
-        updateChainPath(cs, positions)
+        updateChainPath(cs, nodes)
 
         if (elapsed >= CHAIN_HOLD_DURATION) {
           cs.phase = 'fading'
@@ -326,33 +229,17 @@ export default function HeroConstellation() {
 
       case 'fading': {
         const fadeProgress = Math.min(elapsed / CHAIN_FADE_DURATION, 1)
-        // Ease out
         const fadeMultiplier = 1 - fadeProgress * fadeProgress
 
         cs.pathOpacity = 0.5 * fadeMultiplier
 
-        // Fade icon activations
         for (let i = 0; i < cs.iconProgress.length; i++) {
           cs.iconProgress[i] = fadeMultiplier
         }
 
-        updateChainPath(cs, positions)
+        updateChainPath(cs, nodes)
 
         if (fadeProgress >= 1) {
-          // Add cooldowns for participating icons
-          for (const idx of cs.chainIndices) {
-            cs.cooldowns.set(idx, COOLDOWN_CYCLES)
-          }
-          // Decrement all existing cooldowns
-          cs.cooldowns.forEach((cd, idx) => {
-            if (cd <= 1) {
-              cs.cooldowns.delete(idx)
-            } else {
-              cs.cooldowns.set(idx, cd - 1)
-            }
-          })
-
-          // Reset to idle with a fresh random duration
           cs.phase = 'idle'
           cs.phaseStart = t
           cs.idleDuration = CHAIN_IDLE_MIN + Math.random() * (CHAIN_IDLE_MAX - CHAIN_IDLE_MIN)
@@ -373,11 +260,9 @@ export default function HeroConstellation() {
       const chainIdx = cs.chainIndices.indexOf(i)
       const activation = chainIdx >= 0 ? cs.iconProgress[chainIdx] : 0
 
-      // Lerp size
       const size = ICON_INACTIVE_SIZE + (ICON_ACTIVE_SIZE - ICON_INACTIVE_SIZE) * activation
       const halfSize = size / 2
 
-      // Update background rect to mask the connector line behind the icon
       const bg = bgRefs.current[i]
       if (bg) {
         bg.setAttribute('width', String(size + 4))
@@ -391,11 +276,9 @@ export default function HeroConstellation() {
       img.setAttribute('x', String(-halfSize))
       img.setAttribute('y', String(-halfSize))
 
-      // Lerp opacity
       const opacity = ICON_INACTIVE_OPACITY + (ICON_ACTIVE_OPACITY - ICON_INACTIVE_OPACITY) * activation
       img.setAttribute('opacity', String(opacity))
 
-      // Toggle grayscale filter
       if (activation > 0.5) {
         img.removeAttribute('filter')
       } else {
@@ -404,18 +287,14 @@ export default function HeroConstellation() {
     }
   })
 
-  // Helper: build/update the chain connector path (straight lines, center-to-center)
-  function updateChainPath(
-    cs: ChainState,
-    positions: { x: number; y: number }[]
-  ) {
+  // Helper: build/update the chain connector path
+  function updateChainPath(cs: ChainState, nodeList: IconNode[]) {
     const pathEl = chainPathRef.current
     if (!pathEl || cs.chainIndices.length < 2) return
 
-    const points = cs.chainIndices.map((idx) => positions[idx]).filter(Boolean)
+    const points = cs.chainIndices.map((idx) => nodeList[idx]).filter(Boolean)
     if (points.length < 2) return
 
-    // Straight line segments between icon centers
     let d = `M ${points[0].x},${points[0].y}`
     for (let i = 1; i < points.length; i++) {
       d += ` L ${points[i].x},${points[i].y}`
@@ -424,7 +303,6 @@ export default function HeroConstellation() {
     pathEl.setAttribute('d', d)
     pathEl.setAttribute('opacity', String(cs.pathOpacity))
 
-    // Only apply dash animation during drawing phase
     if (cs.phase === 'drawing') {
       let totalLength = 0
       for (let i = 1; i < points.length; i++) {
@@ -469,12 +347,8 @@ export default function HeroConstellation() {
           opacity="0"
         />
 
-        {/* Icon nodes */}
+        {/* Icon nodes — static positions */}
         {nodes.map((node, i) => {
-          const pos = prefersReducedMotion
-            ? getStaticPos(node)
-            : { x: CX + node.a * Math.cos(node.phase), y: CY + node.b * Math.sin(node.phase) }
-
           const size = ICON_INACTIVE_SIZE
           const halfSize = size / 2
 
@@ -482,7 +356,7 @@ export default function HeroConstellation() {
             <g
               key={node.icon}
               ref={(el) => { groupRefs.current[i] = el }}
-              transform={`translate(${pos.x}, ${pos.y})`}
+              transform={`translate(${node.x}, ${node.y})`}
             >
               <rect
                 ref={(el) => { bgRefs.current[i] = el }}
