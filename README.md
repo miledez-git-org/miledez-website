@@ -142,24 +142,16 @@ The brand foundation applies to all mil&dez outputs (website, presentations, pro
 - White background everywhere
 - Outline icons only (1.5px stroke)
 - Separation via spacing and dividers
-- Accent color (#8b2020) for CTAs and indicators
+- Primary accent (#085042 teal) for CTAs and indicators; secondary accent (#eb5100 orange) for highlights
 
 ## Custom Colors (Tailwind)
 
 ```typescript
+// Actual tokens live in generated-theme.ts — see CLAUDE.md Color Usage section.
 // Available as: text-brand-*, bg-brand-*, border-brand-*
-colors: {
-  brand: {
-    black: '#1a1a1a',
-    dark: '#2d2d2d',
-    text: '#3d3d3d',
-    muted: '#5a5a5a',
-    light: '#7a7a7a',
-    border: '#e0e0e0',
-    accent: '#8b2020',
-    'accent-dark': '#6b1a1a',
-  }
-}
+// Primary (teal): brand-secondary / brand-secondary-dark (CSS names swapped, rename pending)
+// Secondary (orange): brand-primary / brand-primary-dark
+// Neutrals: brand-black (#1a1a1a), brand-muted, brand-light, brand-border (#e5e5e5)
 ```
 
 ## Adding New Pages
