@@ -87,13 +87,13 @@ public/
 ## Agency Conventions
 <!-- conventions-sync: 2026-03-18 -->
 
-**Design system:** Use the `miledez-design-system` skill for all visual outputs.
+**Design system:** Use the `design-system` skill for all visual outputs.
 - Primary: `#085042` (deep teal) | Secondary: `#eb5100` (orange) | Fonts: Manrope (headings), Source Sans 3 (body)
 - Backgrounds: `#fafafa` page, `#ffffff` cards, `#f5f5f7` surfaces | Icons: SVG line (Lucide/Phosphor)
 
 **Language:** Client-facing content in Portuguese (BR). Code, comments, technical docs in English.
 
-**Copy tone:** Use the `miledez-brand-voice` skill for all client-facing text. Key rules: Brazilian Portuguese only, zero English buzzwords, conversational professional register, outcome over mechanism. The skill has the full vocabulary glossary, word count limits per channel, and copy patterns.
+**Copy tone:** Use the `brand-voice` skill for all client-facing text. Key rules: Brazilian Portuguese only, zero English buzzwords, conversational professional register, outcome over mechanism. The skill has the full vocabulary glossary, word count limits per channel, and copy patterns.
 
 **Response style:** Concise and actionable. Tables for comparisons. Numbered items for follow-up.
 
@@ -102,7 +102,7 @@ public/
 - Confirm before destructive commands (rm, mv) — user runs manually
 - `/sandbox` folders are off-limits — do not read or reference unless explicitly asked
 - `/archive` folders are off-limits — do not read or reference unless explicitly asked
-- `miledez-business-intelligence/` is off-limits — do not read or reference unless explicitly asked
+- `business-intelligence/` is off-limits — do not read or reference unless explicitly asked
 
 **Session workflow:**
 1. Start: Read CLAUDE.md + check memory. Run `git status` for uncommitted work.
