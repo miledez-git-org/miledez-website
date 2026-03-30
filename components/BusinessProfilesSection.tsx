@@ -105,7 +105,7 @@ export default function BusinessProfilesSection() {
     <div ref={ref}>
       {/* Section header */}
       <div
-        className="text-center mb-16"
+        className="text-center mb-14 md:mb-16"
         style={{
           transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
           opacity: isVisible ? 1 : 0,
@@ -116,7 +116,7 @@ export default function BusinessProfilesSection() {
           Negócios como o seu<br />
           já automatizam com a gente
         </h2>
-        <p className="mt-4 text-lg text-neutral-600 max-w-2xl mx-auto">
+        <p className="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
           De clínicas a cooperativas — automação funciona em qualquer escala.
         </p>
       </div>

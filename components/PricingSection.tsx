@@ -8,7 +8,7 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
   return (
     <div>
       {/* Header */}
-      <div className="mb-12 md:mb-14 text-center">
+      <div className="mb-14 md:mb-16 text-center">
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
           Quanto custa automatizar<br />
           <span className="text-brand-primary">o que você recebe de volta</span>

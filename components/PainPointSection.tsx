@@ -31,10 +31,10 @@ export default function PainPointSection() {
   return (
     <section className="bg-bg-muted py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <div className="mb-12 md:mb-14 text-center">
+        <div className="mb-14 md:mb-16 text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             Você conhece<br />
-            <span className="text-[#274855]">esses problemas?</span>
+            <span className="text-brand-secondary">esses problemas?</span>
           </h2>
         </div>
 

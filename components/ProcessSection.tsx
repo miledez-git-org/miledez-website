@@ -46,11 +46,11 @@ export default function ProcessSection() {
   return (
     <div ref={ref}>
       {/* Header */}
-      <div className="mb-16 lg:mb-20">
+      <div className="mb-14 md:mb-16">
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] lg:text-[3rem] text-brand-black leading-tight">
           Como trabalhamos
         </h2>
-        <p className="mt-4 text-lg text-neutral-600 max-w-lg">
+        <p className="mt-4 text-lg text-neutral-600 max-w-xl">
           Da primeira conversa ao sistema rodando — simples assim.
         </p>
       </div>

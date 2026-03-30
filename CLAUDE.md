@@ -73,6 +73,7 @@ public/
 - Teal: `brand-secondary` / `brand-secondary-dark` / `brand-secondary-light` / `brand-secondary-subtle`
 - Body text: `text-neutral-600` (not `text-brand-muted`)
 - Glow shadows: `shadow-accent-glow`, `shadow-secondary-glow`
+- **`shadow-card` / `shadow-card-hover` are NOT defined** — use standard Tailwind (`shadow-sm`, `shadow-md`) or inline `boxShadow` style
 
 ## Rules
 
@@ -83,6 +84,8 @@ public/
 - `generated-theme.ts` is the single source of truth for Tailwind color tokens — update it (not individual components) when changing brand colors
 - **Min font size:** 14px (`text-sm`) absolute minimum for low-priority info; 16px (`text-base`) for all other text. Never use `text-xs`.
 - **Icons:** Always plain outline SVGs (stroke, no fill). Never wrap icons in colored background containers (`bg-brand-*-subtle`). Color via parent text class only.
+- **Orange backgrounds (`brand-primary`):** All text must be full `text-white` — never use `text-white/80`, `text-white/90`, or any opacity-reduced white.
+- **Shadows:** User prefers directional lower-right shadows (e.g., `boxShadow: '3px 4px 12px rgba(0,0,0,0.10)'`), not uniform Tailwind shadows.
 - **Build trace error:** `npm run build` may fail on `_not-found/page.js.nft.json` — this is a pre-existing Next.js trace collection bug, not a code error. Pages still generate correctly.
 - If dev server returns 404s on `_next/static/` assets, delete `.next/` and restart: `rm -rf .next && npm run dev`
 

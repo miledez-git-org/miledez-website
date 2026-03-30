@@ -177,12 +177,12 @@ export default function WorkflowExplainerSection() {
       <div className="max-w-6xl mx-auto px-6 md:px-10">
 
         {/* Section header */}
-        <div className="mb-16 md:mb-20 text-center">
+        <div className="mb-14 md:mb-16 text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             Como funciona uma<br />
-            <span className="text-[#274855]">automação</span>
+            <span className="text-brand-secondary">automação</span>
           </h2>
-          <p className="mt-4 text-lg text-neutral-600 max-w-md mx-auto">
+          <p className="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
             Todo processo repetitivo vira um fluxo automático — do gatilho ao resultado.
           </p>
         </div>

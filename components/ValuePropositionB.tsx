@@ -115,7 +115,7 @@ export default function ValuePropositionB({ onContactClick }: ValuePropositionBP
         >
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             Resultados em dias,<br />
-            <span className="text-[#274855]">não meses</span>
+            <span className="text-brand-secondary">não meses</span>
           </h2>
 
           <div className="mt-6 space-y-4 text-lg text-neutral-600 leading-relaxed max-w-lg">

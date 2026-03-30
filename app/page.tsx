@@ -108,7 +108,7 @@ export default function Home() {
       </section>
 
       {/* Integrations */}
-      <section id="integracoes" className="py-20 md:py-28 bg-bg-muted">
+      <section id="integracoes" className="py-28 md:py-40 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-6xl mx-auto">
           <LogoGrid />
         </div>
