@@ -90,7 +90,7 @@ public/
 - If dev server returns 404s on `_next/static/` assets, delete `.next/` and restart: `rm -rf .next && npm run dev`
 
 ## Agency Conventions
-<!-- conventions-sync: 2026-03-18 -->
+<!-- conventions-sync: 2026-03-30 -->
 
 **Design system:** Use the `design-system` skill for all visual outputs.
 - Primary: `#085042` (deep teal) | Secondary: `#eb5100` (orange) | Fonts: Manrope (headings), Source Sans 3 (body)
