@@ -199,14 +199,14 @@ export default function WorkflowExplainerSection() {
             {PHASES.map((phase, colIndex) => (
               <Fragment key={phase.key}>
                 <motion.div
-                  className={`rounded-2xl px-6 py-8 flex flex-col items-center ${colIndex === 1 ? 'bg-brand-primary' : 'bg-[#f5f5f7]'}`}
+                  className={`rounded-2xl px-6 py-8 flex flex-col items-center ${colIndex === 1 ? 'bg-white border-[3px] border-brand-primary' : 'bg-[#f5f5f7]'}`}
                   initial={{ opacity: 0, y: 16 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
                   transition={{ duration: 0.5, delay: colIndex * 0.14, ease: EASE }}
                 >
                   {/* Column label */}
                   <div className="mb-5">
-                    <PhaseLabel label={phase.label} description={phase.description} variant={colIndex === 1 ? 'highlight' : 'default'} />
+                    <PhaseLabel label={phase.label} description={phase.description} variant="default" />
                   </div>
 
                   {/* Main cycling card */}
@@ -220,7 +220,7 @@ export default function WorkflowExplainerSection() {
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}
                       >
-                        <NodeCard node={NODE_SETS[colIndex][activeIndices[colIndex]]} align={colIndex === 1 ? 'left' : 'center'} onOrange={colIndex === 1} />
+                        <NodeCard node={NODE_SETS[colIndex][activeIndices[colIndex]]} align={colIndex === 1 ? 'left' : 'center'} onOrange={false} />
                       </motion.div>
                     </AnimatePresence>
                   </div>
@@ -228,7 +228,7 @@ export default function WorkflowExplainerSection() {
                   {/* Sub-process cards (process column only) */}
                   {colIndex === 1 && SUB_PROCESS_NODE_SETS.map((nodeSet, i) => (
                     <div key={`sub-${i}`} className="flex flex-col items-center">
-                      <VerticalLine color="#ffffff" />
+                      <VerticalLine color="#eb5100" />
                       <div className="relative h-[64px] w-[300px] overflow-hidden">
                         <AnimatePresence initial={false}>
                           <motion.div
@@ -239,7 +239,7 @@ export default function WorkflowExplainerSection() {
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}
                           >
-                            <NodeCard node={nodeSet[activeIndices[1]]} align="left" onOrange />
+                            <NodeCard node={nodeSet[activeIndices[1]]} align="left" onOrange={false} />
                           </motion.div>
                         </AnimatePresence>
                       </div>
@@ -292,7 +292,7 @@ export default function WorkflowExplainerSection() {
                           exit={{ opacity: 0, y: -20 }}
                           transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}
                         >
-                          <NodeCard node={NODE_SETS[stepIndex][activeIndices[stepIndex]]} onOrange={stepIndex === 1} />
+                          <NodeCard node={NODE_SETS[stepIndex][activeIndices[stepIndex]]} onOrange={false} />
                         </motion.div>
                       </AnimatePresence>
                     </div>
@@ -307,7 +307,7 @@ export default function WorkflowExplainerSection() {
                       animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
                       transition={{ duration: 0.5, delay: 0.5 + i * 0.14, ease: EASE }}
                     >
-                      <VerticalLine color="#ffffff" />
+                      <VerticalLine color="#eb5100" />
                       <div className="relative h-[64px] w-[300px] overflow-hidden">
                         <AnimatePresence initial={false}>
                           <motion.div
@@ -318,7 +318,7 @@ export default function WorkflowExplainerSection() {
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}
                           >
-                            <NodeCard node={nodeSet[activeIndices[1]]} onOrange />
+                            <NodeCard node={nodeSet[activeIndices[1]]} onOrange={false} />
                           </motion.div>
                         </AnimatePresence>
                       </div>

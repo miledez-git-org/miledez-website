@@ -70,23 +70,26 @@ export default function LogoGrid() {
           backgroundSize: '24px 24px',
         }}
       >
-        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-5 md:gap-7 justify-items-center">
+        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-x-5 gap-y-6 md:gap-x-7 md:gap-y-8 justify-items-center">
           {logos.map((logo) => (
             <div
               key={logo.name}
-              className="group flex items-center justify-center cursor-default"
+              className="group flex flex-col items-center gap-1.5 cursor-default"
               title={logo.name}
             >
               <img
                 src={logo.src}
                 alt={logo.name}
-                className="w-7 h-7 md:w-8 md:h-8 object-contain opacity-60 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(6,57,47,0.35)]"
+                className="w-7 h-7 md:w-8 md:h-8 object-contain opacity-85 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(6,57,47,0.35)]"
                 loading="lazy"
               />
+              <span className="text-xs md:text-sm text-neutral-500 font-medium text-center leading-tight">
+                {logo.name}
+              </span>
             </div>
           ))}
         </div>
-        <p className="text-center text-base text-neutral-500 mt-10">...e muitas mais</p>
+        <p className="text-center text-lg font-medium text-neutral-500 mt-10">...e muitas mais</p>
       </div>
     </div>
   )

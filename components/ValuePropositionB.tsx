@@ -34,17 +34,6 @@ const ShieldCheckIcon = () => (
   </svg>
 )
 
-const CalendarXIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-    <line x1="16" y1="2" x2="16" y2="6" />
-    <line x1="8" y1="2" x2="8" y2="6" />
-    <line x1="3" y1="10" x2="21" y2="10" />
-    <line x1="10" y1="14" x2="14" y2="18" />
-    <line x1="14" y1="14" x2="10" y2="18" />
-  </svg>
-)
-
 const SlidersIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <line x1="4" y1="21" x2="4" y2="14" />
@@ -59,23 +48,16 @@ const SlidersIcon = () => (
   </svg>
 )
 
-const MapPinIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-    <circle cx="12" cy="10" r="3" />
-  </svg>
-)
-
 const benefits: BenefitItem[] = [
   {
     icon: <ClockIcon />,
-    title: '3-7 dias para automações simples',
-    description: 'Projetos maiores em 2-4 semanas. Sem interromper sua operação.',
+    title: '3–7 dias para automações simples',
+    description: 'Projetos maiores em 2–4 semanas. Sem interromper sua operação.',
   },
   {
     icon: <WalletIcon />,
-    title: 'R$0 de investimento inicial',
-    description: 'Desenvolvimento, testes e treinamento por nossa conta. Você só paga quando funcionar.',
+    title: 'Sem custo inicial, sem contrato',
+    description: 'Desenvolvimento e testes por nossa conta. Assinatura mensal, cancele em 30 dias. Você só paga quando funcionar.',
   },
   {
     icon: <ShieldCheckIcon />,
@@ -84,18 +66,8 @@ const benefits: BenefitItem[] = [
   },
   {
     icon: <SlidersIcon />,
-    title: '100% personalizado para sua empresa',
-    description: 'Nada de solução genérica. Cada automação é construída para o processo real do seu negócio.',
-  },
-  {
-    icon: <MapPinIcon />,
-    title: 'Feito para o Brasil',
-    description: 'Integração com ferramentas brasileiras, conformidade LGPD e suporte 100% em português.',
-  },
-  {
-    icon: <CalendarXIcon />,
-    title: 'Sem contrato, sem multa',
-    description: 'Assinatura mensal. Cancele em 30 dias. A automação é sua.',
+    title: 'Feito para o seu processo',
+    description: 'Nada de solução genérica. Cada automação é construída para o fluxo real da sua empresa.',
   },
 ]
 
@@ -114,19 +86,16 @@ export default function ValuePropositionB({ onContactClick }: ValuePropositionBP
           }}
         >
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
-            Resultados em dias,<br />
-            <span className="text-brand-secondary">não meses</span>
+            Podemos entregar sua primeira automação em dias.<br />
+            <span className="text-brand-secondary">Totalmente personalizada para suas necessidades.</span>
           </h2>
 
           <div className="mt-6 space-y-4 text-lg text-neutral-600 leading-relaxed max-w-lg">
             <p>
-              Somos uma agência de automação que entrega soluções prontas para usar. Você não precisa de equipe de TI, não precisa entender de tecnologia, e não precisa esperar meses para ver resultados.
-            </p>
-            <p>
-              Construímos automações 100% personalizadas para o processo real da sua empresa — conectando os sistemas que você já usa. Cuidamos de tudo: desenvolvimento, hospedagem, manutenção e atualizações.
+              Nós construímos automações personalizadas para o processo real da sua empresa — conectando os sistemas que você já usa.
             </p>
             <p className="font-medium text-brand-black">
-              Você paga só a mensalidade. Sem contrato, sem surpresas, sem risco.
+              Sem compromisso, sem investimento inicial e sem risco.
             </p>
           </div>
 
@@ -162,7 +131,7 @@ export default function ValuePropositionB({ onContactClick }: ValuePropositionBP
 
                 {/* Content */}
                 <div>
-                  <h3 className="text-lg font-semibold text-brand-black">
+                  <h3 className="text-xl md:text-2xl font-semibold text-brand-black">
                     {benefit.title}
                   </h3>
                   <p className="mt-1 text-base text-neutral-600 leading-relaxed">

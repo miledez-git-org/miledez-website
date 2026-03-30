@@ -52,12 +52,13 @@ export default function Home() {
               {/* Headline */}
               <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-brand-black leading-[1.1]">
                 seu trabalho<br />
+                do seu jeito<br />
                 <span className="text-brand-primary">no automático</span>
               </h1>
 
               {/* Subheadline */}
               <p className="mt-6 text-lg md:text-xl text-neutral-600 font-normal leading-relaxed max-w-xl">
-                Conectamos seus sistemas e automatizamos os processos que tomam seu tempo. Resultados em dias — não meses.
+                Reconecte seus sistemas do jeito que quiser e automatize os processos que desperdiçam seu tempo. Criamos resultados em dias, não meses.
               </p>
 
               {/* CTAs */}
@@ -69,10 +70,10 @@ export default function Home() {
                   Agendar demonstração
                 </button>
                 <a
-                  href="#valor"
+                  href="#problemas"
                   className="btn btn-outline btn-lg"
                 >
-                  Ver casos de uso
+                  Descubra mais
                 </a>
               </div>
             </div>

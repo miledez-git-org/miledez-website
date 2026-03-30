@@ -14,28 +14,28 @@ const steps: ProcessStep[] = [
     number: '01',
     title: 'Conversa inicial',
     description:
-      'Marcamos uma conversa rápida pra conhecer seu dia a dia e entender onde a automação pode te ajudar mais.',
-    duration: '30 min · gratuito',
+      'Marcamos uma conversa rápida pra nos conhecer, entender sua empresa e como funciona o dia a dia da sua operação.',
+    duration: '30 min',
   },
   {
     number: '02',
-    title: 'Proposta sob medida',
+    title: 'Relatório de ideias',
     description:
-      'Montamos uma proposta clara com o que vai ser feito, quais ferramentas serão conectadas, prazo e valor. Sem surpresas.',
+      'Preparamos um relatório com sugestões de automações para o seu negócio, incluindo exemplos práticos e estimativas de valor. A intenção é inspirar e mostrar o que é possível.',
     duration: '2–3 dias úteis',
   },
   {
     number: '03',
-    title: 'Construção e testes',
+    title: 'Definição e construção',
     description:
-      'A gente constrói tudo e testa com dados reais. Você acompanha e valida antes de qualquer coisa ir pro ar.',
-    duration: '1–4 semanas',
+      'Junto com você, definimos exatamente o que será automatizado. Construímos, testamos e ajustamos até ficar do jeito certo.',
+    duration: '1–2 semanas',
   },
   {
     number: '04',
-    title: 'No ar com suporte',
+    title: 'Entrega e acompanhamento',
     description:
-      'Sua automação entra em produção e nós cuidamos da manutenção, ajustes e suporte. Você foca no que importa.',
+      'Entregamos a automação funcionando. Você testa no seu dia a dia e nós fazemos todos os ajustes necessários — tudo incluído na mensalidade.',
     duration: 'contínuo',
   },
 ]

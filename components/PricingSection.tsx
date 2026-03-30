@@ -19,30 +19,43 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
       </div>
 
       {/* Price Range Display */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-3xl mx-auto">
-        {/* Left — Simple */}
-        <div className="text-center md:text-left">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 max-w-5xl mx-auto">
+        {/* Simple */}
+        <div className="text-center md:text-left md:pr-8">
           <p className="text-base font-medium text-neutral-500 uppercase tracking-wider mb-2">
             A partir de
           </p>
-          <p className="heading-display text-4xl md:text-5xl text-brand-black">
-            R$900<span className="text-2xl md:text-3xl">/mês</span>
+          <p className="heading-display text-3xl md:text-4xl text-brand-black">
+            R$900<span className="text-xl md:text-2xl">/mês</span>
           </p>
           <p className="text-base text-neutral-600 mt-2">
             Automações simples
           </p>
         </div>
 
-        {/* Right — Complex */}
-        <div className="text-center md:text-left md:border-l md:border-neutral-200 md:pl-12">
+        {/* Medium */}
+        <div className="text-center md:text-left md:border-l md:border-neutral-200 md:pl-8 md:pr-8">
           <p className="text-base font-medium text-neutral-500 uppercase tracking-wider mb-2">
             A partir de
           </p>
-          <p className="heading-display text-4xl md:text-5xl text-brand-black">
-            R$2.000<span className="text-2xl md:text-3xl">/mês</span>
+          <p className="heading-display text-3xl md:text-4xl text-brand-black">
+            R$2.000<span className="text-xl md:text-2xl">/mês</span>
           </p>
           <p className="text-base text-neutral-600 mt-2">
-            Soluções mais complexas
+            Soluções de complexidade média
+          </p>
+        </div>
+
+        {/* Complex */}
+        <div className="text-center md:text-left md:border-l md:border-neutral-200 md:pl-8">
+          <p className="text-base font-medium text-neutral-500 uppercase tracking-wider mb-2">
+            A partir de
+          </p>
+          <p className="heading-display text-3xl md:text-4xl text-brand-black">
+            R$6.000<span className="text-xl md:text-2xl">/mês</span>
+          </p>
+          <p className="text-base text-neutral-600 mt-2">
+            Soluções complexas com alta personalização
           </p>
         </div>
       </div>
