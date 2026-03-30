@@ -13,7 +13,7 @@ interface PipelineNode {
 
 // --- Constants ---
 
-const CONNECTOR_COLOR = '#C8C8C8'
+const CONNECTOR_COLOR = '#9ca3af'
 const EASE = [0.16, 1, 0.3, 1] as const
 const TICK_MS = 2000
 const FADE_DURATION = 0.8
@@ -43,33 +43,47 @@ const NODE_SETS: [PipelineNode[], PipelineNode[], PipelineNode[]] = [
   ],
 ]
 
-// Sub-process cards shown below the middle "Processo" column
-const SUB_PROCESS_NODES: PipelineNode[] = [
-  { label: 'Prontuário atualizado', logo: 'google-drive.svg' },
-  { label: 'Relatório mensal gerado', logo: 'excel.svg' },
+// Sub-process cards shown below the middle "Processo" column (one set per scenario)
+const SUB_PROCESS_NODE_SETS: [PipelineNode[], PipelineNode[]] = [
+  // Sub-process card 1
+  [
+    { label: 'Prontuário atualizado', logo: 'google-drive.svg' },
+    { label: 'Cláusulas revisadas', logo: 'google-drive.svg' },
+    { label: 'Estoque atualizado', logo: 'google-sheets.svg' },
+  ],
+  // Sub-process card 2
+  [
+    { label: 'Relatório mensal gerado', logo: 'excel.svg' },
+    { label: 'Notificação enviada ao cliente', logo: 'gmail.svg' },
+    { label: 'Nota fiscal registrada', logo: 'excel.svg' },
+  ],
 ]
 
 // --- Sub-components ---
 
-function PhaseLabel({ label, description }: { label: string; description: string }) {
+function PhaseLabel({ label, description, variant = 'default' }: { label: string; description: string; variant?: 'default' | 'highlight' }) {
+  const isHighlight = variant === 'highlight'
   return (
     <div className="flex flex-col items-center">
       <span
-        className="text-sm font-semibold text-neutral-800 uppercase tracking-wide"
+        className={`text-lg font-bold uppercase tracking-wide ${isHighlight ? 'text-white' : 'text-brand-black'}`}
         style={{ fontFamily: 'var(--font-manrope)' }}
       >
         {label}
       </span>
-      <span className="text-[13px] text-neutral-600 leading-relaxed mt-1">
+      <span className={`text-base leading-relaxed mt-2 ${isHighlight ? 'text-white' : 'text-neutral-600'}`}>
         {description}
       </span>
     </div>
   )
 }
 
-function NodeCard({ node, align = 'center' }: { node: PipelineNode; align?: 'center' | 'left' }) {
+function NodeCard({ node, align = 'center', onOrange = false }: { node: PipelineNode; align?: 'center' | 'left'; onOrange?: boolean }) {
   return (
-    <div className={`flex items-center ${align === 'left' ? 'justify-start' : 'justify-center'} gap-3 bg-white rounded-lg px-5 py-4 border border-neutral-200 shadow-card hover:shadow-card-hover transition-shadow duration-200 w-[280px] h-[56px]`}>
+    <div
+      className={`flex items-center ${align === 'left' ? 'justify-start' : 'justify-center'} gap-3 bg-white rounded-xl px-6 py-4 transition-shadow duration-200 w-[300px] h-[64px] ${onOrange ? 'border border-white/20' : 'border border-neutral-200'}`}
+      style={{ boxShadow: onOrange ? '3px 5px 16px rgba(120, 30, 0, 0.25)' : '3px 4px 12px rgba(0, 0, 0, 0.10)' }}
+    >
       <img
         src={`/logos/${node.logo}`}
         alt=""
@@ -77,7 +91,7 @@ function NodeCard({ node, align = 'center' }: { node: PipelineNode; align?: 'cen
         height={32}
         className="flex-shrink-0"
       />
-      <span className="text-[15px] font-medium text-brand-black leading-snug">
+      <span className="text-base font-medium text-brand-black leading-snug">
         {node.label}
       </span>
     </div>
@@ -86,15 +100,21 @@ function NodeCard({ node, align = 'center' }: { node: PipelineNode; align?: 'cen
 
 function HorizontalArrow() {
   return (
-    <div className="flex items-center flex-shrink-0 px-2" style={{ width: '72px' }}>
-      <div className="flex-1 h-px bg-neutral-300" />
-      <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
+    <div className="flex items-center flex-shrink-0" style={{ width: '24px' }}>
+      <svg width="24" height="14" viewBox="0 0 24 14" fill="none">
         <path
-          d="M1 1l6 5-6 5"
+          d="M0 7h18"
           stroke={CONNECTOR_COLOR}
-          strokeWidth="1.5"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M15 3l5 4-5 4"
+          stroke={CONNECTOR_COLOR}
+          strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
+          fill="none"
         />
       </svg>
     </div>
@@ -104,12 +124,12 @@ function HorizontalArrow() {
 function VerticalArrow() {
   return (
     <div className="flex flex-col items-center my-1" style={{ height: '28px' }}>
-      <div className="w-px flex-1 bg-neutral-300" />
+      <div className="w-[1.5px] flex-1 bg-neutral-400" />
       <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
         <path
           d="M1 1l5 6 5-6"
           stroke={CONNECTOR_COLOR}
-          strokeWidth="1.5"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -118,10 +138,10 @@ function VerticalArrow() {
   )
 }
 
-function VerticalLine({ height = 24 }: { height?: number }) {
+function VerticalLine({ height = 24, color = CONNECTOR_COLOR }: { height?: number; color?: string }) {
   return (
     <div className="flex justify-center" style={{ height }}>
-      <div className="w-px h-full" style={{ backgroundColor: CONNECTOR_COLOR }} />
+      <div className="w-[1.5px] h-full" style={{ backgroundColor: color }} />
     </div>
   )
 }
@@ -157,7 +177,7 @@ export default function WorkflowExplainerSection() {
       <div className="max-w-6xl mx-auto px-6 md:px-10">
 
         {/* Section header */}
-        <div className="mb-12 md:mb-14 text-center">
+        <div className="mb-16 md:mb-20 text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             Como funciona uma<br />
             <span className="text-[#274855]">automação</span>
@@ -174,89 +194,73 @@ export default function WorkflowExplainerSection() {
           onMouseLeave={() => setIsPaused(false)}
         >
 
-          {/* Desktop: horizontal pipeline */}
-          <div className="hidden md:block">
-            {/* Labels row */}
-            <div className="flex items-start justify-center mb-4">
-              {PHASES.map((phase, colIndex) => (
-                <Fragment key={phase.key}>
-                  <motion.div
-                    className="w-[280px] text-center min-h-[52px] flex items-end justify-center"
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -12 }}
-                    transition={{ duration: 0.45, delay: colIndex * 0.14, ease: EASE }}
-                  >
-                    <PhaseLabel label={phase.label} description={phase.description} />
-                  </motion.div>
-                  {colIndex < 2 && <div style={{ width: '72px' }} />}
-                </Fragment>
-              ))}
-            </div>
+          {/* Desktop: horizontal pipeline — each column is its own card */}
+          <div className="hidden md:flex items-start justify-center gap-0">
+            {PHASES.map((phase, colIndex) => (
+              <Fragment key={phase.key}>
+                <motion.div
+                  className={`rounded-2xl px-6 py-8 flex flex-col items-center ${colIndex === 1 ? 'bg-brand-primary' : 'bg-[#f5f5f7]'}`}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+                  transition={{ duration: 0.5, delay: colIndex * 0.14, ease: EASE }}
+                >
+                  {/* Column label */}
+                  <div className="mb-5">
+                    <PhaseLabel label={phase.label} description={phase.description} variant={colIndex === 1 ? 'highlight' : 'default'} />
+                  </div>
 
-            {/* Cards + arrows row */}
-            <div className="flex items-center justify-center">
-              {PHASES.map((phase, colIndex) => (
-                <Fragment key={phase.key}>
-                  <motion.div
-                    className="w-[280px]"
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-                    transition={{ duration: 0.5, delay: colIndex * 0.14 + 0.08, ease: EASE }}
-                  >
-                    <div className="relative h-[56px] overflow-hidden">
-                      <AnimatePresence initial={false}>
-                        <motion.div
-                          key={`d-${colIndex}-${activeIndices[colIndex]}`}
-                          className="absolute inset-0"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -20 }}
-                          transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}
-                        >
-                          <NodeCard node={NODE_SETS[colIndex][activeIndices[colIndex]]} align={colIndex === 1 ? 'left' : 'center'} />
-                        </motion.div>
-                      </AnimatePresence>
+                  {/* Main cycling card */}
+                  <div className="relative h-[64px] w-[300px] overflow-hidden">
+                    <AnimatePresence initial={false}>
+                      <motion.div
+                        key={`d-${colIndex}-${activeIndices[colIndex]}`}
+                        className="absolute inset-0"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}
+                      >
+                        <NodeCard node={NODE_SETS[colIndex][activeIndices[colIndex]]} align={colIndex === 1 ? 'left' : 'center'} onOrange={colIndex === 1} />
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Sub-process cards (process column only) */}
+                  {colIndex === 1 && SUB_PROCESS_NODE_SETS.map((nodeSet, i) => (
+                    <div key={`sub-${i}`} className="flex flex-col items-center">
+                      <VerticalLine color="#ffffff" />
+                      <div className="relative h-[64px] w-[300px] overflow-hidden">
+                        <AnimatePresence initial={false}>
+                          <motion.div
+                            key={`d-sub-${i}-${activeIndices[1]}`}
+                            className="absolute inset-0"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}
+                          >
+                            <NodeCard node={nodeSet[activeIndices[1]]} align="left" onOrange />
+                          </motion.div>
+                        </AnimatePresence>
+                      </div>
                     </div>
-                  </motion.div>
+                  ))}
+                </motion.div>
 
-                  {colIndex < 2 && (
-                    <motion.div
-                      className="flex-shrink-0"
-                      initial={{ opacity: 0 }}
-                      animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-                      transition={{ duration: 0.35, delay: colIndex * 0.14 + 0.18, ease: EASE }}
-                    >
-                      <HorizontalArrow />
-                    </motion.div>
-                  )}
-                </Fragment>
-              ))}
-            </div>
-
-            {/* Sub-process cards below the middle column */}
-            <div className="flex items-center justify-center">
-              {/* Invisible spacer matching left column + arrow */}
-              <div className="w-[280px] flex-shrink-0" />
-              <div className="flex-shrink-0" style={{ width: '72px' }} />
-              {/* Sub-process cards aligned with middle column */}
-              <div className="w-[280px] flex-shrink-0 flex flex-col items-center">
-                {SUB_PROCESS_NODES.map((node, i) => (
+                {/* Arrow between columns — aligned to title centerline */}
+                {colIndex < 2 && (
                   <motion.div
-                    key={`sub-${i}`}
-                    className="flex flex-col items-center"
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-                    transition={{ duration: 0.5, delay: 0.5 + i * 0.14, ease: EASE }}
+                    className="flex-shrink-0 self-start mx-[8px]"
+                    style={{ marginTop: 'calc(32px + 10px)' }}
+                    initial={{ opacity: 0 }}
+                    animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+                    transition={{ duration: 0.35, delay: colIndex * 0.14 + 0.18, ease: EASE }}
                   >
-                    <VerticalLine />
-                    <NodeCard node={node} align="left" />
+                    <HorizontalArrow />
                   </motion.div>
-                ))}
-              </div>
-              {/* Invisible spacer matching arrow + right column */}
-              <div className="flex-shrink-0" style={{ width: '72px' }} />
-              <div className="w-[280px] flex-shrink-0" />
-            </div>
+                )}
+              </Fragment>
+            ))}
           </div>
 
           {/* Mobile: vertical pipeline */}
@@ -278,7 +282,7 @@ export default function WorkflowExplainerSection() {
                     animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
                     transition={{ duration: 0.5, delay: stepIndex * 0.14 + 0.06, ease: EASE }}
                   >
-                    <div className="relative h-[56px] w-[280px] overflow-hidden">
+                    <div className="relative h-[64px] w-[300px] overflow-hidden">
                       <AnimatePresence initial={false}>
                         <motion.div
                           key={`m-${stepIndex}-${activeIndices[stepIndex]}`}
@@ -288,14 +292,14 @@ export default function WorkflowExplainerSection() {
                           exit={{ opacity: 0, y: -20 }}
                           transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}
                         >
-                          <NodeCard node={NODE_SETS[stepIndex][activeIndices[stepIndex]]} />
+                          <NodeCard node={NODE_SETS[stepIndex][activeIndices[stepIndex]]} onOrange={stepIndex === 1} />
                         </motion.div>
                       </AnimatePresence>
                     </div>
                   </motion.div>
 
                   {/* Sub-process cards after the Process phase (index 1) */}
-                  {stepIndex === 1 && SUB_PROCESS_NODES.map((node, i) => (
+                  {stepIndex === 1 && SUB_PROCESS_NODE_SETS.map((nodeSet, i) => (
                     <motion.div
                       key={`m-sub-${i}`}
                       className="flex flex-col items-center"
@@ -303,8 +307,21 @@ export default function WorkflowExplainerSection() {
                       animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
                       transition={{ duration: 0.5, delay: 0.5 + i * 0.14, ease: EASE }}
                     >
-                      <VerticalLine />
-                      <NodeCard node={node} align="left" />
+                      <VerticalLine color="#ffffff" />
+                      <div className="relative h-[64px] w-[300px] overflow-hidden">
+                        <AnimatePresence initial={false}>
+                          <motion.div
+                            key={`m-sub-${i}-${activeIndices[1]}`}
+                            className="absolute inset-0"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: FADE_DURATION, ease: 'easeInOut' }}
+                          >
+                            <NodeCard node={nodeSet[activeIndices[1]]} onOrange />
+                          </motion.div>
+                        </AnimatePresence>
+                      </div>
                     </motion.div>
                   ))}
                 </div>

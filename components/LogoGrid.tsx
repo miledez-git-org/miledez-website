@@ -80,12 +80,13 @@ export default function LogoGrid() {
               <img
                 src={logo.src}
                 alt={logo.name}
-                className="w-7 h-7 md:w-8 md:h-8 object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(6,57,47,0.35)]"
+                className="w-7 h-7 md:w-8 md:h-8 object-contain opacity-60 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(6,57,47,0.35)]"
                 loading="lazy"
               />
             </div>
           ))}
         </div>
+        <p className="text-center text-base text-neutral-500 mt-10">...e muitas mais</p>
       </div>
     </div>
   )

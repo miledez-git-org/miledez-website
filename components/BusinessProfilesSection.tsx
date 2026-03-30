@@ -43,13 +43,6 @@ const LeafIcon = () => (
   </svg>
 )
 
-const HeartPulseIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M19.5 12.572l-7.5 7.428-7.5-7.428A5 5 0 1 1 12 6.006a5 5 0 1 1 7.5 6.572" />
-    <path d="M5 12h2l2 3 4-6 2 3h4" />
-  </svg>
-)
-
 const WarehouseIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M3 21V8l9-5 9 5v13" />
@@ -59,16 +52,6 @@ const WarehouseIcon = () => (
     <path d="M15 11h2" />
     <path d="M7 15h2" />
     <path d="M15 15h2" />
-  </svg>
-)
-
-const HospitalIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M3 21h18" />
-    <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" />
-    <path d="M9 21v-4h6v4" />
-    <path d="M10 9h4" />
-    <path d="M12 7v4" />
   </svg>
 )
 
@@ -104,16 +87,6 @@ const profiles: BusinessProfile[] = [
     benefitDetail: 'Coordenação de fornecedores e documentação no automático (6x)',
   },
   {
-    type: 'Clínica de Fisioterapia',
-    icon: <HeartPulseIcon />,
-    size: '25 profissionais',
-    location: 'Belo Horizonte, MG',
-    price: 'R$2.000',
-    priceLabel: '/mês',
-    benefit: 'R$12.000/mês',
-    benefitDetail: 'Menos glosas e maior eficiência operacional (6x)',
-  },
-  {
     type: 'Distribuidora de Insumos Agrícolas',
     icon: <WarehouseIcon />,
     size: '15 funcionários',
@@ -122,16 +95,6 @@ const profiles: BusinessProfile[] = [
     priceLabel: '/mês',
     benefit: 'R$10.000/mês',
     benefitDetail: 'Pedidos e estoque automatizados, zero retrabalho (5x)',
-  },
-  {
-    type: 'Clínica Médica',
-    icon: <HospitalIcon />,
-    size: '20 profissionais',
-    location: 'Belo Horizonte, MG',
-    price: 'R$2.000',
-    priceLabel: '/mês',
-    benefit: 'R$12.000/mês',
-    benefitDetail: 'Faturamento e documentação sem esforço manual (6x)',
   },
 ]
 
@@ -159,55 +122,88 @@ export default function BusinessProfilesSection() {
       </div>
 
       {/* Profile cards grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {profiles.map((profile, index) => (
           <div
             key={index}
-            className="rounded-xl px-7 py-8 bg-[#274855] shadow-card hover:shadow-card-hover transition-all duration-base ease-spring hover:-translate-y-0.5"
+            className="rounded-xl px-6 py-6 bg-[#f5f5f7] border-2 border-brand-secondary transition-all duration-200 hover:-translate-y-0.5"
             style={{
+              boxShadow: '3px 4px 12px rgba(0, 0, 0, 0.08)',
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
               opacity: isVisible ? 1 : 0,
               transition: `transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${150 + index * 80}ms, opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${150 + index * 80}ms`,
             }}
           >
-            {/* Icon */}
-            <div className="mb-3 text-[#fafafa]">
-              {profile.icon}
+            {/* Icon + Business identity */}
+            <div className="flex items-start gap-3 mb-5">
+              <div className="text-brand-secondary flex-shrink-0 mt-0.5">
+                {profile.icon}
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-brand-black leading-snug">
+                  {profile.type}
+                </h3>
+                <p className="text-base text-neutral-500 mt-0.5">
+                  {profile.size} · {profile.location}
+                </p>
+              </div>
             </div>
 
-            {/* Business identity */}
-            <h3 className="text-xl font-semibold text-white leading-snug mb-1">
-              {profile.type}
-            </h3>
-            <p className="text-base text-[#fafafa] mb-6">
-              {profile.size} · {profile.location}
-            </p>
-
             {/* Divider */}
-            <div className="border-t border-white/20 mb-8" />
+            <div className="border-t border-neutral-200 mb-5" />
 
             {/* Cost & Return side by side */}
-            <div className="flex items-end gap-6 mb-8">
+            <div className="flex items-end gap-6 mb-5">
               <div>
-                <p className="text-base text-[#fafafa] mb-1">Investimento</p>
-                <p className="text-2xl font-bold text-white whitespace-nowrap">
-                  {profile.price}<span className="text-base font-normal text-[#fafafa]">{profile.priceLabel}</span>
+                <p className="text-base font-medium text-neutral-500 mb-0.5">Investimento</p>
+                <p className="text-2xl font-bold text-brand-black whitespace-nowrap">
+                  {profile.price}<span className="text-base font-normal text-neutral-500">{profile.priceLabel}</span>
                 </p>
               </div>
               <div>
-                <p className="text-base text-[#fafafa] mb-1">Retorno</p>
-                <p className="text-2xl font-bold text-[#6ee7b7] whitespace-nowrap">
+                <p className="text-base font-medium text-neutral-500 mb-0.5">Retorno</p>
+                <p className="text-2xl font-bold text-brand-secondary whitespace-nowrap">
                   {profile.benefit}
                 </p>
               </div>
             </div>
 
             {/* Benefit explanation */}
-            <p className="text-base text-[#fafafa]">
+            <p className="text-base text-neutral-600 leading-relaxed">
               {profile.benefitDetail}
             </p>
           </div>
         ))}
+      </div>
+
+      {/* Summary totals */}
+      <div
+        className="mt-10 rounded-xl px-8 py-8 bg-brand-primary text-center"
+        style={{
+          transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+          opacity: isVisible ? 1 : 0,
+          transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 600ms, opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 600ms',
+        }}
+      >
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-16 mb-5">
+          <div>
+            <p className="text-lg font-medium text-white mb-1">Assinatura total</p>
+            <p className="text-4xl md:text-5xl font-bold text-white">R$6.800<span className="text-xl font-normal text-white">/mês</span></p>
+          </div>
+          <div className="hidden md:block w-px h-14 bg-white/30" />
+          <div>
+            <p className="text-lg font-medium text-white mb-1">Retorno acumulado</p>
+            <p className="text-4xl md:text-5xl font-bold text-white">R$38.500<span className="text-xl font-normal text-white">/mês</span></p>
+          </div>
+          <div className="hidden md:block w-px h-14 bg-white/30" />
+          <div>
+            <p className="text-lg font-medium text-white mb-1">ROI médio</p>
+            <p className="text-4xl md:text-5xl font-bold text-white">5,7x</p>
+          </div>
+        </div>
+        <p className="text-lg text-white max-w-lg mx-auto">
+          Quatro negócios reais, um resultado em comum: automação que se paga no primeiro mês.
+        </p>
       </div>
     </div>
   )

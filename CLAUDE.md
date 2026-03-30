@@ -76,6 +76,7 @@ public/
 
 ## Rules
 
+- **Always run `pnpm install` after changing `package.json`** — Vercel CI uses `--frozen-lockfile` (pnpm 10 default). If the lockfile is out of sync, the build fails.
 - **No `.env` required** — no API keys or secrets. `process.env.NODE_ENV` is set automatically by Next.js.
 - **Don't run `pnpm run build` while dev server is running** — it corrupts `.next/` cache. Stop the dev server first, or expect to `rm -rf .next && npm run dev` after.
 - `eslint-config-next` version must match Next.js version to avoid build errors
