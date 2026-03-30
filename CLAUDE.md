@@ -22,10 +22,10 @@ Agency website for mil&dez — Brazilian B2B AI workflow automation agency.
 ## Commands
 
 ```bash
-npm install     # Install dependencies
-npm run dev     # Start dev server
-npm run build   # Production build
-npm run lint    # Run ESLint
+pnpm install     # Install dependencies
+pnpm run dev     # Start dev server
+pnpm run build   # Production build
+pnpm run lint    # Run ESLint
 ```
 
 ## Project Structure
@@ -76,7 +76,8 @@ public/
 
 ## Rules
 
-- **Don't run `npm run build` while dev server is running** — it corrupts `.next/` cache. Stop the dev server first, or expect to `rm -rf .next && npm run dev` after.
+- **No `.env` required** — no API keys or secrets. `process.env.NODE_ENV` is set automatically by Next.js.
+- **Don't run `pnpm run build` while dev server is running** — it corrupts `.next/` cache. Stop the dev server first, or expect to `rm -rf .next && npm run dev` after.
 - `eslint-config-next` version must match Next.js version to avoid build errors
 - `generated-theme.ts` is the single source of truth for Tailwind color tokens — update it (not individual components) when changing brand colors
 - **Min font size:** 14px (`text-sm`) absolute minimum for low-priority info; 16px (`text-base`) for all other text. Never use `text-xs`.
