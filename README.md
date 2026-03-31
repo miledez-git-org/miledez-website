@@ -149,8 +149,8 @@ The brand foundation applies to all mil&dez outputs (website, presentations, pro
 ```typescript
 // Actual tokens live in generated-theme.ts — see CLAUDE.md Color Usage section.
 // Available as: text-brand-*, bg-brand-*, border-brand-*
-// Primary (teal): brand-secondary / brand-secondary-dark (CSS names swapped, rename pending)
-// Secondary (orange): brand-primary / brand-primary-dark
+// Primary (teal): brand-primary / brand-primary-dark
+// Secondary (orange): brand-secondary / brand-secondary-dark
 // Neutrals: brand-black (#1a1a1a), brand-muted, brand-light, brand-border (#e5e5e5)
 ```
 

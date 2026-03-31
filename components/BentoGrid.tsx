@@ -23,7 +23,7 @@ export default function BentoGrid({ cards }: BentoGridProps) {
           key={index}
           className={`
             bg-white border border-[rgba(0,0,0,0.08)] p-6
-            ${card.accent ? 'border-l-2 border-l-brand-primary' : ''}
+            ${card.accent ? 'border-l-2 border-l-brand-secondary' : ''}
           `}
           style={{
             boxShadow: '0 1px 2px rgba(0,0,0,0.04)',
@@ -35,7 +35,7 @@ export default function BentoGrid({ cards }: BentoGridProps) {
           <div
             className={`
               w-12 h-12 mb-4 flex items-center justify-center border
-              ${card.accent ? 'border-brand-primary text-brand-primary' : 'border-brand-border text-brand-black'}
+              ${card.accent ? 'border-brand-secondary text-brand-secondary' : 'border-brand-border text-brand-black'}
             `}
           >
             {card.icon}

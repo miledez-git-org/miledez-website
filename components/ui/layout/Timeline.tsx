@@ -47,7 +47,7 @@ export interface TimelineItemProps extends React.HTMLAttributes<HTMLDivElement> 
 
 const dotVariantClasses: Record<TimelineItemVariant, string> = {
   default: 'bg-accent-slate',
-  brand: 'bg-brand-primary',
+  brand: 'bg-brand-secondary',
 }
 
 export function TimelineItem({

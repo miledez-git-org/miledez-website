@@ -45,7 +45,7 @@ export default function Home() {
       {/* Hero */}
       <section className="min-h-screen bg-white flex items-center relative pt-24 md:pt-0">
         <div className="max-w-7xl mx-auto px-6 md:px-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 lg:gap-10 items-center">
 
             {/* Left column - Hero content */}
             <div className="flex flex-col justify-center">
@@ -53,7 +53,7 @@ export default function Home() {
               <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-brand-black leading-[1.1]">
                 seu trabalho<br />
                 do seu jeito<br />
-                <span className="text-brand-primary">no automático</span>
+                <span className="text-brand-secondary">no automático</span>
               </h1>
 
               {/* Subheadline */}
@@ -96,35 +96,35 @@ export default function Home() {
 
       {/* Value Proposition */}
       <section id="valor" className="py-28 md:py-40 bg-white">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+        <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <ValuePropositionB onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
       {/* Business Profiles - Who is this for */}
       <section id="perfis" className="py-28 md:py-40 bg-white">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+        <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <BusinessProfilesSection />
         </div>
       </section>
 
       {/* Integrations */}
       <section id="integracoes" className="py-28 md:py-40 bg-bg-muted">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+        <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <LogoGrid />
         </div>
       </section>
 
       {/* How It Works - Process */}
       <section id="como-funciona" className="py-28 md:py-40 bg-white">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+        <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <ProcessSection />
         </div>
       </section>
 
       {/* Pricing */}
       <section id="precos" className="py-28 md:py-40 bg-bg-muted">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+        <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <PricingSection onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>

@@ -68,12 +68,17 @@ public/
 ## Color Usage
 
 - Use Tailwind `brand-*` classes — never hardcode hex values
-- **Note:** CSS class names are swapped vs. brand convention. `brand-primary` = orange (#eb5100), `brand-secondary` = teal (#085042). A token rename is pending to align with the brand (teal = primary, orange = secondary).
-- Orange: `brand-primary` / `brand-primary-dark` / `brand-primary-light` / `brand-primary-subtle`
-- Teal: `brand-secondary` / `brand-secondary-dark` / `brand-secondary-light` / `brand-secondary-subtle`
+- Teal (primary): `brand-primary` / `brand-primary-dark` / `brand-primary-light` / `brand-primary-subtle`
+- Orange (secondary): `brand-secondary` / `brand-secondary-dark` / `brand-secondary-light` / `brand-secondary-subtle`
 - Body text: `text-neutral-600` (not `text-brand-muted`)
 - Glow shadows: `shadow-accent-glow`, `shadow-secondary-glow`
 - **`shadow-card` / `shadow-card-hover` are NOT defined** — use standard Tailwind (`shadow-sm`, `shadow-md`) or inline `boxShadow` style
+- **globals.css caveat:** `--brand-accent` (`#d14800`) is a legacy CSS custom property — different hex from Tailwind `brand-secondary` (`#eb5100`). Used by `.btn-primary`, `.btn-link` classes. Pending alignment to `#eb5100`.
+
+## Asset Paths
+- `public/logo.svg` / `public/monogram.svg` — brand identity SVGs (source of truth)
+- `public/logos/` — full-color integration partner logos (57 SVGs)
+- `public/icons/` — minimal outline integration icons (22 SVGs, subset of logos/)
 
 ## Rules
 
@@ -84,10 +89,14 @@ public/
 - `generated-theme.ts` is the single source of truth for Tailwind color tokens — update it (not individual components) when changing brand colors
 - **Min font size:** 14px (`text-sm`) absolute minimum for low-priority info; 16px (`text-base`) for all other text. Never use `text-xs`.
 - **Icons:** Always plain outline SVGs (stroke, no fill). Never wrap icons in colored background containers (`bg-brand-*-subtle`). Color via parent text class only.
-- **Orange backgrounds (`brand-primary`):** All text must be full `text-white` — never use `text-white/80`, `text-white/90`, or any opacity-reduced white.
+- **Orange backgrounds (`brand-secondary`):** All text must be full `text-white` — never use `text-white/80`, `text-white/90`, or any opacity-reduced white.
 - **Shadows:** User prefers directional lower-right shadows (e.g., `boxShadow: '3px 4px 12px rgba(0,0,0,0.10)'`), not uniform Tailwind shadows.
 - **Build trace error:** `npm run build` may fail on `_not-found/page.js.nft.json` — this is a pre-existing Next.js trace collection bug, not a code error. Pages still generate correctly.
 - If dev server returns 404s on `_next/static/` assets, delete `.next/` and restart: `rm -rf .next && npm run dev`
+- **Section alignment:** All homepage section containers use `max-w-7xl mx-auto px-6 md:px-10`. Do NOT use `max-w-6xl` for sections — it breaks left-edge alignment with the hero. The only exception is the CTA section (`max-w-3xl`, intentionally narrower/centered).
+- **Side-by-side comparisons:** Use `items-start` (not `items-end`) on flex containers when labels must align horizontally at the top. `items-end` causes misalignment when children have different heights (e.g., one has an accent bar).
+- **Puppeteer scroll-reveal:** Headless Puppeteer often fails to trigger `useScrollReveal` IntersectionObserver. Force visibility with `document.querySelectorAll('*').forEach(el => { if (el.style.opacity === '0') { el.style.opacity = '1'; el.style.transform = 'none'; } })` before taking screenshots.
+- **Alignment is critical:** When user requests horizontal/vertical alignment, use CSS structural approaches (`items-stretch` + `justify-between`, grid alignment) rather than manual padding tweaks. Verify with Puppeteer measurements (`getBoundingClientRect`).
 
 ## Agency Conventions
 <!-- conventions-sync: 2026-03-30 -->

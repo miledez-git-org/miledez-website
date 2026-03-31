@@ -30,7 +30,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 // Variant classes from design-tokens.json
 const variantClasses: Record<BadgeVariant, string> = {
   default: 'bg-neutral-100 text-neutral-700',
-  primary: 'bg-brand-primary-subtle text-brand-primary',
+  primary: 'bg-brand-secondary-subtle text-brand-secondary',
   slate: 'bg-accent-slate-subtle text-accent-slate',
   success: 'bg-semantic-success-light text-semantic-success',
   warning: 'bg-semantic-warning-light text-semantic-warning',

@@ -21,7 +21,7 @@ const metrics: Metric[] = [
 function AccentBar({ isVisible, delay }: { isVisible: boolean; delay: number }) {
   return (
     <div
-      className="h-0.5 bg-brand-primary mt-4"
+      className="h-0.5 bg-brand-secondary mt-4"
       style={{
         width: isVisible ? '60%' : '0%',
         transition: `width 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
@@ -39,7 +39,7 @@ export default function ValueProposition({ onContactClick }: ValuePropositionPro
       <div className="mb-12 md:mb-14 text-center">
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
           Resultados em dias,<br />
-          <span className="text-brand-primary">não meses</span>
+          <span className="text-brand-secondary">não meses</span>
         </h2>
         <p className="mt-4 text-lg text-brand-muted max-w-xl mx-auto">
           Automação pronta para usar. Sem projeto longo, sem equipe de TI.
@@ -62,7 +62,7 @@ export default function ValueProposition({ onContactClick }: ValuePropositionPro
               }}
             >
               {/* Value */}
-              <span className="block text-4xl lg:text-5xl font-medium text-brand-primary tracking-tight">
+              <span className="block text-4xl lg:text-5xl font-medium text-brand-secondary tracking-tight">
                 {metric.value}
               </span>
 

@@ -56,7 +56,7 @@ export default function IndustryIntegrations({ integrations }: IndustryIntegrati
             <div className="w-12 h-12 rounded-lg flex items-center justify-center">
               <img src={`/logos/${integration.logo}.svg`} alt={integration.name} className="w-6 h-6 object-contain" />
             </div>
-            <span className="text-[11px] text-neutral-500 text-center leading-tight">
+            <span className="text-sm text-neutral-500 text-center leading-tight">
               {integration.name}
             </span>
           </div>

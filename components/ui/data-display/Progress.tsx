@@ -26,7 +26,7 @@ export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const variantClasses: Record<ProgressVariant, string> = {
   default: 'bg-accent-slate',
-  brand: 'bg-brand-primary',
+  brand: 'bg-brand-secondary',
   success: 'bg-semantic-success',
 }
 

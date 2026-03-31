@@ -393,7 +393,7 @@ export default function DiagnosticoAutomacao() {
       {/* Progress bar */}
       <div className="h-px bg-brand-border mb-12">
         <div
-          className="h-px bg-brand-primary transition-all duration-500 ease-out"
+          className="h-px bg-brand-secondary transition-all duration-500 ease-out"
           style={{ width: `${progressPercentage}%` }}
         />
       </div>
@@ -424,7 +424,7 @@ export default function DiagnosticoAutomacao() {
               aria-haspopup="listbox"
               aria-expanded={isDropdownOpen}
               aria-controls="dropdown-listbox"
-              className={`w-full text-left px-6 py-4 border transition-colors flex items-center justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 ${
+              className={`w-full text-left px-6 py-4 border transition-colors flex items-center justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2 ${
                 isDropdownOpen ? 'border-brand-black' : 'border-brand-border hover:border-brand-black'
               }`}
             >
@@ -473,7 +473,7 @@ export default function DiagnosticoAutomacao() {
                       }
                       className={`w-full text-left px-6 py-3 border-b border-brand-border last:border-b-0 transition-colors flex items-center justify-between group focus-visible:outline-none ${
                         isSelected
-                          ? 'bg-brand-primary-light border-l-2 border-l-brand-primary'
+                          ? 'bg-brand-secondary-light border-l-2 border-l-brand-secondary'
                           : isFocused
                             ? 'bg-gray-100'
                             : 'hover:bg-gray-50'
@@ -488,7 +488,7 @@ export default function DiagnosticoAutomacao() {
                         <div
                           className={`w-5 h-5 border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
                             isSelected
-                              ? 'border-brand-primary bg-brand-primary'
+                              ? 'border-brand-secondary bg-brand-secondary'
                               : 'border-brand-light group-hover:border-brand-black'
                           }`}
                           aria-hidden="true"
@@ -512,7 +512,7 @@ export default function DiagnosticoAutomacao() {
                     disabled={multipleSelections.length === 0}
                     className={`w-full px-6 py-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white ${
                       multipleSelections.length > 0
-                        ? 'bg-brand-primary text-white hover:bg-brand-primary-dark'
+                        ? 'bg-brand-secondary text-white hover:bg-brand-secondary-dark'
                         : 'bg-brand-border text-brand-muted cursor-not-allowed'
                     } ${focusedIndex === currentQuestion.options.length ? 'ring-2 ring-inset ring-white' : ''}`}
                   >
@@ -549,7 +549,7 @@ export default function DiagnosticoAutomacao() {
               </div>
               <div>
                 <div className="text-sm text-brand-muted mb-1">Investimento</div>
-                <div className="text-2xl md:text-3xl font-medium text-brand-primary">
+                <div className="text-2xl md:text-3xl font-medium text-brand-secondary">
                   {formatCurrency(result.estimatedRetainerMin)}-{formatCurrency(result.estimatedRetainerMax)}
                   <span className="text-base text-brand-muted font-normal">/mês</span>
                 </div>
@@ -557,7 +557,7 @@ export default function DiagnosticoAutomacao() {
             </div>
 
             <div className="mt-6 flex items-center gap-3">
-              <span className="px-3 py-1.5 text-sm font-medium text-brand-primary border border-brand-primary">
+              <span className="px-3 py-1.5 text-sm font-medium text-brand-secondary border border-brand-secondary">
                 Retorno de {result.roiMultiplier}x
               </span>
               <span className="text-sm text-brand-muted">
@@ -594,7 +594,7 @@ export default function DiagnosticoAutomacao() {
                   className="flex justify-between items-center py-4 border-b border-brand-border group"
                 >
                   <div>
-                    <span className="text-brand-black group-hover:text-brand-primary transition-colors font-medium">
+                    <span className="text-brand-black group-hover:text-brand-secondary transition-colors font-medium">
                       {rec.title}
                     </span>
                     <span className="text-brand-muted ml-2">
@@ -603,7 +603,7 @@ export default function DiagnosticoAutomacao() {
                   </div>
                   <svg
                     viewBox="0 0 24 24"
-                    className="w-4 h-4 text-brand-muted group-hover:text-brand-primary transition-colors flex-shrink-0 ml-4"
+                    className="w-4 h-4 text-brand-muted group-hover:text-brand-secondary transition-colors flex-shrink-0 ml-4"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="1.5"
@@ -623,7 +623,7 @@ export default function DiagnosticoAutomacao() {
             <div className="flex flex-col sm:flex-row gap-4">
               <a
                 href={`mailto:contato@mildez.com?subject=Diagnóstico de Automação&body=Olá!%0A%0AFiz o diagnóstico no site e gostaria de conversar.%0A%0AResumo:%0A- Setor: ${result.industry}%0A- Horas liberadas: ${result.weeklyHoursSaved}h/semana%0A- Economia: ${formatCurrency(result.monthlyValueRecovered)}/mês%0A- Investimento: ${formatCurrency(result.estimatedRetainerMin)}-${formatCurrency(result.estimatedRetainerMax)}/mês%0A- ROI: ${result.roiMultiplier}x%0A%0AAguardo contato!`}
-                className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-primary hover:bg-brand-primary-dark transition-colors text-center"
+                className="inline-block px-8 py-4 text-sm font-medium text-white bg-brand-secondary hover:bg-brand-secondary-dark transition-colors text-center"
               >
                 Agendar conversa gratuita
               </a>

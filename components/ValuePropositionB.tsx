@@ -87,7 +87,7 @@ export default function ValuePropositionB({ onContactClick }: ValuePropositionBP
         >
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             Podemos entregar sua primeira automação em dias.<br />
-            <span className="text-brand-secondary">Totalmente personalizada para suas necessidades.</span>
+            <span className="text-brand-primary">Totalmente personalizada para suas necessidades.</span>
           </h2>
 
           <div className="mt-6 space-y-4 text-lg text-neutral-600 leading-relaxed max-w-lg">
@@ -125,7 +125,7 @@ export default function ValuePropositionB({ onContactClick }: ValuePropositionBP
                 }}
               >
                 {/* Icon */}
-                <div className="flex-shrink-0 w-10 h-10 text-brand-primary flex items-center justify-center">
+                <div className="flex-shrink-0 w-10 h-10 text-brand-secondary flex items-center justify-center">
                   {benefit.icon}
                 </div>
 

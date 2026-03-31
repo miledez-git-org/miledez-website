@@ -21,7 +21,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
     <div className="min-h-screen bg-white flex items-center justify-center px-6">
       <div className="max-w-md w-full text-center">
         {/* Error icon */}
-        <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center border-2 border-brand-primary text-brand-primary">
+        <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center border-2 border-brand-secondary text-brand-secondary">
           <svg
             className="w-10 h-10"
             fill="none"
@@ -64,13 +64,13 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onClick={reset}
-            className="btn-primary px-8 py-4 text-white bg-brand-primary hover:bg-brand-primary-dark"
+            className="btn-primary px-8 py-4 text-white bg-brand-secondary hover:bg-brand-secondary-dark"
           >
             Tentar novamente
           </button>
           <a
             href="/"
-            className="btn-secondary px-8 py-4 border border-brand-border hover:border-brand-primary hover:text-brand-primary"
+            className="btn-secondary px-8 py-4 border border-brand-border hover:border-brand-secondary hover:text-brand-secondary"
           >
             Voltar ao início
           </a>

@@ -91,7 +91,7 @@ function DefaultErrorFallback({
       role="alert"
     >
       {/* Error icon */}
-      <div className="w-16 h-16 mb-4 flex items-center justify-center border-2 border-brand-primary text-brand-primary">
+      <div className="w-16 h-16 mb-4 flex items-center justify-center border-2 border-brand-secondary text-brand-secondary">
         <svg
           className="w-8 h-8"
           fill="none"
@@ -132,7 +132,7 @@ function DefaultErrorFallback({
       {showRetry && onRetry && (
         <button
           onClick={onRetry}
-          className="btn-secondary px-6 py-3 text-sm font-medium border border-brand-border hover:border-brand-primary hover:text-brand-primary"
+          className="btn-secondary px-6 py-3 text-sm font-medium border border-brand-border hover:border-brand-secondary hover:text-brand-secondary"
         >
           Tentar novamente
         </button>
@@ -220,7 +220,7 @@ export function SectionErrorFallback({
         {onRetry && (
           <button
             onClick={onRetry}
-            className="text-sm text-brand-primary hover:text-brand-primary-dark underline"
+            className="text-sm text-brand-secondary hover:text-brand-secondary-dark underline"
           >
             Tentar novamente
           </button>

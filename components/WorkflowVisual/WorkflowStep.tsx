@@ -150,7 +150,7 @@ export default function WorkflowStep({
 
   // Horizontal layout - simplified display
   if (!isVertical) {
-    // Green for last connector, red (brand-primary) for others
+    // Green for last connector, red (brand-secondary) for others
     const isLastConnector = index === 2 // 3rd connector (before 4th/last step)
     const connectorColor = isLastConnector ? 'oklch(52.7% 0.154 150.069)' : '#274855'
     

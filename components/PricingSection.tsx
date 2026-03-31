@@ -11,7 +11,7 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
       <div className="mb-14 md:mb-16 text-center">
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
           Quanto custa automatizar<br />
-          <span className="text-brand-primary">o que você recebe de volta</span>
+          <span className="text-brand-secondary">o que você recebe de volta</span>
         </h2>
         <p className="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
           Cada solução é sob medida pra sua operação. Sem contrato. Sem taxa de entrada.
@@ -19,9 +19,9 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
       </div>
 
       {/* Price Range Display */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0">
         {/* Simple */}
-        <div className="text-center md:text-left md:pr-8">
+        <div className="text-center md:border-r md:border-neutral-200 md:px-8">
           <p className="text-base font-medium text-neutral-500 uppercase tracking-wider mb-2">
             A partir de
           </p>
@@ -34,7 +34,7 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
         </div>
 
         {/* Medium */}
-        <div className="text-center md:text-left md:border-l md:border-neutral-200 md:pl-8 md:pr-8">
+        <div className="text-center md:border-r md:border-neutral-200 md:px-8">
           <p className="text-base font-medium text-neutral-500 uppercase tracking-wider mb-2">
             A partir de
           </p>
@@ -47,7 +47,7 @@ export default function PricingSection({ onContactClick }: PricingSectionProps) 
         </div>
 
         {/* Complex */}
-        <div className="text-center md:text-left md:border-l md:border-neutral-200 md:pl-8">
+        <div className="text-center md:px-8">
           <p className="text-base font-medium text-neutral-500 uppercase tracking-wider mb-2">
             A partir de
           </p>

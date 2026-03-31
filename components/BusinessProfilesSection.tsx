@@ -8,8 +8,6 @@ interface BusinessProfile {
   location: string
   investment: string
   returnValue: string
-  returnLabel: string
-  multiplier: string
   benefitDetail: string
 }
 
@@ -18,40 +16,32 @@ const profiles: BusinessProfile[] = [
     type: 'Clínica Odontológica',
     size: '12 profissionais',
     location: 'Belo Horizonte, MG',
-    investment: 'R$900/mês',
+    investment: 'R$900',
     returnValue: 'R$6.000',
-    returnLabel: '/mês em retorno',
-    multiplier: '7x',
     benefitDetail: 'Consultas recuperadas e menos tempo administrativo',
   },
   {
     type: 'Escritório de Contabilidade',
     size: '6 colaboradores',
     location: 'Belo Horizonte, MG',
-    investment: 'R$900/mês',
+    investment: 'R$900',
     returnValue: 'R$4.500',
-    returnLabel: '/mês em retorno',
-    multiplier: '5x',
     benefitDetail: 'Mais produtividade e menos retrabalho',
   },
   {
     type: 'Cooperativa de Café',
     size: '50 produtores',
     location: 'Sul de Minas, MG',
-    investment: 'R$3.000/mês',
+    investment: 'R$3.000',
     returnValue: 'R$18.000',
-    returnLabel: '/mês em retorno',
-    multiplier: '6x',
     benefitDetail: 'Coordenação de fornecedores e documentação no automático',
   },
   {
     type: 'Distribuidora de Insumos Agrícolas',
     size: '15 funcionários',
     location: 'Triângulo Mineiro, MG',
-    investment: 'R$2.000/mês',
+    investment: 'R$2.000',
     returnValue: 'R$10.000',
-    returnLabel: '/mês em retorno',
-    multiplier: '5x',
     benefitDetail: 'Pedidos e estoque automatizados, zero retrabalho',
   },
 ]
@@ -59,7 +49,7 @@ const profiles: BusinessProfile[] = [
 function AccentBar({ isVisible, delay }: { isVisible: boolean; delay: number }) {
   return (
     <div
-      className="h-0.5 mt-3 bg-brand-primary"
+      className="h-0.5 mt-3 bg-brand-secondary"
       style={{
         width: isVisible ? '60%' : '0%',
         transition: `width 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
@@ -117,29 +107,25 @@ export default function BusinessProfilesSection() {
                 <p className="text-base text-neutral-600 leading-relaxed mt-3">
                   {profile.benefitDetail}
                 </p>
-                <p className="text-base text-neutral-500 mt-2">
-                  Investimento: <span className="font-semibold text-brand-black">{profile.investment}</span>
-                </p>
               </div>
 
-              {/* Right — Large ROI figures */}
-              <div className="flex items-end gap-8 md:gap-12">
+              {/* Right — Cost vs. Return side-by-side */}
+              <div className="flex items-start gap-8 md:gap-12">
                 <div>
-                  <span className="block text-4xl lg:text-5xl font-medium tracking-tight text-brand-primary">
+                  <p className="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-1">Investimento</p>
+                  <span className="block text-3xl lg:text-4xl font-medium tracking-tight text-brand-black">
+                    {profile.investment}
+                  </span>
+                  <p className="mt-1 text-base text-neutral-500">/mês</p>
+                </div>
+                <div className="text-2xl text-neutral-300 font-light mt-8">→</div>
+                <div>
+                  <p className="text-sm font-medium text-neutral-500 uppercase tracking-wider mb-1">Retorno</p>
+                  <span className="block text-3xl lg:text-4xl font-medium tracking-tight text-brand-secondary">
                     {profile.returnValue}
                   </span>
-                  <p className="mt-1 text-lg font-semibold text-neutral-600">
-                    {profile.returnLabel}
-                  </p>
+                  <p className="mt-1 text-base text-neutral-500">/mês</p>
                   <AccentBar isVisible={isVisible} delay={delay + 200} />
-                </div>
-                <div>
-                  <span className="block text-4xl lg:text-5xl font-medium tracking-tight text-brand-secondary">
-                    {profile.multiplier}
-                  </span>
-                  <p className="mt-1 text-lg font-semibold text-neutral-600">
-                    ROI
-                  </p>
                 </div>
               </div>
             </div>
@@ -152,7 +138,7 @@ export default function BusinessProfilesSection() {
 
       {/* Summary totals — orange card */}
       <div
-        className="mt-10 rounded-xl px-8 py-8 bg-brand-primary text-center"
+        className="mt-10 rounded-xl px-8 py-8 bg-brand-secondary text-center"
         style={{
           transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
           opacity: isVisible ? 1 : 0,
@@ -161,18 +147,13 @@ export default function BusinessProfilesSection() {
       >
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-16 mb-5">
           <div>
-            <p className="text-lg font-medium text-white mb-1">Assinatura total</p>
+            <p className="text-lg font-medium text-white mb-1">Custo Mensalidade Total</p>
             <p className="text-4xl md:text-5xl font-bold text-white">R$6.800<span className="text-xl font-normal text-white">/mês</span></p>
           </div>
           <div className="hidden md:block w-px h-14 bg-white/30" />
           <div>
             <p className="text-lg font-medium text-white mb-1">Retorno acumulado</p>
             <p className="text-4xl md:text-5xl font-bold text-white">R$38.500<span className="text-xl font-normal text-white">/mês</span></p>
-          </div>
-          <div className="hidden md:block w-px h-14 bg-white/30" />
-          <div>
-            <p className="text-lg font-medium text-white mb-1">ROI médio</p>
-            <p className="text-4xl md:text-5xl font-bold text-white">5,7x</p>
           </div>
         </div>
         <p className="text-lg text-white max-w-lg mx-auto">

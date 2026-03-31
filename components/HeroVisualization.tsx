@@ -36,7 +36,7 @@ export default function HeroVisualization() {
       <div className="relative bg-white border border-[rgba(0,0,0,0.08)] p-6 animate-float">
         {/* Window header */}
         <div className="flex items-center gap-2 mb-6 pb-4 border-b border-[rgba(0,0,0,0.08)]">
-          <div className="w-2 h-2 bg-brand-primary" />
+          <div className="w-2 h-2 bg-brand-secondary" />
           <span className="text-xs font-medium text-brand-muted uppercase tracking-wider">
             Automacao ativa
           </span>
@@ -57,7 +57,7 @@ export default function HeroVisualization() {
               <div
                 className={`w-10 h-10 flex-shrink-0 flex items-center justify-center border transition-colors duration-300 ${
                   activeStep === index
-                    ? 'border-brand-primary bg-brand-primary-light'
+                    ? 'border-brand-secondary bg-brand-secondary-light'
                     : 'border-brand-border bg-white'
                 }`}
               >
@@ -111,11 +111,11 @@ export default function HeroVisualization() {
                 <div className="flex items-center justify-end pt-2">
                   <div
                     className={`h-px w-6 transition-all duration-300 ${
-                      activeStep > index ? 'bg-brand-primary' : 'bg-brand-border'
+                      activeStep > index ? 'bg-brand-secondary' : 'bg-brand-border'
                     }`}
                   />
                   {activeStep === index && (
-                    <div className="w-1.5 h-1.5 bg-brand-primary ml-1 animate-pulse" />
+                    <div className="w-1.5 h-1.5 bg-brand-secondary ml-1 animate-pulse" />
                   )}
                 </div>
               )}

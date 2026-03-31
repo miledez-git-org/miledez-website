@@ -174,13 +174,13 @@ export default function WorkflowExplainerSection() {
 
   return (
     <section className="bg-white py-28 md:py-40">
-      <div className="max-w-6xl mx-auto px-6 md:px-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         {/* Section header */}
         <div className="mb-14 md:mb-16 text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             Como funciona uma<br />
-            <span className="text-brand-secondary">automação</span>
+            <span className="text-brand-primary">automação</span>
           </h2>
           <p className="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
             Todo processo repetitivo vira um fluxo automático — do gatilho ao resultado.
@@ -199,7 +199,7 @@ export default function WorkflowExplainerSection() {
             {PHASES.map((phase, colIndex) => (
               <Fragment key={phase.key}>
                 <motion.div
-                  className={`rounded-2xl px-6 py-8 flex flex-col items-center ${colIndex === 1 ? 'bg-white border-[3px] border-brand-primary' : 'bg-[#f5f5f7]'}`}
+                  className={`rounded-2xl px-6 py-8 flex flex-col items-center ${colIndex === 1 ? 'bg-white border-[3px] border-brand-secondary' : 'bg-[#f5f5f7]'}`}
                   initial={{ opacity: 0, y: 16 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
                   transition={{ duration: 0.5, delay: colIndex * 0.14, ease: EASE }}

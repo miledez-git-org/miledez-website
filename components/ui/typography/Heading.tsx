@@ -66,7 +66,7 @@ export function Heading({
       id={id}
       className={cn(
         levelStyles[as],
-        accent && 'text-brand-primary',
+        accent && 'text-brand-secondary',
         className
       )}
     >
@@ -85,7 +85,7 @@ export function Heading({
  */
 export function AccentDot({ className }: { className?: string }) {
   return (
-    <span className={cn('text-brand-primary', className)}>.</span>
+    <span className={cn('text-brand-secondary', className)}>.</span>
   )
 }
 

@@ -78,16 +78,16 @@ export default function AgronegocioContent() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-28 md:pt-40 pb-20 md:pb-28 bg-white">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+      <section className="min-h-screen bg-white flex items-center relative pt-24 md:pt-0">
+        <div className="px-6 md:px-10 max-w-7xl mx-auto w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 lg:gap-10 items-center">
             <div className="max-w-xl flex-1">
-              <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-[#274855]">
-                <span className="text-sm font-semibold uppercase tracking-widest text-[#274855]">
+              <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-brand-black">
+                <span className="text-sm font-semibold uppercase tracking-widest text-brand-black">
                   Agronegócio
                 </span>
               </div>
-              <h1 className="heading-display text-4xl md:text-5xl lg:text-[3.5rem] mb-6 text-brand-black">
+              <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl mb-6 text-brand-black">
                 Gestão rural no<br />automático.
               </h1>
               <p className="text-xl mb-10 max-w-lg text-neutral-600 leading-relaxed">
@@ -109,9 +109,9 @@ export default function AgronegocioContent() {
       </section>
 
       {/* Pain Points */}
-      <section className="py-24 md:py-32 bg-bg-muted">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="mb-12 md:mb-14">
+      <section className="py-28 md:py-40 bg-bg-muted">
+        <div className="px-6 md:px-10 max-w-7xl mx-auto">
+          <div className="mb-14 md:mb-16">
             <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black">O dia a dia que trava a operação</h2>
           </div>
 
@@ -120,9 +120,9 @@ export default function AgronegocioContent() {
       </section>
 
       {/* Workflows */}
-      <section id="workflows" className="py-24 md:py-32 bg-white">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="mb-12 md:mb-14">
+      <section id="workflows" className="py-28 md:py-40 bg-white">
+        <div className="px-6 md:px-10 max-w-7xl mx-auto">
+          <div className="mb-14 md:mb-16">
             <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black">O que automatizamos</h2>
             <p className="mt-4 text-lg text-neutral-600">
               Processos que funcionam enquanto você cuida da produção
@@ -150,8 +150,8 @@ export default function AgronegocioContent() {
       </section>
 
       {/* Results */}
-      <section id="resultados" className="py-24 md:py-32 bg-bg-muted">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
+      <section id="resultados" className="py-28 md:py-40 bg-bg-muted">
+        <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             <div>
               <h2 className="heading-display text-[2rem] md:text-[2.5rem] mb-6 text-brand-black">Resultados típicos</h2>
@@ -168,9 +168,9 @@ export default function AgronegocioContent() {
       </section>
 
       {/* Integrations */}
-      <section id="integracoes" className="py-24 md:py-32 bg-white">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto">
-          <div className="mb-12 md:mb-14">
+      <section id="integracoes" className="py-28 md:py-40 bg-white">
+        <div className="px-6 md:px-10 max-w-7xl mx-auto">
+          <div className="mb-14 md:mb-16">
             <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black">Ferramentas que você já usa</h2>
             <p className="mt-4 text-neutral-600">Integramos sem trocar seus sistemas</p>
           </div>
@@ -180,8 +180,8 @@ export default function AgronegocioContent() {
       </section>
 
       {/* CTA */}
-      <section id="contato" className="py-24 md:py-32 bg-bg-muted">
-        <div className="px-6 md:px-10 max-w-6xl mx-auto text-center">
+      <section id="contato" className="py-28 md:py-40 bg-bg-muted">
+        <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black">
             Vamos automatizar sua operação?
           </h2>

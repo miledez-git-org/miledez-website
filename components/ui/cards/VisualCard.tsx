@@ -29,7 +29,7 @@ export interface VisualCardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const visualVariantClasses: Record<VisualCardVariant, string> = {
   default: 'text-accent-slate',
-  brand: 'text-brand-primary',
+  brand: 'text-brand-secondary',
   success: 'text-semantic-success',
 }
 

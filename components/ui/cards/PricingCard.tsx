@@ -50,7 +50,7 @@ export function PricingCard({
       className={cn(
         'p-8 bg-white border rounded-lg text-center',
         featured
-          ? 'border-brand-primary shadow-md'
+          ? 'border-brand-secondary shadow-md'
           : 'border-neutral-200',
         className
       )}

@@ -52,9 +52,9 @@ const sizeClasses: Record<ButtonSize, string> = {
 const variantClasses: Record<ButtonVariant, string> = {
   // Primary (burgundy) - use sparingly for main CTAs
   primary: [
-    'bg-brand-primary text-white',
-    'hover:bg-brand-primary-dark',
-    'focus-visible:ring-brand-primary/50',
+    'bg-brand-secondary text-white',
+    'hover:bg-brand-secondary-dark',
+    'focus-visible:ring-brand-secondary/50',
   ].join(' '),
 
   // Secondary (dark) - default for most buttons
@@ -80,9 +80,9 @@ const variantClasses: Record<ButtonVariant, string> = {
 
   // Outline Brand - bordered with brand color
   'outline-brand': [
-    'bg-transparent text-brand-primary border border-brand-primary',
-    'hover:bg-brand-primary-subtle',
-    'focus-visible:ring-brand-primary/50',
+    'bg-transparent text-brand-secondary border border-brand-secondary',
+    'hover:bg-brand-secondary-subtle',
+    'focus-visible:ring-brand-secondary/50',
   ].join(' '),
 
   // Ghost - no background until hover
@@ -94,9 +94,9 @@ const variantClasses: Record<ButtonVariant, string> = {
 
   // Ghost Brand - brand color, no background until hover
   'ghost-brand': [
-    'bg-transparent text-brand-primary',
-    'hover:bg-brand-primary-subtle',
-    'focus-visible:ring-brand-primary/50',
+    'bg-transparent text-brand-secondary',
+    'hover:bg-brand-secondary-subtle',
+    'focus-visible:ring-brand-secondary/50',
   ].join(' '),
 }
 

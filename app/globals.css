@@ -22,8 +22,8 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --brand-accent: #d14800;
   --brand-accent-dark: #b33d00;
-  --brand-secondary: #085042;
-  --brand-secondary-dark: #063d32;
+  --brand-primary: #085042;
+  --brand-primary-dark: #063d32;
 }
 
 /* Brand Typography - Heading Classes */

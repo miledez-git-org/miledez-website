@@ -42,7 +42,7 @@ export const Logo = forwardRef<HTMLAnchorElement, LogoProps>(
     )
 
     const ampersandClasses = cn(
-      variant === 'default' ? 'text-brand-primary' : 'text-brand-primary-light'
+      variant === 'default' ? 'text-brand-secondary' : 'text-brand-secondary-light'
     )
 
     const content = (
@@ -114,10 +114,10 @@ export function Monogram({
         'font-manrope font-light leading-none',
         monogramSizeClasses[size],
         filled
-          ? 'text-brand-primary-light'
+          ? 'text-brand-secondary-light'
           : variant === 'default'
-          ? 'text-brand-primary'
-          : 'text-brand-primary-light'
+          ? 'text-brand-secondary'
+          : 'text-brand-secondary-light'
       )}
     >
       &
@@ -138,7 +138,7 @@ export function Monogram({
       >
         <span className={cn(
           'font-manrope font-light leading-none text-[48px]',
-          filled ? 'text-brand-primary-light' : 'text-brand-primary'
+          filled ? 'text-brand-secondary-light' : 'text-brand-secondary'
         )}>
           &
         </span>

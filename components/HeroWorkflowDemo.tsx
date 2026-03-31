@@ -290,7 +290,7 @@ function IndustryCard({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={fadeTransition}
-                className="text-sm font-medium text-brand-primary block tracking-tight"
+                className="text-sm font-medium text-brand-secondary block tracking-tight"
               >
                 {industry}
               </motion.span>
@@ -523,7 +523,7 @@ export default function HeroWorkflowDemo() {
       />
       {/* Additional decorative element for depth */}
       <motion.div
-        className="absolute top-1/2 -right-12 w-16 h-16 border border-brand-primary/10 rounded-full -z-10"
+        className="absolute top-1/2 -right-12 w-16 h-16 border border-brand-secondary/10 rounded-full -z-10"
         style={{
           y: prefersReducedMotion ? 0 : parallaxY2,
           scale: prefersReducedMotion ? 1 : parallaxScale,

@@ -73,7 +73,7 @@ export default function TestimonialCarousel() {
           onClick={() => scroll('left')}
           className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 bg-white border border-brand-border flex items-center justify-center transition-opacity ${
             showArrows ? 'opacity-100' : 'opacity-0'
-          } hover:border-brand-primary`}
+          } hover:border-brand-secondary`}
           aria-label="Anterior"
         >
           <svg
@@ -137,7 +137,7 @@ export default function TestimonialCarousel() {
           onClick={() => scroll('right')}
           className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 bg-white border border-brand-border flex items-center justify-center transition-opacity ${
             showArrows ? 'opacity-100' : 'opacity-0'
-          } hover:border-brand-primary`}
+          } hover:border-brand-secondary`}
           aria-label="Próximo"
         >
           <svg

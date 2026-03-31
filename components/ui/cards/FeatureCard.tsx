@@ -47,7 +47,7 @@ export function FeatureCard({
           className={cn(
             'w-12 h-12 flex items-center justify-center rounded-md mb-4',
             variant === 'brand'
-              ? 'bg-brand-primary-subtle text-brand-primary'
+              ? 'bg-brand-secondary-subtle text-brand-secondary'
               : 'bg-accent-slate-subtle text-accent-slate'
           )}
         >

@@ -11,9 +11,9 @@ export default function PoliticaPrivacidadePage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-white pt-32 pb-20">
+      <main className="min-h-screen bg-white pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="max-w-3xl mx-auto px-6 md:px-10">
-          <h1 className="heading-display text-3xl md:text-4xl text-neutral-900 mb-8">
+          <h1 className="heading-display text-3xl md:text-4xl text-brand-black mb-8">
             Política de Privacidade
           </h1>
 
@@ -23,14 +23,14 @@ export default function PoliticaPrivacidadePage() {
 
           <div className="prose prose-neutral max-w-none space-y-8">
             <section>
-              <h2 className="text-xl font-semibold text-neutral-900 mb-4">1. Introdução</h2>
+              <h2 className="text-xl font-semibold text-brand-black mb-4">1. Introdução</h2>
               <p className="text-neutral-600 leading-relaxed">
                 A mil&dez Automação Ltda. (&quot;mil&dez&quot;, &quot;nós&quot;, &quot;nosso&quot;) está comprometida com a proteção da sua privacidade. Esta Política de Privacidade explica como coletamos, usamos, compartilhamos e protegemos suas informações pessoais em conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei n. 13.709/2018).
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-neutral-900 mb-4">2. Dados que Coletamos</h2>
+              <h2 className="text-xl font-semibold text-brand-black mb-4">2. Dados que Coletamos</h2>
               <p className="text-neutral-600 leading-relaxed mb-4">
                 Coletamos os seguintes tipos de informações:
               </p>
@@ -42,7 +42,7 @@ export default function PoliticaPrivacidadePage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-neutral-900 mb-4">3. Como Usamos Seus Dados</h2>
+              <h2 className="text-xl font-semibold text-brand-black mb-4">3. Como Usamos Seus Dados</h2>
               <p className="text-neutral-600 leading-relaxed mb-4">
                 Utilizamos suas informações para:
               </p>
@@ -55,21 +55,21 @@ export default function PoliticaPrivacidadePage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-neutral-900 mb-4">4. Base Legal para Tratamento</h2>
+              <h2 className="text-xl font-semibold text-brand-black mb-4">4. Base Legal para Tratamento</h2>
               <p className="text-neutral-600 leading-relaxed">
                 O tratamento de dados pessoais é realizado com base em: consentimento do titular, execução de contrato, cumprimento de obrigação legal, ou interesse legítimo da mil&dez, conforme aplicável.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-neutral-900 mb-4">5. Compartilhamento de Dados</h2>
+              <h2 className="text-xl font-semibold text-brand-black mb-4">5. Compartilhamento de Dados</h2>
               <p className="text-neutral-600 leading-relaxed">
                 Não vendemos suas informações pessoais. Podemos compartilhar dados com prestadores de serviços que nos auxiliam em nossas operações, sempre mediante contratos que garantam a proteção adequada dos dados.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-neutral-900 mb-4">6. Seus Direitos (LGPD)</h2>
+              <h2 className="text-xl font-semibold text-brand-black mb-4">6. Seus Direitos (LGPD)</h2>
               <p className="text-neutral-600 leading-relaxed mb-4">
                 Você tem direito a:
               </p>
@@ -84,21 +84,21 @@ export default function PoliticaPrivacidadePage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-neutral-900 mb-4">7. Retenção de Dados</h2>
+              <h2 className="text-xl font-semibold text-brand-black mb-4">7. Retenção de Dados</h2>
               <p className="text-neutral-600 leading-relaxed">
                 Mantemos seus dados pessoais pelo tempo necessário para cumprir as finalidades para as quais foram coletados, ou conforme exigido por lei.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-neutral-900 mb-4">8. Segurança</h2>
+              <h2 className="text-xl font-semibold text-brand-black mb-4">8. Segurança</h2>
               <p className="text-neutral-600 leading-relaxed">
                 Implementamos medidas técnicas e organizacionais apropriadas para proteger seus dados contra acesso não autorizado, alteração, divulgação ou destruição.
               </p>
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-neutral-900 mb-4">9. Contato</h2>
+              <h2 className="text-xl font-semibold text-brand-black mb-4">9. Contato</h2>
               <p className="text-neutral-600 leading-relaxed">
                 Para exercer seus direitos ou esclarecer dúvidas sobre esta política, entre em contato conosco:
               </p>
@@ -109,7 +109,7 @@ export default function PoliticaPrivacidadePage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-neutral-900 mb-4">10. Alterações</h2>
+              <h2 className="text-xl font-semibold text-brand-black mb-4">10. Alterações</h2>
               <p className="text-neutral-600 leading-relaxed">
                 Esta política pode ser atualizada periodicamente. Recomendamos que você revise esta página regularmente para se manter informado sobre nossas práticas de privacidade.
               </p>
