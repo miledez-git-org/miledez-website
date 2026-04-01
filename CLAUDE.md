@@ -64,6 +64,7 @@ public/
 - **PricingSection** — Pricing tiers display (requires `onContactClick` prop)
 - **LogoGrid** — Integration partners showcase
 - Component library in `components/ui/` — use existing components before creating new ones
+- **Industry pages** (saude, servicos, agronegocio) share an identical template structure. Changes to one should be applied to all 3. Shared components in `components/industry/` (ChallengeCard, MetricsGrid, IndustryIntegrations) affect all industry pages.
 
 ## Color Usage
 
@@ -93,9 +94,10 @@ public/
 - **Shadows:** User prefers directional lower-right shadows (e.g., `boxShadow: '3px 4px 12px rgba(0,0,0,0.10)'`), not uniform Tailwind shadows.
 - **Build trace error:** `npm run build` may fail on `_not-found/page.js.nft.json` — this is a pre-existing Next.js trace collection bug, not a code error. Pages still generate correctly.
 - If dev server returns 404s on `_next/static/` assets, delete `.next/` and restart: `rm -rf .next && npm run dev`
-- **Section alignment:** All homepage section containers use `max-w-7xl mx-auto px-6 md:px-10`. Do NOT use `max-w-6xl` for sections — it breaks left-edge alignment with the hero. The only exception is the CTA section (`max-w-3xl`, intentionally narrower/centered).
+- **Section alignment:** All section containers (homepage AND sub pages) use `max-w-7xl mx-auto px-6 md:px-10`. Do NOT use `max-w-6xl` for sections — it breaks left-edge alignment with the hero. The only exception is CTA sections (`max-w-3xl`, intentionally narrower/centered). Legal pages use `max-w-3xl` throughout (prose readability).
 - **Side-by-side comparisons:** Use `items-start` (not `items-end`) on flex containers when labels must align horizontally at the top. `items-end` causes misalignment when children have different heights (e.g., one has an accent bar).
 - **Puppeteer scroll-reveal:** Headless Puppeteer often fails to trigger `useScrollReveal` IntersectionObserver. Force visibility with `document.querySelectorAll('*').forEach(el => { if (el.style.opacity === '0') { el.style.opacity = '1'; el.style.transform = 'none'; } })` before taking screenshots.
+- **Puppeteer SVG/logo rendering:** Tailwind utility classes (`w-6 h-6`, `object-contain`) may not apply in Puppeteer, causing SVG icons and logo images to render at unconstrained sizes. This is a rendering artifact — verify layout correctness from code, not just screenshots.
 - **Alignment is critical:** When user requests horizontal/vertical alignment, use CSS structural approaches (`items-stretch` + `justify-between`, grid alignment) rather than manual padding tweaks. Verify with Puppeteer measurements (`getBoundingClientRect`).
 
 ## Agency Conventions

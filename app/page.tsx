@@ -11,6 +11,7 @@ import HeroConstellation from '@/components/HeroConstellation'
 import WorkflowExplainerSection from '@/components/WorkflowExplainerSection'
 import PainPointSection from '@/components/PainPointSection'
 import BusinessProfilesSection from '@/components/BusinessProfilesSection'
+import WorkflowDemonstrationsSection from '@/components/WorkflowDemonstrationsSection'
 import ScrollProgress from '@/components/ScrollProgress'
 import ContactModal from '@/components/ContactModal'
 
@@ -119,6 +120,13 @@ export default function Home() {
       <section id="como-funciona" className="py-28 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <ProcessSection />
+        </div>
+      </section>
+
+      {/* Workflow Demonstrations */}
+      <section id="demonstracoes" className="py-28 md:py-40 bg-white">
+        <div className="px-6 md:px-10 max-w-7xl mx-auto">
+          <WorkflowDemonstrationsSection />
         </div>
       </section>
 

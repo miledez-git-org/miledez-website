@@ -1,0 +1,646 @@
+<!DOCTYPE html> <html lang="pt-BR"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>mil&dez â€” UI Kit & Design System v1.2</title> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> <style> :root { /* Brand Primary */ --brand-primary: #8b2020; --brand-primary-dark: #6a1818; --brand-primary-light: #c53030; /* Used on dark backgrounds */ --brand-primary-subtle: rgba(139, 32, 32, 0.08);
+        /* Secondary Accents */
+        --accent-slate: #4a5568;
+        --accent-slate-light: #718096;
+        --accent-slate-subtle: rgba(74, 85, 104, 0.08);
+        --accent-amber: #b45309;
+        --accent-amber-light: #d97706;
+        --accent-amber-subtle: rgba(180, 83, 9, 0.08);
+        --accent-teal: #0d7377;
+        --accent-teal-light: #14919b;
+        --accent-teal-subtle: rgba(13, 115, 119, 0.08);
+        
+        /* Neutrals */
+        --neutral-950: #0f0f0e;
+        --neutral-900: #1a1a1a; /* Logo primary color */
+        --neutral-800: #2d2d2a;
+        --neutral-700: #45453f;
+        --neutral-600: #5e5e56;
+        --neutral-500: #78786e;
+        --neutral-400: #9c9c90;
+        --neutral-300: #c4c4b8;
+        --neutral-200: #e2e2d8;
+        --neutral-100: #f0f0e8;
+        --neutral-50: #f8f8f4;
+        --white: #ffffff;
+        
+        /* Semantic */
+        --success: #2d6a4f;
+        --success-light: #d8f3dc;
+        --warning: #b8860b;
+        --warning-light: #fff3cd;
+        --error: #9d0208;
+        --error-light: #ffeaea;
+        --info: #1d4e89;
+        --info-light: #e3f2fd;
+        
+        /* Typography */
+        --font-primary: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+        --text-xs: 0.75rem;
+        --text-sm: 0.875rem;
+        --text-base: 1rem;
+        --text-lg: 1.125rem;
+        --text-xl: 1.25rem;
+        --text-2xl: 1.5rem;
+        --text-3xl: 1.875rem;
+        --text-4xl: 2.25rem;
+        --text-5xl: 3rem;
+        --text-6xl: 3.75rem;
+        --text-7xl: 4.5rem;
+        --leading-none: 1;
+        --leading-tight: 1.15;
+        --leading-snug: 1.3;
+        --leading-normal: 1.5;
+        --leading-relaxed: 1.625;
+        --tracking-tight: -0.025em;
+        --tracking-widest: 0.1em;
+        
+        /* Spacing */
+        --space-1: 0.25rem;
+        --space-2: 0.5rem;
+        --space-3: 0.75rem;
+        --space-4: 1rem;
+        --space-5: 1.25rem;
+        --space-6: 1.5rem;
+        --space-8: 2rem;
+        --space-10: 2.5rem;
+        --space-12: 3rem;
+        --space-16: 4rem;
+        --space-20: 5rem;
+        
+        /* Radius & Shadows */
+        --radius-sm: 2px;
+        --radius-md: 4px;
+        --radius-lg: 8px;
+        --radius-xl: 12px;
+        --radius-full: 9999px;
+        --shadow-sm: 0 1px 2px rgba(15, 15, 14, 0.04);
+        --shadow-md: 0 2px 8px rgba(15, 15, 14, 0.06), 0 1px 2px rgba(15, 15, 14, 0.04);
+        --shadow-lg: 0 8px 24px rgba(15, 15, 14, 0.08), 0 2px 8px rgba(15, 15, 14, 0.04);
+        --shadow-xl: 0 16px 48px rgba(15, 15, 14, 0.1), 0 4px 16px rgba(15, 15, 14, 0.06);
+        --shadow-brand: 0 4px 16px rgba(139, 32, 32, 0.2);
+        --transition-fast: 150ms ease;
+        --transition-base: 250ms ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-primary); font-size: var(--text-base); line-height: var(--leading-normal); color: var(--neutral-900); background: var(--white); }
+
+    /* Kit Layout */
+    .kit-container { max-width: 1400px; margin: 0 auto; padding: var(--space-8); }
+    .kit-header { padding: var(--space-16) 0; border-bottom: 1px solid var(--neutral-200); margin-bottom: var(--space-16); }
+    .kit-subtitle { font-size: var(--text-lg); color: var(--neutral-600); margin-top: var(--space-2); font-weight: 400; }
+    .kit-section { margin-bottom: var(--space-20); }
+    .kit-section-title { font-size: var(--text-3xl); font-weight: 700; color: var(--neutral-950); margin-bottom: var(--space-2); letter-spacing: var(--tracking-tight); }
+    .kit-section-desc { font-size: var(--text-base); color: var(--neutral-500); margin-bottom: var(--space-8); max-width: 60ch; }
+    .kit-subsection { margin-bottom: var(--space-12); }
+    .kit-subsection-title { font-size: var(--text-sm); font-weight: 600; color: var(--neutral-400); text-transform: uppercase; letter-spacing: var(--tracking-widest); margin-bottom: var(--space-4); }
+    .kit-grid { display: grid; gap: var(--space-4); }
+    .kit-grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .kit-grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .kit-grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .kit-grid-6 { grid-template-columns: repeat(6, 1fr); }
+    .kit-flex { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: flex-start; }
+    .kit-code { font-family: 'SF Mono', monospace; font-size: var(--text-xs); color: var(--neutral-500); margin-top: var(--space-2); }
+    .kit-divider { height: 1px; background: var(--neutral-200); margin: var(--space-16) 0; }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       LOGO â€” Manrope Light (300), letter-spacing: -0.03em
+       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .logo {
+        display: inline-flex;
+        align-items: baseline;
+        font-family: var(--font-primary);
+        font-weight: 300;
+        letter-spacing: -0.03em;
+        color: var(--neutral-900);
+        text-decoration: none;
+    }
+    .logo-ampersand { color: var(--brand-primary); }
+    
+    /* Logo sizes */
+    .logo-xs { font-size: 18px; }
+    .logo-sm { font-size: 24px; }
+    .logo-md { font-size: 32px; }
+    .logo-lg { font-size: 48px; }
+    .logo-xl { font-size: 72px; }
+    
+    /* Logo on dark backgrounds */
+    .logo-light { color: var(--white); }
+    .logo-light .logo-ampersand { color: var(--brand-primary-light); }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       MONOGRAM â€” Ampersand icon
+       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .monogram {
+        font-family: var(--font-primary);
+        font-weight: 300;
+        color: var(--brand-primary);
+        line-height: 1;
+    }
+    .monogram-light { color: var(--brand-primary-light); }
+    
+    /* Monogram sizes */
+    .monogram-xs { font-size: 28px; }
+    .monogram-sm { font-size: 40px; }
+    .monogram-md { font-size: 56px; }
+    .monogram-lg { font-size: 80px; }
+    
+    /* Monogram boxed variants */
+    .monogram-box {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--neutral-200);
+    }
+    .monogram-box .monogram { font-size: 48px; }
+    .monogram-box-filled {
+        background: var(--neutral-900);
+        border: none;
+    }
+    .monogram-box-filled .monogram { color: var(--brand-primary-light); }
+
+    /* Color Swatches */
+    .color-swatch { aspect-ratio: 1; border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: flex-end; padding: var(--space-3); position: relative; }
+    .color-swatch::before { content: ''; position: absolute; inset: 0; border: 1px solid rgba(0,0,0,0.08); border-radius: inherit; }
+    .color-swatch-label { font-size: var(--text-xs); font-weight: 500; }
+    .color-swatch-value { font-size: var(--text-xs); opacity: 0.7; font-family: monospace; }
+    .color-swatch.light-text { color: var(--white); }
+    .color-swatch.dark-text { color: var(--neutral-900); }
+
+    /* Typography */
+    .type-specimen { padding: var(--space-6); background: var(--neutral-50); border-radius: var(--radius-lg); margin-bottom: var(--space-4); }
+    .type-display-1 { font-size: var(--text-7xl); font-weight: 800; line-height: var(--leading-none); letter-spacing: var(--tracking-tight); color: var(--neutral-950); }
+    .type-display-2 { font-size: var(--text-6xl); font-weight: 800; line-height: var(--leading-none); letter-spacing: var(--tracking-tight); color: var(--neutral-950); }
+    .type-display-3 { font-size: var(--text-5xl); font-weight: 700; line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); color: var(--neutral-950); }
+    .type-h1 { font-size: var(--text-4xl); font-weight: 700; line-height: var(--leading-tight); color: var(--neutral-950); }
+    .type-h2 { font-size: var(--text-3xl); font-weight: 700; line-height: var(--leading-snug); color: var(--neutral-950); }
+    .type-h3 { font-size: var(--text-2xl); font-weight: 600; line-height: var(--leading-snug); color: var(--neutral-900); }
+    .type-h4 { font-size: var(--text-xl); font-weight: 600; line-height: var(--leading-snug); color: var(--neutral-900); }
+    .type-body-lg { font-size: var(--text-lg); font-weight: 400; line-height: var(--leading-relaxed); color: var(--neutral-700); }
+    .type-body { font-size: var(--text-base); font-weight: 400; line-height: var(--leading-relaxed); color: var(--neutral-700); }
+    .type-body-sm { font-size: var(--text-sm); font-weight: 400; line-height: var(--leading-relaxed); color: var(--neutral-600); }
+    .type-caption { font-size: var(--text-xs); font-weight: 400; line-height: var(--leading-normal); color: var(--neutral-500); }
+    .type-overline { font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-widest); color: var(--neutral-500); }
+    .type-accent { color: var(--brand-primary); }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); font-family: var(--font-primary); font-size: var(--text-sm); font-weight: 500; text-decoration: none; border: none; cursor: pointer; transition: all var(--transition-fast); white-space: nowrap; }
+    .btn-sm { height: 32px; padding: 0 var(--space-3); font-size: var(--text-xs); border-radius: var(--radius-sm); }
+    .btn-md { height: 40px; padding: 0 var(--space-5); border-radius: var(--radius-md); }
+    .btn-lg { height: 48px; padding: 0 var(--space-6); font-size: var(--text-base); border-radius: var(--radius-md); }
+    .btn-xl { height: 56px; padding: 0 var(--space-8); font-size: var(--text-base); border-radius: var(--radius-md); }
+    .btn-primary { background: var(--brand-primary); color: var(--white); }
+    .btn-primary:hover { background: var(--brand-primary-dark); box-shadow: var(--shadow-brand); }
+    .btn-secondary { background: var(--neutral-900); color: var(--white); }
+    .btn-secondary:hover { background: var(--neutral-800); }
+    .btn-tertiary { background: var(--accent-slate); color: var(--white); }
+    .btn-tertiary:hover { background: var(--accent-slate-light); }
+    .btn-outline { background: transparent; color: var(--neutral-900); box-shadow: inset 0 0 0 1px var(--neutral-300); }
+    .btn-outline:hover { background: var(--neutral-100); box-shadow: inset 0 0 0 1px var(--neutral-400); }
+    .btn-outline-brand { background: transparent; color: var(--brand-primary); box-shadow: inset 0 0 0 1px var(--brand-primary); }
+    .btn-outline-brand:hover { background: var(--brand-primary-subtle); }
+    .btn-ghost { background: transparent; color: var(--neutral-700); }
+    .btn-ghost:hover { background: var(--neutral-100); color: var(--neutral-900); }
+    .btn-ghost-brand { background: transparent; color: var(--brand-primary); }
+    .btn-ghost-brand:hover { background: var(--brand-primary-subtle); }
+    .btn-text { background: transparent; color: var(--brand-primary); padding: 0; height: auto; }
+    .btn-text:hover { text-decoration: underline; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-icon { width: 40px; padding: 0; }
+    .btn-icon.btn-sm { width: 32px; }
+
+    /* Forms */
+    .form-group { display: flex; flex-direction: column; gap: var(--space-2); }
+    .form-label { font-size: var(--text-sm); font-weight: 500; color: var(--neutral-800); }
+    .form-label-required::after { content: ' *'; color: var(--brand-primary); }
+    .form-hint { font-size: var(--text-xs); color: var(--neutral-500); }
+    .form-error { font-size: var(--text-xs); color: var(--error); }
+    .input { height: 44px; padding: 0 var(--space-4); font-family: var(--font-primary); font-size: var(--text-base); color: var(--neutral-900); background: var(--white); border: 1px solid var(--neutral-300); border-radius: var(--radius-md); transition: all var(--transition-fast); }
+    .input:hover { border-color: var(--neutral-400); }
+    .input:focus { outline: none; border-color: var(--accent-slate); box-shadow: 0 0 0 3px var(--accent-slate-subtle); }
+    .input::placeholder { color: var(--neutral-400); }
+    .input-error { border-color: var(--error); }
+    .input-error:focus { box-shadow: 0 0 0 3px var(--error-light); }
+    .textarea { min-height: 120px; padding: var(--space-3) var(--space-4); font-family: var(--font-primary); font-size: var(--text-base); color: var(--neutral-900); background: var(--white); border: 1px solid var(--neutral-300); border-radius: var(--radius-md); resize: vertical; transition: all var(--transition-fast); }
+    .textarea:hover { border-color: var(--neutral-400); }
+    .textarea:focus { outline: none; border-color: var(--accent-slate); box-shadow: 0 0 0 3px var(--accent-slate-subtle); }
+    .select { height: 44px; padding: 0 var(--space-10) 0 var(--space-4); font-family: var(--font-primary); font-size: var(--text-base); color: var(--neutral-900); background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2378786e' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") right 12px center no-repeat; border: 1px solid var(--neutral-300); border-radius: var(--radius-md); cursor: pointer; appearance: none; transition: all var(--transition-fast); }
+    .select:hover { border-color: var(--neutral-400); }
+    .select:focus { outline: none; border-color: var(--accent-slate); box-shadow: 0 0 0 3px var(--accent-slate-subtle); }
+    .checkbox-group, .radio-group { display: flex; align-items: center; gap: var(--space-3); cursor: pointer; }
+    .checkbox, .radio { width: 20px; height: 20px; accent-color: var(--accent-slate); cursor: pointer; }
+    .toggle { position: relative; width: 44px; height: 24px; background: var(--neutral-300); border-radius: var(--radius-full); cursor: pointer; transition: background var(--transition-fast); }
+    .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: var(--white); border-radius: 50%; box-shadow: var(--shadow-sm); transition: transform var(--transition-fast); }
+    .toggle.active { background: var(--accent-slate); }
+    .toggle.active::after { transform: translateX(20px); }
+
+    /* Cards */
+    .card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; }
+    .card-bordered { border: 1px solid var(--neutral-200); }
+    .card-header { padding: var(--space-5) var(--space-6); border-bottom: 1px solid var(--neutral-200); }
+    .card-body { padding: var(--space-6); }
+    .card-footer { padding: var(--space-4) var(--space-6); border-top: 1px solid var(--neutral-200); background: var(--neutral-50); }
+    .feature-card { padding: var(--space-8); background: var(--white); border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); }
+    .feature-card-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: var(--accent-slate-subtle); color: var(--accent-slate); border-radius: var(--radius-md); margin-bottom: var(--space-4); }
+    .feature-card-icon.brand { background: var(--brand-primary-subtle); color: var(--brand-primary); }
+    .feature-card-icon.teal { background: var(--accent-teal-subtle); color: var(--accent-teal); }
+    .feature-card-icon.amber { background: var(--accent-amber-subtle); color: var(--accent-amber); }
+    .feature-card-title { font-size: var(--text-lg); font-weight: 600; color: var(--neutral-900); margin-bottom: var(--space-2); }
+    .feature-card-desc { font-size: var(--text-sm); color: var(--neutral-600); line-height: var(--leading-relaxed); }
+    .stat-card { padding: var(--space-6); background: var(--white); border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); }
+    .stat-card-label { font-size: var(--text-sm); color: var(--neutral-500); margin-bottom: var(--space-1); }
+    .stat-card-value { font-size: var(--text-4xl); font-weight: 700; color: var(--neutral-950); line-height: var(--leading-none); }
+    .stat-card-change { font-size: var(--text-sm); margin-top: var(--space-2); }
+    .stat-card-change.positive { color: var(--success); }
+    .stat-card-change.negative { color: var(--error); }
+
+    /* Badges & Tags */
+    .badge { display: inline-flex; align-items: center; gap: var(--space-1); padding: var(--space-1) var(--space-2); font-size: var(--text-xs); font-weight: 500; border-radius: var(--radius-sm); }
+    .badge-default { background: var(--neutral-100); color: var(--neutral-700); }
+    .badge-primary { background: var(--brand-primary-subtle); color: var(--brand-primary); }
+    .badge-slate { background: var(--accent-slate-subtle); color: var(--accent-slate); }
+    .badge-teal { background: var(--accent-teal-subtle); color: var(--accent-teal); }
+    .badge-amber { background: var(--accent-amber-subtle); color: var(--accent-amber); }
+    .badge-success { background: var(--success-light); color: var(--success); }
+    .badge-warning { background: var(--warning-light); color: var(--warning); }
+    .badge-error { background: var(--error-light); color: var(--error); }
+    .badge-outline { background: transparent; box-shadow: inset 0 0 0 1px currentColor; }
+    .badge-pill { border-radius: var(--radius-full); padding: var(--space-1) var(--space-3); }
+    .tag { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-1) var(--space-3); font-size: var(--text-sm); background: var(--neutral-100); color: var(--neutral-700); border-radius: var(--radius-md); }
+    .tag-close { width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0.6; }
+    .tag-close:hover { opacity: 1; }
+
+    /* Alerts */
+    .alert { display: flex; gap: var(--space-3); padding: var(--space-4); border-radius: var(--radius-md); }
+    .alert-icon { flex-shrink: 0; width: 20px; height: 20px; }
+    .alert-content { flex: 1; }
+    .alert-title { font-weight: 600; margin-bottom: var(--space-1); }
+    .alert-message { font-size: var(--text-sm); }
+    .alert-info { background: var(--accent-teal-subtle); color: var(--accent-teal); }
+    .alert-success { background: var(--success-light); color: var(--success); }
+    .alert-warning { background: var(--accent-amber-subtle); color: var(--accent-amber); }
+    .alert-error { background: var(--error-light); color: var(--error); }
+    .toast { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-4) var(--space-5); background: var(--neutral-900); color: var(--white); border-radius: var(--radius-md); box-shadow: var(--shadow-xl); }
+    .toast-message { font-size: var(--text-sm); }
+    .toast-action { font-size: var(--text-sm); font-weight: 500; color: var(--accent-teal-light); cursor: pointer; }
+
+    /* Navigation */
+    .nav-link { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); font-size: var(--text-sm); font-weight: 500; color: var(--neutral-600); text-decoration: none; border-radius: var(--radius-md); transition: all var(--transition-fast); }
+    .nav-link:hover { color: var(--neutral-900); background: var(--neutral-100); }
+    .nav-link.active { color: var(--accent-slate); background: var(--accent-slate-subtle); }
+    .tabs { display: flex; gap: var(--space-1); border-bottom: 1px solid var(--neutral-200); }
+    .tab { padding: var(--space-3) var(--space-4); font-size: var(--text-sm); font-weight: 500; color: var(--neutral-600); background: transparent; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: all var(--transition-fast); margin-bottom: -1px; }
+    .tab:hover { color: var(--neutral-900); }
+    .tab.active { color: var(--accent-slate); border-bottom-color: var(--accent-slate); }
+    .breadcrumb { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); }
+    .breadcrumb-item { color: var(--neutral-500); text-decoration: none; }
+    .breadcrumb-item:hover { color: var(--neutral-700); }
+    .breadcrumb-item.active { color: var(--neutral-900); font-weight: 500; }
+    .breadcrumb-separator { color: var(--neutral-400); }
+    .pagination { display: flex; align-items: center; gap: var(--space-1); }
+    .pagination-item { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: var(--text-sm); font-weight: 500; color: var(--neutral-600); background: transparent; border: 1px solid transparent; border-radius: var(--radius-md); cursor: pointer; transition: all var(--transition-fast); }
+    .pagination-item:hover { background: var(--neutral-100); }
+    .pagination-item.active { color: var(--accent-slate); border-color: var(--accent-slate); background: var(--accent-slate-subtle); }
+
+    /* Table */
+    .table-container { overflow-x: auto; border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); }
+    .table { width: 100%; border-collapse: collapse; }
+    .table th { padding: var(--space-3) var(--space-4); font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--neutral-500); text-align: left; background: var(--neutral-50); border-bottom: 1px solid var(--neutral-200); }
+    .table td { padding: var(--space-4); font-size: var(--text-sm); color: var(--neutral-700); border-bottom: 1px solid var(--neutral-100); }
+    .table tr:last-child td { border-bottom: none; }
+    .table tr:hover td { background: var(--neutral-50); }
+    .list { display: flex; flex-direction: column; }
+    .list-item { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4); border-bottom: 1px solid var(--neutral-100); }
+    .list-item:last-child { border-bottom: none; }
+    .list-item-content { flex: 1; min-width: 0; }
+    .list-item-title { font-weight: 500; color: var(--neutral-900); }
+    .list-item-desc { font-size: var(--text-sm); color: var(--neutral-500); }
+    .avatar { display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--accent-slate); color: var(--white); font-weight: 600; flex-shrink: 0; }
+    .avatar.brand { background: var(--brand-primary); }
+    .avatar.teal { background: var(--accent-teal); }
+    .avatar.amber { background: var(--accent-amber); }
+    .avatar-xs { width: 24px; height: 24px; font-size: var(--text-xs); }
+    .avatar-sm { width: 32px; height: 32px; font-size: var(--text-sm); }
+    .avatar-md { width: 40px; height: 40px; font-size: var(--text-base); }
+    .avatar-lg { width: 48px; height: 48px; font-size: var(--text-lg); }
+    .avatar-xl { width: 64px; height: 64px; font-size: var(--text-2xl); }
+    .progress { height: 8px; background: var(--neutral-200); border-radius: var(--radius-full); overflow: hidden; }
+    .progress-bar { height: 100%; background: var(--accent-slate); border-radius: var(--radius-full); transition: width 0.4s ease; }
+    .progress-bar.brand { background: var(--brand-primary); }
+    .progress-bar.success { background: var(--success); }
+    .progress-bar.teal { background: var(--accent-teal); }
+
+    /* Special Components */
+    .testimonial { padding: var(--space-8); background: var(--neutral-50); border-radius: var(--radius-lg); }
+    .testimonial-quote { font-size: var(--text-2xl); font-weight: 500; color: var(--neutral-800); margin-bottom: var(--space-6); line-height: var(--leading-relaxed); }
+    .testimonial-author { display: flex; align-items: center; gap: var(--space-3); }
+    .testimonial-author-name { font-weight: 600; color: var(--neutral-900); }
+    .testimonial-author-role { font-size: var(--text-sm); color: var(--neutral-500); }
+    .pricing-card { padding: var(--space-8); background: var(--white); border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); text-align: center; }
+    .pricing-card.featured { border-color: var(--brand-primary); box-shadow: var(--shadow-brand); }
+    .pricing-card-name { font-size: var(--text-lg); font-weight: 600; color: var(--neutral-900); margin-bottom: var(--space-2); }
+    .pricing-card-price { font-size: var(--text-5xl); font-weight: 700; color: var(--neutral-950); margin-bottom: var(--space-1); }
+    .pricing-card-price span { font-size: var(--text-base); font-weight: 400; color: var(--neutral-500); }
+    .pricing-card-desc { font-size: var(--text-sm); color: var(--neutral-500); margin-bottom: var(--space-6); }
+    .pricing-card-features { text-align: left; margin-bottom: var(--space-8); }
+    .pricing-card-feature { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) 0; font-size: var(--text-sm); color: var(--neutral-700); }
+    .cta-block { padding: var(--space-12) var(--space-8); background: var(--neutral-950); border-radius: var(--radius-xl); text-align: center; }
+    .cta-block-title { font-size: var(--text-4xl); font-weight: 700; color: var(--white); margin-bottom: var(--space-4); }
+    .cta-block-desc { font-size: var(--text-lg); color: var(--neutral-400); margin-bottom: var(--space-8); max-width: 50ch; margin-left: auto; margin-right: auto; }
+
+    /* Workflow */
+    .process-step { display: flex; gap: var(--space-4); }
+    .process-step-indicator { display: flex; flex-direction: column; align-items: center; }
+    .process-step-number { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: var(--text-sm); font-weight: 600; color: var(--white); background: var(--accent-slate); border-radius: 50%; }
+    .process-step-line { width: 2px; flex: 1; background: var(--neutral-200); margin: var(--space-2) 0; }
+    .process-step-content { flex: 1; padding-bottom: var(--space-6); }
+    .process-step-title { font-weight: 600; color: var(--neutral-900); margin-bottom: var(--space-1); }
+    .process-step-desc { font-size: var(--text-sm); color: var(--neutral-600); }
+    .integration-card { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4); background: var(--white); border: 1px solid var(--neutral-200); border-radius: var(--radius-lg); transition: all var(--transition-fast); }
+    .integration-card:hover { border-color: var(--neutral-300); box-shadow: var(--shadow-md); }
+    .integration-card-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: var(--neutral-100); border-radius: var(--radius-md); }
+    .integration-card-name { font-weight: 500; color: var(--neutral-900); }
+    .integration-card-category { font-size: var(--text-xs); color: var(--neutral-500); }
+    .workflow-node { padding: var(--space-4); background: var(--white); border: 2px solid var(--neutral-200); border-radius: var(--radius-lg); min-width: 200px; }
+    .workflow-node.trigger { border-color: var(--accent-teal); background: var(--accent-teal-subtle); }
+    .workflow-node.action { border-color: var(--accent-slate); background: var(--accent-slate-subtle); }
+    .workflow-node-header { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-2); }
+    .workflow-node-type { font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--neutral-500); }
+    .workflow-node-title { font-weight: 500; color: var(--neutral-900); }
+
+    /* Logo row for preview */
+    .logo-row { display: flex; align-items: center; gap: var(--space-10); padding: var(--space-6) 0; border-bottom: 1px solid var(--neutral-200); }
+    .logo-row:last-child { border-bottom: none; }
+    .logo-label { width: 100px; font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--neutral-400); }
+</style>
+
+</head> <body> <div class="kit-container"> <header class="kit-header"> <span class="logo logo-xl">mil<span class="logo-ampersand">&</span>dez</span> <p class="kit-subtitle">UI Kit & Design System â€” v1.2</p> </header>
+    <!-- LOGO SECTION -->
+    <section class="kit-section">
+        <h2 class="kit-section-title">Logo</h2>
+        <p class="kit-section-desc">Manrope Light (300) with -0.03em letter spacing. Ampersand in brand accent color.</p>
+        
+        <div class="kit-subsection">
+            <div class="kit-subsection-title">Primary Logo â€” Light Background</div>
+            <div class="logo-row"><div class="logo-label">72px</div><span class="logo logo-xl">mil<span class="logo-ampersand">&</span>dez</span></div>
+            <div class="logo-row"><div class="logo-label">48px</div><span class="logo logo-lg">mil<span class="logo-ampersand">&</span>dez</span></div>
+            <div class="logo-row"><div class="logo-label">32px</div><span class="logo logo-md">mil<span class="logo-ampersand">&</span>dez</span></div>
+            <div class="logo-row"><div class="logo-label">24px</div><span class="logo logo-sm">mil<span class="logo-ampersand">&</span>dez</span></div>
+            <div class="logo-row"><div class="logo-label">18px</div><span class="logo logo-xs">mil<span class="logo-ampersand">&</span>dez</span></div>
+        </div>
+
+        <div class="kit-subsection" style="background: var(--neutral-900); padding: var(--space-8); margin: var(--space-8) calc(var(--space-8) * -1); border-radius: 0;">
+            <div class="kit-subsection-title" style="color: #5a5a5a;">Primary Logo â€” Dark Background</div>
+            <div class="logo-row" style="border-color: #333;"><div class="logo-label" style="color: #5a5a5a;">48px</div><span class="logo logo-lg logo-light">mil<span class="logo-ampersand">&</span>dez</span></div>
+            <div class="logo-row" style="border-color: #333;"><div class="logo-label" style="color: #5a5a5a;">32px</div><span class="logo logo-md logo-light">mil<span class="logo-ampersand">&</span>dez</span></div>
+        </div>
+
+        <div class="kit-subsection">
+            <div class="kit-subsection-title">Monogram / Icon</div>
+            <div class="kit-flex" style="align-items: center; gap: var(--space-10);">
+                <div style="text-align: center;"><span class="monogram monogram-lg">&</span><p class="type-caption" style="margin-top: var(--space-2);">80px</p></div>
+                <div style="text-align: center;"><span class="monogram monogram-md">&</span><p class="type-caption" style="margin-top: var(--space-2);">56px</p></div>
+                <div style="text-align: center;"><span class="monogram monogram-sm">&</span><p class="type-caption" style="margin-top: var(--space-2);">40px</p></div>
+                <div style="text-align: center;"><span class="monogram monogram-xs">&</span><p class="type-caption" style="margin-top: var(--space-2);">28px</p></div>
+                <div style="text-align: center;"><div class="monogram-box"><span class="monogram">&</span></div><p class="type-caption" style="margin-top: var(--space-2);">Boxed</p></div>
+                <div style="text-align: center;"><div class="monogram-box monogram-box-filled"><span class="monogram">&</span></div><p class="type-caption" style="margin-top: var(--space-2);">Filled</p></div>
+            </div>
+        </div>
+
+        <div style="background: var(--neutral-50); padding: var(--space-6); border-radius: var(--radius-lg); margin-top: var(--space-8);">
+            <div class="kit-subsection-title" style="margin-bottom: var(--space-4);">Logo Specifications</div>
+            <div class="kit-grid kit-grid-3" style="gap: var(--space-6);">
+                <div><strong style="display: block; font-size: var(--text-sm); color: var(--neutral-900); margin-bottom: var(--space-1);">Typeface</strong><span class="type-body-sm">Manrope</span></div>
+                <div><strong style="display: block; font-size: var(--text-sm); color: var(--neutral-900); margin-bottom: var(--space-1);">Weight</strong><span class="type-body-sm">300 (Light)</span></div>
+                <div><strong style="display: block; font-size: var(--text-sm); color: var(--neutral-900); margin-bottom: var(--space-1);">Letter Spacing</strong><span class="type-body-sm">-0.03em</span></div>
+                <div><strong style="display: block; font-size: var(--text-sm); color: var(--neutral-900); margin-bottom: var(--space-1);">Primary Color</strong><span class="type-body-sm"><span style="display: inline-block; width: 14px; height: 14px; background: #1a1a1a; border-radius: 2px; vertical-align: middle; margin-right: 6px;"></span>#1a1a1a</span></div>
+                <div><strong style="display: block; font-size: var(--text-sm); color: var(--neutral-900); margin-bottom: var(--space-1);">Accent Color</strong><span class="type-body-sm"><span style="display: inline-block; width: 14px; height: 14px; background: #8b2020; border-radius: 2px; vertical-align: middle; margin-right: 6px;"></span>#8b2020</span></div>
+                <div><strong style="display: block; font-size: var(--text-sm); color: var(--neutral-900); margin-bottom: var(--space-1);">Accent (Dark BG)</strong><span class="type-body-sm"><span style="display: inline-block; width: 14px; height: 14px; background: #c53030; border-radius: 2px; vertical-align: middle; margin-right: 6px;"></span>#c53030</span></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="kit-divider"></div>
+
+    <!-- COLOR SYSTEM -->
+    <section class="kit-section">
+        <h2 class="kit-section-title">Color System</h2>
+        <p class="kit-section-desc">Burgundy reserved for primary CTAs and key brand moments. Secondary accents handle everyday UI.</p>
+        
+        <div class="kit-subsection">
+            <div class="kit-subsection-title">Brand Primary â€” Use Sparingly</div>
+            <div class="kit-grid kit-grid-4">
+                <div class="color-swatch light-text" style="background: var(--brand-primary-dark);"><span class="color-swatch-label">Dark</span><span class="color-swatch-value">#6a1818</span></div>
+                <div class="color-swatch light-text" style="background: var(--brand-primary);"><span class="color-swatch-label">Primary</span><span class="color-swatch-value">#8b2020</span></div>
+                <div class="color-swatch light-text" style="background: var(--brand-primary-light);"><span class="color-swatch-label">Light (Dark BG)</span><span class="color-swatch-value">#c53030</span></div>
+                <div class="color-swatch dark-text" style="background: var(--brand-primary-subtle);"><span class="color-swatch-label">Subtle</span><span class="color-swatch-value">8%</span></div>
+            </div>
+        </div>
+        
+        <div class="kit-subsection">
+            <div class="kit-subsection-title">Secondary Accents â€” Everyday UI</div>
+            <div class="kit-grid kit-grid-3" style="gap: var(--space-6);">
+                <div>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-2);">
+                        <div class="color-swatch light-text" style="background: var(--accent-slate);"><span class="color-swatch-label">Slate</span><span class="color-swatch-value">#4a5568</span></div>
+                        <div class="color-swatch dark-text" style="background: var(--accent-slate-subtle);"><span class="color-swatch-label">Subtle</span><span class="color-swatch-value">8%</span></div>
+                    </div>
+                    <p class="type-body-sm" style="margin-top: var(--space-2);">Nav, forms, toggles, progress</p>
+                </div>
+                <div>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-2);">
+                        <div class="color-swatch light-text" style="background: var(--accent-teal);"><span class="color-swatch-label">Teal</span><span class="color-swatch-value">#0d7377</span></div>
+                        <div class="color-swatch dark-text" style="background: var(--accent-teal-subtle);"><span class="color-swatch-label">Subtle</span><span class="color-swatch-value">8%</span></div>
+                    </div>
+                    <p class="type-body-sm" style="margin-top: var(--space-2);">Info, triggers, cool contrast</p>
+                </div>
+                <div>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-2);">
+                        <div class="color-swatch light-text" style="background: var(--accent-amber);"><span class="color-swatch-label">Amber</span><span class="color-swatch-value">#b45309</span></div>
+                        <div class="color-swatch dark-text" style="background: var(--accent-amber-subtle);"><span class="color-swatch-label">Subtle</span><span class="color-swatch-value">8%</span></div>
+                    </div>
+                    <p class="type-body-sm" style="margin-top: var(--space-2);">Warnings, warm highlights</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="kit-subsection">
+            <div class="kit-subsection-title">Neutrals & Semantic</div>
+            <div class="kit-grid kit-grid-6">
+                <div class="color-swatch light-text" style="background: var(--neutral-950);"><span class="color-swatch-label">950</span><span class="color-swatch-value">#0f0f0e</span></div>
+                <div class="color-swatch light-text" style="background: var(--neutral-900);"><span class="color-swatch-label">900</span><span class="color-swatch-value">#1a1a1a</span></div>
+                <div class="color-swatch light-text" style="background: var(--neutral-500);"><span class="color-swatch-label">500</span><span class="color-swatch-value">#78786e</span></div>
+                <div class="color-swatch dark-text" style="background: var(--neutral-300);"><span class="color-swatch-label">300</span><span class="color-swatch-value">#c4c4b8</span></div>
+                <div class="color-swatch dark-text" style="background: var(--neutral-100);"><span class="color-swatch-label">100</span><span class="color-swatch-value">#f0f0e8</span></div>
+                <div class="color-swatch dark-text" style="background: var(--neutral-50);"><span class="color-swatch-label">50</span><span class="color-swatch-value">#f8f8f4</span></div>
+            </div>
+            <div class="kit-grid kit-grid-4" style="margin-top: var(--space-4);">
+                <div class="color-swatch light-text" style="background: var(--success);"><span class="color-swatch-label">Success</span><span class="color-swatch-value">#2d6a4f</span></div>
+                <div class="color-swatch light-text" style="background: var(--warning);"><span class="color-swatch-label">Warning</span><span class="color-swatch-value">#b8860b</span></div>
+                <div class="color-swatch light-text" style="background: var(--error);"><span class="color-swatch-label">Error</span><span class="color-swatch-value">#9d0208</span></div>
+                <div class="color-swatch light-text" style="background: var(--info);"><span class="color-swatch-label">Info</span><span class="color-swatch-value">#1d4e89</span></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="kit-divider"></div>
+
+    <!-- TYPOGRAPHY -->
+    <section class="kit-section">
+        <h2 class="kit-section-title">Typography</h2>
+        <p class="kit-section-desc">Manrope throughout â€” geometric sans-serif with warmth. Weight 300-800.</p>
+        <div class="kit-subsection">
+            <div class="type-specimen"><p class="type-display-1">Display 1</p><p class="kit-code">Manrope Â· 72px Â· Weight 800</p></div>
+            <div class="type-specimen"><p class="type-display-2">Display 2</p><p class="kit-code">Manrope Â· 60px Â· Weight 800</p></div>
+            <div class="type-specimen"><p class="type-display-3">Display 3</p><p class="kit-code">Manrope Â· 48px Â· Weight 700</p></div>
+            <div class="type-specimen"><p class="type-h1">Heading 1</p><p class="kit-code">Manrope Â· 36px Â· Weight 700</p></div>
+            <div class="type-specimen"><p class="type-h2">Heading 2</p><p class="kit-code">Manrope Â· 30px Â· Weight 700</p></div>
+            <div class="type-specimen"><p class="type-h3">Heading 3</p><p class="kit-code">Manrope Â· 24px Â· Weight 600</p></div>
+            <div class="type-specimen"><p class="type-h4">Heading 4</p><p class="kit-code">Manrope Â· 20px Â· Weight 600</p></div>
+            <div class="type-specimen"><p class="type-body-lg">Body Large â€” Lead paragraphs.</p><p class="kit-code">Manrope Â· 18px Â· Weight 400</p></div>
+            <div class="type-specimen"><p class="type-body">Body â€” Default text.</p><p class="kit-code">Manrope Â· 16px Â· Weight 400</p></div>
+            <div class="type-specimen"><p class="type-body-sm">Body Small â€” UI elements.</p><p class="kit-code">Manrope Â· 14px Â· Weight 400</p></div>
+            <div class="type-specimen"><p class="type-caption">Caption</p><p class="kit-code">Manrope Â· 12px</p></div>
+            <div class="type-specimen"><p class="type-overline">OVERLINE</p><p class="kit-code">Manrope Â· 12px Â· Weight 600 Â· Uppercase</p></div>
+        </div>
+    </section>
+
+    <div class="kit-divider"></div>
+
+    <!-- BUTTONS -->
+    <section class="kit-section">
+        <h2 class="kit-section-title">Buttons</h2>
+        <div class="kit-subsection">
+            <div class="kit-subsection-title">Primary â€” Brand (Use Sparingly)</div>
+            <div class="kit-flex"><button class="btn btn-primary btn-sm">Small</button><button class="btn btn-primary btn-md">Medium</button><button class="btn btn-primary btn-lg">Large</button><button class="btn btn-primary btn-xl">Extra Large</button></div>
+        </div>
+        <div class="kit-subsection">
+            <div class="kit-subsection-title">Secondary & Tertiary</div>
+            <div class="kit-flex"><button class="btn btn-secondary btn-md">Secondary</button><button class="btn btn-tertiary btn-md">Tertiary</button><button class="btn btn-outline btn-md">Outline</button><button class="btn btn-ghost btn-md">Ghost</button></div>
+        </div>
+        <div class="kit-subsection">
+            <div class="kit-subsection-title">Brand Variants</div>
+            <div class="kit-flex"><button class="btn btn-outline-brand btn-md">Outline Brand</button><button class="btn btn-ghost-brand btn-md">Ghost Brand</button><button class="btn btn-text">Text Link â†’</button></div>
+        </div>
+    </section>
+
+    <div class="kit-divider"></div>
+
+    <!-- FORMS -->
+    <section class="kit-section">
+        <h2 class="kit-section-title">Form Elements</h2>
+        <div class="kit-grid kit-grid-3" style="align-items: start;">
+            <div class="form-group"><label class="form-label form-label-required">Email</label><input type="email" class="input" placeholder="nome@empresa.com"><span class="form-hint">We'll never share your email</span></div>
+            <div class="form-group"><label class="form-label">Company</label><input type="text" class="input" value="ClÃ­nica SÃ£o Lucas"></div>
+            <div class="form-group"><label class="form-label">Error</label><input type="text" class="input input-error" value="Invalid"><span class="form-error">Please enter valid value</span></div>
+            <div class="form-group"><label class="form-label">Industry</label><select class="select"><option>Select</option><option>Healthcare</option><option>Retail</option></select></div>
+            <div class="form-group"><label class="form-label">Message</label><textarea class="textarea" placeholder="Describe..."></textarea></div>
+            <div class="form-group" style="gap: var(--space-4);"><label class="form-label">Options</label><label class="checkbox-group"><input type="checkbox" class="checkbox" checked><span class="type-body-sm">Automation</span></label><label class="radio-group"><input type="radio" name="plan" class="radio" checked><span class="type-body-sm">Monthly</span></label><div style="display: flex; align-items: center; gap: var(--space-3);"><div class="toggle active"></div><span class="type-body-sm">Notifications</span></div></div>
+        </div>
+    </section>
+
+    <div class="kit-divider"></div>
+
+    <!-- DATA DISPLAY -->
+    <section class="kit-section">
+        <h2 class="kit-section-title">Data Display</h2>
+        <div class="kit-subsection">
+            <div class="kit-subsection-title">Table</div>
+            <div class="table-container">
+                <table class="table">
+                    <thead><tr><th>Workflow</th><th>Status</th><th>Runs</th><th>Last Run</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Invoice Processing</strong></td><td><span class="badge badge-success">Active</span></td><td>1,247</td><td>2 min ago</td></tr>
+                        <tr><td><strong>Patient Intake</strong></td><td><span class="badge badge-teal">Running</span></td><td>892</td><td>15 min ago</td></tr>
+                        <tr><td><strong>Report Generation</strong></td><td><span class="badge badge-amber">Paused</span></td><td>156</td><td>2 days ago</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="kit-subsection">
+            <div class="kit-subsection-title">Badges</div>
+            <div class="kit-flex"><span class="badge badge-default">Default</span><span class="badge badge-slate">Slate</span><span class="badge badge-teal">Teal</span><span class="badge badge-amber">Amber</span><span class="badge badge-primary">Primary</span><span class="badge badge-success">Success</span><span class="badge badge-error">Error</span></div>
+        </div>
+        <div class="kit-subsection">
+            <div class="kit-subsection-title">List & Avatars</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8);">
+                <div class="card card-bordered">
+                    <div class="list">
+                        <div class="list-item"><div class="avatar avatar-md">MR</div><div class="list-item-content"><p class="list-item-title">Maria Rodrigues</p><p class="list-item-desc">Completed intake</p></div><span class="type-caption">2m</span></div>
+                        <div class="list-item"><div class="avatar avatar-md teal">JP</div><div class="list-item-content"><p class="list-item-title">JoÃ£o Pereira</p><p class="list-item-desc">Invoice processed</p></div><span class="type-caption">15m</span></div>
+                        <div class="list-item"><div class="avatar avatar-md amber">CS</div><div class="list-item-content"><p class="list-item-title">Carla Santos</p><p class="list-item-desc">Workflow created</p></div><span class="type-caption">1h</span></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="kit-subsection-title" style="margin-top: 0;">Avatar Colors</div>
+                    <div class="kit-flex" style="margin-top: var(--space-4);"><div class="avatar avatar-md">SL</div><div class="avatar avatar-md brand">BR</div><div class="avatar avatar-md teal">TL</div><div class="avatar avatar-md amber">AM</div></div>
+                    <div class="kit-subsection-title" style="margin-top: var(--space-6);">Progress</div>
+                    <div style="display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-4);">
+                        <div class="progress"><div class="progress-bar" style="width: 75%;"></div></div>
+                        <div class="progress"><div class="progress-bar teal" style="width: 60%;"></div></div>
+                        <div class="progress"><div class="progress-bar brand" style="width: 90%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="kit-divider"></div>
+
+    <!-- ALERTS -->
+    <section class="kit-section">
+        <h2 class="kit-section-title">Alerts</h2>
+        <div style="display: flex; flex-direction: column; gap: var(--space-4); max-width: 600px;">
+            <div class="alert alert-info"><svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><div class="alert-content"><p class="alert-title">Info</p><p class="alert-message">New integration available.</p></div></div>
+            <div class="alert alert-success"><svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><div class="alert-content"><p class="alert-title">Success</p><p class="alert-message">Workflow activated.</p></div></div>
+            <div class="alert alert-warning"><svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg><div class="alert-content"><p class="alert-title">Warning</p><p class="alert-message">API rate limit.</p></div></div>
+            <div class="alert alert-error"><svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg><div class="alert-content"><p class="alert-title">Error</p><p class="alert-message">Connection failed.</p></div></div>
+        </div>
+    </section>
+
+    <div class="kit-divider"></div>
+
+    <!-- NAVIGATION -->
+    <section class="kit-section">
+        <h2 class="kit-section-title">Navigation</h2>
+        <div class="kit-subsection"><div class="kit-subsection-title">Nav Links</div><div class="kit-flex"><a href="#" class="nav-link">Dashboard</a><a href="#" class="nav-link active">Workflows</a><a href="#" class="nav-link">Settings</a></div></div>
+        <div class="kit-subsection"><div class="kit-subsection-title">Tabs</div><div class="tabs"><button class="tab active">Overview</button><button class="tab">Config</button><button class="tab">History</button></div></div>
+        <div class="kit-subsection"><div class="kit-subsection-title">Pagination</div><nav class="pagination"><button class="pagination-item">â†</button><button class="pagination-item">1</button><button class="pagination-item active">2</button><button class="pagination-item">3</button><button class="pagination-item">â†’</button></nav></div>
+    </section>
+
+    <div class="kit-divider"></div>
+
+    <!-- CARDS -->
+    <section class="kit-section">
+        <h2 class="kit-section-title">Cards</h2>
+        <div class="kit-grid kit-grid-3" style="align-items: start;">
+            <div class="feature-card"><div class="feature-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h4 class="feature-card-title">Automation</h4><p class="feature-card-desc">Eliminate repetitive tasks.</p></div>
+            <div class="feature-card"><div class="feature-card-icon teal"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div><h4 class="feature-card-title">Integrations</h4><p class="feature-card-desc">Connect your tools.</p></div>
+            <div class="feature-card"><div class="feature-card-icon amber"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h4 class="feature-card-title">Security</h4><p class="feature-card-desc">Enterprise-grade.</p></div>
+        </div>
+        <div class="stat-card" style="margin-top: var(--space-6); max-width: 300px;"><p class="stat-card-label">Hours Saved</p><p class="stat-card-value">142</p><p class="stat-card-change positive">â†‘ 23%</p></div>
+    </section>
+
+    <div class="kit-divider"></div>
+
+    <!-- CTA -->
+    <section class="kit-section">
+        <div class="cta-block">
+            <h3 class="cta-block-title">Ready to automate?</h3>
+            <p class="cta-block-desc">Book a free consultation.</p>
+            <button class="btn btn-primary btn-xl">Schedule Consultation</button>
+        </div>
+    </section>
+
+    <footer style="padding: var(--space-12) 0; text-align: center; border-top: 1px solid var(--neutral-200); margin-top: var(--space-8);">
+        <span class="logo logo-lg">mil<span class="logo-ampersand">&</span>dez</span>
+        <p class="type-caption" style="margin-top: var(--space-4);">UI Kit v1.2</p>
+    </footer>
+</div>
+<script>document.querySelectorAll('.toggle').forEach(t => t.addEventListener('click', () => t.classList.toggle('active')));</script>
+
+</body> </html>
