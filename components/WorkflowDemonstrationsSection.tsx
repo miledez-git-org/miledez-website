@@ -21,7 +21,6 @@ const LINE_ACTIVE = '#d4d4d4'
 const CARD_WIDTH = 270
 const CARD_HEIGHT = 140
 const FINAL_CARD_WIDTH = 240
-const FINAL_CARD_HEIGHT = 80
 
 // Layout positions
 const TRIGGER_Y = 0
@@ -175,7 +174,6 @@ const HealthcareWorkflow = ({ step }: WorkflowProps) => {
   const processRightX = 920 - CARD_WIDTH
 
   const leftCardCenterX = processLeftX + CARD_WIDTH / 2
-  const centerCardCenterX = centerX
   const rightCardCenterX = processRightX + CARD_WIDTH / 2
 
   const finalLeftX = 200
