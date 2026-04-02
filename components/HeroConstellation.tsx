@@ -369,7 +369,7 @@ export default function HeroConstellation() {
               />
               <image
                 ref={(el) => { imageRefs.current[i] = el }}
-                href={`/icons/${node.icon}.svg`}
+                href={`/software-company-logos/${node.icon}.svg`}
                 width={size}
                 height={size}
                 x={-halfSize}

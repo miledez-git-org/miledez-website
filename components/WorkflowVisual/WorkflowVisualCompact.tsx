@@ -48,7 +48,7 @@ export default function WorkflowVisualCompact({
         {allLogos.length > 0 && (
           <div className="flex items-center gap-2 mt-3">
             {allLogos.map((logo) => (
-              <img key={logo} src={`/logos/${logo}.svg`} alt="" width={24} height={24} className="opacity-40" />
+              <img key={logo} src={`/software-company-logos/${logo}.svg`} alt="" width={24} height={24} className="opacity-40" />
             ))}
           </div>
         )}

@@ -1,0 +1,343 @@
+{
+  "name": "mil&dez — Assessment Lead Generation",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Setup Instructions\\n\\n**1. Environment Variables (Settings → Variables):**\\n- `ANTHROPIC_API_KEY` — your Anthropic API key\\n- `SUPABASE_URL` — your Supabase project URL\\n- `SUPABASE_ANON_KEY` — your Supabase anon/public key\\n\\n**2. Credentials to configure:**\\n- Google Sheets (OAuth2) — for the Google Sheets node\\n- Gmail (OAuth2) — for the Send Email node\\n\\n**3. Google Sheet setup:**\\n- Create a spreadsheet with a sheet named \"Leads Assessment\"\\n- Column headers (row 1): Nome, Email, Empresa, Setor, Gargalo, Ferramentas, Data\\n\\n**4. Supabase setup:**\\n- Run the SQL migration from `supabase/migrations/001_create_assessment_leads.sql`\\n\\n**5. Update WhatsApp link:**\\n- Replace `5531999999999` in the Parse Response code with your actual WhatsApp number",
+        "height": 480,
+        "width": 420,
+        "color": 4
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000001",
+      "name": "Setup Instructions",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "assessment",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000010",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        220,
+        300
+      ],
+      "webhookId": "assessment-webhook-id"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\n\nconst systemPrompt = `Você é um consultor especialista em automação de processos para pequenas e médias empresas brasileiras, trabalhando para a agência mil&dez. Seu papel é analisar o contexto do negócio e gerar recomendações específicas e acionáveis de automação.\n\nIMPORTANTE: Responda EXCLUSIVAMENTE em JSON válido, sem markdown, sem backticks, sem texto adicional. O JSON deve seguir exatamente esta estrutura:\n{\n  \"workflows\": [\n    {\n      \"nome\": \"Nome do fluxo de automação\",\n      \"ferramentas\": \"Lista das ferramentas envolvidas\",\n      \"resultado\": \"Descrição concisa do resultado esperado\",\n      \"tempo_economizado\": \"Estimativa de horas economizadas por semana\"\n    }\n  ]\n}\n\nGere exatamente 3 workflows. Seja específico para o setor e as ferramentas mencionadas. Use linguagem profissional mas acessível. Não use jargão técnico excessivo.`;\n\nconst userMessage = `Setor: ${data.setor}\nMaior gargalo: ${data.gargalo}\nFerramentas atuais: ${data.ferramentas}\nEmpresa: ${data.empresa}\n\nGere 3 automações específicas para este negócio.`;\n\nreturn [{\n  json: {\n    ...data,\n    claudePayload: {\n      model: \"claude-sonnet-4-20250514\",\n      max_tokens: 1500,\n      system: systemPrompt,\n      messages: [{ role: \"user\", content: userMessage }]\n    }\n  }\n}];"
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000020",
+      "name": "Build Claude Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{ $env.ANTHROPIC_API_KEY }}"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.claudePayload) }}",
+        "options": {
+          "timeout": 25000
+        }
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000030",
+      "name": "Claude API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const claudeResponse = $input.first().json;\nconst text = claudeResponse.content[0].text;\nconst parsed = JSON.parse(text);\nconst wd = $('Webhook').first().json;\n\nconst cards = parsed.workflows.map((wf, i) => {\n  const num = i + 1;\n  return '<tr><td style=\"padding:8px 32px\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#274855;border-radius:6px\"><tr><td style=\"padding:24px\">'\n    + '<p style=\"margin:0 0 8px;font-size:16px;font-weight:700;color:#fff\">' + num + '. ' + wf.nome + '</p>'\n    + '<p style=\"margin:0 0 4px;font-size:14px;color:#e0e0e0\"><b style=\"color:#fff\">Ferramentas:</b> ' + wf.ferramentas + '</p>'\n    + '<p style=\"margin:0 0 4px;font-size:14px;color:#e0e0e0\"><b style=\"color:#fff\">Resultado:</b> ' + wf.resultado + '</p>'\n    + '<p style=\"margin:8px 0 0;font-size:14px;color:#eb5100;font-weight:600\">' + wf.tempo_economizado + ' economizados por semana</p>'\n    + '</td></tr></table></td></tr>';\n}).join('');\n\nconst emailHtml = '<!DOCTYPE html><html><head><meta charset=\"utf-8\"></head>'\n  + '<body style=\"margin:0;padding:0;background:#f8f7f4;font-family:Arial,sans-serif\">'\n  + '<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:600px;margin:0 auto;background:#fff\">'\n  + '<tr><td style=\"padding:32px;background:#085042;text-align:center\">'\n  + '<img src=\"https://miledez.com.br/logo.svg\" alt=\"mil&dez\" width=\"120\"/>'\n  + '</td></tr>'\n  + '<tr><td style=\"padding:32px 32px 16px\">'\n  + '<p style=\"margin:0;font-size:18px;color:#274855;font-weight:600\">Olá ' + wd.nome + ',</p>'\n  + '<p style=\"margin:16px 0 0;font-size:16px;color:#4a4a4a;line-height:1.5\">'\n  + 'Analisamos o contexto da ' + wd.empresa + ' e preparamos recomendações de automação para o seu negócio.</p>'\n  + '</td></tr>'\n  + cards\n  + '<tr><td style=\"padding:24px 32px;text-align:center\">'\n  + '<a href=\"https://wa.me/5531999999999\" style=\"display:inline-block;padding:14px 28px;background:#eb5100;color:#fff;text-decoration:none;border-radius:6px;font-size:16px;font-weight:600\">'\n  + 'Agendar conversa gratuita</a></td></tr>'\n  + '<tr><td style=\"padding:24px 32px;background:#f5f5f5;text-align:center\">'\n  + '<p style=\"margin:0;font-size:14px;color:#737373\">mil&dez — Automação de Processos</p>'\n  + '<p style=\"margin:4px 0 0;font-size:13px;color:#a3a3a3\">Belo Horizonte, MG | miledez.com.br</p>'\n  + '</td></tr></table></body></html>';\n\nreturn [{\n  json: {\n    ...wd,\n    workflows: parsed.workflows,\n    resultado_ai: parsed,\n    emailHtml: emailHtml\n  }\n}];"
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000040",
+      "name": "Parse Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        940,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/assessment_leads",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_ANON_KEY }}"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.SUPABASE_ANON_KEY }}"
+            },
+            {
+              "name": "Prefer",
+              "value": "return=representation"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ nome: $json.nome, email: $json.email, empresa: $json.empresa, setor: $json.setor, gargalo: $json.gargalo, ferramentas: $json.ferramentas, resultado_ai: $json.resultado_ai }) }}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000050",
+      "name": "Supabase Insert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1240,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nome": "={{ $json.nome }}",
+            "Email": "={{ $json.email }}",
+            "Empresa": "={{ $json.empresa }}",
+            "Setor": "={{ $json.setor }}",
+            "Gargalo": "={{ $json.gargalo }}",
+            "Ferramentas": "={{ $json.ferramentas }}",
+            "Data": "={{ $now.format('dd/MM/yyyy HH:mm') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Empresa",
+              "displayName": "Empresa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Setor",
+              "displayName": "Setor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Gargalo",
+              "displayName": "Gargalo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ferramentas",
+              "displayName": "Ferramentas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Data",
+              "displayName": "Data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000060",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1240,
+        300
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": ""
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email }}",
+        "subject": "Seu plano de automação personalizado — mil&dez",
+        "emailType": "html",
+        "message": "={{ $json.emailHtml }}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000070",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1240,
+        520
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "",
+          "name": ""
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, results: { workflows: $json.workflows }, leadId: null }) }}",
+        "options": {}
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000080",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1240,
+        -140
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Build Claude Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Claude Request": {
+      "main": [
+        [
+          {
+            "node": "Claude API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude API": {
+      "main": [
+        [
+          {
+            "node": "Parse Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Supabase Insert",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

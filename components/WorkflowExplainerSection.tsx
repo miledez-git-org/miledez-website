@@ -85,7 +85,7 @@ function NodeCard({ node, align = 'center', onOrange = false }: { node: Pipeline
       style={{ boxShadow: onOrange ? '3px 5px 16px rgba(120, 30, 0, 0.25)' : '3px 4px 12px rgba(0, 0, 0, 0.10)' }}
     >
       <img
-        src={`/logos/${node.logo}`}
+        src={`/software-company-logos/${node.logo}`}
         alt=""
         width={32}
         height={32}

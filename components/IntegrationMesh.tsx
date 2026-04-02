@@ -11,22 +11,22 @@ interface Integration {
 // Curated integrations with actual logos - relevant for B2B workflow automation
 const integrations: Integration[] = [
   // Inner ring (6) - Most commonly used in B2B automation
-  { name: 'WhatsApp', logo: '/logos/whatsapp.svg' },
-  { name: 'Gmail', logo: '/logos/gmail.svg' },
-  { name: 'Google Sheets', logo: '/logos/google-sheets.svg' },
-  { name: 'Slack', logo: '/logos/slack.svg' },
-  { name: 'HubSpot', logo: '/logos/hubspot.svg' },
-  { name: 'n8n', logo: '/logos/n8n.svg' },
+  { name: 'WhatsApp', logo: '/software-company-logos/whatsapp.svg' },
+  { name: 'Gmail', logo: '/software-company-logos/gmail.svg' },
+  { name: 'Google Sheets', logo: '/software-company-logos/google-sheets.svg' },
+  { name: 'Slack', logo: '/software-company-logos/slack.svg' },
+  { name: 'HubSpot', logo: '/software-company-logos/hubspot.svg' },
+  { name: 'n8n', logo: '/software-company-logos/n8n.svg' },
   // Outer ring (9) - Additional popular integrations
-  { name: 'Excel', logo: '/logos/excel.svg' },
-  { name: 'Notion', logo: '/logos/notion.svg' },
-  { name: 'Trello', logo: '/logos/trello.svg' },
-  { name: 'Zapier', logo: '/logos/zapier.svg' },
-  { name: 'Google Calendar', logo: '/logos/google-calendar.svg' },
-  { name: 'Google Drive', logo: '/logos/google-drive.svg' },
-  { name: 'OpenAI', logo: '/logos/openai.svg' },
-  { name: 'Make', logo: '/logos/make.svg' },
-  { name: 'Salesforce', logo: '/logos/salesforce.svg' },
+  { name: 'Excel', logo: '/software-company-logos/excel.svg' },
+  { name: 'Notion', logo: '/software-company-logos/notion.svg' },
+  { name: 'Trello', logo: '/software-company-logos/trello.svg' },
+  { name: 'Zapier', logo: '/software-company-logos/zapier.svg' },
+  { name: 'Google Calendar', logo: '/software-company-logos/google-calendar.svg' },
+  { name: 'Google Drive', logo: '/software-company-logos/google-drive.svg' },
+  { name: 'OpenAI', logo: '/software-company-logos/openai.svg' },
+  { name: 'Make', logo: '/software-company-logos/make.svg' },
+  { name: 'Salesforce', logo: '/software-company-logos/salesforce.svg' },
 ]
 
 export default function IntegrationMesh() {

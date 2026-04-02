@@ -52,8 +52,8 @@ components/
 hooks/                      # Custom React hooks
 lib/                        # Utility functions
 public/
-  logos/                    # Integration logo SVGs
-  icons/                    # Icon SVGs
+  miledez-agency-logos/     # Brand identity SVGs (logo, monogram)
+  software-company-logos/   # Integration partner logos (57 SVGs)
 ```
 
 ## Key Patterns
@@ -77,9 +77,9 @@ public/
 - **globals.css caveat:** `--brand-accent` (`#d14800`) is a legacy CSS custom property — different hex from Tailwind `brand-secondary` (`#eb5100`). Used by `.btn-primary`, `.btn-link` classes. Pending alignment to `#eb5100`.
 
 ## Asset Paths
-- `public/logo.svg` / `public/monogram.svg` — brand identity SVGs (source of truth)
-- `public/logos/` — full-color integration partner logos (57 SVGs)
-- `public/icons/` — minimal outline integration icons (22 SVGs, subset of logos/)
+- `public/miledez-agency-logos/` — brand identity SVGs (miledez-logo.svg, miledez-monogram.svg)
+- `public/software-company-logos/` — integration partner logos (57 SVGs, consolidated from old logos/ + icons/)
+- All components use `/software-company-logos/{name}.svg` — there is no separate icons directory
 
 ## Rules
 

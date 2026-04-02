@@ -125,7 +125,7 @@ export default function LogoMarquee({
             title={logo.name}
           >
             <Image
-              src={`/logos/${logo.file}`}
+              src={`/software-company-logos/${logo.file}`}
               alt={logo.name}
               height={logoHeight}
               width={logoHeight * 3} // Aspect ratio placeholder

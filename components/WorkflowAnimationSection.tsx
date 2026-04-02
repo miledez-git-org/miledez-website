@@ -75,7 +75,7 @@ function WorkflowRow({ workflow, index }: { workflow: Workflow; index: number })
             <div className={`wf-static-card${mod.trigger ? ' trigger' : ''}`}>
               <img
                 className="wf-static-card-logo"
-                src={`/logos/${mod.logo}`}
+                src={`/software-company-logos/${mod.logo}`}
                 alt={mod.label}
                 width={28}
                 height={28}

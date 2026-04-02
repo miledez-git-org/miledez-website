@@ -11,22 +11,22 @@ interface Partner {
 
 const partners: Partner[] = [
   // Communication
-  { name: 'WhatsApp', logo: '/logos/whatsapp.svg', category: 'Comunicação' },
-  { name: 'Gmail', logo: '/logos/gmail.svg', category: 'Comunicação' },
-  { name: 'Slack', logo: '/logos/slack.svg', category: 'Comunicação' },
+  { name: 'WhatsApp', logo: '/software-company-logos/whatsapp.svg', category: 'Comunicação' },
+  { name: 'Gmail', logo: '/software-company-logos/gmail.svg', category: 'Comunicação' },
+  { name: 'Slack', logo: '/software-company-logos/slack.svg', category: 'Comunicação' },
   // Automation
-  { name: 'n8n', logo: '/logos/n8n.svg', category: 'Automação' },
-  { name: 'Zapier', logo: '/logos/zapier.svg', category: 'Automação' },
-  { name: 'Make', logo: '/logos/make.svg', category: 'Automação' },
+  { name: 'n8n', logo: '/software-company-logos/n8n.svg', category: 'Automação' },
+  { name: 'Zapier', logo: '/software-company-logos/zapier.svg', category: 'Automação' },
+  { name: 'Make', logo: '/software-company-logos/make.svg', category: 'Automação' },
   // CRM
-  { name: 'HubSpot', logo: '/logos/hubspot.svg', category: 'CRM' },
-  { name: 'Salesforce', logo: '/logos/salesforce.svg', category: 'CRM' },
+  { name: 'HubSpot', logo: '/software-company-logos/hubspot.svg', category: 'CRM' },
+  { name: 'Salesforce', logo: '/software-company-logos/salesforce.svg', category: 'CRM' },
   // Productivity
-  { name: 'Google Sheets', logo: '/logos/google-sheets.svg', category: 'Produtividade' },
-  { name: 'Excel', logo: '/logos/excel.svg', category: 'Produtividade' },
+  { name: 'Google Sheets', logo: '/software-company-logos/google-sheets.svg', category: 'Produtividade' },
+  { name: 'Excel', logo: '/software-company-logos/excel.svg', category: 'Produtividade' },
   // AI
-  { name: 'Claude', logo: '/logos/claude.svg', category: 'IA' },
-  { name: 'OpenAI', logo: '/logos/openai.svg', category: 'IA' },
+  { name: 'Claude', logo: '/software-company-logos/claude.svg', category: 'IA' },
+  { name: 'OpenAI', logo: '/software-company-logos/openai.svg', category: 'IA' },
 ]
 
 export default function TechnologyPartners() {

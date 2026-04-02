@@ -172,7 +172,7 @@ function AppLogos({ logos, isActive }: { logos: string[]; isActive: boolean }) {
                 className="w-5 h-5 flex-shrink-0 flex items-center justify-center"
               >
                 <Image
-                  src={`/logos/${logo}.svg`}
+                  src={`/software-company-logos/${logo}.svg`}
                   alt={logo}
                   width={20}
                   height={20}

@@ -325,7 +325,7 @@ function IndustryCard({
                     className="w-6 h-6 flex-shrink-0 flex items-center justify-center"
                   >
                     <Image
-                      src={`/logos/${logo}.svg`}
+                      src={`/software-company-logos/${logo}.svg`}
                       alt={logo}
                       width={24}
                       height={24}
