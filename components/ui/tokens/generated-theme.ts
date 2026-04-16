@@ -1,21 +1,21 @@
 // Design System Theme
-// Version: 3.2.0
-// Last synced: 2026-01-14
+// Version: 4.0.0
+// Last synced: 2026-04-15 (burgundy/sage rebrand — replaced teal/orange)
 
 import type { Config } from 'tailwindcss'
 
 export const designSystemTheme: NonNullable<Config['theme']>['extend'] = {
   colors: {
     brand: {
-      primary: '#085042',
-      'primary-dark': '#063d32',
-      'primary-light': '#0a6654',
-      'primary-subtle': 'rgba(8, 80, 66, 0.08)',
-      secondary: '#eb5100',
-      'secondary-dark': '#c74400',
-      'secondary-light': '#ff6a1a',
-      'secondary-subtle': 'rgba(235, 81, 0, 0.08)',
-      black: '#274855',
+      primary: '#6b0f1a',
+      'primary-dark': '#4a0a12',
+      'primary-light': '#8a1524',
+      'primary-subtle': 'rgba(107, 15, 26, 0.08)',
+      secondary: '#87a96b',
+      'secondary-dark': '#4f6b3e',
+      'secondary-light': '#a3c089',
+      'secondary-subtle': 'rgba(135, 169, 107, 0.08)',
+      black: '#1a1a1a',
       muted: '#525252',
     },
     accent: {
@@ -49,7 +49,10 @@ export const designSystemTheme: NonNullable<Config['theme']>['extend'] = {
     },
   },
   fontFamily: {
-    manrope: ['Manrope', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+    // Brand update 2026-04-15: Inter replaces Manrope. Key preserved to avoid
+    // cascading component edits — all `font-manrope` classes now resolve to Inter.
+    manrope: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+    inter: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
   },
   fontSize: {
     xs: '0.75rem',

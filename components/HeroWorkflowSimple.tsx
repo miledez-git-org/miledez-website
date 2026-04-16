@@ -77,7 +77,7 @@ export default function HeroWorkflowSimple() {
   const outputTopY = OUTPUT.top // 190
 
   return (
-    <div className="relative w-full max-w-sm ml-auto" style={{ fontFamily: "'Manrope', sans-serif" }}>
+    <div className="relative w-full max-w-sm ml-auto" style={{ fontFamily: "'Inter', sans-serif" }}>
       {/* SVG Connectors - z-index 0 so lines render behind cards */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"

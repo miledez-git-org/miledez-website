@@ -1,6 +1,6 @@
 /* Google Fonts - loaded via CSS to avoid build-time network dependency */
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;500;600;700&display=swap');
+/* Brand update 2026-04-15: migrated from Manrope + Source Sans 3 to Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,9 +8,11 @@
 
 /* CSS Custom Properties */
 :root {
-  /* Font families - loaded via CSS @import above */
-  --font-source-sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-manrope: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Font families — all resolve to Inter after brand migration 2026-04-15.
+     Legacy var names preserved to avoid cascading component edits. */
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-source-sans: var(--font-inter);
+  --font-manrope: var(--font-inter);
 
   /* Colors and theming */
   --bg-base: #FCFCFC;
@@ -20,10 +22,15 @@
   --border-emphasis: rgba(0,0,0,0.15);
   --highlight: #F0F2F5;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --brand-accent: #d14800;
-  --brand-accent-dark: #b33d00;
-  --brand-primary: #085042;
-  --brand-primary-dark: #063d32;
+  /* Brand palette (2026-04-15): burgundy primary + sage accent.
+     Legacy var names kept for compatibility — --brand-accent now holds the
+     primary CTA burgundy (it was historically mislabeled as the accent). */
+  --brand-accent: #6b0f1a;
+  --brand-accent-dark: #4a0a12;
+  --brand-primary: #6b0f1a;
+  --brand-primary-dark: #4a0a12;
+  --brand-sage: #87a96b;
+  --brand-sage-ink: #4f6b3e;
 }
 
 /* Brand Typography - Heading Classes */
@@ -175,7 +182,7 @@ html {
 }
 
 ::selection {
-  background-color: #274855;
+  background-color: #1a1a1a;
   color: #ffffff;
 }
 
@@ -267,12 +274,12 @@ html {
 .btn-primary:hover {
   background-color: var(--brand-accent-dark);
   transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(209, 72, 0, 0.25);
+  box-shadow: 0 4px 12px rgba(107, 15, 26, 0.25);
 }
 
 .btn-primary:active {
   transform: scale(0.98);
-  box-shadow: 0 2px 6px rgba(209, 72, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(107, 15, 26, 0.2);
 }
 
 .btn-primary:disabled {
@@ -381,7 +388,7 @@ html {
 }
 
 .btn-ghost-brand:hover {
-  background-color: rgba(209, 72, 0, 0.08);
+  background-color: rgba(107, 15, 26, 0.08);
   color: var(--brand-accent-dark);
 }
 

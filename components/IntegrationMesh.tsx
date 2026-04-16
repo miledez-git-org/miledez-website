@@ -117,8 +117,8 @@ export default function IntegrationMesh() {
           }}
         >
           <span
-            className="text-brand-secondary text-4xl"
-            style={{ fontFamily: "var(--font-manrope), 'Manrope', sans-serif", fontWeight: 300 }}
+            className="text-brand-primary text-4xl"
+            style={{ fontFamily: "var(--font-manrope), 'Inter', sans-serif", fontWeight: 300 }}
           >
             &
           </span>

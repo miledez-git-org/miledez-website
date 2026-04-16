@@ -108,7 +108,7 @@ export default function FlipCardsSection() {
           style={{
             fontSize: 'clamp(36px, 6vw, 56px)',
             fontWeight: '700',
-            color: '#274855',
+            color: '#1a1a1a',
             margin: '0 0 20px',
             lineHeight: 1.05,
             letterSpacing: '-0.03em',
@@ -210,7 +210,7 @@ export default function FlipCardsSection() {
                   style={{
                     fontSize: isPast ? '14px' : isActive ? '16px' : '14px',
                     fontWeight: '700',
-                    color: isFuture ? '#ccc' : '#274855',
+                    color: isFuture ? '#ccc' : '#1a1a1a',
                     marginBottom: isPast ? '12px' : '20px',
                     transition: 'all 0.6s ease',
                   }}
@@ -256,7 +256,7 @@ export default function FlipCardsSection() {
                       style={{
                         fontSize: isActive ? '36px' : '24px',
                         fontWeight: '700',
-                        color: isFuture ? '#e5e5e5' : '#274855',
+                        color: isFuture ? '#e5e5e5' : '#1a1a1a',
                         margin: '0 0 auto',
                         lineHeight: 1.1,
                         transition: 'all 0.6s ease',
@@ -280,7 +280,7 @@ export default function FlipCardsSection() {
                   >
                     {step.frontTitle}
                     <br />
-                    <span style={{ color: '#274855' }}>{step.frontHighlight}</span>
+                    <span style={{ color: '#1a1a1a' }}>{step.frontHighlight}</span>
                   </h3>
                 )}
 
@@ -297,7 +297,7 @@ export default function FlipCardsSection() {
                       style={{
                         fontSize: isPast ? '20px' : isActive ? '32px' : '24px',
                         fontWeight: '700',
-                        color: isPast ? '#274855' : '#000',
+                        color: isPast ? '#1a1a1a' : '#000',
                         transition: 'all 0.6s ease',
                       }}
                     >
@@ -315,7 +315,7 @@ export default function FlipCardsSection() {
                       right: '20px',
                       width: '24px',
                       height: '24px',
-                      backgroundColor: '#274855',
+                      backgroundColor: '#1a1a1a',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -335,7 +335,7 @@ export default function FlipCardsSection() {
                   inset: 0,
                   backfaceVisibility: 'hidden',
                   transform: 'rotateY(180deg)',
-                  backgroundColor: '#274855',
+                  backgroundColor: '#1a1a1a',
                   padding: '40px 32px',
                   display: 'flex',
                   flexDirection: 'column',
@@ -430,7 +430,7 @@ export default function FlipCardsSection() {
             style={{
               width: '12px',
               height: '12px',
-              backgroundColor: activeStep >= step ? '#274855' : '#ddd',
+              backgroundColor: activeStep >= step ? '#1a1a1a' : '#ddd',
               transition: 'all 0.4s ease',
               transform: activeStep === step ? 'scale(1.3)' : 'scale(1)',
             }}
@@ -458,32 +458,32 @@ export default function FlipCardsSection() {
         >
           Você investe <strong style={{ color: '#000' }}>10 minutos</strong> descrevendo o problema.
           <br />
-          Nós investimos <strong style={{ color: '#274855' }}>tudo</strong> pra resolver.
+          Nós investimos <strong style={{ color: '#1a1a1a' }}>tudo</strong> pra resolver.
         </p>
         <a
           href="#contato"
           style={{
             display: 'inline-block',
             padding: '20px 48px',
-            backgroundColor: '#d14800',
+            backgroundColor: '#6b0f1a',
             border: 'none',
             color: '#fff',
             fontSize: '16px',
             fontWeight: '600',
             cursor: 'pointer',
             transition: 'all 0.2s ease',
-            boxShadow: '0 8px 30px rgba(209, 72, 0, 0.3)',
+            boxShadow: '0 8px 30px rgba(107, 15, 26, 0.3)',
             textDecoration: 'none',
           }}
           onMouseEnter={(e) => {
             const target = e.target as HTMLElement
             target.style.transform = 'translateY(-3px)'
-            target.style.boxShadow = '0 12px 40px rgba(209, 72, 0, 0.4)'
+            target.style.boxShadow = '0 12px 40px rgba(107, 15, 26, 0.4)'
           }}
           onMouseLeave={(e) => {
             const target = e.target as HTMLElement
             target.style.transform = 'translateY(0)'
-            target.style.boxShadow = '0 8px 30px rgba(209, 72, 0, 0.3)'
+            target.style.boxShadow = '0 8px 30px rgba(107, 15, 26, 0.3)'
           }}
         >
           Descrever meu sonho

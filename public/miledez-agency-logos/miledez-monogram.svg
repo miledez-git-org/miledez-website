@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
   <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300&amp;display=swap');
-      .monogram { font-family: 'Manrope', sans-serif; font-weight: 300; font-size: 56px; fill: #eb5100; }
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&amp;display=swap');
+      .monogram { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 56px; fill: #6b0f1a; }
     </style>
   </defs>
   <text x="50%" y="48" text-anchor="middle" class="monogram">&amp;</text>

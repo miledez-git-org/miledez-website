@@ -152,7 +152,7 @@ export default function WorkflowStep({
   if (!isVertical) {
     // Green for last connector, red (brand-secondary) for others
     const isLastConnector = index === 2 // 3rd connector (before 4th/last step)
-    const connectorColor = isLastConnector ? 'oklch(52.7% 0.154 150.069)' : '#274855'
+    const connectorColor = isLastConnector ? 'oklch(52.7% 0.154 150.069)' : '#1a1a1a'
     
     return (
       <div className="flex items-start flex-1">
@@ -165,7 +165,7 @@ export default function WorkflowStep({
               bg-neutral-50 
               border-2 
               rounded-lg
-              ${isLast ? '' : 'border-neutral-200 text-[#274855]'}
+              ${isLast ? '' : 'border-neutral-200 text-[#1a1a1a]'}
             `}
             style={isLast ? { 
               borderColor: 'oklch(52.7% 0.154 150.069)',
@@ -259,7 +259,7 @@ export default function WorkflowStep({
             bg-neutral-50 
             border-2 
             rounded-lg
-            ${isLast ? '' : 'border-neutral-200 text-[#274855]'}
+            ${isLast ? '' : 'border-neutral-200 text-[#1a1a1a]'}
           `}
           style={isLast ? { 
             borderColor: 'oklch(52.7% 0.154 150.069)',
@@ -284,7 +284,7 @@ export default function WorkflowStep({
         {/* Examples list */}
         {step.examples && step.examples.length > 0 && (
           <div className="mt-3">
-            <div className="w-8 h-0.5 bg-[#274855] mb-3" />
+            <div className="w-8 h-0.5 bg-[#1a1a1a] mb-3" />
             <ul className="space-y-1.5">
               {step.examples.map((example, i) => (
                 <li key={i} className="flex items-center gap-2 text-sm text-neutral-600 whitespace-nowrap">

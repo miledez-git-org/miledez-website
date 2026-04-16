@@ -104,7 +104,7 @@ export default function WorkflowDemo() {
   const output2Active = step >= 5
 
   return (
-    <div style={{ fontFamily: "'Manrope', sans-serif" }}>
+    <div style={{ fontFamily: "'Inter', sans-serif" }}>
       {/* Tabs */}
       <div className="flex justify-center gap-2 mb-8">
         {variations.map((v) => (
@@ -113,11 +113,11 @@ export default function WorkflowDemo() {
             onClick={() => setActiveVariation(v.id)}
             className="px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300"
             style={{
-              background: activeVariation === v.id ? '#d14800' : '#fff',
+              background: activeVariation === v.id ? '#6b0f1a' : '#fff',
               color: activeVariation === v.id ? '#fff' : '#525252',
               boxShadow:
                 activeVariation === v.id
-                  ? `0 4px 14px rgba(209, 72, 0, 0.35)`
+                  ? `0 4px 14px rgba(107, 15, 26, 0.35)`
                   : '0 0 0 1px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.06)',
             }}
           >

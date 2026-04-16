@@ -1,0 +1,5 @@
+974816063720-de9df3g65sj1cjpqd4m600hsufsgss83.apps.googleusercontent.com
+
+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
+
+claude --resume "update-whatsapp-links" 

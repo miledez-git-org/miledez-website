@@ -52,8 +52,8 @@ function SparklineChart({ isVisible, delay }: { isVisible: boolean; delay: numbe
       {/* Gradient fill */}
       <defs>
         <linearGradient id="sparklineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#085042" stopOpacity="0.2" />
-          <stop offset="100%" stopColor="#085042" stopOpacity="0" />
+          <stop offset="0%" stopColor="#6b0f1a" stopOpacity="0.2" />
+          <stop offset="100%" stopColor="#6b0f1a" stopOpacity="0" />
         </linearGradient>
       </defs>
 
@@ -71,7 +71,7 @@ function SparklineChart({ isVisible, delay }: { isVisible: boolean; delay: numbe
       <path
         d="M0,35 L20,28 L40,32 L60,20 L80,24 L100,12 L120,8"
         fill="none"
-        stroke="#085042"
+        stroke="#6b0f1a"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -87,7 +87,7 @@ function SparklineChart({ isVisible, delay }: { isVisible: boolean; delay: numbe
         cx="120"
         cy="8"
         r="3"
-        fill="#085042"
+        fill="#6b0f1a"
         style={{
           opacity: isVisible ? 1 : 0,
           transition: `opacity 0.3s ease-out ${delay + 1000}ms`,

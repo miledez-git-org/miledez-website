@@ -228,7 +228,7 @@ export default function WorkflowExplainerSection() {
                   {/* Sub-process cards (process column only) */}
                   {colIndex === 1 && SUB_PROCESS_NODE_SETS.map((nodeSet, i) => (
                     <div key={`sub-${i}`} className="flex flex-col items-center">
-                      <VerticalLine color="#eb5100" />
+                      <VerticalLine color="#87a96b" />
                       <div className="relative h-[64px] w-[300px] overflow-hidden">
                         <AnimatePresence initial={false}>
                           <motion.div
@@ -307,7 +307,7 @@ export default function WorkflowExplainerSection() {
                       animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
                       transition={{ duration: 0.5, delay: 0.5 + i * 0.14, ease: EASE }}
                     >
-                      <VerticalLine color="#eb5100" />
+                      <VerticalLine color="#87a96b" />
                       <div className="relative h-[64px] w-[300px] overflow-hidden">
                         <AnimatePresence initial={false}>
                           <motion.div

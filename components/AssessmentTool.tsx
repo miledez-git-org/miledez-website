@@ -552,7 +552,7 @@ export default function AssessmentTool() {
           <Button
             variant="primary"
             size="lg"
-            onClick={() => window.open('https://wa.me/5531999999999', '_blank')}
+            onClick={() => window.open('https://wa.me/5531982835587', '_blank')}
           >
             Agendar uma conversa gratuita
           </Button>

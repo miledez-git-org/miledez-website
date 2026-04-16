@@ -88,7 +88,7 @@ export const designSystemTheme: NonNullable<Config['theme']>['extend'] = {
     },
   },
   fontFamily: {
-    manrope: ['Manrope', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+    manrope: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
   },
   fontSize: {
     xs: '${tokens.typography.scale.xs}',

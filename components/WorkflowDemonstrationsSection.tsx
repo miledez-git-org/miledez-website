@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 // Design system color constants
-const BRAND_PRIMARY = '#085042'
-const BRAND_SECONDARY = '#eb5100'
-const BRAND_BLACK = '#274855'
+const BRAND_PRIMARY = '#6b0f1a'
+const BRAND_SECONDARY = '#87a96b'
+const BRAND_BLACK = '#1a1a1a'
 const NEUTRAL_600 = '#525252'
 const NEUTRAL_400 = '#a3a3a3'
 const NEUTRAL_300 = '#d4d4d4'
@@ -119,7 +119,7 @@ export default function WorkflowDemonstrationsSection() {
               fontWeight: 500,
               cursor: 'pointer',
               boxShadow: activeVariation === v.id
-                ? '0 4px 14px rgba(235, 81, 0, 0.25)'
+                ? '0 4px 14px rgba(135, 169, 107, 0.25)'
                 : `0 1px 3px rgba(0,0,0,0.06), inset 0 0 0 1px ${NEUTRAL_200}`,
               transition: `all 300ms ${SPRING}`,
             }}
@@ -771,7 +771,7 @@ const FinalOutputCard = ({ title, subtitle, active, icon }: FinalOutputCardProps
       background: '#ffffff',
       borderRadius: '16px',
       padding: '20px 24px',
-      boxShadow: active ? `0 4px 20px rgba(235, 81, 0, 0.12), 0 1px 3px rgba(0,0,0,0.04)` : '0 4px 20px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04)',
+      boxShadow: active ? `0 4px 20px rgba(135, 169, 107, 0.12), 0 1px 3px rgba(0,0,0,0.04)` : '0 4px 20px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04)',
       border: active ? `2px solid ${BRAND_SECONDARY}` : `1px solid ${NEUTRAL_200}`,
       width: `${FINAL_CARD_WIDTH}px`,
       display: 'flex',
@@ -784,7 +784,7 @@ const FinalOutputCard = ({ title, subtitle, active, icon }: FinalOutputCardProps
         width: '52px',
         height: '52px',
         borderRadius: '12px',
-        background: active ? 'rgba(235, 81, 0, 0.06)' : NEUTRAL_100,
+        background: active ? 'rgba(135, 169, 107, 0.06)' : NEUTRAL_100,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -953,7 +953,7 @@ const DocumentGenerationAnimation = ({ active }: AnimationProps) => (
         width: '24px',
         height: '24px',
         borderRadius: '50%',
-        background: active ? 'rgba(8, 80, 66, 0.08)' : NEUTRAL_100,
+        background: active ? 'rgba(107, 15, 26, 0.08)' : NEUTRAL_100,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -1043,7 +1043,7 @@ const TransformAnimation = ({ active }: AnimationProps) => (
         width={active ? 70 : 0}
         height={30}
         rx={4}
-        fill={active ? 'rgba(8, 80, 66, 0.08)' : 'transparent'}
+        fill={active ? 'rgba(107, 15, 26, 0.08)' : 'transparent'}
         stroke={active ? BRAND_PRIMARY : 'transparent'}
         strokeWidth="1.5"
         style={{ transition: 'all 600ms ease 500ms' }}
@@ -1068,7 +1068,7 @@ const DomainHealthAnimation = ({ active, value }: AnimationProps & { value: numb
     <ProgressRing progress={active ? value : 0} size={56} color={BRAND_PRIMARY} strokeWidth={6} />
     <div style={{
       padding: '6px 16px',
-      background: active ? 'rgba(8, 80, 66, 0.08)' : NEUTRAL_100,
+      background: active ? 'rgba(107, 15, 26, 0.08)' : NEUTRAL_100,
       borderRadius: '8px',
       fontSize: '18px',
       fontWeight: 700,
@@ -1121,7 +1121,7 @@ const ReportGenerationAnimation = ({ active }: AnimationProps) => (
         style={{
           height: '10px',
           width: active ? w : '20%',
-          background: i === 0 ? 'rgba(8, 80, 66, 0.19)' : NEUTRAL_200,
+          background: i === 0 ? 'rgba(107, 15, 26, 0.19)' : NEUTRAL_200,
           borderRadius: '5px',
           transition: `width 700ms ${SPRING} ${i * 100}ms`,
         }}

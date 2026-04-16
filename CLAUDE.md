@@ -35,6 +35,7 @@ app/                        # Next.js App Router pages
   saude/                    # Healthcare industry page
   servicos/                 # Professional services page
   agronegocio/              # Agribusiness industry page
+  avaliacao/                # AI assessment tool (lead generation)
   termos/                   # Terms of service
   politica-privacidade/     # Privacy policy
 components/
@@ -51,6 +52,9 @@ components/
   WorkflowVisual/           # Workflow visualization system
 hooks/                      # Custom React hooks
 lib/                        # Utility functions
+types/                      # TypeScript interfaces (assessment.ts)
+docs/                       # n8n workflow specs (JSON + markdown)
+supabase/migrations/        # Database migration SQL files
 public/
   miledez-agency-logos/     # Brand identity SVGs (logo, monogram)
   software-company-logos/   # Integration partner logos (57 SVGs)
@@ -63,6 +67,7 @@ public/
 - **HeroConstellation** — Static icon network with animated connecting lines (chain draw/hold/fade state machine). Icons have fixed positions; chains are pre-defined sequences that cycle deterministically.
 - **PricingSection** — Pricing tiers display (requires `onContactClick` prop)
 - **LogoGrid** — Integration partners showcase
+- **AssessmentTool** — Multi-step lead gen form (4 steps → n8n webhook → Claude API → on-screen results). Direct client-side fetch to n8n (no API route — static export). Types in `types/assessment.ts`. n8n workflow spec in `docs/`.
 - Component library in `components/ui/` — use existing components before creating new ones
 - **Industry pages** (saude, servicos, agronegocio) share an identical template structure. Changes to one should be applied to all 3. Shared components in `components/industry/` (ChallengeCard, MetricsGrid, IndustryIntegrations) affect all industry pages.
 
@@ -74,7 +79,7 @@ public/
 - Body text: `text-neutral-600` (not `text-brand-muted`)
 - Glow shadows: `shadow-accent-glow`, `shadow-secondary-glow`
 - **`shadow-card` / `shadow-card-hover` are NOT defined** — use standard Tailwind (`shadow-sm`, `shadow-md`) or inline `boxShadow` style
-- **globals.css caveat:** `--brand-accent` (`#d14800`) is a legacy CSS custom property — different hex from Tailwind `brand-secondary` (`#eb5100`). Used by `.btn-primary`, `.btn-link` classes. Pending alignment to `#eb5100`.
+- **Brand migration pending (2026-04-15):** both the Tailwind `brand-*` tokens and the `--brand-*` CSS custom properties in globals.css still reference the legacy teal/orange palette. They must be migrated to burgundy `#6b0f1a` + sage `#87a96b` (with `#4f6b3e` for small text/links). See root CLAUDE.md Design System block for canonical values.
 
 ## Asset Paths
 - `public/miledez-agency-logos/` — brand identity SVGs (miledez-logo.svg, miledez-monogram.svg)
@@ -84,7 +89,8 @@ public/
 ## Rules
 
 - **Always run `pnpm install` after changing `package.json`** — Vercel CI uses `--frozen-lockfile` (pnpm 10 default). If the lockfile is out of sync, the build fails.
-- **No `.env` required** — no API keys or secrets. `process.env.NODE_ENV` is set automatically by Next.js.
+- **`.env.local` required** — contains `NEXT_PUBLIC_N8N_ASSESSMENT_WEBHOOK_URL`. No server-side secrets (static export).
+- **Static export (`output: 'export'`)** — no API routes, no server components. External service calls must be client-side fetch (same pattern as Formspree in ContactModal). Do not add `app/api/` routes.
 - **Don't run `pnpm run build` while dev server is running** — it corrupts `.next/` cache. Stop the dev server first, or expect to `rm -rf .next && npm run dev` after.
 - `eslint-config-next` version must match Next.js version to avoid build errors
 - `generated-theme.ts` is the single source of truth for Tailwind color tokens — update it (not individual components) when changing brand colors
@@ -101,11 +107,13 @@ public/
 - **Alignment is critical:** When user requests horizontal/vertical alignment, use CSS structural approaches (`items-stretch` + `justify-between`, grid alignment) rather than manual padding tweaks. Verify with Puppeteer measurements (`getBoundingClientRect`).
 
 ## Agency Conventions
-<!-- conventions-sync: 2026-03-30 -->
+<!-- conventions-sync: 2026-04-15 -->
 
-**Design system:** Use the `design-system` skill for all visual outputs.
-- Primary: `#085042` (deep teal) | Secondary: `#eb5100` (orange) | Fonts: Manrope (headings), Source Sans 3 (body)
-- Backgrounds: `#fafafa` page, `#ffffff` cards, `#f5f5f7` surfaces | Icons: SVG line (Lucide/Phosphor)
+**Design system:** Use the `frontend-minimal-ui` skill for all visual outputs. Dieter Rams / Swiss editorial style, monochrome gray default + mil&dez brand accent (auto-activates inside this workspace).
+- Primary: `#6b0f1a` (burgundy) | Accent: `#87a96b` (sage, large surfaces) + `#4f6b3e` (darker sage, small text/links on white — lighter shade fails WCAG AA below 18px)
+- Legacy palette superseded 2026-04-15: was `#085042` teal + `#eb5100` orange + Manrope/Source Sans 3. The old `design-system` skill is disabled at `~/.claude/skills/design-system/SKILL.md.disabled` for rollback.
+- Font: Inter (300/400/500/600) everywhere | Backgrounds: `#fafafa` page, `#ffffff` cards, `#f5f5f7` surfaces | Icons: SVG line (Lucide/Phosphor)
+- Accent surface cap: combined burgundy + sage stays under ~5% of any page — CTAs, active nav, link hovers only. Everything else stays monochrome.
 
 **Language:** Client-facing content in Portuguese (BR). Code, comments, technical docs in English.
 

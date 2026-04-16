@@ -12,6 +12,7 @@ import WorkflowExplainerSection from '@/components/WorkflowExplainerSection'
 import PainPointSection from '@/components/PainPointSection'
 import BusinessProfilesSection from '@/components/BusinessProfilesSection'
 import WorkflowDemonstrationsSection from '@/components/WorkflowDemonstrationsSection'
+import WorkflowModularSection from '@/components/WorkflowModularSection'
 import ScrollProgress from '@/components/ScrollProgress'
 import ContactModal from '@/components/ContactModal'
 
@@ -94,6 +95,9 @@ export default function Home() {
 
       {/* Workflow Explainer - How automations work */}
       <WorkflowExplainerSection />
+
+      {/* Workflow Modular Animation */}
+      <WorkflowModularSection />
 
       {/* Value Proposition */}
       <section id="valor" className="py-28 md:py-40 bg-white">
