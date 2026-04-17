@@ -38,7 +38,7 @@ export default function Home() {
       {/* Global interactive elements */}
       <ScrollProgress />
 
-      <Header />
+      <Header onContactClick={() => setIsContactModalOpen(true)} />
 
       <main id="main-content">
       {/* Hero */}

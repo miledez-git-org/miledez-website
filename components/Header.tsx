@@ -4,7 +4,11 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect, useRef, useCallback } from 'react'
 
-export default function Header() {
+interface HeaderProps {
+  onContactClick?: () => void
+}
+
+export default function Header({ onContactClick }: HeaderProps) {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -158,12 +162,12 @@ export default function Header() {
             <span className="absolute left-0 bottom-0 w-0 h-[1.5px] bg-brand-primary transition-all duration-300 group-hover:w-full" />
           </Link>
 
-          <Link
-            href="/#contato"
+          <button
+            onClick={onContactClick}
             className="btn btn-md text-white bg-brand-primary hover:bg-brand-primary-dark"
           >
             Contato
-          </Link>
+          </button>
         </div>
       </nav>
 
@@ -228,14 +232,13 @@ export default function Header() {
             >
               Preços
             </Link>
-            <Link
-              href="/#contato"
+            <button
               className="mt-2 btn btn-lg w-full text-white bg-brand-primary hover:bg-brand-primary-dark"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => { setMobileMenuOpen(false); onContactClick?.() }}
               role="menuitem"
             >
               Contato
-            </Link>
+            </button>
           </div>
         </div>
       )}
