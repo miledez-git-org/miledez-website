@@ -124,7 +124,7 @@ Removed from homepage: WorkflowDemonstrationsSection, WorkflowModularSection, Lo
 - **Alignment is critical:** When user requests horizontal/vertical alignment, use CSS structural approaches (`items-stretch` + `justify-between`, grid alignment) rather than manual padding tweaks. Verify with Puppeteer measurements (`getBoundingClientRect`).
 
 ## Agency Conventions
-<!-- conventions-sync: 2026-04-15 -->
+<!-- conventions-sync: 2026-04-17 -->
 
 **Design system:** Use the `frontend-minimal-ui` skill for all visual outputs. Dieter Rams / Swiss editorial style, monochrome gray default + mil&dez brand accent (auto-activates inside this workspace).
 - Primary: `#6b0f1a` (burgundy) | Hover/dark: `#4a0a12` (deep burgundy). Sage green eliminated 2026-04-17.

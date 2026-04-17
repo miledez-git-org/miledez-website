@@ -19,10 +19,13 @@ npm run dev
 | Route | File | Description |
 |-------|------|-------------|
 | `/` | `app/page.tsx` | Main landing page |
+| `/industrias` | `app/industrias/page.tsx` | Industries overview |
 | `/saude` | `app/saude/page.tsx` | Healthcare industry |
 | `/servicos` | `app/servicos/page.tsx` | Professional services |
-| `/varejo` | `app/varejo/page.tsx` | Retail/E-commerce |
-| `/apresentacao` | `app/apresentacao/page.tsx` | Sales presentation |
+| `/agronegocio` | `app/agronegocio/page.tsx` | Agribusiness industry |
+| `/avaliacao` | `app/avaliacao/page.tsx` | AI assessment tool (off nav) |
+| `/termos` | `app/termos/page.tsx` | Terms of service |
+| `/politica-privacidade` | `app/politica-privacidade/page.tsx` | Privacy policy |
 
 ## Project Structure
 
@@ -142,16 +145,16 @@ The brand foundation applies to all mil&dez outputs (website, presentations, pro
 - White background everywhere
 - Outline icons only (1.5px stroke)
 - Separation via spacing and dividers
-- Primary accent (#085042 teal) for CTAs and indicators; secondary accent (#eb5100 orange) for highlights
+- Primary accent (#6b0f1a burgundy) for CTAs and indicators; deep burgundy (#4a0a12) for hover/dark states. Capped at ~5% of page surface — everything else stays monochrome.
 
 ## Custom Colors (Tailwind)
 
 ```typescript
 // Actual tokens live in generated-theme.ts — see CLAUDE.md Color Usage section.
 // Available as: text-brand-*, bg-brand-*, border-brand-*
-// Primary (teal): brand-primary / brand-primary-dark
-// Secondary (orange): brand-secondary / brand-secondary-dark
+// Primary (burgundy): brand-primary (#6b0f1a) / brand-primary-dark (#4a0a12) / brand-primary-light
 // Neutrals: brand-black (#1a1a1a), brand-muted, brand-light, brand-border (#e5e5e5)
+// brand-secondary tokens were removed 2026-04-17 (sage green eliminated).
 ```
 
 ## Adding New Pages
