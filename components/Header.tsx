@@ -123,35 +123,12 @@ export default function Header({ onContactClick }: HeaderProps) {
             <span className={`absolute left-0 bottom-0 h-[1.5px] bg-brand-primary transition-all duration-300 ${isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
           </Link>
 
-          <div className="relative group">
-            <button className="flex items-center gap-1 text-neutral-500 hover:text-brand-black transition-colors py-2">
-              Indústrias
-              <svg viewBox="0 0 24 24" className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M6 9l6 6 6-6" />
-              </svg>
-            </button>
-
-            <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[200px]">
-              <div className="bg-white border border-neutral-200 p-2 flex flex-col gap-1 shadow-md">
-                <Link href="/saude" className="px-4 py-3 text-neutral-500 hover:text-brand-black hover:bg-neutral-50 text-left transition-colors">
-                  Saúde e Clínicas
-                </Link>
-                <Link href="/servicos" className="px-4 py-3 text-neutral-500 hover:text-brand-black hover:bg-neutral-50 text-left transition-colors">
-                  Serviços Profissionais
-                </Link>
-                <Link href="/agronegocio" className="px-4 py-3 text-neutral-500 hover:text-brand-black hover:bg-neutral-50 text-left transition-colors">
-                  Agronegócio
-                </Link>
-              </div>
-            </div>
-          </div>
-
           <Link
-            href="/avaliacao"
-            className={`relative group py-2 transition-colors ${isActive('/avaliacao') ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
+            href="/industrias"
+            className={`relative group py-2 transition-colors ${isActive('/industrias') || isActive('/saude') || isActive('/servicos') || isActive('/agronegocio') ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
           >
-            Avaliação
-            <span className={`absolute left-0 bottom-0 h-[1.5px] bg-brand-primary transition-all duration-300 ${isActive('/avaliacao') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+            Indústrias
+            <span className={`absolute left-0 bottom-0 h-[1.5px] bg-brand-primary transition-all duration-300 ${isActive('/industrias') || isActive('/saude') || isActive('/servicos') || isActive('/agronegocio') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
           </Link>
 
           <Link
@@ -189,40 +166,13 @@ export default function Header({ onContactClick }: HeaderProps) {
             >
               Início
             </Link>
-            <div className="py-2">
-              <span className="text-xs text-neutral-400 uppercase tracking-wider">Indústrias</span>
-            </div>
             <Link
-              href="/saude"
-              className={`py-3 pl-4 min-h-[44px] flex items-center transition-colors ${isActive('/saude') ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
+              href="/industrias"
+              className={`py-3 min-h-[44px] flex items-center transition-colors ${isActive('/industrias') || isActive('/saude') || isActive('/servicos') || isActive('/agronegocio') ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
               onClick={() => setMobileMenuOpen(false)}
               role="menuitem"
             >
-              Saúde e Clínicas
-            </Link>
-            <Link
-              href="/servicos"
-              className={`py-3 pl-4 min-h-[44px] flex items-center transition-colors ${isActive('/servicos') ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
-              onClick={() => setMobileMenuOpen(false)}
-              role="menuitem"
-            >
-              Serviços Profissionais
-            </Link>
-            <Link
-              href="/agronegocio"
-              className={`py-3 pl-4 min-h-[44px] flex items-center transition-colors ${isActive('/agronegocio') ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
-              onClick={() => setMobileMenuOpen(false)}
-              role="menuitem"
-            >
-              Agronegócio
-            </Link>
-            <Link
-              href="/avaliacao"
-              className={`py-3 min-h-[44px] flex items-center transition-colors ${isActive('/avaliacao') ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
-              onClick={() => setMobileMenuOpen(false)}
-              role="menuitem"
-            >
-              Avaliação
+              Indústrias
             </Link>
             <Link
               href="/#precos"
