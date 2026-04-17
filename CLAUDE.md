@@ -32,10 +32,11 @@ pnpm run lint    # Run ESLint
 
 ```
 app/                        # Next.js App Router pages
+  industrias/               # Industries overview page (links to subpages)
   saude/                    # Healthcare industry page
   servicos/                 # Professional services page
   agronegocio/              # Agribusiness industry page
-  avaliacao/                # AI assessment tool (lead generation)
+  avaliacao/                # AI assessment tool (deactivated from nav — not production-ready)
   termos/                   # Terms of service
   politica-privacidade/     # Privacy policy
 components/
@@ -62,24 +63,38 @@ public/
 
 ## Key Patterns
 
+- **Header** — White background, sharp bottom shadow. Requires `onContactClick` prop for Contato button (opens modal). Indústrias links to `/industrias`.
 - **ContactModal** — Lead capture form (Formspree integration)
-- **WorkflowVisual** — Animated workflow demonstrations
-- **HeroConstellation** — Static icon network with animated connecting lines (chain draw/hold/fade state machine). Icons have fixed positions; chains are pre-defined sequences that cycle deterministically.
-- **PricingSection** — Pricing tiers display (requires `onContactClick` prop)
-- **LogoGrid** — Integration partners showcase
+- **HeroAutomationDiagram** — Static SVG diagram in hero right column (AUTOMAÇÃO hub → 3 branches). Replaced HeroConstellation.
+- **PricingSection** — Pricing tiers R$500/2,000/6,000 (requires `onContactClick` prop)
 - **AssessmentTool** — Multi-step lead gen form (4 steps → n8n webhook → Claude API → on-screen results). Direct client-side fetch to n8n (no API route — static export). Types in `types/assessment.ts`. n8n workflow spec in `docs/`.
 - Component library in `components/ui/` — use existing components before creating new ones
+- **Indústrias page** — `/industrias` overview with 3 cards linking to `/saude`, `/servicos`, `/agronegocio`
+- **Avaliação** — Page exists at `/avaliacao` but link removed from header nav (not production-ready)
 - **Industry pages** (saude, servicos, agronegocio) share an identical template structure. Changes to one should be applied to all 3. Shared components in `components/industry/` (ChallengeCard, MetricsGrid, IndustryIntegrations) affect all industry pages.
+
+## Homepage Section Order
+
+1. Hero — headline + HeroAutomationDiagram
+2. ValuePropositionB (#valor) — 4 benefit cards + contact CTA
+3. PainPointSection (#problemas) — 3-column problems + "Como funciona" anchor
+4. WorkflowExplainerSection (#exemplos) — 3 vertical workflow cards (3/4/5 steps)
+5. BusinessProfilesSection (#perfis) — 2x2 ROI cards + contact CTA + "Como começar" anchor
+6. ProcessSection (#como-funciona) — burgundy promise card + 4-step timeline
+7. PricingSection (#precos) — 3 pricing tiers + contact CTA
+8. Final CTA (#contato) — centered close
+
+Removed from homepage: WorkflowDemonstrationsSection, WorkflowModularSection, LogoGrid
 
 ## Color Usage
 
 - Use Tailwind `brand-*` classes — never hardcode hex values
-- Teal (primary): `brand-primary` / `brand-primary-dark` / `brand-primary-light` / `brand-primary-subtle`
-- Orange (secondary): `brand-secondary` / `brand-secondary-dark` / `brand-secondary-light` / `brand-secondary-subtle`
+- Burgundy (primary): `brand-primary` (#6b0f1a) / `brand-primary-dark` (#4a0a12) / `brand-primary-light` / `brand-primary-subtle`
+- `brand-secondary` tokens removed (2026-04-17) — sage green eliminated from design system
 - Body text: `text-neutral-600` (not `text-brand-muted`)
-- Glow shadows: `shadow-accent-glow`, `shadow-secondary-glow`
+- Glow shadows: `shadow-accent-glow` (burgundy). `shadow-secondary-glow` removed.
 - **`shadow-card` / `shadow-card-hover` are NOT defined** — use standard Tailwind (`shadow-sm`, `shadow-md`) or inline `boxShadow` style
-- **Brand migration pending (2026-04-15):** both the Tailwind `brand-*` tokens and the `--brand-*` CSS custom properties in globals.css still reference the legacy teal/orange palette. They must be migrated to burgundy `#6b0f1a` + sage `#87a96b` (with `#4f6b3e` for small text/links). See root CLAUDE.md Design System block for canonical values.
+- **Brand migration complete (2026-04-17):** burgundy `#6b0f1a` is the sole accent color. Sage green fully removed from tokens, CSS vars, and all components.
 
 ## Asset Paths
 - `public/miledez-agency-logos/` — brand identity SVGs (miledez-logo.svg, miledez-monogram.svg)
@@ -96,7 +111,9 @@ public/
 - `generated-theme.ts` is the single source of truth for Tailwind color tokens — update it (not individual components) when changing brand colors
 - **Min font size:** 14px (`text-sm`) absolute minimum for low-priority info; 16px (`text-base`) for all other text. Never use `text-xs`.
 - **Icons:** Always plain outline SVGs (stroke, no fill). Never wrap icons in colored background containers (`bg-brand-*-subtle`). Color via parent text class only.
-- **Orange backgrounds (`brand-secondary`):** All text must be full `text-white` — never use `text-white/80`, `text-white/90`, or any opacity-reduced white.
+- **Burgundy backgrounds (`brand-primary`):** All text must be full `text-white` — never use `text-white/80`, `text-white/90`, or any opacity-reduced white.
+- **Section spacing:** All homepage sections use `py-24 md:py-32`. Keep consistent — do not mix with `py-28 md:py-40`.
+- **Section headers:** Always left-aligned (`max-w-2xl`). Never center-aligned (inconsistent with site design).
 - **Shadows:** User prefers directional lower-right shadows (e.g., `boxShadow: '3px 4px 12px rgba(0,0,0,0.10)'`), not uniform Tailwind shadows.
 - **Build trace error:** `npm run build` may fail on `_not-found/page.js.nft.json` — this is a pre-existing Next.js trace collection bug, not a code error. Pages still generate correctly.
 - If dev server returns 404s on `_next/static/` assets, delete `.next/` and restart: `rm -rf .next && npm run dev`
@@ -110,10 +127,10 @@ public/
 <!-- conventions-sync: 2026-04-15 -->
 
 **Design system:** Use the `frontend-minimal-ui` skill for all visual outputs. Dieter Rams / Swiss editorial style, monochrome gray default + mil&dez brand accent (auto-activates inside this workspace).
-- Primary: `#6b0f1a` (burgundy) | Accent: `#87a96b` (sage, large surfaces) + `#4f6b3e` (darker sage, small text/links on white — lighter shade fails WCAG AA below 18px)
+- Primary: `#6b0f1a` (burgundy) | Hover/dark: `#4a0a12` (deep burgundy). Sage green eliminated 2026-04-17.
 - Legacy palette superseded 2026-04-15: was `#085042` teal + `#eb5100` orange + Manrope/Source Sans 3. The old `design-system` skill is disabled at `~/.claude/skills/design-system/SKILL.md.disabled` for rollback.
 - Font: Inter (300/400/500/600) everywhere | Backgrounds: `#fafafa` page, `#ffffff` cards, `#f5f5f7` surfaces | Icons: SVG line (Lucide/Phosphor)
-- Accent surface cap: combined burgundy + sage stays under ~5% of any page — CTAs, active nav, link hovers only. Everything else stays monochrome.
+- Accent surface cap: burgundy stays under ~5% of any page — CTAs, active nav, link hovers only. Everything else stays monochrome.
 
 **Language:** Client-facing content in Portuguese (BR). Code, comments, technical docs in English.
 
