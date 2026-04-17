@@ -82,7 +82,7 @@ export default function BenefitsSection() {
               key={benefit.id}
               className={`group bg-white border p-8 transition-all duration-300 flex flex-col h-full ${
                 isHovered
-                  ? 'border-brand-secondary shadow-[0_4px_12px_rgba(0,0,0,0.05)]'
+                  ? 'border-brand-primary shadow-[0_4px_12px_rgba(0,0,0,0.05)]'
                   : 'border-brand-border'
               }`}
               onMouseEnter={() => setHoveredCard(benefit.id)}
@@ -104,8 +104,8 @@ export default function BenefitsSection() {
               </p>
 
               {/* Stat Block */}
-              <div className="mt-auto bg-neutral-50 border-l-[3px] border-brand-secondary p-4">
-                <span className="block text-[28px] md:text-[32px] font-bold text-brand-secondary leading-tight">
+              <div className="mt-auto bg-neutral-50 border-l-[3px] border-brand-primary p-4">
+                <span className="block text-[28px] md:text-[32px] font-bold text-brand-primary leading-tight">
                   {benefit.stat}
                 </span>
                 <span className="block text-sm text-brand-muted mt-1">
@@ -121,7 +121,7 @@ export default function BenefitsSection() {
           ref={counterRef}
           className={`md:col-span-2 bg-gradient-to-br from-white to-neutral-50 border p-8 md:p-10 text-center transition-all duration-300 ${
             hoveredCard === 5
-              ? 'border-brand-secondary shadow-[0_4px_12px_rgba(0,0,0,0.05)]'
+              ? 'border-brand-primary shadow-[0_4px_12px_rgba(0,0,0,0.05)]'
               : 'border-brand-border'
           }`}
           onMouseEnter={() => setHoveredCard(5)}
@@ -144,7 +144,7 @@ export default function BenefitsSection() {
 
           {/* Featured Stat Block */}
           <div className="mt-6">
-            <span className="block text-4xl md:text-5xl font-bold text-brand-secondary leading-tight">
+            <span className="block text-4xl md:text-5xl font-bold text-brand-primary leading-tight">
               {count <= 5 ? count : 5}x a {count}x*
             </span>
             <span className="block text-sm text-brand-muted mt-2">

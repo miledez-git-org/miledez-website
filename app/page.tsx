@@ -4,15 +4,12 @@ import { useEffect, useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ValuePropositionB from '@/components/ValuePropositionB'
-import LogoGrid from '@/components/LogoGrid'
 import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
-import HeroConstellation from '@/components/HeroConstellation'
+import HeroAutomationDiagram from '@/components/HeroAutomationDiagram'
 import WorkflowExplainerSection from '@/components/WorkflowExplainerSection'
 import PainPointSection from '@/components/PainPointSection'
 import BusinessProfilesSection from '@/components/BusinessProfilesSection'
-import WorkflowDemonstrationsSection from '@/components/WorkflowDemonstrationsSection'
-import WorkflowModularSection from '@/components/WorkflowModularSection'
 import ScrollProgress from '@/components/ScrollProgress'
 import ContactModal from '@/components/ContactModal'
 
@@ -55,7 +52,7 @@ export default function Home() {
               <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-brand-black leading-[1.1]">
                 seu trabalho<br />
                 do seu jeito<br />
-                <span className="text-brand-secondary">no automático</span>
+                <span className="text-brand-primary">no automático</span>
               </h1>
 
               {/* Subheadline */}
@@ -72,7 +69,7 @@ export default function Home() {
                   Agendar demonstração
                 </button>
                 <a
-                  href="#problemas"
+                  href="#valor"
                   className="btn btn-outline btn-lg"
                 >
                   Descubra mais
@@ -80,14 +77,21 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right column - Constellation visual */}
+            {/* Right column - Automation diagram */}
             <div className="flex items-center justify-center">
-              <HeroConstellation />
+              <HeroAutomationDiagram />
             </div>
 
           </div>
         </div>
 
+      </section>
+
+      {/* Value Proposition */}
+      <section id="valor" className="py-24 md:py-32 bg-white">
+        <div className="px-6 md:px-10 max-w-7xl mx-auto">
+          <ValuePropositionB onContactClick={() => setIsContactModalOpen(true)} />
+        </div>
       </section>
 
       {/* Pain Points */}
@@ -96,53 +100,29 @@ export default function Home() {
       {/* Workflow Explainer - How automations work */}
       <WorkflowExplainerSection />
 
-      {/* Workflow Modular Animation */}
-      <WorkflowModularSection />
-
-      {/* Value Proposition */}
-      <section id="valor" className="py-28 md:py-40 bg-white">
-        <div className="px-6 md:px-10 max-w-7xl mx-auto">
-          <ValuePropositionB onContactClick={() => setIsContactModalOpen(true)} />
-        </div>
-      </section>
-
       {/* Business Profiles - Who is this for */}
-      <section id="perfis" className="py-28 md:py-40 bg-white">
+      <section id="perfis" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
-          <BusinessProfilesSection />
-        </div>
-      </section>
-
-      {/* Integrations */}
-      <section id="integracoes" className="py-28 md:py-40 bg-bg-muted">
-        <div className="px-6 md:px-10 max-w-7xl mx-auto">
-          <LogoGrid />
+          <BusinessProfilesSection onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
       {/* How It Works - Process */}
-      <section id="como-funciona" className="py-28 md:py-40 bg-white">
+      <section id="como-funciona" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <ProcessSection />
         </div>
       </section>
 
-      {/* Workflow Demonstrations */}
-      <section id="demonstracoes" className="py-28 md:py-40 bg-white">
-        <div className="px-6 md:px-10 max-w-7xl mx-auto">
-          <WorkflowDemonstrationsSection />
-        </div>
-      </section>
-
       {/* Pricing */}
-      <section id="precos" className="py-28 md:py-40 bg-bg-muted">
+      <section id="precos" className="py-24 md:py-32 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <PricingSection onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
       {/* CTA */}
-      <section id="contato" className="py-28 md:py-40 bg-white">
+      <section id="contato" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             Pronto para automatizar?<br />

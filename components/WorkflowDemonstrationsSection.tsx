@@ -5,7 +5,7 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 // Design system color constants
 const BRAND_PRIMARY = '#6b0f1a'
-const BRAND_SECONDARY = '#87a96b'
+const BRAND_SECONDARY = '#6b0f1a'
 const BRAND_BLACK = '#1a1a1a'
 const NEUTRAL_600 = '#525252'
 const NEUTRAL_400 = '#a3a3a3'

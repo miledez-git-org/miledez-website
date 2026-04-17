@@ -46,13 +46,34 @@ export default function ProcessSection() {
   return (
     <div ref={ref}>
       {/* Header */}
-      <div className="mb-14 md:mb-16">
+      <div className="mb-10 md:mb-12">
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] lg:text-[3.5rem] text-brand-black leading-tight">
           Como trabalhamos
         </h2>
         <p className="mt-4 text-xl text-neutral-600 max-w-2xl">
           Da primeira conversa ao sistema rodando — simples assim.
         </p>
+      </div>
+
+      {/* Promise card — burgundy */}
+      <div
+        className="bg-brand-primary rounded-xl px-8 md:px-12 py-8 md:py-10 mb-14 md:mb-16"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+          transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 100ms',
+        }}
+      >
+        <h3 className="heading-display text-2xl md:text-3xl text-white leading-snug font-bold text-center">
+          Primeiro processo automatizado em 2 semanas
+        </h3>
+        <div className="mt-5 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+          <span className="text-base text-white">Desenvolvimento sem custo</span>
+          <span className="hidden md:block text-white/30">·</span>
+          <span className="text-base text-white">Teste grátis</span>
+          <span className="hidden md:block text-white/30">·</span>
+          <span className="text-base text-white">Só a mensalidade, tudo incluso</span>
+        </div>
       </div>
 
       {/* Timeline */}
@@ -69,7 +90,7 @@ export default function ProcessSection() {
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
-                transition: `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 120}ms`,
+                transition: `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${200 + index * 120}ms`,
               }}
             >
               {/* Number node — sits on the vertical line */}
@@ -86,66 +107,27 @@ export default function ProcessSection() {
                 {/* Horizontal rule */}
                 <div className="hidden md:block h-px bg-neutral-200 mb-3 md:mb-4" />
 
-                {/* Title + Duration inline */}
-                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <h3 className="heading-component text-xl md:text-2xl lg:text-[1.75rem] text-brand-black">
-                    {step.title}
-                  </h3>
-                  <span className="text-neutral-300">·</span>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-secondary">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M12 6v6l4 2" />
-                    </svg>
-                    {step.duration}
-                  </span>
-                </div>
+                {/* Title */}
+                <h3 className="heading-component text-xl md:text-2xl lg:text-[1.75rem] text-brand-black">
+                  {step.title}
+                </h3>
 
                 {/* Description */}
                 <p className="text-lg text-neutral-600 mt-2">
                   {step.description}
                 </p>
+
+                {/* Duration — below description, left-aligned */}
+                <span className="inline-flex items-center gap-2 text-base font-medium text-brand-primary mt-3">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" />
+                  </svg>
+                  {step.duration}
+                </span>
               </div>
             </div>
           ))}
-        </div>
-      </div>
-
-      {/* Promise card */}
-      <div
-        className="mt-16 md:mt-20 rounded-xl bg-[#f5f5f7] px-8 md:px-12 py-12 md:py-16 text-center"
-        style={{
-          opacity: isVisible ? 1 : 0,
-          transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-          transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 500ms',
-        }}
-      >
-        <h3 className="heading-display text-2xl md:text-3xl lg:text-4xl text-brand-black leading-snug font-bold">
-          Primeiro processo automatizado em <span className="text-brand-secondary">2 semanas</span>
-        </h3>
-
-        <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
-          <div className="flex items-center gap-2">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-brand-secondary flex-shrink-0">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              <path d="m9 12 2 2 4-4" />
-            </svg>
-            <span className="text-lg font-semibold text-brand-black">Desenvolvimento sem custo</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-brand-secondary flex-shrink-0">
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
-            <span className="text-lg font-semibold text-brand-black">Teste grátis</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-brand-secondary flex-shrink-0">
-              <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
-              <line x1="1" y1="10" x2="23" y2="10" />
-            </svg>
-            <span className="text-lg font-semibold text-brand-black">Só a mensalidade, tudo incluso</span>
-          </div>
         </div>
       </div>
     </div>

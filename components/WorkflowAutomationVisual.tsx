@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { icons, stepIcons } from './Icons'
 
-const ACCENT_COLOR = '#87a96b'
+const ACCENT_COLOR = '#6b0f1a'
 const SUCCESS_COLOR = '#22c55e'
 
 // Step definitions - aligned with stage indicators
@@ -40,8 +40,8 @@ function AppIcon({
 }) {
   const activeClass = isSuccess
     ? 'border-brand-success shadow-success-glow'
-    : 'border-brand-secondary shadow-accent-glow'
-  const textClass = isSuccess ? 'text-brand-success' : 'text-brand-secondary'
+    : 'border-brand-primary shadow-accent-glow'
+  const textClass = isSuccess ? 'text-brand-success' : 'text-brand-primary'
 
   return (
     <div className="flex flex-col items-center gap-3 md:gap-4 relative z-20">
@@ -100,7 +100,7 @@ function StageIndicator({ stage }: { stage: string | null }) {
         w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-white
         [&>svg]:w-full [&>svg]:h-full
         ${isProcessing ? 'animate-spin-slow' : ''}
-        ${isComplete ? 'text-brand-success' : 'text-brand-secondary'}
+        ${isComplete ? 'text-brand-success' : 'text-brand-primary'}
       `}>
         {getIcon()}
       </div>
@@ -115,7 +115,7 @@ function MobileConnector({ isActive }: { isActive: boolean }) {
       <div className="absolute inset-0 w-px bg-brand-border" />
       {isActive && (
         <motion.div
-          className="absolute left-1/2 -translate-x-1/2 w-2 h-2 bg-brand-secondary"
+          className="absolute left-1/2 -translate-x-1/2 w-2 h-2 bg-brand-primary"
           animate={{ top: ['0%', '100%'] }}
           transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
         />
@@ -370,7 +370,7 @@ export default function WorkflowAutomationVisual() {
             relative z-30 flex flex-col items-center justify-center
             bg-white p-6 md:p-8 border transition-all duration-300
             min-w-[280px] md:min-w-[340px]
-            ${step === 4 ? 'border-brand-success' : step >= 1 ? 'border-brand-secondary' : 'border-brand-border'}
+            ${step === 4 ? 'border-brand-success' : step >= 1 ? 'border-brand-primary' : 'border-brand-border'}
           `}>
             {/* Stage Indicator Overlay - Decorative */}
             <div aria-hidden="true">
@@ -388,7 +388,7 @@ export default function WorkflowAutomationVisual() {
                 transition={{ duration: 0.4 }}
                 className="flex flex-col items-center text-center pt-4"
               >
-                <span className={`text-xs md:text-sm font-medium uppercase tracking-widest mb-2 ${step === 4 ? 'text-brand-success' : 'text-brand-secondary'}`}>
+                <span className={`text-xs md:text-sm font-medium uppercase tracking-widest mb-2 ${step === 4 ? 'text-brand-success' : 'text-brand-primary'}`}>
                   {stepInfo[step]?.label}
                 </span>
                 <span className="text-xs md:text-sm text-brand-text font-normal leading-relaxed">

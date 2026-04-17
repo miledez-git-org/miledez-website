@@ -11,10 +11,8 @@ export const designSystemTheme: NonNullable<Config['theme']>['extend'] = {
       'primary-dark': '#4a0a12',
       'primary-light': '#8a1524',
       'primary-subtle': 'rgba(107, 15, 26, 0.08)',
-      secondary: '#87a96b',
-      'secondary-dark': '#4f6b3e',
-      'secondary-light': '#a3c089',
-      'secondary-subtle': 'rgba(135, 169, 107, 0.08)',
+      // secondary tokens removed 2026-04-17 — burgundy is the sole accent color.
+      // Sage green (#87a96b) eliminated from active design system.
       black: '#1a1a1a',
       muted: '#525252',
     },

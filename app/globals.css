@@ -29,8 +29,7 @@
   --brand-accent-dark: #4a0a12;
   --brand-primary: #6b0f1a;
   --brand-primary-dark: #4a0a12;
-  --brand-sage: #87a96b;
-  --brand-sage-ink: #4f6b3e;
+  /* sage tokens removed 2026-04-17 — burgundy is the sole accent color */
 }
 
 /* Brand Typography - Heading Classes */

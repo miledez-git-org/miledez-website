@@ -49,7 +49,7 @@ export function Text({
       id={id}
       className={cn(
         variantStyles[variant],
-        accent && 'text-brand-secondary',
+        accent && 'text-brand-primary',
         muted && 'text-neutral-500',
         className
       )}

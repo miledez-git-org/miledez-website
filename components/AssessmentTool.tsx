@@ -165,7 +165,7 @@ function StepIndicator({ current, total }: { current: number; total: number }) {
             key={i}
             className={cn(
               'w-2 h-2 rounded-full transition-colors duration-base',
-              i < current ? 'bg-brand-secondary' : 'bg-neutral-200'
+              i < current ? 'bg-brand-primary' : 'bg-neutral-200'
             )}
           />
         ))}
@@ -205,7 +205,7 @@ function RadioCard({
       style={selected ? undefined : { boxShadow: 'none' }}
     >
       {selected && (
-        <span className="w-2.5 h-2.5 rounded-full bg-brand-secondary flex-shrink-0" />
+        <span className="w-2.5 h-2.5 rounded-full bg-brand-primary flex-shrink-0" />
       )}
       {!selected && (
         <span className="w-2.5 h-2.5 rounded-full border-2 border-neutral-300 flex-shrink-0" />
@@ -323,7 +323,7 @@ function MultiSelectDropdown({
                     type="checkbox"
                     checked={selected.includes(tool)}
                     onChange={() => toggle(tool)}
-                    className="w-4 h-4 accent-brand-secondary rounded cursor-pointer"
+                    className="w-4 h-4 accent-brand-primary rounded cursor-pointer"
                   />
                   <span className="text-base text-neutral-700">{tool}</span>
                 </label>
@@ -392,7 +392,7 @@ function ResultCard({
           <span className="text-white">{workflow.resultado}</span>
         </p>
         <p className="pt-2 border-t border-white/10">
-          <span className="text-brand-secondary font-semibold">
+          <span className="text-brand-primary font-semibold">
             {workflow.tempo_economizado}
           </span>{' '}
           <span className="text-white/60">economizados por semana</span>

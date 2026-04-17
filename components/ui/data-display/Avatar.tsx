@@ -37,7 +37,7 @@ const sizeClasses: Record<AvatarSize, string> = {
 
 const variantClasses: Record<AvatarVariant, string> = {
   default: 'bg-accent-slate text-white',
-  brand: 'bg-brand-secondary text-white',
+  brand: 'bg-brand-primary text-white',
 }
 
 export function Avatar({

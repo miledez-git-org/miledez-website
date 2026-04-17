@@ -42,7 +42,7 @@ export interface MetricCardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const valueVariantClasses: Record<MetricCardVariant, string> = {
   default: 'text-neutral-950',
-  brand: 'text-brand-secondary',
+  brand: 'text-brand-primary',
   success: 'text-semantic-success',
   slate: 'text-accent-slate',
 }

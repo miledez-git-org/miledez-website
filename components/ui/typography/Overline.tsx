@@ -27,7 +27,7 @@ export const Overline = forwardRef<HTMLSpanElement, OverlineProps>(
         ref={ref as any}
         className={cn(
           'text-xs font-semibold uppercase tracking-widest text-neutral-500',
-          accent && 'text-brand-secondary',
+          accent && 'text-brand-primary',
           className
         )}
         {...props}

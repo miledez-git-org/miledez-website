@@ -51,23 +51,23 @@ const SlidersIcon = () => (
 const benefits: BenefitItem[] = [
   {
     icon: <ClockIcon />,
-    title: '3–7 dias para automações simples',
-    description: 'Projetos maiores em 2–4 semanas. Sem interromper sua operação.',
+    title: 'Entrega em dias',
+    description: 'Automações simples em 3–7 dias. Projetos maiores em 2–4 semanas.',
   },
   {
     icon: <WalletIcon />,
-    title: 'Sem custo inicial, sem contrato',
-    description: 'Desenvolvimento e testes por nossa conta. Assinatura mensal, cancele em 30 dias. Você só paga quando funcionar.',
+    title: 'Sem custo inicial',
+    description: 'Desenvolvimento e testes por nossa conta. Assinatura mensal, cancele quando quiser.',
   },
   {
     icon: <ShieldCheckIcon />,
-    title: 'Totalmente gerenciado por nós',
-    description: 'Sua equipe não precisa fazer nada técnico. Cuidamos de A a Z.',
+    title: '100% gerenciado',
+    description: 'Sua equipe não precisa fazer nada técnico. Cuidamos de tudo.',
   },
   {
     icon: <SlidersIcon />,
-    title: 'Feito para o seu processo',
-    description: 'Nada de solução genérica. Cada automação é construída para o fluxo real da sua empresa.',
+    title: 'Sob medida',
+    description: 'Cada automação é construída para o fluxo real da sua empresa.',
   },
 ]
 
@@ -76,72 +76,68 @@ export default function ValuePropositionB({ onContactClick }: ValuePropositionBP
 
   return (
     <div ref={ref}>
-      <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-start">
-        {/* Left column - Narrative */}
-        <div
-          style={{
-            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-            opacity: isVisible ? 1 : 0,
-            transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 100ms, opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 100ms',
-          }}
-        >
-          <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
-            Podemos entregar sua primeira automação em dias.<br />
-            <span className="text-brand-primary">Totalmente personalizada para suas necessidades.</span>
-          </h2>
+      {/* Section header */}
+      <div
+        className="max-w-2xl"
+        style={{
+          transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+          opacity: isVisible ? 1 : 0,
+          transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 100ms, opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 100ms',
+        }}
+      >
+        <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
+          Sua primeira automação pronta em dias.{' '}
+          <span className="text-brand-primary">Sem risco.</span>
+        </h2>
+        <p className="mt-4 text-lg text-neutral-600 leading-relaxed">
+          Construímos, hospedamos e mantemos automações personalizadas para sua operação — conectando os sistemas que você já usa.
+        </p>
+      </div>
 
-          <div className="mt-6 space-y-4 text-lg text-neutral-600 leading-relaxed max-w-lg">
-            <p>
-              Nós construímos automações personalizadas para o processo real da sua empresa — conectando os sistemas que você já usa.
-            </p>
-            <p className="font-medium text-brand-black">
-              Sem compromisso, sem investimento inicial e sem risco.
-            </p>
-          </div>
+      {/* Benefit cards — 4 column grid */}
+      <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {benefits.map((benefit, index) => {
+          const delay = 200 + index * 100
 
-          <div className="mt-10">
-            <button
-              onClick={onContactClick}
-              className="btn btn-primary btn-lg"
+          return (
+            <div
+              key={index}
+              className="bg-white border border-neutral-200 p-8 flex flex-col"
+              style={{
+                boxShadow: '4px 6px 16px rgba(0,0,0,0.10)',
+                transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+                opacity: isVisible ? 1 : 0,
+                transition: `transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+              }}
             >
-              Teste grátis uma automação
-            </button>
-          </div>
-        </div>
-
-        {/* Right column - Stacked benefit items */}
-        <div className="space-y-0">
-          {benefits.map((benefit, index) => {
-            const delay = 200 + index * 100
-
-            return (
-              <div
-                key={index}
-                className={`flex gap-4 py-5 ${index < benefits.length - 1 ? 'border-b border-neutral-100' : ''}`}
-                style={{
-                  transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
-                  opacity: isVisible ? 1 : 0,
-                  transition: `transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
-                }}
-              >
-                {/* Icon */}
-                <div className="flex-shrink-0 w-10 h-10 text-brand-secondary flex items-center justify-center">
-                  {benefit.icon}
-                </div>
-
-                {/* Content */}
-                <div>
-                  <h3 className="text-xl md:text-2xl font-semibold text-brand-black">
-                    {benefit.title}
-                  </h3>
-                  <p className="mt-1 text-base text-neutral-600 leading-relaxed">
-                    {benefit.description}
-                  </p>
-                </div>
+              <div className="w-10 h-10 text-brand-primary flex items-center justify-start">
+                {benefit.icon}
               </div>
-            )
-          })}
-        </div>
+              <h3 className="mt-4 text-xl md:text-2xl font-semibold text-brand-black leading-tight">
+                {benefit.title}
+              </h3>
+              <p className="mt-2 text-base text-neutral-600 leading-relaxed">
+                {benefit.description}
+              </p>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* CTA */}
+      <div
+        className="mt-12"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transition: 'opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 600ms',
+        }}
+      >
+        <button
+          onClick={onContactClick}
+          className="btn btn-primary btn-lg"
+        >
+          Teste grátis uma automação
+        </button>
       </div>
     </div>
   )

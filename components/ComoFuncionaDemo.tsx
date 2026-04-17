@@ -70,7 +70,7 @@ export default function ComoFuncionaDemo() {
               key={index}
               className={`bg-white border p-8 lg:p-10 transition-all duration-300 flex flex-col ${
                 isHovered
-                  ? 'border-brand-secondary shadow-[0_8px_30px_rgba(0,0,0,0.08)]'
+                  ? 'border-brand-primary shadow-[0_8px_30px_rgba(0,0,0,0.08)]'
                   : 'border-brand-border'
               }`}
               onMouseEnter={() => setHoveredCard(index)}
@@ -80,8 +80,8 @@ export default function ComoFuncionaDemo() {
               <div
                 className={`w-14 h-14 flex items-center justify-center border-l-[3px] bg-neutral-50 mb-6 transition-colors duration-300 ${
                   isHovered
-                    ? 'border-l-brand-secondary text-brand-secondary'
-                    : 'border-l-brand-secondary text-brand-black'
+                    ? 'border-l-brand-primary text-brand-primary'
+                    : 'border-l-brand-primary text-brand-black'
                 }`}
               >
                 {benefit.icon}
@@ -90,7 +90,7 @@ export default function ComoFuncionaDemo() {
               {/* Stat - Large and prominent */}
               <div className="mb-4">
                 <span className={`text-[3rem] lg:text-[3.5rem] font-bold leading-none transition-colors duration-300 ${
-                  isHovered ? 'text-brand-secondary' : 'text-brand-black'
+                  isHovered ? 'text-brand-primary' : 'text-brand-black'
                 }`}>
                   {benefit.stat}
                 </span>

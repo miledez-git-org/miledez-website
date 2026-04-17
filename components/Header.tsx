@@ -75,11 +75,11 @@ export default function Header() {
   }, [pathname])
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 border-b border-white/10 transition-all ${scrolled ? 'shadow-sm' : ''}`} style={{ backgroundColor: '#1a1a1a' }}>
+    <header className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all ${scrolled ? 'shadow-[0_1px_0_0_rgba(0,0,0,0.1)]' : 'shadow-[0_1px_0_0_rgba(0,0,0,0.06)]'}`}>
       <nav className="max-w-7xl mx-auto px-6 md:px-10 py-5 flex justify-between items-center">
         <Link href="/" className="flex items-center">
           <span
-            className="text-white"
+            className="text-brand-black"
             style={{
               fontFamily: 'var(--font-manrope)',
               fontWeight: 300,
@@ -87,14 +87,14 @@ export default function Header() {
               letterSpacing: '-0.03em',
             }}
           >
-            mil<span className="text-[#6b0f1a]">&</span>dez
+            mil<span className="text-brand-primary">&</span>dez
           </span>
         </Link>
 
         {/* Mobile menu button */}
         <button
           ref={menuButtonRef}
-          className="md:hidden p-2 -mr-2 text-white/70 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+          className="md:hidden p-2 -mr-2 text-neutral-500 hover:text-brand-black transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={mobileMenuOpen}
@@ -113,14 +113,14 @@ export default function Header() {
         <div className="hidden md:flex items-center gap-10 text-sm">
           <Link
             href="/"
-            className={`relative group py-2 transition-colors ${isActive('/') ? 'text-white' : 'text-white/70 hover:text-white'}`}
+            className={`relative group py-2 transition-colors ${isActive('/') ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
           >
             Início
-            <span className={`absolute left-0 bottom-0 h-[1.5px] bg-[#6b0f1a] transition-all duration-300 ${isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+            <span className={`absolute left-0 bottom-0 h-[1.5px] bg-brand-primary transition-all duration-300 ${isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
           </Link>
 
           <div className="relative group">
-            <button className="flex items-center gap-1 text-white/70 hover:text-white transition-colors py-2">
+            <button className="flex items-center gap-1 text-neutral-500 hover:text-brand-black transition-colors py-2">
               Indústrias
               <svg viewBox="0 0 24 24" className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M6 9l6 6 6-6" />
@@ -128,14 +128,14 @@ export default function Header() {
             </button>
 
             <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[200px]">
-              <div className="bg-[#1a1a1a] border border-white/10 p-2 flex flex-col gap-1">
-                <Link href="/saude" className="px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 text-left transition-colors">
+              <div className="bg-white border border-neutral-200 p-2 flex flex-col gap-1 shadow-md">
+                <Link href="/saude" className="px-4 py-3 text-neutral-500 hover:text-brand-black hover:bg-neutral-50 text-left transition-colors">
                   Saúde e Clínicas
                 </Link>
-                <Link href="/servicos" className="px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 text-left transition-colors">
+                <Link href="/servicos" className="px-4 py-3 text-neutral-500 hover:text-brand-black hover:bg-neutral-50 text-left transition-colors">
                   Serviços Profissionais
                 </Link>
-                <Link href="/agronegocio" className="px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 text-left transition-colors">
+                <Link href="/agronegocio" className="px-4 py-3 text-neutral-500 hover:text-brand-black hover:bg-neutral-50 text-left transition-colors">
                   Agronegócio
                 </Link>
               </div>
@@ -144,24 +144,23 @@ export default function Header() {
 
           <Link
             href="/avaliacao"
-            className={`relative group py-2 transition-colors ${isActive('/avaliacao') ? 'text-white' : 'text-white/70 hover:text-white'}`}
+            className={`relative group py-2 transition-colors ${isActive('/avaliacao') ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
           >
             Avaliação
-            <span className={`absolute left-0 bottom-0 h-[1.5px] bg-[#6b0f1a] transition-all duration-300 ${isActive('/avaliacao') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+            <span className={`absolute left-0 bottom-0 h-[1.5px] bg-brand-primary transition-all duration-300 ${isActive('/avaliacao') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
           </Link>
 
           <Link
             href="/#precos"
-            className="relative group text-white/70 hover:text-white transition-colors py-2"
+            className="relative group text-neutral-500 hover:text-brand-black transition-colors py-2"
           >
             Preços
-            <span className="absolute left-0 bottom-0 w-0 h-[1.5px] bg-[#6b0f1a] transition-all duration-300 group-hover:w-full" />
+            <span className="absolute left-0 bottom-0 w-0 h-[1.5px] bg-brand-primary transition-all duration-300 group-hover:w-full" />
           </Link>
 
           <Link
             href="/#contato"
-            className="btn btn-md text-white"
-            style={{ backgroundColor: '#6b0f1a' }}
+            className="btn btn-md text-white bg-brand-primary hover:bg-brand-primary-dark"
           >
             Contato
           </Link>
@@ -173,26 +172,25 @@ export default function Header() {
         <div
           id="mobile-menu"
           ref={mobileMenuRef}
-          className="md:hidden border-t border-white/10"
-          style={{ backgroundColor: '#1a1a1a' }}
+          className="md:hidden border-t border-neutral-200 bg-white"
           role="menu"
         >
           <div className="px-6 py-4 flex flex-col gap-1">
             <Link
               ref={firstMenuItemRef}
               href="/"
-              className={`py-3 min-h-[44px] flex items-center transition-colors ${isActive('/') ? 'text-white font-medium' : 'text-white/70 hover:text-white'}`}
+              className={`py-3 min-h-[44px] flex items-center transition-colors ${isActive('/') ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
               onClick={() => setMobileMenuOpen(false)}
               role="menuitem"
             >
               Início
             </Link>
             <div className="py-2">
-              <span className="text-xs text-white/50 uppercase tracking-wider">Indústrias</span>
+              <span className="text-xs text-neutral-400 uppercase tracking-wider">Indústrias</span>
             </div>
             <Link
               href="/saude"
-              className={`py-3 pl-4 min-h-[44px] flex items-center transition-colors ${isActive('/saude') ? 'text-white font-medium' : 'text-white/70 hover:text-white'}`}
+              className={`py-3 pl-4 min-h-[44px] flex items-center transition-colors ${isActive('/saude') ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
               onClick={() => setMobileMenuOpen(false)}
               role="menuitem"
             >
@@ -200,7 +198,7 @@ export default function Header() {
             </Link>
             <Link
               href="/servicos"
-              className={`py-3 pl-4 min-h-[44px] flex items-center transition-colors ${isActive('/servicos') ? 'text-white font-medium' : 'text-white/70 hover:text-white'}`}
+              className={`py-3 pl-4 min-h-[44px] flex items-center transition-colors ${isActive('/servicos') ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
               onClick={() => setMobileMenuOpen(false)}
               role="menuitem"
             >
@@ -208,7 +206,7 @@ export default function Header() {
             </Link>
             <Link
               href="/agronegocio"
-              className={`py-3 pl-4 min-h-[44px] flex items-center transition-colors ${isActive('/agronegocio') ? 'text-white font-medium' : 'text-white/70 hover:text-white'}`}
+              className={`py-3 pl-4 min-h-[44px] flex items-center transition-colors ${isActive('/agronegocio') ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
               onClick={() => setMobileMenuOpen(false)}
               role="menuitem"
             >
@@ -216,7 +214,7 @@ export default function Header() {
             </Link>
             <Link
               href="/avaliacao"
-              className={`py-3 min-h-[44px] flex items-center transition-colors ${isActive('/avaliacao') ? 'text-white font-medium' : 'text-white/70 hover:text-white'}`}
+              className={`py-3 min-h-[44px] flex items-center transition-colors ${isActive('/avaliacao') ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
               onClick={() => setMobileMenuOpen(false)}
               role="menuitem"
             >
@@ -224,7 +222,7 @@ export default function Header() {
             </Link>
             <Link
               href="/#precos"
-              className="py-3 min-h-[44px] flex items-center text-white/70 hover:text-white transition-colors"
+              className="py-3 min-h-[44px] flex items-center text-neutral-500 hover:text-brand-black transition-colors"
               onClick={() => setMobileMenuOpen(false)}
               role="menuitem"
             >
@@ -232,8 +230,7 @@ export default function Header() {
             </Link>
             <Link
               href="/#contato"
-              className="mt-2 btn btn-lg w-full text-white"
-              style={{ backgroundColor: '#6b0f1a' }}
+              className="mt-2 btn btn-lg w-full text-white bg-brand-primary hover:bg-brand-primary-dark"
               onClick={() => setMobileMenuOpen(false)}
               role="menuitem"
             >

@@ -7,61 +7,61 @@ interface PricingSectionProps {
 export default function PricingSection({ onContactClick }: PricingSectionProps) {
   return (
     <div>
-      {/* Header */}
-      <div className="mb-14 md:mb-16 text-center">
+      {/* Header — left aligned */}
+      <div className="mb-12 md:mb-14 max-w-2xl">
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
-          Quanto custa automatizar<br />
-          <span className="text-brand-secondary">o que você recebe de volta</span>
+          Quanto custa automatizar{' '}
+          <span className="text-brand-primary">o que você recebe de volta</span>
         </h2>
-        <p className="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
+        <p className="mt-4 text-lg text-neutral-600">
           Cada solução é sob medida pra sua operação. Sem contrato. Sem taxa de entrada.
         </p>
       </div>
 
-      {/* Price Range Display */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0">
+      {/* Price tiers — 3 columns */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Simple */}
-        <div className="text-center md:border-r md:border-neutral-200 md:px-8">
-          <p className="text-base font-medium text-neutral-500 uppercase tracking-wider mb-2">
+        <div className="bg-white border border-neutral-200 p-8" style={{ boxShadow: '4px 6px 16px rgba(0,0,0,0.10)' }}>
+          <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-[0.15em] mb-3">
             A partir de
           </p>
-          <p className="heading-display text-3xl md:text-4xl text-brand-black">
-            R$900<span className="text-xl md:text-2xl">/mês</span>
+          <p className="heading-display text-3xl md:text-4xl text-brand-primary">
+            R$500<span className="text-lg md:text-xl text-neutral-500 font-normal">/mês</span>
           </p>
-          <p className="text-base text-neutral-600 mt-2">
+          <p className="text-base text-neutral-600 mt-3">
             Automações simples
           </p>
         </div>
 
         {/* Medium */}
-        <div className="text-center md:border-r md:border-neutral-200 md:px-8">
-          <p className="text-base font-medium text-neutral-500 uppercase tracking-wider mb-2">
+        <div className="bg-white border border-neutral-200 p-8" style={{ boxShadow: '4px 6px 16px rgba(0,0,0,0.10)' }}>
+          <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-[0.15em] mb-3">
             A partir de
           </p>
-          <p className="heading-display text-3xl md:text-4xl text-brand-black">
-            R$2.000<span className="text-xl md:text-2xl">/mês</span>
+          <p className="heading-display text-3xl md:text-4xl text-brand-primary">
+            R$2.000<span className="text-lg md:text-xl text-neutral-500 font-normal">/mês</span>
           </p>
-          <p className="text-base text-neutral-600 mt-2">
+          <p className="text-base text-neutral-600 mt-3">
             Soluções de complexidade média
           </p>
         </div>
 
         {/* Complex */}
-        <div className="text-center md:px-8">
-          <p className="text-base font-medium text-neutral-500 uppercase tracking-wider mb-2">
+        <div className="bg-white border border-neutral-200 p-8" style={{ boxShadow: '4px 6px 16px rgba(0,0,0,0.10)' }}>
+          <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-[0.15em] mb-3">
             A partir de
           </p>
-          <p className="heading-display text-3xl md:text-4xl text-brand-black">
-            R$6.000<span className="text-xl md:text-2xl">/mês</span>
+          <p className="heading-display text-3xl md:text-4xl text-brand-primary">
+            R$6.000<span className="text-lg md:text-xl text-neutral-500 font-normal">/mês</span>
           </p>
-          <p className="text-base text-neutral-600 mt-2">
+          <p className="text-base text-neutral-600 mt-3">
             Soluções complexas com alta personalização
           </p>
         </div>
       </div>
 
-      {/* CTA */}
-      <div className="mt-12 text-center">
+      {/* CTA — left aligned */}
+      <div className="mt-12">
         <button
           onClick={onContactClick}
           className="btn btn-primary btn-lg"
