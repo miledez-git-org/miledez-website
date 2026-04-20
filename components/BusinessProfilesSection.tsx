@@ -76,7 +76,7 @@ export default function BusinessProfilesSection({ onContactClick }: BusinessProf
           return (
             <div
               key={index}
-              className="bg-white border border-neutral-200 p-8"
+              className="bg-white border border-neutral-200 p-6 md:p-8"
               style={{
                 boxShadow: '4px 6px 16px rgba(0,0,0,0.10)',
                 transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
@@ -93,23 +93,23 @@ export default function BusinessProfilesSection({ onContactClick }: BusinessProf
               </p>
 
               {/* Subscription vs Savings comparison */}
-              <div className="mt-6 flex items-end gap-4">
+              <div className="mt-6 flex items-end gap-3 md:gap-4">
                 {/* Subscription — subdued */}
                 <div>
                   <p className="text-xs font-medium text-neutral-500 uppercase tracking-wider">Assinatura</p>
-                  <span className="block text-2xl font-medium text-brand-black">
+                  <span className="block text-xl md:text-2xl font-medium text-brand-black">
                     {profile.subscription}
                   </span>
                   <p className="text-sm text-neutral-500">/mês</p>
                 </div>
 
                 {/* Arrow */}
-                <div className="text-xl text-neutral-300 pb-3">→</div>
+                <div className="text-xl text-neutral-300 pb-2 md:pb-3">→</div>
 
                 {/* Savings — bold burgundy */}
                 <div>
                   <p className="text-xs font-medium text-brand-primary uppercase tracking-wider">Economia</p>
-                  <span className="block text-4xl font-bold tracking-tight text-brand-primary">
+                  <span className="block text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-primary">
                     {profile.savings}
                   </span>
                   <p className="text-sm text-brand-primary font-medium">/mês</p>
