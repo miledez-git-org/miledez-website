@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/validador-esocial-demo",
+      "destination": "https://esocial-sst-validator-demo.vercel.app/validador-esocial-demo"
+    },
+    {
+      "source": "/validador-esocial-demo/:path*",
+      "destination": "https://esocial-sst-validator-demo.vercel.app/validador-esocial-demo/:path*"
+    }
+  ]
+}
