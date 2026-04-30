@@ -22,7 +22,7 @@
   --border-emphasis: rgba(0,0,0,0.15);
   --highlight: #F0F2F5;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  /* Brand palette (2026-04-15): burgundy primary + sage accent.
+  /* Brand palette (2026-04-17): burgundy-only.
      Legacy var names kept for compatibility — --brand-accent now holds the
      primary CTA burgundy (it was historically mislabeled as the accent). */
   --brand-accent: #6b0f1a;

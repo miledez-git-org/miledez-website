@@ -1,6 +1,6 @@
 // Design System Theme
 // Version: 4.0.0
-// Last synced: 2026-04-15 (burgundy/sage rebrand — replaced teal/orange)
+// Last synced: 2026-04-17 (burgundy-only rebrand — replaced teal/orange; sage briefly added 2026-04-15 then removed)
 
 import type { Config } from 'tailwindcss'
 
