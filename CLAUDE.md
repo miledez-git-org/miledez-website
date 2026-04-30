@@ -143,7 +143,6 @@ Removed from homepage: WorkflowDemonstrationsSection, WorkflowModularSection, Lo
 - Confirm before destructive commands (rm, mv) — user runs manually
 - `/sandbox` folders are off-limits — do not read or reference unless explicitly asked
 - `/archive` folders are off-limits — do not read or reference unless explicitly asked
-- `business-intelligence/` is off-limits — do not read or reference unless explicitly asked
 
 **Session workflow:**
 1. Start: Read CLAUDE.md + check memory. Run `git status` for uncommitted work.
