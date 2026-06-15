@@ -81,7 +81,7 @@ export default function SaudeContent() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <Header onContactClick={() => setIsContactModalOpen(true)} />
 
       {/* Hero */}
       <section className="min-h-screen bg-white flex items-center relative pt-24 md:pt-0">

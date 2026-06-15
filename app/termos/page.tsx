@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Header from '@/components/Header'
+import HeaderWithContact from '@/components/HeaderWithContact'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function TermosPage() {
   return (
     <>
-      <Header />
+      <HeaderWithContact />
       <main className="min-h-screen bg-white pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="max-w-3xl mx-auto px-6 md:px-10">
           <h1 className="heading-display text-3xl md:text-4xl text-brand-black mb-8">
