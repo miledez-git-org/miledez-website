@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mockup 1 — miledez.com.br no design system Notus light. Layout clássico de marketing: hero centralizado com product shot inclinado.">
+<title>mil&amp;dez — Mockup 1 · Clássico</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Play CDN for mockup preview only — production uses the Tailwind build pipeline. -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { sans: ['Inter', 'sans-serif'] },
+      animation: { 'marquee': 'marquee 32s linear infinite' },
+      keyframes: {
+        marquee: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } }
+      }
+    }
+  }
+};
+</script>
+
+<style>
+  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(0,0,0,.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(0,0,0,.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body class="bg-zinc-50 text-zinc-900">
+
+<!-- Navbar -->
+<div class="sticky top-0 z-40 px-4 pt-4">
+  <nav class="max-w-6xl mx-auto bg-white border border-zinc-200 rounded-lg px-6 py-3 flex items-center justify-between shadow-sm">
+    <a href="#" class="flex items-center gap-2 font-bold text-lg text-zinc-900 tracking-tight">
+      <span class="w-6 h-6 rounded bg-zinc-900 flex items-center justify-center"><span class="w-2 h-2 rounded-full bg-white"></span></span>
+      mil&amp;dez
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-600">
+      <a href="#valor" class="hover:text-zinc-900 transition-colors">Benefícios</a>
+      <a href="#como-funciona" class="hover:text-zinc-900 transition-colors">Como funciona</a>
+      <a href="#precos" class="hover:text-zinc-900 transition-colors">Preços</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <button class="bg-zinc-900 text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-zinc-800 transition-colors shadow-sm">Falar com a gente</button>
+      <button aria-label="Abrir menu" class="md:hidden w-8 h-8 flex items-center justify-center rounded-md border border-zinc-200 text-zinc-700 hover:bg-zinc-50">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+</div>
+
+<!-- Hero -->
+<header class="relative pt-20 px-4 sm:px-8 md:px-16 flex flex-col items-center text-center overflow-hidden">
+  <div class="absolute inset-0 bg-grid-pattern opacity-[0.15]"></div>
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-gradient-to-b from-white to-transparent"></div>
+
+  <div class="relative z-10 max-w-3xl mb-14">
+    <span class="inline-flex items-center gap-1.5 px-3 py-1 mb-6 text-xs font-medium text-zinc-600 bg-white border border-zinc-200 rounded-full shadow-sm">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Automação sob medida para empresas brasileiras
+    </span>
+    <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-b from-zinc-900 to-zinc-600">Seu trabalho, do seu jeito, no automático</h1>
+    <p class="text-lg text-zinc-600 mb-8 max-w-xl mx-auto">Reconecte seus sistemas do jeito que quiser e automatize os processos que desperdiçam seu tempo. Criamos resultados em dias, não meses.</p>
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <button class="bg-zinc-900 text-white font-medium px-6 py-3 rounded-lg hover:bg-zinc-800 shadow-sm transition-all active:scale-95">Agendar demonstração</button>
+      <a href="#valor" class="bg-white border border-zinc-200 text-zinc-900 font-medium px-6 py-3 rounded-lg hover:bg-zinc-50 shadow-sm transition-all active:scale-95 inline-block">Descubra mais</a>
+    </div>
+  </div>
+
+  <!-- Tilted product shot: painel de automações -->
+  <div class="relative z-10 w-full max-w-4xl bg-white rounded-t-2xl border border-zinc-300 border-b-0 shadow-2xl overflow-hidden" style="transform: perspective(1000px) rotateX(4deg) scale(0.95); transform-origin: bottom;">
+    <div class="bg-zinc-100 border-b border-zinc-200 px-4 py-3 flex items-center gap-2">
+      <div class="flex gap-1.5">
+        <div class="w-2.5 h-2.5 rounded-full bg-rose-400"></div>
+        <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+        <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+      </div>
+      <p class="text-xs text-zinc-500 mx-auto">Painel de automações — mil&amp;dez</p>
+    </div>
+    <div class="p-6 bg-white flex gap-6 text-left">
+      <div class="w-44 hidden md:flex flex-col gap-3 border-r border-zinc-100 pr-6">
+        <p class="text-xs font-semibold text-zinc-900">Fluxos ativos</p>
+        <p class="text-xs text-zinc-500">Lembretes de consulta</p>
+        <p class="text-xs text-zinc-500">Cobranças recorrentes</p>
+        <p class="text-xs text-zinc-500">Notas fiscais</p>
+        <p class="text-xs text-zinc-400">Contratos</p>
+      </div>
+      <div class="flex-1 flex flex-col gap-2.5">
+        <div class="flex justify-between items-center mb-1">
+          <p class="text-sm font-semibold text-zinc-900">Execuções de hoje</p>
+          <span class="px-2 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full">Tudo funcionando</span>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center justify-between shadow-sm">
+          <span class="text-xs font-medium text-zinc-900">Lembrete de consulta · WhatsApp</span>
+          <span class="px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">Enviado</span>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center justify-between shadow-sm">
+          <span class="text-xs font-medium text-zinc-900">Cobrança recorrente · e-mail</span>
+          <span class="px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">Enviado</span>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center justify-between shadow-sm">
+          <span class="text-xs font-medium text-zinc-900">Nota fiscal registrada · planilha</span>
+          <span class="px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">Concluído</span>
+        </div>
+        <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center justify-between shadow-sm">
+          <span class="text-xs font-medium text-zinc-900">Contrato para assinatura · nuvem</span>
+          <span class="px-1.5 py-0.5 text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200 rounded">Aguardando</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Logo cloud: integrações -->
+<section class="bg-white border-y border-zinc-200 py-10 overflow-hidden">
+  <p class="text-center text-sm font-medium text-zinc-500 mb-8">Conectamos as ferramentas que sua empresa já usa</p>
+  <div class="relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10"></div>
+    <div class="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10"></div>
+    <div class="flex w-max animate-marquee gap-16 pr-16 text-zinc-400">
+      <span class="text-lg font-bold tracking-tight whitespace-nowrap">WhatsApp</span>
+      <span class="text-lg font-semibold italic whitespace-nowrap">Gmail</span>
+      <span class="text-lg font-medium whitespace-nowrap">Google Sheets</span>
+      <span class="text-lg font-bold uppercase tracking-widest whitespace-nowrap">Pipedrive</span>
+      <span class="text-lg font-extrabold whitespace-nowrap">Slack</span>
+      <span class="text-lg font-semibold tracking-tight whitespace-nowrap">DocuSign</span>
+      <span class="text-lg font-medium uppercase tracking-wider whitespace-nowrap">Google Drive</span>
+      <span class="text-lg font-bold italic whitespace-nowrap">Excel</span>
+      <span class="text-lg font-bold tracking-tight whitespace-nowrap" aria-hidden="true">WhatsApp</span>
+      <span class="text-lg font-semibold italic whitespace-nowrap" aria-hidden="true">Gmail</span>
+      <span class="text-lg font-medium whitespace-nowrap" aria-hidden="true">Google Sheets</span>
+      <span class="text-lg font-bold uppercase tracking-widest whitespace-nowrap" aria-hidden="true">Pipedrive</span>
+      <span class="text-lg font-extrabold whitespace-nowrap" aria-hidden="true">Slack</span>
+      <span class="text-lg font-semibold tracking-tight whitespace-nowrap" aria-hidden="true">DocuSign</span>
+      <span class="text-lg font-medium uppercase tracking-wider whitespace-nowrap" aria-hidden="true">Google Drive</span>
+      <span class="text-lg font-bold italic whitespace-nowrap" aria-hidden="true">Excel</span>
+    </div>
+  </div>
+</section>
+
+<!-- Benefícios: grade de ícones -->
+<section id="valor" class="scroll-mt-24 max-w-6xl mx-auto px-6 py-20 md:py-28">
+  <div class="text-center max-w-xl mx-auto mb-10">
+    <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Benefícios</p>
+    <h2 class="text-3xl font-semibold tracking-tight text-zinc-900 mb-3">Sua primeira automação pronta em dias, sem risco</h2>
+    <p class="text-sm text-zinc-600">Construímos, hospedamos e mantemos automações personalizadas para sua operação — conectando os sistemas que você já usa.</p>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="bg-white border border-zinc-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+      <svg class="text-zinc-700 mb-3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <h3 class="text-sm font-semibold text-zinc-900 mb-1">Entrega em dias</h3>
+      <p class="text-xs text-zinc-500 leading-relaxed">Automações simples em 3–7 dias. Projetos maiores em 2–4 semanas.</p>
+    </div>
+    <div class="bg-white border border-zinc-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+      <svg class="text-zinc-700 mb-3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/></svg>
+      <h3 class="text-sm font-semibold text-zinc-900 mb-1">Sem custo inicial</h3>
+      <p class="text-xs text-zinc-500 leading-relaxed">Desenvolvimento e testes por nossa conta. Assinatura mensal, cancele quando quiser.</p>
+    </div>
+    <div class="bg-white border border-zinc-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+      <svg class="text-zinc-700 mb-3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      <h3 class="text-sm font-semibold text-zinc-900 mb-1">100% gerenciado</h3>
+      <p class="text-xs text-zinc-500 leading-relaxed">Sua equipe não precisa fazer nada técnico. Cuidamos de tudo.</p>
+    </div>
+    <div class="bg-white border border-zinc-200 rounded-xl p-5 hover:shadow-md transition-shadow">
+      <svg class="text-zinc-700 mb-3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+      <h3 class="text-sm font-semibold text-zinc-900 mb-1">Sob medida</h3>
+      <p class="text-xs text-zinc-500 leading-relaxed">Cada automação é construída para o fluxo real da sua empresa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Como funciona -->
+<section id="como-funciona" class="scroll-mt-24 bg-white border-y border-zinc-200">
+  <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+    <div class="text-center max-w-xl mx-auto mb-10">
+      <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Como trabalhamos</p>
+      <h2 class="text-3xl font-semibold tracking-tight text-zinc-900 mb-3">Da primeira conversa ao sistema rodando</h2>
+      <p class="text-sm text-zinc-600">Primeiro processo automatizado em 2 semanas. Desenvolvimento sem custo, teste grátis, só a mensalidade com tudo incluso.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="border border-zinc-200 rounded-xl p-5">
+        <p class="font-mono text-xs text-zinc-400 mb-3">01</p>
+        <h3 class="text-sm font-semibold text-zinc-900 mb-1.5">Conversa inicial</h3>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">Marcamos uma conversa rápida para entender sua empresa e o dia a dia da operação.</p>
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-medium text-zinc-600 bg-zinc-50 border border-zinc-200 rounded-full">30 min</span>
+      </div>
+      <div class="border border-zinc-200 rounded-xl p-5">
+        <p class="font-mono text-xs text-zinc-400 mb-3">02</p>
+        <h3 class="text-sm font-semibold text-zinc-900 mb-1.5">Relatório de ideias</h3>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">Sugestões de automações para o seu negócio, com exemplos práticos e estimativas de valor.</p>
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-medium text-zinc-600 bg-zinc-50 border border-zinc-200 rounded-full">2–3 dias úteis</span>
+      </div>
+      <div class="border border-zinc-200 rounded-xl p-5">
+        <p class="font-mono text-xs text-zinc-400 mb-3">03</p>
+        <h3 class="text-sm font-semibold text-zinc-900 mb-1.5">Definição e construção</h3>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">Definimos juntos o que será automatizado. Construímos, testamos e ajustamos até ficar do jeito certo.</p>
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-medium text-zinc-600 bg-zinc-50 border border-zinc-200 rounded-full">1–2 semanas</span>
+      </div>
+      <div class="border border-zinc-200 rounded-xl p-5">
+        <p class="font-mono text-xs text-zinc-400 mb-3">04</p>
+        <h3 class="text-sm font-semibold text-zinc-900 mb-1.5">Entrega e acompanhamento</h3>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">Você testa no seu dia a dia e nós fazemos os ajustes necessários — tudo incluído na mensalidade.</p>
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[10px] font-medium text-zinc-600 bg-zinc-50 border border-zinc-200 rounded-full">contínuo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Preços -->
+<section id="precos" class="scroll-mt-24 max-w-6xl mx-auto px-6 py-20 md:py-28">
+  <div class="text-center max-w-xl mx-auto mb-10">
+    <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Preços</p>
+    <h2 class="text-3xl font-semibold tracking-tight text-zinc-900 mb-3">Quanto custa automatizar, o que você recebe de volta</h2>
+    <p class="text-sm text-zinc-600">Cada solução é sob medida para sua operação. Sem contrato, sem taxa de entrada.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+    <div class="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm flex flex-col">
+      <h3 class="text-lg font-semibold text-zinc-900 mb-1">Simples</h3>
+      <p class="text-sm text-zinc-500 mb-4">Automações simples.</p>
+      <div class="mb-6"><span class="text-xs text-zinc-500 uppercase tracking-wider block mb-1">A partir de</span><span class="text-4xl font-bold text-zinc-900">R$500</span><span class="text-zinc-500 text-sm">/mês</span></div>
+      <button class="w-full bg-white border border-zinc-200 text-zinc-900 font-medium py-2 rounded-lg hover:bg-zinc-50 mb-6 transition-colors">Falar com a gente</button>
+      <ul class="space-y-3 text-sm text-zinc-600 flex-1">
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Entrega em 3–7 dias</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Hospedagem e manutenção inclusas</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Cancele quando quiser</li>
+      </ul>
+    </div>
+
+    <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 shadow-xl flex flex-col relative md:-translate-y-4">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white border border-zinc-200 text-zinc-900 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">Mais procurado</div>
+      <h3 class="text-lg font-semibold text-white mb-1">Intermediário</h3>
+      <p class="text-sm text-zinc-400 mb-4">Soluções de complexidade média.</p>
+      <div class="mb-6"><span class="text-xs text-zinc-400 uppercase tracking-wider block mb-1">A partir de</span><span class="text-4xl font-bold text-white">R$2.000</span><span class="text-zinc-400 text-sm">/mês</span></div>
+      <button class="w-full bg-white text-zinc-900 font-medium py-2 rounded-lg hover:bg-zinc-100 mb-6 transition-colors">Agendar conversa</button>
+      <ul class="space-y-3 text-sm text-zinc-300 flex-1">
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Vários fluxos conectados</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Ajustes contínuos inclusos</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Suporte prioritário</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Teste grátis antes de assinar</li>
+      </ul>
+    </div>
+
+    <div class="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm flex flex-col">
+      <h3 class="text-lg font-semibold text-zinc-900 mb-1">Avançado</h3>
+      <p class="text-sm text-zinc-500 mb-4">Soluções complexas com alta personalização.</p>
+      <div class="mb-6"><span class="text-xs text-zinc-500 uppercase tracking-wider block mb-1">A partir de</span><span class="text-4xl font-bold text-zinc-900">R$6.000</span><span class="text-zinc-500 text-sm">/mês</span></div>
+      <button class="w-full bg-white border border-zinc-200 text-zinc-900 font-medium py-2 rounded-lg hover:bg-zinc-50 mb-6 transition-colors">Falar com a gente</button>
+      <ul class="space-y-3 text-sm text-zinc-600 flex-1">
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Operações inteiras no automático</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Personalização completa</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Acompanhamento dedicado</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA final -->
+<section class="px-4 pb-4">
+  <div class="max-w-6xl mx-auto relative bg-zinc-900 rounded-2xl px-8 py-14 md:py-16 text-center overflow-hidden">
+    <div class="absolute inset-0" style="background-image: linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 24px 24px;"></div>
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-white/5 blur-3xl rounded-full"></div>
+    <div class="relative">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-3">Pronto para automatizar?<br class="hidden sm:block"> Vamos conversar</h2>
+      <p class="text-zinc-400 max-w-md mx-auto mb-8">Criamos uma automação de teste gratuita para seu negócio. Sem compromisso, sem custo.</p>
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <button class="bg-white text-zinc-900 font-medium px-6 py-3 rounded-lg hover:bg-zinc-100 shadow-sm transition-all active:scale-95">Quero testar grátis</button>
+        <button class="text-zinc-300 hover:text-white font-medium px-6 py-3 rounded-lg hover:bg-white/10 transition-colors">Agendar demonstração</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-zinc-200 px-8 pt-12 pb-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
+      <div class="col-span-2">
+        <div class="flex items-center gap-2 font-bold text-lg text-zinc-900 tracking-tight mb-3">
+          <span class="w-6 h-6 rounded bg-zinc-900 flex items-center justify-center"><span class="w-2 h-2 rounded-full bg-white"></span></span>
+          mil&amp;dez
+        </div>
+        <p class="text-sm text-zinc-500 mb-5 max-w-[240px]">Automação de processos sob medida para empresas brasileiras.</p>
+      </div>
+      <nav aria-label="Navegação">
+        <p class="text-xs font-semibold text-zinc-900 uppercase tracking-wider mb-3">Navegação</p>
+        <ul class="space-y-2 text-sm text-zinc-500">
+          <li><a href="#" class="hover:text-zinc-900 transition-colors">Início</a></li>
+          <li><a href="#valor" class="hover:text-zinc-900 transition-colors">Benefícios</a></li>
+          <li><a href="#precos" class="hover:text-zinc-900 transition-colors">Preços</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Indústrias">
+        <p class="text-xs font-semibold text-zinc-900 uppercase tracking-wider mb-3">Indústrias</p>
+        <ul class="space-y-2 text-sm text-zinc-500">
+          <li><a href="#" class="hover:text-zinc-900 transition-colors">Saúde</a></li>
+          <li><a href="#" class="hover:text-zinc-900 transition-colors">Serviços</a></li>
+          <li><a href="#" class="hover:text-zinc-900 transition-colors">Agronegócio</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Contato">
+        <p class="text-xs font-semibold text-zinc-900 uppercase tracking-wider mb-3">Contato</p>
+        <ul class="space-y-2 text-sm text-zinc-500">
+          <li><a href="mailto:contato@miledez.com.br" class="hover:text-zinc-900 transition-colors">contato@miledez.com.br</a></li>
+          <li><a href="https://wa.me/5531983529257" class="hover:text-zinc-900 transition-colors">WhatsApp</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="border-t border-zinc-100 pt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-zinc-500">© 2026 mil&amp;dez. Todos os direitos reservados.</p>
+      <div class="flex items-center gap-4 text-sm text-zinc-500">
+        <a href="#" class="hover:text-zinc-900 transition-colors">Política de privacidade</a>
+        <a href="#" class="hover:text-zinc-900 transition-colors">Termos de serviço</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
