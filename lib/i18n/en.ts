@@ -79,20 +79,6 @@ export const en: Dict = {
       label: 'Automation',
       items: ['Recurring tasks run on their own', 'Information gathered in one place', 'Deadlines checked without anyone remembering'],
     },
-    // Unused since the storytelling reorder (ValuePropositionB is no longer rendered). Safe to delete with that component.
-    value: {
-      titleLead: 'Your first automation live in days.',
-      titleAccent: 'No risk.',
-      subtitle:
-        'We build, host and maintain custom automations for your operation, connecting the systems you already use.',
-      benefits: [
-        { title: 'Delivered in days', description: 'Simple automations in 3–7 days. Larger projects in 2–4 weeks.' },
-        { title: 'No upfront cost', description: 'Development and testing are on us. Monthly subscription, cancel anytime.' },
-        { title: '100% managed', description: 'Your team does nothing technical. We take care of everything.' },
-        { title: 'Built for you', description: "Every automation is built around your company's real workflow." },
-      ],
-      cta: 'Try an automation free',
-    },
     pain: {
       titleLead: "How much of your team's day",
       titleAccent: 'goes into copying, pasting and remembering?',

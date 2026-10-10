@@ -21,7 +21,7 @@
 - [x] Rewrite `home.pricing`: add `tiers[].example`, `included`, `ctaNote`
 - [x] Add `home.faq` (7 Q&As, incl. "E se eu não gostar do teste?")
 - [x] Rewrite `home.cta`, add `founder` + `note`
-- [ ] Remove `home.value` (kept: deleting needs owner confirmation, see Follow-ups)
+- [x] Remove `home.value`
 - [x] Update `header.industries` → "Setores"
 - [x] Rewrite `contactModal` title, intro, placeholder, submit, successText
 - [x] Unify CTA label to "Quero minha automação grátis" everywhere
@@ -49,5 +49,5 @@
 
 ## Follow-ups
 - [ ] Owner verifies drafted FAQ facts (data, cancellation, response time, support channel)
-- [ ] Owner decides whether to delete `ValuePropositionB.tsx` + `home.value`
+- [x] Delete `ValuePropositionB.tsx` + `home.value` (approved by owner)
 - [ ] Replace estimate cards with real case results after the first pilots
