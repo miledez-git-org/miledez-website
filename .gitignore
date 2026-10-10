@@ -35,3 +35,8 @@ next-env.d.ts
 .DS_Store
 Thumbs.db
 tmpclaude-*
+
+# Credentials — never commit
+sandbox/resume_session.txt
+client_secret*.json
+*credentials*.json
