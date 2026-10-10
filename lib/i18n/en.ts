@@ -5,8 +5,7 @@ import type { IndustryCopy, LegalPage } from './pt'
  * English (en-US) copy. Typed against the Portuguese dictionary so a missing
  * or extra key is a compile error.
  *
- * Prices are shown in USD. They are straight conversions of the BRL tiers
- * (roughly 5 BRL per USD, rounded) and should be confirmed before launch.
+ * Prices are shown in USD.
  */
 export const en: Dict = {
   site: {
@@ -192,9 +191,9 @@ export const en: Dict = {
       from: 'Starting at',
       perMonth: '/mo',
       tiers: [
-        { price: '$100', label: 'Simple automations' },
-        { price: '$400', label: 'Mid-complexity solutions' },
-        { price: '$1,200', label: 'Complex, highly customized solutions' },
+        { price: '$150', label: 'Simple automations' },
+        { price: '$500', label: 'Mid-complexity solutions' },
+        { price: '$1,500', label: 'Complex, highly customized solutions' },
       ],
       cta: 'Talk to us',
     },

@@ -68,7 +68,7 @@ public/
 - All copy is in `lib/i18n/pt.ts` and `lib/i18n/en.ts` (`en` is typed against `pt`, so a missing key fails `tsc`). Components take `locale?: Locale` (default `'pt'`) and call `getDict(locale)`.
 - URL mapping and hreflang helpers: `lib/i18n/index.ts` (`routes`, `localePath`, `alternatesFor`). Add new pages there, and add them to both groups.
 - Industry pages share `components/industry/IndustryPage.tsx` (data-driven; one place to change). English workflow presets: `components/WorkflowVisual/presets.en.ts`.
-- English prices are USD placeholders (straight BRL conversion) — confirm before launch.
+- English prices are in USD (tiers $150 / $500 / $1,500); the ROI examples are straight BRL conversions.
 
 ## Key Patterns
 
