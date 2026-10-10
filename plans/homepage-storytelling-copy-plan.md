@@ -273,4 +273,4 @@ Annotation: this closes the arc the hero opened (tarefas repetitivas → no auto
 | 5 | Industry-page metrics | Removed (grid and data). `MetricsGrid.tsx` kept for when real case results exist |
 | 6 | Headline | B: "Sua equipe para de repetir tarefa. O sistema faz por ela." |
 
-Leftover: `components/ValuePropositionB.tsx` and the `home.value` dictionary block are unused. They were kept because deleting files needs the owner's confirmation.
+`components/ValuePropositionB.tsx` and the `home.value` dictionary block were deleted after the owner approved it.

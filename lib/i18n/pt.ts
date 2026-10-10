@@ -115,20 +115,6 @@ export const pt = {
       label: 'Automação',
       items: ['Tarefas que se repetem rodam sozinhas', 'Informação reunida em um só lugar', 'Prazos checados sem ninguém lembrar'],
     },
-    // Unused since the storytelling reorder (ValuePropositionB is no longer rendered). Safe to delete with that component.
-    value: {
-      titleLead: 'Sua primeira automação pronta em dias.',
-      titleAccent: 'Sem risco.',
-      subtitle:
-        'Construímos, hospedamos e mantemos automações personalizadas para sua operação — conectando os sistemas que você já usa.',
-      benefits: [
-        { title: 'Entrega em dias', description: 'Automações simples em 3–7 dias. Projetos maiores em 2–4 semanas.' },
-        { title: 'Sem custo inicial', description: 'Desenvolvimento e testes por nossa conta. Assinatura mensal, cancele quando quiser.' },
-        { title: '100% gerenciado', description: 'Sua equipe não precisa fazer nada técnico. Cuidamos de tudo.' },
-        { title: 'Sob medida', description: 'Cada automação é construída para o fluxo real da sua empresa.' },
-      ],
-      cta: 'Teste grátis uma automação',
-    },
     pain: {
       titleLead: 'Quanto do dia da sua equipe',
       titleAccent: 'vai em copiar, colar e lembrar?',
