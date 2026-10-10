@@ -1,6 +1,9 @@
 'use client'
 
 import { useScrollReveal } from '@/hooks/useScrollReveal'
+import { type Locale } from '@/lib/i18n'
+
+const growthLabel: Record<Locale, string> = { pt: 'Crescimento', en: 'Growth' }
 
 interface Metric {
   value: string
@@ -10,6 +13,7 @@ interface Metric {
 
 interface MetricsGridProps {
   metrics: Metric[]
+  locale?: Locale
 }
 
 function AccentBar({ isVisible, delay }: { isVisible: boolean; delay: number }) {
@@ -24,7 +28,7 @@ function AccentBar({ isVisible, delay }: { isVisible: boolean; delay: number }) 
   )
 }
 
-function GrowthArrow({ isVisible, delay }: { isVisible: boolean; delay: number }) {
+function GrowthArrow({ isVisible, delay, locale }: { isVisible: boolean; delay: number; locale: Locale }) {
   return (
     <div
       className="flex items-center gap-1.5 mt-4 text-brand-primary"
@@ -37,12 +41,12 @@ function GrowthArrow({ isVisible, delay }: { isVisible: boolean; delay: number }
       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
       </svg>
-      <span className="text-xs font-medium tracking-wide">Crescimento</span>
+      <span className="text-xs font-medium tracking-wide">{growthLabel[locale]}</span>
     </div>
   )
 }
 
-export default function MetricsGrid({ metrics }: MetricsGridProps) {
+export default function MetricsGrid({ metrics, locale = 'pt' }: MetricsGridProps) {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.3 })
 
   return (
@@ -71,7 +75,7 @@ export default function MetricsGrid({ metrics }: MetricsGridProps) {
 
             {/* Visualization based on type */}
             {metric.type === 'multiplier' ? (
-              <GrowthArrow isVisible={isVisible} delay={delay + 200} />
+              <GrowthArrow isVisible={isVisible} delay={delay + 200} locale={locale} />
             ) : (
               <AccentBar isVisible={isVisible} delay={delay + 200} />
             )}

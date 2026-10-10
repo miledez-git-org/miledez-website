@@ -1,5 +1,7 @@
 'use client'
 
+import { getDict, type Locale } from '@/lib/i18n'
+
 const GearIcon = () => (
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6b0f1a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="3" />
@@ -28,22 +30,12 @@ const BoltIcon = () => (
   </svg>
 )
 
-const items = [
-  {
-    icon: <GearIcon />,
-    label: 'Tarefas repetitivas rodam sozinhas',
-  },
-  {
-    icon: <BarChartIcon />,
-    label: 'Dados reunidos em um só lugar',
-  },
-  {
-    icon: <CheckCircleIcon />,
-    label: 'Checagem automática',
-  },
-]
+const itemIcons = [<GearIcon key="gear" />, <BarChartIcon key="chart" />, <CheckCircleIcon key="check" />]
 
-export default function HeroAutomationDiagram() {
+export default function HeroAutomationDiagram({ locale = 'pt' }: { locale?: Locale }) {
+  const t = getDict(locale).home.diagram
+  const items = t.items.map((label, i) => ({ icon: itemIcons[i], label }))
+
   // Icon box is 64px (w-16). Grid has 3 equal columns.
   // Vertical drops must land at the horizontal center of each column.
   // With a 520px viewBox and 3 equal cols (each ~173px), centers are at ~87, 260, 433.
@@ -55,7 +47,7 @@ export default function HeroAutomationDiagram() {
     <div className="w-full max-w-[520px] flex flex-col items-center select-none py-8 lg:py-12">
       {/* Top label */}
       <p className="text-sm font-semibold uppercase tracking-[0.15em] text-neutral-500 mb-5">
-        Automação
+        {t.label}
       </p>
 
       {/* Hub icon */}

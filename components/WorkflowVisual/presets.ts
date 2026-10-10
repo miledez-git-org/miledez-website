@@ -1,4 +1,11 @@
+import type { Locale } from '@/lib/i18n'
 import { WorkflowStep, HeroWorkflowStep } from './types'
+import {
+  heroPresetsEn,
+  saudeWorkflowsCompactEn,
+  servicosWorkflowsCompactEn,
+  agronegocioWorkflowsCompactEn,
+} from './presets.en'
 
 export interface WorkflowPreset {
   title: string
@@ -235,8 +242,8 @@ export const heroPresets: Record<Industry, HeroWorkflowPreset> = {
 /**
  * Get a simplified hero workflow preset for a specific industry
  */
-export function getHeroPreset(industry: Industry): HeroWorkflowPreset {
-  return heroPresets[industry]
+export function getHeroPreset(industry: Industry, locale: Locale = 'pt'): HeroWorkflowPreset {
+  return (locale === 'en' ? heroPresetsEn : heroPresets)[industry]
 }
 
 /**
@@ -861,4 +868,31 @@ export const servicosWorkflows = {
       },
     ],
   },
+}
+
+interface CompactWorkflow {
+  title: string
+  steps: HeroWorkflowStep[]
+}
+
+/**
+ * The three compact workflows shown in an industry page's "what we automate"
+ * section, in display order.
+ */
+export function getCompactWorkflows(industry: Industry, locale: Locale = 'pt'): CompactWorkflow[] {
+  const en = locale === 'en'
+  switch (industry) {
+    case 'saude': {
+      const w = en ? saudeWorkflowsCompactEn : saudeWorkflowsCompact
+      return [w.documents, w.billing, w.collections]
+    }
+    case 'servicos': {
+      const w = en ? servicosWorkflowsCompactEn : servicosWorkflowsCompact
+      return [w.onboarding, w.contracts, w.billing]
+    }
+    case 'agronegocio': {
+      const w = en ? agronegocioWorkflowsCompactEn : agronegocioWorkflowsCompact
+      return [w.supplierCoordination, w.traceability, w.fieldOffice]
+    }
+  }
 }

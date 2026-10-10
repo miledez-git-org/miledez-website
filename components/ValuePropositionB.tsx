@@ -1,15 +1,11 @@
 'use client'
 
 import { useScrollReveal } from '@/hooks/useScrollReveal'
+import { getDict, type Locale } from '@/lib/i18n'
 
 interface ValuePropositionBProps {
   onContactClick?: () => void
-}
-
-interface BenefitItem {
-  icon: React.ReactNode
-  title: string
-  description: string
+  locale?: Locale
 }
 
 const ClockIcon = () => (
@@ -48,30 +44,10 @@ const SlidersIcon = () => (
   </svg>
 )
 
-const benefits: BenefitItem[] = [
-  {
-    icon: <ClockIcon />,
-    title: 'Entrega em dias',
-    description: 'Automações simples em 3–7 dias. Projetos maiores em 2–4 semanas.',
-  },
-  {
-    icon: <WalletIcon />,
-    title: 'Sem custo inicial',
-    description: 'Desenvolvimento e testes por nossa conta. Assinatura mensal, cancele quando quiser.',
-  },
-  {
-    icon: <ShieldCheckIcon />,
-    title: '100% gerenciado',
-    description: 'Sua equipe não precisa fazer nada técnico. Cuidamos de tudo.',
-  },
-  {
-    icon: <SlidersIcon />,
-    title: 'Sob medida',
-    description: 'Cada automação é construída para o fluxo real da sua empresa.',
-  },
-]
+const benefitIcons = [<ClockIcon key="clock" />, <WalletIcon key="wallet" />, <ShieldCheckIcon key="shield" />, <SlidersIcon key="sliders" />]
 
-export default function ValuePropositionB({ onContactClick }: ValuePropositionBProps) {
+export default function ValuePropositionB({ onContactClick, locale = 'pt' }: ValuePropositionBProps) {
+  const t = getDict(locale).home.value
   const { ref, isVisible } = useScrollReveal({ threshold: 0.2 })
 
   return (
@@ -86,17 +62,17 @@ export default function ValuePropositionB({ onContactClick }: ValuePropositionBP
         }}
       >
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
-          Sua primeira automação pronta em dias.{' '}
-          <span className="text-brand-primary">Sem risco.</span>
+          {t.titleLead}{' '}
+          <span className="text-brand-primary">{t.titleAccent}</span>
         </h2>
         <p className="mt-4 text-lg text-neutral-600 leading-relaxed">
-          Construímos, hospedamos e mantemos automações personalizadas para sua operação — conectando os sistemas que você já usa.
+          {t.subtitle}
         </p>
       </div>
 
       {/* Benefit cards — 4 column grid */}
       <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {benefits.map((benefit, index) => {
+        {t.benefits.map((benefit, index) => {
           const delay = 200 + index * 100
 
           return (
@@ -111,7 +87,7 @@ export default function ValuePropositionB({ onContactClick }: ValuePropositionBP
               }}
             >
               <div className="w-10 h-10 text-brand-primary flex items-center justify-start">
-                {benefit.icon}
+                {benefitIcons[index]}
               </div>
               <h3 className="mt-4 text-xl md:text-2xl font-semibold text-brand-black leading-tight">
                 {benefit.title}
@@ -136,7 +112,7 @@ export default function ValuePropositionB({ onContactClick }: ValuePropositionBP
           onClick={onContactClick}
           className="btn btn-primary btn-lg"
         >
-          Teste grátis uma automação
+          {t.cta}
         </button>
       </div>
     </div>

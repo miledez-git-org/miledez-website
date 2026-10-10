@@ -61,6 +61,15 @@ public/
   software-company-logos/   # Integration partner logos (57 SVGs)
 ```
 
+## Internationalization (pt-BR + en-US)
+
+- Portuguese stays at the original URLs; English lives under `/en` (`/en/industries`, `/en/health`, `/en/professional-services`, `/en/agribusiness`, `/en/terms`, `/en/privacy-policy`). `/avaliacao` has no English version.
+- Route groups `app/(pt)/` and `app/(en)/` each own a root layout (correct `<html lang>`); both use `components/RootShell.tsx`. `template`/`loading`/`error` live inside each group — never at `app/` root (they would wrap `<html>` and break hydration).
+- All copy is in `lib/i18n/pt.ts` and `lib/i18n/en.ts` (`en` is typed against `pt`, so a missing key fails `tsc`). Components take `locale?: Locale` (default `'pt'`) and call `getDict(locale)`.
+- URL mapping and hreflang helpers: `lib/i18n/index.ts` (`routes`, `localePath`, `alternatesFor`). Add new pages there, and add them to both groups.
+- Industry pages share `components/industry/IndustryPage.tsx` (data-driven; one place to change). English workflow presets: `components/WorkflowVisual/presets.en.ts`.
+- English prices are USD placeholders (straight BRL conversion) — confirm before launch.
+
 ## Key Patterns
 
 - **Header** — White background, sharp bottom shadow. Requires `onContactClick` prop for Contato button (opens modal). Indústrias links to `/industrias`.

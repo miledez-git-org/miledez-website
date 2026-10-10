@@ -1,51 +1,15 @@
 'use client'
 
 import { useScrollReveal } from '@/hooks/useScrollReveal'
-
-interface BusinessProfile {
-  type: string
-  size: string
-  subscription: string
-  savings: string
-  benefitDetail: string
-}
-
-const profiles: BusinessProfile[] = [
-  {
-    type: 'Clínica Odontológica',
-    size: '12 profissionais',
-    subscription: 'R$900',
-    savings: 'R$6.000',
-    benefitDetail: 'Consultas recuperadas e menos tempo administrativo',
-  },
-  {
-    type: 'Escritório de Contabilidade',
-    size: '6 colaboradores',
-    subscription: 'R$900',
-    savings: 'R$4.500',
-    benefitDetail: 'Mais produtividade e menos retrabalho',
-  },
-  {
-    type: 'Cooperativa de Café',
-    size: '50 produtores',
-    subscription: 'R$3.000',
-    savings: 'R$18.000',
-    benefitDetail: 'Coordenação de fornecedores no automático',
-  },
-  {
-    type: 'Distribuidora de Insumos',
-    size: '15 funcionários',
-    subscription: 'R$2.000',
-    savings: 'R$10.000',
-    benefitDetail: 'Pedidos e estoque automatizados',
-  },
-]
+import { getDict, type Locale } from '@/lib/i18n'
 
 interface BusinessProfilesSectionProps {
   onContactClick?: () => void
+  locale?: Locale
 }
 
-export default function BusinessProfilesSection({ onContactClick }: BusinessProfilesSectionProps) {
+export default function BusinessProfilesSection({ onContactClick, locale = 'pt' }: BusinessProfilesSectionProps) {
+  const t = getDict(locale).home.profiles
   const { ref, isVisible } = useScrollReveal({ threshold: 0.1 })
 
   return (
@@ -60,17 +24,17 @@ export default function BusinessProfilesSection({ onContactClick }: BusinessProf
         }}
       >
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
-          Negócios como o seu{' '}
-          <span className="text-brand-primary">já automatizam com a gente</span>
+          {t.titleLead}{' '}
+          <span className="text-brand-primary">{t.titleAccent}</span>
         </h2>
         <p className="mt-4 text-lg text-neutral-600 max-w-xl">
-          De clínicas a cooperativas — automação que se paga no primeiro mês.
+          {t.subtitle}
         </p>
       </div>
 
       {/* 2x2 profile grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {profiles.map((profile, index) => {
+        {t.items.map((profile, index) => {
           const delay = 150 + index * 100
 
           return (
@@ -96,11 +60,11 @@ export default function BusinessProfilesSection({ onContactClick }: BusinessProf
               <div className="mt-6 flex items-end gap-3 md:gap-4">
                 {/* Subscription — subdued */}
                 <div>
-                  <p className="text-xs font-medium text-neutral-500 uppercase tracking-wider">Assinatura</p>
+                  <p className="text-xs font-medium text-neutral-500 uppercase tracking-wider">{t.subscription}</p>
                   <span className="block text-xl md:text-2xl font-medium text-brand-black">
                     {profile.subscription}
                   </span>
-                  <p className="text-sm text-neutral-500">/mês</p>
+                  <p className="text-sm text-neutral-500">{t.perMonth}</p>
                 </div>
 
                 {/* Arrow */}
@@ -108,11 +72,11 @@ export default function BusinessProfilesSection({ onContactClick }: BusinessProf
 
                 {/* Savings — bold burgundy */}
                 <div>
-                  <p className="text-xs font-medium text-brand-primary uppercase tracking-wider">Economia</p>
+                  <p className="text-xs font-medium text-brand-primary uppercase tracking-wider">{t.savings}</p>
                   <span className="block text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-primary">
                     {profile.savings}
                   </span>
-                  <p className="text-sm text-brand-primary font-medium">/mês</p>
+                  <p className="text-sm text-brand-primary font-medium">{t.perMonth}</p>
                 </div>
               </div>
             </div>
@@ -126,13 +90,13 @@ export default function BusinessProfilesSection({ onContactClick }: BusinessProf
           onClick={onContactClick}
           className="btn btn-primary btn-lg"
         >
-          Falar com a gente
+          {t.ctaPrimary}
         </button>
         <a
           href="#como-funciona"
           className="btn btn-outline btn-lg"
         >
-          Como começar
+          {t.ctaSecondary}
         </a>
       </div>
     </div>
