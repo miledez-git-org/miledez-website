@@ -180,8 +180,8 @@ Annotation: step 2 now produces the same kind of estimate the reader just saw in
 
 | Tier | Price | label | example (new) |
 |------|-------|-------|---------------|
-| 1 | a partir de R$500/mês | Uma automação simples | Ex.: confirmação de consultas por WhatsApp |
-| 2 | a partir de R$2.000/mês | Automações com várias etapas e sistemas | Ex.: cotação com fornecedores ou renovação de contratos |
+| 1 | a partir de R$500/mês | Uma automação simples | Ex.: confirmação de consultas ou aviso de renovação de contratos |
+| 2 | a partir de R$2.000/mês | Automações com várias etapas e sistemas | Ex.: cotação com vários fornecedores |
 | 3 | a partir de R$6.000/mês | Vários processos ligados, sob medida | Ex.: compras do pedido à nota fiscal |
 
 - **included (new row, shared by all tiers):** Incluso em todos: construção · hospedagem · manutenção · ajustes quando seu processo mudar · suporte por WhatsApp `[CONFIRM: support channel]`
@@ -262,12 +262,15 @@ Annotation: this closes the arc the hero opened (tarefas repetitivas → no auto
 
 ---
 
-## 6. Open items before implementation
+## 6. Decisions (resolved 2026-10-10)
 
-1. `[CONFIRM]` Pilot/offer terms: "desenvolvimento por nossa conta + você testa antes de assinar".
-2. `[NEED]` Recalculated ROI estimates with written assumptions (3 cards).
-3. `[NEED]` Founder name and photo for the final CTA.
-4. `[CONFIRM]` Response time (1 dia útil), support channel, monitoring and error response.
-5. `[CONFIRM]` FAQ facts: data hosting and LGPD, what happens on cancellation, system limits.
-6. `[NEED: decision]` Industry-page metrics: rewrite with sources or remove until the first cases exist.
-7. Headline choice: A (recommended), B or C.
+| # | Item | Decision |
+|---|------|----------|
+| 1 | Offer terms | Confirmed: development of the first automation is free; the client tests before subscribing |
+| 2 | ROI estimates | Written with stated assumptions. Clinic R$500 → R$3.000, cooperative R$2.000 → R$5.600, accounting firm R$500 → R$1.900. Contract renewal moved to the R$500 tier so the card fits its tier. EN uses the USD tiers with straight /5 conversions of the returns |
+| 3 | Founder | Simon Larsen, photo at `public/team/simon-larsen.jpg` |
+| 4 | FAQ facts | Drafted by Claude for review: LGPD + data processing agreement, 30-day cancellation notice with documentation handover, same-business-day fixes, 1-business-day reply, WhatsApp support. **Verify before publishing** |
+| 5 | Industry-page metrics | Removed (grid and data). `MetricsGrid.tsx` kept for when real case results exist |
+| 6 | Headline | B: "Sua equipe para de repetir tarefa. O sistema faz por ela." |
+
+Leftover: `components/ValuePropositionB.tsx` and the `home.value` dictionary block are unused. They were kept because deleting files needs the owner's confirmation.

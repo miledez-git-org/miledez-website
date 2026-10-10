@@ -1,15 +1,16 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import ValuePropositionB from '@/components/ValuePropositionB'
 import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
 import HeroAutomationDiagram from '@/components/HeroAutomationDiagram'
 import WorkflowExplainerSection from '@/components/WorkflowExplainerSection'
 import PainPointSection from '@/components/PainPointSection'
 import BusinessProfilesSection from '@/components/BusinessProfilesSection'
+import FAQSection from '@/components/FAQSection'
 import ScrollProgress from '@/components/ScrollProgress'
 import ContactModal from '@/components/ContactModal'
 import { getDict, type Locale } from '@/lib/i18n'
@@ -71,7 +72,7 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
                   {t.hero.cta}
                 </button>
                 <a
-                  href="#valor"
+                  href="#problemas"
                   className="btn btn-outline btn-lg"
                 >
                   {t.hero.secondary}
@@ -89,12 +90,7 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
 
       </section>
 
-      {/* Value Proposition */}
-      <section id="valor" className="py-24 md:py-32 bg-white">
-        <div className="px-6 md:px-10 max-w-7xl mx-auto">
-          <ValuePropositionB locale={locale} onContactClick={() => setIsContactModalOpen(true)} />
-        </div>
-      </section>
+      {/* Story order: problem → example → value → process → price → doubts → close */}
 
       {/* Pain Points */}
       <PainPointSection locale={locale} />
@@ -102,8 +98,8 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
       {/* Workflow Explainer - How automations work */}
       <WorkflowExplainerSection locale={locale} />
 
-      {/* Business Profiles - Who is this for */}
-      <section id="perfis" className="py-24 md:py-32 bg-white">
+      {/* Estimated value - one card per example */}
+      <section id="quanto-vale" className="py-24 md:py-32 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <BusinessProfilesSection locale={locale} onContactClick={() => setIsContactModalOpen(true)} />
         </div>
@@ -123,8 +119,11 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
         </div>
       </section>
 
+      {/* FAQ - objection handling */}
+      <FAQSection locale={locale} />
+
       {/* CTA */}
-      <section id="contato" className="py-24 md:py-32 bg-white">
+      <section id="contato" className="py-24 md:py-32 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
             {t.cta.titleLine1}<br />
@@ -133,6 +132,19 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
           <p className="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
             {t.cta.text}
           </p>
+          {/* Founder: the person who answers */}
+          <div className="mt-8 flex items-center justify-center gap-4">
+            <Image
+              src="/team/simon-larsen.jpg"
+              alt={t.cta.founderAlt}
+              width={64}
+              height={64}
+              className="w-16 h-16 rounded-full object-cover flex-shrink-0"
+            />
+            <p className="text-base text-neutral-600 text-left max-w-xs">
+              {t.cta.founder}
+            </p>
+          </div>
           <div className="mt-10 md:mt-12">
             <button
               onClick={() => setIsContactModalOpen(true)}
@@ -140,6 +152,7 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
             >
               {t.cta.button}
             </button>
+            <p className="mt-4 text-sm text-neutral-500">{t.cta.note}</p>
           </div>
         </div>
       </section>

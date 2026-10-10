@@ -13,7 +13,8 @@ export default function ProcessSection({ locale = 'pt' }: { locale?: Locale }) {
       {/* Header */}
       <div className="mb-10 md:mb-12">
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] lg:text-[3.5rem] text-brand-black leading-tight">
-          {t.title}
+          {t.titleLead}{' '}
+          <span className="text-brand-primary">{t.titleAccent}</span>
         </h2>
         <p className="mt-4 text-xl text-neutral-600 max-w-2xl">
           {t.subtitle}
