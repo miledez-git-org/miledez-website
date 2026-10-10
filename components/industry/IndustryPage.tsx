@@ -5,7 +5,6 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ContactModal from '@/components/ContactModal'
 import ChallengeCard from '@/components/industry/ChallengeCard'
-import MetricsGrid from '@/components/industry/MetricsGrid'
 import IndustryIntegrations from '@/components/industry/IndustryIntegrations'
 import { WorkflowVisualCompact, getHeroPreset, getCompactWorkflows } from '@/components/WorkflowVisual'
 import type { Industry } from '@/components/WorkflowVisual'
@@ -13,7 +12,6 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { stepIcons } from '@/components/Icons'
 import { getDict, type Locale } from '@/lib/i18n'
 
-type MetricType = 'percentage' | 'multiplier' | 'absolute'
 type Integration = { name: string; logo: string }
 
 /** Language-independent parts of each industry page. Copy lives in lib/i18n. */
@@ -22,14 +20,12 @@ const industryMeta: Record<
   {
     copyKey: 'health' | 'services' | 'agribusiness'
     icons: (keyof typeof stepIcons)[]
-    metricTypes: MetricType[]
     integrations: Integration[]
   }
 > = {
   saude: {
     copyKey: 'health',
     icons: ['folder', 'creditCard', 'calendar'],
-    metricTypes: ['percentage', 'percentage', 'multiplier', 'percentage'],
     integrations: [
       { name: 'WhatsApp', logo: 'whatsapp' },
       { name: 'Doctoralia', logo: 'doctoralia' },
@@ -54,7 +50,6 @@ const industryMeta: Record<
   servicos: {
     copyKey: 'services',
     icons: ['calendar', 'document', 'creditCard'],
-    metricTypes: ['absolute', 'percentage', 'percentage', 'absolute'],
     integrations: [
       { name: 'WhatsApp', logo: 'whatsapp' },
       { name: 'Gmail', logo: 'gmail' },
@@ -79,7 +74,6 @@ const industryMeta: Record<
   agronegocio: {
     copyKey: 'agribusiness',
     icons: ['mail', 'document', 'sync'],
-    metricTypes: ['percentage', 'percentage', 'multiplier', 'absolute'],
     integrations: [
       { name: 'WhatsApp', logo: 'whatsapp' },
       { name: 'Google Sheets', logo: 'google-sheets' },
@@ -109,7 +103,6 @@ export default function IndustryPage({ industry, locale = 'pt' }: IndustryPagePr
   const meta = industryMeta[industry]
   const copy = getDict(locale).industry[meta.copyKey]
   const workflows = getCompactWorkflows(industry, locale)
-  const metrics = copy.metrics.map((metric, i) => ({ ...metric, type: meta.metricTypes[i] }))
 
   return (
     <div className="min-h-screen bg-white">
@@ -192,13 +185,11 @@ export default function IndustryPage({ industry, locale = 'pt' }: IndustryPagePr
       {/* Results */}
       <section id="resultados" className="py-28 md:py-40 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            <div>
-              <h2 className="heading-display text-[2rem] md:text-[2.5rem] mb-6 text-brand-black">{copy.resultsTitle}</h2>
-              <p className="text-xl leading-relaxed text-neutral-600">{copy.resultsParagraphs[0]}</p>
-              <p className="text-xl leading-relaxed mt-6 text-neutral-600">{copy.resultsParagraphs[1]}</p>
-            </div>
-            <MetricsGrid metrics={metrics} locale={locale} />
+          {/* Metrics grid removed until real client results exist (see plans/homepage-storytelling-copy-plan.md) */}
+          <div className="max-w-2xl">
+            <h2 className="heading-display text-[2rem] md:text-[2.5rem] mb-6 text-brand-black">{copy.resultsTitle}</h2>
+            <p className="text-xl leading-relaxed text-neutral-600">{copy.resultsParagraphs[0]}</p>
+            <p className="text-xl leading-relaxed mt-6 text-neutral-600">{copy.resultsParagraphs[1]}</p>
           </div>
         </div>
       </section>
