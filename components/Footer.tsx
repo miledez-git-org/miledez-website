@@ -1,8 +1,15 @@
 'use client'
 
 import Link from 'next/link'
+import { getDict, localePath, type Locale } from '@/lib/i18n'
 
-export default function Footer() {
+interface FooterProps {
+  locale?: Locale
+}
+
+export default function Footer({ locale = 'pt' }: FooterProps) {
+  const t = getDict(locale).footer
+
   return (
     <footer className="relative min-h-[50vh] md:min-h-[40vh] py-20 md:py-28 px-6 md:px-10 text-white overflow-hidden bg-brand-black">
       {/* Geometric texture overlay */}
@@ -19,35 +26,35 @@ export default function Footer() {
                 mil&dez
               </div>
               <p className="text-sm text-white/80">
-                seu trabalho no automático
+                {t.tagline}
               </p>
             </div>
 
             {/* Links */}
             <div className="flex flex-wrap gap-6 md:gap-8">
               <Link
-                href="/"
+                href={localePath(locale, 'home')}
                 className="text-sm text-white/80 hover:text-white transition-colors"
               >
-                Início
+                {t.home}
               </Link>
               <Link
-                href="/saude"
+                href={localePath(locale, 'health')}
                 className="text-sm text-white/80 hover:text-white transition-colors"
               >
-                Saúde
+                {t.health}
               </Link>
               <Link
-                href="/servicos"
+                href={localePath(locale, 'services')}
                 className="text-sm text-white/80 hover:text-white transition-colors"
               >
-                Serviços
+                {t.services}
               </Link>
               <Link
-                href="/agronegocio"
+                href={localePath(locale, 'agribusiness')}
                 className="text-sm text-white/80 hover:text-white transition-colors"
               >
-                Agronegócio
+                {t.agribusiness}
               </Link>
               <a
                 href="mailto:contato@miledez.com.br"
@@ -61,7 +68,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-sm text-white/80 hover:text-white transition-colors"
               >
-                WhatsApp
+                {t.whatsapp}
               </a>
             </div>
           </div>
@@ -69,24 +76,24 @@ export default function Footer() {
           {/* Bottom bar */}
           <div className="mt-8 pt-8 border-t border-white/10 flex flex-col gap-4">
             <div className="text-xs text-white/70 text-center md:text-left">
-              Rua Irmaos Kennedy 200 ap. 301, Belo Horizonte, MG · CNPJ: 44.584.460/0001-80
+              {t.address}
             </div>
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <span className="text-xs text-white/70">
-                © 2025 mil&dez. Todos os direitos reservados.
+                {t.rights}
               </span>
               <div className="flex items-center gap-4">
                 <Link
-                  href="/politica-privacidade"
+                  href={localePath(locale, 'privacy')}
                   className="text-xs text-white/70 hover:text-white/90 transition-colors"
                 >
-                  Privacidade
+                  {t.privacy}
                 </Link>
                 <Link
-                  href="/termos"
+                  href={localePath(locale, 'terms')}
                   className="text-xs text-white/70 hover:text-white/90 transition-colors"
                 >
-                  Termos
+                  {t.terms}
                 </Link>
               </div>
             </div>

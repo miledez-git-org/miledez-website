@@ -1,15 +1,18 @@
 'use client'
 
 import { useState, useEffect, useRef, FormEvent } from 'react'
+import { getDict, type Locale } from '@/lib/i18n'
 
 interface ContactModalProps {
   isOpen: boolean
   onClose: () => void
+  locale?: Locale
 }
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
-export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
+export default function ContactModal({ isOpen, onClose, locale = 'pt' }: ContactModalProps) {
+  const t = getDict(locale).contactModal
   const [formStatus, setFormStatus] = useState<FormStatus>('idle')
   const [formData, setFormData] = useState({
     name: '',
@@ -66,6 +69,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           email: formData.email,
           phone: formData.phone,
           message: formData.message,
+          language: locale,
         }),
       })
 
@@ -119,7 +123,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         <button
           onClick={resetAndClose}
           className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full hover:bg-neutral-100 transition-colors z-10"
-          aria-label="Fechar"
+          aria-label={t.close}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M18 6L6 18M6 6l12 12" />
@@ -135,30 +139,30 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-brand-black mb-3">Mensagem enviada!</h3>
+              <h3 className="text-2xl font-semibold text-brand-black mb-3">{t.successTitle}</h3>
               <p className="text-brand-muted mb-8">
-                Entraremos em contato em breve para agendar uma conversa.
+                {t.successText}
               </p>
               <button
                 onClick={resetAndClose}
                 className="btn btn-primary btn-lg"
               >
-                Fechar
+                {t.close}
               </button>
             </div>
           ) : (
             <>
               <h2 className="text-2xl font-semibold text-brand-black mb-2">
-                Vamos conversar
+                {t.title}
               </h2>
               <p className="text-brand-muted mb-6">
-                Preencha o formulário e entraremos em contato para criar uma automação de teste gratuita para sua empresa.
+                {t.intro}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-brand-black mb-1.5">
-                    Nome *
+                    {t.name}
                   </label>
                   <input
                     type="text"
@@ -168,13 +172,13 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     value={formData.name}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors"
-                    placeholder="Seu nome"
+                    placeholder={t.namePlaceholder}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-brand-black mb-1.5">
-                    E-mail *
+                    {t.email}
                   </label>
                   <input
                     type="email"
@@ -184,13 +188,13 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors"
-                    placeholder="seu@email.com"
+                    placeholder={t.emailPlaceholder}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-brand-black mb-1.5">
-                    Telefone
+                    {t.phone}
                   </label>
                   <input
                     type="tel"
@@ -199,13 +203,13 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors"
-                    placeholder="(11) 99999-9999"
+                    placeholder={t.phonePlaceholder}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-brand-black mb-1.5">
-                    Mensagem *
+                    {t.message}
                   </label>
                   <textarea
                     id="message"
@@ -215,13 +219,13 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors resize-none"
-                    placeholder="Conte um pouco sobre sua empresa e os processos que gostaria de automatizar..."
+                    placeholder={t.messagePlaceholder}
                   />
                 </div>
 
                 {formStatus === 'error' && (
                   <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-                    Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.
+                    {t.error}
                   </div>
                 )}
 
@@ -236,10 +240,10 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                       </svg>
-                      Enviando...
+                      {t.sending}
                     </>
                   ) : (
-                    'Enviar mensagem'
+                    t.submit
                   )}
                 </button>
               </form>

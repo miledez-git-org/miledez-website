@@ -12,8 +12,10 @@ import PainPointSection from '@/components/PainPointSection'
 import BusinessProfilesSection from '@/components/BusinessProfilesSection'
 import ScrollProgress from '@/components/ScrollProgress'
 import ContactModal from '@/components/ContactModal'
+import { getDict, type Locale } from '@/lib/i18n'
 
-export default function Home() {
+export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
+  const t = getDict(locale).home
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   // Staggered reveal observer for elements with .fade-in-up class
   useEffect(() => {
@@ -38,7 +40,7 @@ export default function Home() {
       {/* Global interactive elements */}
       <ScrollProgress />
 
-      <Header onContactClick={() => setIsContactModalOpen(true)} />
+      <Header locale={locale} onContactClick={() => setIsContactModalOpen(true)} />
 
       <main id="main-content">
       {/* Hero */}
@@ -50,14 +52,14 @@ export default function Home() {
             <div className="flex flex-col justify-center">
               {/* Headline */}
               <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-brand-black leading-[1.1]">
-                seu trabalho<br />
-                do seu jeito<br />
-                <span className="text-brand-primary">no automático</span>
+                {t.hero.line1}<br />
+                {t.hero.line2}<br />
+                <span className="text-brand-primary">{t.hero.accent}</span>
               </h1>
 
               {/* Subheadline */}
               <p className="mt-6 text-lg md:text-xl text-neutral-600 font-normal leading-relaxed max-w-xl">
-                Reconecte seus sistemas do jeito que quiser e automatize os processos que desperdiçam seu tempo. Criamos resultados em dias, não meses.
+                {t.hero.subtitle}
               </p>
 
               {/* CTAs */}
@@ -66,20 +68,20 @@ export default function Home() {
                   onClick={() => setIsContactModalOpen(true)}
                   className="btn btn-primary btn-xl"
                 >
-                  Agendar demonstração
+                  {t.hero.cta}
                 </button>
                 <a
                   href="#valor"
                   className="btn btn-outline btn-lg"
                 >
-                  Descubra mais
+                  {t.hero.secondary}
                 </a>
               </div>
             </div>
 
             {/* Right column - Automation diagram */}
             <div className="flex items-center justify-center">
-              <HeroAutomationDiagram />
+              <HeroAutomationDiagram locale={locale} />
             </div>
 
           </div>
@@ -90,34 +92,34 @@ export default function Home() {
       {/* Value Proposition */}
       <section id="valor" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
-          <ValuePropositionB onContactClick={() => setIsContactModalOpen(true)} />
+          <ValuePropositionB locale={locale} onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
       {/* Pain Points */}
-      <PainPointSection />
+      <PainPointSection locale={locale} />
 
       {/* Workflow Explainer - How automations work */}
-      <WorkflowExplainerSection />
+      <WorkflowExplainerSection locale={locale} />
 
       {/* Business Profiles - Who is this for */}
       <section id="perfis" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
-          <BusinessProfilesSection onContactClick={() => setIsContactModalOpen(true)} />
+          <BusinessProfilesSection locale={locale} onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
       {/* How It Works - Process */}
       <section id="como-funciona" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
-          <ProcessSection />
+          <ProcessSection locale={locale} />
         </div>
       </section>
 
       {/* Pricing */}
       <section id="precos" className="py-24 md:py-32 bg-bg-muted">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
-          <PricingSection onContactClick={() => setIsContactModalOpen(true)} />
+          <PricingSection locale={locale} onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
@@ -125,18 +127,18 @@ export default function Home() {
       <section id="contato" className="py-24 md:py-32 bg-white">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
-            Pronto para automatizar?<br />
-            <span className="text-brand-black">Vamos conversar</span>
+            {t.cta.titleLine1}<br />
+            <span className="text-brand-black">{t.cta.titleLine2}</span>
           </h2>
           <p className="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
-            Criamos uma automação de teste gratuita para seu negócio. Sem compromisso, sem custo.
+            {t.cta.text}
           </p>
           <div className="mt-10 md:mt-12">
             <button
               onClick={() => setIsContactModalOpen(true)}
               className="btn btn-primary btn-xl"
             >
-              Quero testar grátis
+              {t.cta.button}
             </button>
           </div>
         </div>
@@ -144,12 +146,13 @@ export default function Home() {
 
       </main>
 
-      <Footer />
+      <Footer locale={locale} />
 
       {/* Contact Modal */}
       <ContactModal
         isOpen={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}
+        locale={locale}
       />
     </div>
   )

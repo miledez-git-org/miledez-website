@@ -1,46 +1,11 @@
 'use client'
 
+import { Fragment } from 'react'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
+import { getDict, type Locale } from '@/lib/i18n'
 
-interface ProcessStep {
-  number: string
-  title: string
-  description: string
-  duration: string
-}
-
-const steps: ProcessStep[] = [
-  {
-    number: '01',
-    title: 'Conversa inicial',
-    description:
-      'Marcamos uma conversa rápida pra nos conhecer, entender sua empresa e como funciona o dia a dia da sua operação.',
-    duration: '30 min',
-  },
-  {
-    number: '02',
-    title: 'Relatório de ideias',
-    description:
-      'Preparamos um relatório com sugestões de automações para o seu negócio, incluindo exemplos práticos e estimativas de valor. A intenção é inspirar e mostrar o que é possível.',
-    duration: '2–3 dias úteis',
-  },
-  {
-    number: '03',
-    title: 'Definição e construção',
-    description:
-      'Junto com você, definimos exatamente o que será automatizado. Construímos, testamos e ajustamos até ficar do jeito certo.',
-    duration: '1–2 semanas',
-  },
-  {
-    number: '04',
-    title: 'Entrega e acompanhamento',
-    description:
-      'Entregamos a automação funcionando. Você testa no seu dia a dia e nós fazemos todos os ajustes necessários — tudo incluído na mensalidade.',
-    duration: 'contínuo',
-  },
-]
-
-export default function ProcessSection() {
+export default function ProcessSection({ locale = 'pt' }: { locale?: Locale }) {
+  const t = getDict(locale).home.process
   const { ref, isVisible } = useScrollReveal({ threshold: 0.15 })
 
   return (
@@ -48,10 +13,10 @@ export default function ProcessSection() {
       {/* Header */}
       <div className="mb-10 md:mb-12">
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] lg:text-[3.5rem] text-brand-black leading-tight">
-          Como trabalhamos
+          {t.title}
         </h2>
         <p className="mt-4 text-xl text-neutral-600 max-w-2xl">
-          Da primeira conversa ao sistema rodando — simples assim.
+          {t.subtitle}
         </p>
       </div>
 
@@ -65,14 +30,15 @@ export default function ProcessSection() {
         }}
       >
         <h3 className="heading-display text-2xl md:text-3xl text-white leading-snug font-bold text-center">
-          Primeiro processo automatizado em 2 semanas
+          {t.promiseTitle}
         </h3>
         <div className="mt-5 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
-          <span className="text-base text-white">Desenvolvimento sem custo</span>
-          <span className="hidden md:block text-white/30">·</span>
-          <span className="text-base text-white">Teste grátis</span>
-          <span className="hidden md:block text-white/30">·</span>
-          <span className="text-base text-white">Só a mensalidade, tudo incluso</span>
+          {t.promiseItems.map((item, i) => (
+            <Fragment key={item}>
+              {i > 0 && <span className="hidden md:block text-white/30">·</span>}
+              <span className="text-base text-white">{item}</span>
+            </Fragment>
+          ))}
         </div>
       </div>
 
@@ -83,9 +49,9 @@ export default function ProcessSection() {
 
         {/* Steps */}
         <div className="flex flex-col gap-12 md:gap-16 lg:gap-20">
-          {steps.map((step, index) => (
+          {t.steps.map((step, index) => (
             <div
-              key={step.number}
+              key={index}
               className="relative flex gap-6 md:gap-8 lg:gap-10"
               style={{
                 opacity: isVisible ? 1 : 0,
@@ -97,7 +63,7 @@ export default function ProcessSection() {
               <div className="relative z-10 flex-shrink-0 w-14 md:w-[72px] lg:w-[88px]">
                 <div className="bg-white">
                   <span className="heading-display text-[2.5rem] md:text-[3rem] lg:text-[4rem] text-neutral-200 leading-none block text-center">
-                    {step.number}
+                    {String(index + 1).padStart(2, '0')}
                   </span>
                 </div>
               </div>

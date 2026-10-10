@@ -1,6 +1,7 @@
 'use client'
 
 import { useScrollReveal } from '@/hooks/useScrollReveal'
+import { getDict, type Locale } from '@/lib/i18n'
 
 const RepeatIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6b0f1a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -27,25 +28,10 @@ const AlertTriangleIcon = () => (
   </svg>
 )
 
-const painPoints = [
-  {
-    title: 'Tarefas repetitivas',
-    description: 'Sua equipe gasta horas em tarefas manuais que poderiam acontecer sozinhas.',
-    icon: RepeatIcon,
-  },
-  {
-    title: 'Informação espalhada',
-    description: 'Dados no e-mail, na planilha, no sistema. Ninguém sabe onde está o que precisa.',
-    icon: LayersIcon,
-  },
-  {
-    title: 'Erros e retrabalho',
-    description: 'Prazos esquecidos, cobranças atrasadas. Pequenos erros que custam tempo e dinheiro.',
-    icon: AlertTriangleIcon,
-  },
-]
+const painIcons = [RepeatIcon, LayersIcon, AlertTriangleIcon]
 
-export default function PainPointSection() {
+export default function PainPointSection({ locale = 'pt' }: { locale?: Locale }) {
+  const t = getDict(locale).home.pain
   const { ref, isVisible } = useScrollReveal({ threshold: 0.2 })
 
   return (
@@ -62,18 +48,18 @@ export default function PainPointSection() {
           }}
         >
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
-            Automação resolve problemas{' '}
-            <span className="text-brand-primary">e aumenta qualidade</span>
+            {t.titleLead}{' '}
+            <span className="text-brand-primary">{t.titleAccent}</span>
           </h2>
           <p className="mt-4 text-lg text-neutral-600 leading-relaxed">
-            Tarefas manuais, sistemas desconectados, informações que se perdem. Criamos automações sob medida que resolvem isso.
+            {t.subtitle}
           </p>
         </div>
 
         {/* 3-column pain points */}
         <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10">
-          {painPoints.map((point, index) => {
-            const Icon = point.icon
+          {t.points.map((point, index) => {
+            const Icon = painIcons[index]
             const delay = 200 + index * 100
 
             return (
@@ -105,7 +91,7 @@ export default function PainPointSection() {
             href="#exemplos"
             className="btn btn-outline btn-lg"
           >
-            Como funciona
+            {t.cta}
           </a>
         </div>
       </div>

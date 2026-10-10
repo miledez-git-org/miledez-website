@@ -1,6 +1,27 @@
 'use client'
 
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import { localeFromPathname } from '@/lib/i18n'
+
+const copy = {
+  pt: {
+    title: 'Algo deu errado',
+    text: 'Ocorreu um erro inesperado. Por favor, tente novamente ou volte para a página inicial.',
+    details: 'Detalhes técnicos',
+    retry: 'Tentar novamente',
+    home: 'Voltar ao início',
+    homeHref: '/',
+  },
+  en: {
+    title: 'Something went wrong',
+    text: 'An unexpected error occurred. Please try again or go back to the home page.',
+    details: 'Technical details',
+    retry: 'Try again',
+    home: 'Back to home',
+    homeHref: '/en',
+  },
+}
 
 interface ErrorPageProps {
   error: Error & { digest?: string }
@@ -12,6 +33,8 @@ interface ErrorPageProps {
  * This file handles errors that occur during rendering of any route
  */
 export default function ErrorPage({ error, reset }: ErrorPageProps) {
+  const t = copy[localeFromPathname(usePathname() ?? '/')]
+
   useEffect(() => {
     // Log error to console (could send to analytics/error tracking)
     console.error('Route error:', error)
@@ -39,17 +62,17 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
 
         {/* Error message */}
         <h1 className="heading-section text-3xl text-brand-black mb-4">
-          Algo deu errado
+          {t.title}
         </h1>
         <p className="text-brand-muted mb-8">
-          Ocorreu um erro inesperado. Por favor, tente novamente ou volte para a página inicial.
+          {t.text}
         </p>
 
         {/* Error details (development only) */}
         {process.env.NODE_ENV === 'development' && (
           <details className="mb-8 text-left">
             <summary className="text-xs text-brand-muted cursor-pointer hover:text-brand-text mb-2">
-              Detalhes técnicos
+              {t.details}
             </summary>
             <div className="p-4 bg-gray-100 text-xs overflow-auto">
               <p className="font-medium text-red-600 mb-2">{error.message}</p>
@@ -66,13 +89,13 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
             onClick={reset}
             className="btn-primary px-8 py-4 text-white bg-brand-primary hover:bg-brand-primary-dark"
           >
-            Tentar novamente
+            {t.retry}
           </button>
           <a
-            href="/"
+            href={t.homeHref}
             className="btn-secondary px-8 py-4 border border-brand-border hover:border-brand-primary hover:text-brand-primary"
           >
-            Voltar ao início
+            {t.home}
           </a>
         </div>
       </div>
