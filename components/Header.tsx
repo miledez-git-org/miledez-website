@@ -17,6 +17,10 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
   const currentRoute: RouteKey | undefined = resolveRoute(pathname)?.key
   // Language switch goes to the same page in the other language (home if unknown)
   const switchHref = routes[currentRoute ?? 'home'][otherLocale]
+  // Remember an explicit language choice so the country-based redirect in vercel.json stops applying
+  const rememberLocale = () => {
+    document.cookie = `lang=${otherLocale}; path=/; max-age=31536000; samesite=lax`
+  }
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -152,6 +156,7 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
             hrefLang={otherLocale === 'en' ? 'en-US' : 'pt-BR'}
             lang={otherLocale === 'en' ? 'en-US' : 'pt-BR'}
             aria-label={t.switchAria}
+            onClick={rememberLocale}
             className="text-neutral-500 hover:text-brand-black transition-colors py-2"
           >
             {t.switchShort}
@@ -205,7 +210,7 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
               hrefLang={otherLocale === 'en' ? 'en-US' : 'pt-BR'}
               lang={otherLocale === 'en' ? 'en-US' : 'pt-BR'}
               className="py-3 min-h-[44px] flex items-center text-neutral-500 hover:text-brand-black transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => { rememberLocale(); setMobileMenuOpen(false) }}
               role="menuitem"
             >
               {t.switchLabel}
