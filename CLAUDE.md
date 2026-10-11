@@ -68,6 +68,7 @@ public/
 - All copy is in `lib/i18n/pt.ts` and `lib/i18n/en.ts` (`en` is typed against `pt`, so a missing key fails `tsc`). Components take `locale?: Locale` (default `'pt'`) and call `getDict(locale)`.
 - URL mapping and hreflang helpers: `lib/i18n/index.ts` (`routes`, `localePath`, `alternatesFor`). Add new pages there, and add them to both groups.
 - Industry pages share `components/industry/IndustryPage.tsx` (data-driven; one place to change). English workflow presets: `components/WorkflowVisual/presets.en.ts`.
+- **Country redirect (`vercel.json` `redirects`):** visitors outside Brazil are sent from a PT page to its EN counterpart, Brazilian visitors from EN to PT (307, based on Vercel's `x-vercel-ip-country` header). Skipped when the `lang` cookie is set (the header language switch sets it) and for crawler/link-preview user agents. Keep the rules in sync with `routes` when adding pages. `has` conditions don't run in `vercel dev`, only when deployed.
 - English prices are in USD (tiers $150 / $500 / $1,500); the ROI examples are straight BRL conversions.
 
 ## Key Patterns
