@@ -1,185 +1,80 @@
 # mil&dez Website
 
-Agency website for mil&dez — Brazilian B2B AI workflow automation agency.
+Marketing site for mil&dez, a Brazilian B2B agency for AI workflow automation.
+Production: https://miledez.com.br (Vercel, auto-deploys from `main`).
 
-> Agency context: Part of the mil&dez platform.
+## Stack
 
-## Links
-
-- **Production:** miledez.com.br
-- **Local Dev:** http://localhost:3000
-
-## Tech Stack
-
-| Layer | Technology |
-|-------|------------|
-| Framework | Next.js 14.2.35 (App Router) |
-| UI | React 18.3, Framer Motion 12 |
-| Styling | Tailwind CSS 3.4 |
-| Language | TypeScript |
-| Deployment | Vercel (auto-deploy from main) |
-
-## Commands
+Next.js 14 (App Router, static export) · React 18 · TypeScript (strict) · Tailwind CSS 3 · Framer Motion · pnpm
 
 ```bash
-pnpm install     # Install dependencies
-pnpm run dev     # Start dev server
-pnpm run build   # Production build
-pnpm run lint    # Run ESLint
+pnpm install        # always re-run after editing package.json (CI uses --frozen-lockfile)
+pnpm run dev        # http://localhost:3000
+pnpm run lint
+pnpm exec tsc --noEmit
+pnpm run build      # stop the dev server first; it shares .next/
 ```
 
-## Project Structure
+`.env.local` holds `NEXT_PUBLIC_N8N_ASSESSMENT_WEBHOOK_URL` (assessment tool) and optionally `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
+
+## Layout
 
 ```
-app/                        # Next.js App Router pages
-  industrias/               # Industries overview page (links to subpages)
-  saude/                    # Healthcare industry page
-  servicos/                 # Professional services page
-  agronegocio/              # Agribusiness industry page
-  avaliacao/                # AI assessment tool (deactivated from nav — not production-ready)
-  termos/                   # Terms of service
-  politica-privacidade/     # Privacy policy
-components/
-  ui/                       # Design system components
-    primitives/             # Button, Input, Checkbox, etc.
-    cards/                  # Card, PricingCard, FeatureCard, etc.
-    layout/                 # Modal, Accordion, Sidebar
-    navigation/             # Tabs, Breadcrumb, Pagination
-    feedback/               # Alert, Badge, Toast, Tooltip
-    data-display/           # Table, List, Avatar, Progress
-    typography/             # Heading, Text, Logo
-    tokens/                 # Theme values, Tailwind sync
-  industry/                 # Industry-specific components
-  WorkflowVisual/           # Workflow visualization system
-hooks/                      # Custom React hooks
-lib/                        # Utility functions
-types/                      # TypeScript interfaces (assessment.ts)
-docs/                       # n8n workflow specs (JSON + markdown)
-supabase/migrations/        # Database migration SQL files
-public/
-  miledez-agency-logos/     # Brand identity SVGs (logo, monogram)
-  software-company-logos/   # Integration partner logos (57 SVGs)
+app/(pt)/            Portuguese pages at root URLs (/, /industrias, /saude, /servicos, /agronegocio, /termos, /politica-privacidade, /avaliacao)
+app/(en)/en/         English pages (/en, /en/industries, /en/health, /en/professional-services, /en/agribusiness, /en/terms, /en/privacy-policy)
+components/          Page sections (HomePage, Header, Footer, ContactModal, PricingSection, ...)
+components/ui/       Design-system primitives, cards, layout, navigation, feedback, typography, tokens
+components/industry/ Shared template for the three industry pages (IndustryPage + data)
+components/WorkflowVisual/  Workflow diagram system and presets (pt + en)
+lib/i18n/            All copy: pt.ts, en.ts, and routes/helpers in index.ts
+hooks/               useScrollReveal, useCountUp, useMediaQuery, useParallax
+docs/                n8n workflow spec for the assessment tool
+supabase/migrations/ Schema used by that n8n workflow (the site itself never calls Supabase)
+public/              miledez-agency-logos/ (brand SVGs), software-company-logos/ (partner SVGs)
+plans/               Plan and todo files (see Working conventions)
 ```
 
-## Internationalization (pt-BR + en-US)
+Many files in `components/` are no longer mounted (older hero and section variants). Check `components/HomePage.tsx` and the `app/` pages for what is actually rendered before editing a section.
 
-- Portuguese stays at the original URLs; English lives under `/en` (`/en/industries`, `/en/health`, `/en/professional-services`, `/en/agribusiness`, `/en/terms`, `/en/privacy-policy`). `/avaliacao` has no English version.
-- Route groups `app/(pt)/` and `app/(en)/` each own a root layout (correct `<html lang>`); both use `components/RootShell.tsx`. `template`/`loading`/`error` live inside each group — never at `app/` root (they would wrap `<html>` and break hydration).
-- All copy is in `lib/i18n/pt.ts` and `lib/i18n/en.ts` (`en` is typed against `pt`, so a missing key fails `tsc`). Components take `locale?: Locale` (default `'pt'`) and call `getDict(locale)`.
-- URL mapping and hreflang helpers: `lib/i18n/index.ts` (`routes`, `localePath`, `alternatesFor`). Add new pages there, and add them to both groups.
-- Industry pages share `components/industry/IndustryPage.tsx` (data-driven; one place to change). English workflow presets: `components/WorkflowVisual/presets.en.ts`.
-- **Country redirect (`vercel.json` `redirects`):** visitors outside Brazil are sent from a PT page to its EN counterpart, Brazilian visitors from EN to PT (307, based on Vercel's `x-vercel-ip-country` header). Skipped when the `lang` cookie is set (the header language switch sets it) and for crawler/link-preview user agents. Keep the rules in sync with `routes` when adding pages. `has` conditions don't run in `vercel dev`, only when deployed.
-- English prices are in USD (tiers $150 / $500 / $1,500); the ROI examples are straight BRL conversions.
+## How the site works
 
-## Key Patterns
+- **Static export.** `next.config.js` sets `output: 'export'`. There are no API routes and no server components. Anything that talks to an external service (Formspree in ContactModal, the n8n webhook in AssessmentTool) is a client-side fetch.
+- **Two locales, one codebase.** Each route group has its own root layout so `<html lang>` is correct, and both use `components/RootShell.tsx`. `template`, `loading` and `error` live inside the groups, never at `app/` root. Components take `locale?: Locale` and read copy with `getDict(locale)`. `en` is typed against `pt`, so a key missing from either file fails typecheck.
+- **Adding a page.** Add the route pair to `routes` in `lib/i18n/index.ts`, create the page in both groups, add copy to both dictionaries, and add the two country-redirect rules to `vercel.json`. The redirects send non-Brazilian visitors to `/en` and Brazilian visitors to PT unless the `lang` cookie is set or the user agent is a crawler. They only run on Vercel, not in local dev.
+- **Industry pages** (saude, servicos, agronegocio) are data-driven through `components/industry/IndustryPage.tsx`. Change the template once; do not fork it per page.
+- **Header and PricingSection** need an `onContactClick` prop that opens ContactModal.
+- **Pricing.** PT tiers are in BRL, EN tiers in USD. Both live in the dictionaries.
+- **`/avaliacao`** exists but is unlinked from navigation on purpose. It is not production-ready.
 
-- **Header** — White background, sharp bottom shadow. Requires `onContactClick` prop for Contato button (opens modal). Indústrias links to `/industrias`.
-- **ContactModal** — Lead capture form (Formspree integration)
-- **HeroAutomationDiagram** — Static SVG diagram in hero right column (AUTOMAÇÃO hub → 3 branches). Replaced HeroConstellation.
-- **PricingSection** — Pricing tiers R$500/2,000/6,000 (requires `onContactClick` prop)
-- **AssessmentTool** — Multi-step lead gen form (4 steps → n8n webhook → Claude API → on-screen results). Direct client-side fetch to n8n (no API route — static export). Types in `types/assessment.ts`. n8n workflow spec in `docs/`.
-- Component library in `components/ui/` — use existing components before creating new ones
-- **Indústrias page** — `/industrias` overview with 3 cards linking to `/saude`, `/servicos`, `/agronegocio`
-- **Avaliação** — Page exists at `/avaliacao` but link removed from header nav (not production-ready)
-- **Industry pages** (saude, servicos, agronegocio) share an identical template structure. Changes to one should be applied to all 3. Shared components in `components/industry/` (ChallengeCard, MetricsGrid, IndustryIntegrations) affect all industry pages.
+## Hard rules
 
-## Homepage Section Order
+1. No `app/api/` routes and no server components. The build is a static export.
+2. Run `pnpm install` after any dependency change so `pnpm-lock.yaml` stays in sync. A stale lockfile fails the Vercel build.
+3. Every copy change goes into both `lib/i18n/pt.ts` and `lib/i18n/en.ts`. Never hardcode visible text in components.
+4. Client-facing text is Brazilian Portuguese (English only in the `en` dictionary). Code, comments and docs are English.
+5. Color values come from `components/ui/tokens/generated-theme.ts` via Tailwind `brand-*` and `neutral-*` classes. Change the theme file, not individual components, when the palette changes.
+6. Do not run `pnpm run build` while the dev server is running.
 
-1. Hero — headline + HeroAutomationDiagram
-2. ValuePropositionB (#valor) — 4 benefit cards + contact CTA
-3. PainPointSection (#problemas) — 3-column problems + "Como funciona" anchor
-4. WorkflowExplainerSection (#exemplos) — 3 vertical workflow cards (3/4/5 steps)
-5. BusinessProfilesSection (#perfis) — 2x2 ROI cards + contact CTA + "Como começar" anchor
-6. ProcessSection (#como-funciona) — burgundy promise card + 4-step timeline
-7. PricingSection (#precos) — 3 pricing tiers + contact CTA
-8. Final CTA (#contato) — centered close
+## Design guidance
 
-Removed from homepage: WorkflowDemonstrationsSection, WorkflowModularSection, LogoGrid
+The site follows a restrained editorial style: mostly monochrome gray on `#fafafa`, white cards, Inter, line icons, burgundy `brand-primary` as the single accent. Use burgundy for calls to action, active states and link hovers; let the rest stay neutral. Beyond that, use your judgment and keep these defaults unless there is a reason not to:
 
-## Color Usage
+- Reuse `components/ui/` before writing a new primitive.
+- Keep body text at 16px and never below 14px.
+- Sections align to `max-w-7xl mx-auto px-6 md:px-10` with `py-24 md:py-32`, so new sections line up with the hero.
+- Prefer plain outline SVG icons and directional soft shadows (for example `3px 4px 12px rgba(0,0,0,0.10)`).
+- Text on burgundy backgrounds is plain white.
 
-- Use Tailwind `brand-*` classes — never hardcode hex values
-- Burgundy (primary): `brand-primary` (#6b0f1a) / `brand-primary-dark` (#4a0a12) / `brand-primary-light` / `brand-primary-subtle`
-- `brand-secondary` tokens removed (2026-04-17) — sage green eliminated from design system
-- Body text: `text-neutral-600` (not `text-brand-muted`)
-- Glow shadows: `shadow-accent-glow` (burgundy). `shadow-secondary-glow` removed.
-- **`shadow-card` / `shadow-card-hover` are NOT defined** — use standard Tailwind (`shadow-sm`, `shadow-md`) or inline `boxShadow` style
-- **Brand migration complete (2026-04-17):** burgundy `#6b0f1a` is the sole accent color. Sage green fully removed from tokens, CSS vars, and all components.
+If the `frontend-minimal-ui` or `brand-voice` skills are available in the session, they hold the full design and copy guidance and take precedence over this summary.
 
-## Asset Paths
-- `public/miledez-agency-logos/` — brand identity SVGs (miledez-logo.svg, miledez-monogram.svg)
-- `public/software-company-logos/` — integration partner logos (57 SVGs, consolidated from old logos/ + icons/)
-- All components use `/software-company-logos/{name}.svg` — there is no separate icons directory
+## Before pushing
 
-## Rules
+Run lint, `tsc --noEmit` and a production build. Known non-issues: the build may fail collecting traces for `_not-found/page.js.nft.json` (a Next.js bug, pages still generate), and 404s on `_next/static/` in dev are fixed by `rm -rf .next`. When screenshotting with headless Puppeteer, force reveal-animated elements visible first (`el.style.opacity = '1'`) and verify layout from code rather than the screenshot, since Tailwind sizing classes may not apply.
 
-- **Always run `pnpm install` after changing `package.json`** — Vercel CI uses `--frozen-lockfile` (pnpm 10 default). If the lockfile is out of sync, the build fails.
-- **`.env.local` required** — contains `NEXT_PUBLIC_N8N_ASSESSMENT_WEBHOOK_URL`. No server-side secrets (static export).
-- **Static export (`output: 'export'`)** — no API routes, no server components. External service calls must be client-side fetch (same pattern as Formspree in ContactModal). Do not add `app/api/` routes.
-- **Don't run `pnpm run build` while dev server is running** — it corrupts `.next/` cache. Stop the dev server first, or expect to `rm -rf .next && npm run dev` after.
-- `eslint-config-next` version must match Next.js version to avoid build errors
-- `generated-theme.ts` is the single source of truth for Tailwind color tokens — update it (not individual components) when changing brand colors
-- **Min font size:** 14px (`text-sm`) absolute minimum for low-priority info; 16px (`text-base`) for all other text. Never use `text-xs`.
-- **Icons:** Always plain outline SVGs (stroke, no fill). Never wrap icons in colored background containers (`bg-brand-*-subtle`). Color via parent text class only.
-- **Burgundy backgrounds (`brand-primary`):** All text must be full `text-white` — never use `text-white/80`, `text-white/90`, or any opacity-reduced white.
-- **Section spacing:** All homepage sections use `py-24 md:py-32`. Keep consistent — do not mix with `py-28 md:py-40`.
-- **Section headers:** Always left-aligned (`max-w-2xl`). Never center-aligned (inconsistent with site design).
-- **Shadows:** User prefers directional lower-right shadows (e.g., `boxShadow: '3px 4px 12px rgba(0,0,0,0.10)'`), not uniform Tailwind shadows.
-- **Build trace error:** `npm run build` may fail on `_not-found/page.js.nft.json` — this is a pre-existing Next.js trace collection bug, not a code error. Pages still generate correctly.
-- If dev server returns 404s on `_next/static/` assets, delete `.next/` and restart: `rm -rf .next && npm run dev`
-- **Section alignment:** All section containers (homepage AND sub pages) use `max-w-7xl mx-auto px-6 md:px-10`. Do NOT use `max-w-6xl` for sections — it breaks left-edge alignment with the hero. The only exception is CTA sections (`max-w-3xl`, intentionally narrower/centered). Legal pages use `max-w-3xl` throughout (prose readability).
-- **Side-by-side comparisons:** Use `items-start` (not `items-end`) on flex containers when labels must align horizontally at the top. `items-end` causes misalignment when children have different heights (e.g., one has an accent bar).
-- **Puppeteer scroll-reveal:** Headless Puppeteer often fails to trigger `useScrollReveal` IntersectionObserver. Force visibility with `document.querySelectorAll('*').forEach(el => { if (el.style.opacity === '0') { el.style.opacity = '1'; el.style.transform = 'none'; } })` before taking screenshots.
-- **Puppeteer SVG/logo rendering:** Tailwind utility classes (`w-6 h-6`, `object-contain`) may not apply in Puppeteer, causing SVG icons and logo images to render at unconstrained sizes. This is a rendering artifact — verify layout correctness from code, not just screenshots.
-- **Alignment is critical:** When user requests horizontal/vertical alignment, use CSS structural approaches (`items-stretch` + `justify-between`, grid alignment) rather than manual padding tweaks. Verify with Puppeteer measurements (`getBoundingClientRect`).
+## Working conventions
 
-## Agency Conventions
-<!-- conventions-sync: 2026-07-01 -->
-
-**Design system:** Use the `frontend-minimal-ui` skill for all visual outputs. Dieter Rams / Swiss editorial style, monochrome gray default + mil&dez brand accent (auto-activates inside this workspace).
-- Primary: `#6b0f1a` (burgundy) | Hover/dark: `#4a0a12` (deep burgundy). Sage green eliminated 2026-04-17.
-- Legacy palette superseded 2026-04-15: was `#085042` teal + `#eb5100` orange + Manrope/Source Sans 3. The old `design-system` skill is disabled at `~/.claude/skills/design-system/SKILL.md.disabled` for rollback.
-- Font: Inter (300/400/500/600) everywhere | Backgrounds: `#fafafa` page, `#ffffff` cards, `#f5f5f7` surfaces | Icons: SVG line (Lucide/Phosphor)
-- Accent surface cap: burgundy stays under ~5% of any page — CTAs, active nav, link hovers only. Everything else stays monochrome.
-
-**Language:** Client-facing content in Portuguese (BR). Code, comments, technical docs in English.
-
-**Copy tone:** Use the `brand-voice` skill for all client-facing text. Key rules: Brazilian Portuguese only, zero English buzzwords, conversational professional register, outcome over mechanism. The skill has the full vocabulary glossary, word count limits per channel, and copy patterns.
-
-**Response style:** Concise and actionable. Tables for comparisons. Numbered items for follow-up.
-
-**User preferences:**
-- Flat folder structures over nested categorization
-- Confirm before destructive commands (rm, mv) — user runs manually
-- `/sandbox` folders are off-limits — do not read or reference unless explicitly asked
-- `/archive` folders are off-limits — do not read or reference unless explicitly asked
-
-**Session workflow:**
-1. Start: Read CLAUDE.md + check memory. Run `git status` for uncommitted work.
-2. Plan: Use plan mode for non-trivial tasks. Use task lists for multi-step work.
-3. Execute: After plan approval, switch to bypass-permissions mode.
-4. Save: Run `/save` before ending session.
-5. Memory: Record architecture decisions and resolved issues to memory before session end.
-
-**Plan workflow:**
-When you create or complete a plan (plan mode, architecture analysis, or any multi-step design), automatically save two files to the local `plans/` folder:
-1. **Plan file:** `plans/{slug}-plan.md` — the full plan document
-2. **Todo file:** `plans/{slug}-todo.md` — actionable checklist derived from the plan
-
-Naming rules:
-- Slug: 2-4 words, kebab-case, descriptive of content (e.g., `auth-refactor`, `dashboard-redesign`, `lead-scoring-v2`)
-- Plan files end with `-plan.md`, todo files end with `-todo.md`
-- Matching slugs link plan and todo (e.g., `auth-refactor-plan.md` + `auth-refactor-todo.md`)
-
-Todo file format:
-- Heading: `# {Plan Title} — Todo`
-- Reference: `> Plan: [{slug}-plan.md](./{slug}-plan.md)`
-- Organize tasks by phase/section from the plan
-- Use `- [ ]` checkboxes for each actionable step
-- Keep items concrete and single-action
-
-Agent behavior:
-- Save to the project's local `plans/` folder (never to `~/.claude/plans/`)
-- Generate both files automatically — do not ask for file-save confirmation
-- If updating an existing plan, overwrite the plan file and regenerate the todo
-- When a plan spans multiple sub-projects, save to the active session's project
+- Start a session with `git status`. End it with `/save` (commits and pushes the repo).
+- For non-trivial work, plan first. Save the plan as `plans/{slug}-plan.md` and a checklist as `plans/{slug}-todo.md` (slug: 2 to 4 kebab-case words, same slug for both files, `- [ ]` items grouped by phase). Overwrite both when the plan changes.
+- Confirm before destructive commands (`rm`, `mv`, history rewrites). The user prefers to run those manually.
+- Do not read `sandbox/` or `archive/` folders unless asked.
+- Replies: concise and actionable, tables for comparisons, numbered items for follow-ups.
