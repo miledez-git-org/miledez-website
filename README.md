@@ -6,10 +6,10 @@ Next.js 14 + TypeScript + Tailwind CSS website for mil&dez automation agency.
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Start development server
-npm run dev
+pnpm run dev
 
 # Open http://localhost:3000
 ```
@@ -87,13 +87,13 @@ claude
 
 ### Development
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ### Production Build
 ```bash
-npm run build
-npm run start
+pnpm run build
+pnpm run start
 ```
 
 ### Deploy to Vercel (Recommended)
