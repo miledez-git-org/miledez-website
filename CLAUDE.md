@@ -2,7 +2,7 @@
 
 Agency website for mil&dez — Brazilian B2B AI workflow automation agency.
 
-> Agency context: Part of the mil&dez platform.
+> Agency context: Part of the mil&dez platform. See the root `CLAUDE.md` for shared conventions.
 
 ## Links
 
@@ -13,7 +13,7 @@ Agency website for mil&dez — Brazilian B2B AI workflow automation agency.
 
 | Layer | Technology |
 |-------|------------|
-| Framework | Next.js 14.2.35 (App Router) |
+| Framework | Next.js 14.2.35 (App Router, static export) |
 | UI | React 18.3, Framer Motion 12 |
 | Styling | Tailwind CSS 3.4 |
 | Language | TypeScript |
@@ -31,28 +31,23 @@ pnpm run lint    # Run ESLint
 ## Project Structure
 
 ```
-app/                        # Next.js App Router pages
-  industrias/               # Industries overview page (links to subpages)
-  saude/                    # Healthcare industry page
-  servicos/                 # Professional services page
-  agronegocio/              # Agribusiness industry page
-  avaliacao/                # AI assessment tool (deactivated from nav — not production-ready)
-  termos/                   # Terms of service
-  politica-privacidade/     # Privacy policy
+app/
+  (pt)/                     # Portuguese routes at root URLs (own root layout)
+    industrias/             # Industries overview (links to subpages)
+    saude/                  # Healthcare industry page
+    servicos/               # Professional services page
+    agronegocio/            # Agribusiness industry page
+    avaliacao/              # AI assessment tool (not linked from nav — not production-ready)
+    termos/                 # Terms of service
+    politica-privacidade/   # Privacy policy
+  (en)/en/                  # English routes (own root layout)
 components/
-  ui/                       # Design system components
-    primitives/             # Button, Input, Checkbox, etc.
-    cards/                  # Card, PricingCard, FeatureCard, etc.
-    layout/                 # Modal, Accordion, Sidebar
-    navigation/             # Tabs, Breadcrumb, Pagination
-    feedback/               # Alert, Badge, Toast, Tooltip
-    data-display/           # Table, List, Avatar, Progress
-    typography/             # Heading, Text, Logo
-    tokens/                 # Theme values, Tailwind sync
-  industry/                 # Industry-specific components
+  ui/                       # Design system components (primitives, cards, layout, navigation,
+                            # feedback, data-display, typography, tokens)
+  industry/                 # Shared industry page template and parts
   WorkflowVisual/           # Workflow visualization system
 hooks/                      # Custom React hooks
-lib/                        # Utility functions
+lib/i18n/                   # All copy (pt.ts, en.ts) + route/hreflang helpers
 types/                      # TypeScript interfaces (assessment.ts)
 docs/                       # n8n workflow specs (JSON + markdown)
 supabase/migrations/        # Database migration SQL files
@@ -60,6 +55,12 @@ public/
   miledez-agency-logos/     # Brand identity SVGs (logo, monogram)
   software-company-logos/   # Integration partner logos (57 SVGs)
 ```
+
+## Design
+
+Follow the global design reference: `~/light-design-system/light_design_system_v2.html`, rules in `~/light-design-system/CLAUDE.md`, Notus Teal palette from `~/light-design-system/docs/palette-teal.js` pasted into `theme.extend.colors`. Markup uses raw `zinc/emerald/amber/rose/sky` utilities; light theme only, Inter, no hardcoded hex in components. Copy the demo markup via the doc's Copy HTML buttons and never ship its Tailwind CDN script tag.
+
+**Migration state:** the site still carries the legacy burgundy `brand-*` tokens (`#6b0f1a`) defined in `components/ui/tokens/generated-theme.ts` and consumed by `tailwind.config.ts`. New work follows the global reference; replace legacy tokens on any surface you touch rather than adding to them. Keep `generated-theme.ts` as the single place where color tokens are defined until the migration is complete.
 
 ## Internationalization (pt-BR + en-US)
 
@@ -73,62 +74,37 @@ public/
 
 ## Key Patterns
 
-- **Header** — White background, sharp bottom shadow. Requires `onContactClick` prop for Contato button (opens modal). Indústrias links to `/industrias`.
-- **ContactModal** — Lead capture form (Formspree integration)
-- **HeroAutomationDiagram** — Static SVG diagram in hero right column (AUTOMAÇÃO hub → 3 branches). Replaced HeroConstellation.
-- **PricingSection** — Pricing tiers R$500/2,000/6,000 (requires `onContactClick` prop)
-- **AssessmentTool** — Multi-step lead gen form (4 steps → n8n webhook → Claude API → on-screen results). Direct client-side fetch to n8n (no API route — static export). Types in `types/assessment.ts`. n8n workflow spec in `docs/`.
-- Component library in `components/ui/` — use existing components before creating new ones
-- **Indústrias page** — `/industrias` overview with 3 cards linking to `/saude`, `/servicos`, `/agronegocio`
-- **Avaliação** — Page exists at `/avaliacao` but link removed from header nav (not production-ready)
-- **Industry pages** (saude, servicos, agronegocio) share an identical template structure. Changes to one should be applied to all 3. Shared components in `components/industry/` (ChallengeCard, MetricsGrid, IndustryIntegrations) affect all industry pages.
+- **HomePage** (`components/HomePage.tsx`) — shared by both locales; owns the contact modal state and passes `onContactClick` to Header, PricingSection and BusinessProfilesSection.
+- **Header** — requires `onContactClick` prop for the Contato button (opens modal). Indústrias links to `/industrias`.
+- **ContactModal** — lead capture form (Formspree, client-side fetch).
+- **HeroAutomationDiagram** — static SVG diagram in the hero right column.
+- **PricingSection** — tiers R$500 / R$2.000 / R$6.000 (USD in EN).
+- **AssessmentTool** — multi-step lead gen form (4 steps → n8n webhook → Claude API → on-screen results). Direct client-side fetch to n8n. Types in `types/assessment.ts`, workflow spec in `docs/`.
+- **Industry pages** (saude, servicos, agronegocio) are rendered by the shared `IndustryPage` template; changing the template or `components/industry/` parts changes all three.
+- Use existing `components/ui/` components before creating new ones.
 
 ## Homepage Section Order
 
 1. Hero — headline + HeroAutomationDiagram
-2. ValuePropositionB (#valor) — 4 benefit cards + contact CTA
-3. PainPointSection (#problemas) — 3-column problems + "Como funciona" anchor
-4. WorkflowExplainerSection (#exemplos) — 3 vertical workflow cards (3/4/5 steps)
-5. BusinessProfilesSection (#perfis) — 2x2 ROI cards + contact CTA + "Como começar" anchor
-6. ProcessSection (#como-funciona) — burgundy promise card + 4-step timeline
-7. PricingSection (#precos) — 3 pricing tiers + contact CTA
-8. Final CTA (#contato) — centered close
+2. PainPointSection — problems clients face
+3. WorkflowExplainerSection — what automation is (3 workflow cards)
+4. BusinessProfilesSection (#quanto-vale) — ROI profiles + contact CTA
+5. ProcessSection (#como-funciona) — promise card + 4-step timeline
+6. PricingSection (#precos) — 3 tiers + contact CTA
+7. FAQSection
+8. Final CTA (#contato)
 
-Removed from homepage: WorkflowDemonstrationsSection, WorkflowModularSection, LogoGrid
-
-## Color Usage
-
-- Use Tailwind `brand-*` classes — never hardcode hex values
-- Burgundy (primary): `brand-primary` (#6b0f1a) / `brand-primary-dark` (#4a0a12) / `brand-primary-light` / `brand-primary-subtle`
-- `brand-secondary` tokens removed (2026-04-17) — sage green eliminated from design system
-- Body text: `text-neutral-600` (not `text-brand-muted`)
-- Glow shadows: `shadow-accent-glow` (burgundy). `shadow-secondary-glow` removed.
-- **`shadow-card` / `shadow-card-hover` are NOT defined** — use standard Tailwind (`shadow-sm`, `shadow-md`) or inline `boxShadow` style
-- **Brand migration complete (2026-04-17):** burgundy `#6b0f1a` is the sole accent color. Sage green fully removed from tokens, CSS vars, and all components.
-
-## Asset Paths
-- `public/miledez-agency-logos/` — brand identity SVGs (miledez-logo.svg, miledez-monogram.svg)
-- `public/software-company-logos/` — integration partner logos (57 SVGs, consolidated from old logos/ + icons/)
-- All components use `/software-company-logos/{name}.svg` — there is no separate icons directory
+Each section has its own messaging lane — don't duplicate a message across sections.
 
 ## Rules
 
-- **Always run `pnpm install` after changing `package.json`** — Vercel CI uses `--frozen-lockfile` (pnpm 10 default). If the lockfile is out of sync, the build fails.
-- **`.env.local` required** — contains `NEXT_PUBLIC_N8N_ASSESSMENT_WEBHOOK_URL`. No server-side secrets (static export).
-- **Static export (`output: 'export'`)** — no API routes, no server components. External service calls must be client-side fetch (same pattern as Formspree in ContactModal). Do not add `app/api/` routes.
-- **Don't run `pnpm run build` while dev server is running** — it corrupts `.next/` cache. Stop the dev server first, or expect to `rm -rf .next && npm run dev` after.
-- `eslint-config-next` version must match Next.js version to avoid build errors
-- `generated-theme.ts` is the single source of truth for Tailwind color tokens — update it (not individual components) when changing brand colors
-- **Min font size:** 14px (`text-sm`) absolute minimum for low-priority info; 16px (`text-base`) for all other text. Never use `text-xs`.
-- **Icons:** Always plain outline SVGs (stroke, no fill). Never wrap icons in colored background containers (`bg-brand-*-subtle`). Color via parent text class only.
-- **Burgundy backgrounds (`brand-primary`):** All text must be full `text-white` — never use `text-white/80`, `text-white/90`, or any opacity-reduced white.
-- **Section spacing:** All homepage sections use `py-24 md:py-32`. Keep consistent — do not mix with `py-28 md:py-40`.
-- **Section headers:** Always left-aligned (`max-w-2xl`). Never center-aligned (inconsistent with site design).
-- **Shadows:** User prefers directional lower-right shadows (e.g., `boxShadow: '3px 4px 12px rgba(0,0,0,0.10)'`), not uniform Tailwind shadows.
-- **Build trace error:** `npm run build` may fail on `_not-found/page.js.nft.json` — this is a pre-existing Next.js trace collection bug, not a code error. Pages still generate correctly.
-- If dev server returns 404s on `_next/static/` assets, delete `.next/` and restart: `rm -rf .next && npm run dev`
-- **Section alignment:** All section containers (homepage AND sub pages) use `max-w-7xl mx-auto px-6 md:px-10`. Do NOT use `max-w-6xl` for sections — it breaks left-edge alignment with the hero. The only exception is CTA sections (`max-w-3xl`, intentionally narrower/centered). Legal pages use `max-w-3xl` throughout (prose readability).
-- **Side-by-side comparisons:** Use `items-start` (not `items-end`) on flex containers when labels must align horizontally at the top. `items-end` causes misalignment when children have different heights (e.g., one has an accent bar).
-- **Puppeteer scroll-reveal:** Headless Puppeteer often fails to trigger `useScrollReveal` IntersectionObserver. Force visibility with `document.querySelectorAll('*').forEach(el => { if (el.style.opacity === '0') { el.style.opacity = '1'; el.style.transform = 'none'; } })` before taking screenshots.
-- **Puppeteer SVG/logo rendering:** Tailwind utility classes (`w-6 h-6`, `object-contain`) may not apply in Puppeteer, causing SVG icons and logo images to render at unconstrained sizes. This is a rendering artifact — verify layout correctness from code, not just screenshots.
-- **Alignment is critical:** When user requests horizontal/vertical alignment, use CSS structural approaches (`items-stretch` + `justify-between`, grid alignment) rather than manual padding tweaks. Verify with Puppeteer measurements (`getBoundingClientRect`).
+- **Static export (`output: 'export'`)** — no API routes, no server components that need a runtime. External service calls are client-side fetch (Formspree, n8n). Do not add `app/api/` routes.
+- **`.env.local` required** — contains `NEXT_PUBLIC_N8N_ASSESSMENT_WEBHOOK_URL`. No server-side secrets.
+- **Run `pnpm install` after changing `package.json`** — Vercel CI uses `--frozen-lockfile`; an out-of-sync lockfile fails the build.
+- `eslint-config-next` version must match the Next.js version.
+- **Don't run `pnpm run build` while the dev server is running** — it corrupts `.next/`. If the dev server 404s on `_next/static/` assets, delete `.next/` and restart.
+- **Build trace error:** `pnpm run build` may fail on `_not-found/page.js.nft.json`. This is a pre-existing Next.js trace bug, not a code error; pages still generate correctly.
+
+## Debugging Tips
+
+- Headless Puppeteer often fails to trigger `useScrollReveal` IntersectionObserver. Before screenshots, force visibility: `document.querySelectorAll('*').forEach(el => { if (el.style.opacity === '0') { el.style.opacity = '1'; el.style.transform = 'none'; } })`.
