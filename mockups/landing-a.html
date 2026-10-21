@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mil&dez — Rascunho A (hero centralizado)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- MOCKUP ONLY. The Play CDN never ships; production uses the Tailwind build with palette-teal.js in theme.extend.colors. -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { sans: ['Inter', 'sans-serif'] },
+      // ~/light-design-system/docs/palette-teal.js
+      colors: {
+        zinc: { 50: '#fafafa', 100: '#f4f4f5', 200: '#e4e4e7', 300: '#d4d4d8', 400: '#a1a1aa', 500: '#71717a', 600: '#0d9488', 700: '#0f766e', 800: '#115e59', 900: '#134e4a', 950: '#042f2e' },
+        emerald: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d', 950: '#052e16' },
+        amber: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12', 950: '#431407' },
+        rose: { 50: '#fef2f2', 100: '#fee2e2', 200: '#fecaca', 300: '#fca5a5', 400: '#f87171', 500: '#ef4444', 600: '#dc2626', 700: '#b91c1c', 800: '#991b1b', 900: '#7f1d1d', 950: '#450a0a' },
+        sky: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a', 950: '#172554' },
+      },
+      animation: { marquee: 'marquee 32s linear infinite', 'marquee-y': 'marqueeY 18s linear infinite' },
+      keyframes: {
+        marquee: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
+        marqueeY: { '0%': { transform: 'translateY(0)' }, '100%': { transform: 'translateY(-50%)' } },
+      },
+    },
+  },
+}
+</script>
+<style>
+  body { background:#ffffff; color:#134e4a; -webkit-font-smoothing:antialiased; }
+  :focus-visible { outline:2px solid #134e4a; outline-offset:2px; }
+  .bg-grid-pattern { background-image: linear-gradient(to right, rgba(0,0,0,.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,.05) 1px, transparent 1px); background-size: 24px 24px; }
+  [data-shrink] { padding-top:1rem; padding-bottom:1rem; border-bottom:1px solid transparent; transition:padding .2s ease, border-color .2s ease, box-shadow .2s ease; }
+  [data-shrink].is-shrunk { padding-top:.5rem; padding-bottom:.5rem; border-bottom-color:#e4e4e7; box-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05); }
+  details.ds-acc > summary { list-style:none; cursor:pointer; }
+  details.ds-acc > summary::-webkit-details-marker { display:none; }
+  details.ds-acc[open] > summary svg { transform:rotate(180deg); }
+  html { scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; } }
+</style>
+</head>
+<body class="font-sans">
+
+<!-- ========== NAVBAR (condensing) ========== -->
+<header data-shrink class="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur px-6">
+  <nav class="max-w-6xl mx-auto flex items-center justify-between">
+    <a href="#" class="text-2xl font-light tracking-tight text-zinc-900">mil<span class="text-zinc-600">&amp;</span>dez</a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-700">
+      <a href="#" class="text-zinc-900">Início</a>
+      <a href="#exemplos" class="hover:text-zinc-900 transition-colors">Setores</a>
+      <a href="#precos" class="hover:text-zinc-900 transition-colors">Preços</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="#" class="hidden sm:block text-sm font-medium text-zinc-700 hover:text-zinc-900" aria-label="Read this page in English">EN</a>
+      <a href="#contato" class="bg-zinc-900 text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-zinc-800 transition-colors shadow-sm">Contato</a>
+      <button id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" class="md:hidden w-9 h-9 flex items-center justify-center rounded-md border border-zinc-200 text-zinc-700 hover:bg-zinc-50">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div id="mobile-menu" class="hidden md:hidden max-w-6xl mx-auto pt-3 pb-2 flex flex-col gap-1 text-sm font-medium text-zinc-700">
+    <a href="#" class="px-2 py-2 rounded-md bg-zinc-100 text-zinc-900">Início</a>
+    <a href="#exemplos" class="px-2 py-2 rounded-md hover:bg-zinc-50">Setores</a>
+    <a href="#precos" class="px-2 py-2 rounded-md hover:bg-zinc-50">Preços</a>
+    <a href="#" class="px-2 py-2 rounded-md hover:bg-zinc-50">English</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ========== HERO (centered, tilted product shot) ========== -->
+<section class="relative bg-zinc-50 pt-36 md:pt-44 px-6 overflow-hidden">
+  <div class="absolute inset-0 bg-grid-pattern opacity-[0.15]"></div>
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-gradient-to-b from-white to-transparent"></div>
+
+  <div class="relative z-10 max-w-3xl mx-auto text-center mb-14">
+    <span class="inline-flex items-center gap-1.5 px-3 py-1 mb-6 text-xs font-medium text-zinc-700 bg-white border border-zinc-200 rounded-full shadow-sm">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Primeira automação sem custo de desenvolvimento
+    </span>
+    <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-[1.05] mb-6 bg-clip-text text-transparent bg-gradient-to-b from-zinc-900 to-zinc-600">Sua equipe para de repetir tarefa. O sistema faz por ela.</h1>
+    <p class="text-lg md:text-xl text-zinc-700 mb-8 max-w-2xl mx-auto leading-relaxed">Lembretes, cobranças, cotações e prazos passam a acontecer sozinhos, nos sistemas que você já usa. Construímos sua primeira automação sem custo de desenvolvimento, pronta em até 2 semanas.</p>
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <a href="#contato" class="bg-zinc-900 text-white font-medium px-6 py-3 rounded-lg hover:bg-zinc-800 shadow-sm transition-all active:scale-95">Quero minha automação grátis</a>
+      <a href="#exemplos" class="bg-white border border-zinc-200 text-zinc-900 font-medium px-6 py-3 rounded-lg hover:bg-zinc-50 shadow-sm transition-all active:scale-95">Ver exemplos</a>
+    </div>
+  </div>
+
+  <!-- Product shot: the automation working, seen from the client's side -->
+  <div class="relative z-10 max-w-4xl mx-auto bg-white rounded-t-2xl border border-zinc-300 border-b-0 shadow-2xl overflow-hidden" style="transform: perspective(1000px) rotateX(4deg) scale(0.97); transform-origin: bottom;" aria-hidden="true">
+    <div class="bg-zinc-100 border-b border-zinc-200 px-4 py-3 flex items-center gap-2">
+      <div class="flex gap-1.5">
+        <div class="w-2.5 h-2.5 rounded-full bg-rose-400"></div>
+        <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+        <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+      </div>
+      <span class="ml-3 text-xs text-zinc-500">Confirmação de consultas · hoje</span>
+    </div>
+    <div class="p-6 h-80 bg-white flex gap-6">
+      <div class="w-48 hidden md:flex flex-col gap-1.5 border-r border-zinc-100 pr-6">
+        <p class="text-[11px] font-semibold text-zinc-500 uppercase tracking-wider mb-2">Automações</p>
+        <div class="px-2.5 py-2 rounded-md bg-zinc-100 text-xs font-medium text-zinc-900">Confirmação de consultas</div>
+        <div class="px-2.5 py-2 rounded-md text-xs text-zinc-700">Cotação de insumos</div>
+        <div class="px-2.5 py-2 rounded-md text-xs text-zinc-700">Renovação de contratos</div>
+      </div>
+      <div class="flex-1 flex flex-col gap-4 min-w-0">
+        <div class="flex justify-between items-center">
+          <p class="text-sm font-semibold text-zinc-900">Lembretes de amanhã</p>
+          <span class="px-2 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full">Ativa</span>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="bg-zinc-50 border border-zinc-100 rounded-xl p-3"><p class="text-[11px] text-zinc-500">Lembretes enviados</p><p class="text-xl font-bold text-zinc-900 tabular-nums">42</p></div>
+          <div class="bg-zinc-50 border border-zinc-100 rounded-xl p-3"><p class="text-[11px] text-zinc-500">Confirmados</p><p class="text-xl font-bold text-zinc-900 tabular-nums">37</p></div>
+          <div class="bg-zinc-50 border border-zinc-100 rounded-xl p-3"><p class="text-[11px] text-zinc-500">Remarcados</p><p class="text-xl font-bold text-zinc-900 tabular-nums">3</p></div>
+        </div>
+        <div class="flex-1 bg-zinc-50 border border-zinc-100 rounded-xl p-3 space-y-2 overflow-hidden">
+          <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2 flex items-center justify-between gap-3 shadow-sm"><span class="text-xs font-medium text-zinc-900 truncate">Ana Ribeiro · 09:30 · Dr. Paulo</span><span class="shrink-0 px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">Confirmado</span></div>
+          <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2 flex items-center justify-between gap-3 shadow-sm"><span class="text-xs font-medium text-zinc-900 truncate">Carlos Mota · 10:00 · Dra. Lúcia</span><span class="shrink-0 px-1.5 py-0.5 text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200 rounded">Aguardando</span></div>
+          <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2 flex items-center justify-between gap-3 shadow-sm"><span class="text-xs font-medium text-zinc-900 truncate">Juliana Prado · 10:30 · Dr. Paulo</span><span class="shrink-0 px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">Confirmado</span></div>
+          <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2 flex items-center justify-between gap-3 shadow-sm"><span class="text-xs font-medium text-zinc-900 truncate">Marcos Lima · 11:00 · Dra. Lúcia</span><span class="shrink-0 px-1.5 py-0.5 text-[10px] font-semibold bg-sky-50 text-sky-700 border border-sky-200 rounded">Remarcado</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LOGO CLOUD ========== -->
+<section class="bg-white py-12 border-b border-zinc-100 overflow-hidden">
+  <p class="text-center text-sm font-medium text-zinc-500 mb-8">Funciona com os sistemas que você já usa</p>
+  <div class="relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10"></div>
+    <div class="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10"></div>
+    <div class="flex w-max animate-marquee gap-14 pr-14 items-center" id="logo-track">
+      <!-- track content is duplicated by script for the seamless loop -->
+      <img src="../public/software-company-logos/whatsapp.svg" alt="WhatsApp" class="h-8 w-auto max-w-[120px] object-contain grayscale opacity-60">
+      <img src="../public/software-company-logos/google-sheets.svg" alt="Google Sheets" class="h-8 w-auto max-w-[120px] object-contain grayscale opacity-60">
+      <img src="../public/software-company-logos/gmail.svg" alt="Gmail" class="h-8 w-auto max-w-[120px] object-contain grayscale opacity-60">
+      <img src="../public/software-company-logos/google-calendar.svg" alt="Google Agenda" class="h-8 w-auto max-w-[120px] object-contain grayscale opacity-60">
+      <img src="../public/software-company-logos/pipedrive.svg" alt="Pipedrive" class="h-8 w-auto max-w-[120px] object-contain grayscale opacity-60">
+      <img src="../public/software-company-logos/docusign.svg" alt="DocuSign" class="h-8 w-auto max-w-[120px] object-contain grayscale opacity-60">
+      <img src="../public/software-company-logos/slack.svg" alt="Slack" class="h-8 w-auto max-w-[120px] object-contain grayscale opacity-60">
+      <img src="../public/software-company-logos/iclinic.svg" alt="iClinic" class="h-8 w-auto max-w-[120px] object-contain grayscale opacity-60">
+      <img src="../public/software-company-logos/contaazul.svg" alt="Conta Azul" class="h-8 w-auto max-w-[120px] object-contain grayscale opacity-60">
+      <img src="../public/software-company-logos/excel.svg" alt="Excel" class="h-8 w-auto max-w-[120px] object-contain grayscale opacity-60">
+      <img src="../public/software-company-logos/google-drive.svg" alt="Google Drive" class="h-8 w-auto max-w-[120px] object-contain grayscale opacity-60">
+      <img src="../public/software-company-logos/trello.svg" alt="Trello" class="h-8 w-auto max-w-[120px] object-contain grayscale opacity-60">
+      <img src="../public/software-company-logos/notion.svg" alt="Notion" class="h-8 w-auto max-w-[120px] object-contain grayscale opacity-60">
+      <img src="../public/software-company-logos/outlook.svg" alt="Outlook" class="h-8 w-auto max-w-[120px] object-contain grayscale opacity-60">
+    </div>
+  </div>
+</section>
+
+<!-- ========== PAIN POINTS (icon grid) ========== -->
+<section id="problemas" class="scroll-mt-24 bg-white py-20 md:py-28 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">O problema</p>
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-4">Quanto do dia da sua equipe vai em copiar, colar e lembrar?</h2>
+      <p class="text-base md:text-lg text-zinc-700 leading-relaxed">Três problemas aparecem em quase toda empresa de pequeno e médio porte. Eles custam horas toda semana e raramente aparecem em algum relatório.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="border border-zinc-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+        <div class="w-10 h-10 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center mb-4 text-zinc-700">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold text-zinc-900 mb-2">A mesma tarefa, todo dia</h3>
+        <p class="text-sm text-zinc-700 leading-relaxed">Confirmar consultas, mandar lembretes, atualizar planilhas. Alguém da equipe faz isso à mão, uma mensagem de cada vez.</p>
+      </div>
+      <div class="border border-zinc-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+        <div class="w-10 h-10 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center mb-4 text-zinc-700">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold text-zinc-900 mb-2">Informação em cinco lugares</h3>
+        <p class="text-sm text-zinc-700 leading-relaxed">O pedido chegou no WhatsApp, o preço está na planilha e a nota ficou no e-mail. Para responder o cliente, alguém precisa juntar tudo.</p>
+      </div>
+      <div class="border border-zinc-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+        <div class="w-10 h-10 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center mb-4 text-zinc-700">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold text-zinc-900 mb-2">O prazo que ninguém lembrou</h3>
+        <p class="text-sm text-zinc-700 leading-relaxed">Contrato que venceu, cobrança que não saiu, licença que expirou. Cada esquecimento vira retrabalho, multa ou cliente perdido.</p>
+      </div>
+    </div>
+    <div class="mt-10 text-center">
+      <a href="#exemplos" class="text-sm font-medium text-zinc-900 inline-flex items-center gap-1 group/link">Veja como isso fica automatizado <svg class="transition-transform group-hover/link:translate-x-0.5" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WORKFLOW EXAMPLES (audience-tagged rows) ========== -->
+<section id="exemplos" class="scroll-mt-24 bg-zinc-50 py-20 md:py-28 px-6 border-y border-zinc-100">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Exemplos</p>
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-4">Os mesmos três problemas, resolvidos no automático</h2>
+      <p class="text-base md:text-lg text-zinc-700 leading-relaxed">Um exemplo para cada problema acima. Na sua empresa, a automação segue o seu processo e usa os sistemas que você já tem.</p>
+    </div>
+
+    <div class="space-y-4">
+      <!-- Row 1: Saúde -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white border border-zinc-200 rounded-2xl p-6 lg:p-8">
+        <div class="min-w-0">
+          <span class="inline-block px-2.5 py-1 mb-4 text-xs font-medium bg-zinc-100 text-zinc-700 border border-zinc-200 rounded-md">Saúde</span>
+          <h3 class="text-2xl font-semibold tracking-tight text-zinc-900 mb-3">Confirmação de consultas</h3>
+          <p class="text-sm text-zinc-500 mb-3">Resolve: a mesma tarefa, todo dia</p>
+          <p class="text-sm text-zinc-700 leading-relaxed mb-5"><span class="font-semibold text-zinc-900">Antes:</span> a recepção manda mensagem para cada paciente, um por um.</p>
+          <a href="#" class="text-sm font-medium text-zinc-900 inline-flex items-center gap-1 group/link">Ver automações para clínicas <svg class="transition-transform group-hover/link:translate-x-0.5" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
+        <div class="min-w-0 bg-white border border-zinc-200 rounded-xl shadow-sm overflow-hidden" aria-hidden="true">
+          <div class="bg-zinc-100 border-b border-zinc-200 px-4 py-2.5 flex items-center justify-between">
+            <span class="text-xs font-medium text-zinc-700">Depois, no automático</span>
+            <span class="px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">3 etapas</span>
+          </div>
+          <div class="bg-zinc-50 p-4 space-y-2.5">
+            <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center gap-3 shadow-sm"><img src="../public/software-company-logos/google-calendar.svg" alt="" class="w-5 h-5 shrink-0"><div class="flex-1 min-w-0"><p class="text-xs font-medium text-zinc-900 truncate">Consulta agendada</p><p class="text-[11px] text-zinc-500 truncate">Paciente marca horário na agenda</p></div><span class="shrink-0 text-[10px] font-mono text-zinc-400">01</span></div>
+            <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center gap-3 shadow-sm"><img src="../public/software-company-logos/whatsapp.svg" alt="" class="w-5 h-5 shrink-0"><div class="flex-1 min-w-0"><p class="text-xs font-medium text-zinc-900 truncate">Lembrete enviado</p><p class="text-[11px] text-zinc-500 truncate">WhatsApp automático 24h antes</p></div><span class="shrink-0 text-[10px] font-mono text-zinc-400">02</span></div>
+            <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center gap-3 shadow-sm"><img src="../public/software-company-logos/google-sheets.svg" alt="" class="w-5 h-5 shrink-0"><div class="flex-1 min-w-0"><p class="text-xs font-medium text-zinc-900 truncate">Paciente confirmado</p><p class="text-[11px] text-zinc-500 truncate">Status atualizado na planilha</p></div><span class="shrink-0 px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">Concluído</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Agro -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white border border-zinc-200 rounded-2xl p-6 lg:p-8">
+        <div class="min-w-0">
+          <span class="inline-block px-2.5 py-1 mb-4 text-xs font-medium bg-zinc-100 text-zinc-700 border border-zinc-200 rounded-md">Agronegócio</span>
+          <h3 class="text-2xl font-semibold tracking-tight text-zinc-900 mb-3">Cotação de insumos</h3>
+          <p class="text-sm text-zinc-500 mb-3">Resolve: informação em cinco lugares</p>
+          <p class="text-sm text-zinc-700 leading-relaxed mb-5"><span class="font-semibold text-zinc-900">Antes:</span> alguém pede preço a cada fornecedor e compara tudo à mão.</p>
+          <a href="#" class="text-sm font-medium text-zinc-900 inline-flex items-center gap-1 group/link">Ver automações para o agro <svg class="transition-transform group-hover/link:translate-x-0.5" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
+        <div class="min-w-0 bg-white border border-zinc-200 rounded-xl shadow-sm overflow-hidden" aria-hidden="true">
+          <div class="bg-zinc-100 border-b border-zinc-200 px-4 py-2.5 flex items-center justify-between">
+            <span class="text-xs font-medium text-zinc-700">Depois, no automático</span>
+            <span class="px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">5 etapas</span>
+          </div>
+          <div class="bg-zinc-50 p-4 space-y-2.5">
+            <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center gap-3 shadow-sm"><img src="../public/software-company-logos/whatsapp.svg" alt="" class="w-5 h-5 shrink-0"><div class="flex-1 min-w-0"><p class="text-xs font-medium text-zinc-900 truncate">Pedido recebido</p><p class="text-[11px] text-zinc-500 truncate">Produtor envia via WhatsApp</p></div><span class="shrink-0 text-[10px] font-mono text-zinc-400">01</span></div>
+            <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center gap-3 shadow-sm"><img src="../public/software-company-logos/google-sheets.svg" alt="" class="w-5 h-5 shrink-0"><div class="flex-1 min-w-0"><p class="text-xs font-medium text-zinc-900 truncate">Cotações comparadas</p><p class="text-[11px] text-zinc-500 truncate">Planilha consulta fornecedores</p></div><span class="shrink-0 text-[10px] font-mono text-zinc-400">02</span></div>
+            <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center gap-3 shadow-sm"><img src="../public/software-company-logos/slack.svg" alt="" class="w-5 h-5 shrink-0"><div class="flex-1 min-w-0"><p class="text-xs font-medium text-zinc-900 truncate">Melhor preço selecionado</p><p class="text-[11px] text-zinc-500 truncate">Equipe notificada no Slack</p></div><span class="shrink-0 text-[10px] font-mono text-zinc-400">03</span></div>
+            <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center gap-3 shadow-sm"><img src="../public/software-company-logos/gmail.svg" alt="" class="w-5 h-5 shrink-0"><div class="flex-1 min-w-0"><p class="text-xs font-medium text-zinc-900 truncate">Pedido confirmado</p><p class="text-[11px] text-zinc-500 truncate">E-mail enviado ao fornecedor</p></div><span class="shrink-0 text-[10px] font-mono text-zinc-400">04</span></div>
+            <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center gap-3 shadow-sm"><img src="../public/software-company-logos/excel.svg" alt="" class="w-5 h-5 shrink-0"><div class="flex-1 min-w-0"><p class="text-xs font-medium text-zinc-900 truncate">Nota fiscal registrada</p><p class="text-[11px] text-zinc-500 truncate">Documento salvo automaticamente</p></div><span class="shrink-0 px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">Concluído</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: Escritórios -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white border border-zinc-200 rounded-2xl p-6 lg:p-8">
+        <div class="min-w-0">
+          <span class="inline-block px-2.5 py-1 mb-4 text-xs font-medium bg-zinc-100 text-zinc-700 border border-zinc-200 rounded-md">Escritórios</span>
+          <h3 class="text-2xl font-semibold tracking-tight text-zinc-900 mb-3">Renovação de contratos</h3>
+          <p class="text-sm text-zinc-500 mb-3">Resolve: o prazo que ninguém lembrou</p>
+          <p class="text-sm text-zinc-700 leading-relaxed mb-5"><span class="font-semibold text-zinc-900">Antes:</span> a renovação depende de alguém lembrar a data.</p>
+          <a href="#" class="text-sm font-medium text-zinc-900 inline-flex items-center gap-1 group/link">Ver automações para escritórios <svg class="transition-transform group-hover/link:translate-x-0.5" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
+        <div class="min-w-0 bg-white border border-zinc-200 rounded-xl shadow-sm overflow-hidden" aria-hidden="true">
+          <div class="bg-zinc-100 border-b border-zinc-200 px-4 py-2.5 flex items-center justify-between">
+            <span class="text-xs font-medium text-zinc-700">Depois, no automático</span>
+            <span class="px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">4 etapas</span>
+          </div>
+          <div class="bg-zinc-50 p-4 space-y-2.5">
+            <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center gap-3 shadow-sm"><img src="../public/software-company-logos/pipedrive.svg" alt="" class="w-5 h-5 shrink-0"><div class="flex-1 min-w-0"><p class="text-xs font-medium text-zinc-900 truncate">Contrato vencendo</p><p class="text-[11px] text-zinc-500 truncate">CRM detecta prazo próximo</p></div><span class="shrink-0 text-[10px] font-mono text-zinc-400">01</span></div>
+            <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center gap-3 shadow-sm"><img src="../public/software-company-logos/gmail.svg" alt="" class="w-5 h-5 shrink-0"><div class="flex-1 min-w-0"><p class="text-xs font-medium text-zinc-900 truncate">Documento revisado</p><p class="text-[11px] text-zinc-500 truncate">E-mail com minuta atualizada</p></div><span class="shrink-0 text-[10px] font-mono text-zinc-400">02</span></div>
+            <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center gap-3 shadow-sm"><img src="../public/software-company-logos/docusign.svg" alt="" class="w-5 h-5 shrink-0"><div class="flex-1 min-w-0"><p class="text-xs font-medium text-zinc-900 truncate">Assinatura enviada</p><p class="text-[11px] text-zinc-500 truncate">Link de assinatura digital</p></div><span class="shrink-0 text-[10px] font-mono text-zinc-400">03</span></div>
+            <div class="bg-white border border-zinc-200 rounded-lg px-3 py-2.5 flex items-center gap-3 shadow-sm"><img src="../public/software-company-logos/google-drive.svg" alt="" class="w-5 h-5 shrink-0"><div class="flex-1 min-w-0"><p class="text-xs font-medium text-zinc-900 truncate">Contrato arquivado</p><p class="text-[11px] text-zinc-500 truncate">Versão final salva na nuvem</p></div><span class="shrink-0 px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">Concluído</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== VALUE (profiles, stats-band numbers) ========== -->
+<section id="quanto-vale" class="scroll-mt-24 bg-white py-20 md:py-28 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Quanto vale</p>
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-4">Quanto vale uma automação dessas</h2>
+      <p class="text-base md:text-lg text-zinc-700 leading-relaxed">Fizemos as contas para três negócios típicos, um para cada exemplo acima. As premissas ficam à vista, para você comparar com a sua realidade.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
+      <div class="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm flex flex-col">
+        <span class="inline-block self-start px-2.5 py-1 mb-4 text-xs font-medium bg-zinc-100 text-zinc-700 border border-zinc-200 rounded-md">Confirmação de consultas</span>
+        <h3 class="text-lg font-semibold text-zinc-900">Clínica odontológica</h3>
+        <p class="text-sm text-zinc-500">12 profissionais</p>
+        <div class="mt-6 grid grid-cols-2 gap-4">
+          <div class="border-t border-zinc-200 pt-3"><p class="text-xs text-zinc-500 mb-1">Mensalidade</p><p class="text-xl font-semibold text-zinc-900 tabular-nums">R$500<span class="text-xs font-normal text-zinc-500">/mês</span></p></div>
+          <div class="border-t-2 border-zinc-900 pt-3"><p class="text-xs text-zinc-500 mb-1">Retorno estimado</p><p class="text-3xl font-bold tracking-tight text-zinc-900 tabular-nums">R$3.000<span class="text-xs font-normal text-zinc-500">/mês</span></p></div>
+        </div>
+        <p class="mt-auto pt-6 text-xs text-zinc-500 leading-relaxed">Premissa: 10 faltas a menos por mês, com ticket médio de R$250, e 20 horas de recepção liberadas (R$25/h).</p>
+      </div>
+      <div class="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm flex flex-col">
+        <span class="inline-block self-start px-2.5 py-1 mb-4 text-xs font-medium bg-zinc-100 text-zinc-700 border border-zinc-200 rounded-md">Cotação de insumos</span>
+        <h3 class="text-lg font-semibold text-zinc-900">Cooperativa de café</h3>
+        <p class="text-sm text-zinc-500">50 produtores</p>
+        <div class="mt-6 grid grid-cols-2 gap-4">
+          <div class="border-t border-zinc-200 pt-3"><p class="text-xs text-zinc-500 mb-1">Mensalidade</p><p class="text-xl font-semibold text-zinc-900 tabular-nums">R$2.000<span class="text-xs font-normal text-zinc-500">/mês</span></p></div>
+          <div class="border-t-2 border-zinc-900 pt-3"><p class="text-xs text-zinc-500 mb-1">Retorno estimado</p><p class="text-3xl font-bold tracking-tight text-zinc-900 tabular-nums">R$5.600<span class="text-xs font-normal text-zinc-500">/mês</span></p></div>
+        </div>
+        <p class="mt-auto pt-6 text-xs text-zinc-500 leading-relaxed">Premissa: 1% de economia em R$400 mil de compras por mês e 40 horas de cotação liberadas (R$40/h).</p>
+      </div>
+      <div class="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm flex flex-col">
+        <span class="inline-block self-start px-2.5 py-1 mb-4 text-xs font-medium bg-zinc-100 text-zinc-700 border border-zinc-200 rounded-md">Renovação de contratos</span>
+        <h3 class="text-lg font-semibold text-zinc-900">Escritório de contabilidade</h3>
+        <p class="text-sm text-zinc-500">6 colaboradores</p>
+        <div class="mt-6 grid grid-cols-2 gap-4">
+          <div class="border-t border-zinc-200 pt-3"><p class="text-xs text-zinc-500 mb-1">Mensalidade</p><p class="text-xl font-semibold text-zinc-900 tabular-nums">R$500<span class="text-xs font-normal text-zinc-500">/mês</span></p></div>
+          <div class="border-t-2 border-zinc-900 pt-3"><p class="text-xs text-zinc-500 mb-1">Retorno estimado</p><p class="text-3xl font-bold tracking-tight text-zinc-900 tabular-nums">R$1.900<span class="text-xs font-normal text-zinc-500">/mês</span></p></div>
+        </div>
+        <p class="mt-auto pt-6 text-xs text-zinc-500 leading-relaxed">Premissa: 15 horas por mês liberadas (R$60/h) e R$1.000 por mês em honorários que deixam de se perder por renovação esquecida.</p>
+      </div>
+    </div>
+    <p class="mt-6 text-center text-xs text-zinc-500 max-w-2xl mx-auto">Estes valores são estimativas ilustrativas. No diagnóstico, refazemos a conta com os números da sua empresa.</p>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+      <a href="#contato" class="bg-zinc-900 text-white font-medium px-6 py-3 rounded-lg hover:bg-zinc-800 shadow-sm transition-all active:scale-95">Quero minha automação grátis</a>
+      <a href="#como-funciona" class="bg-white border border-zinc-200 text-zinc-900 font-medium px-6 py-3 rounded-lg hover:bg-zinc-50 shadow-sm transition-all active:scale-95">Como começar</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HOW IT WORKS (dark promise spotlight + 4 numbered cards) ========== -->
+<section id="como-funciona" class="scroll-mt-24 bg-zinc-50 py-20 md:py-28 px-6 border-y border-zinc-100">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Como funciona</p>
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-4">Da primeira conversa à automação funcionando</h2>
+      <p class="text-base md:text-lg text-zinc-700 leading-relaxed">Você conta como o trabalho é feito hoje. Nós construímos, testamos e cuidamos de tudo depois. Sua equipe não precisa mexer em nada técnico.</p>
+    </div>
+
+    <!-- The page's one dark band: the promise -->
+    <div class="relative bg-zinc-900 rounded-2xl px-8 py-12 md:px-12 md:py-14 overflow-hidden mb-6">
+      <div class="absolute inset-0" style="background-image: linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 24px 24px;"></div>
+      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-white/5 blur-3xl rounded-full"></div>
+      <div class="relative">
+        <div class="max-w-2xl mb-10">
+          <p class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3">Nosso compromisso</p>
+          <h3 class="text-2xl md:text-3xl font-bold tracking-tight text-white">Sua primeira automação em até 2 semanas, sem pagar pelo desenvolvimento</h3>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+            <svg class="text-white mb-3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            <h4 class="text-sm font-semibold text-white mb-1">Desenvolvimento por nossa conta</h4>
+            <p class="text-xs text-zinc-400 leading-relaxed">A primeira automação é construída sem custo. Você só paga a mensalidade quando ela estiver funcionando.</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+            <svg class="text-white mb-3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            <h4 class="text-sm font-semibold text-white mb-1">Você testa antes de assinar</h4>
+            <p class="text-xs text-zinc-400 leading-relaxed">A automação roda na sua operação de verdade. Se não gostar do teste, não paga nada.</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl p-5">
+            <svg class="text-white mb-3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+            <h4 class="text-sm font-semibold text-white mb-1">Hospedagem, manutenção e ajustes na mensalidade</h4>
+            <p class="text-xs text-zinc-400 leading-relaxed">Cuidamos de tudo depois. Se o seu processo mudar, nós ajustamos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-white border border-zinc-200 rounded-xl p-5 flex flex-col">
+        <p class="font-mono text-xs text-zinc-400 mb-3">01</p>
+        <h3 class="text-base font-semibold text-zinc-900 mb-1.5">Conversa de 30 minutos</h3>
+        <p class="text-sm text-zinc-700 leading-relaxed mb-4">Você mostra como a operação funciona hoje e onde o tempo se perde. Nós perguntamos, ouvimos e anotamos.</p>
+        <div class="mt-auto bg-zinc-50 border border-zinc-100 rounded-lg p-3 space-y-2" aria-hidden="true">
+          <div class="bg-white border border-zinc-200 rounded-lg rounded-tl-sm px-2.5 py-1.5 text-[11px] text-zinc-700 w-5/6">Como vocês confirmam as consultas hoje?</div>
+          <div class="bg-zinc-900 text-white rounded-lg rounded-tr-sm px-2.5 py-1.5 text-[11px] w-5/6 ml-auto">Uma por uma, no WhatsApp da recepção.</div>
+        </div>
+        <span class="mt-4 inline-flex items-center gap-1.5 self-start text-xs font-medium text-zinc-700 bg-zinc-100 border border-zinc-200 rounded-md px-2 py-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>30 min</span>
+      </div>
+      <div class="bg-white border border-zinc-200 rounded-xl p-5 flex flex-col">
+        <p class="font-mono text-xs text-zinc-400 mb-3">02</p>
+        <h3 class="text-base font-semibold text-zinc-900 mb-1.5">Diagnóstico por escrito</h3>
+        <p class="text-sm text-zinc-700 leading-relaxed mb-4">Você recebe um relatório com as automações que mais fazem sentido para o seu negócio, o tempo que cada uma economiza e quanto custa.</p>
+        <div class="mt-auto bg-zinc-50 border border-zinc-100 rounded-lg p-3 space-y-2" aria-hidden="true">
+          <div class="flex items-center justify-between"><div class="h-2.5 w-2/3 bg-white border border-zinc-200 rounded"></div><span class="px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">20h/mês</span></div>
+          <div class="flex items-center justify-between"><div class="h-2.5 w-1/2 bg-white border border-zinc-200 rounded"></div><span class="px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">8h/mês</span></div>
+          <div class="flex items-center justify-between"><div class="h-2.5 w-3/5 bg-white border border-zinc-200 rounded"></div><span class="px-1.5 py-0.5 text-[10px] font-semibold bg-zinc-100 text-zinc-700 border border-zinc-200 rounded">depois</span></div>
+        </div>
+        <span class="mt-4 inline-flex items-center gap-1.5 self-start text-xs font-medium text-zinc-700 bg-zinc-100 border border-zinc-200 rounded-md px-2 py-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2–3 dias úteis</span>
+      </div>
+      <div class="bg-white border border-zinc-200 rounded-xl p-5 flex flex-col">
+        <p class="font-mono text-xs text-zinc-400 mb-3">03</p>
+        <h3 class="text-base font-semibold text-zinc-900 mb-1.5">Construção e teste</h3>
+        <p class="text-sm text-zinc-700 leading-relaxed mb-4">Você escolhe por onde começar. Construímos a automação ligada aos seus sistemas e ajustamos com a sua equipe até funcionar do jeito certo.</p>
+        <div class="mt-auto bg-zinc-50 border border-zinc-100 rounded-lg p-3 space-y-2" aria-hidden="true">
+          <div class="flex items-center gap-2"><img src="../public/software-company-logos/google-calendar.svg" alt="" class="w-4 h-4"><div class="h-2.5 flex-1 bg-white border border-zinc-200 rounded"></div><span class="px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">OK</span></div>
+          <div class="flex items-center gap-2"><img src="../public/software-company-logos/whatsapp.svg" alt="" class="w-4 h-4"><div class="h-2.5 flex-1 bg-white border border-zinc-200 rounded"></div><span class="px-1.5 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 rounded">OK</span></div>
+          <div class="flex items-center gap-2"><img src="../public/software-company-logos/google-sheets.svg" alt="" class="w-4 h-4"><div class="h-2.5 flex-1 bg-white border border-zinc-200 rounded"></div><span class="px-1.5 py-0.5 text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200 rounded">Testando</span></div>
+        </div>
+        <span class="mt-4 inline-flex items-center gap-1.5 self-start text-xs font-medium text-zinc-700 bg-zinc-100 border border-zinc-200 rounded-md px-2 py-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1–2 semanas</span>
+      </div>
+      <div class="bg-white border border-zinc-200 rounded-xl p-5 flex flex-col">
+        <p class="font-mono text-xs text-zinc-400 mb-3">04</p>
+        <h3 class="text-base font-semibold text-zinc-900 mb-1.5">Funcionando, com acompanhamento</h3>
+        <p class="text-sm text-zinc-700 leading-relaxed mb-4">A automação entra no dia a dia. Se o seu processo mudar, nós ajustamos. Isso está incluso na mensalidade.</p>
+        <div class="mt-auto relative h-[88px] overflow-hidden rounded-lg border border-zinc-100 bg-zinc-50" aria-hidden="true">
+          <div class="pointer-events-none absolute inset-x-0 top-0 h-5 bg-gradient-to-b from-zinc-50 to-transparent z-10"></div>
+          <div class="pointer-events-none absolute inset-x-0 bottom-0 h-5 bg-gradient-to-t from-zinc-50 to-transparent z-10"></div>
+          <div class="animate-marquee-y p-2 space-y-2">
+            <div class="bg-white border border-zinc-200 rounded px-2 py-1 flex justify-between text-[10px]"><span class="font-medium text-zinc-900">Lembrete enviado</span><span class="text-zinc-400">09:12</span></div>
+            <div class="bg-white border border-zinc-200 rounded px-2 py-1 flex justify-between text-[10px]"><span class="font-medium text-zinc-900">Planilha atualizada</span><span class="text-zinc-400">09:13</span></div>
+            <div class="bg-white border border-zinc-200 rounded px-2 py-1 flex justify-between text-[10px]"><span class="font-medium text-zinc-900">Cotação comparada</span><span class="text-zinc-400">10:40</span></div>
+            <div class="bg-white border border-zinc-200 rounded px-2 py-1 flex justify-between text-[10px]"><span class="font-medium text-zinc-900">Contrato arquivado</span><span class="text-zinc-400">11:05</span></div>
+            <div class="bg-white border border-zinc-200 rounded px-2 py-1 flex justify-between text-[10px]"><span class="font-medium text-zinc-900">Lembrete enviado</span><span class="text-zinc-400">09:12</span></div>
+            <div class="bg-white border border-zinc-200 rounded px-2 py-1 flex justify-between text-[10px]"><span class="font-medium text-zinc-900">Planilha atualizada</span><span class="text-zinc-400">09:13</span></div>
+            <div class="bg-white border border-zinc-200 rounded px-2 py-1 flex justify-between text-[10px]"><span class="font-medium text-zinc-900">Cotação comparada</span><span class="text-zinc-400">10:40</span></div>
+            <div class="bg-white border border-zinc-200 rounded px-2 py-1 flex justify-between text-[10px]"><span class="font-medium text-zinc-900">Contrato arquivado</span><span class="text-zinc-400">11:05</span></div>
+          </div>
+        </div>
+        <span class="mt-4 inline-flex items-center gap-1.5 self-start text-xs font-medium text-zinc-700 bg-zinc-100 border border-zinc-200 rounded-md px-2 py-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>contínuo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRICING ========== -->
+<section id="precos" class="scroll-mt-24 bg-white py-20 md:py-28 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Preços</p>
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-4">Quanto custa e o que está incluso</h2>
+      <p class="text-base md:text-lg text-zinc-700 leading-relaxed">Uma mensalidade cobre construção, hospedagem, manutenção e ajustes. Cancele quando quiser.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+      <div class="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm flex flex-col">
+        <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">A partir de</p>
+        <div class="mb-4"><span class="text-4xl font-bold text-zinc-900 tabular-nums">R$500</span><span class="text-zinc-500 text-sm">/mês</span></div>
+        <h3 class="text-lg font-semibold text-zinc-900 mb-1">Uma automação simples</h3>
+        <p class="text-sm text-zinc-500 mb-6 flex-1">Ex.: confirmação de consultas ou aviso de renovação de contratos</p>
+        <a href="#contato" class="w-full text-center bg-white border border-zinc-200 text-zinc-900 font-medium py-2 rounded-lg hover:bg-zinc-50 transition-colors">Falar com a gente</a>
+      </div>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 shadow-xl flex flex-col relative md:-translate-y-4">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-zinc-900 border border-zinc-200 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">Mais comum</div>
+        <p class="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2">A partir de</p>
+        <div class="mb-4"><span class="text-4xl font-bold text-white tabular-nums">R$2.000</span><span class="text-zinc-400 text-sm">/mês</span></div>
+        <h3 class="text-lg font-semibold text-white mb-1">Automações com várias etapas e sistemas</h3>
+        <p class="text-sm text-zinc-400 mb-6 flex-1">Ex.: cotação com vários fornecedores</p>
+        <a href="#contato" class="w-full text-center bg-white text-zinc-900 font-medium py-2 rounded-lg hover:bg-zinc-100 transition-colors">Falar com a gente</a>
+      </div>
+      <div class="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm flex flex-col">
+        <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">A partir de</p>
+        <div class="mb-4"><span class="text-4xl font-bold text-zinc-900 tabular-nums">R$6.000</span><span class="text-zinc-500 text-sm">/mês</span></div>
+        <h3 class="text-lg font-semibold text-zinc-900 mb-1">Vários processos ligados, sob medida</h3>
+        <p class="text-sm text-zinc-500 mb-6 flex-1">Ex.: compras do pedido à nota fiscal</p>
+        <a href="#contato" class="w-full text-center bg-white border border-zinc-200 text-zinc-900 font-medium py-2 rounded-lg hover:bg-zinc-50 transition-colors">Falar com a gente</a>
+      </div>
+    </div>
+
+    <div class="mt-10 bg-zinc-50 border border-zinc-100 rounded-xl px-6 py-5 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+      <p class="text-sm font-semibold text-zinc-900 shrink-0">Incluso em todos os planos</p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-700">
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Construção</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Hospedagem</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Manutenção</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Ajustes quando seu processo mudar</li>
+        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Suporte por WhatsApp</li>
+      </ul>
+    </div>
+    <p class="mt-4 text-center text-xs text-zinc-500">O desenvolvimento da primeira automação é por nossa conta.</p>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section id="duvidas" class="scroll-mt-24 bg-zinc-50 py-20 md:py-28 px-6 border-y border-zinc-100">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+    <div>
+      <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Dúvidas</p>
+      <h2 class="text-3xl font-semibold tracking-tight text-zinc-900 mb-3">Perguntas antes de começar</h2>
+      <p class="text-sm text-zinc-700 mb-4">Se a sua dúvida não estiver aqui, traga para a conversa de 30 minutos.</p>
+      <a href="#contato" class="text-sm font-medium text-zinc-900 underline underline-offset-2 hover:text-zinc-600">Falar com a gente</a>
+    </div>
+    <div class="md:col-span-2 divide-y divide-zinc-200">
+      <details class="ds-acc py-4" open>
+        <summary class="flex items-center justify-between text-base font-medium text-zinc-900 gap-4">E se eu não gostar do teste?<svg class="text-zinc-400 shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p class="text-sm text-zinc-700 leading-relaxed mt-3">Você não paga nada. O desenvolvimento da primeira automação é por nossa conta, e você só assina a mensalidade se quiser continuar.</p>
+      </details>
+      <details class="ds-acc py-4">
+        <summary class="flex items-center justify-between text-base font-medium text-zinc-900 gap-4">Preciso trocar algum sistema?<svg class="text-zinc-400 shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p class="text-sm text-zinc-700 leading-relaxed mt-3">Não. A automação conecta o que você já usa, como WhatsApp, planilhas, e-mail, agenda e sistema de gestão. Se algum sistema não permitir conexão, avisamos já na primeira conversa e sugerimos uma alternativa.</p>
+      </details>
+      <details class="ds-acc py-4">
+        <summary class="flex items-center justify-between text-base font-medium text-zinc-900 gap-4">Minha equipe vai precisar aprender uma ferramenta nova?<svg class="text-zinc-400 shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p class="text-sm text-zinc-700 leading-relaxed mt-3">Não. A automação trabalha nos bastidores e a equipe continua nos mesmos sistemas, com menos tarefa manual. Quando algo pede uma decisão, o aviso chega por onde a equipe já trabalha, como WhatsApp ou e-mail.</p>
+      </details>
+      <details class="ds-acc py-4">
+        <summary class="flex items-center justify-between text-base font-medium text-zinc-900 gap-4">Como ficam os dados dos meus clientes?<svg class="text-zinc-400 shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p class="text-sm text-zinc-700 leading-relaxed mt-3">Seguimos a LGPD. A automação acessa só os dados de que precisa, com permissões que você autoriza e pode revogar quando quiser. Seus dados continuam nos seus sistemas, e assinamos um acordo de tratamento de dados com cada cliente.</p>
+      </details>
+      <details class="ds-acc py-4">
+        <summary class="flex items-center justify-between text-base font-medium text-zinc-900 gap-4">O que acontece se eu cancelar?<svg class="text-zinc-400 shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p class="text-sm text-zinc-700 leading-relaxed mt-3">Você avisa com 30 dias de antecedência e a automação é desligada no fim do período. Seus dados continuam nos seus sistemas e entregamos a documentação do que foi construído.</p>
+      </details>
+      <details class="ds-acc py-4">
+        <summary class="flex items-center justify-between text-base font-medium text-zinc-900 gap-4">E se a automação der erro?<svg class="text-zinc-400 shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p class="text-sm text-zinc-700 leading-relaxed mt-3">Acompanhamos todas as automações. Se algo falhar, recebemos um alerta, avisamos você e corrigimos, normalmente no mesmo dia útil. A correção está inclusa na mensalidade.</p>
+      </details>
+      <details class="ds-acc py-4">
+        <summary class="flex items-center justify-between text-base font-medium text-zinc-900 gap-4">Vocês usam inteligência artificial?<svg class="text-zinc-400 shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+        <p class="text-sm text-zinc-700 leading-relaxed mt-3">Quando ajuda, sim: para ler mensagens, organizar documentos ou classificar pedidos. Quando uma regra simples resolve, usamos a regra.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA (light variant: the dark band was spent on the promise) ========== -->
+<section id="contato" class="scroll-mt-24 relative bg-white py-20 md:py-28 px-6 text-center overflow-hidden">
+  <div class="absolute inset-0 bg-grid-pattern opacity-40"></div>
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-gradient-to-b from-white to-transparent"></div>
+  <div class="relative max-w-2xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 mb-3">Escolha uma tarefa que se repete.<br class="hidden sm:block"> A gente coloca no automático.</h2>
+    <p class="text-zinc-700 max-w-lg mx-auto mb-8">Conte qual processo mais toma tempo da sua equipe. Respondemos em até 1 dia útil e construímos a primeira automação sem custo de desenvolvimento.</p>
+    <div class="flex items-center justify-center gap-3 mb-8">
+      <img src="../public/team/simon-larsen.jpg" alt="Simon Larsen, fundador da mil&dez" class="w-12 h-12 rounded-full object-cover border border-zinc-200 shrink-0">
+      <p class="text-sm text-zinc-700 text-left max-w-xs">Quem responde é Simon Larsen, fundador da mil&amp;dez, em Belo Horizonte.</p>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <a href="#" class="bg-zinc-900 text-white font-medium px-6 py-3 rounded-lg hover:bg-zinc-800 shadow-sm transition-all active:scale-95">Quero minha automação grátis</a>
+      <a href="https://wa.me/5531983529257" class="bg-white border border-zinc-200 text-zinc-900 font-medium px-6 py-3 rounded-lg hover:bg-zinc-50 shadow-sm transition-all active:scale-95">Chamar no WhatsApp</a>
+    </div>
+    <p class="mt-4 text-xs text-zinc-500">Sem compromisso.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-white border-t border-zinc-200 px-6 pt-12 pb-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
+      <div class="col-span-2">
+        <div class="text-2xl font-light tracking-tight text-zinc-900 mb-2">mil<span class="text-zinc-600">&amp;</span>dez</div>
+        <p class="text-sm text-zinc-500 max-w-[260px]">seu trabalho no automático</p>
+      </div>
+      <nav aria-label="Setores">
+        <p class="text-xs font-semibold text-zinc-900 uppercase tracking-wider mb-3">Setores</p>
+        <ul class="space-y-2 text-sm text-zinc-500">
+          <li><a href="#" class="hover:text-zinc-900 transition-colors">Saúde</a></li>
+          <li><a href="#" class="hover:text-zinc-900 transition-colors">Serviços</a></li>
+          <li><a href="#" class="hover:text-zinc-900 transition-colors">Agronegócio</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Contato">
+        <p class="text-xs font-semibold text-zinc-900 uppercase tracking-wider mb-3">Contato</p>
+        <ul class="space-y-2 text-sm text-zinc-500">
+          <li><a href="mailto:contato@miledez.com.br" class="hover:text-zinc-900 transition-colors">contato@miledez.com.br</a></li>
+          <li><a href="https://wa.me/5531983529257" class="hover:text-zinc-900 transition-colors">WhatsApp</a></li>
+          <li>Belo Horizonte, MG</li>
+        </ul>
+      </nav>
+      <nav aria-label="Legal">
+        <p class="text-xs font-semibold text-zinc-900 uppercase tracking-wider mb-3">Legal</p>
+        <ul class="space-y-2 text-sm text-zinc-500">
+          <li><a href="#" class="hover:text-zinc-900 transition-colors">Privacidade</a></li>
+          <li><a href="#" class="hover:text-zinc-900 transition-colors">Termos</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="border-t border-zinc-100 pt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-zinc-500">© 2025 mil&amp;dez. Todos os direitos reservados. · Rua Irmãos Kennedy 200 ap. 301, Belo Horizonte, MG · CNPJ 44.584.460/0001-80</p>
+      <div class="flex items-center gap-4 text-zinc-400">
+        <a href="#" aria-label="LinkedIn" class="hover:text-zinc-900 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452z"/></svg></a>
+        <a href="#" aria-label="Instagram" class="hover:text-zinc-900 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Review chrome (mockup only) -->
+<div class="fixed bottom-4 left-4 z-50 flex items-center gap-2 bg-white border border-zinc-200 rounded-full shadow-md px-3 py-1.5 text-xs">
+  <span class="font-semibold text-zinc-900">Rascunho A</span>
+  <span class="text-zinc-400">·</span>
+  <a href="landing-b.html" class="text-zinc-700 hover:text-zinc-900 underline underline-offset-2">ver B</a>
+</div>
+
+<script>
+  // Condensing navbar
+  const bar = document.querySelector('[data-shrink]');
+  const onScroll = () => bar.classList.toggle('is-shrunk', window.scrollY > 24);
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  // Mobile menu
+  const toggle = document.getElementById('menu-toggle'), menu = document.getElementById('mobile-menu');
+  toggle.addEventListener('click', () => { const open = menu.classList.toggle('hidden') === false; toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu'); });
+  // Seamless logo marquee: duplicate the track content once
+  const track = document.getElementById('logo-track');
+  track.innerHTML += track.innerHTML.replace(/alt="[^"]*"/g, 'alt="" aria-hidden="true"');
+</script>
+</body>
+</html>
