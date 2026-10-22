@@ -16,6 +16,7 @@ tailwind.config = {
       fontFamily: { sans: ['Inter', 'sans-serif'] },
       // ~/light-design-system/docs/palette-teal.js
       colors: {
+        body: '#27272a',
         zinc: { 50: '#fafafa', 100: '#f4f4f5', 200: '#e4e4e7', 300: '#d4d4d8', 400: '#a1a1aa', 500: '#71717a', 600: '#0d9488', 700: '#0f766e', 800: '#115e59', 900: '#134e4a', 950: '#042f2e' },
         emerald: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d', 950: '#052e16' },
         amber: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12', 950: '#431407' },
@@ -50,20 +51,20 @@ tailwind.config = {
 <header data-shrink class="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur px-6">
   <nav class="max-w-6xl mx-auto flex items-center justify-between">
     <a href="#" class="text-2xl font-light tracking-tight text-zinc-900">mil<span class="text-zinc-600">&amp;</span>dez</a>
-    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-700">
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-body">
       <a href="#" class="text-zinc-900">Início</a>
       <a href="#exemplos" class="hover:text-zinc-900 transition-colors">Setores</a>
       <a href="#precos" class="hover:text-zinc-900 transition-colors">Preços</a>
     </div>
     <div class="flex items-center gap-3">
-      <a href="#" class="hidden sm:block text-sm font-medium text-zinc-700 hover:text-zinc-900" aria-label="Read this page in English">EN</a>
+      <a href="#" class="hidden sm:block text-sm font-medium text-body hover:text-zinc-900" aria-label="Read this page in English">EN</a>
       <a href="#contato" class="bg-zinc-900 text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-zinc-800 transition-colors shadow-sm">Contato</a>
       <button id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" class="md:hidden w-9 h-9 flex items-center justify-center rounded-md border border-zinc-200 text-zinc-700 hover:bg-zinc-50">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
       </button>
     </div>
   </nav>
-  <div id="mobile-menu" class="hidden md:hidden max-w-6xl mx-auto pt-3 pb-2 flex flex-col gap-1 text-sm font-medium text-zinc-700">
+  <div id="mobile-menu" class="hidden md:hidden max-w-6xl mx-auto pt-3 pb-2 flex flex-col gap-1 text-sm font-medium text-body">
     <a href="#" class="px-2 py-2 rounded-md bg-zinc-100 text-zinc-900">Início</a>
     <a href="#exemplos" class="px-2 py-2 rounded-md hover:bg-zinc-50">Setores</a>
     <a href="#precos" class="px-2 py-2 rounded-md hover:bg-zinc-50">Preços</a>
@@ -79,16 +80,16 @@ tailwind.config = {
   <div class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white to-transparent"></div>
   <div class="relative max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center">
     <div class="min-w-0">
-      <span class="inline-flex items-center gap-1.5 px-3 py-1 mb-6 text-xs font-medium text-zinc-700 bg-white border border-zinc-200 rounded-full shadow-sm">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 mb-6 text-xs font-medium text-body bg-white border border-zinc-200 rounded-full shadow-sm">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Belo Horizonte · saúde, escritórios e agronegócio
       </span>
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] text-zinc-900 mb-6">Sua equipe para de repetir tarefa. <span class="bg-clip-text text-transparent bg-gradient-to-r from-zinc-700 to-zinc-600">O sistema faz por ela.</span></h1>
-      <p class="text-lg md:text-xl text-zinc-700 mb-8 max-w-xl leading-relaxed">Lembretes, cobranças, cotações e prazos passam a acontecer sozinhos, nos sistemas que você já usa. Construímos sua primeira automação sem custo de desenvolvimento, pronta em até 2 semanas.</p>
+      <p class="text-lg md:text-xl text-body mb-8 max-w-xl leading-relaxed">Lembretes, cobranças, cotações e prazos passam a acontecer sozinhos, nos sistemas que você já usa. Construímos sua primeira automação sem custo de desenvolvimento, pronta em até 2 semanas.</p>
       <div class="flex flex-wrap items-center gap-3">
         <a href="#contato" class="bg-zinc-900 text-white font-medium px-6 py-3 rounded-lg hover:bg-zinc-800 shadow-sm transition-all active:scale-95">Quero minha automação grátis</a>
         <a href="#exemplos" class="bg-white border border-zinc-200 text-zinc-900 font-medium px-6 py-3 rounded-lg hover:bg-zinc-50 shadow-sm transition-all active:scale-95">Ver exemplos</a>
       </div>
-      <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-700">
+      <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-body">
         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Sem custo de desenvolvimento</li>
         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Pronta em até 2 semanas</li>
         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Cancele quando quiser</li>
@@ -153,7 +154,7 @@ tailwind.config = {
     <div class="max-w-2xl mb-10">
       <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">O problema</p>
       <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-4">Quanto do dia da sua equipe vai em copiar, colar e lembrar?</h2>
-      <p class="text-base md:text-lg text-zinc-700 leading-relaxed">Três problemas aparecem em quase toda empresa de pequeno e médio porte. Eles custam horas toda semana e raramente aparecem em algum relatório.</p>
+      <p class="text-base md:text-lg text-body leading-relaxed">Três problemas aparecem em quase toda empresa de pequeno e médio porte. Eles custam horas toda semana e raramente aparecem em algum relatório.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div class="bg-zinc-50 border border-zinc-100 rounded-xl p-6">
@@ -161,21 +162,21 @@ tailwind.config = {
           <svg class="text-zinc-700" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg>
           <h3 class="text-base font-semibold text-zinc-900">A mesma tarefa, todo dia</h3>
         </div>
-        <p class="text-sm text-zinc-700 leading-relaxed">Confirmar consultas, mandar lembretes, atualizar planilhas. Alguém da equipe faz isso à mão, uma mensagem de cada vez.</p>
+        <p class="text-sm text-body leading-relaxed">Confirmar consultas, mandar lembretes, atualizar planilhas. Alguém da equipe faz isso à mão, uma mensagem de cada vez.</p>
       </div>
       <div class="bg-zinc-50 border border-zinc-100 rounded-xl p-6">
         <div class="flex items-center gap-2.5 mb-2">
           <svg class="text-zinc-700" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
           <h3 class="text-base font-semibold text-zinc-900">Informação em cinco lugares</h3>
         </div>
-        <p class="text-sm text-zinc-700 leading-relaxed">O pedido chegou no WhatsApp, o preço está na planilha e a nota ficou no e-mail. Para responder o cliente, alguém precisa juntar tudo.</p>
+        <p class="text-sm text-body leading-relaxed">O pedido chegou no WhatsApp, o preço está na planilha e a nota ficou no e-mail. Para responder o cliente, alguém precisa juntar tudo.</p>
       </div>
       <div class="bg-zinc-50 border border-zinc-100 rounded-xl p-6">
         <div class="flex items-center gap-2.5 mb-2">
           <svg class="text-zinc-700" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
           <h3 class="text-base font-semibold text-zinc-900">O prazo que ninguém lembrou</h3>
         </div>
-        <p class="text-sm text-zinc-700 leading-relaxed">Contrato que venceu, cobrança que não saiu, licença que expirou. Cada esquecimento vira retrabalho, multa ou cliente perdido.</p>
+        <p class="text-sm text-body leading-relaxed">Contrato que venceu, cobrança que não saiu, licença que expirou. Cada esquecimento vira retrabalho, multa ou cliente perdido.</p>
       </div>
     </div>
     <div class="mt-8">
@@ -190,14 +191,14 @@ tailwind.config = {
     <div class="max-w-2xl mb-10">
       <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Exemplos</p>
       <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-4">Os mesmos três problemas, resolvidos no automático</h2>
-      <p class="text-base md:text-lg text-zinc-700 leading-relaxed">Um exemplo para cada problema acima. Na sua empresa, a automação segue o seu processo e usa os sistemas que você já tem.</p>
+      <p class="text-base md:text-lg text-body leading-relaxed">Um exemplo para cada problema acima. Na sua empresa, a automação segue o seu processo e usa os sistemas que você já tem.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
       <div class="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm flex flex-col">
-        <span class="inline-block self-start px-2.5 py-1 mb-4 text-xs font-medium bg-zinc-100 text-zinc-700 border border-zinc-200 rounded-md">Saúde</span>
+        <span class="inline-block self-start px-2.5 py-1 mb-4 text-xs font-medium bg-zinc-100 text-body border border-zinc-200 rounded-md">Saúde</span>
         <h3 class="text-xl font-semibold tracking-tight text-zinc-900 mb-1">Confirmação de consultas</h3>
         <p class="text-sm text-zinc-500 mb-4">Resolve: a mesma tarefa, todo dia</p>
-        <p class="text-sm text-zinc-700 leading-relaxed mb-5"><span class="font-semibold text-zinc-900">Antes:</span> a recepção manda mensagem para cada paciente, um por um.</p>
+        <p class="text-sm text-body leading-relaxed mb-5"><span class="font-semibold text-zinc-900">Antes:</span> a recepção manda mensagem para cada paciente, um por um.</p>
         <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">Depois, no automático</p>
         <div class="border border-zinc-200 rounded-xl overflow-hidden" aria-hidden="true">
           <div class="bg-zinc-50 p-4 space-y-2.5">
@@ -208,10 +209,10 @@ tailwind.config = {
         </div>
       </div>
       <div class="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm flex flex-col">
-        <span class="inline-block self-start px-2.5 py-1 mb-4 text-xs font-medium bg-zinc-100 text-zinc-700 border border-zinc-200 rounded-md">Agronegócio</span>
+        <span class="inline-block self-start px-2.5 py-1 mb-4 text-xs font-medium bg-zinc-100 text-body border border-zinc-200 rounded-md">Agronegócio</span>
         <h3 class="text-xl font-semibold tracking-tight text-zinc-900 mb-1">Cotação de insumos</h3>
         <p class="text-sm text-zinc-500 mb-4">Resolve: informação em cinco lugares</p>
-        <p class="text-sm text-zinc-700 leading-relaxed mb-5"><span class="font-semibold text-zinc-900">Antes:</span> alguém pede preço a cada fornecedor e compara tudo à mão.</p>
+        <p class="text-sm text-body leading-relaxed mb-5"><span class="font-semibold text-zinc-900">Antes:</span> alguém pede preço a cada fornecedor e compara tudo à mão.</p>
         <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">Depois, no automático</p>
         <div class="border border-zinc-200 rounded-xl overflow-hidden" aria-hidden="true">
           <div class="bg-zinc-50 p-4 space-y-2.5">
@@ -224,10 +225,10 @@ tailwind.config = {
         </div>
       </div>
       <div class="bg-white border border-zinc-200 rounded-2xl p-6 shadow-sm flex flex-col">
-        <span class="inline-block self-start px-2.5 py-1 mb-4 text-xs font-medium bg-zinc-100 text-zinc-700 border border-zinc-200 rounded-md">Escritórios</span>
+        <span class="inline-block self-start px-2.5 py-1 mb-4 text-xs font-medium bg-zinc-100 text-body border border-zinc-200 rounded-md">Escritórios</span>
         <h3 class="text-xl font-semibold tracking-tight text-zinc-900 mb-1">Renovação de contratos</h3>
         <p class="text-sm text-zinc-500 mb-4">Resolve: o prazo que ninguém lembrou</p>
-        <p class="text-sm text-zinc-700 leading-relaxed mb-5"><span class="font-semibold text-zinc-900">Antes:</span> a renovação depende de alguém lembrar a data.</p>
+        <p class="text-sm text-body leading-relaxed mb-5"><span class="font-semibold text-zinc-900">Antes:</span> a renovação depende de alguém lembrar a data.</p>
         <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">Depois, no automático</p>
         <div class="border border-zinc-200 rounded-xl overflow-hidden" aria-hidden="true">
           <div class="bg-zinc-50 p-4 space-y-2.5">
@@ -248,7 +249,7 @@ tailwind.config = {
     <div class="max-w-2xl mb-10">
       <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Quanto vale</p>
       <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-4">Quanto vale uma automação dessas</h2>
-      <p class="text-base md:text-lg text-zinc-700 leading-relaxed">Fizemos as contas para três negócios típicos, um para cada exemplo acima. As premissas ficam à vista, para você comparar com a sua realidade.</p>
+      <p class="text-base md:text-lg text-body leading-relaxed">Fizemos as contas para três negócios típicos, um para cada exemplo acima. As premissas ficam à vista, para você comparar com a sua realidade.</p>
     </div>
     <div class="border border-zinc-200 rounded-2xl bg-white shadow-sm grid grid-cols-1 md:grid-cols-3 md:divide-x divide-y md:divide-y-0 divide-zinc-100">
       <div class="p-6 md:p-8 flex flex-col">
@@ -257,7 +258,7 @@ tailwind.config = {
         <div class="mt-6 border-t-2 border-zinc-900 pt-4">
           <p class="text-xs text-zinc-500 mb-1">Retorno estimado</p>
           <p class="text-4xl font-bold tracking-tight text-zinc-900 tabular-nums">R$3.000<span class="text-sm font-normal text-zinc-500">/mês</span></p>
-          <p class="mt-2 text-sm text-zinc-700">para uma mensalidade de <span class="font-semibold text-zinc-900 tabular-nums">R$500</span></p>
+          <p class="mt-2 text-sm text-body">para uma mensalidade de <span class="font-semibold text-zinc-900 tabular-nums">R$500</span></p>
         </div>
         <p class="mt-auto pt-6 text-xs text-zinc-500 leading-relaxed">Premissa: 10 faltas a menos por mês, com ticket médio de R$250, e 20 horas de recepção liberadas (R$25/h).</p>
       </div>
@@ -267,7 +268,7 @@ tailwind.config = {
         <div class="mt-6 border-t-2 border-zinc-900 pt-4">
           <p class="text-xs text-zinc-500 mb-1">Retorno estimado</p>
           <p class="text-4xl font-bold tracking-tight text-zinc-900 tabular-nums">R$5.600<span class="text-sm font-normal text-zinc-500">/mês</span></p>
-          <p class="mt-2 text-sm text-zinc-700">para uma mensalidade de <span class="font-semibold text-zinc-900 tabular-nums">R$2.000</span></p>
+          <p class="mt-2 text-sm text-body">para uma mensalidade de <span class="font-semibold text-zinc-900 tabular-nums">R$2.000</span></p>
         </div>
         <p class="mt-auto pt-6 text-xs text-zinc-500 leading-relaxed">Premissa: 1% de economia em R$400 mil de compras por mês e 40 horas de cotação liberadas (R$40/h).</p>
       </div>
@@ -277,7 +278,7 @@ tailwind.config = {
         <div class="mt-6 border-t-2 border-zinc-900 pt-4">
           <p class="text-xs text-zinc-500 mb-1">Retorno estimado</p>
           <p class="text-4xl font-bold tracking-tight text-zinc-900 tabular-nums">R$1.900<span class="text-sm font-normal text-zinc-500">/mês</span></p>
-          <p class="mt-2 text-sm text-zinc-700">para uma mensalidade de <span class="font-semibold text-zinc-900 tabular-nums">R$500</span></p>
+          <p class="mt-2 text-sm text-body">para uma mensalidade de <span class="font-semibold text-zinc-900 tabular-nums">R$500</span></p>
         </div>
         <p class="mt-auto pt-6 text-xs text-zinc-500 leading-relaxed">Premissa: 15 horas por mês liberadas (R$60/h) e R$1.000 por mês em honorários que deixam de se perder por renovação esquecida.</p>
       </div>
@@ -296,7 +297,7 @@ tailwind.config = {
     <div class="max-w-2xl mb-12">
       <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Como funciona</p>
       <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-4">Da primeira conversa à automação funcionando</h2>
-      <p class="text-base md:text-lg text-zinc-700 leading-relaxed">Você conta como o trabalho é feito hoje. Nós construímos, testamos e cuidamos de tudo depois. Sua equipe não precisa mexer em nada técnico.</p>
+      <p class="text-base md:text-lg text-body leading-relaxed">Você conta como o trabalho é feito hoje. Nós construímos, testamos e cuidamos de tudo depois. Sua equipe não precisa mexer em nada técnico.</p>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-start">
       <div class="lg:col-span-3">
@@ -306,33 +307,33 @@ tailwind.config = {
             <span class="absolute left-0 top-0.5 w-6 h-6 rounded-full bg-white border-2 border-zinc-900 text-zinc-900 text-[10px] font-bold flex items-center justify-center">1</span>
             <div class="flex flex-wrap items-center gap-3 mb-1.5">
               <h3 class="text-lg font-semibold text-zinc-900">Conversa de 30 minutos</h3>
-              <span class="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-700 bg-zinc-100 border border-zinc-200 rounded-md px-2 py-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>30 min</span>
+              <span class="inline-flex items-center gap-1.5 text-xs font-medium text-body bg-zinc-100 border border-zinc-200 rounded-md px-2 py-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>30 min</span>
             </div>
-            <p class="text-sm md:text-base text-zinc-700 leading-relaxed max-w-lg">Você mostra como a operação funciona hoje e onde o tempo se perde. Nós perguntamos, ouvimos e anotamos.</p>
+            <p class="text-sm md:text-base text-body leading-relaxed max-w-lg">Você mostra como a operação funciona hoje e onde o tempo se perde. Nós perguntamos, ouvimos e anotamos.</p>
           </div>
           <div class="relative pl-8 pb-10">
             <span class="absolute left-0 top-0.5 w-6 h-6 rounded-full bg-white border-2 border-zinc-900 text-zinc-900 text-[10px] font-bold flex items-center justify-center">2</span>
             <div class="flex flex-wrap items-center gap-3 mb-1.5">
               <h3 class="text-lg font-semibold text-zinc-900">Diagnóstico por escrito</h3>
-              <span class="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-700 bg-zinc-100 border border-zinc-200 rounded-md px-2 py-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2–3 dias úteis</span>
+              <span class="inline-flex items-center gap-1.5 text-xs font-medium text-body bg-zinc-100 border border-zinc-200 rounded-md px-2 py-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2–3 dias úteis</span>
             </div>
-            <p class="text-sm md:text-base text-zinc-700 leading-relaxed max-w-lg">Você recebe um relatório com as automações que mais fazem sentido para o seu negócio, o tempo que cada uma economiza e quanto custa.</p>
+            <p class="text-sm md:text-base text-body leading-relaxed max-w-lg">Você recebe um relatório com as automações que mais fazem sentido para o seu negócio, o tempo que cada uma economiza e quanto custa.</p>
           </div>
           <div class="relative pl-8 pb-10">
             <span class="absolute left-0 top-0.5 w-6 h-6 rounded-full bg-white border-2 border-zinc-900 text-zinc-900 text-[10px] font-bold flex items-center justify-center">3</span>
             <div class="flex flex-wrap items-center gap-3 mb-1.5">
               <h3 class="text-lg font-semibold text-zinc-900">Construção e teste</h3>
-              <span class="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-700 bg-zinc-100 border border-zinc-200 rounded-md px-2 py-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1–2 semanas</span>
+              <span class="inline-flex items-center gap-1.5 text-xs font-medium text-body bg-zinc-100 border border-zinc-200 rounded-md px-2 py-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1–2 semanas</span>
             </div>
-            <p class="text-sm md:text-base text-zinc-700 leading-relaxed max-w-lg">Você escolhe por onde começar. Construímos a automação ligada aos seus sistemas e ajustamos com a sua equipe até funcionar do jeito certo.</p>
+            <p class="text-sm md:text-base text-body leading-relaxed max-w-lg">Você escolhe por onde começar. Construímos a automação ligada aos seus sistemas e ajustamos com a sua equipe até funcionar do jeito certo.</p>
           </div>
           <div class="relative pl-8 ">
             <span class="absolute left-0 top-0.5 w-6 h-6 rounded-full bg-white border-2 border-zinc-900 text-zinc-900 text-[10px] font-bold flex items-center justify-center">4</span>
             <div class="flex flex-wrap items-center gap-3 mb-1.5">
               <h3 class="text-lg font-semibold text-zinc-900">Funcionando, com acompanhamento</h3>
-              <span class="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-700 bg-zinc-100 border border-zinc-200 rounded-md px-2 py-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>contínuo</span>
+              <span class="inline-flex items-center gap-1.5 text-xs font-medium text-body bg-zinc-100 border border-zinc-200 rounded-md px-2 py-0.5"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>contínuo</span>
             </div>
-            <p class="text-sm md:text-base text-zinc-700 leading-relaxed max-w-lg">A automação entra no dia a dia. Se o seu processo mudar, nós ajustamos. Isso está incluso na mensalidade.</p>
+            <p class="text-sm md:text-base text-body leading-relaxed max-w-lg">A automação entra no dia a dia. Se o seu processo mudar, nós ajustamos. Isso está incluso na mensalidade.</p>
           </div>
         </div>
       </div>
@@ -344,9 +345,9 @@ tailwind.config = {
             <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Nosso compromisso</p>
             <h3 class="text-xl md:text-2xl font-semibold tracking-tight text-zinc-900 mb-5">Sua primeira automação em até 2 semanas, sem pagar pelo desenvolvimento</h3>
             <ul class="space-y-3">
-              <li class="flex items-start gap-3 bg-white border border-zinc-200 rounded-lg px-4 py-3 shadow-sm"><svg class="w-4 h-4 mt-0.5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm text-zinc-700"><span class="font-medium text-zinc-900">Desenvolvimento por nossa conta.</span> Você só paga a mensalidade quando a automação estiver funcionando.</span></li>
-              <li class="flex items-start gap-3 bg-white border border-zinc-200 rounded-lg px-4 py-3 shadow-sm"><svg class="w-4 h-4 mt-0.5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm text-zinc-700"><span class="font-medium text-zinc-900">Você testa antes de assinar.</span> Se não gostar do teste, não paga nada.</span></li>
-              <li class="flex items-start gap-3 bg-white border border-zinc-200 rounded-lg px-4 py-3 shadow-sm"><svg class="w-4 h-4 mt-0.5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm text-zinc-700"><span class="font-medium text-zinc-900">Hospedagem, manutenção e ajustes na mensalidade.</span> Se o seu processo mudar, nós ajustamos.</span></li>
+              <li class="flex items-start gap-3 bg-white border border-zinc-200 rounded-lg px-4 py-3 shadow-sm"><svg class="w-4 h-4 mt-0.5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm text-body"><span class="font-medium text-zinc-900">Desenvolvimento por nossa conta.</span> Você só paga a mensalidade quando a automação estiver funcionando.</span></li>
+              <li class="flex items-start gap-3 bg-white border border-zinc-200 rounded-lg px-4 py-3 shadow-sm"><svg class="w-4 h-4 mt-0.5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm text-body"><span class="font-medium text-zinc-900">Você testa antes de assinar.</span> Se não gostar do teste, não paga nada.</span></li>
+              <li class="flex items-start gap-3 bg-white border border-zinc-200 rounded-lg px-4 py-3 shadow-sm"><svg class="w-4 h-4 mt-0.5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm text-body"><span class="font-medium text-zinc-900">Hospedagem, manutenção e ajustes na mensalidade.</span> Se o seu processo mudar, nós ajustamos.</span></li>
             </ul>
           </div>
         </div>
@@ -360,7 +361,7 @@ tailwind.config = {
     <div class="max-w-2xl mb-12">
       <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Preços</p>
       <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-4">Quanto custa e o que está incluso</h2>
-      <p class="text-base md:text-lg text-zinc-700 leading-relaxed">Uma mensalidade cobre construção, hospedagem, manutenção e ajustes. Cancele quando quiser.</p>
+      <p class="text-base md:text-lg text-body leading-relaxed">Uma mensalidade cobre construção, hospedagem, manutenção e ajustes. Cancele quando quiser.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
@@ -390,7 +391,7 @@ tailwind.config = {
 
     <div class="mt-10 bg-zinc-50 border border-zinc-100 rounded-xl px-6 py-5 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
       <p class="text-sm font-semibold text-zinc-900 shrink-0">Incluso em todos os planos</p>
-      <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-700">
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-body">
         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Construção</li>
         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Hospedagem</li>
         <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Manutenção</li>
@@ -408,37 +409,37 @@ tailwind.config = {
     <div>
       <p class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">Dúvidas</p>
       <h2 class="text-3xl font-semibold tracking-tight text-zinc-900 mb-3">Perguntas antes de começar</h2>
-      <p class="text-sm text-zinc-700 mb-4">Se a sua dúvida não estiver aqui, traga para a conversa de 30 minutos.</p>
+      <p class="text-sm text-body mb-4">Se a sua dúvida não estiver aqui, traga para a conversa de 30 minutos.</p>
       <a href="#contato" class="text-sm font-medium text-zinc-900 underline underline-offset-2 hover:text-zinc-600">Falar com a gente</a>
     </div>
     <div class="md:col-span-2 divide-y divide-zinc-200">
       <details class="ds-acc py-4" open>
         <summary class="flex items-center justify-between text-base font-medium text-zinc-900 gap-4">E se eu não gostar do teste?<svg class="text-zinc-400 shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
-        <p class="text-sm text-zinc-700 leading-relaxed mt-3">Você não paga nada. O desenvolvimento da primeira automação é por nossa conta, e você só assina a mensalidade se quiser continuar.</p>
+        <p class="text-sm text-body leading-relaxed mt-3">Você não paga nada. O desenvolvimento da primeira automação é por nossa conta, e você só assina a mensalidade se quiser continuar.</p>
       </details>
       <details class="ds-acc py-4">
         <summary class="flex items-center justify-between text-base font-medium text-zinc-900 gap-4">Preciso trocar algum sistema?<svg class="text-zinc-400 shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
-        <p class="text-sm text-zinc-700 leading-relaxed mt-3">Não. A automação conecta o que você já usa, como WhatsApp, planilhas, e-mail, agenda e sistema de gestão. Se algum sistema não permitir conexão, avisamos já na primeira conversa e sugerimos uma alternativa.</p>
+        <p class="text-sm text-body leading-relaxed mt-3">Não. A automação conecta o que você já usa, como WhatsApp, planilhas, e-mail, agenda e sistema de gestão. Se algum sistema não permitir conexão, avisamos já na primeira conversa e sugerimos uma alternativa.</p>
       </details>
       <details class="ds-acc py-4">
         <summary class="flex items-center justify-between text-base font-medium text-zinc-900 gap-4">Minha equipe vai precisar aprender uma ferramenta nova?<svg class="text-zinc-400 shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
-        <p class="text-sm text-zinc-700 leading-relaxed mt-3">Não. A automação trabalha nos bastidores e a equipe continua nos mesmos sistemas, com menos tarefa manual. Quando algo pede uma decisão, o aviso chega por onde a equipe já trabalha, como WhatsApp ou e-mail.</p>
+        <p class="text-sm text-body leading-relaxed mt-3">Não. A automação trabalha nos bastidores e a equipe continua nos mesmos sistemas, com menos tarefa manual. Quando algo pede uma decisão, o aviso chega por onde a equipe já trabalha, como WhatsApp ou e-mail.</p>
       </details>
       <details class="ds-acc py-4">
         <summary class="flex items-center justify-between text-base font-medium text-zinc-900 gap-4">Como ficam os dados dos meus clientes?<svg class="text-zinc-400 shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
-        <p class="text-sm text-zinc-700 leading-relaxed mt-3">Seguimos a LGPD. A automação acessa só os dados de que precisa, com permissões que você autoriza e pode revogar quando quiser. Seus dados continuam nos seus sistemas, e assinamos um acordo de tratamento de dados com cada cliente.</p>
+        <p class="text-sm text-body leading-relaxed mt-3">Seguimos a LGPD. A automação acessa só os dados de que precisa, com permissões que você autoriza e pode revogar quando quiser. Seus dados continuam nos seus sistemas, e assinamos um acordo de tratamento de dados com cada cliente.</p>
       </details>
       <details class="ds-acc py-4">
         <summary class="flex items-center justify-between text-base font-medium text-zinc-900 gap-4">O que acontece se eu cancelar?<svg class="text-zinc-400 shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
-        <p class="text-sm text-zinc-700 leading-relaxed mt-3">Você avisa com 30 dias de antecedência e a automação é desligada no fim do período. Seus dados continuam nos seus sistemas e entregamos a documentação do que foi construído.</p>
+        <p class="text-sm text-body leading-relaxed mt-3">Você avisa com 30 dias de antecedência e a automação é desligada no fim do período. Seus dados continuam nos seus sistemas e entregamos a documentação do que foi construído.</p>
       </details>
       <details class="ds-acc py-4">
         <summary class="flex items-center justify-between text-base font-medium text-zinc-900 gap-4">E se a automação der erro?<svg class="text-zinc-400 shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
-        <p class="text-sm text-zinc-700 leading-relaxed mt-3">Acompanhamos todas as automações. Se algo falhar, recebemos um alerta, avisamos você e corrigimos, normalmente no mesmo dia útil. A correção está inclusa na mensalidade.</p>
+        <p class="text-sm text-body leading-relaxed mt-3">Acompanhamos todas as automações. Se algo falhar, recebemos um alerta, avisamos você e corrigimos, normalmente no mesmo dia útil. A correção está inclusa na mensalidade.</p>
       </details>
       <details class="ds-acc py-4">
         <summary class="flex items-center justify-between text-base font-medium text-zinc-900 gap-4">Vocês usam inteligência artificial?<svg class="text-zinc-400 shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
-        <p class="text-sm text-zinc-700 leading-relaxed mt-3">Quando ajuda, sim: para ler mensagens, organizar documentos ou classificar pedidos. Quando uma regra simples resolve, usamos a regra.</p>
+        <p class="text-sm text-body leading-relaxed mt-3">Quando ajuda, sim: para ler mensagens, organizar documentos ou classificar pedidos. Quando uma regra simples resolve, usamos a regra.</p>
       </details>
     </div>
   </div>
@@ -512,7 +513,7 @@ tailwind.config = {
 <div class="fixed bottom-4 left-4 z-50 flex items-center gap-2 bg-white border border-zinc-200 rounded-full shadow-md px-3 py-1.5 text-xs">
   <span class="font-semibold text-zinc-900">Rascunho B</span>
   <span class="text-zinc-400">·</span>
-  <a href="landing-a.html" class="text-zinc-700 hover:text-zinc-900 underline underline-offset-2">ver A</a>
+  <a href="landing-a.html" class="text-body hover:text-zinc-900 underline underline-offset-2">ver A</a>
 </div>
 
 <script>
