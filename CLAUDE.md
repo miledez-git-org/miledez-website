@@ -40,7 +40,7 @@ vercel deploy --prod --yes --scope simon-9781s-projects
 | `lib/i18n/` | All copy (`pt.ts`, `en.ts`) plus route and hreflang helpers |
 | `types/`, `docs/`, `supabase/migrations/` | Assessment types, n8n workflow specs, migration SQL |
 | `public/miledez-agency-logos/` | Served copy of the logos in `marketing/resources/brand/` |
-| `public/software-company-logos/` | Integration partner logos (57 SVGs) |
+| `public/software-company-logos/` | Integration partner logos (one SVG per partner) |
 
 Stack: Next.js 14.2 App Router with `output: 'export'`, React 18.3, Framer Motion 12, Tailwind CSS 3.4, TypeScript.
 
