@@ -40,3 +40,6 @@ tmpclaude-*
 sandbox/resume_session.txt
 client_secret*.json
 *credentials*.json
+
+# Claude Code personal settings (never committed)
+.claude/settings.local.json
