@@ -47,9 +47,9 @@
 - [x] Remove `--brand-*` / `--bg-*` / `--border-*` vars from `globals.css`
 - [x] Guard grep on live files returns zero
 - [x] Update `website/CLAUDE.md` migration-state paragraph + memory
-- [ ] Merge, push, CLI deploy
+- [x] Merge, push, deploy
 
 ## Phase 8 — Type, radius and shadow tokens (approved 2026-10-21, after colors)
-- [ ] Compare `generated-theme.ts` fontSize/lineHeight/borderRadius/boxShadow against the reference and list the diffs
-- [ ] Decide per token: adopt Tailwind/DS defaults or keep
-- [ ] Apply, then screenshot every route at 1280 and 500 px and check alignment
+- [x] Compare `generated-theme.ts` fontSize/lineHeight/borderRadius/boxShadow against the reference and list the diffs
+- [x] Decide per token: adopt Tailwind/DS defaults or keep
+- [x] Apply, then screenshot every route at 1280 and 500 px and check alignment

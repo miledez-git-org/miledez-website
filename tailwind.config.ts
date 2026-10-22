@@ -40,9 +40,6 @@ const config: Config = {
         '18': '4.5rem',
         '128': '8rem',
       },
-      boxShadow: {
-        ...(designSystemTheme?.boxShadow ?? {}),
-      },
       keyframes: {
         scaleIn: {
           '0%': { transform: 'scale(0.9)' },
