@@ -103,7 +103,7 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
               letterSpacing: '-0.03em',
             }}
           >
-            mil<span className="text-zinc-900">&</span>dez
+            mil<span className="text-zinc-900 font-semibold">&</span>dez
           </span>
         </Link>
 
