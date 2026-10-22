@@ -46,8 +46,8 @@ export interface TimelineItemProps extends React.HTMLAttributes<HTMLDivElement> 
 }
 
 const dotVariantClasses: Record<TimelineItemVariant, string> = {
-  default: 'bg-accent-slate',
-  brand: 'bg-brand-primary',
+  default: 'bg-zinc-700',
+  brand: 'bg-zinc-900',
 }
 
 export function TimelineItem({
@@ -73,14 +73,14 @@ export function TimelineItem({
           )}
         />
         {/* Line */}
-        <div className="w-0.5 flex-1 bg-neutral-200 my-2 min-h-[16px] last:hidden" />
+        <div className="w-0.5 flex-1 bg-zinc-200 my-2 min-h-[16px] last:hidden" />
       </div>
 
       {/* Content */}
       <div className="flex-1 pb-8 last:pb-0">
-        <h3 className="font-semibold text-neutral-900 mb-1">{title}</h3>
+        <h3 className="font-semibold text-zinc-900 mb-1">{title}</h3>
         {description && (
-          <p className="text-sm text-neutral-600">{description}</p>
+          <p className="text-sm text-body">{description}</p>
         )}
         {children}
       </div>

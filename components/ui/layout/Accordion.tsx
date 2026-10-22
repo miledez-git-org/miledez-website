@@ -82,7 +82,7 @@ export function Accordion({
     <AccordionContext.Provider value={{ value, toggleItem, type }}>
       <div
         className={cn(
-          'border border-neutral-200 rounded-lg overflow-hidden',
+          'border border-zinc-200 rounded-lg overflow-hidden',
           className
         )}
         {...props}
@@ -111,7 +111,7 @@ export function AccordionItem({
     <AccordionItemContext.Provider value={{ value, isOpen }}>
       <div
         className={cn(
-          'border-b border-neutral-200 last:border-b-0',
+          'border-b border-zinc-200 last:border-b-0',
           className
         )}
         {...props}
@@ -139,8 +139,8 @@ export function AccordionTrigger({
       className={cn(
         'w-full px-6 py-5',
         'flex justify-between items-center',
-        'text-left text-base font-medium text-neutral-900',
-        'hover:bg-neutral-50 transition-colors',
+        'text-left text-base font-medium text-zinc-900',
+        'hover:bg-zinc-50 transition-colors',
         className
       )}
       aria-expanded={isOpen}
@@ -149,7 +149,7 @@ export function AccordionTrigger({
       {children}
       <svg
         className={cn(
-          'w-5 h-5 text-neutral-500 flex-shrink-0',
+          'w-5 h-5 text-zinc-500 flex-shrink-0',
           'transition-transform duration-base',
           isOpen && 'rotate-180'
         )}
@@ -182,7 +182,7 @@ export function AccordionContent({
       <div className="overflow-hidden">
         <div
           className={cn(
-            'px-6 pb-5 text-sm text-neutral-600 leading-relaxed',
+            'px-6 pb-5 text-sm text-body leading-relaxed',
             className
           )}
           {...props}

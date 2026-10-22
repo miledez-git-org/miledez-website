@@ -30,7 +30,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       <div className="relative">
         {/* Left element */}
         {leftElement && (
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400">
+          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400">
             {leftElement}
           </div>
         )}
@@ -43,17 +43,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             'bg-white rounded-md',
             'border transition-all duration-fast ease-smooth',
             // Default border
-            'border-neutral-300',
+            'border-zinc-200',
             // Hover state
-            'hover:border-neutral-400',
+            'hover:border-zinc-300',
             // Focus state
-            'focus:outline-none focus:border-accent-slate focus:ring-2 focus:ring-accent-slate-subtle',
+            'focus:outline-none focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/20',
             // Error state
-            hasError && 'border-semantic-error focus:border-semantic-error focus:ring-semantic-error-light',
+            hasError && 'bg-rose-50 border-rose-300 text-rose-900 focus:border-rose-500 focus:ring-rose-500/20',
             // Placeholder
-            'placeholder:text-neutral-400',
+            'placeholder:text-zinc-400',
             // Disabled
-            'disabled:bg-neutral-50 disabled:text-neutral-400 disabled:cursor-not-allowed',
+            'disabled:bg-zinc-50 disabled:text-zinc-400 disabled:cursor-not-allowed',
             // Padding adjustments for icons
             leftElement && 'pl-10',
             rightElement && 'pr-10',
@@ -64,7 +64,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
         {/* Right element */}
         {rightElement && (
-          <div className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400">
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400">
             {rightElement}
           </div>
         )}

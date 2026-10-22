@@ -12,18 +12,18 @@ export default function ProcessSection({ locale = 'pt' }: { locale?: Locale }) {
     <div ref={ref}>
       {/* Header */}
       <div className="mb-10 md:mb-12">
-        <h2 className="heading-display text-[2rem] md:text-[2.5rem] lg:text-[3.5rem] text-brand-black leading-tight">
+        <h2 className="heading-display text-[2rem] md:text-[2.5rem] lg:text-[3.5rem] text-zinc-900 leading-tight">
           {t.titleLead}{' '}
-          <span className="text-brand-primary">{t.titleAccent}</span>
+          <span className="text-zinc-900">{t.titleAccent}</span>
         </h2>
-        <p className="mt-4 text-xl text-neutral-600 max-w-2xl">
+        <p className="mt-4 text-xl text-body max-w-2xl">
           {t.subtitle}
         </p>
       </div>
 
       {/* Promise card — burgundy */}
       <div
-        className="bg-brand-primary rounded-xl px-8 md:px-12 py-8 md:py-10 mb-14 md:mb-16"
+        className="bg-zinc-900 rounded-xl px-8 md:px-12 py-8 md:py-10 mb-14 md:mb-16"
         style={{
           opacity: isVisible ? 1 : 0,
           transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
@@ -46,7 +46,7 @@ export default function ProcessSection({ locale = 'pt' }: { locale?: Locale }) {
       {/* Timeline */}
       <div className="relative">
         {/* Continuous vertical line */}
-        <div className="absolute left-[28px] md:left-[36px] lg:left-[44px] top-0 bottom-0 w-px bg-neutral-200" />
+        <div className="absolute left-[28px] md:left-[36px] lg:left-[44px] top-0 bottom-0 w-px bg-zinc-200" />
 
         {/* Steps */}
         <div className="flex flex-col gap-12 md:gap-16 lg:gap-20">
@@ -63,7 +63,7 @@ export default function ProcessSection({ locale = 'pt' }: { locale?: Locale }) {
               {/* Number node — sits on the vertical line */}
               <div className="relative z-10 flex-shrink-0 w-14 md:w-[72px] lg:w-[88px]">
                 <div className="bg-white">
-                  <span className="heading-display text-[2.5rem] md:text-[3rem] lg:text-[4rem] text-neutral-200 leading-none block text-center">
+                  <span className="heading-display text-[2.5rem] md:text-[3rem] lg:text-[4rem] text-zinc-200 leading-none block text-center">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                 </div>
@@ -72,20 +72,20 @@ export default function ProcessSection({ locale = 'pt' }: { locale?: Locale }) {
               {/* Step content */}
               <div className="pt-1 md:pt-2 lg:pt-3 max-w-xl">
                 {/* Horizontal rule */}
-                <div className="hidden md:block h-px bg-neutral-200 mb-3 md:mb-4" />
+                <div className="hidden md:block h-px bg-zinc-200 mb-3 md:mb-4" />
 
                 {/* Title */}
-                <h3 className="heading-component text-xl md:text-2xl lg:text-[1.75rem] text-brand-black">
+                <h3 className="heading-component text-xl md:text-2xl lg:text-[1.75rem] text-zinc-900">
                   {step.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-lg text-neutral-600 mt-2">
+                <p className="text-lg text-body mt-2">
                   {step.description}
                 </p>
 
                 {/* Duration — below description, left-aligned */}
-                <span className="inline-flex items-center gap-2 text-base font-medium text-brand-primary mt-3">
+                <span className="inline-flex items-center gap-2 text-base font-medium text-zinc-900 mt-3">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
                     <circle cx="12" cy="12" r="10" />
                     <path d="M12 6v6l4 2" />

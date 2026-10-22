@@ -23,11 +23,11 @@ export default function BusinessProfilesSection({ onContactClick, locale = 'pt' 
           transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
-        <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
+        <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900 leading-tight">
           {t.titleLead}{' '}
-          <span className="text-brand-primary">{t.titleAccent}</span>
+          <span className="text-zinc-900">{t.titleAccent}</span>
         </h2>
-        <p className="mt-4 text-lg text-neutral-600 max-w-2xl">
+        <p className="mt-4 text-lg text-body max-w-2xl">
           {t.subtitle}
         </p>
       </div>
@@ -40,22 +40,21 @@ export default function BusinessProfilesSection({ onContactClick, locale = 'pt' 
           return (
             <div
               key={index}
-              className="bg-white border border-neutral-200 p-6 md:p-8 flex flex-col"
+              className="bg-white border border-zinc-200 p-6 md:p-8 flex flex-col shadow-sm"
               style={{
-                boxShadow: '4px 6px 16px rgba(0,0,0,0.10)',
                 transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
                 opacity: isVisible ? 1 : 0,
                 transition: `transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
               }}
             >
               {/* Business info */}
-              <h3 className="text-xl font-semibold text-brand-black">
+              <h3 className="text-xl font-semibold text-zinc-900">
                 {profile.type}
               </h3>
-              <p className="text-sm text-neutral-500 mt-1">
+              <p className="text-sm text-zinc-500 mt-1">
                 {profile.size}
               </p>
-              <p className="text-base text-neutral-600 mt-3">
+              <p className="text-base text-body mt-3">
                 {profile.automation}
               </p>
 
@@ -63,28 +62,28 @@ export default function BusinessProfilesSection({ onContactClick, locale = 'pt' 
               <div className="mt-6 flex items-end gap-3 md:gap-4">
                 {/* Subscription — subdued */}
                 <div>
-                  <p className="text-sm font-medium text-neutral-500 uppercase tracking-wider">{t.subscription}</p>
-                  <span className="block text-xl md:text-2xl font-medium text-brand-black">
+                  <p className="text-sm font-medium text-zinc-500 uppercase tracking-wider">{t.subscription}</p>
+                  <span className="block text-xl md:text-2xl font-medium text-zinc-900">
                     {profile.subscription}
                   </span>
-                  <p className="text-sm text-neutral-500">{t.perMonth}</p>
+                  <p className="text-sm text-zinc-500">{t.perMonth}</p>
                 </div>
 
                 {/* Arrow */}
-                <div className="text-xl text-neutral-300 pb-2 md:pb-3">→</div>
+                <div className="text-xl text-zinc-300 pb-2 md:pb-3">→</div>
 
                 {/* Savings — bold burgundy */}
                 <div>
-                  <p className="text-sm font-medium text-brand-primary uppercase tracking-wider">{t.savings}</p>
-                  <span className="block text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-primary">
+                  <p className="text-sm font-medium text-zinc-900 uppercase tracking-wider">{t.savings}</p>
+                  <span className="block text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">
                     {profile.savings}
                   </span>
-                  <p className="text-sm text-brand-primary font-medium">{t.perMonth}</p>
+                  <p className="text-sm text-zinc-900 font-medium">{t.perMonth}</p>
                 </div>
               </div>
 
               {/* How the estimate was calculated */}
-              <p className="mt-auto pt-6 text-sm text-neutral-500 leading-relaxed">
+              <p className="mt-auto pt-6 text-sm text-zinc-500 leading-relaxed">
                 {profile.assumption}
               </p>
             </div>
@@ -92,7 +91,7 @@ export default function BusinessProfilesSection({ onContactClick, locale = 'pt' 
         })}
       </div>
 
-      <p className="mt-6 text-sm text-neutral-500 max-w-2xl">
+      <p className="mt-6 text-sm text-zinc-500 max-w-2xl">
         {t.disclaimer}
       </p>
 

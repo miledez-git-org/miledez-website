@@ -42,11 +42,6 @@ const config: Config = {
       },
       boxShadow: {
         ...(designSystemTheme?.boxShadow ?? {}),
-        // Brand 2026-04-17: rgba values follow new palette — burgundy-only (sage secondary removed)
-        'accent-glow': '0 0 20px rgba(107, 15, 26, 0.3)',
-        'accent-glow-strong': '0 0 30px rgba(107, 15, 26, 0.4)',
-        // secondary-glow removed 2026-04-17 — sage eliminated from design system
-        'success-glow': '0 0 20px rgba(22, 163, 74, 0.3)',
       },
       keyframes: {
         scaleIn: {

@@ -105,7 +105,7 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-zinc-950/50 backdrop-blur-sm"
         style={{
           animation: 'fadeIn 200ms ease-out',
         }}
@@ -122,7 +122,7 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
         {/* Close button */}
         <button
           onClick={resetAndClose}
-          className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full hover:bg-neutral-100 transition-colors z-10"
+          className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full hover:bg-zinc-100 transition-colors z-10"
           aria-label={t.close}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -134,13 +134,13 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
         <div className="p-8">
           {formStatus === 'success' ? (
             <div className="text-center py-8">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-green-100 flex items-center justify-center">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-brand-black mb-3">{t.successTitle}</h3>
-              <p className="text-brand-muted mb-8">
+              <h3 className="text-2xl font-semibold text-zinc-900 mb-3">{t.successTitle}</h3>
+              <p className="text-body mb-8">
                 {t.successText}
               </p>
               <button
@@ -152,16 +152,16 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
             </div>
           ) : (
             <>
-              <h2 className="text-2xl font-semibold text-brand-black mb-2">
+              <h2 className="text-2xl font-semibold text-zinc-900 mb-2">
                 {t.title}
               </h2>
-              <p className="text-brand-muted mb-6">
+              <p className="text-body mb-6">
                 {t.intro}
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-brand-black mb-1.5">
+                  <label htmlFor="name" className="block text-sm font-medium text-zinc-900 mb-1.5">
                     {t.name}
                   </label>
                   <input
@@ -171,13 +171,13 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors"
+                    className="w-full px-4 py-3 border border-zinc-200 rounded-lg placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 focus:border-zinc-900 transition-colors"
                     placeholder={t.namePlaceholder}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-brand-black mb-1.5">
+                  <label htmlFor="email" className="block text-sm font-medium text-zinc-900 mb-1.5">
                     {t.email}
                   </label>
                   <input
@@ -187,13 +187,13 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors"
+                    className="w-full px-4 py-3 border border-zinc-200 rounded-lg placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 focus:border-zinc-900 transition-colors"
                     placeholder={t.emailPlaceholder}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-brand-black mb-1.5">
+                  <label htmlFor="phone" className="block text-sm font-medium text-zinc-900 mb-1.5">
                     {t.phone}
                   </label>
                   <input
@@ -202,13 +202,13 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors"
+                    className="w-full px-4 py-3 border border-zinc-200 rounded-lg placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 focus:border-zinc-900 transition-colors"
                     placeholder={t.phonePlaceholder}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-brand-black mb-1.5">
+                  <label htmlFor="message" className="block text-sm font-medium text-zinc-900 mb-1.5">
                     {t.message}
                   </label>
                   <textarea
@@ -218,13 +218,13 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-brand-border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-colors resize-none"
+                    className="w-full px-4 py-3 border border-zinc-200 rounded-lg placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 focus:border-zinc-900 transition-colors resize-none"
                     placeholder={t.messagePlaceholder}
                   />
                 </div>
 
                 {formStatus === 'error' && (
-                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                  <div className="p-4 bg-rose-50 border border-rose-200 rounded-lg text-rose-700 text-sm">
                     {t.error}
                   </div>
                 )}

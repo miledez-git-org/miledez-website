@@ -52,14 +52,14 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
             {/* Left column - Hero content */}
             <div className="flex flex-col justify-center">
               {/* Headline */}
-              <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-brand-black leading-[1.1]">
+              <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-zinc-900 leading-[1.1]">
                 {t.hero.line1}<br />
                 {t.hero.line2}<br />
-                <span className="text-brand-primary">{t.hero.accent}</span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-zinc-700 to-zinc-600">{t.hero.accent}</span>
               </h1>
 
               {/* Subheadline */}
-              <p className="mt-6 text-lg md:text-xl text-neutral-600 font-normal leading-relaxed max-w-xl">
+              <p className="mt-6 text-lg md:text-xl text-body font-normal leading-relaxed max-w-xl">
                 {t.hero.subtitle}
               </p>
 
@@ -99,7 +99,7 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
       <WorkflowExplainerSection locale={locale} />
 
       {/* Estimated value - one card per example */}
-      <section id="quanto-vale" className="py-24 md:py-32 bg-bg-muted">
+      <section id="quanto-vale" className="py-24 md:py-32 bg-zinc-50">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <BusinessProfilesSection locale={locale} onContactClick={() => setIsContactModalOpen(true)} />
         </div>
@@ -113,7 +113,7 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
       </section>
 
       {/* Pricing */}
-      <section id="precos" className="py-24 md:py-32 bg-bg-muted">
+      <section id="precos" className="py-24 md:py-32 bg-zinc-50">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <PricingSection locale={locale} onContactClick={() => setIsContactModalOpen(true)} />
         </div>
@@ -123,13 +123,13 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
       <FAQSection locale={locale} />
 
       {/* CTA */}
-      <section id="contato" className="py-24 md:py-32 bg-bg-muted">
+      <section id="contato" className="py-24 md:py-32 bg-zinc-50">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
-          <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
+          <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900 leading-tight">
             {t.cta.titleLine1}<br />
-            <span className="text-brand-black">{t.cta.titleLine2}</span>
+            <span className="text-zinc-900">{t.cta.titleLine2}</span>
           </h2>
-          <p className="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
+          <p className="mt-4 text-lg text-body max-w-xl mx-auto">
             {t.cta.text}
           </p>
           {/* Founder: the person who answers */}
@@ -141,7 +141,7 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
               height={64}
               className="w-16 h-16 rounded-full object-cover flex-shrink-0"
             />
-            <p className="text-base text-neutral-600 text-left max-w-xs">
+            <p className="text-base text-body text-left max-w-xs">
               {t.cta.founder}
             </p>
           </div>
@@ -152,7 +152,7 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
             >
               {t.cta.button}
             </button>
-            <p className="mt-4 text-sm text-neutral-500">{t.cta.note}</p>
+            <p className="mt-4 text-sm text-zinc-500">{t.cta.note}</p>
           </div>
         </div>
       </section>

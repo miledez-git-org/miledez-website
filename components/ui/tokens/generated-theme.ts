@@ -1,53 +1,13 @@
 // Design System Theme
 // Version: 4.0.0
-// Last synced: 2026-04-17 (burgundy-only rebrand — replaced teal/orange; sage briefly added 2026-04-15 then removed)
+// Last synced: 2026-10-21 (Notus Teal migration — legacy burgundy brand/accent/neutral/semantic colors removed)
 
 import type { Config } from 'tailwindcss'
 
 export const designSystemTheme: NonNullable<Config['theme']>['extend'] = {
   colors: {
-    brand: {
-      primary: '#6b0f1a',
-      'primary-dark': '#4a0a12',
-      'primary-light': '#8a1524',
-      'primary-subtle': 'rgba(107, 15, 26, 0.08)',
-      // secondary tokens removed 2026-04-17 — burgundy is the sole accent color.
-      // Sage green (#87a96b) eliminated from active design system.
-      black: '#1a1a1a',
-      muted: '#525252',
-    },
-    accent: {
-      slate: '#4a5568',
-      'slate-light': '#718096',
-      'slate-subtle': 'rgba(74, 85, 104, 0.08)',
-    },
-    neutral: {
-      '950': '#0a0a0a',
-      '900': '#171717',
-      '800': '#262626',
-      '700': '#404040',
-      '600': '#525252',
-      '500': '#737373',
-      '400': '#a3a3a3',
-      '300': '#d4d4d4',
-      '200': '#e5e5e5',
-      '100': '#f5f5f5',
-      '50': '#fafafa',
-      white: '#ffffff',
-    },
-    semantic: {
-      success: '#2d6a4f',
-      'success-light': '#d8f3dc',
-      warning: '#b8860b',
-      'warning-light': '#fff3cd',
-      error: '#9d0208',
-      'error-light': '#ffeaea',
-      info: '#1d4e89',
-      'info-light': '#e3f2fd',
-    },
     // Notus Teal palette, pasted from ~/light-design-system/docs/palette-teal.js (global design reference).
-    // New components use raw zinc/emerald/amber/rose/sky utilities with these values; the brand/neutral/semantic
-    // tokens above are legacy and get replaced as each surface migrates.
+    // Components use raw zinc/emerald/amber/rose/sky utilities; zinc-900 is the only brand fill.
     // Body text uses text-body (#27272a, neutral dark grey, 14.9:1), never a teal zinc shade (D-036).
     // zinc-600 (#0d9488) is 3.74:1 on white, large or decorative text only.
     body: '#27272a',

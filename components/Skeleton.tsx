@@ -56,7 +56,7 @@ export function Skeleton({
 
   return (
     <div
-      className={`bg-gray-200 ${roundedClass} ${animationClass} ${widthClass} ${heightClass} ${className}`}
+      className={`bg-zinc-200 ${roundedClass} ${animationClass} ${widthClass} ${heightClass} ${className}`}
       style={style}
       aria-hidden="true"
     />
@@ -104,7 +104,7 @@ export function SkeletonCard({
   lines?: number
 }) {
   return (
-    <div className={`border border-brand-border p-6 ${className}`} aria-hidden="true">
+    <div className={`border border-zinc-200 p-6 ${className}`} aria-hidden="true">
       {hasImage && (
         <Skeleton height={imageHeight} className="w-full mb-4" rounded="sm" />
       )}
@@ -150,7 +150,7 @@ export function SkeletonPricing({
   className?: string
 }) {
   return (
-    <div className={`border border-brand-border p-8 ${className}`} aria-hidden="true">
+    <div className={`border border-zinc-200 p-8 ${className}`} aria-hidden="true">
       {/* Badge */}
       <Skeleton height="h-6" width="w-24" className="mb-4" rounded="full" />
       {/* Title */}
@@ -223,7 +223,7 @@ export function SkeletonPage({
   return (
     <div className={`min-h-screen bg-white ${className}`} aria-hidden="true">
       {/* Header skeleton */}
-      <div className="h-16 border-b border-brand-border px-6 flex items-center justify-between">
+      <div className="h-16 border-b border-zinc-200 px-6 flex items-center justify-between">
         <Skeleton width="w-32" height="h-8" rounded="sm" />
         <div className="flex gap-6">
           <Skeleton width="w-16" height="h-4" rounded="sm" />
@@ -238,7 +238,7 @@ export function SkeletonPage({
       </div>
 
       {/* Section skeleton */}
-      <div className="py-20 px-6 bg-bg-muted">
+      <div className="py-20 px-6 bg-zinc-50">
         <div className="max-w-4xl mx-auto">
           <Skeleton height="h-10" width="w-1/2" className="mx-auto mb-12" rounded="sm" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

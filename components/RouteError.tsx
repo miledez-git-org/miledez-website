@@ -44,7 +44,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
     <div className="min-h-screen bg-white flex items-center justify-center px-6">
       <div className="max-w-md w-full text-center">
         {/* Error icon */}
-        <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center border-2 border-brand-primary text-brand-primary">
+        <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center border-2 border-zinc-900 text-zinc-900">
           <svg
             className="w-10 h-10"
             fill="none"
@@ -61,23 +61,23 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
         </div>
 
         {/* Error message */}
-        <h1 className="heading-section text-3xl text-brand-black mb-4">
+        <h1 className="heading-section text-3xl text-zinc-900 mb-4">
           {t.title}
         </h1>
-        <p className="text-brand-muted mb-8">
+        <p className="text-body mb-8">
           {t.text}
         </p>
 
         {/* Error details (development only) */}
         {process.env.NODE_ENV === 'development' && (
           <details className="mb-8 text-left">
-            <summary className="text-xs text-brand-muted cursor-pointer hover:text-brand-text mb-2">
+            <summary className="text-xs text-zinc-500 cursor-pointer hover:text-zinc-900 mb-2">
               {t.details}
             </summary>
-            <div className="p-4 bg-gray-100 text-xs overflow-auto">
-              <p className="font-medium text-red-600 mb-2">{error.message}</p>
+            <div className="p-4 bg-zinc-100 text-xs overflow-auto">
+              <p className="font-medium text-rose-700 mb-2">{error.message}</p>
               {error.digest && (
-                <p className="text-gray-500">Digest: {error.digest}</p>
+                <p className="text-body">Digest: {error.digest}</p>
               )}
             </div>
           </details>
@@ -87,13 +87,13 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onClick={reset}
-            className="btn-primary px-8 py-4 text-white bg-brand-primary hover:bg-brand-primary-dark"
+            className="btn-primary px-8 py-4 text-white bg-zinc-900 hover:bg-zinc-800"
           >
             {t.retry}
           </button>
           <a
             href={t.homeHref}
-            className="btn-secondary px-8 py-4 border border-brand-border hover:border-brand-primary hover:text-brand-primary"
+            className="btn-outline px-8 py-4"
           >
             {t.home}
           </a>

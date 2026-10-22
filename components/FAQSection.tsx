@@ -21,11 +21,11 @@ export default function FAQSection({ locale = 'pt' }: { locale?: Locale }) {
       >
         {/* Section header */}
         <div className="max-w-2xl">
-          <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
+          <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900 leading-tight">
             {t.titleLead}{' '}
-            <span className="text-brand-primary">{t.titleAccent}</span>
+            <span className="text-zinc-900">{t.titleAccent}</span>
           </h2>
-          <p className="mt-4 text-lg text-neutral-600 leading-relaxed">
+          <p className="mt-4 text-lg text-body leading-relaxed">
             {t.subtitle}
           </p>
         </div>
@@ -33,7 +33,7 @@ export default function FAQSection({ locale = 'pt' }: { locale?: Locale }) {
         <Accordion className="mt-12 max-w-3xl rounded-none bg-white">
           {t.items.map((item, index) => (
             <AccordionItem key={index} value={`faq-${index}`}>
-              <AccordionTrigger className="text-lg text-brand-black gap-6">
+              <AccordionTrigger className="text-lg text-zinc-900 gap-6">
                 {item.question}
               </AccordionTrigger>
               <AccordionContent className="text-base">

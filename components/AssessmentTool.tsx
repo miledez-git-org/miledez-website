@@ -165,12 +165,12 @@ function StepIndicator({ current, total }: { current: number; total: number }) {
             key={i}
             className={cn(
               'w-2 h-2 rounded-full transition-colors duration-base',
-              i < current ? 'bg-brand-primary' : 'bg-neutral-200'
+              i < current ? 'bg-zinc-900' : 'bg-zinc-200'
             )}
           />
         ))}
       </div>
-      <span className="text-sm text-neutral-500">
+      <span className="text-sm text-zinc-500">
         Passo {current} de {total}
       </span>
     </div>
@@ -197,23 +197,23 @@ function RadioCard({
       className={cn(
         'w-full text-left p-5 rounded-lg border transition-all duration-fast cursor-pointer',
         'flex items-center gap-4',
-        'hover:border-neutral-400',
+        'hover:border-zinc-300',
         selected
-          ? 'border-brand-black ring-2 ring-brand-black'
-          : 'border-neutral-200'
+          ? 'border-zinc-900 ring-2 ring-zinc-900'
+          : 'border-zinc-200'
       )}
       style={selected ? undefined : { boxShadow: 'none' }}
     >
       {selected && (
-        <span className="w-2.5 h-2.5 rounded-full bg-brand-primary flex-shrink-0" />
+        <span className="w-2.5 h-2.5 rounded-full bg-zinc-900 flex-shrink-0" />
       )}
       {!selected && (
-        <span className="w-2.5 h-2.5 rounded-full border-2 border-neutral-300 flex-shrink-0" />
+        <span className="w-2.5 h-2.5 rounded-full border-2 border-zinc-300 flex-shrink-0" />
       )}
       {icon && (
-        <span className="text-neutral-600 flex-shrink-0">{icon}</span>
+        <span className="text-body flex-shrink-0">{icon}</span>
       )}
-      <span className="text-base font-medium text-neutral-800">{label}</span>
+      <span className="text-base font-medium text-zinc-900">{label}</span>
     </button>
   )
 }
@@ -270,19 +270,19 @@ function MultiSelectDropdown({
           'h-11 w-full px-4 pr-10 text-left text-base',
           'bg-white rounded-md appearance-none',
           'border transition-all duration-fast ease-smooth',
-          'hover:border-neutral-400',
-          'focus:outline-none focus:border-accent-slate focus:ring-2 focus:ring-accent-slate-subtle',
+          'hover:border-zinc-300',
+          'focus:outline-none focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/20',
           error
-            ? 'border-semantic-error focus:border-semantic-error focus:ring-semantic-error-light'
-            : 'border-neutral-300',
-          selected.length === 0 ? 'text-neutral-400' : 'text-neutral-800'
+            ? 'bg-rose-50 border-rose-300 focus:border-rose-500 focus:ring-rose-500/20'
+            : 'border-zinc-200',
+          selected.length === 0 ? 'text-zinc-400' : 'text-zinc-900'
         )}
       >
         {triggerLabel}
       </button>
 
       {/* Dropdown arrow */}
-      <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
+      <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-400">
         <svg
           width="16"
           height="16"
@@ -301,31 +301,30 @@ function MultiSelectDropdown({
       </div>
 
       {error && (
-        <p className="mt-1.5 text-sm text-semantic-error">{error}</p>
+        <p className="mt-1.5 text-sm text-rose-600">{error}</p>
       )}
 
       {isOpen && (
         <div
-          className="absolute z-50 mt-1 w-full bg-white border border-neutral-200 rounded-lg max-h-72 overflow-y-auto"
-          style={{ boxShadow: '3px 4px 12px rgba(0,0,0,0.10)' }}
+          className="absolute z-50 mt-1 w-full bg-white border border-zinc-200 rounded-lg max-h-72 overflow-y-auto shadow-xl"
         >
           {visibleCategories.map((cat) => (
             <div key={cat.label}>
-              <div className="px-4 py-2 text-sm font-semibold text-neutral-500 bg-neutral-50 sticky top-0">
+              <div className="px-4 py-2 text-sm font-semibold text-zinc-500 bg-zinc-50 sticky top-0">
                 {cat.label}
               </div>
               {cat.tools.map((tool) => (
                 <label
                   key={tool}
-                  className="flex items-center gap-3 px-4 py-2.5 hover:bg-neutral-50 cursor-pointer"
+                  className="flex items-center gap-3 px-4 py-2.5 hover:bg-zinc-50 cursor-pointer"
                 >
                   <input
                     type="checkbox"
                     checked={selected.includes(tool)}
                     onChange={() => toggle(tool)}
-                    className="w-4 h-4 accent-brand-primary rounded cursor-pointer"
+                    className="w-4 h-4 accent-zinc-900 rounded cursor-pointer"
                   />
-                  <span className="text-base text-neutral-700">{tool}</span>
+                  <span className="text-base text-body">{tool}</span>
                 </label>
               ))}
             </div>
@@ -362,7 +361,7 @@ function LoadingState() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.3 }}
-          className="text-lg text-neutral-600 font-display"
+          className="text-lg text-body font-display"
         >
           {messages[messageIndex]}
         </motion.p>
@@ -378,24 +377,23 @@ function ResultCard({
 }) {
   return (
     <div
-      className="bg-brand-black rounded-lg p-6 text-white"
-      style={{ boxShadow: '3px 4px 12px rgba(0,0,0,0.10)' }}
+      className="bg-white border border-zinc-200 rounded-lg p-6 text-zinc-900 shadow-sm"
     >
       <h3 className="font-display font-bold text-lg mb-3">{workflow.nome}</h3>
       <div className="space-y-2 text-sm">
         <p>
-          <span className="text-white/60">Ferramentas:</span>{' '}
-          <span className="text-white">{workflow.ferramentas}</span>
+          <span className="text-zinc-500">Ferramentas:</span>{' '}
+          <span className="text-body">{workflow.ferramentas}</span>
         </p>
         <p>
-          <span className="text-white/60">Resultado:</span>{' '}
-          <span className="text-white">{workflow.resultado}</span>
+          <span className="text-zinc-500">Resultado:</span>{' '}
+          <span className="text-body">{workflow.resultado}</span>
         </p>
-        <p className="pt-2 border-t border-white/10">
-          <span className="text-brand-primary font-semibold">
+        <p className="pt-2 border-t border-zinc-100">
+          <span className="text-zinc-900 font-semibold">
             {workflow.tempo_economizado}
           </span>{' '}
-          <span className="text-white/60">economizados por semana</span>
+          <span className="text-zinc-500">economizados por semana</span>
         </p>
       </div>
     </div>
@@ -531,10 +529,10 @@ export default function AssessmentTool() {
 
     return (
       <div>
-        <h2 className="font-display font-bold text-2xl md:text-3xl text-neutral-900 mb-2">
+        <h2 className="font-display font-bold text-2xl md:text-3xl text-zinc-900 mb-2">
           Seu Plano de Automação Personalizado
         </h2>
-        <p className="text-neutral-600 mb-8">
+        <p className="text-body mb-8">
           Baseado no setor de {sectorLabel}, focado em {formData.gargalo}
         </p>
 
@@ -544,7 +542,7 @@ export default function AssessmentTool() {
           ))}
         </div>
 
-        <p className="text-neutral-500 text-sm mb-6">
+        <p className="text-zinc-500 text-sm mb-6">
           Também enviamos esse plano para {formData.email}.
         </p>
 
@@ -569,10 +567,10 @@ export default function AssessmentTool() {
   if (phase === 'error') {
     return (
       <div className="text-center py-20">
-        <h2 className="font-display font-bold text-2xl text-neutral-900 mb-3">
+        <h2 className="font-display font-bold text-2xl text-zinc-900 mb-3">
           Algo deu errado
         </h2>
-        <p className="text-neutral-600 mb-8 max-w-md mx-auto">
+        <p className="text-body mb-8 max-w-md mx-auto">
           Não conseguimos gerar seu plano agora. Nosso time já foi notificado.
           Tente novamente em alguns instantes.
         </p>
@@ -600,10 +598,10 @@ export default function AssessmentTool() {
             exit="exit"
             transition={stepTransition}
           >
-            <h2 className="font-display font-bold text-2xl md:text-3xl text-neutral-900 mb-2">
+            <h2 className="font-display font-bold text-2xl md:text-3xl text-zinc-900 mb-2">
               Descubra como automatizar seu negócio
             </h2>
-            <p className="text-neutral-600 mb-8">
+            <p className="text-body mb-8">
               Responda 4 perguntas rápidas e receba um plano personalizado de automação em segundos.
             </p>
 
@@ -623,7 +621,7 @@ export default function AssessmentTool() {
             </div>
 
             {errors.setor && (
-              <p className="mt-3 text-sm text-semantic-error">{errors.setor}</p>
+              <p className="mt-3 text-sm text-rose-600">{errors.setor}</p>
             )}
 
             <div className="mt-8">
@@ -644,10 +642,10 @@ export default function AssessmentTool() {
             exit="exit"
             transition={stepTransition}
           >
-            <h2 className="font-display font-bold text-2xl md:text-3xl text-neutral-900 mb-2">
+            <h2 className="font-display font-bold text-2xl md:text-3xl text-zinc-900 mb-2">
               Qual é o maior gargalo no seu dia a dia?
             </h2>
-            <p className="text-neutral-600 mb-8">
+            <p className="text-body mb-8">
               Selecione o processo que mais consome tempo da sua equipe.
             </p>
 
@@ -666,7 +664,7 @@ export default function AssessmentTool() {
             </div>
 
             {errors.gargalo && (
-              <p className="mt-3 text-sm text-semantic-error">{errors.gargalo}</p>
+              <p className="mt-3 text-sm text-rose-600">{errors.gargalo}</p>
             )}
 
             <div className="mt-8 flex gap-3">
@@ -690,10 +688,10 @@ export default function AssessmentTool() {
             exit="exit"
             transition={stepTransition}
           >
-            <h2 className="font-display font-bold text-2xl md:text-3xl text-neutral-900 mb-2">
+            <h2 className="font-display font-bold text-2xl md:text-3xl text-zinc-900 mb-2">
               Quais ferramentas você usa hoje?
             </h2>
-            <p className="text-neutral-600 mb-8">
+            <p className="text-body mb-8">
               Selecione todas as ferramentas e sistemas que sua equipe utiliza no dia a dia.
             </p>
 
@@ -734,16 +732,16 @@ export default function AssessmentTool() {
             exit="exit"
             transition={stepTransition}
           >
-            <h2 className="font-display font-bold text-2xl md:text-3xl text-neutral-900 mb-2">
+            <h2 className="font-display font-bold text-2xl md:text-3xl text-zinc-900 mb-2">
               Onde enviamos seu plano personalizado?
             </h2>
-            <p className="text-neutral-600 mb-8">
+            <p className="text-body mb-8">
               Preencha seus dados para receber o resultado por e-mail.
             </p>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">
+                <label className="block text-sm font-medium text-zinc-900 mb-1.5">
                   Seu nome
                 </label>
                 <Input
@@ -755,7 +753,7 @@ export default function AssessmentTool() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">
+                <label className="block text-sm font-medium text-zinc-900 mb-1.5">
                   Seu melhor e-mail
                 </label>
                 <Input
@@ -768,7 +766,7 @@ export default function AssessmentTool() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">
+                <label className="block text-sm font-medium text-zinc-900 mb-1.5">
                   Nome da empresa
                 </label>
                 <Input

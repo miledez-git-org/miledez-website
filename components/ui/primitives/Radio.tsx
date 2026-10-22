@@ -32,10 +32,10 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
           id={inputId}
           className={cn(
             'w-5 h-5 mt-0.5',
-            'accent-accent-slate',
+            'accent-zinc-900',
             'cursor-pointer',
-            'border-neutral-300',
-            'focus:ring-2 focus:ring-accent-slate-subtle focus:ring-offset-0',
+            'border-zinc-300',
+            'focus:ring-2 focus:ring-zinc-900/20 focus:ring-offset-0',
             'disabled:opacity-50 disabled:cursor-not-allowed'
           )}
           {...props}
@@ -45,13 +45,13 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
             {label && (
               <label
                 htmlFor={inputId}
-                className="text-sm font-medium text-neutral-800 cursor-pointer"
+                className="text-sm font-medium text-zinc-900 cursor-pointer"
               >
                 {label}
               </label>
             )}
             {description && (
-              <span className="text-xs text-neutral-500 mt-0.5">{description}</span>
+              <span className="text-xs text-zinc-500 mt-0.5">{description}</span>
             )}
           </div>
         )}

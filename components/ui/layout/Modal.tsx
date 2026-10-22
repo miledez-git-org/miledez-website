@@ -78,7 +78,7 @@ export function Modal({
       className={cn(
         'fixed inset-0 z-[1000]',
         'flex items-center justify-center',
-        'bg-neutral-950/50 backdrop-blur-sm'
+        'bg-zinc-950/50 backdrop-blur-sm'
       )}
       onClick={handleBackdropClick}
       aria-modal="true"
@@ -114,20 +114,20 @@ export function ModalHeader({
   return (
     <div
       className={cn(
-        'px-6 py-5 border-b border-neutral-200',
+        'px-6 py-5 border-b border-zinc-200',
         'flex justify-between items-center',
         className
       )}
       {...props}
     >
-      <h2 className="text-lg font-semibold text-neutral-900">{children}</h2>
+      <h2 className="text-lg font-semibold text-zinc-900">{children}</h2>
       {onClose && (
         <button
           onClick={onClose}
           className={cn(
             'w-8 h-8 flex items-center justify-center',
-            'text-neutral-500 hover:text-neutral-900',
-            'hover:bg-neutral-100 rounded-md',
+            'text-zinc-500 hover:text-zinc-900',
+            'hover:bg-zinc-100 rounded-md',
             'transition-colors'
           )}
           aria-label="Close"
@@ -160,7 +160,7 @@ export function ModalFooter({ className, children, ...props }: ModalFooterProps)
   return (
     <div
       className={cn(
-        'px-6 py-4 border-t border-neutral-200 bg-neutral-50',
+        'px-6 py-4 border-t border-zinc-200 bg-zinc-50',
         'flex justify-end gap-3',
         className
       )}

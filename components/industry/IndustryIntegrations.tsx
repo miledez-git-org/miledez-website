@@ -34,7 +34,7 @@ export default function IndustryIntegrations({ integrations }: IndustryIntegrati
             >
               <img src={`/software-company-logos/${integration.logo}.svg`} alt={integration.name} className="w-8 h-8 object-contain" />
             </div>
-            <span className="text-xs text-center text-neutral-500 leading-tight">
+            <span className="text-xs text-center text-zinc-500 leading-tight">
               {integration.name}
             </span>
           </div>
@@ -56,7 +56,7 @@ export default function IndustryIntegrations({ integrations }: IndustryIntegrati
             <div className="w-12 h-12 rounded-lg flex items-center justify-center">
               <img src={`/software-company-logos/${integration.logo}.svg`} alt={integration.name} className="w-6 h-6 object-contain" />
             </div>
-            <span className="text-sm text-neutral-500 text-center leading-tight">
+            <span className="text-sm text-zinc-500 text-center leading-tight">
               {integration.name}
             </span>
           </div>

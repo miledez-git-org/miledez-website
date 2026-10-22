@@ -14,7 +14,7 @@ const workflowIcons: string[][] = [
 
 const DownArrow = () => (
   <div className="flex justify-center py-2">
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-neutral-400">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="text-zinc-400">
       <path d="M10 4L10 16M10 16L5 11M10 16L15 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   </div>
@@ -36,11 +36,11 @@ export default function WorkflowExplainerSection({ locale = 'pt' }: { locale?: L
             transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
           }}
         >
-          <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black leading-tight">
+          <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900 leading-tight">
             {t.titleLead}{' '}
-            <span className="text-brand-primary">{t.titleAccent}</span>
+            <span className="text-zinc-900">{t.titleAccent}</span>
           </h2>
-          <p className="mt-4 text-lg text-neutral-600 leading-relaxed">
+          <p className="mt-4 text-lg text-body leading-relaxed">
             {t.subtitle}
           </p>
         </div>
@@ -53,32 +53,31 @@ export default function WorkflowExplainerSection({ locale = 'pt' }: { locale?: L
             return (
               <div
                 key={wIndex}
-                className="bg-white border border-neutral-200 p-6"
+                className="bg-white border border-zinc-200 p-6 shadow-sm"
                 style={{
-                  boxShadow: '4px 6px 16px rgba(0,0,0,0.10)',
-                  transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+                    transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
                   opacity: isVisible ? 1 : 0,
                   transition: `transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
                 }}
               >
                 {/* Card header */}
-                <span className="text-sm uppercase tracking-[0.15em] font-semibold text-neutral-500">
+                <span className="text-sm uppercase tracking-[0.15em] font-semibold text-zinc-500">
                   {workflow.industry}
                 </span>
-                <h3 className="text-xl font-semibold text-brand-black mt-1">
+                <h3 className="text-xl font-semibold text-zinc-900 mt-1">
                   {workflow.summary}
                 </h3>
-                <p className="text-sm text-brand-primary font-medium mt-1">
+                <p className="text-sm text-zinc-900 font-medium mt-1">
                   {t.solvesLabel} {workflow.solves}
                 </p>
 
                 {/* Before: the manual version of this process */}
-                <p className="mt-5 text-base text-neutral-600 leading-relaxed">
-                  <span className="font-semibold text-brand-black">{t.beforeLabel}</span> {workflow.before}
+                <p className="mt-5 text-base text-body leading-relaxed">
+                  <span className="font-semibold text-zinc-900">{t.beforeLabel}</span> {workflow.before}
                 </p>
 
                 {/* After: vertical steps */}
-                <p className="mt-6 text-sm uppercase tracking-[0.15em] font-semibold text-neutral-500">
+                <p className="mt-6 text-sm uppercase tracking-[0.15em] font-semibold text-zinc-500">
                   {t.afterLabel}
                 </p>
                 <div className="mt-3">
@@ -87,10 +86,10 @@ export default function WorkflowExplainerSection({ locale = 'pt' }: { locale?: L
                       <div className="flex items-start gap-3">
                         <Image src={`/software-company-logos/${workflowIcons[wIndex][sIndex]}.svg`} alt="" width={24} height={24} className="flex-shrink-0 mt-0.5" />
                         <div className="min-w-0">
-                          <p className="text-base font-medium text-brand-black leading-snug">
+                          <p className="text-base font-medium text-zinc-900 leading-snug">
                             {step.title}
                           </p>
-                          <p className="text-sm text-neutral-500 mt-0.5">
+                          <p className="text-sm text-zinc-500 mt-0.5">
                             {step.description}
                           </p>
                         </div>

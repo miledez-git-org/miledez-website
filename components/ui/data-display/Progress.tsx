@@ -25,9 +25,9 @@ export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const variantClasses: Record<ProgressVariant, string> = {
-  default: 'bg-accent-slate',
-  brand: 'bg-brand-primary',
-  success: 'bg-semantic-success',
+  default: 'bg-zinc-700',
+  brand: 'bg-zinc-900',
+  success: 'bg-emerald-600',
 }
 
 export function Progress({
@@ -44,14 +44,14 @@ export function Progress({
     <div className={cn('w-full', className)} {...props}>
       {(showLabel || label) && (
         <div className="flex justify-between mb-1 text-sm">
-          {label && <span className="text-neutral-700">{label}</span>}
+          {label && <span className="text-body">{label}</span>}
           {showLabel && (
-            <span className="text-neutral-500">{clampedValue}%</span>
+            <span className="text-zinc-500">{clampedValue}%</span>
           )}
         </div>
       )}
       <div
-        className="h-2 bg-neutral-200 rounded-full overflow-hidden"
+        className="h-2 bg-zinc-200 rounded-full overflow-hidden"
         role="progressbar"
         aria-valuenow={clampedValue}
         aria-valuemin={0}

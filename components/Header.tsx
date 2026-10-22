@@ -91,11 +91,11 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
     currentRoute === 'agribusiness'
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all ${scrolled ? 'shadow-[0_1px_0_0_rgba(0,0,0,0.1)]' : 'shadow-[0_1px_0_0_rgba(0,0,0,0.06)]'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all ${scrolled ? 'shadow-[0_1px_0_0_theme(colors.zinc.200)]' : 'shadow-[0_1px_0_0_theme(colors.zinc.100)]'}`}>
       <nav className="max-w-7xl mx-auto px-6 md:px-10 py-5 flex justify-between items-center">
         <Link href={localePath(locale, 'home')} className="flex items-center">
           <span
-            className="text-brand-black"
+            className="text-body"
             style={{
               fontFamily: 'var(--font-manrope)',
               fontWeight: 300,
@@ -103,14 +103,14 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
               letterSpacing: '-0.03em',
             }}
           >
-            mil<span className="text-brand-primary">&</span>dez
+            mil<span className="text-zinc-900">&</span>dez
           </span>
         </Link>
 
         {/* Mobile menu button */}
         <button
           ref={menuButtonRef}
-          className="md:hidden p-2 -mr-2 text-neutral-500 hover:text-brand-black transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+          className="md:hidden p-2 -mr-2 text-zinc-500 hover:text-zinc-900 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label={mobileMenuOpen ? t.closeMenu : t.openMenu}
           aria-expanded={mobileMenuOpen}
@@ -129,26 +129,26 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
         <div className="hidden md:flex items-center gap-10 text-sm">
           <Link
             href={localePath(locale, 'home')}
-            className={`relative group py-2 transition-colors ${homeActive ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
+            className={`relative group py-2 transition-colors ${homeActive ? 'text-zinc-900 font-medium' : 'text-zinc-500 hover:text-zinc-900'}`}
           >
             {t.home}
-            <span className={`absolute left-0 bottom-0 h-[1.5px] bg-brand-primary transition-all duration-300 ${homeActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+            <span className={`absolute left-0 bottom-0 h-[1.5px] bg-zinc-900 transition-all duration-300 ${homeActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
           </Link>
 
           <Link
             href={localePath(locale, 'industries')}
-            className={`relative group py-2 transition-colors ${industriesActive ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
+            className={`relative group py-2 transition-colors ${industriesActive ? 'text-zinc-900 font-medium' : 'text-zinc-500 hover:text-zinc-900'}`}
           >
             {t.industries}
-            <span className={`absolute left-0 bottom-0 h-[1.5px] bg-brand-primary transition-all duration-300 ${industriesActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+            <span className={`absolute left-0 bottom-0 h-[1.5px] bg-zinc-900 transition-all duration-300 ${industriesActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
           </Link>
 
           <Link
             href={localePath(locale, 'home', 'precos')}
-            className="relative group text-neutral-500 hover:text-brand-black transition-colors py-2"
+            className="relative group text-zinc-500 hover:text-zinc-900 transition-colors py-2"
           >
             {t.pricing}
-            <span className="absolute left-0 bottom-0 w-0 h-[1.5px] bg-brand-primary transition-all duration-300 group-hover:w-full" />
+            <span className="absolute left-0 bottom-0 w-0 h-[1.5px] bg-zinc-900 transition-all duration-300 group-hover:w-full" />
           </Link>
 
           <Link
@@ -157,14 +157,14 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
             lang={otherLocale === 'en' ? 'en-US' : 'pt-BR'}
             aria-label={t.switchAria}
             onClick={rememberLocale}
-            className="text-neutral-500 hover:text-brand-black transition-colors py-2"
+            className="text-zinc-500 hover:text-zinc-900 transition-colors py-2"
           >
             {t.switchShort}
           </Link>
 
           <button
             onClick={onContactClick}
-            className="btn btn-md text-white bg-brand-primary hover:bg-brand-primary-dark"
+            className="btn btn-md text-white bg-zinc-900 hover:bg-zinc-800"
           >
             {t.contact}
           </button>
@@ -176,14 +176,14 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
         <div
           id="mobile-menu"
           ref={mobileMenuRef}
-          className="md:hidden border-t border-neutral-200 bg-white"
+          className="md:hidden border-t border-zinc-200 bg-white"
           role="menu"
         >
           <div className="px-6 py-4 flex flex-col gap-1">
             <Link
               ref={firstMenuItemRef}
               href={localePath(locale, 'home')}
-              className={`py-3 min-h-[44px] flex items-center transition-colors ${homeActive ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
+              className={`py-3 min-h-[44px] flex items-center transition-colors ${homeActive ? 'text-zinc-900 font-medium' : 'text-zinc-500 hover:text-zinc-900'}`}
               onClick={() => setMobileMenuOpen(false)}
               role="menuitem"
             >
@@ -191,7 +191,7 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
             </Link>
             <Link
               href={localePath(locale, 'industries')}
-              className={`py-3 min-h-[44px] flex items-center transition-colors ${industriesActive ? 'text-brand-black font-medium' : 'text-neutral-500 hover:text-brand-black'}`}
+              className={`py-3 min-h-[44px] flex items-center transition-colors ${industriesActive ? 'text-zinc-900 font-medium' : 'text-zinc-500 hover:text-zinc-900'}`}
               onClick={() => setMobileMenuOpen(false)}
               role="menuitem"
             >
@@ -199,7 +199,7 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
             </Link>
             <Link
               href={localePath(locale, 'home', 'precos')}
-              className="py-3 min-h-[44px] flex items-center text-neutral-500 hover:text-brand-black transition-colors"
+              className="py-3 min-h-[44px] flex items-center text-zinc-500 hover:text-zinc-900 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
               role="menuitem"
             >
@@ -209,14 +209,14 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
               href={switchHref}
               hrefLang={otherLocale === 'en' ? 'en-US' : 'pt-BR'}
               lang={otherLocale === 'en' ? 'en-US' : 'pt-BR'}
-              className="py-3 min-h-[44px] flex items-center text-neutral-500 hover:text-brand-black transition-colors"
+              className="py-3 min-h-[44px] flex items-center text-zinc-500 hover:text-zinc-900 transition-colors"
               onClick={() => { rememberLocale(); setMobileMenuOpen(false) }}
               role="menuitem"
             >
               {t.switchLabel}
             </Link>
             <button
-              className="mt-2 btn btn-lg w-full text-white bg-brand-primary hover:bg-brand-primary-dark"
+              className="mt-2 btn btn-lg w-full text-white bg-zinc-900 hover:bg-zinc-800"
               onClick={() => { setMobileMenuOpen(false); onContactClick?.() }}
               role="menuitem"
             >

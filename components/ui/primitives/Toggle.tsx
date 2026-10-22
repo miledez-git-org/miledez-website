@@ -44,8 +44,8 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
           className={cn(
             'relative w-11 h-6 rounded-full',
             'transition-colors duration-fast ease-smooth',
-            'focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-slate-subtle focus-visible:ring-offset-2',
-            checked ? 'bg-accent-slate' : 'bg-neutral-300',
+            'focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2',
+            checked ? 'bg-zinc-900' : 'bg-zinc-300',
             disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
           )}
           {...props}
@@ -61,10 +61,10 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
         {(label || description) && (
           <div className="flex flex-col">
             {label && (
-              <span className="text-sm font-medium text-neutral-800">{label}</span>
+              <span className="text-sm font-medium text-zinc-900">{label}</span>
             )}
             {description && (
-              <span className="text-xs text-neutral-500 mt-0.5">{description}</span>
+              <span className="text-xs text-zinc-500 mt-0.5">{description}</span>
             )}
           </div>
         )}

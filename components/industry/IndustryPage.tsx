@@ -113,15 +113,15 @@ export default function IndustryPage({ industry, locale = 'pt' }: IndustryPagePr
         <div className="px-6 md:px-10 max-w-7xl mx-auto w-full">
           <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 lg:gap-10 items-center">
             <div className="max-w-xl flex-1">
-              <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-brand-black">
-                <span className="text-sm font-semibold uppercase tracking-widest text-brand-black">
+              <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-zinc-900">
+                <span className="text-sm font-semibold uppercase tracking-widest text-zinc-900">
                   {copy.badge}
                 </span>
               </div>
-              <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl mb-6 text-brand-black">
+              <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl mb-6 text-zinc-900">
                 {copy.heroTitle[0]}<br />{copy.heroTitle[1]}
               </h1>
-              <p className="text-xl mb-10 max-w-lg text-neutral-600 leading-relaxed">
+              <p className="text-xl mb-10 max-w-lg text-body leading-relaxed">
                 {copy.heroText}
               </p>
               <button
@@ -140,10 +140,10 @@ export default function IndustryPage({ industry, locale = 'pt' }: IndustryPagePr
       </section>
 
       {/* Pain Points */}
-      <section className="py-28 md:py-40 bg-bg-muted">
+      <section className="py-28 md:py-40 bg-zinc-50">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <div className="mb-14 md:mb-16">
-            <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black">{copy.challengesTitle}</h2>
+            <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900">{copy.challengesTitle}</h2>
           </div>
 
           <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
@@ -165,8 +165,8 @@ export default function IndustryPage({ industry, locale = 'pt' }: IndustryPagePr
       <section id="workflows" className="py-28 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <div className="mb-14 md:mb-16">
-            <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black">{copy.workflowsTitle}</h2>
-            <p className="mt-4 text-lg text-neutral-600">{copy.workflowsText}</p>
+            <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900">{copy.workflowsTitle}</h2>
+            <p className="mt-4 text-lg text-body">{copy.workflowsText}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
@@ -183,13 +183,13 @@ export default function IndustryPage({ industry, locale = 'pt' }: IndustryPagePr
       </section>
 
       {/* Results */}
-      <section id="resultados" className="py-28 md:py-40 bg-bg-muted">
+      <section id="resultados" className="py-28 md:py-40 bg-zinc-50">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           {/* Metrics grid removed until real client results exist (see plans/homepage-storytelling-copy-plan.md) */}
           <div className="max-w-2xl">
-            <h2 className="heading-display text-[2rem] md:text-[2.5rem] mb-6 text-brand-black">{copy.resultsTitle}</h2>
-            <p className="text-xl leading-relaxed text-neutral-600">{copy.resultsParagraphs[0]}</p>
-            <p className="text-xl leading-relaxed mt-6 text-neutral-600">{copy.resultsParagraphs[1]}</p>
+            <h2 className="heading-display text-[2rem] md:text-[2.5rem] mb-6 text-zinc-900">{copy.resultsTitle}</h2>
+            <p className="text-xl leading-relaxed text-body">{copy.resultsParagraphs[0]}</p>
+            <p className="text-xl leading-relaxed mt-6 text-body">{copy.resultsParagraphs[1]}</p>
           </div>
         </div>
       </section>
@@ -198,8 +198,8 @@ export default function IndustryPage({ industry, locale = 'pt' }: IndustryPagePr
       <section id="integracoes" className="py-28 md:py-40 bg-white">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <div className="mb-14 md:mb-16">
-            <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black">{copy.integrationsTitle}</h2>
-            <p className="mt-4 text-base text-neutral-600">{copy.integrationsText}</p>
+            <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900">{copy.integrationsTitle}</h2>
+            <p className="mt-4 text-base text-body">{copy.integrationsText}</p>
           </div>
 
           <IndustryIntegrations integrations={meta.integrations} />
@@ -207,10 +207,10 @@ export default function IndustryPage({ industry, locale = 'pt' }: IndustryPagePr
       </section>
 
       {/* CTA */}
-      <section id="contato" className="py-28 md:py-40 bg-bg-muted">
+      <section id="contato" className="py-28 md:py-40 bg-zinc-50">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
-          <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-brand-black">{copy.ctaTitle}</h2>
-          <p className="mt-4 text-lg max-w-md mx-auto text-neutral-600">{copy.ctaText}</p>
+          <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900">{copy.ctaTitle}</h2>
+          <p className="mt-4 text-lg max-w-md mx-auto text-body">{copy.ctaText}</p>
           <div className="mt-10 md:mt-12">
             <button
               onClick={() => setIsContactModalOpen(true)}

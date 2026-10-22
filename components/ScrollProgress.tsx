@@ -80,11 +80,11 @@ export default function ScrollProgress({
       aria-hidden="true"
     >
       {/* Background track */}
-      <div className="absolute inset-0 bg-brand-border/30" />
+      <div className="absolute inset-0 bg-zinc-200/30" />
 
       {/* Progress bar */}
       <motion.div
-        className="absolute inset-y-0 left-0 bg-[#1a1a1a] origin-left"
+        className="absolute inset-y-0 left-0 bg-zinc-900 origin-left"
         style={{
           scaleX: smoothProgress,
         }}
@@ -92,7 +92,7 @@ export default function ScrollProgress({
 
       {/* Glow effect on the leading edge */}
       <motion.div
-        className="absolute inset-y-0 w-16 bg-gradient-to-r from-[#1a1a1a]/50 to-transparent"
+        className="absolute inset-y-0 w-16 bg-gradient-to-r from-zinc-900/50 to-transparent"
         style={{
           left: useTransform(smoothProgress, [0, 1], ['0%', 'calc(100% - 4rem)']),
           opacity: useTransform(smoothProgress, [0, 0.05, 0.95, 1], [0, 1, 1, 0]),
@@ -102,7 +102,7 @@ export default function ScrollProgress({
       {/* Optional percentage indicator */}
       {showPercentage && (
         <motion.div
-          className="absolute right-4 -bottom-6 text-xs font-medium text-brand-muted"
+          className="absolute right-4 -bottom-6 text-xs font-medium text-zinc-500"
           style={{
             opacity: percentageOpacity,
           }}

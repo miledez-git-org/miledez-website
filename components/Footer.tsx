@@ -11,7 +11,7 @@ export default function Footer({ locale = 'pt' }: FooterProps) {
   const t = getDict(locale).footer
 
   return (
-    <footer className="relative min-h-[50vh] md:min-h-[40vh] py-20 md:py-28 px-6 md:px-10 text-white overflow-hidden bg-brand-black">
+    <footer className="relative min-h-[50vh] md:min-h-[40vh] py-20 md:py-28 px-6 md:px-10 text-white overflow-hidden bg-zinc-900">
       {/* Geometric texture overlay */}
       <div className="footer-texture absolute inset-0" />
 

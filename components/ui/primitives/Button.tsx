@@ -50,53 +50,53 @@ const sizeClasses: Record<ButtonSize, string> = {
 
 // Variant classes mapped from design-tokens.json
 const variantClasses: Record<ButtonVariant, string> = {
-  // Primary (burgundy) - use sparingly for main CTAs
+  // Primary (teal ink) - use sparingly for main CTAs
   primary: [
-    'bg-brand-primary text-white',
-    'hover:bg-brand-primary-dark',
-    'focus-visible:ring-brand-primary/50',
+    'bg-zinc-900 text-white shadow-sm',
+    'hover:bg-zinc-800',
+    'focus-visible:ring-zinc-900',
   ].join(' '),
 
-  // Secondary (dark) - default for most buttons
+  // Secondary (white, bordered) - default for most buttons
   secondary: [
-    'bg-neutral-900 text-white',
-    'hover:bg-neutral-800',
-    'focus-visible:ring-neutral-900/50',
+    'bg-white text-zinc-900 border border-zinc-200 shadow-sm',
+    'hover:bg-zinc-50',
+    'focus-visible:ring-zinc-900',
   ].join(' '),
 
-  // Tertiary (slate) - subtle actions
+  // Tertiary (soft fill) - subtle actions
   tertiary: [
-    'bg-accent-slate text-white',
-    'hover:bg-accent-slate-light',
-    'focus-visible:ring-accent-slate/50',
+    'bg-zinc-100 text-zinc-900',
+    'hover:bg-zinc-200',
+    'focus-visible:ring-zinc-900',
   ].join(' '),
 
   // Outline - bordered, transparent background
   outline: [
-    'bg-transparent text-neutral-900 border border-neutral-300',
-    'hover:bg-neutral-50 hover:border-neutral-400',
-    'focus-visible:ring-neutral-300/50',
+    'bg-transparent text-zinc-900 border border-zinc-200',
+    'hover:bg-zinc-50 hover:border-zinc-300',
+    'focus-visible:ring-zinc-900',
   ].join(' '),
 
   // Outline Brand - bordered with brand color
   'outline-brand': [
-    'bg-transparent text-brand-primary border border-brand-primary',
-    'hover:bg-brand-primary-subtle',
-    'focus-visible:ring-brand-primary/50',
+    'bg-transparent text-zinc-900 border border-zinc-900',
+    'hover:bg-zinc-100',
+    'focus-visible:ring-zinc-900',
   ].join(' '),
 
   // Ghost - no background until hover
   ghost: [
-    'bg-transparent text-neutral-700',
-    'hover:bg-neutral-100',
-    'focus-visible:ring-neutral-300/50',
+    'bg-transparent text-body',
+    'hover:bg-zinc-100 hover:text-zinc-900',
+    'focus-visible:ring-zinc-900',
   ].join(' '),
 
   // Ghost Brand - brand color, no background until hover
   'ghost-brand': [
-    'bg-transparent text-brand-primary',
-    'hover:bg-brand-primary-subtle',
-    'focus-visible:ring-brand-primary/50',
+    'bg-transparent text-zinc-900',
+    'hover:bg-zinc-100',
+    'focus-visible:ring-zinc-900',
   ].join(' '),
 }
 

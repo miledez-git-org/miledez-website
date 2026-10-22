@@ -34,15 +34,15 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             'bg-white rounded-md appearance-none',
             'border transition-all duration-fast ease-smooth',
             // Default border
-            'border-neutral-300',
+            'border-zinc-200',
             // Hover state
-            'hover:border-neutral-400',
+            'hover:border-zinc-300',
             // Focus state
-            'focus:outline-none focus:border-accent-slate focus:ring-2 focus:ring-accent-slate-subtle',
+            'focus:outline-none focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/20',
             // Error state
-            hasError && 'border-semantic-error focus:border-semantic-error focus:ring-semantic-error-light',
+            hasError && 'bg-rose-50 border-rose-300 text-rose-900 focus:border-rose-500 focus:ring-rose-500/20',
             // Disabled
-            'disabled:bg-neutral-50 disabled:text-neutral-400 disabled:cursor-not-allowed',
+            'disabled:bg-zinc-50 disabled:text-zinc-400 disabled:cursor-not-allowed',
             className
           )}
           {...props}
@@ -51,7 +51,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         </select>
 
         {/* Dropdown arrow */}
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-400">
+        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-400">
           <svg
             width="16"
             height="16"

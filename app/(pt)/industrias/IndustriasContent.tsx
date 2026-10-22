@@ -21,11 +21,11 @@ export default function IndustriasContent({ locale = 'pt' }: { locale?: Locale }
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           {/* Header */}
           <div className="max-w-2xl mb-14">
-            <h1 className="heading-display text-[2rem] md:text-[2.5rem] lg:text-[3rem] text-brand-black leading-tight">
+            <h1 className="heading-display text-[2rem] md:text-[2.5rem] lg:text-[3rem] text-zinc-900 leading-tight">
               {t.titleLead}{' '}
-              <span className="text-brand-primary">{t.titleAccent}</span>
+              <span className="text-zinc-900">{t.titleAccent}</span>
             </h1>
-            <p className="mt-4 text-lg text-neutral-600 leading-relaxed">
+            <p className="mt-4 text-lg text-body leading-relaxed">
               {t.subtitle}
             </p>
           </div>
@@ -36,16 +36,15 @@ export default function IndustriasContent({ locale = 'pt' }: { locale?: Locale }
               <Link
                 key={key}
                 href={localePath(locale, key)}
-                className="group bg-white border border-neutral-200 p-8 transition-all duration-200 hover:-translate-y-1"
-                style={{ boxShadow: '4px 6px 16px rgba(0,0,0,0.10)' }}
+                className="group bg-white border border-zinc-200 p-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
               >
-                <h2 className="text-xl md:text-2xl font-semibold text-brand-black group-hover:text-brand-primary transition-colors">
+                <h2 className="text-xl md:text-2xl font-semibold text-zinc-900 group-hover:text-zinc-700 transition-colors">
                   {t.cards[key].title}
                 </h2>
-                <p className="mt-3 text-base text-neutral-600 leading-relaxed">
+                <p className="mt-3 text-base text-body leading-relaxed">
                   {t.cards[key].description}
                 </p>
-                <span className="inline-block mt-6 text-sm font-medium text-brand-primary">
+                <span className="inline-block mt-6 text-sm font-medium text-zinc-900">
                   {t.cardCta}
                 </span>
               </Link>
