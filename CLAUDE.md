@@ -19,14 +19,7 @@ pnpm run build      # never while the dev server runs (corrupts .next/)
 pnpm run lint
 ```
 
-Deploy: the repo is public since 2026-10-22, so pushing `main` should trigger a Vercel Git deploy again (unconfirmed: after the next push, check that the production deployment shows that commit). Until confirmed, and whenever a specific commit must ship (the dashboard Redeploy button rebuilds the deployment's original commit), deploy a clean copy of the commit:
-
-```bash
-git archive <sha> | tar -x -C <empty dir> && cd <empty dir>
-printf '/sandbox\n/.claude\n/.mcp.json\n/mockups\n/plans\n' > .vercelignore
-vercel link --yes --project miledez.com.br --scope simon-9781s-projects
-vercel deploy --prod --yes --scope simon-9781s-projects
-```
+Deploy: pushing `main` deploys production through the Vercel Git integration (working since the repo went public on 2026-10-22). Before saying a change is live, check that the production deployment shows that commit. The dashboard Redeploy button rebuilds the deployment's original commit, not the latest.
 
 ## Structure
 
