@@ -19,7 +19,7 @@ pnpm run build      # never while the dev server runs (corrupts .next/)
 pnpm run lint
 ```
 
-Deploy: pushing `main` does not update production (Hobby plan + private org repo), and the dashboard Redeploy button rebuilds the deployment's original commit. Deploy a clean copy of the commit:
+Deploy: the repo is public since 2026-10-22, so pushing `main` should trigger a Vercel Git deploy again (unconfirmed: after the next push, check that the production deployment shows that commit). Until confirmed, and whenever a specific commit must ship (the dashboard Redeploy button rebuilds the deployment's original commit), deploy a clean copy of the commit:
 
 ```bash
 git archive <sha> | tar -x -C <empty dir> && cd <empty dir>
