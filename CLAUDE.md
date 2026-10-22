@@ -47,7 +47,7 @@ Stack: Next.js 14.2 App Router with `output: 'export'`, React 18.3, Framer Motio
 ## Rules
 
 1. Static export: no `app/api/` routes and no server components that need a runtime. External calls are client-side fetch (Formspree, n8n).
-2. `.env.local` holds `NEXT_PUBLIC_N8N_ASSESSMENT_WEBHOOK_URL` only; no server-side secrets.
+2. `.env.local` holds only public `NEXT_PUBLIC_*` values (`NEXT_PUBLIC_N8N_ASSESSMENT_WEBHOOK_URL`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`); no server-side secrets.
 3. `eslint-config-next` version matches the Next.js version.
 4. Use existing `components/ui/` components before creating new ones.
 5. Homepage sections, copy, routes and the country redirect follow `.claude/rules/` (`homepage.md`, `i18n.md`, `design-tokens.md`), loaded when those files are touched.
