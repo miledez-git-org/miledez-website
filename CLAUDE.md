@@ -17,7 +17,7 @@ Agency website for mil&dez — Brazilian B2B AI workflow automation agency.
 | UI | React 18.3, Framer Motion 12 |
 | Styling | Tailwind CSS 3.4 |
 | Language | TypeScript |
-| Deployment | Vercel (auto-deploy from main) |
+| Deployment | Vercel, manual CLI deploy (Git auto-deploy is blocked: Hobby plan + private org repo) |
 
 ## Commands
 
@@ -26,6 +26,16 @@ pnpm install     # Install dependencies
 pnpm run dev     # Start dev server
 pnpm run build   # Production build
 pnpm run lint    # Run ESLint
+```
+
+**Deploying to production:** pushing to `main` does not update miledez.com.br, and the dashboard Redeploy button only rebuilds the deployment's original commit. After pushing, deploy a clean copy of the commit from the CLI (project `miledez.com.br`, scope `simon-9781s-projects`):
+
+```bash
+git archive <sha> | tar -x -C <empty dir>    # committed files only, no .env.local
+cd <empty dir>
+printf '/sandbox\n/.claude\n/.agents\n/.mcp.json\n/mockups\n/plans\n' > .vercelignore
+vercel link --yes --project miledez.com.br --scope simon-9781s-projects
+vercel deploy --prod --yes --scope simon-9781s-projects
 ```
 
 ## Project Structure
