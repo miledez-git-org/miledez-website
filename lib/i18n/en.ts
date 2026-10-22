@@ -79,6 +79,28 @@ export const en: Dict = {
       label: 'Automation',
       items: ['Recurring tasks run on their own', 'Information gathered in one place', 'Deadlines checked without anyone remembering'],
     },
+    pipeline: {
+      summary:
+        "Three automation examples. Today's orders are checked and turned into an updated report. Invoices that arrive by email are read and posted to the ERP. A new lead is researched and gets a proposal ready to send.",
+      stages: ['Input', 'mil&dez automation', 'Output'],
+      scenarios: [
+        {
+          input: { title: "Today's orders", text: 'Sales sheet and orders in the ERP' },
+          task: { title: 'Data check', text: 'Checks prices, stock and records before moving on' },
+          output: { title: 'Report updated', text: 'Dashboard ready before the team arrives' },
+        },
+        {
+          input: { title: 'Invoices by email', text: 'Attachments sent by suppliers' },
+          task: { title: 'Data extraction', text: 'Pulls amounts, due dates and tax IDs from each invoice' },
+          output: { title: 'ERP updated', text: 'Accounts payable posted, no typing' },
+        },
+        {
+          input: { title: 'New lead', text: 'Website form and CRM' },
+          task: { title: 'Research', text: 'Looks up company size, industry and website' },
+          output: { title: 'Proposal ready', text: 'Tailored document ready to send' },
+        },
+      ],
+    },
     pain: {
       titleLead: "How much of your team's day",
       titleAccent: 'goes into copying, pasting and remembering?',

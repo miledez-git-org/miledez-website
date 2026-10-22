@@ -115,6 +115,28 @@ export const pt = {
       label: 'Automação',
       items: ['Tarefas que se repetem rodam sozinhas', 'Informação reunida em um só lugar', 'Prazos checados sem ninguém lembrar'],
     },
+    pipeline: {
+      summary:
+        'Três exemplos de automação. Os pedidos do dia são verificados e viram um relatório atualizado. As notas fiscais que chegam por e-mail são lidas e lançadas no ERP. Um novo lead é pesquisado e recebe uma proposta pronta para enviar.',
+      stages: ['Entrada', 'Automação mil&dez', 'Saída'],
+      scenarios: [
+        {
+          input: { title: 'Pedidos do dia', text: 'Planilha de vendas e pedidos no ERP' },
+          task: { title: 'Verificação de dados', text: 'Confere preços, estoque e cadastros antes de seguir' },
+          output: { title: 'Relatório atualizado', text: 'Painel pronto antes da equipe chegar' },
+        },
+        {
+          input: { title: 'Notas fiscais por e-mail', text: 'Anexos recebidos dos fornecedores' },
+          task: { title: 'Transformação de dados', text: 'Extrai valores, vencimentos e CNPJ de cada nota' },
+          output: { title: 'ERP lançado', text: 'Contas a pagar atualizadas, sem digitação' },
+        },
+        {
+          input: { title: 'Novo lead', text: 'Formulário do site e CRM' },
+          task: { title: 'Pesquisa', text: 'Levanta porte, setor e site da empresa' },
+          output: { title: 'Proposta gerada', text: 'Documento personalizado pronto para enviar' },
+        },
+      ],
+    },
     pain: {
       titleLead: 'Quanto do dia da sua equipe',
       titleAccent: 'vai em copiar, colar e lembrar?',

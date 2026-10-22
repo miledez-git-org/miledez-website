@@ -77,7 +77,7 @@ Follow the global design reference: `~/light-design-system/light_design_system_v
 - **HomePage** (`components/HomePage.tsx`) — shared by both locales; owns the contact modal state and passes `onContactClick` to Header, PricingSection and BusinessProfilesSection.
 - **Header** — requires `onContactClick` prop for the Contato button (opens modal). Indústrias links to `/industrias`.
 - **ContactModal** — lead capture form (Formspree, client-side fetch).
-- **HeroAutomationDiagram** — static SVG diagram in the hero right column.
+- **HeroPipeline** — hero right column: three stacked cards (input → automation → output) that rotate through three scenarios every 4 s, with pulses on the connectors. React port of `workflow-pipeline-v3` from the animations repo. Copy in `home.pipeline`; logos from `public/software-company-logos`; Notus Teal utilities; stops rotating under reduced motion and when off screen. `HeroAutomationDiagram` (the previous static diagram) is no longer rendered.
 - **PricingSection** — tiers R$500 / R$2.000 / R$6.000 (USD in EN).
 - **AssessmentTool** — multi-step lead gen form (4 steps → n8n webhook → Claude API → on-screen results). Direct client-side fetch to n8n. Types in `types/assessment.ts`, workflow spec in `docs/`.
 - **Industry pages** (saude, servicos, agronegocio) are rendered by the shared `IndustryPage` template; changing the template or `components/industry/` parts changes all three.
@@ -85,7 +85,7 @@ Follow the global design reference: `~/light-design-system/light_design_system_v
 
 ## Homepage Section Order
 
-1. Hero — headline + HeroAutomationDiagram
+1. Hero — headline + HeroPipeline
 2. PainPointSection — problems clients face
 3. WorkflowExplainerSection — what automation is (3 workflow cards)
 4. BusinessProfilesSection (#quanto-vale) — ROI profiles + contact CTA

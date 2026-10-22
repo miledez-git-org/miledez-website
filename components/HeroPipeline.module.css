@@ -1,0 +1,44 @@
+/* Timeline for HeroPipeline. Each 4 s window remounts the keyed elements, so every animation here restarts per scenario.
+   Window (ms): content in 0-300, input lit 200, pulse 1 600-1200, task lit 1200, pulse 2 1800-2400, output lit 2400,
+   check 2700, everything resets 3400-3800. Ported from animations/workflow-pipeline-v3. */
+
+.rise { animation: rise 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--in, 0ms) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+.layerOff { opacity: 0; visibility: hidden; }
+.layerOn { animation: layer 4000ms linear both; }
+@keyframes layer {
+  0% { opacity: 0; transform: translateY(8px); }
+  7.5% { opacity: 1; transform: none; }
+  87.5% { opacity: 1; transform: none; }
+  95%, 100% { opacity: 0; transform: translateY(-6px); }
+}
+
+/* fadeOut has no backwards fill, so it only takes over at 3400 ms */
+.lit { opacity: 0; animation: fadeIn 300ms cubic-bezier(0.16, 1, 0.3, 1) var(--on, 0ms) both, fadeOut 300ms ease-in 3400ms forwards; }
+.trace { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 600ms cubic-bezier(0.4, 0, 0.2, 1) var(--go, 0ms) both, fadeOut 300ms ease-in 3400ms forwards; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+/* Centred on the path by offset-anchor alone: no negative margin, or the dot drifts off the line. */
+.dot { position: absolute; left: 0; top: 0; offset-rotate: 0deg; offset-anchor: 50% 50%; opacity: 0;
+       animation: travel 600ms cubic-bezier(0.4, 0, 0.2, 1) var(--go, 0ms) both; }
+@keyframes travel {
+  0% { offset-distance: 0%; opacity: 0; }
+  15%, 85% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+.ok { transform: scale(0); animation: pop 450ms cubic-bezier(0.34, 1.56, 0.64, 1) 2700ms both, popOut 200ms ease-in 3400ms forwards; }
+@keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }
+@keyframes popOut { from { transform: scale(1); } to { transform: scale(0); } }
+
+/* Reduced motion: first scenario, fully drawn, no travel. The component also stops rotating. */
+@media (prefers-reduced-motion: reduce) {
+  .rise, .layerOn { animation: none; opacity: 1; transform: none; }
+  .lit { animation: none; opacity: 0; }
+  .trace { animation: none; stroke-dashoffset: 0; }
+  .dot { display: none; }
+  .ok { animation: none; transform: scale(1); }
+}

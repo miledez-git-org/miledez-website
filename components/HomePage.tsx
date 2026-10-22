@@ -6,7 +6,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import PricingSection from '@/components/PricingSection'
 import ProcessSection from '@/components/ProcessSection'
-import HeroAutomationDiagram from '@/components/HeroAutomationDiagram'
+import HeroPipeline from '@/components/HeroPipeline'
 import WorkflowExplainerSection from '@/components/WorkflowExplainerSection'
 import PainPointSection from '@/components/PainPointSection'
 import BusinessProfilesSection from '@/components/BusinessProfilesSection'
@@ -80,9 +80,9 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
               </div>
             </div>
 
-            {/* Right column - Automation diagram */}
+            {/* Right column - rotating automation pipeline */}
             <div className="flex items-center justify-center">
-              <HeroAutomationDiagram locale={locale} />
+              <HeroPipeline locale={locale} />
             </div>
 
           </div>
