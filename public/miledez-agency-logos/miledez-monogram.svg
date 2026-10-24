@@ -2,7 +2,7 @@
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&amp;display=swap');
-      .monogram { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 56px; fill: #6b0f1a; }
+      .monogram { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 56px; fill: #134e4a; }
     </style>
   </defs>
   <text x="50%" y="48" text-anchor="middle" class="monogram">&amp;</text>

@@ -3,8 +3,8 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&amp;display=swap');
       .logo-text { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 48px; letter-spacing: -0.03em; }
-      .black { fill: #1a1a1a; }
-      .accent { fill: #6b0f1a; }
+      .black { fill: #27272a; }
+      .accent { fill: #134e4a; }
     </style>
   </defs>
   <text x="0" y="46" class="logo-text">
