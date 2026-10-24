@@ -35,7 +35,7 @@ export const en: Dict = {
     services: 'Services',
     agribusiness: 'Agribusiness',
     whatsapp: 'WhatsApp',
-    address: 'Rua Irmaos Kennedy 200 ap. 301, Belo Horizonte, MG, Brazil · CNPJ: 44.584.460/0001-80',
+    address: 'Belo Horizonte, MG, Brazil · CNPJ: 44.584.460/0001-80',
     rights: '© 2025 mil&dez. All rights reserved.',
     privacy: 'Privacy',
     terms: 'Terms',

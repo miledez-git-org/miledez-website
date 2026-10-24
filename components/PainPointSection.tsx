@@ -35,7 +35,7 @@ export default function PainPointSection({ locale = 'pt' }: { locale?: Locale })
   const { ref, isVisible } = useScrollReveal({ threshold: 0.2 })
 
   return (
-    <section id="problemas" className="bg-zinc-50 py-24 md:py-32">
+    <section id="problemas" className="bg-zinc-100 py-24 md:py-32">
 
       <div className="max-w-7xl mx-auto px-6 md:px-10" ref={ref}>
         {/* Section header */}

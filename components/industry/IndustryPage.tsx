@@ -140,7 +140,7 @@ export default function IndustryPage({ industry, locale = 'pt' }: IndustryPagePr
       </section>
 
       {/* Pain Points */}
-      <section className="py-28 md:py-40 bg-zinc-50">
+      <section className="py-28 md:py-40 bg-zinc-100">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <div className="mb-14 md:mb-16">
             <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900">{copy.challengesTitle}</h2>
@@ -183,7 +183,7 @@ export default function IndustryPage({ industry, locale = 'pt' }: IndustryPagePr
       </section>
 
       {/* Results */}
-      <section id="resultados" className="py-28 md:py-40 bg-zinc-50">
+      <section id="resultados" className="py-28 md:py-40 bg-zinc-100">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           {/* Metrics grid removed until real client results exist (see plans/homepage-storytelling-copy-plan.md) */}
           <div className="max-w-2xl">
@@ -207,7 +207,7 @@ export default function IndustryPage({ industry, locale = 'pt' }: IndustryPagePr
       </section>
 
       {/* CTA */}
-      <section id="contato" className="py-28 md:py-40 bg-zinc-50">
+      <section id="contato" className="py-28 md:py-40 bg-zinc-100">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900">{copy.ctaTitle}</h2>
           <p className="mt-4 text-lg max-w-md mx-auto text-body">{copy.ctaText}</p>

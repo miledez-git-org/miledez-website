@@ -71,7 +71,7 @@ export const pt = {
     services: 'Serviços',
     agribusiness: 'Agronegócio',
     whatsapp: 'WhatsApp',
-    address: 'Rua Irmaos Kennedy 200 ap. 301, Belo Horizonte, MG · CNPJ: 44.584.460/0001-80',
+    address: 'Belo Horizonte, MG · CNPJ: 44.584.460/0001-80',
     rights: '© 2025 mil&dez. Todos os direitos reservados.',
     privacy: 'Privacidade',
     terms: 'Termos',
