@@ -312,9 +312,10 @@ html {
 
 /* Outline Button - White with gray border */
 .btn-outline {
-  background-color: transparent;
+  background-color: theme('colors.white');
   color: theme('colors.zinc.900');
   border: 1px solid theme('colors.zinc.200');
+  box-shadow: theme('boxShadow.sm');
   border-radius: 6px;
   transition: border-color 150ms ease-out, color 150ms ease-out, transform 150ms ease-out, background-color 150ms ease-out;
 }
