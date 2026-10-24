@@ -49,6 +49,7 @@ Stack: Next.js 14.2 App Router with `output: 'export'`, React 18.3, Framer Motio
 
 - Dev server 404s on `_next/static/` assets: delete `.next/` and restart.
 - `pnpm run build` may fail on `_not-found/page.js.nft.json`: pre-existing Next.js trace bug, pages still generate.
+- Vercel serves every `.html` file (exported pages and `public/*.html`) only at its extensionless URL; the `.html` path 404s. Share `/validador-esocial`, not `/validador-esocial.html` (a `vercel.json` redirect covers the old link).
 - Headless Puppeteer rarely triggers `useScrollReveal`. Before screenshots force visibility: `document.querySelectorAll('*').forEach(el => { if (el.style.opacity === '0') { el.style.opacity = '1'; el.style.transform = 'none'; } })`.
 
 ## Tokens
