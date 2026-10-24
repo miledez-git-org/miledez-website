@@ -11,4 +11,4 @@ paths:
 - Markup uses raw `zinc/emerald/amber/rose/sky` utilities. Headings and ink `zinc-900`, body copy `text-body`, muted `zinc-500`. In CSS use `theme('colors.zinc.900')`, never hex.
 - Light theme only, Inter, no hardcoded hex in components. Copy demo markup via the design-system doc's Copy HTML buttons; never ship its Tailwind CDN script tag.
 - Type, radius and shadow use Tailwind's default scales, as in the design system; do not add overrides to `generated-theme.ts`.
-- `public/validador-esocial.html` is a standalone Play-CDN page; its inline `tailwind.config` copies `zinc`, `rose` and `body` from `palette-teal.js`. Regenerate it with the vendored theme.
+- `public/validador-esocial.html` is a standalone page styled by `public/validador-esocial.css`, compiled from this repo's Tailwind config by `pnpm run build:validador` (also run by `pnpm run build`). Rerun it after editing the page, then commit the CSS.

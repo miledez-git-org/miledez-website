@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "pnpm run build:validador && next build",
+    "build:validador": "tailwindcss -c tailwind.config.ts --content public/validador-esocial.html -o public/validador-esocial.css --minify",
     "start": "next start",
     "lint": "next lint"
   },

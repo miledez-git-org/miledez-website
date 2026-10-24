@@ -15,7 +15,8 @@ Public agency site miledez.com.br: static, bilingual Next.js marketing site that
 ```bash
 pnpm install        # after every package.json change (Vercel CI uses --frozen-lockfile)
 pnpm run dev
-pnpm run build      # never while the dev server runs (corrupts .next/)
+pnpm run build      # never while the dev server runs (corrupts .next/); runs build:validador first
+pnpm run build:validador   # recompile public/validador-esocial.css after editing that page
 pnpm run lint
 ```
 

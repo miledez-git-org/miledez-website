@@ -4,24 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>mil&dez · Validador eSocial SST</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  // Notus Teal, copied from design-system-agency/docs/palette-teal.js (regenerate from there, never edit by hand).
-  tailwind.config = { theme: { extend: { colors: {
-    body: '#27272a',
-    zinc: {
-      50: '#fafafa', 100: '#f4f4f5', 200: '#e4e4e7', 300: '#d4d4d8', 400: '#a1a1aa',
-      500: '#71717a', 600: '#0d9488', 700: '#0f766e', 800: '#115e59', 900: '#134e4a', 950: '#042f2e',
-    },
-    rose: {
-      50: '#fef2f2', 100: '#fee2e2', 200: '#fecaca', 300: '#fca5a5', 400: '#f87171',
-      500: '#ef4444', 600: '#dc2626', 700: '#b91c1c', 800: '#991b1b', 900: '#7f1d1d', 950: '#450a0a',
-    },
-  } } } };
-</script>
+<link rel="stylesheet" href="/validador-esocial.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   body { font-family: 'Inter', sans-serif; }
 </style>
@@ -41,7 +27,7 @@
   <div class="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-20 md:py-28 lg:py-32">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       <div class="lg:col-span-7">
-        <h1 class="text-4xl md:text-5xl font-light tracking-tight leading-[1.1] text-zinc-900 mb-6">
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] text-zinc-900 mb-6">
           Elimine rejeições<br>
           do eSocial <span class="text-zinc-600">antes</span><br>
           que elas aconteçam.
@@ -53,7 +39,7 @@
 
       <!-- Visual: rejection cycle vs. clean flow -->
       <div class="lg:col-span-5">
-        <div class="border border-zinc-200 rounded-lg p-6 md:p-8">
+        <div class="border border-zinc-200 rounded-xl shadow-sm p-6 md:p-8">
 
           <div class="mb-8">
             <div class="text-sm font-medium text-zinc-900 mb-1">Sua clínica hoje</div>
@@ -113,7 +99,7 @@
 <section class="border-b border-zinc-100 bg-zinc-100">
   <div class="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-20 md:py-28 lg:py-32">
     <div class="max-w-2xl mb-12">
-      <h2 class="text-3xl md:text-4xl font-light tracking-tight text-zinc-900 mb-4">O que muda na sua clínica</h2>
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-4">O que muda na sua clínica</h2>
       <p class="text-base text-body leading-[1.7]">Cada rejeição evitada é tempo recuperado, médico mais produtivo e cliente RH mais satisfeito.</p>
     </div>
 
@@ -122,7 +108,7 @@
       <div>
         <div class="flex items-center gap-3 mb-3">
           <svg class="w-5 h-5 text-zinc-900 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          <h3 class="text-lg font-medium text-zinc-900">Equipe administrativa livre</h3>
+          <h3 class="text-lg font-semibold text-zinc-900">Equipe administrativa livre</h3>
         </div>
         <p class="text-sm text-body leading-[1.6]">Deixa de reabrir eventos, recadastrar dados e renegociar prazos com o RH. Foco volta para atender bem.</p>
       </div>
@@ -130,7 +116,7 @@
       <div>
         <div class="flex items-center gap-3 mb-3">
           <svg class="w-5 h-5 text-zinc-900 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          <h3 class="text-lg font-medium text-zinc-900">Médico sem reabertura de prontuário</h3>
+          <h3 class="text-lg font-semibold text-zinc-900">Médico sem reabertura de prontuário</h3>
         </div>
         <p class="text-sm text-body leading-[1.6]">Erros de CBO, vínculo e PCMSO são pegos antes da assinatura. O médico não é interrompido depois.</p>
       </div>
@@ -138,7 +124,7 @@
       <div>
         <div class="flex items-center gap-3 mb-3">
           <svg class="w-5 h-5 text-zinc-900 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          <h3 class="text-lg font-medium text-zinc-900">ASO sempre no prazo legal</h3>
+          <h3 class="text-lg font-semibold text-zinc-900">ASO sempre no prazo legal</h3>
         </div>
         <p class="text-sm text-body leading-[1.6]">Transmissão automática até o dia 15 do mês seguinte. Cliente RH não precisa cobrar.</p>
       </div>
@@ -146,7 +132,7 @@
       <div>
         <div class="flex items-center gap-3 mb-3">
           <svg class="w-5 h-5 text-zinc-900 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          <h3 class="text-lg font-medium text-zinc-900">Multas do eSocial eliminadas</h3>
+          <h3 class="text-lg font-semibold text-zinc-900">Multas do eSocial eliminadas</h3>
         </div>
         <p class="text-sm text-body leading-[1.6]">Sem rejeição, sem evento perdido, sem exposição às penalidades do S-2220 e S-2240.</p>
       </div>
@@ -154,7 +140,7 @@
       <div>
         <div class="flex items-center gap-3 mb-3">
           <svg class="w-5 h-5 text-zinc-900 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-          <h3 class="text-lg font-medium text-zinc-900">Cliente RH com mais confiança</h3>
+          <h3 class="text-lg font-semibold text-zinc-900">Cliente RH com mais confiança</h3>
         </div>
         <p class="text-sm text-body leading-[1.6]">RH para de ligar atrás de pendência. A clínica vira fornecedor que ele recomenda.</p>
       </div>
@@ -162,7 +148,7 @@
       <div>
         <div class="flex items-center gap-3 mb-3">
           <svg class="w-5 h-5 text-zinc-900 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-          <h3 class="text-lg font-medium text-zinc-900">Diferencial técnico no mercado</h3>
+          <h3 class="text-lg font-semibold text-zinc-900">Diferencial técnico no mercado</h3>
         </div>
         <p class="text-sm text-body leading-[1.6]">Conformidade automatizada vira argumento comercial em propostas para empresas grandes.</p>
       </div>
@@ -175,7 +161,7 @@
 <section class="border-b border-zinc-100 bg-white">
   <div class="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-20 md:py-28 lg:py-32">
     <div class="max-w-2xl mb-16">
-      <h2 class="text-3xl md:text-4xl font-light tracking-tight text-zinc-900 mb-4">Como funciona</h2>
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-4">Como funciona</h2>
       <p class="text-base text-body leading-[1.7]">Sua equipe não muda nada na rotina. Quando há erro, aparece um aviso com a correção sugerida. Quando está certo, segue direto.</p>
     </div>
 
@@ -193,11 +179,11 @@
         <!-- STEP 1 -->
         <div class="relative">
           <div class="flex md:flex-col items-start md:items-center md:text-center gap-4 md:gap-0">
-            <div class="w-14 h-14 border-2 border-zinc-200 bg-white rounded-full flex items-center justify-center text-xl font-light text-zinc-500 flex-shrink-0 md:mb-6 relative z-10">1</div>
+            <div class="w-14 h-14 border-2 border-zinc-200 bg-white rounded-full flex items-center justify-center text-xl font-medium text-zinc-500 flex-shrink-0 md:mb-6 relative z-10">1</div>
             <div class="flex-1 md:w-full">
               <div class="text-sm text-zinc-500 mb-3">Médico finaliza o ASO</div>
               <div class="text-base font-medium text-zinc-900 mb-4">Maria S. Oliveira</div>
-              <div class="inline-block md:mx-auto text-left bg-zinc-50 border border-zinc-100 rounded-sm p-4 space-y-1.5 text-xs text-body w-full max-w-xs">
+              <div class="inline-block md:mx-auto text-left bg-zinc-50 border border-zinc-100 rounded-lg p-4 space-y-1.5 text-xs text-body w-full max-w-xs">
                 <div class="flex justify-between"><span>CBO</span><span class="text-zinc-900">7152-10</span></div>
                 <div class="flex justify-between"><span>Tipo</span><span class="text-zinc-900">Admissional</span></div>
                 <div class="flex justify-between"><span>Empregador</span><span class="text-zinc-900">Construtora ABC</span></div>
@@ -209,7 +195,7 @@
         <!-- STEP 2 - the highlight -->
         <div class="relative">
           <div class="flex md:flex-col items-start md:items-center md:text-center gap-4 md:gap-0">
-            <div class="w-14 h-14 bg-zinc-900 rounded-full flex items-center justify-center text-xl font-light text-white flex-shrink-0 md:mb-6 relative z-10">2</div>
+            <div class="w-14 h-14 bg-zinc-900 rounded-full flex items-center justify-center text-xl font-medium text-white flex-shrink-0 md:mb-6 relative z-10">2</div>
             <div class="flex-1 md:w-full">
               <div class="text-sm text-zinc-900 mb-3">mil&amp;dez valida em segundos</div>
 
@@ -234,7 +220,7 @@
         <!-- STEP 3 -->
         <div class="relative">
           <div class="flex md:flex-col items-start md:items-center md:text-center gap-4 md:gap-0">
-            <div class="w-14 h-14 border-2 border-zinc-200 bg-white rounded-full flex items-center justify-center text-xl font-light text-zinc-500 flex-shrink-0 md:mb-6 relative z-10">3</div>
+            <div class="w-14 h-14 border-2 border-zinc-200 bg-white rounded-full flex items-center justify-center text-xl font-medium text-zinc-500 flex-shrink-0 md:mb-6 relative z-10">3</div>
             <div class="flex-1 md:w-full">
               <div class="text-sm text-zinc-500 mb-3">Equipe corrige</div>
               <div class="text-base font-medium text-zinc-900 mb-4">Resolvido em minutos</div>
@@ -256,7 +242,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
 
       <div>
-        <h2 class="text-3xl md:text-4xl font-light tracking-tight text-zinc-900 mb-8">Você testa antes de pagar</h2>
+        <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-8">Você testa antes de pagar</h2>
 
         <div class="space-y-5">
           <div class="flex gap-4 items-baseline">
@@ -282,27 +268,27 @@
         </div>
       </div>
 
-      <div class="bg-white border border-zinc-200 rounded-lg p-6 md:p-8">
-        <h3 class="text-xl font-medium text-zinc-900 mb-2">Agendar diagnóstico de 30 min</h3>
+      <div class="bg-white border border-zinc-200 rounded-xl shadow-sm p-6 md:p-8">
+        <h3 class="text-xl font-semibold text-zinc-900 mb-2">Agendar diagnóstico de 30 min</h3>
         <p class="text-sm text-body leading-[1.6] mb-6">Sem custo. Sem compromisso de assinatura.</p>
 
         <form id="leadForm" onsubmit="submitForm(event)" class="space-y-4">
           <div>
-            <input required name="clinica" type="text" placeholder="Nome da clínica" class="w-full px-4 py-3 border border-zinc-200 rounded-sm text-sm bg-white focus:outline-none focus:border-zinc-900">
+            <input required name="clinica" type="text" placeholder="Nome da clínica" class="w-full px-4 py-3 border border-zinc-200 rounded-lg text-sm bg-white focus:outline-none focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/20">
           </div>
           <div>
-            <input required name="nome" type="text" placeholder="Seu nome" class="w-full px-4 py-3 border border-zinc-200 rounded-sm text-sm bg-white focus:outline-none focus:border-zinc-900">
+            <input required name="nome" type="text" placeholder="Seu nome" class="w-full px-4 py-3 border border-zinc-200 rounded-lg text-sm bg-white focus:outline-none focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/20">
           </div>
           <div>
-            <input required name="whatsapp" type="tel" placeholder="WhatsApp · (31) 9XXXX-XXXX" class="w-full px-4 py-3 border border-zinc-200 rounded-sm text-sm bg-white focus:outline-none focus:border-zinc-900">
+            <input required name="whatsapp" type="tel" placeholder="WhatsApp · (31) 9XXXX-XXXX" class="w-full px-4 py-3 border border-zinc-200 rounded-lg text-sm bg-white focus:outline-none focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/20">
           </div>
-          <button id="leadSubmit" type="submit" class="w-full px-6 py-3.5 bg-zinc-900 text-white text-sm font-medium rounded-sm hover:bg-zinc-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">Quero o piloto grátis</button>
+          <button id="leadSubmit" type="submit" class="w-full px-6 py-3.5 bg-zinc-900 text-white text-sm font-medium rounded-lg hover:bg-zinc-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">Quero o piloto grátis</button>
           <p class="text-xs text-zinc-500 leading-[1.6] pt-2">Resposta em 24h úteis · contato@miledez.com.br</p>
           <p id="leadError" class="hidden text-xs text-rose-700 leading-[1.6]">Não foi possível enviar agora. Tente novamente em instantes ou envie seu contato para contato@miledez.com.br.</p>
         </form>
 
         <div id="formSuccess" class="hidden">
-          <h3 class="text-xl font-medium text-zinc-900 mb-3">Obrigado</h3>
+          <h3 class="text-xl font-semibold text-zinc-900 mb-3">Obrigado</h3>
           <p class="text-sm text-body leading-[1.6]">Entramos em contato pelo WhatsApp em 24h úteis para agendar a conversa de 30 minutos.</p>
         </div>
       </div>

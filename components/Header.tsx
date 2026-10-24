@@ -97,7 +97,7 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
           <span
             className="text-body"
             style={{
-              fontFamily: 'var(--font-manrope)',
+              fontFamily: 'var(--font-inter)',
               fontWeight: 300,
               fontSize: '32px',
               letterSpacing: '-0.03em',
