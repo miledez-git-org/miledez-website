@@ -2,26 +2,7 @@
 
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
-import { localeFromPathname } from '@/lib/i18n'
-
-const copy = {
-  pt: {
-    title: 'Algo deu errado',
-    text: 'Ocorreu um erro inesperado. Por favor, tente novamente ou volte para a página inicial.',
-    details: 'Detalhes técnicos',
-    retry: 'Tentar novamente',
-    home: 'Voltar ao início',
-    homeHref: '/',
-  },
-  en: {
-    title: 'Something went wrong',
-    text: 'An unexpected error occurred. Please try again or go back to the home page.',
-    details: 'Technical details',
-    retry: 'Try again',
-    home: 'Back to home',
-    homeHref: '/en',
-  },
-}
+import { getDict, localeFromPathname, localePath } from '@/lib/i18n'
 
 interface ErrorPageProps {
   error: Error & { digest?: string }
@@ -33,7 +14,8 @@ interface ErrorPageProps {
  * This file handles errors that occur during rendering of any route
  */
 export default function ErrorPage({ error, reset }: ErrorPageProps) {
-  const t = copy[localeFromPathname(usePathname() ?? '/')]
+  const locale = localeFromPathname(usePathname() ?? '/')
+  const t = getDict(locale).routeError
 
   useEffect(() => {
     // Log error to console (could send to analytics/error tracking)
@@ -92,7 +74,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
             {t.retry}
           </button>
           <a
-            href={t.homeHref}
+            href={localePath(locale, 'home')}
             className="btn-outline px-8 py-4"
           >
             {t.home}

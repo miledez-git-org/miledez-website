@@ -57,6 +57,12 @@ export default function Footer({ locale = 'pt' }: FooterProps) {
                 {t.agribusiness}
               </Link>
               <a
+                href="/validador-esocial"
+                className="text-sm text-white/80 hover:text-white transition-colors"
+              >
+                {t.esocial}
+              </a>
+              <a
                 href="mailto:contato@miledez.com.br"
                 className="text-sm text-white/80 hover:text-white transition-colors"
               >

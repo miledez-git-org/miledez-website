@@ -71,9 +71,10 @@ export const pt = {
     health: 'Saúde',
     services: 'Serviços',
     agribusiness: 'Agronegócio',
+    esocial: 'Validador eSocial',
     whatsapp: 'WhatsApp',
     address: 'Belo Horizonte, MG · CNPJ: 44.584.460/0001-80',
-    rights: '© 2025 mil&dez. Todos os direitos reservados.',
+    rights: '© 2026 mil&dez. Todos os direitos reservados.',
     privacy: 'Privacidade',
     terms: 'Termos',
   },
@@ -82,19 +83,27 @@ export const pt = {
     close: 'Fechar',
     successTitle: 'Mensagem recebida',
     successText: 'Respondemos em até 1 dia útil para marcar a conversa de 30 minutos.',
-    title: 'Sua automação grátis',
-    intro: 'Conte qual tarefa mais toma tempo da sua equipe. Respondemos em até 1 dia útil para marcar a conversa de 30 minutos.',
+    title: 'Conte qual tarefa mais toma tempo',
+    intro: 'Respondemos em até 1 dia útil para marcar a conversa de 30 minutos.',
     name: 'Nome *',
     namePlaceholder: 'Seu nome',
     email: 'E-mail *',
     emailPlaceholder: 'seu@email.com',
     phone: 'Telefone',
-    phonePlaceholder: '(11) 99999-9999',
+    phonePlaceholder: '(31) 99999-9999',
     message: 'Mensagem *',
     messagePlaceholder: 'Ex.: confirmamos 40 consultas por dia por telefone e muitos pacientes ainda faltam.',
-    error: 'Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.',
+    error: 'Não conseguimos enviar sua mensagem. Tente de novo ou fale conosco pelo WhatsApp: (31) 98352-9257.',
     sending: 'Enviando...',
-    submit: 'Enviar',
+    submit: 'Enviar mensagem',
+  },
+
+  routeError: {
+    title: 'Algo deu errado',
+    text: 'Esta página não carregou. Tente de novo ou volte para o início. Se o erro continuar, fale conosco pelo WhatsApp: (31) 98352-9257.',
+    details: 'Detalhes técnicos',
+    retry: 'Tentar de novo',
+    home: 'Voltar ao início',
   },
 
   home: {
@@ -120,6 +129,7 @@ export const pt = {
       summary:
         'Três exemplos de automação. Cada ASO finalizado é conferido com as regras do eSocial antes do envio. As notas fiscais que chegam por e-mail são lidas e lançadas no ERP. Um novo lead é pesquisado e recebe uma proposta pronta para enviar.',
       stages: ['Entrada', 'Automação mil&dez', 'Saída'],
+      validatorLink: 'Ver o validador eSocial',
       scenarios: [
         {
           input: { title: 'ASO finalizado', text: 'Exame ocupacional lançado no sistema da clínica' },
@@ -334,25 +344,25 @@ export const pt = {
 
   industries: {
     meta: {
-      title: 'Indústrias - mil&dez',
-      description: 'Automação sob medida para saúde, serviços profissionais e agronegócio.',
+      title: 'Setores · mil&dez',
+      description: 'Automação para clínicas, escritórios e agronegócio, nos sistemas que cada setor já usa.',
     },
     titleLead: 'Automação para',
     titleAccent: 'o seu setor',
-    subtitle: 'Cada setor tem processos únicos. Criamos automações sob medida para o fluxo real da sua operação.',
-    cardCta: 'Ver soluções →',
+    subtitle: 'Cada setor tem as suas tarefas que se repetem. Escolha o seu para ver exemplos de automação.',
+    cardCta: 'Ver automações',
     cards: {
       health: {
-        title: 'Saúde e Clínicas',
-        description: 'Automatizamos agendamento, confirmação de consultas, documentação e faturamento para clínicas e consultórios.',
+        title: 'Saúde e clínicas',
+        description: 'Confirmação de consultas pelo WhatsApp, lembrete de retorno e conferência do eSocial antes do envio.',
       },
       services: {
-        title: 'Serviços Profissionais',
-        description: 'Automatizamos contratos, faturamento, relatórios e comunicação para escritórios e prestadores de serviço.',
+        title: 'Serviços profissionais',
+        description: 'Entrada de novos clientes, aviso de renovação de contratos e cobrança depois de cada entrega.',
       },
       agribusiness: {
         title: 'Agronegócio',
-        description: 'Automatizamos fornecedores, cotações, conformidade e comunicação campo-escritório para o agronegócio.',
+        description: 'Cotação de insumos, controle de licenças e informações do campo organizadas no escritório.',
       },
     },
   },

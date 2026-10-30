@@ -25,7 +25,7 @@ Each section owns one message; never repeat a message across sections.
 ## Components
 
 - **HomePage** (`components/HomePage.tsx`): shared by both locales; owns the contact modal state and passes `onContactClick` to Header, PricingSection and BusinessProfilesSection.
-- **Header**: requires `onContactClick` for the Contato button. Indústrias links to `/industrias`.
+- **Header**: requires `onContactClick` for the Contato button. Setores links to `/industrias`.
 - **ContactModal**: lead capture form (Formspree, client-side fetch).
 - **HeroPipeline**: three stacked cards (input → automation → output) rotating through three scenarios every 4 s with pulses on the connectors. Copy in `home.pipeline`; logos from `public/software-company-logos`; stops under reduced motion and off screen.
 - **PricingSection**: tiers R$500 / R$2.000 / R$6.000 (USD in EN).

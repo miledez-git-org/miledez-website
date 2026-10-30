@@ -34,6 +34,7 @@ export const en: Dict = {
     health: 'Healthcare',
     services: 'Services',
     agribusiness: 'Agribusiness',
+    esocial: 'eSocial validator',
     whatsapp: 'WhatsApp',
     address: 'Belo Horizonte, MG, Brazil · CNPJ: 44.584.460/0001-80',
     rights: '© 2025 mil&dez. All rights reserved.',
@@ -60,6 +61,14 @@ export const en: Dict = {
     submit: 'Send',
   },
 
+  routeError: {
+    title: 'Something went wrong',
+    text: 'An unexpected error occurred. Please try again or go back to the home page.',
+    details: 'Technical details',
+    retry: 'Try again',
+    home: 'Back to home',
+  },
+
   home: {
     meta: {
       title: 'mil&dez · Process automation for small and mid-sized businesses',
@@ -83,6 +92,7 @@ export const en: Dict = {
       summary:
         "Three automation examples. Today's orders are checked and turned into an updated report. Invoices that arrive by email are read and posted to the ERP. A new lead is researched and gets a proposal ready to send.",
       stages: ['Input', 'mil&dez automation', 'Output'],
+      validatorLink: 'See the eSocial validator',
       scenarios: [
         {
           input: { title: "Today's orders", text: 'Sales sheet and orders in the ERP' },

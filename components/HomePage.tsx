@@ -81,8 +81,11 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
             </div>
 
             {/* Right column - rotating automation pipeline */}
-            <div className="flex items-center justify-center">
+            <div className="flex flex-col items-center justify-center gap-6">
               <HeroPipeline locale={locale} />
+              <a href="/validador-esocial" className="text-sm font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700">
+                {t.pipeline.validatorLink}
+              </a>
             </div>
 
           </div>
