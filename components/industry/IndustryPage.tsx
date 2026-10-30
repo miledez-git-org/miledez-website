@@ -112,7 +112,7 @@ export default function IndustryPage({ industry, locale = 'pt' }: IndustryPagePr
       <section className="min-h-screen bg-white flex items-center relative pt-24 md:pt-0">
         <div className="px-6 md:px-10 max-w-7xl mx-auto w-full">
           <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 lg:gap-10 items-center">
-            <div className="max-w-xl flex-1">
+            <div>
               <div className="inline-flex items-center px-4 py-2 mb-6 border-l-4 border-zinc-900">
                 <span className="text-sm font-semibold uppercase tracking-widest text-zinc-900">
                   {copy.badge}
@@ -121,7 +121,7 @@ export default function IndustryPage({ industry, locale = 'pt' }: IndustryPagePr
               <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl mb-6 text-zinc-900">
                 {copy.heroTitle[0]}<br />{copy.heroTitle[1]}
               </h1>
-              <p className="text-xl mb-10 max-w-lg text-body leading-relaxed">
+              <p className="text-xl mb-10 max-w-xl text-body leading-relaxed">
                 {copy.heroText}
               </p>
               <button
