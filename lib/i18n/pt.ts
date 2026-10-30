@@ -375,7 +375,7 @@ export const pt = {
       },
       badge: 'Saúde e clínicas',
       heroTitle: ['Menos faltas na agenda.', 'eSocial conferido antes do envio.'],
-      heroText: 'A confirmação de consultas sai pelo WhatsApp sem a recepção ligar para cada paciente. Na medicina do trabalho, cada ASO é conferido com as regras do eSocial antes do envio.',
+      heroText: 'A confirmação de consultas sai pelo WhatsApp, sem a recepção ligar para cada paciente. Na medicina do trabalho, cada ASO é conferido com as regras do eSocial.',
       heroCta: 'Quero meu diagnóstico',
       challengesTitle: 'O que pesa na rotina da clínica',
       challenges: [
