@@ -45,10 +45,10 @@ export interface IndustryCopy {
 
 export const pt = {
   site: {
-    title: 'mil&dez - Automação de Processos',
+    title: 'mil&dez · Automação de processos',
     description:
-      'Lembretes, cobranças, cotações e prazos no automático, nos sistemas que você já usa. Primeira automação em até 2 semanas, sem custo de desenvolvimento.',
-    keywords: ['automação', 'processos', 'workflow', 'Brasil', 'n8n', 'AI'],
+      'Confirmação de consultas, cobranças, prazos e conferência do eSocial no automático, nos sistemas que você já usa.',
+    keywords: ['automação de processos', 'automação para clínicas', 'confirmação de consultas', 'eSocial SST', 'Belo Horizonte', 'Brasil'],
     skipLink: 'Pular para o conteúdo',
   },
 
@@ -100,15 +100,15 @@ export const pt = {
     meta: {
       title: 'mil&dez · Automação de processos para pequenas e médias empresas',
       description:
-        'Lembretes, cobranças, cotações e prazos no automático, nos sistemas que você já usa. Primeira automação em até 2 semanas, sem custo de desenvolvimento.',
+        'Confirmação de consultas, cobranças, prazos e conferência do eSocial no automático, nos sistemas que você já usa.',
     },
     hero: {
       line1: 'Sua equipe para de',
       line2: 'repetir tarefa.',
       accent: 'O sistema faz por ela.',
       subtitle:
-        'Lembretes, cobranças, cotações e prazos passam a acontecer sozinhos, nos sistemas que você já usa. Construímos sua primeira automação sem custo de desenvolvimento, pronta em até 2 semanas.',
-      cta: 'Quero minha automação grátis',
+        'Consultas confirmadas, cobranças enviadas e prazos acompanhados sem ninguém precisar lembrar. A automação funciona nos sistemas que você já usa.',
+      cta: 'Quero meu diagnóstico',
       secondary: 'Ver exemplos',
     },
     diagram: {
@@ -117,13 +117,13 @@ export const pt = {
     },
     pipeline: {
       summary:
-        'Três exemplos de automação. Os pedidos do dia são verificados e viram um relatório atualizado. As notas fiscais que chegam por e-mail são lidas e lançadas no ERP. Um novo lead é pesquisado e recebe uma proposta pronta para enviar.',
+        'Três exemplos de automação. Cada ASO finalizado é conferido com as regras do eSocial antes do envio. As notas fiscais que chegam por e-mail são lidas e lançadas no ERP. Um novo lead é pesquisado e recebe uma proposta pronta para enviar.',
       stages: ['Entrada', 'Automação mil&dez', 'Saída'],
       scenarios: [
         {
-          input: { title: 'Pedidos do dia', text: 'Planilha de vendas e pedidos no ERP' },
-          task: { title: 'Verificação de dados', text: 'Confere preços, estoque e cadastros antes de seguir' },
-          output: { title: 'Relatório atualizado', text: 'Painel pronto antes da equipe chegar' },
+          input: { title: 'ASO finalizado', text: 'Exame ocupacional lançado no sistema da clínica' },
+          task: { title: 'Conferência eSocial', text: 'Confere CBO, vínculo e PCMSO de cada exame' },
+          output: { title: 'Conferido antes do envio', text: 'Erros apontados com a correção sugerida' },
         },
         {
           input: { title: 'Notas fiscais por e-mail', text: 'Anexos recebidos dos fornecedores' },
@@ -144,10 +144,10 @@ export const pt = {
         'Três problemas aparecem em quase toda empresa de pequeno e médio porte. Eles custam horas toda semana e raramente aparecem em algum relatório.',
       points: [
         { title: 'A mesma tarefa, todo dia', description: 'Confirmar consultas, mandar lembretes, atualizar planilhas. Alguém da equipe faz isso à mão, uma mensagem de cada vez.' },
-        { title: 'Informação em cinco lugares', description: 'O pedido chegou no WhatsApp, o preço está na planilha e a nota ficou no e-mail. Para responder o cliente, alguém precisa juntar tudo.' },
         { title: 'O prazo que ninguém lembrou', description: 'Contrato que venceu, cobrança que não saiu, licença que expirou. Cada esquecimento vira retrabalho, multa ou cliente perdido.' },
+        { title: 'Informação em cinco lugares', description: 'O pedido chegou no WhatsApp, o preço está na planilha e a nota ficou no e-mail. Para responder o cliente, alguém precisa juntar tudo.' },
       ],
-      cta: 'Veja como isso fica automatizado',
+      cta: 'Ver como fica no automático',
     },
     explainer: {
       titleLead: 'Os mesmos três problemas,',
@@ -170,19 +170,6 @@ export const pt = {
           ],
         },
         {
-          industry: 'Agro',
-          summary: 'Cotação de insumos',
-          solves: 'informação em cinco lugares',
-          before: 'alguém pede preço a cada fornecedor e compara tudo à mão.',
-          steps: [
-            { title: 'Pedido recebido', description: 'Produtor envia via WhatsApp' },
-            { title: 'Cotações comparadas', description: 'Planilha consulta fornecedores' },
-            { title: 'Melhor preço selecionado', description: 'Equipe notificada no Slack' },
-            { title: 'Pedido confirmado', description: 'E-mail enviado ao fornecedor' },
-            { title: 'Nota fiscal registrada', description: 'Documento salvo automaticamente' },
-          ],
-        },
-        {
           industry: 'Escritórios',
           summary: 'Renovação de contratos',
           solves: 'o prazo que ninguém lembrou',
@@ -192,6 +179,19 @@ export const pt = {
             { title: 'Documento revisado', description: 'E-mail com minuta atualizada' },
             { title: 'Assinatura enviada', description: 'Link de assinatura digital' },
             { title: 'Contrato arquivado', description: 'Versão final salva na nuvem' },
+          ],
+        },
+        {
+          industry: 'Agro',
+          summary: 'Cotação de insumos',
+          solves: 'informação em cinco lugares',
+          before: 'alguém pede preço a cada fornecedor e compara tudo à mão.',
+          steps: [
+            { title: 'Pedido recebido', description: 'Produtor envia via WhatsApp' },
+            { title: 'Cotações comparadas', description: 'Planilha consulta fornecedores' },
+            { title: 'Melhor preço selecionado', description: 'Equipe avisada no WhatsApp' },
+            { title: 'Pedido confirmado', description: 'E-mail enviado ao fornecedor' },
+            { title: 'Nota fiscal registrada', description: 'Documento salvo automaticamente' },
           ],
         },
       ],
@@ -214,14 +214,6 @@ export const pt = {
           assumption: 'Premissa: 10 faltas a menos por mês, com ticket médio de R$250, e 20 horas de recepção liberadas (R$25/h).',
         },
         {
-          type: 'Cooperativa de café',
-          size: '50 produtores',
-          automation: 'Automação: cotação de insumos',
-          subscription: 'R$2.000',
-          savings: 'R$5.600',
-          assumption: 'Premissa: 1% de economia em R$400 mil de compras por mês e 40 horas de cotação liberadas (R$40/h).',
-        },
-        {
           type: 'Escritório de contabilidade',
           size: '6 colaboradores',
           automation: 'Automação: renovação de contratos',
@@ -229,18 +221,26 @@ export const pt = {
           savings: 'R$1.900',
           assumption: 'Premissa: 15 horas por mês liberadas (R$60/h) e R$1.000 por mês em honorários que deixam de se perder por renovação esquecida.',
         },
+        {
+          type: 'Cooperativa de café',
+          size: '50 produtores',
+          automation: 'Automação: cotação de insumos',
+          subscription: 'R$2.000',
+          savings: 'R$5.600',
+          assumption: 'Premissa: 1% de economia em R$400 mil de compras por mês e 40 horas de cotação liberadas (R$40/h).',
+        },
       ],
-      disclaimer: 'Estes valores são estimativas ilustrativas. No diagnóstico, refazemos a conta com os números da sua empresa.',
-      ctaPrimary: 'Quero minha automação grátis',
-      ctaSecondary: 'Como começar',
+      disclaimer: 'Estes valores são estimativas ilustrativas. No diagnóstico, refazemos a conta com os seus números.',
+      ctaPrimary: 'Quero meu diagnóstico',
+      ctaSecondary: 'Ver como funciona',
     },
     process: {
       titleLead: 'Da primeira conversa',
       titleAccent: 'à automação funcionando',
       subtitle:
         'Você conta como o trabalho é feito hoje. Nós construímos, testamos e cuidamos de tudo depois. Sua equipe não precisa mexer em nada técnico.',
-      promiseTitle: 'Sua primeira automação em até 2 semanas, sem pagar pelo desenvolvimento',
-      promiseItems: ['Desenvolvimento por nossa conta', 'Você testa antes de assinar', 'Hospedagem, manutenção e ajustes na mensalidade'],
+      promiseTitle: 'Primeira automação funcionando em 2 a 4 semanas',
+      promiseItems: ['Construção e testes com a sua equipe', 'Nada técnico para aprender', 'Ajustes inclusos quando o processo mudar'],
       steps: [
         {
           title: 'Conversa de 30 minutos',
@@ -248,26 +248,27 @@ export const pt = {
           duration: '30 min',
         },
         {
-          title: 'Diagnóstico por escrito',
-          description: 'Você recebe um relatório com as automações que mais fazem sentido para o seu negócio, o tempo que cada uma economiza e quanto custa.',
-          duration: '2–3 dias úteis',
+          title: 'Diagnóstico e proposta',
+          description: 'Você recebe por escrito as automações que mais fazem sentido para o seu negócio, o tempo que cada uma economiza e a mensalidade de cada uma.',
+          duration: '3–5 dias úteis',
         },
         {
           title: 'Construção e teste',
           description: 'Você escolhe por onde começar. Construímos a automação ligada aos seus sistemas e ajustamos com a sua equipe até funcionar do jeito certo.',
-          duration: '1–2 semanas',
+          duration: '2–4 semanas',
         },
         {
-          title: 'Funcionando, com acompanhamento',
-          description: 'A automação entra no dia a dia. Se o seu processo mudar, nós ajustamos. Isso está incluso na mensalidade.',
-          duration: 'contínuo',
+          title: 'Primeiro mês grátis, com ajustes',
+          description: 'A automação entra no dia a dia e você usa por um mês sem pagar. Ajustamos o que for preciso. Depois disso começa a mensalidade, com acompanhamento e ajustes inclusos.',
+          duration: '1 mês',
         },
       ],
     },
     pricing: {
       titleLead: 'Quanto custa',
       titleAccent: 'e o que está incluso',
-      subtitle: 'Uma mensalidade cobre construção, hospedagem, manutenção e ajustes. Cancele quando quiser.',
+      subtitle:
+        'A mensalidade cobre construção, hospedagem, manutenção e ajustes. Desenvolvimento sem custo e primeiro mês grátis. Cancelamento com 30 dias de aviso.',
       from: 'A partir de',
       perMonth: '/mês',
       tiers: [
@@ -277,8 +278,8 @@ export const pt = {
       ],
       includedTitle: 'Incluso em todos os planos',
       included: ['Construção', 'Hospedagem', 'Manutenção', 'Ajustes quando seu processo mudar', 'Suporte por WhatsApp'],
-      cta: 'Quero minha automação grátis',
-      ctaNote: 'O desenvolvimento da primeira automação é por nossa conta.',
+      cta: 'Quero meu diagnóstico',
+      ctaNote: 'No diagnóstico, indicamos o plano certo para o seu processo.',
     },
     faq: {
       titleLead: 'Perguntas',
@@ -287,7 +288,11 @@ export const pt = {
       items: [
         {
           question: 'E se eu não gostar do teste?',
-          answer: 'Você não paga nada. O desenvolvimento da primeira automação é por nossa conta, e você só assina a mensalidade se quiser continuar.',
+          answer: 'Você usa a automação por um mês sem pagar. Se não fizer sentido, não assina.',
+        },
+        {
+          question: 'Quanto tempo leva para ficar pronto?',
+          answer: 'A proposta chega de 3 a 5 dias úteis depois da conversa de 30 minutos. A construção e os testes levam de 2 a 4 semanas, conforme o número de etapas e sistemas.',
         },
         {
           question: 'Preciso trocar algum sistema?',
@@ -317,11 +322,11 @@ export const pt = {
     },
     cta: {
       titleLine1: 'Escolha uma tarefa que se repete.',
-      titleLine2: 'A gente coloca no automático.',
-      text: 'Conte qual processo mais toma tempo da sua equipe. Respondemos em até 1 dia útil e construímos a primeira automação sem custo de desenvolvimento.',
+      titleLine2: 'Nós colocamos no automático.',
+      text: 'Conte qual processo mais toma tempo da sua equipe. Respondemos em até 1 dia útil para marcar a conversa de 30 minutos.',
       founder: 'Quem responde é Simon Larsen, fundador da mil&dez, em Belo Horizonte.',
       founderAlt: 'Simon Larsen, fundador da mil&dez',
-      button: 'Quero minha automação grátis',
+      button: 'Quero meu diagnóstico',
       note: 'Sem compromisso.',
     },
   },

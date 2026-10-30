@@ -1,6 +1,6 @@
 # mil&dez Website
 
-Public agency site miledez.com.br: static, bilingual Next.js marketing site that also hosts the eSocial demo and the assessment form.
+Public agency site miledez.com.br: static, bilingual Next.js marketing site that also hosts the eSocial demo.
 
 > mil&dez agency repo. Client-facing content in PT-BR, code and docs in English. Visuals follow `design-system-agency/`; tokens are vendored, change the design system first and regenerate. Commit only via `/agency:save`; in a cloud session (no plugin there), commit to the session branch and open a PR.
 
@@ -26,13 +26,12 @@ Deploy: pushing `main` deploys production through the Vercel Git integration (wo
 
 | Path | Purpose |
 |---|---|
-| `app/(pt)/` | Portuguese routes at root URLs (industrias, saude, servicos, agronegocio, avaliacao, termos, politica-privacidade); own root layout |
+| `app/(pt)/` | Portuguese routes at root URLs (industrias, saude, servicos, agronegocio, termos, politica-privacidade); own root layout |
 | `app/(en)/en/` | English routes; own root layout |
 | `components/ui/` | Design-system components; `tokens/generated-theme.ts` is the vendored palette |
 | `components/industry/` | Shared industry page template: one change affects all three industry pages |
 | `components/WorkflowVisual/`, `components/HeroPipeline*` | Workflow visuals; HeroPipeline is the React port of the animations `workflow-pipeline-v3` |
 | `lib/i18n/` | All copy (`pt.ts`, `en.ts`) plus route and hreflang helpers |
-| `types/`, `docs/`, `supabase/migrations/` | Assessment types, n8n workflow specs, migration SQL |
 | `public/miledez-agency-logos/` | Served copy of the logos in `marketing/resources/brand/` |
 | `public/software-company-logos/` | Integration partner logos (one SVG per partner) |
 
@@ -41,7 +40,7 @@ Stack: Next.js 14.2 App Router with `output: 'export'`, React 18.3, Framer Motio
 ## Rules
 
 1. Static export: no `app/api/` routes and no server components that need a runtime. External calls are client-side fetch (Formspree, n8n).
-2. `.env.local` holds only public `NEXT_PUBLIC_*` values (`NEXT_PUBLIC_N8N_ASSESSMENT_WEBHOOK_URL`, `NEXT_PUBLIC_GA_MEASUREMENT_ID`); no server-side secrets.
+2. `.env.local` holds only public `NEXT_PUBLIC_*` values (`NEXT_PUBLIC_GA_MEASUREMENT_ID`); no server-side secrets.
 3. `eslint-config-next` version matches the Next.js version.
 4. Use existing `components/ui/` components before creating new ones.
 5. Homepage sections, copy, routes and the country redirect follow `.claude/rules/` (`homepage.md`, `i18n.md`, `design-tokens.md`), loaded when those files are touched.

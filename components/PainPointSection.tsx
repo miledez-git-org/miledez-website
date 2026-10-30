@@ -28,7 +28,7 @@ const AlertTriangleIcon = () => (
   </svg>
 )
 
-const painIcons = [RepeatIcon, LayersIcon, AlertTriangleIcon]
+const painIcons = [RepeatIcon, AlertTriangleIcon, LayersIcon]
 
 export default function PainPointSection({ locale = 'pt' }: { locale?: Locale }) {
   const t = getDict(locale).home.pain

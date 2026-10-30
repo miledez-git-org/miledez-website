@@ -23,7 +23,6 @@ pnpm run dev
 | `/saude` | `app/saude/page.tsx` | Healthcare industry |
 | `/servicos` | `app/servicos/page.tsx` | Professional services |
 | `/agronegocio` | `app/agronegocio/page.tsx` | Agribusiness industry |
-| `/avaliacao` | `app/avaliacao/page.tsx` | AI assessment tool (off nav) |
 | `/termos` | `app/termos/page.tsx` | Terms of service |
 | `/politica-privacidade` | `app/politica-privacidade/page.tsx` | Privacy policy |
 

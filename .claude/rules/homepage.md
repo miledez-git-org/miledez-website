@@ -5,7 +5,6 @@ paths:
   - "components/ContactModal.tsx"
   - "components/HeroPipeline*"
   - "components/*Section*.tsx"
-  - "components/AssessmentTool*"
 ---
 
 # Homepage and key components
@@ -30,4 +29,3 @@ Each section owns one message; never repeat a message across sections.
 - **ContactModal**: lead capture form (Formspree, client-side fetch).
 - **HeroPipeline**: three stacked cards (input → automation → output) rotating through three scenarios every 4 s with pulses on the connectors. Copy in `home.pipeline`; logos from `public/software-company-logos`; stops under reduced motion and off screen.
 - **PricingSection**: tiers R$500 / R$2.000 / R$6.000 (USD in EN).
-- **AssessmentTool**: 4-step lead-gen form → n8n webhook → Claude API → on-screen results, client-side fetch. Types in `types/assessment.ts`, workflow spec in `docs/`.

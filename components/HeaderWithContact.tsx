@@ -7,7 +7,7 @@ import type { Locale } from '@/lib/i18n'
 
 /**
  * Header bundled with its own ContactModal state. Use on pages that don't
- * already manage modal state themselves (legal pages, assessment) so the
+ * already manage modal state themselves (legal pages) so the
  * header "Contato" button always opens the lead capture form.
  */
 export default function HeaderWithContact({ locale = 'pt' }: { locale?: Locale }) {

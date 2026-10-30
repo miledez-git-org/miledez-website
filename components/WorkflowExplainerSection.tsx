@@ -5,11 +5,11 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { getDict, type Locale } from '@/lib/i18n'
 
 // Logos per workflow step; copy lives in lib/i18n
-// Order matches the pain points: repetitive task → scattered info → missed deadline
+// Order matches the pain points: repetitive task → missed deadline → scattered info
 const workflowIcons: string[][] = [
   ['google-calendar', 'whatsapp', 'google-sheets'],
-  ['whatsapp', 'google-sheets', 'slack', 'gmail', 'excel'],
   ['pipedrive', 'gmail', 'docusign', 'google-drive'],
+  ['whatsapp', 'google-sheets', 'whatsapp', 'gmail', 'excel'],
 ]
 
 const DownArrow = () => (
