@@ -25,7 +25,7 @@ const industryMeta: Record<
 > = {
   saude: {
     copyKey: 'health',
-    icons: ['folder', 'creditCard', 'calendar'],
+    icons: ['calendar', 'document', 'bell'],
     integrations: [
       { name: 'WhatsApp', logo: 'whatsapp' },
       { name: 'Doctoralia', logo: 'doctoralia' },
@@ -211,13 +211,18 @@ export default function IndustryPage({ industry, locale = 'pt' }: IndustryPagePr
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900">{copy.ctaTitle}</h2>
           <p className="mt-4 text-lg max-w-md mx-auto text-body">{copy.ctaText}</p>
-          <div className="mt-10 md:mt-12">
+          <div className="mt-10 md:mt-12 flex flex-wrap justify-center gap-4">
             <button
               onClick={() => setIsContactModalOpen(true)}
               className="btn btn-primary btn-xl"
             >
               {copy.ctaButton}
             </button>
+            {copy.ctaSecondary && (
+              <a href={copy.ctaSecondary.href} className="btn btn-outline btn-lg">
+                {copy.ctaSecondary.label}
+              </a>
+            )}
           </div>
         </div>
       </section>

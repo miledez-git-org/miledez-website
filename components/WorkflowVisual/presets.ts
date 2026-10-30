@@ -169,71 +169,71 @@ export function getIndustryPreset(industry: Industry): WorkflowPreset {
  */
 export const heroPresets: Record<Industry, HeroWorkflowPreset> = {
   saude: {
-    title: 'Automação de Documentos',
+    title: 'Confirmação de consultas',
     steps: [
       {
-        icon: 'user',
-        label: 'Novo paciente',
-        sublabel: 'Cadastro inicia o processo',
-        logos: ['whatsapp', 'google-sheets'],
+        icon: 'calendar',
+        label: 'Consulta agendada',
+        sublabel: 'Horário marcado na agenda',
+        logos: ['google-calendar'],
       },
       {
         icon: 'process',
-        label: 'Processado automaticamente',
-        sublabel: 'Formulários, docs e organização',
-        logos: ['gmail', 'google-drive'],
+        label: 'Lembrete no WhatsApp',
+        sublabel: '24h antes, com opção de remarcar',
+        logos: ['whatsapp'],
       },
       {
         icon: 'check',
-        label: 'Prontuário completo',
-        sublabel: 'Pronto para atendimento',
-        logos: ['google-drive', 'excel'],
+        label: 'Agenda confirmada',
+        sublabel: 'Horários vagos à vista da recepção',
+        logos: ['google-calendar', 'google-sheets'],
       },
     ],
   },
   servicos: {
-    title: 'Gestão de Contratos',
+    title: 'Aviso de renovação',
     steps: [
       {
-        icon: 'user',
-        label: 'Cliente cadastrado',
-        sublabel: 'Dados registrados no sistema',
-        logos: ['gmail', 'google-drive'],
+        icon: 'calendar',
+        label: 'Contrato perto do vencimento',
+        sublabel: 'Aviso 60 dias antes',
+        logos: ['google-calendar', 'gmail'],
       },
       {
         icon: 'process',
-        label: 'Contrato gerenciado',
-        sublabel: 'Geração, alertas e renovação',
-        logos: ['docusign', 'google-calendar'],
+        label: 'Renovação preparada',
+        sublabel: 'Minuta pronta para revisar',
+        logos: ['word', 'gmail'],
       },
       {
         icon: 'check',
-        label: 'Renovado automaticamente',
-        sublabel: 'Continuidade garantida',
+        label: 'Enviada com a sua aprovação',
+        sublabel: 'Você decide antes de sair',
         logos: ['docusign', 'gmail'],
       },
     ],
   },
   agronegocio: {
-    title: 'Coordenação de Fornecedores',
+    title: 'Cotação de insumos',
     steps: [
       {
         icon: 'document',
-        label: 'Pedido registrado',
-        sublabel: 'Solicitação de insumos',
+        label: 'Pedido de insumo',
+        sublabel: 'Recebido pelo WhatsApp',
         logos: ['whatsapp', 'google-sheets'],
       },
       {
         icon: 'process',
-        label: 'Cotação e acompanhamento',
-        sublabel: 'Comparativo e prazos',
-        logos: ['excel', 'google-drive'],
+        label: 'Cotações comparadas',
+        sublabel: 'Preço e prazo lado a lado',
+        logos: ['excel', 'google-sheets'],
       },
       {
         icon: 'check',
-        label: 'Estoque atualizado',
-        sublabel: 'Entrada registrada',
-        logos: ['google-sheets', 'contaazul'],
+        label: 'Pedido confirmado',
+        sublabel: 'Depois da sua aprovação',
+        logos: ['gmail', 'whatsapp'],
       },
     ],
   },
@@ -250,22 +250,31 @@ export function getHeroPreset(industry: Industry, locale: Locale = 'pt'): HeroWo
  * Simplified 4-step workflow presets for workflow sections (vertical card layout)
  */
 export const saudeWorkflowsCompact = {
-  documents: {
-    title: 'Coleta de Documentos',
+  appointments: {
+    title: 'Confirmação de consultas',
     steps: [
-      { icon: 'user' as const, label: 'Novo paciente', sublabel: 'Cadastro inicia o processo', logos: ['whatsapp', 'google-sheets'] },
-      { icon: 'mail' as const, label: 'Formulário enviado', sublabel: 'Anamnese automática', logos: ['gmail', 'typeform'] },
-      { icon: 'folder' as const, label: 'Docs organizados', sublabel: 'Classificação automática', logos: ['google-drive', 'google-sheets'] },
-      { icon: 'check' as const, label: 'Prontuário completo', sublabel: 'Pronto para atendimento', logos: ['google-drive', 'excel'] },
+      { icon: 'calendar' as const, label: 'Consulta agendada', sublabel: 'Horário marcado na agenda', logos: ['google-calendar'] },
+      { icon: 'bell' as const, label: 'Lembrete enviado', sublabel: 'WhatsApp 24h antes', logos: ['whatsapp'] },
+      { icon: 'mail' as const, label: 'Resposta registrada', sublabel: 'Confirmou, remarcou ou cancelou', logos: ['whatsapp', 'google-sheets'] },
+      { icon: 'check' as const, label: 'Agenda atualizada', sublabel: 'Horários vagos à vista da recepção', logos: ['google-calendar', 'google-sheets'] },
     ],
   },
-  billing: {
-    title: 'Faturamento de Convênios',
+  esocial: {
+    title: 'Conferência eSocial SST',
     steps: [
-      { icon: 'document' as const, label: 'Consulta finalizada', sublabel: 'Dados registrados', logos: ['google-sheets', 'excel'] },
-      { icon: 'file' as const, label: 'Guia formatada', sublabel: 'Conforme convênio', logos: ['excel', 'word'] },
-      { icon: 'mail' as const, label: 'Envio automático', sublabel: 'Submissão ao portal', logos: ['gmail', 'outlook'] },
-      { icon: 'check' as const, label: 'Status rastreado', sublabel: 'Ate o pagamento', logos: ['google-sheets', 'contaazul'] },
+      { icon: 'document' as const, label: 'ASO finalizado', sublabel: 'Exame lançado no sistema', logos: ['excel'] },
+      { icon: 'process' as const, label: 'Regras conferidas', sublabel: 'CBO, vínculo e PCMSO', logos: ['excel', 'google-sheets'] },
+      { icon: 'bell' as const, label: 'Erro apontado', sublabel: 'Com a correção sugerida', logos: ['gmail'] },
+      { icon: 'check' as const, label: 'Evento conferido', sublabel: 'Equipe corrige antes do envio', logos: ['excel'] },
+    ],
+  },
+  followUp: {
+    title: 'Lembrete de retorno',
+    steps: [
+      { icon: 'user' as const, label: 'Consulta realizada', sublabel: 'Data de retorno anotada', logos: ['google-sheets'] },
+      { icon: 'calendar' as const, label: 'Prazo acompanhado', sublabel: 'Sem ninguém olhar a agenda', logos: ['google-calendar'] },
+      { icon: 'bell' as const, label: 'Paciente avisado', sublabel: 'Mensagem no WhatsApp', logos: ['whatsapp'] },
+      { icon: 'check' as const, label: 'Retorno agendado', sublabel: 'Horário marcado na agenda', logos: ['google-calendar', 'whatsapp'] },
     ],
   },
   compliance: {
@@ -277,43 +286,34 @@ export const saudeWorkflowsCompact = {
       { icon: 'check' as const, label: 'Alertas agendados', sublabel: 'Aviso antes do vencimento', logos: ['google-calendar', 'gmail'] },
     ],
   },
-  collections: {
-    title: 'Cobrança Automatizada',
-    steps: [
-      { icon: 'creditCard' as const, label: 'Fatura gerada', sublabel: 'Automática apos consulta', logos: ['contaazul', 'excel'] },
-      { icon: 'calendar' as const, label: 'Prazo monitorado', sublabel: 'Contagem regressiva', logos: ['google-calendar', 'google-sheets'] },
-      { icon: 'bell' as const, label: 'Lembretes enviados', sublabel: 'Escalonamento automático', logos: ['whatsapp', 'gmail'] },
-      { icon: 'check' as const, label: 'Baixa automática', sublabel: 'Ao receber pagamento', logos: ['contaazul', 'whatsapp'] },
-    ],
-  },
 }
 
 export const servicosWorkflowsCompact = {
   onboarding: {
-    title: 'Onboarding de Clientes',
+    title: 'Entrada de novo cliente',
     steps: [
-      { icon: 'user' as const, label: 'Novo cliente', sublabel: 'Contrato assinado', logos: ['gmail', 'google-drive'] },
-      { icon: 'mail' as const, label: 'Kit enviado', sublabel: 'Boas-vindas automático', logos: ['gmail', 'notion'] },
-      { icon: 'folder' as const, label: 'Pasta criada', sublabel: 'Estrutura organizada', logos: ['google-drive', 'notion'] },
-      { icon: 'check' as const, label: 'Pronto para iniciar', sublabel: 'Tudo configurado', logos: ['notion', 'gmail'] },
+      { icon: 'user' as const, label: 'Contrato assinado', sublabel: 'Cliente novo confirmado', logos: ['docusign', 'gmail'] },
+      { icon: 'mail' as const, label: 'Boas-vindas enviadas', sublabel: 'E-mail com os próximos passos', logos: ['gmail'] },
+      { icon: 'folder' as const, label: 'Pasta criada', sublabel: 'Estrutura padrão do escritório', logos: ['google-drive'] },
+      { icon: 'check' as const, label: 'Pronto para começar', sublabel: 'Equipe avisada', logos: ['gmail', 'google-drive'] },
     ],
   },
   contracts: {
-    title: 'Gestão de Contratos',
+    title: 'Aviso de renovação',
     steps: [
-      { icon: 'document' as const, label: 'Contrato cadastrado', sublabel: 'Vencimento registrado', logos: ['google-drive', 'docusign'] },
-      { icon: 'calendar' as const, label: 'Alertas programados', sublabel: '60, 30 e 15 dias antes', logos: ['google-calendar', 'gmail'] },
-      { icon: 'document' as const, label: 'Proposta gerada', sublabel: 'Renovação pre-preenchida', logos: ['docusign', 'excel'] },
-      { icon: 'check' as const, label: 'Renovação garantida', sublabel: 'Status sempre atualizado', logos: ['docusign', 'google-drive'] },
+      { icon: 'document' as const, label: 'Contrato cadastrado', sublabel: 'Vencimento registrado', logos: ['google-drive', 'google-sheets'] },
+      { icon: 'calendar' as const, label: 'Avisos programados', sublabel: '60, 30 e 15 dias antes', logos: ['google-calendar', 'gmail'] },
+      { icon: 'document' as const, label: 'Minuta preparada', sublabel: 'Para você revisar e aprovar', logos: ['word', 'gmail'] },
+      { icon: 'check' as const, label: 'Renovação enviada', sublabel: 'Depois da sua aprovação', logos: ['docusign'] },
     ],
   },
   billing: {
-    title: 'Faturamento por Projeto',
+    title: 'Da entrega à cobrança',
     steps: [
-      { icon: 'result' as const, label: 'Marco atingido', sublabel: 'Entrega dispara processo', logos: ['google-sheets', 'notion'] },
-      { icon: 'process' as const, label: 'Dados compilados', sublabel: 'Horas e valores reunidos', logos: ['excel', 'google-sheets'] },
-      { icon: 'creditCard' as const, label: 'Fatura enviada', sublabel: 'Formatada e entregue', logos: ['contaazul', 'gmail'] },
-      { icon: 'check' as const, label: 'Pagamento rastreado', sublabel: 'Lembretes ate receber', logos: ['contaazul', 'whatsapp'] },
+      { icon: 'result' as const, label: 'Entrega registrada', sublabel: 'Etapa concluída na planilha', logos: ['google-sheets'] },
+      { icon: 'process' as const, label: 'Valores reunidos', sublabel: 'Horas e valores do período', logos: ['excel', 'google-sheets'] },
+      { icon: 'creditCard' as const, label: 'Fatura enviada', sublabel: 'Para o e-mail do cliente', logos: ['contaazul', 'gmail'] },
+      { icon: 'check' as const, label: 'Pagamento acompanhado', sublabel: 'Lembrete até receber', logos: ['contaazul', 'whatsapp'] },
     ],
   },
   reports: {
@@ -329,30 +329,30 @@ export const servicosWorkflowsCompact = {
 
 export const agronegocioWorkflowsCompact = {
   supplierCoordination: {
-    title: 'Coordenação de Fornecedores',
+    title: 'Cotação de insumos',
     steps: [
-      { icon: 'document' as const, label: 'Pedido registrado', sublabel: 'Solicitação de insumos', logos: ['whatsapp', 'google-sheets'] },
-      { icon: 'sync' as const, label: 'Cotação automática', sublabel: 'Comparativo de preços', logos: ['excel', 'google-sheets'] },
-      { icon: 'bell' as const, label: 'Entrega monitorada', sublabel: 'Prazos acompanhados', logos: ['google-calendar', 'whatsapp'] },
-      { icon: 'check' as const, label: 'Estoque atualizado', sublabel: 'Entrada registrada', logos: ['google-sheets', 'contaazul'] },
+      { icon: 'document' as const, label: 'Pedido recebido', sublabel: 'Pelo WhatsApp', logos: ['whatsapp'] },
+      { icon: 'sync' as const, label: 'Cotações comparadas', sublabel: 'Preço e prazo de cada fornecedor', logos: ['google-sheets', 'excel'] },
+      { icon: 'bell' as const, label: 'Melhor oferta aprovada', sublabel: 'Equipe decide pelo WhatsApp', logos: ['whatsapp'] },
+      { icon: 'check' as const, label: 'Pedido confirmado', sublabel: 'E-mail ao fornecedor', logos: ['gmail'] },
     ],
   },
   traceability: {
-    title: 'Rastreabilidade e Conformidade',
+    title: 'Licenças com aviso de vencimento',
     steps: [
-      { icon: 'document' as const, label: 'Documento recebido', sublabel: 'Licença ou certificado', logos: ['gmail', 'google-drive'] },
-      { icon: 'process' as const, label: 'Auto-classificado', sublabel: 'Tipo identificado', logos: ['google-drive', 'google-sheets'] },
-      { icon: 'calendar' as const, label: 'Vencimento registrado', sublabel: 'Prazo monitorado', logos: ['google-calendar', 'excel'] },
-      { icon: 'check' as const, label: 'Alerta programado', sublabel: 'Aviso antes do vencimento', logos: ['gmail', 'whatsapp'] },
+      { icon: 'document' as const, label: 'Documento recebido', sublabel: 'Licença, certificado ou laudo', logos: ['gmail', 'google-drive'] },
+      { icon: 'folder' as const, label: 'Arquivado na pasta certa', sublabel: 'Com o tipo identificado', logos: ['google-drive'] },
+      { icon: 'calendar' as const, label: 'Vencimento registrado', sublabel: 'Na planilha de controle', logos: ['google-sheets', 'google-calendar'] },
+      { icon: 'check' as const, label: 'Aviso enviado', sublabel: 'Antes do vencimento', logos: ['gmail', 'whatsapp'] },
     ],
   },
   fieldOffice: {
-    title: 'Comunicação Campo-Escritório',
+    title: 'Dados do campo na planilha',
     steps: [
-      { icon: 'mail' as const, label: 'Relato do campo', sublabel: 'Mensagem ou foto recebida', logos: ['whatsapp', 'gmail'] },
-      { icon: 'process' as const, label: 'Dados extraidos', sublabel: 'Informacao organizada', logos: ['google-sheets', 'google-drive'] },
-      { icon: 'document' as const, label: 'Relatório gerado', sublabel: 'Consolidação automática', logos: ['google-sheets', 'excel'] },
-      { icon: 'check' as const, label: 'Equipe notificada', sublabel: 'Escritório atualizado', logos: ['gmail', 'whatsapp'] },
+      { icon: 'mail' as const, label: 'Relato do campo', sublabel: 'Mensagem ou foto no WhatsApp', logos: ['whatsapp'] },
+      { icon: 'process' as const, label: 'Informação organizada', sublabel: 'Talhão, data e ocorrência', logos: ['google-sheets'] },
+      { icon: 'document' as const, label: 'Planilha atualizada', sublabel: 'No escritório, sem redigitar', logos: ['google-sheets', 'excel'] },
+      { icon: 'check' as const, label: 'Equipe avisada', sublabel: 'Quando algo pede decisão', logos: ['gmail', 'whatsapp'] },
     ],
   },
 }
@@ -884,7 +884,7 @@ export function getCompactWorkflows(industry: Industry, locale: Locale = 'pt'): 
   switch (industry) {
     case 'saude': {
       const w = en ? saudeWorkflowsCompactEn : saudeWorkflowsCompact
-      return [w.documents, w.billing, w.collections]
+      return [w.appointments, w.esocial, w.followUp]
     }
     case 'servicos': {
       const w = en ? servicosWorkflowsCompactEn : servicosWorkflowsCompact

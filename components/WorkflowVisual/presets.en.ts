@@ -30,22 +30,31 @@ export const heroPresetsEn: Record<Industry, HeroWorkflowPreset> = {
 }
 
 export const saudeWorkflowsCompactEn = {
-  documents: {
-    title: 'Document Collection',
+  appointments: {
+    title: 'Appointment confirmations',
     steps: [
-      { icon: 'user' as const, label: 'New patient', sublabel: 'Intake starts the process', logos: ['whatsapp', 'google-sheets'] },
-      { icon: 'mail' as const, label: 'Form sent', sublabel: 'Automatic intake questionnaire', logos: ['gmail', 'typeform'] },
-      { icon: 'folder' as const, label: 'Docs organized', sublabel: 'Automatic filing', logos: ['google-drive', 'google-sheets'] },
-      { icon: 'check' as const, label: 'Record complete', sublabel: 'Ready for the visit', logos: ['google-drive', 'excel'] },
+      { icon: 'calendar' as const, label: 'Appointment booked', sublabel: 'Time set on the calendar', logos: ['google-calendar'] },
+      { icon: 'bell' as const, label: 'Reminder sent', sublabel: 'WhatsApp 24h before', logos: ['whatsapp'] },
+      { icon: 'mail' as const, label: 'Reply recorded', sublabel: 'Confirmed, rescheduled or cancelled', logos: ['whatsapp', 'google-sheets'] },
+      { icon: 'check' as const, label: 'Calendar updated', sublabel: 'Open slots visible to the front desk', logos: ['google-calendar', 'google-sheets'] },
     ],
   },
-  billing: {
-    title: 'Insurance Billing',
+  esocial: {
+    title: 'eSocial health and safety check',
     steps: [
-      { icon: 'document' as const, label: 'Visit completed', sublabel: 'Data recorded', logos: ['google-sheets', 'excel'] },
-      { icon: 'file' as const, label: 'Claim formatted', sublabel: "Per the insurer's rules", logos: ['excel', 'word'] },
-      { icon: 'mail' as const, label: 'Automatic submission', sublabel: 'Sent to the payer portal', logos: ['gmail', 'outlook'] },
-      { icon: 'check' as const, label: 'Status tracked', sublabel: 'Until payment', logos: ['google-sheets', 'contaazul'] },
+      { icon: 'document' as const, label: 'Exam finished', sublabel: 'Occupational exam entered in the system', logos: ['excel'] },
+      { icon: 'process' as const, label: 'Rules checked', sublabel: 'Job code, employment link and health plan', logos: ['excel', 'google-sheets'] },
+      { icon: 'bell' as const, label: 'Error flagged', sublabel: 'With the suggested fix', logos: ['gmail'] },
+      { icon: 'check' as const, label: 'Event checked', sublabel: 'Team fixes it before submission', logos: ['excel'] },
+    ],
+  },
+  followUp: {
+    title: 'Follow-up reminders',
+    steps: [
+      { icon: 'user' as const, label: 'Visit completed', sublabel: 'Follow-up date noted', logos: ['google-sheets'] },
+      { icon: 'calendar' as const, label: 'Date tracked', sublabel: 'Nobody has to watch the calendar', logos: ['google-calendar'] },
+      { icon: 'bell' as const, label: 'Patient notified', sublabel: 'WhatsApp message', logos: ['whatsapp'] },
+      { icon: 'check' as const, label: 'Follow-up booked', sublabel: 'Time set on the calendar', logos: ['google-calendar', 'whatsapp'] },
     ],
   },
   compliance: {
@@ -55,15 +64,6 @@ export const saudeWorkflowsCompactEn = {
       { icon: 'process' as const, label: 'Auto-classified', sublabel: 'AI identifies the type', logos: ['openai', 'google-drive'] },
       { icon: 'calendar' as const, label: 'Retention set', sublabel: 'Legal deadline applied automatically', logos: ['google-calendar', 'excel'] },
       { icon: 'check' as const, label: 'Alerts scheduled', sublabel: 'Notice before expiration', logos: ['google-calendar', 'gmail'] },
-    ],
-  },
-  collections: {
-    title: 'Automated Collections',
-    steps: [
-      { icon: 'creditCard' as const, label: 'Invoice generated', sublabel: 'Automatically after the visit', logos: ['contaazul', 'excel'] },
-      { icon: 'calendar' as const, label: 'Due date monitored', sublabel: 'Countdown', logos: ['google-calendar', 'google-sheets'] },
-      { icon: 'bell' as const, label: 'Reminders sent', sublabel: 'Automatic escalation', logos: ['whatsapp', 'gmail'] },
-      { icon: 'check' as const, label: 'Marked as paid', sublabel: 'When payment arrives', logos: ['contaazul', 'whatsapp'] },
     ],
   },
 }
