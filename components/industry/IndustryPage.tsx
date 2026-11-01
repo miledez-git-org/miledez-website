@@ -119,7 +119,8 @@ export default function IndustryPage({ industry, locale = 'pt' }: IndustryPagePr
                 </span>
               </div>
               <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl mb-6 text-zinc-900">
-                {copy.heroTitle[0]}<br />{copy.heroTitle[1]}
+                <span className="block">{copy.heroTitle[0]}</span>
+                <span className="block">{copy.heroTitle[1]}</span>
               </h1>
               <p className="text-xl mb-10 max-w-xl text-body leading-relaxed">
                 {copy.heroText}

@@ -4,27 +4,27 @@ import type { HeroWorkflowPreset, Industry } from './presets'
 
 export const heroPresetsEn: Record<Industry, HeroWorkflowPreset> = {
   saude: {
-    title: 'Document Automation',
+    title: 'Appointment confirmations',
     steps: [
-      { icon: 'user', label: 'New patient', sublabel: 'Intake starts the process', logos: ['whatsapp', 'google-sheets'] },
-      { icon: 'process', label: 'Processed automatically', sublabel: 'Forms, docs and filing', logos: ['gmail', 'google-drive'] },
-      { icon: 'check', label: 'Patient record complete', sublabel: 'Ready for the visit', logos: ['google-drive', 'excel'] },
+      { icon: 'calendar', label: 'Appointment booked', sublabel: 'Time set on the calendar', logos: ['google-calendar'] },
+      { icon: 'process', label: 'WhatsApp reminder', sublabel: '24h before, with an option to reschedule', logos: ['whatsapp'] },
+      { icon: 'check', label: 'Calendar confirmed', sublabel: 'Open slots visible to the front desk', logos: ['google-calendar', 'google-sheets'] },
     ],
   },
   servicos: {
-    title: 'Contract Management',
+    title: 'Renewal reminder',
     steps: [
-      { icon: 'user', label: 'Client added', sublabel: 'Details recorded in the system', logos: ['gmail', 'google-drive'] },
-      { icon: 'process', label: 'Contract managed', sublabel: 'Drafting, alerts and renewal', logos: ['docusign', 'google-calendar'] },
-      { icon: 'check', label: 'Renewed automatically', sublabel: 'Continuity guaranteed', logos: ['docusign', 'gmail'] },
+      { icon: 'calendar', label: 'Contract nearing expiry', sublabel: 'Reminder 60 days before', logos: ['google-calendar', 'gmail'] },
+      { icon: 'process', label: 'Renewal prepared', sublabel: 'Draft ready to review', logos: ['word', 'gmail'] },
+      { icon: 'check', label: 'Sent with your approval', sublabel: 'You decide before it goes out', logos: ['docusign', 'gmail'] },
     ],
   },
   agronegocio: {
-    title: 'Supplier Coordination',
+    title: 'Supply quotes',
     steps: [
-      { icon: 'document', label: 'Order logged', sublabel: 'Supply request', logos: ['whatsapp', 'google-sheets'] },
-      { icon: 'process', label: 'Quotes and tracking', sublabel: 'Price comparison and deadlines', logos: ['excel', 'google-drive'] },
-      { icon: 'check', label: 'Inventory updated', sublabel: 'Receipt recorded', logos: ['google-sheets', 'contaazul'] },
+      { icon: 'document', label: 'Supply request', sublabel: 'Received over WhatsApp', logos: ['whatsapp', 'google-sheets'] },
+      { icon: 'process', label: 'Quotes compared', sublabel: 'Price and lead time side by side', logos: ['excel', 'google-sheets'] },
+      { icon: 'check', label: 'Order confirmed', sublabel: 'After your approval', logos: ['gmail', 'whatsapp'] },
     ],
   },
 }
@@ -42,14 +42,14 @@ export const saudeWorkflowsCompactEn = {
   esocial: {
     title: 'eSocial health and safety check',
     steps: [
-      { icon: 'document' as const, label: 'Exam finished', sublabel: 'Occupational exam entered in the system', logos: ['excel'] },
-      { icon: 'process' as const, label: 'Rules checked', sublabel: 'Job code, employment link and health plan', logos: ['excel', 'google-sheets'] },
+      { icon: 'document' as const, label: 'Exam completed', sublabel: 'Occupational exam entered in the system', logos: ['excel'] },
+      { icon: 'process' as const, label: 'Rules checked', sublabel: 'Job code, employment type and health program', logos: ['excel', 'google-sheets'] },
       { icon: 'bell' as const, label: 'Error flagged', sublabel: 'With the suggested fix', logos: ['gmail'] },
       { icon: 'check' as const, label: 'Event checked', sublabel: 'Team fixes it before submission', logos: ['excel'] },
     ],
   },
   followUp: {
-    title: 'Follow-up reminders',
+    title: 'Follow-up reminder',
     steps: [
       { icon: 'user' as const, label: 'Visit completed', sublabel: 'Follow-up date noted', logos: ['google-sheets'] },
       { icon: 'calendar' as const, label: 'Date tracked', sublabel: 'Nobody has to watch the calendar', logos: ['google-calendar'] },
@@ -57,82 +57,64 @@ export const saudeWorkflowsCompactEn = {
       { icon: 'check' as const, label: 'Follow-up booked', sublabel: 'Time set on the calendar', logos: ['google-calendar', 'whatsapp'] },
     ],
   },
-  compliance: {
-    title: 'Compliance and Audit',
-    steps: [
-      { icon: 'document' as const, label: 'Document received', sublabel: 'Any format', logos: ['gmail', 'google-drive'] },
-      { icon: 'process' as const, label: 'Auto-classified', sublabel: 'AI identifies the type', logos: ['openai', 'google-drive'] },
-      { icon: 'calendar' as const, label: 'Retention set', sublabel: 'Legal deadline applied automatically', logos: ['google-calendar', 'excel'] },
-      { icon: 'check' as const, label: 'Alerts scheduled', sublabel: 'Notice before expiration', logos: ['google-calendar', 'gmail'] },
-    ],
-  },
 }
 
 export const servicosWorkflowsCompactEn = {
   onboarding: {
-    title: 'Client Onboarding',
+    title: 'New client onboarding',
     steps: [
-      { icon: 'user' as const, label: 'New client', sublabel: 'Contract signed', logos: ['gmail', 'google-drive'] },
-      { icon: 'mail' as const, label: 'Welcome kit sent', sublabel: 'Automatic welcome', logos: ['gmail', 'notion'] },
-      { icon: 'folder' as const, label: 'Folder created', sublabel: 'Structure in place', logos: ['google-drive', 'notion'] },
-      { icon: 'check' as const, label: 'Ready to start', sublabel: 'Everything set up', logos: ['notion', 'gmail'] },
+      { icon: 'user' as const, label: 'Contract signed', sublabel: 'New client confirmed', logos: ['docusign', 'gmail'] },
+      { icon: 'mail' as const, label: 'Welcome sent', sublabel: 'Email with the next steps', logos: ['gmail'] },
+      { icon: 'folder' as const, label: 'Folder created', sublabel: "Your firm's standard structure", logos: ['google-drive'] },
+      { icon: 'check' as const, label: 'Ready to start', sublabel: 'Team notified', logos: ['gmail', 'google-drive'] },
     ],
   },
   contracts: {
-    title: 'Contract Management',
+    title: 'Renewal reminder',
     steps: [
-      { icon: 'document' as const, label: 'Contract logged', sublabel: 'Expiration recorded', logos: ['google-drive', 'docusign'] },
-      { icon: 'calendar' as const, label: 'Alerts scheduled', sublabel: '60, 30 and 15 days before', logos: ['google-calendar', 'gmail'] },
-      { icon: 'document' as const, label: 'Proposal generated', sublabel: 'Renewal pre-filled', logos: ['docusign', 'excel'] },
-      { icon: 'check' as const, label: 'Renewal secured', sublabel: 'Status always current', logos: ['docusign', 'google-drive'] },
+      { icon: 'document' as const, label: 'Contract on file', sublabel: 'Expiry date recorded', logos: ['google-drive', 'google-sheets'] },
+      { icon: 'calendar' as const, label: 'Reminders scheduled', sublabel: '60, 30 and 15 days before', logos: ['google-calendar', 'gmail'] },
+      { icon: 'document' as const, label: 'Draft prepared', sublabel: 'For you to review and approve', logos: ['word', 'gmail'] },
+      { icon: 'check' as const, label: 'Renewal sent', sublabel: 'After your approval', logos: ['docusign'] },
     ],
   },
   billing: {
-    title: 'Project Billing',
+    title: 'From delivery to invoice',
     steps: [
-      { icon: 'result' as const, label: 'Milestone reached', sublabel: 'Delivery triggers the process', logos: ['google-sheets', 'notion'] },
-      { icon: 'process' as const, label: 'Data compiled', sublabel: 'Hours and amounts gathered', logos: ['excel', 'google-sheets'] },
-      { icon: 'creditCard' as const, label: 'Invoice sent', sublabel: 'Formatted and delivered', logos: ['contaazul', 'gmail'] },
+      { icon: 'result' as const, label: 'Delivery recorded', sublabel: 'Milestone marked in the spreadsheet', logos: ['google-sheets'] },
+      { icon: 'process' as const, label: 'Amounts gathered', sublabel: 'Hours and amounts for the period', logos: ['excel', 'google-sheets'] },
+      { icon: 'creditCard' as const, label: 'Invoice sent', sublabel: "To the client's email", logos: ['contaazul', 'gmail'] },
       { icon: 'check' as const, label: 'Payment tracked', sublabel: 'Reminders until paid', logos: ['contaazul', 'whatsapp'] },
-    ],
-  },
-  reports: {
-    title: 'Client Reports',
-    steps: [
-      { icon: 'calendar' as const, label: 'Scheduled date', sublabel: 'Weekly or monthly', logos: ['google-calendar', 'notion'] },
-      { icon: 'sync' as const, label: 'Data collected', sublabel: 'Automatic metrics', logos: ['google-sheets', 'excel'] },
-      { icon: 'document' as const, label: 'Report formatted', sublabel: 'Professional layout', logos: ['google-sheets', 'gmail'] },
-      { icon: 'check' as const, label: 'Automatic delivery', sublabel: 'Client receives it on time', logos: ['gmail', 'google-drive'] },
     ],
   },
 }
 
 export const agronegocioWorkflowsCompactEn = {
   supplierCoordination: {
-    title: 'Supplier Coordination',
+    title: 'Supply quotes',
     steps: [
-      { icon: 'document' as const, label: 'Order logged', sublabel: 'Supply request', logos: ['whatsapp', 'google-sheets'] },
-      { icon: 'sync' as const, label: 'Automatic quotes', sublabel: 'Price comparison', logos: ['excel', 'google-sheets'] },
-      { icon: 'bell' as const, label: 'Delivery tracked', sublabel: 'Deadlines monitored', logos: ['google-calendar', 'whatsapp'] },
-      { icon: 'check' as const, label: 'Inventory updated', sublabel: 'Receipt recorded', logos: ['google-sheets', 'contaazul'] },
+      { icon: 'document' as const, label: 'Request received', sublabel: 'Over WhatsApp', logos: ['whatsapp'] },
+      { icon: 'sync' as const, label: 'Quotes compared', sublabel: "Each supplier's price and lead time", logos: ['google-sheets', 'excel'] },
+      { icon: 'bell' as const, label: 'Best offer approved', sublabel: 'Team decides over WhatsApp', logos: ['whatsapp'] },
+      { icon: 'check' as const, label: 'Order confirmed', sublabel: 'Email to the supplier', logos: ['gmail'] },
     ],
   },
   traceability: {
-    title: 'Traceability and Compliance',
+    title: 'License expiry reminders',
     steps: [
-      { icon: 'document' as const, label: 'Document received', sublabel: 'License or certificate', logos: ['gmail', 'google-drive'] },
-      { icon: 'process' as const, label: 'Auto-classified', sublabel: 'Type identified', logos: ['google-drive', 'google-sheets'] },
-      { icon: 'calendar' as const, label: 'Expiration recorded', sublabel: 'Deadline monitored', logos: ['google-calendar', 'excel'] },
-      { icon: 'check' as const, label: 'Alert scheduled', sublabel: 'Notice before expiration', logos: ['gmail', 'whatsapp'] },
+      { icon: 'document' as const, label: 'Document received', sublabel: 'License, certificate or report', logos: ['gmail', 'google-drive'] },
+      { icon: 'folder' as const, label: 'Filed in the right folder', sublabel: 'With its type identified', logos: ['google-drive'] },
+      { icon: 'calendar' as const, label: 'Expiry date recorded', sublabel: 'In the tracking spreadsheet', logos: ['google-sheets', 'google-calendar'] },
+      { icon: 'check' as const, label: 'Reminder sent', sublabel: 'Before it expires', logos: ['gmail', 'whatsapp'] },
     ],
   },
   fieldOffice: {
-    title: 'Field-to-Office Communication',
+    title: 'Field updates in the spreadsheet',
     steps: [
-      { icon: 'mail' as const, label: 'Field report', sublabel: 'Message or photo received', logos: ['whatsapp', 'gmail'] },
-      { icon: 'process' as const, label: 'Data extracted', sublabel: 'Information organized', logos: ['google-sheets', 'google-drive'] },
-      { icon: 'document' as const, label: 'Report generated', sublabel: 'Automatic consolidation', logos: ['google-sheets', 'excel'] },
-      { icon: 'check' as const, label: 'Team notified', sublabel: 'Office up to date', logos: ['gmail', 'whatsapp'] },
+      { icon: 'mail' as const, label: 'Field report', sublabel: 'Message or photo over WhatsApp', logos: ['whatsapp'] },
+      { icon: 'process' as const, label: 'Information organized', sublabel: 'Plot, date and event', logos: ['google-sheets'] },
+      { icon: 'document' as const, label: 'Spreadsheet updated', sublabel: 'In the office, no retyping', logos: ['google-sheets', 'excel'] },
+      { icon: 'check' as const, label: 'Team notified', sublabel: 'When something needs a decision', logos: ['gmail', 'whatsapp'] },
     ],
   },
 }

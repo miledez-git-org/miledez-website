@@ -459,14 +459,14 @@ export const pt = {
   },
 
   terms: {
-    meta: { title: 'Termos de Uso - mil&dez', description: 'Termos e condições de uso dos serviços da mil&dez.' },
-    heading: 'Termos de Uso',
-    updated: 'Última atualização: Janeiro de 2026',
+    meta: { title: 'Termos de uso · mil&dez', description: 'Termos e condições de uso dos serviços da mil&dez.' },
+    heading: 'Termos de uso',
+    updated: 'Última atualização: janeiro de 2026',
     sections: [
-      { title: '1. Aceitação dos Termos', paragraphs: ['Ao acessar e utilizar o site e serviços da mil&dez Automação Ltda. ("mil&dez"), você concorda com estes Termos de Uso. Se você não concordar com algum destes termos, por favor, não utilize nossos serviços.'] },
-      { title: '2. Descrição dos Serviços', paragraphs: ['A mil&dez oferece serviços de automação de processos de negócios, incluindo desenvolvimento, implementação e manutenção de workflows automatizados para empresas.'] },
+      { title: '1. Aceitação dos termos', paragraphs: ['Ao acessar e utilizar o site e serviços da mil&dez Automação Ltda. ("mil&dez"), você concorda com estes Termos de Uso. Se você não concordar com algum destes termos, por favor, não utilize nossos serviços.'] },
+      { title: '2. Descrição dos serviços', paragraphs: ['A mil&dez oferece serviços de automação de processos de negócios, incluindo desenvolvimento, implementação e manutenção de workflows automatizados para empresas.'] },
       {
-        title: '3. Uso do Site',
+        title: '3. Uso do site',
         intro: 'Você concorda em utilizar nosso site e serviços apenas para fins legais e de acordo com estes termos. Você não deve:',
         items: [
           { text: 'Violar qualquer lei ou regulamento aplicável' },
@@ -476,11 +476,11 @@ export const pt = {
           { text: 'Interferir no funcionamento do site' },
         ],
       },
-      { title: '4. Propriedade Intelectual', paragraphs: ['Todo o conteúdo do site, incluindo textos, gráficos, logos, ícones, imagens e software, é propriedade da mil&dez ou de seus licenciadores e está protegido por leis de direitos autorais e propriedade intelectual.'] },
-      { title: '5. Contratação de Serviços', paragraphs: ['A contratação de serviços de automação está sujeita a termos específicos acordados em contrato separado. Os preços exibidos no site são estimativas e podem variar conforme a complexidade do projeto.'] },
-      { title: '6. Limitação de Responsabilidade', paragraphs: ['A mil&dez não será responsável por danos indiretos, incidentais, especiais ou consequenciais decorrentes do uso ou incapacidade de uso de nossos serviços, exceto nos casos previstos em lei.'] },
+      { title: '4. Propriedade intelectual', paragraphs: ['Todo o conteúdo do site, incluindo textos, gráficos, logos, ícones, imagens e software, é propriedade da mil&dez ou de seus licenciadores e está protegido por leis de direitos autorais e propriedade intelectual.'] },
+      { title: '5. Contratação de serviços', paragraphs: ['A contratação de serviços de automação está sujeita a termos específicos acordados em contrato separado. Os preços exibidos no site são estimativas e podem variar conforme a complexidade do projeto.'] },
+      { title: '6. Limitação de responsabilidade', paragraphs: ['A mil&dez não será responsável por danos indiretos, incidentais, especiais ou consequenciais decorrentes do uso ou incapacidade de uso de nossos serviços, exceto nos casos previstos em lei.'] },
       { title: '7. Modificações', paragraphs: ['Reservamo-nos o direito de modificar estes termos a qualquer momento. As alterações entrarão em vigor após publicação no site. O uso continuado dos serviços após alterações constitui aceitação dos novos termos.'] },
-      { title: '8. Lei Aplicável', paragraphs: ['Estes termos são regidos pelas leis da República Federativa do Brasil. Qualquer disputa será submetida ao foro da comarca de Belo Horizonte, MG.'] },
+      { title: '8. Lei aplicável', paragraphs: ['Estes termos são regidos pelas leis da República Federativa do Brasil. Qualquer disputa será submetida ao foro da comarca de Belo Horizonte, MG.'] },
       {
         title: '9. Contato',
         paragraphs: ['Para dúvidas sobre estes termos, entre em contato:'],
@@ -490,13 +490,13 @@ export const pt = {
   } as LegalPage,
 
   privacy: {
-    meta: { title: 'Política de Privacidade - mil&dez', description: 'Política de privacidade e tratamento de dados pessoais da mil&dez, em conformidade com a LGPD.' },
-    heading: 'Política de Privacidade',
-    updated: 'Última atualização: Janeiro de 2026',
+    meta: { title: 'Política de privacidade · mil&dez', description: 'Política de privacidade e tratamento de dados pessoais da mil&dez, em conformidade com a LGPD.' },
+    heading: 'Política de privacidade',
+    updated: 'Última atualização: janeiro de 2026',
     sections: [
       { title: '1. Introdução', paragraphs: ['A mil&dez Automação Ltda. ("mil&dez", "nós", "nosso") está comprometida com a proteção da sua privacidade. Esta Política de Privacidade explica como coletamos, usamos, compartilhamos e protegemos suas informações pessoais em conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei n. 13.709/2018).'] },
       {
-        title: '2. Dados que Coletamos',
+        title: '2. Dados que coletamos',
         intro: 'Coletamos os seguintes tipos de informações:',
         items: [
           { lead: 'Dados de identificação:', text: 'nome, e-mail, telefone, empresa' },
@@ -505,7 +505,7 @@ export const pt = {
         ],
       },
       {
-        title: '3. Como Usamos Seus Dados',
+        title: '3. Como usamos seus dados',
         intro: 'Utilizamos suas informações para:',
         items: [
           { text: 'Responder a solicitações e fornecer suporte' },
@@ -514,10 +514,10 @@ export const pt = {
           { text: 'Cumprir obrigações legais' },
         ],
       },
-      { title: '4. Base Legal para Tratamento', paragraphs: ['O tratamento de dados pessoais é realizado com base em: consentimento do titular, execução de contrato, cumprimento de obrigação legal, ou interesse legítimo da mil&dez, conforme aplicável.'] },
-      { title: '5. Compartilhamento de Dados', paragraphs: ['Não vendemos suas informações pessoais. Podemos compartilhar dados com prestadores de serviços que nos auxiliam em nossas operações, sempre mediante contratos que garantam a proteção adequada dos dados.'] },
+      { title: '4. Base legal para tratamento', paragraphs: ['O tratamento de dados pessoais é realizado com base em: consentimento do titular, execução de contrato, cumprimento de obrigação legal, ou interesse legítimo da mil&dez, conforme aplicável.'] },
+      { title: '5. Compartilhamento de dados', paragraphs: ['Não vendemos suas informações pessoais. Podemos compartilhar dados com prestadores de serviços que nos auxiliam em nossas operações, sempre mediante contratos que garantam a proteção adequada dos dados.'] },
       {
-        title: '6. Seus Direitos (LGPD)',
+        title: '6. Seus direitos (LGPD)',
         intro: 'Você tem direito a:',
         items: [
           { text: 'Confirmar a existência de tratamento de dados' },
@@ -528,7 +528,7 @@ export const pt = {
           { text: 'Solicitar portabilidade dos dados' },
         ],
       },
-      { title: '7. Retenção de Dados', paragraphs: ['Mantemos seus dados pessoais pelo tempo necessário para cumprir as finalidades para as quais foram coletados, ou conforme exigido por lei.'] },
+      { title: '7. Retenção de dados', paragraphs: ['Mantemos seus dados pessoais pelo tempo necessário para cumprir as finalidades para as quais foram coletados, ou conforme exigido por lei.'] },
       { title: '8. Segurança', paragraphs: ['Implementamos medidas técnicas e organizacionais apropriadas para proteger seus dados contra acesso não autorizado, alteração, divulgação ou destruição.'] },
       {
         title: '9. Contato',

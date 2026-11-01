@@ -55,7 +55,7 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
               <h1 className="heading-display text-4xl md:text-5xl lg:text-6xl text-zinc-900 leading-[1.1]">
                 {t.hero.line1}<br />
                 {t.hero.line2}<br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-zinc-700 to-zinc-600">{t.hero.accent}</span>
+                <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-zinc-700 to-zinc-600">{t.hero.accent}</span>
               </h1>
 
               {/* Subheadline */}
