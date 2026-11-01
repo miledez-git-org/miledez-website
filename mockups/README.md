@@ -12,6 +12,23 @@ Design-system rules honored: `zinc-900` as the only brand fill, soft accent trip
 
 Note: Tailwind Play CDN is used here for standalone preview only — production stays on the Tailwind build pipeline.
 
+## Final homepage (2026-11-01) — best of the three
+
+`homepage-final.html` mixes the strongest section of each of the three originals, on the current
+Notus **Teal** palette (`palette-teal.js` pasted into `tailwind.config`; markup stays raw zinc) and
+with the live site's section order and anchors (`#valor`, `#problemas`, `#exemplos`, `#quanto-vale`,
+`#como-funciona`, `#precos`, `#contato`):
+
+| Section | Taken from |
+|---|---|
+| Floating card navbar; centered hero with gradient headline + tilted product shot; logo marquee (real grayscale logos); benefits icon grid; pricing with dark featured tier; full footer | mockup 1 (clássico) |
+| Pain points; editorial 01–04 process timeline; 3-column FAQ | mockup 2 (editorial) |
+| Three vertical workflow step cards; ROI bento grid with the dark anchor card | mockup 3 (resultados) |
+
+Dropped to keep one message per section: stats band (repeats process/pricing numbers) and trust
+band (repeats the benefits grid). Dark budget: one dark card per grid (bento anchor, featured
+pricing tier) and the closing CTA as the page's single dark band.
+
 ## Drafts A/B (2026-10-19) — Notus **Teal** palette
 
 Second round, after the palette moved to Notus Teal (`~/light-design-system/docs/palette-teal.js`
