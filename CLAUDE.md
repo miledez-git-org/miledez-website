@@ -1,6 +1,6 @@
 # mil&dez Website
 
-Public agency site miledez.com.br: static, bilingual Next.js marketing site that also hosts the eSocial demo.
+Public agency site miledez.com.br: static, bilingual Next.js marketing site that also hosts the eSocial demo and the pharmacy demo (`/demo-farmacia`, proxied by a `vercel.json` rewrite to the `pharmacy-demo` project, noindex).
 
 > mil&dez agency repo. Client-facing content in PT-BR, code and docs in English. Visuals follow `design-system-agency/`; tokens are vendored, change the design system first and regenerate. Commit only via `/agency:save`; in a cloud session (no plugin there), commit to the session branch and open a PR.
 

@@ -365,6 +365,14 @@
     {
       "source": "/validador-esocial-demo/:path*",
       "destination": "https://esocial-sst-validator-demo.vercel.app/validador-esocial-demo/:path*"
+    },
+    {
+      "source": "/demo-farmacia",
+      "destination": "https://pharmacy-demo-smoky.vercel.app/demo-farmacia"
+    },
+    {
+      "source": "/demo-farmacia/:path*",
+      "destination": "https://pharmacy-demo-smoky.vercel.app/demo-farmacia/:path*"
     }
   ]
 }
