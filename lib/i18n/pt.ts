@@ -62,7 +62,6 @@ export const pt = {
     closeMenu: 'Fechar menu',
     switchLabel: 'English',
     switchAria: 'Read this page in English',
-    switchShort: 'EN',
   },
 
   footer: {

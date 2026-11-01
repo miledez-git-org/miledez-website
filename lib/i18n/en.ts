@@ -25,7 +25,6 @@ export const en: Dict = {
     closeMenu: 'Close menu',
     switchLabel: 'Português',
     switchAria: 'Ler esta página em português',
-    switchShort: 'PT',
   },
 
   footer: {

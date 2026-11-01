@@ -10,6 +10,14 @@ interface HeaderProps {
   locale?: Locale
 }
 
+// Flag of the language the switch leads to (US for en, Brazil for pt); SVG files because emoji flags don't render on Windows
+function Flag({ locale }: { locale: Locale }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element -- static export, tiny decorative SVG
+    <img src={`/flags/${locale === 'en' ? 'us' : 'br'}.svg`} alt="" width={24} height={16} className="block w-6 h-4 rounded-sm ring-1 ring-zinc-200" />
+  )
+}
+
 export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
   const pathname = usePathname()
   const t = getDict(locale).header
@@ -157,9 +165,10 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
             lang={otherLocale === 'en' ? 'en-US' : 'pt-BR'}
             aria-label={t.switchAria}
             onClick={rememberLocale}
-            className="text-zinc-500 hover:text-zinc-900 transition-colors py-2"
+            title={t.switchAria}
+            className="py-2 opacity-80 hover:opacity-100 transition-opacity"
           >
-            {t.switchShort}
+            <Flag locale={otherLocale} />
           </Link>
 
           <button
@@ -209,11 +218,12 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
               href={switchHref}
               hrefLang={otherLocale === 'en' ? 'en-US' : 'pt-BR'}
               lang={otherLocale === 'en' ? 'en-US' : 'pt-BR'}
-              className="py-3 min-h-[44px] flex items-center text-zinc-500 hover:text-zinc-900 transition-colors"
+              className="py-3 min-h-[44px] flex items-center gap-3 text-zinc-500 hover:text-zinc-900 transition-colors"
               onClick={() => { rememberLocale(); setMobileMenuOpen(false) }}
               role="menuitem"
             >
               {t.switchLabel}
+              <Flag locale={otherLocale} />
             </Link>
             <button
               className="mt-2 btn btn-lg w-full text-white bg-zinc-900 hover:bg-zinc-800"
