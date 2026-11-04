@@ -277,11 +277,11 @@ export const en: Dict = {
         },
         {
           question: "What about my customers' data?",
-          answer: "We follow Brazil's data protection law (LGPD). The automation only accesses the data it needs, with permissions you grant and can revoke at any time. Your data stays in your systems, and we sign a data processing agreement with every client.",
+          answer: "We follow Brazil's data protection law (LGPD). The automation only accesses the data it needs, with permissions you grant and can revoke at any time. Your systems stay the source of record: the automation reads from and writes to them, and keeps only the execution log needed for monitoring, on the platform where it runs. Before the first automation goes live, we put that in writing in a data processing agreement.",
         },
         {
           question: 'What happens if I cancel?',
-          answer: "You give 30 days' notice and the automation is switched off at the end of the period. Your data stays in your systems and we hand over documentation of what was built.",
+          answer: "You give 30 days' notice and the automation is switched off at the end of the period. The data stays in your systems, we remove our access and the execution log from the automation platform, and we hand over documentation of what was built.",
         },
         {
           question: 'What if the automation breaks?',

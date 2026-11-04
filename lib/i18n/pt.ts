@@ -314,11 +314,11 @@ export const pt = {
         },
         {
           question: 'Como ficam os dados dos meus clientes?',
-          answer: 'Seguimos a LGPD. A automação acessa só os dados de que precisa, com permissões que você autoriza e pode revogar quando quiser. Seus dados continuam nos seus sistemas, e assinamos um acordo de tratamento de dados com cada cliente.',
+          answer: 'Seguimos a LGPD. A automação acessa só os dados de que precisa, com permissões que você autoriza e pode revogar quando quiser. Seus sistemas continuam sendo a base: a automação lê e escreve neles e guarda só o registro de execução necessário para o acompanhamento, na plataforma onde ela roda. Antes de ligar a primeira automação, formalizamos isso em um acordo de tratamento de dados.',
         },
         {
           question: 'O que acontece se eu cancelar?',
-          answer: 'Você avisa com 30 dias de antecedência e a automação é desligada no fim do período. Seus dados continuam nos seus sistemas e entregamos a documentação do que foi construído.',
+          answer: 'Você avisa com 30 dias de antecedência e a automação é desligada no fim do período. Os dados seguem nos seus sistemas, removemos nossos acessos e o registro de execução da plataforma da automação, e entregamos a documentação do que foi construído.',
         },
         {
           question: 'E se a automação der erro?',
