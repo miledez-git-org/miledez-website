@@ -80,9 +80,11 @@ export default function ProcessSection({ locale = 'pt' }: { locale?: Locale }) {
                 </h3>
 
                 {/* Description */}
-                <p className="text-lg text-body mt-2">
-                  {step.description}
-                </p>
+                {step.description.map((paragraph) => (
+                  <p key={paragraph} className="text-lg text-body mt-2">
+                    {paragraph}
+                  </p>
+                ))}
 
                 {/* Duration — below description, left-aligned */}
                 <span className="inline-flex items-center gap-2 text-base font-medium text-zinc-900 mt-3">

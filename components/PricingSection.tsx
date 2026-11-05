@@ -47,6 +47,8 @@ export default function PricingSection({ onContactClick, locale = 'pt' }: Pricin
         ))}
       </div>
 
+      <p className="mt-8 text-base text-body max-w-3xl">{t.details}</p>
+
       {/* What every tier includes */}
       <div className="mt-8 border-t border-zinc-200 pt-6 max-w-4xl">
         <p className="text-base font-semibold text-zinc-900">{t.includedTitle}</p>
@@ -62,6 +64,9 @@ export default function PricingSection({ onContactClick, locale = 'pt' }: Pricin
         </ul>
       </div>
 
+      {/* Trial and cancellation terms */}
+      <p className="mt-8 text-base text-zinc-900 max-w-3xl">{t.trial}</p>
+
       {/* CTA — left aligned */}
       <div className="mt-12">
         <button
@@ -70,7 +75,6 @@ export default function PricingSection({ onContactClick, locale = 'pt' }: Pricin
         >
           {t.cta}
         </button>
-        <p className="mt-4 text-sm text-zinc-500">{t.ctaNote}</p>
       </div>
     </div>
   )

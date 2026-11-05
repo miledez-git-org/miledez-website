@@ -1,7 +1,9 @@
 'use client'
 
 import { useState, useEffect, useRef, FormEvent } from 'react'
-import { getDict, type Locale } from '@/lib/i18n'
+import { getDict, localePath, type Locale } from '@/lib/i18n'
+
+const WHATSAPP_URL = 'https://wa.me/5531983529257'
 
 interface ContactModalProps {
   isOpen: boolean
@@ -21,17 +23,50 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
     message: '',
   })
   const modalRef = useRef<HTMLDivElement>(null)
+  const successCloseRef = useRef<HTMLButtonElement>(null)
+  const invokerRef = useRef<HTMLElement | null>(null)
 
-  // Handle escape key
+  // Handle escape key and keep Tab focus inside the dialog
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
+    if (!isOpen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setFormStatus((s) => (s === 'loading' ? s : 'idle'))
         onClose()
+        return
+      }
+      if (e.key !== 'Tab' || !modalRef.current) return
+      const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input, textarea, [tabindex]:not([tabindex="-1"])'
+      )
+      if (focusable.length === 0) return
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (e.shiftKey && (document.activeElement === first || document.activeElement === modalRef.current)) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
       }
     }
-    document.addEventListener('keydown', handleEscape)
-    return () => document.removeEventListener('keydown', handleEscape)
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
   }, [isOpen, onClose])
+
+  // Move focus to the dialog itself on open (not a field, so mobile keyboards stay
+  // closed) and back to the invoking control on close
+  useEffect(() => {
+    if (!isOpen) return
+    invokerRef.current = document.activeElement as HTMLElement | null
+    modalRef.current?.focus()
+    return () => invokerRef.current?.focus()
+  }, [isOpen])
+
+  // After a confirmed submission the form unmounts; keep focus in the dialog
+  useEffect(() => {
+    if (formStatus === 'success') successCloseRef.current?.focus()
+  }, [formStatus])
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -54,6 +89,7 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+    if (formStatus === 'loading') return
     setFormStatus('loading')
 
     try {
@@ -114,7 +150,11 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
       {/* Modal */}
       <div
         ref={modalRef}
-        className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden"
+        role="dialog"
+        aria-modal="true"
+        tabIndex={-1}
+        aria-labelledby="contact-modal-title"
+        className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-full overflow-y-auto focus:outline-none"
         style={{
           animation: 'slideUp 300ms cubic-bezier(0.16, 1, 0.3, 1)',
         }}
@@ -133,17 +173,18 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
         {/* Content */}
         <div className="p-8">
           {formStatus === 'success' ? (
-            <div className="text-center py-8">
+            <div className="text-center py-8" role="status">
               <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-zinc-900 mb-3">{t.successTitle}</h3>
+              <h2 id="contact-modal-title" className="text-2xl font-semibold text-zinc-900 mb-3">{t.successTitle}</h2>
               <p className="text-body mb-8">
                 {t.successText}
               </p>
               <button
+                ref={successCloseRef}
                 onClick={resetAndClose}
                 className="btn btn-primary btn-lg"
               >
@@ -152,7 +193,7 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
             </div>
           ) : (
             <>
-              <h2 className="text-2xl font-semibold text-zinc-900 mb-2">
+              <h2 id="contact-modal-title" className="text-2xl font-semibold text-zinc-900 mb-2 pr-10">
                 {t.title}
               </h2>
               <p className="text-body mb-6">
@@ -216,23 +257,33 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
                     name="message"
                     required
                     rows={4}
+                    aria-describedby="message-help"
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-zinc-200 rounded-lg placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 focus:border-zinc-900 transition-colors resize-none"
                     placeholder={t.messagePlaceholder}
                   />
+                  <p id="message-help" className="mt-1.5 text-sm text-zinc-500">
+                    {t.messageHelp}
+                  </p>
                 </div>
 
-                {formStatus === 'error' && (
-                  <div className="p-4 bg-rose-50 border border-rose-200 rounded-lg text-rose-700 text-sm">
-                    {t.error}
-                  </div>
-                )}
+                <div role="alert">
+                  {formStatus === 'error' && (
+                    <div className="p-4 bg-rose-50 border border-rose-200 rounded-lg text-rose-700 text-sm">
+                      {t.error}{' '}
+                      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="font-medium underline underline-offset-2">
+                        {t.errorLink}
+                      </a>
+                      .
+                    </div>
+                  )}
+                </div>
 
                 <button
                   type="submit"
                   disabled={formStatus === 'loading'}
-                  className="w-full btn btn-primary btn-lg gap-2"
+                  className="w-full btn btn-primary btn-lg gap-2 !whitespace-normal text-center"
                 >
                   {formStatus === 'loading' ? (
                     <>
@@ -246,6 +297,14 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
                     t.submit
                   )}
                 </button>
+
+                <p className="text-sm text-zinc-500">
+                  {t.privacy}{' '}
+                  <a href={localePath(locale, 'privacy')} className="underline underline-offset-2 hover:text-zinc-900">
+                    {t.privacyLink}
+                  </a>
+                  .
+                </p>
               </form>
             </>
           )}

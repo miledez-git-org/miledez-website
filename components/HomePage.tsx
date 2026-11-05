@@ -63,17 +63,21 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
                 {t.hero.subtitle}
               </p>
 
-              {/* CTAs */}
-              <div className="mt-10 md:mt-12 flex flex-wrap gap-4">
+              {/* CTAs: the note sits under the primary button; from sm up the
+                  secondary link moves next to it on the first row */}
+              <div className="mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-[auto_1fr] items-center justify-items-start gap-x-4 gap-y-3">
                 <button
                   onClick={() => setIsContactModalOpen(true)}
-                  className="btn btn-primary btn-xl"
+                  className="btn btn-primary btn-xl sm:col-start-1 sm:row-start-1"
                 >
                   {t.hero.cta}
                 </button>
+                <p className="text-sm text-body max-w-md sm:col-span-2 sm:row-start-2">
+                  {t.hero.ctaNote}
+                </p>
                 <a
-                  href="#problemas"
-                  className="btn btn-outline btn-lg"
+                  href="#exemplos"
+                  className="btn btn-outline btn-lg sm:col-start-2 sm:row-start-1"
                 >
                   {t.hero.secondary}
                 </a>

@@ -40,7 +40,7 @@ export default function BusinessProfilesSection({ onContactClick, locale = 'pt' 
           return (
             <div
               key={index}
-              className="bg-white border border-zinc-200 p-6 md:p-8 flex flex-col shadow-sm"
+              className="bg-white border border-zinc-200 p-6 lg:p-8 flex flex-col shadow-sm"
               style={{
                 transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
                 opacity: isVisible ? 1 : 0,
@@ -58,8 +58,9 @@ export default function BusinessProfilesSection({ onContactClick, locale = 'pt' 
                 {profile.automation}
               </p>
 
-              {/* Subscription vs Savings comparison */}
-              <div className="mt-6 flex items-end gap-3 md:gap-4">
+              {/* Subscription vs Savings comparison: side by side when the card
+                  is wide (sm single column, xl three columns), stacked otherwise */}
+              <div className="mt-6 flex flex-col items-start gap-2 sm:flex-row sm:items-end sm:gap-4 md:flex-col md:items-start md:gap-2 xl:flex-row xl:items-end xl:gap-4">
                 {/* Subscription — subdued */}
                 <div>
                   <p className="text-sm font-medium text-zinc-500 uppercase tracking-wider">{t.subscription}</p>
@@ -70,12 +71,12 @@ export default function BusinessProfilesSection({ onContactClick, locale = 'pt' 
                 </div>
 
                 {/* Arrow */}
-                <div className="text-xl text-zinc-300 pb-2 md:pb-3">→</div>
+                <div className="text-xl text-zinc-300 rotate-90 sm:rotate-0 sm:pb-3 md:rotate-90 md:pb-0 xl:rotate-0 xl:pb-3" aria-hidden="true">→</div>
 
                 {/* Savings — bold burgundy */}
                 <div>
                   <p className="text-sm font-medium text-zinc-900 uppercase tracking-wider">{t.savings}</p>
-                  <span className="block text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">
+                  <span className="block text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-zinc-900">
                     {profile.savings}
                   </span>
                   <p className="text-sm text-zinc-900 font-medium">{t.perMonth}</p>

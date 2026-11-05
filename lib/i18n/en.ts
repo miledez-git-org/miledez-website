@@ -43,21 +43,25 @@ export const en: Dict = {
 
   contactModal: {
     close: 'Close',
-    successTitle: 'Message received',
-    successText: 'We reply within 1 business day to schedule the 30-minute call.',
-    title: 'Tell us which task takes the most time',
-    intro: 'We reply within 1 business day to schedule the 30-minute call.',
+    successTitle: 'We received your request.',
+    successText: "We'll reply within 1 business day to arrange the 30-minute call.",
+    title: 'Which task do you want to automate?',
+    intro: 'Tell us how this task works today. We reply within 1 business day to schedule a 30-minute call and understand what can be automated.',
     name: 'Name *',
     namePlaceholder: 'Your name',
     email: 'Email *',
-    emailPlaceholder: 'you@company.com',
-    phone: 'Phone',
-    phonePlaceholder: '+1 555 123 4567',
-    message: 'Message *',
-    messagePlaceholder: 'E.g. we confirm 40 appointments a day by phone and many patients still miss them.',
-    error: "We couldn't send your message. Try again or reach us on WhatsApp: +55 31 98352-9257.",
-    sending: 'Sending...',
-    submit: 'Send message',
+    emailPlaceholder: 'Your contact email',
+    phone: 'Phone or WhatsApp (optional)',
+    phonePlaceholder: 'Number with country code',
+    message: "Which task takes up your team's time? *",
+    messagePlaceholder: 'E.g. we receive orders on WhatsApp and copy the details into a spreadsheet, one by one.',
+    messageHelp: "You don't need to know how to automate it. Just explain what your team does today.",
+    error: "We couldn't send your request. Try again or reach us on",
+    errorLink: 'WhatsApp',
+    privacy: "We'll use your details to reply to your request. See our",
+    privacyLink: 'Privacy Policy',
+    sending: 'Sending…',
+    submit: 'Send assessment request',
   },
 
   routeError: {
@@ -80,8 +84,9 @@ export const en: Dict = {
       accent: 'The system does it for them.',
       subtitle:
         'Appointments confirmed, invoices sent and deadlines tracked without anyone having to remember. The automation runs in the systems you already use.',
-      cta: 'Get my assessment',
-      secondary: 'See examples',
+      cta: 'Request an assessment',
+      ctaNote: 'A 30-minute call, no commitment. We reply within 1 business day to set up a time.',
+      secondary: 'See automation examples',
     },
     diagram: {
       label: 'Automation',
@@ -204,7 +209,7 @@ export const en: Dict = {
         },
       ],
       disclaimer: 'These figures are illustrative estimates. In the assessment, we redo the math with your own numbers.',
-      ctaPrimary: 'Get my assessment',
+      ctaPrimary: 'Request an assessment',
       ctaSecondary: 'See how it works',
     },
     process: {
@@ -213,46 +218,50 @@ export const en: Dict = {
       subtitle:
         'You tell us how the work gets done today. We build it, test it and take care of everything afterwards. Your team never touches anything technical.',
       promiseTitle: 'Your first automation running in 2 to 4 weeks',
-      promiseItems: ['Built and tested with your team', 'Nothing technical to learn', 'Changes included when your process changes'],
+      promiseItems: ['Built and tested with your team', 'Nothing technical to learn', 'Adjustments to the steps set out in the project'],
       steps: [
         {
           title: '30-minute call',
-          description: 'You show us how the operation works today and where time gets lost. We ask, listen and take notes.',
+          description: ['You show us how the operation works today and where time gets lost. We ask, listen and take notes.'],
           duration: '30 min',
         },
         {
           title: 'Assessment and proposal',
-          description: 'You get, in writing, the automations that make the most sense for your business, the time each one saves and its monthly fee.',
+          description: ['You get, in writing, the automations that make the most sense for your business, the time each one saves and its monthly fee.'],
           duration: '3–5 business days',
         },
         {
           title: 'Build and test',
-          description: 'You choose where to start. We build the automation connected to your systems and adjust it with your team until it works the right way.',
+          description: ['You choose where to start. We build the automation connected to your systems and adjust it with your team until it works the right way.'],
           duration: '2–4 weeks',
         },
         {
-          title: 'First month free, with adjustments',
-          description: 'The automation becomes part of the daily routine and you use it for a month without paying. We adjust whatever is needed. After that the monthly fee starts, with follow-up and changes included.',
-          duration: '1 month',
+          title: '30 days to test it in your operation',
+          description: [
+            'We sign the contract before the trial, with the scope and terms defined. The 30 free days start when the automation goes live, not during the build.',
+            'During this period, your team uses the automation day to day and we make the necessary adjustments to the planned steps. Before billing starts, we talk to you to confirm your approval.',
+          ],
+          duration: '30 days',
         },
       ],
     },
     pricing: {
-      titleLead: 'What it costs',
-      titleAccent: "and what's included",
+      titleLead: 'How much does it cost to put',
+      titleAccent: 'your task on autopilot?',
       subtitle:
-        "The monthly fee covers the build, hosting, maintenance and changes. Development at no cost and the first month free. Cancel with 30 days' notice.",
+        'The monthly fee includes the build, hosting, maintenance and adjustments to the steps set out in the project. There is no separate development fee. The first 30 days of use are free, counted from when the automation goes live.',
       from: 'Starting at',
       perMonth: '/mo',
       tiers: [
-        { price: '$150', label: 'One simple automation', example: 'E.g. appointment confirmations or contract renewal reminders' },
-        { price: '$500', label: 'Automations with several steps and systems', example: 'E.g. quotes across several suppliers' },
-        { price: '$1,500', label: 'Several connected processes, built for you', example: 'E.g. purchasing from order to invoice' },
+        { price: '$150', label: 'One simple automation', example: 'For tasks like confirming appointments or flagging contracts that are about to expire.' },
+        { price: '$500', label: 'One automation with several steps', example: 'For processes like checking suppliers, comparing quotes and alerting the team.' },
+        { price: '$1,500', label: 'Several connected processes', example: 'For operations like tracking a purchase from order to recording the invoice.' },
       ],
+      details: "You get a proposal with the automation's steps, the systems involved and the monthly fee. The contract also states the third-party service costs included and the applicable usage limits.",
+      trial: "Try it for 30 days from go-live. Before billing starts, we contact you to confirm your approval. If you cancel during the trial, there is no charge. After the trial, cancellation requires 30 days' notice.",
       includedTitle: 'Included in every plan',
-      included: ['Build', 'Hosting', 'Maintenance', 'Changes when your process changes', 'Support over WhatsApp'],
-      cta: 'Get my assessment',
-      ctaNote: 'In the assessment, we recommend the right plan for your process.',
+      included: ['Build', 'Hosting', 'Maintenance', 'Adjustments to the steps set out in the project', 'Support over WhatsApp'],
+      cta: 'Request an assessment',
     },
     faq: {
       titleLead: 'Questions',
@@ -260,8 +269,24 @@ export const en: Dict = {
       subtitle: "If your question isn't here, bring it to the 30-minute call.",
       items: [
         {
-          question: "What if I don't like the trial?",
-          answer: "You use the automation for a month without paying. If it doesn't make sense, you don't subscribe.",
+          question: 'How does the free trial work?',
+          answer: 'The contract is signed before the trial. You use the automation without paying for 30 days, counted from go-live. Before billing starts, we contact you to confirm your approval.',
+        },
+        {
+          question: "What if I don't want to continue?",
+          answer: "If you cancel during the 30-day trial, there is no charge. After that period, cancellation requires 30 days' notice.",
+        },
+        {
+          question: 'Are WhatsApp, artificial intelligence and other services included?',
+          answer: 'Generally, these costs are included in the monthly fee. The proposal and the contract state what is included and the limits on variable costs. If these costs exceed the contracted limit, we let you know and adjust the monthly fee according to the contract terms.',
+        },
+        {
+          question: 'Which adjustments are included?',
+          answer: 'Generally, changes to the steps that are already part of the automation are included. New steps or functions outside the original scope may require a price review. We assess each request to decide whether it is an adjustment or an expansion of the project.',
+        },
+        {
+          question: 'Is there a separate development fee?',
+          answer: 'No. Building the automation is part of the service, with no separate development fee.',
         },
         {
           question: 'How long until it is ready?',
@@ -280,8 +305,8 @@ export const en: Dict = {
           answer: "We follow Brazil's data protection law (LGPD). The automation only accesses the data it needs, with permissions you grant and can revoke at any time. Your systems stay the source of record: the automation reads from and writes to them, and keeps only the execution log needed for monitoring, on the platform where it runs. Before the first automation goes live, we put that in writing in a data processing agreement.",
         },
         {
-          question: 'What happens if I cancel?',
-          answer: "You give 30 days' notice and the automation is switched off at the end of the period. The data stays in your systems, we remove our access and the execution log from the automation platform, and we hand over documentation of what was built.",
+          question: 'What happens to my data if I cancel?',
+          answer: 'The automation is switched off and the data stays in your systems. We remove our access and the execution log from the automation platform, and hand over documentation of what was built.',
         },
         {
           question: 'What if the automation breaks?',
@@ -299,7 +324,7 @@ export const en: Dict = {
       text: "Tell us which process takes up the most of your team's time. We reply within 1 business day to schedule the 30-minute call.",
       founder: 'Your message goes to Simon Larsen, founder of mil&dez, in Belo Horizonte.',
       founderAlt: 'Simon Larsen, founder of mil&dez',
-      button: 'Get my assessment',
+      button: 'Request an assessment',
       note: 'No commitment.',
     },
   },
@@ -338,7 +363,7 @@ export const en: Dict = {
       badge: 'Healthcare and clinics',
       heroTitle: ['Fewer no-shows.', 'eSocial checked before submission.'],
       heroText: 'Appointment confirmations go out over WhatsApp, without the front desk calling every patient. In occupational health, every exam is checked against the eSocial rules.',
-      heroCta: 'Get my assessment',
+      heroCta: 'Request an assessment',
       challengesTitle: "What weighs on the clinic's routine",
       challenges: [
         { title: "Patients who don't show up", description: "The front desk spends the morning calling to confirm appointments. Slots still go empty, with no time left to call another patient." },
@@ -357,7 +382,7 @@ export const en: Dict = {
       integrationsText: 'The automation connects to what the clinic already has, without replacing any system.',
       ctaTitle: 'Which task weighs most on your clinic?',
       ctaText: 'Tell us how your clinic works today. We reply within 1 business day to schedule the 30-minute call.',
-      ctaButton: 'Get my assessment',
+      ctaButton: 'Request an assessment',
       ctaSecondary: { label: 'See the eSocial validator', href: '/validador-esocial' },
     } as IndustryCopy,
     services: {
@@ -368,7 +393,7 @@ export const en: Dict = {
       badge: 'Professional services',
       heroTitle: ['No deadline', 'depends on memory.'],
       heroText: 'Your firm gets a reminder for every renewal with time to decide, and the invoice goes out when the delivery happens.',
-      heroCta: 'Get my assessment',
+      heroCta: 'Request an assessment',
       challengesTitle: 'The cost of invisible work',
       challenges: [
         { title: "Hours that don't get billed", description: 'Proposals, client folders, invoices and collections take hours every week, and nobody pays for that time.' },
@@ -387,7 +412,7 @@ export const en: Dict = {
       integrationsText: 'The automation connects to what the firm already has, without replacing any system.',
       ctaTitle: 'Which deadline worries your firm most?',
       ctaText: 'Tell us how your firm works today. We reply within 1 business day to schedule the 30-minute call.',
-      ctaButton: 'Get my assessment',
+      ctaButton: 'Request an assessment',
     } as IndustryCopy,
     agribusiness: {
       meta: {
@@ -397,7 +422,7 @@ export const en: Dict = {
       badge: 'Agribusiness',
       heroTitle: ['Suppliers and field', 'in one place.'],
       heroText: 'Supply quotes arrive side by side in a spreadsheet, and what the field sends over WhatsApp reaches the office already organized.',
-      heroCta: 'Get my assessment',
+      heroCta: 'Request an assessment',
       challengesTitle: 'The daily grind that slows the operation',
       challenges: [
         { title: 'Suppliers on personal WhatsApp', description: 'Quotes, deadlines and confirmations scattered across personal chats. Nobody knows what was agreed or with whom.' },
@@ -416,7 +441,7 @@ export const en: Dict = {
       integrationsText: 'The automation connects to what the operation already has, without replacing any system.',
       ctaTitle: 'Where does your operation lose the most time?',
       ctaText: 'Tell us how your operation works today. We reply within 1 business day to schedule the 30-minute call.',
-      ctaButton: 'Get my assessment',
+      ctaButton: 'Request an assessment',
     } as IndustryCopy,
   },
 

@@ -80,21 +80,27 @@ export const pt = {
 
   contactModal: {
     close: 'Fechar',
-    successTitle: 'Mensagem recebida',
-    successText: 'Respondemos em até 1 dia útil para marcar a conversa de 30 minutos.',
-    title: 'Conte qual tarefa mais toma tempo',
-    intro: 'Respondemos em até 1 dia útil para marcar a conversa de 30 minutos.',
+    successTitle: 'Recebemos seu pedido.',
+    successText: 'Vamos responder em até 1 dia útil para combinar a conversa de 30 minutos.',
+    title: 'Qual tarefa você quer automatizar?',
+    intro: 'Conte como essa tarefa funciona hoje. Respondemos em até 1 dia útil para marcar uma conversa de 30 minutos e entender o que pode ser automatizado.',
     name: 'Nome *',
     namePlaceholder: 'Seu nome',
     email: 'E-mail *',
-    emailPlaceholder: 'seu@email.com',
-    phone: 'Telefone',
-    phonePlaceholder: '(31) 99999-9999',
-    message: 'Mensagem *',
-    messagePlaceholder: 'Ex.: confirmamos 40 consultas por dia por telefone e muitos pacientes ainda faltam.',
-    error: 'Não conseguimos enviar sua mensagem. Tente de novo ou fale conosco pelo WhatsApp: (31) 98352-9257.',
-    sending: 'Enviando...',
-    submit: 'Enviar mensagem',
+    emailPlaceholder: 'Seu e-mail de contato',
+    phone: 'Telefone ou WhatsApp — opcional',
+    phonePlaceholder: 'Número com DDD',
+    message: 'Qual tarefa toma tempo da sua equipe? *',
+    messagePlaceholder: 'Ex.: recebemos pedidos pelo WhatsApp e copiamos os dados para uma planilha, um por um.',
+    messageHelp: 'Não precisa saber como automatizar. Basta explicar o que sua equipe faz hoje.',
+    // Error text is followed by a WhatsApp link (`errorLink`) and a closing period.
+    error: 'Não foi possível enviar seu pedido. Tente novamente ou fale com a gente pelo',
+    errorLink: 'WhatsApp',
+    // Privacy note: text, then a link to the privacy policy, then a closing period.
+    privacy: 'Usaremos seus dados para responder ao pedido. Veja nossa',
+    privacyLink: 'Política de Privacidade',
+    sending: 'Enviando…',
+    submit: 'Enviar pedido de diagnóstico',
   },
 
   routeError: {
@@ -117,8 +123,9 @@ export const pt = {
       accent: 'O sistema faz por ela.',
       subtitle:
         'Consultas confirmadas, cobranças enviadas e prazos acompanhados sem ninguém precisar lembrar. A automação funciona nos sistemas que você já usa.',
-      cta: 'Quero meu diagnóstico',
-      secondary: 'Ver exemplos',
+      cta: 'Solicitar diagnóstico',
+      ctaNote: 'Uma conversa de 30 minutos, sem compromisso. Respondemos em até 1 dia útil para combinar o horário.',
+      secondary: 'Ver exemplos de automação',
     },
     diagram: {
       label: 'Automação',
@@ -241,7 +248,7 @@ export const pt = {
         },
       ],
       disclaimer: 'Estes valores são estimativas ilustrativas. No diagnóstico, refazemos a conta com os seus números.',
-      ctaPrimary: 'Quero meu diagnóstico',
+      ctaPrimary: 'Solicitar diagnóstico',
       ctaSecondary: 'Ver como funciona',
     },
     process: {
@@ -250,46 +257,50 @@ export const pt = {
       subtitle:
         'Você conta como o trabalho é feito hoje. Nós construímos, testamos e cuidamos de tudo depois. Sua equipe não precisa mexer em nada técnico.',
       promiseTitle: 'Primeira automação funcionando em 2 a 4 semanas',
-      promiseItems: ['Construção e testes com a sua equipe', 'Nada técnico para aprender', 'Ajustes inclusos quando o processo mudar'],
+      promiseItems: ['Construção e testes com a sua equipe', 'Nada técnico para aprender', 'Ajustes nas etapas previstas no projeto'],
       steps: [
         {
           title: 'Conversa de 30 minutos',
-          description: 'Você mostra como a operação funciona hoje e onde o tempo se perde. Nós perguntamos, ouvimos e anotamos.',
+          description: ['Você mostra como a operação funciona hoje e onde o tempo se perde. Nós perguntamos, ouvimos e anotamos.'],
           duration: '30 min',
         },
         {
           title: 'Diagnóstico e proposta',
-          description: 'Você recebe por escrito as automações que mais fazem sentido para o seu negócio, o tempo que cada uma economiza e a mensalidade de cada uma.',
+          description: ['Você recebe por escrito as automações que mais fazem sentido para o seu negócio, o tempo que cada uma economiza e a mensalidade de cada uma.'],
           duration: '3–5 dias úteis',
         },
         {
           title: 'Construção e teste',
-          description: 'Você escolhe por onde começar. Construímos a automação ligada aos seus sistemas e ajustamos com a sua equipe até funcionar do jeito certo.',
+          description: ['Você escolhe por onde começar. Construímos a automação ligada aos seus sistemas e ajustamos com a sua equipe até funcionar do jeito certo.'],
           duration: '2–4 semanas',
         },
         {
-          title: 'Primeiro mês grátis, com ajustes',
-          description: 'A automação entra no dia a dia e você usa por um mês sem pagar. Ajustamos o que for preciso. Depois disso começa a mensalidade, com acompanhamento e ajustes inclusos.',
-          duration: '1 mês',
+          title: '30 dias para testar na sua operação',
+          description: [
+            'Assinamos o contrato antes do teste, com o escopo e as condições definidos. Os 30 dias grátis começam quando a automação entra em operação, não durante a construção.',
+            'Nesse período, sua equipe usa a automação no dia a dia e fazemos os ajustes necessários nas etapas previstas. Antes de começar a cobrança, falamos com você para confirmar sua aprovação.',
+          ],
+          duration: '30 dias',
         },
       ],
     },
     pricing: {
-      titleLead: 'Quanto custa',
-      titleAccent: 'e o que está incluso',
+      titleLead: 'Quanto custa colocar',
+      titleAccent: 'sua tarefa no automático?',
       subtitle:
-        'A mensalidade cobre construção, hospedagem, manutenção e ajustes. Desenvolvimento sem custo e primeiro mês grátis. Cancelamento com 30 dias de aviso.',
+        'A mensalidade inclui construção, hospedagem, manutenção e ajustes nas etapas previstas no projeto. Não há cobrança separada pelo desenvolvimento. Os primeiros 30 dias de uso são grátis, contados a partir da entrada da automação em operação.',
       from: 'A partir de',
       perMonth: '/mês',
       tiers: [
-        { price: 'R$500', label: 'Uma automação simples', example: 'Ex.: confirmação de consultas ou aviso de renovação de contratos' },
-        { price: 'R$2.000', label: 'Automações com várias etapas e sistemas', example: 'Ex.: cotação com vários fornecedores' },
-        { price: 'R$6.000', label: 'Vários processos ligados, sob medida', example: 'Ex.: compras do pedido à nota fiscal' },
+        { price: 'R$500', label: 'Uma automação simples', example: 'Para tarefas como confirmar consultas ou avisar sobre contratos próximos do vencimento.' },
+        { price: 'R$2.000', label: 'Uma automação com várias etapas', example: 'Para processos como consultar fornecedores, comparar cotações e avisar a equipe.' },
+        { price: 'R$6.000', label: 'Vários processos conectados', example: 'Para operações como acompanhar uma compra do pedido ao registro da nota fiscal.' },
       ],
+      details: 'Você recebe uma proposta com as etapas da automação, os sistemas envolvidos e a mensalidade. O contrato também informa os custos de serviços de terceiros incluídos e os limites de uso aplicáveis.',
+      trial: 'Teste por 30 dias a partir da entrada em operação. Antes de iniciar a cobrança, entramos em contato para confirmar sua aprovação. Se cancelar durante o teste, não há cobrança. Depois do teste, o cancelamento exige aviso prévio de 30 dias.',
       includedTitle: 'Incluso em todos os planos',
-      included: ['Construção', 'Hospedagem', 'Manutenção', 'Ajustes quando seu processo mudar', 'Suporte por WhatsApp'],
-      cta: 'Quero meu diagnóstico',
-      ctaNote: 'No diagnóstico, indicamos o plano certo para o seu processo.',
+      included: ['Construção', 'Hospedagem', 'Manutenção', 'Ajustes nas etapas previstas no projeto', 'Suporte por WhatsApp'],
+      cta: 'Solicitar diagnóstico',
     },
     faq: {
       titleLead: 'Perguntas',
@@ -297,8 +308,24 @@ export const pt = {
       subtitle: 'Se a sua dúvida não estiver aqui, traga para a conversa de 30 minutos.',
       items: [
         {
-          question: 'E se eu não gostar do teste?',
-          answer: 'Você usa a automação por um mês sem pagar. Se não fizer sentido, não assina.',
+          question: 'Como funciona o teste grátis?',
+          answer: 'O contrato é assinado antes do teste. Você usa a automação sem pagar por 30 dias, contados a partir da entrada em operação. Antes do início da cobrança, entramos em contato para confirmar sua aprovação.',
+        },
+        {
+          question: 'E se eu não quiser continuar?',
+          answer: 'Se cancelar durante os 30 dias de teste, não há cobrança. Depois desse período, o cancelamento exige aviso prévio de 30 dias.',
+        },
+        {
+          question: 'WhatsApp, inteligência artificial e outros serviços estão incluídos?',
+          answer: 'Em geral, esses custos estão incluídos na mensalidade. A proposta e o contrato informam o que está incluído e os limites de custos variáveis. Se esses custos ultrapassarem o limite contratado, avisamos você e ajustamos a mensalidade conforme as condições do contrato.',
+        },
+        {
+          question: 'Quais ajustes estão incluídos?',
+          answer: 'Em geral, estão incluídas mudanças nas etapas que já fazem parte da automação. Novas etapas ou funções fora do escopo original podem exigir uma revisão do valor. Avaliamos cada pedido para definir se é um ajuste ou uma ampliação do projeto.',
+        },
+        {
+          question: 'Existe cobrança separada pelo desenvolvimento?',
+          answer: 'Não. A construção da automação faz parte do serviço, sem cobrança separada pelo desenvolvimento.',
         },
         {
           question: 'Quanto tempo leva para ficar pronto?',
@@ -317,8 +344,8 @@ export const pt = {
           answer: 'Seguimos a LGPD. A automação acessa só os dados de que precisa, com permissões que você autoriza e pode revogar quando quiser. Seus sistemas continuam sendo a base: a automação lê e escreve neles e guarda só o registro de execução necessário para o acompanhamento, na plataforma onde ela roda. Antes de ligar a primeira automação, formalizamos isso em um acordo de tratamento de dados.',
         },
         {
-          question: 'O que acontece se eu cancelar?',
-          answer: 'Você avisa com 30 dias de antecedência e a automação é desligada no fim do período. Os dados seguem nos seus sistemas, removemos nossos acessos e o registro de execução da plataforma da automação, e entregamos a documentação do que foi construído.',
+          question: 'O que acontece com meus dados se eu cancelar?',
+          answer: 'A automação é desligada e os dados seguem nos seus sistemas. Removemos nossos acessos e o registro de execução da plataforma da automação, e entregamos a documentação do que foi construído.',
         },
         {
           question: 'E se a automação der erro?',
@@ -336,7 +363,7 @@ export const pt = {
       text: 'Conte qual processo mais toma tempo da sua equipe. Respondemos em até 1 dia útil para marcar a conversa de 30 minutos.',
       founder: 'Quem responde é Simon Larsen, fundador da mil&dez, em Belo Horizonte.',
       founderAlt: 'Simon Larsen, fundador da mil&dez',
-      button: 'Quero meu diagnóstico',
+      button: 'Solicitar diagnóstico',
       note: 'Sem compromisso.',
     },
   },
@@ -375,7 +402,7 @@ export const pt = {
       badge: 'Saúde e clínicas',
       heroTitle: ['Menos faltas na agenda.', 'eSocial conferido antes do envio.'],
       heroText: 'A confirmação de consultas sai pelo WhatsApp, sem a recepção ligar para cada paciente. Na medicina do trabalho, cada ASO é conferido com as regras do eSocial.',
-      heroCta: 'Quero meu diagnóstico',
+      heroCta: 'Solicitar diagnóstico',
       challengesTitle: 'O que pesa na rotina da clínica',
       challenges: [
         { title: 'Paciente que não aparece', description: 'A recepção passa a manhã ligando para confirmar consultas. Mesmo assim, horários ficam vazios e não dá tempo de chamar outro paciente.' },
@@ -394,7 +421,7 @@ export const pt = {
       integrationsText: 'A automação se conecta ao que a clínica já tem, sem trocar nenhum sistema.',
       ctaTitle: 'Qual tarefa mais pesa na sua clínica?',
       ctaText: 'Conte como a sua clínica trabalha hoje. Respondemos em até 1 dia útil para marcar a conversa de 30 minutos.',
-      ctaButton: 'Quero meu diagnóstico',
+      ctaButton: 'Solicitar diagnóstico',
       ctaSecondary: { label: 'Ver o validador eSocial', href: '/validador-esocial' },
     } as IndustryCopy,
     services: {
@@ -405,7 +432,7 @@ export const pt = {
       badge: 'Serviços profissionais',
       heroTitle: ['Nenhum prazo', 'depende de memória.'],
       heroText: 'O escritório recebe o aviso de cada renovação com tempo para decidir, e a cobrança sai quando a entrega acontece.',
-      heroCta: 'Quero meu diagnóstico',
+      heroCta: 'Solicitar diagnóstico',
       challengesTitle: 'O custo do trabalho invisível',
       challenges: [
         { title: 'Horas que não viram faturamento', description: 'Proposta, pasta do cliente, fatura e cobrança tomam horas toda semana, e ninguém paga por esse tempo.' },
@@ -424,7 +451,7 @@ export const pt = {
       integrationsText: 'A automação se conecta ao que o escritório já tem, sem trocar nenhum sistema.',
       ctaTitle: 'Qual prazo mais preocupa o seu escritório?',
       ctaText: 'Conte como o seu escritório trabalha hoje. Respondemos em até 1 dia útil para marcar a conversa de 30 minutos.',
-      ctaButton: 'Quero meu diagnóstico',
+      ctaButton: 'Solicitar diagnóstico',
     } as IndustryCopy,
     agribusiness: {
       meta: {
@@ -434,7 +461,7 @@ export const pt = {
       badge: 'Agronegócio',
       heroTitle: ['Fornecedores e campo', 'num só lugar.'],
       heroText: 'As cotações de insumos chegam comparadas numa planilha, e o que o campo manda pelo WhatsApp entra organizado no escritório.',
-      heroCta: 'Quero meu diagnóstico',
+      heroCta: 'Solicitar diagnóstico',
       challengesTitle: 'O dia a dia que trava a operação',
       challenges: [
         { title: 'Fornecedores no WhatsApp pessoal', description: 'Cotações, prazos e confirmações espalhados em conversas pessoais. Ninguém sabe o que foi combinado nem com quem.' },
@@ -453,7 +480,7 @@ export const pt = {
       integrationsText: 'A automação se conecta ao que a operação já tem, sem trocar nenhum sistema.',
       ctaTitle: 'Onde a sua operação mais perde tempo?',
       ctaText: 'Conte como a sua operação funciona hoje. Respondemos em até 1 dia útil para marcar a conversa de 30 minutos.',
-      ctaButton: 'Quero meu diagnóstico',
+      ctaButton: 'Solicitar diagnóstico',
     } as IndustryCopy,
   },
 

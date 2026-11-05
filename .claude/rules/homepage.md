@@ -13,11 +13,11 @@ paths:
 
 1. Hero: headline + HeroPipeline
 2. PainPointSection: problems clients face
-3. WorkflowExplainerSection: what automation is (3 workflow cards)
+3. WorkflowExplainerSection (`#exemplos`): what automation is (3 workflow cards)
 4. BusinessProfilesSection (`#quanto-vale`): ROI profiles + contact CTA
 5. ProcessSection (`#como-funciona`): promise card + 4-step timeline
 6. PricingSection (`#precos`): 3 tiers + contact CTA
-7. FAQSection
+7. FAQSection (`#duvidas`)
 8. Final CTA (`#contato`)
 
 Each section owns one message; never repeat a message across sections.
@@ -26,6 +26,6 @@ Each section owns one message; never repeat a message across sections.
 
 - **HomePage** (`components/HomePage.tsx`): shared by both locales; owns the contact modal state and passes `onContactClick` to Header, PricingSection and BusinessProfilesSection.
 - **Header**: requires `onContactClick` for the Contato button. Setores links to `/industrias`.
-- **ContactModal**: lead capture form (Formspree, client-side fetch).
+- **ContactModal**: lead capture form (Formspree, client-side fetch). Accessible dialog (focus moves in and returns to the invoker, Tab trapped, Escape); draft kept across close/reopen.
 - **HeroPipeline**: three stacked cards (input → automation → output) rotating through three scenarios every 4 s with pulses on the connectors. Copy in `home.pipeline`; logos from `public/software-company-logos`; stops under reduced motion and off screen.
 - **PricingSection**: tiers R$500 / R$2.000 / R$6.000 (USD in EN).
