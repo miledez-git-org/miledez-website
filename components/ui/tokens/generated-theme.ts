@@ -1,17 +1,15 @@
 // Design System Theme
-// Version: 6.0.0
-// Last synced: 2026-11-10 from design-system v3.0 (palette v3: teal-tinted surfaces, light-blue sky accent, D-047…D-050).
 // Type, radius and shadow use Tailwind's default scales, see design-system-agency/docs/tokens.json.
 
 import type { Config } from 'tailwindcss'
 
 export const designSystemTheme: NonNullable<Config['theme']>['extend'] = {
   colors: {
-    // Notus Teal palette v3, pasted from design-system-agency/docs/palette-teal.js (global design reference).
+    // Notus Teal palette, pasted from design-system-agency/docs/palette-teal.js (global design reference).
     // Components use raw zinc/emerald/amber/rose/sky utilities. zinc-900 (teal) is ink and the fill for dark bands,
     // dark cards and secondary buttons; sky is the accent: sky-700 fills the one primary button and colors links,
-    // sky-300 is the primary on dark bands; zinc-100 is the section band (D-048, D-049).
-    // Body text uses text-body (#27272a, neutral dark grey, 14.9:1), never a teal zinc shade (D-036).
+    // sky-300 is the primary on dark bands; zinc-100 is the section band (design system rules 7 and 13).
+    // Body text uses text-body (#27272a, neutral dark grey, 14.9:1), never a teal zinc shade (design system rule 6).
     // zinc-600 (#0d9488) is 3.74:1 on white, large or decorative text only.
     body: '#27272a',
     zinc: {

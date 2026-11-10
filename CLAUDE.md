@@ -54,4 +54,4 @@ Stack: Next.js 14.2 App Router with `output: 'export'`, React 18.3, Framer Motio
 
 ## Tokens
 
-`components/ui/tokens/generated-theme.ts` defines `body`, `zinc`, `emerald`, `amber`, `rose`, `sky` from `design-system-agency/docs/palette-teal.js` (palette v3, design system v3.0); type, radius and shadow use Tailwind's defaults. Usage rules in `.claude/rules/design-tokens.md`. Regenerate from the design system; never edit by hand.
+`components/ui/tokens/generated-theme.ts` defines `body`, `zinc`, `emerald`, `amber`, `rose`, `sky` from `design-system-agency/docs/palette-teal.js`; type, radius and shadow use Tailwind's defaults. Usage rules in `.claude/rules/design-tokens.md`. Regenerate from the design system; never edit by hand.

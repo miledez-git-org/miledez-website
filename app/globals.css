@@ -17,7 +17,7 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Balanced heading wrap: no heading ends on a one-word line (design system D-040) */
+/* Balanced heading wrap: no heading ends on a one-word line (design system rule 12) */
 @layer base {
   h1, h2, h3 {
     text-wrap: balance;
@@ -253,7 +253,7 @@ html {
   line-height: 1.5;
 }
 
-/* Primary Button - light-blue accent (sky-700, design system D-048) */
+/* Primary Button - light-blue accent (sky-700, design system rule 7) */
 .btn-primary {
   background-color: theme('colors.sky.700');
   color: theme('colors.white');
