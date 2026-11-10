@@ -29,7 +29,7 @@ export default function IndustryIntegrations({ integrations }: IndustryIntegrati
             }}
           >
             <div
-              className="w-14 h-14 bg-white rounded-lg flex items-center justify-center"
+              className="w-14 h-14 bg-white border border-zinc-200 shadow-sm rounded-lg flex items-center justify-center"
               title={integration.name}
             >
               <img src={`/software-company-logos/${integration.logo}.svg`} alt={integration.name} className="w-8 h-8 object-contain" />

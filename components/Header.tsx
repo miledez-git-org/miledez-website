@@ -173,7 +173,7 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
 
           <button
             onClick={onContactClick}
-            className="btn btn-md text-white bg-zinc-900 hover:bg-zinc-800"
+            className="btn btn-md btn-secondary"
           >
             {t.contact}
           </button>
@@ -226,7 +226,7 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
               <Flag locale={otherLocale} />
             </Link>
             <button
-              className="mt-2 btn btn-lg w-full text-white bg-zinc-900 hover:bg-zinc-800"
+              className="mt-2 btn btn-lg w-full btn-secondary"
               onClick={() => { setMobileMenuOpen(false); onContactClick?.() }}
               role="menuitem"
             >

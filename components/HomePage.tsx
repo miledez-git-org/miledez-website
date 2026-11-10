@@ -106,7 +106,7 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
       <WorkflowExplainerSection locale={locale} />
 
       {/* Estimated value - one card per example */}
-      <section id="quanto-vale" className="py-24 md:py-32 bg-zinc-100">
+      <section id="quanto-vale" className="py-24 md:py-32 bg-zinc-100 border-y border-zinc-200">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <BusinessProfilesSection locale={locale} onContactClick={() => setIsContactModalOpen(true)} />
         </div>
@@ -120,7 +120,7 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
       </section>
 
       {/* Pricing */}
-      <section id="precos" className="py-24 md:py-32 bg-zinc-100">
+      <section id="precos" className="py-24 md:py-32 bg-zinc-100 border-y border-zinc-200">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <PricingSection locale={locale} onContactClick={() => setIsContactModalOpen(true)} />
         </div>
@@ -130,7 +130,7 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
       <FAQSection locale={locale} />
 
       {/* CTA */}
-      <section id="contato" className="py-24 md:py-32 bg-zinc-100">
+      <section id="contato" className="py-24 md:py-32 bg-zinc-100 border-y border-zinc-200">
         <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
           <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900 leading-tight">
             {t.cta.titleLine1}<br />

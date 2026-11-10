@@ -19,7 +19,7 @@ export default function ChallengeCard({
 }: ChallengeCardProps) {
   return (
     <div
-      className="group relative bg-white rounded-xl p-8 shadow-sm transition-shadow duration-200"
+      className="group relative bg-white border border-zinc-200 rounded-xl p-8 shadow-sm transition-shadow duration-200"
       style={{
         transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
         opacity: isVisible ? 1 : 0,

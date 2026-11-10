@@ -63,7 +63,7 @@ export default function ProcessSection({ locale = 'pt' }: { locale?: Locale }) {
               {/* Number node — sits on the vertical line */}
               <div className="relative z-10 flex-shrink-0 w-14 md:w-[72px] lg:w-[88px]">
                 <div className="bg-white">
-                  <span className="heading-display text-[2.5rem] md:text-[3rem] lg:text-[4rem] text-zinc-200 leading-none block text-center">
+                  <span className="heading-display text-[2.5rem] md:text-[3rem] lg:text-[4rem] text-sky-600 leading-none block text-center">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                 </div>
@@ -88,7 +88,7 @@ export default function ProcessSection({ locale = 'pt' }: { locale?: Locale }) {
 
                 {/* Duration — below description, left-aligned */}
                 <span className="inline-flex items-center gap-2 text-base font-medium text-zinc-900 mt-3">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0 text-sky-600">
                     <circle cx="12" cy="12" r="10" />
                     <path d="M12 6v6l4 2" />
                   </svg>

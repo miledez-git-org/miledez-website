@@ -17,7 +17,7 @@ export default function IndustriasContent({ locale = 'pt' }: { locale?: Locale }
     <div className="min-h-screen bg-white">
       <Header locale={locale} onContactClick={() => setIsContactModalOpen(true)} />
 
-      <main className="pt-32 pb-24 md:pb-32">
+      <main className="pt-32">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           {/* Header */}
           <div className="max-w-2xl mb-14">
@@ -29,28 +29,32 @@ export default function IndustriasContent({ locale = 'pt' }: { locale?: Locale }
               {t.subtitle}
             </p>
           </div>
-
-          {/* Industry cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {industryRoutes.map((key) => (
-              <Link
-                key={key}
-                href={localePath(locale, key)}
-                className="group bg-white border border-zinc-200 p-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
-              >
-                <h2 className="text-xl md:text-2xl font-semibold text-zinc-900 group-hover:text-zinc-700 transition-colors">
-                  {t.cards[key].title}
-                </h2>
-                <p className="mt-3 text-base text-body leading-relaxed">
-                  {t.cards[key].description}
-                </p>
-                <span className="inline-block mt-6 text-sm font-medium text-zinc-900">
-                  {t.cardCta}
-                </span>
-              </Link>
-            ))}
-          </div>
         </div>
+
+        {/* Industry cards on the tinted band (design system rule 13) */}
+        <section className="bg-zinc-100 border-y border-zinc-200 py-16 md:py-20">
+          <div className="max-w-7xl mx-auto px-6 md:px-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {industryRoutes.map((key) => (
+                <Link
+                  key={key}
+                  href={localePath(locale, key)}
+                  className="group bg-white border border-zinc-200 p-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md"
+                >
+                  <h2 className="text-xl md:text-2xl font-semibold text-zinc-900 group-hover:text-zinc-700 transition-colors">
+                    {t.cards[key].title}
+                  </h2>
+                  <p className="mt-3 text-base text-body leading-relaxed">
+                    {t.cards[key].description}
+                  </p>
+                  <span className="inline-block mt-6 text-sm font-medium text-sky-700 group-hover:text-sky-800">
+                    {t.cardCta}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer locale={locale} />

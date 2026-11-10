@@ -253,9 +253,9 @@ html {
   line-height: 1.5;
 }
 
-/* Primary Brand Button - Teal ink (zinc-900) */
+/* Primary Button - light-blue accent (sky-700, design system D-048) */
 .btn-primary {
-  background-color: theme('colors.zinc.900');
+  background-color: theme('colors.sky.700');
   color: theme('colors.white');
   border: none;
   border-radius: 6px;
@@ -263,7 +263,7 @@ html {
 }
 
 .btn-primary:hover {
-  background-color: theme('colors.zinc.800');
+  background-color: theme('colors.sky.800');
   transform: scale(1.02);
   box-shadow: theme('boxShadow.md');
 }
@@ -280,7 +280,7 @@ html {
   box-shadow: none;
 }
 
-/* Secondary Button - Dark ink */
+/* Secondary Button - teal ink fill (zinc-900) */
 .btn-secondary {
   background-color: theme('colors.zinc.900');
   color: theme('colors.white');
@@ -389,7 +389,7 @@ html {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  color: theme('colors.zinc.900');
+  color: theme('colors.sky.700');
   font-weight: 500;
   background: none;
   border: none;
@@ -399,7 +399,7 @@ html {
 }
 
 .btn-text-link:hover {
-  color: theme('colors.zinc.800');
+  color: theme('colors.sky.800');
   gap: 8px;
 }
 
@@ -412,17 +412,17 @@ html {
   transform: translateX(2px);
 }
 
-/* Inverted buttons (for dark backgrounds) */
+/* Inverted buttons (primary on dark backgrounds: sky-300, zinc-950 label) */
 .btn-inverted {
-  background-color: theme('colors.white');
-  color: theme('colors.zinc.900');
+  background-color: theme('colors.sky.300');
+  color: theme('colors.zinc.950');
   border: none;
   border-radius: 6px;
   transition: background-color 150ms ease-out, transform 150ms ease-out;
 }
 
 .btn-inverted:hover {
-  background-color: theme('colors.zinc.100');
+  background-color: theme('colors.sky.200');
   transform: scale(1.02);
 }
 

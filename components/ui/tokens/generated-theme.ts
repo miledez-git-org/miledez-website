@@ -1,20 +1,22 @@
 // Design System Theme
-// Version: 5.0.0
-// Last synced: 2026-10-22 (type/radius/shadow overrides removed: the design system uses Tailwind's default
-// fontSize, lineHeight, letterSpacing, borderRadius and boxShadow scales, see design-system-agency/docs/tokens.json)
+// Version: 6.0.0
+// Last synced: 2026-11-10 from design-system v3.0 (palette v3: teal-tinted surfaces, light-blue sky accent, D-047…D-050).
+// Type, radius and shadow use Tailwind's default scales, see design-system-agency/docs/tokens.json.
 
 import type { Config } from 'tailwindcss'
 
 export const designSystemTheme: NonNullable<Config['theme']>['extend'] = {
   colors: {
-    // Notus Teal palette, pasted from ~/light-design-system/docs/palette-teal.js (global design reference).
-    // Components use raw zinc/emerald/amber/rose/sky utilities; zinc-900 is the only brand fill.
+    // Notus Teal palette v3, pasted from design-system-agency/docs/palette-teal.js (global design reference).
+    // Components use raw zinc/emerald/amber/rose/sky utilities. zinc-900 (teal) is ink and the fill for dark bands,
+    // dark cards and secondary buttons; sky is the accent: sky-700 fills the one primary button and colors links,
+    // sky-300 is the primary on dark bands; zinc-100 is the section band (D-048, D-049).
     // Body text uses text-body (#27272a, neutral dark grey, 14.9:1), never a teal zinc shade (D-036).
     // zinc-600 (#0d9488) is 3.74:1 on white, large or decorative text only.
     body: '#27272a',
     zinc: {
-      50: '#fafafa', 100: '#f4f4f5', 200: '#e4e4e7', 300: '#d4d4d8', 400: '#a1a1aa',
-      500: '#71717a', 600: '#0d9488', 700: '#0f766e', 800: '#115e59', 900: '#134e4a', 950: '#042f2e',
+      50: '#f1f4f4', 100: '#dee6e6', 200: '#c6d5d4', 300: '#bdcdcc', 400: '#a1a1aa',
+      500: '#62626a', 600: '#0d9488', 700: '#0f766e', 800: '#115e59', 900: '#134e4a', 950: '#042f2e',
     },
     emerald: {
       50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80',
@@ -29,8 +31,8 @@ export const designSystemTheme: NonNullable<Config['theme']>['extend'] = {
       500: '#ef4444', 600: '#dc2626', 700: '#b91c1c', 800: '#991b1b', 900: '#7f1d1d', 950: '#450a0a',
     },
     sky: {
-      50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa',
-      500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a', 950: '#172554',
+      50: '#f3fafe', 100: '#b3e5fc', 200: '#81d4fa', 300: '#4fc3f7', 400: '#29b6f6',
+      500: '#039be5', 600: '#0288d1', 700: '#016aa8', 800: '#01579b', 900: '#014a80', 950: '#012e4f',
     },
   },
   fontFamily: {
