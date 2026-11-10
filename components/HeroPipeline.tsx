@@ -101,13 +101,18 @@ export default function HeroPipeline({ locale = 'pt' }: { locale?: Locale }) {
   }, [])
 
   // Rotate scenarios while the visual is on screen; stay on the first one when reduced motion is requested.
+  // The CSS timeline keeps running off screen and ends faded out, so on re-entry start a fresh window at once.
   useEffect(() => {
     const root = rootRef.current
     if (!root || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     let timer: ReturnType<typeof setInterval> | undefined
+    let left = false
     const io = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !timer) timer = setInterval(() => setCycle((c) => c + 1), PERIOD)
-      if (!entry.isIntersecting && timer) { clearInterval(timer); timer = undefined }
+      if (entry.isIntersecting && !timer) {
+        if (left) setCycle((c) => c + 1)
+        timer = setInterval(() => setCycle((c) => c + 1), PERIOD)
+      }
+      if (!entry.isIntersecting && timer) { clearInterval(timer); timer = undefined; left = true }
     })
     io.observe(root)
     return () => { io.disconnect(); if (timer) clearInterval(timer) }
