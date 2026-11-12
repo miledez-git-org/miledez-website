@@ -38,7 +38,7 @@ function nearest(scroller: HTMLElement, track: HTMLElement) {
 }
 
 const ARROW_BUTTON =
-  'grid h-12 w-12 place-items-center rounded-full bg-zinc-900 text-white shadow-sm transition-[background-color,box-shadow,color] duration-200 hover:bg-zinc-800 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-900 aria-disabled:cursor-not-allowed aria-disabled:bg-zinc-100 aria-disabled:text-zinc-400 aria-disabled:shadow-none'
+  'grid h-12 w-12 place-items-center rounded-full bg-zinc-900 text-white shadow-sm transition-[background-color,box-shadow,color] duration-200 hover:bg-zinc-800 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-900 aria-disabled:cursor-not-allowed aria-disabled:bg-zinc-200 aria-disabled:text-zinc-400 aria-disabled:shadow-none'
 
 export default function WorkflowExplainerSection({ locale = 'pt' }: { locale?: Locale }) {
   const t = getDict(locale).home.explainer
@@ -82,7 +82,7 @@ export default function WorkflowExplainerSection({ locale = 'pt' }: { locale?: L
   })
 
   return (
-    <section id="exemplos" className="bg-white py-24 md:py-32">
+    <section id="exemplos" className="bg-zinc-100 border-y border-zinc-200 py-24 md:py-32">
       <div ref={ref} role="region" aria-roledescription="carousel" aria-label={t.railLabel}>
         <div className="max-w-7xl mx-auto px-6 md:px-10" style={reveal(0, 20)}>
           <div className="max-w-2xl">

@@ -13,14 +13,18 @@ interface ContactModalProps {
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
+const LABEL = 'block text-sm font-medium text-zinc-900 mb-1.5'
+const FIELD =
+  'w-full px-4 py-3 border border-zinc-200 rounded-lg placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 focus:border-zinc-900 transition-colors'
+
 export default function ContactModal({ isOpen, onClose, locale = 'pt' }: ContactModalProps) {
   const t = getDict(locale).contactModal
   const [formStatus, setFormStatus] = useState<FormStatus>('idle')
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
     phone: '',
-    message: '',
+    business: '',
+    employees: '',
   })
   const modalRef = useRef<HTMLDivElement>(null)
   const successCloseRef = useRef<HTMLButtonElement>(null)
@@ -37,7 +41,7 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
       }
       if (e.key !== 'Tab' || !modalRef.current) return
       const focusable = modalRef.current.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), input, textarea, [tabindex]:not([tabindex="-1"])'
+        'a[href], button:not([disabled]), input, select, [tabindex]:not([tabindex="-1"])'
       )
       if (focusable.length === 0) return
       const first = focusable[0]
@@ -102,16 +106,16 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
         },
         body: JSON.stringify({
           name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
+          whatsapp: formData.phone,
+          business: formData.business,
+          employees: formData.employees,
           language: locale,
         }),
       })
 
       if (response.ok) {
         setFormStatus('success')
-        setFormData({ name: '', email: '', phone: '', message: '' })
+        setFormData({ name: '', phone: '', business: '', employees: '' })
       } else {
         setFormStatus('error')
       }
@@ -120,7 +124,7 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -193,79 +197,39 @@ export default function ContactModal({ isOpen, onClose, locale = 'pt' }: Contact
             </div>
           ) : (
             <>
-              <h2 id="contact-modal-title" className="text-2xl font-semibold text-zinc-900 mb-2 pr-10">
+              <h2 id="contact-modal-title" className="text-2xl font-semibold text-zinc-900 mb-6 pr-10">
                 {t.title}
               </h2>
-              <p className="text-body mb-6">
-                {t.intro}
-              </p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-zinc-900 mb-1.5">
-                    {t.name}
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-zinc-200 rounded-lg placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 focus:border-zinc-900 transition-colors"
-                    placeholder={t.namePlaceholder}
-                  />
+                  <label htmlFor="name" className={LABEL}>{t.name}</label>
+                  <input type="text" id="name" name="name" required autoComplete="name"
+                    value={formData.name} onChange={handleChange} className={FIELD} placeholder={t.namePlaceholder} />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-zinc-900 mb-1.5">
-                    {t.email}
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-zinc-200 rounded-lg placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 focus:border-zinc-900 transition-colors"
-                    placeholder={t.emailPlaceholder}
-                  />
+                  <label htmlFor="phone" className={LABEL}>{t.phone}</label>
+                  <input type="tel" id="phone" name="phone" required autoComplete="tel" inputMode="tel"
+                    value={formData.phone} onChange={handleChange} className={FIELD} placeholder={t.phonePlaceholder} />
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-zinc-900 mb-1.5">
-                    {t.phone}
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-zinc-200 rounded-lg placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 focus:border-zinc-900 transition-colors"
-                    placeholder={t.phonePlaceholder}
-                  />
+                  <label htmlFor="business" className={LABEL}>{t.business}</label>
+                  <input type="text" id="business" name="business" required autoComplete="off"
+                    value={formData.business} onChange={handleChange} className={FIELD} placeholder={t.businessPlaceholder} />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-zinc-900 mb-1.5">
-                    {t.message}
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={4}
-                    aria-describedby="message-help"
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-zinc-200 rounded-lg placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/20 focus:border-zinc-900 transition-colors resize-none"
-                    placeholder={t.messagePlaceholder}
-                  />
-                  <p id="message-help" className="mt-1.5 text-sm text-zinc-500">
-                    {t.messageHelp}
-                  </p>
+                  <label htmlFor="employees" className={LABEL}>{t.employees}</label>
+                  {/* Empty value is :invalid while required, which greys it like a placeholder */}
+                  <select id="employees" name="employees" required value={formData.employees} onChange={handleChange}
+                    className={`${FIELD} bg-white invalid:text-zinc-400 [&>option]:text-body`}>
+                    <option value="" disabled>{t.employeesPlaceholder}</option>
+                    {t.employeesOptions.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
                 </div>
 
                 <div role="alert">

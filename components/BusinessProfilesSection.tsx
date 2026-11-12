@@ -24,12 +24,8 @@ export default function BusinessProfilesSection({ onContactClick, locale = 'pt' 
         }}
       >
         <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900 leading-tight">
-          {t.titleLead}{' '}
-          <span className="text-zinc-900">{t.titleAccent}</span>
+          {t.title}
         </h2>
-        <p className="mt-4 text-lg text-body max-w-2xl">
-          {t.subtitle}
-        </p>
       </div>
 
       {/* One card per example above */}
@@ -47,69 +43,33 @@ export default function BusinessProfilesSection({ onContactClick, locale = 'pt' 
                 transition: `transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
               }}
             >
-              {/* Business info */}
-              <h3 className="text-xl font-semibold text-zinc-900">
-                {profile.type}
-              </h3>
-              <p className="text-sm text-zinc-500 mt-1">
-                {profile.size}
-              </p>
-              <p className="text-base text-body mt-3">
-                {profile.automation}
-              </p>
+              <h3 className="text-xl font-semibold text-zinc-900">{profile.automation}</h3>
+              <p className="text-sm text-zinc-500 mt-1">{profile.type}</p>
 
-              {/* Subscription vs Savings comparison: side by side when the card
-                  is wide (sm single column, xl three columns), stacked otherwise */}
-              <div className="mt-6 flex flex-col items-start gap-2 sm:flex-row sm:items-end sm:gap-4 md:flex-col md:items-start md:gap-2 xl:flex-row xl:items-end xl:gap-4">
-                {/* Subscription — subdued */}
-                <div>
-                  <p className="text-sm font-medium text-zinc-500 uppercase tracking-wider">{t.subscription}</p>
-                  <span className="block text-xl md:text-2xl font-medium text-zinc-900">
-                    {profile.subscription}
-                  </span>
-                  <p className="text-sm text-zinc-500">{t.perMonth}</p>
-                </div>
-
-                {/* Arrow */}
-                <div className="text-xl text-zinc-300 rotate-90 sm:rotate-0 sm:pb-3 md:rotate-90 md:pb-0 xl:rotate-0 xl:pb-3" aria-hidden="true">→</div>
-
-                {/* Savings — bold burgundy */}
-                <div>
-                  <p className="text-sm font-medium text-zinc-900 uppercase tracking-wider">{t.savings}</p>
-                  <span className="block text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-zinc-900">
-                    {profile.savings}
-                  </span>
-                  <p className="text-sm text-zinc-900 font-medium">{t.perMonth}</p>
-                </div>
+              {/* Net gain is the headline; the monthly fee stays small underneath */}
+              <div className="mt-6 rounded-xl border border-sky-200 bg-sky-50 p-5">
+                <p className="text-sm font-semibold uppercase tracking-wider text-sky-800">{t.gainLabel}</p>
+                <p className="mt-1 text-sky-700">
+                  <span className="text-4xl lg:text-5xl font-bold tracking-tight tabular-nums">{profile.gain}</span>
+                  <span className="text-lg font-medium">{t.perMonth}</span>
+                </p>
+                <p className="mt-3 text-sm text-zinc-500 tabular-nums">
+                  {t.subscription} {profile.subscription}
+                </p>
               </div>
-
-              {/* How the estimate was calculated */}
-              <p className="mt-auto pt-6 text-sm text-zinc-500 leading-relaxed">
-                {profile.assumption}
-              </p>
             </div>
           )
         })}
       </div>
 
-      <p className="mt-6 text-sm text-zinc-500 max-w-2xl">
-        {t.disclaimer}
-      </p>
-
-      {/* CTAs */}
-      <div className="mt-12 flex flex-wrap gap-4">
+      {/* CTA */}
+      <div className="mt-12">
         <button
           onClick={onContactClick}
           className="btn btn-primary btn-lg"
         >
           {t.ctaPrimary}
         </button>
-        <a
-          href="#como-funciona"
-          className="btn btn-outline btn-lg"
-        >
-          {t.ctaSecondary}
-        </a>
       </div>
     </div>
   )
