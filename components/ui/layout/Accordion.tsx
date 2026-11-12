@@ -122,9 +122,13 @@ export function AccordionItem({
   )
 }
 
-export interface AccordionTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export interface AccordionTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Chevron that flips, or a plus that turns into a close mark */
+  icon?: 'chevron' | 'plus'
+}
 
 export function AccordionTrigger({
+  icon = 'chevron',
   className,
   children,
   ...props
@@ -147,18 +151,33 @@ export function AccordionTrigger({
       {...props}
     >
       {children}
-      <svg
-        className={cn(
-          'w-5 h-5 text-zinc-500 flex-shrink-0',
-          'transition-transform duration-base',
-          isOpen && 'rotate-180'
-        )}
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
+      {icon === 'plus' ? (
+        <svg
+          className={cn(
+            'w-4 h-4 flex-shrink-0 transition-transform duration-base',
+            isOpen ? 'rotate-45 text-sky-700' : 'text-zinc-400'
+          )}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path strokeLinecap="round" strokeWidth={2.5} d="M12 5v14M5 12h14" />
+        </svg>
+      ) : (
+        <svg
+          className={cn(
+            'w-5 h-5 text-zinc-500 flex-shrink-0',
+            'transition-transform duration-base',
+            isOpen && 'rotate-180'
+          )}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      )}
     </button>
   )
 }

@@ -131,12 +131,7 @@ export const pt = {
       titleAccent: 'rodando no automático',
       subtitle:
         'Exemplos que servem para qualquer setor. Na sua empresa, a automação segue o seu processo e usa os sistemas que você já tem.',
-      railLabel: 'Exemplos de automação',
-      railHint: 'use as setas para navegar',
       cardLabel: 'Exemplo',
-      ofLabel: 'de',
-      prevLabel: 'Exemplo anterior',
-      nextLabel: 'Próximo exemplo',
       workflows: [
         {
           title: 'Agendamento e lembretes',
@@ -186,6 +181,15 @@ export const pt = {
             { title: 'Relatório entregue', text: 'E-mail para a equipe' },
           ],
         },
+      ],
+    },
+    numbers: {
+      title: 'Em números',
+      items: [
+        { value: '30 min', label: 'Primeira conversa, sem compromisso' },
+        { value: '2–4 semanas', label: 'Até a primeira automação funcionando' },
+        { value: 'R$0', label: 'Pelo desenvolvimento' },
+        { value: '30 dias', label: 'Grátis na sua operação' },
       ],
     },
     profiles: {
@@ -249,6 +253,7 @@ export const pt = {
         { price: 'R$2.000', label: 'Uma automação com várias etapas', examples: ['Cotação com fornecedores', 'Notas fiscais lançadas no ERP'] },
         { price: 'R$6.000', label: 'Vários processos conectados', examples: ['Da compra à nota fiscal', 'Do lead ao contrato assinado'] },
       ],
+      notes: ['Hospedagem e manutenção inclusas', 'Correção de erros inclusa', 'Suporte incluso'],
       cta: 'Solicitar diagnóstico',
     },
     faq: {

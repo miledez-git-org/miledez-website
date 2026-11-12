@@ -113,12 +113,7 @@ export const en: Dict = {
       titleAccent: 'running on autopilot',
       subtitle:
         'Examples that work in any industry. In your company, the automation follows your process and uses the systems you already have.',
-      railLabel: 'Automation examples',
-      railHint: 'use the arrow keys to move',
       cardLabel: 'Example',
-      ofLabel: 'of',
-      prevLabel: 'Previous example',
-      nextLabel: 'Next example',
       workflows: [
         {
           title: 'Appointment scheduling and reminders',
@@ -168,6 +163,15 @@ export const en: Dict = {
             { title: 'Report delivered', text: 'Emailed to the team' },
           ],
         },
+      ],
+    },
+    numbers: {
+      title: 'By the numbers',
+      items: [
+        { value: '30 min', label: 'First call, no commitment' },
+        { value: '2–4 weeks', label: 'To your first automation running' },
+        { value: '$0', label: 'Development fee' },
+        { value: '30 days', label: 'Free in your operation' },
       ],
     },
     profiles: {
@@ -231,6 +235,7 @@ export const en: Dict = {
         { price: '$500', label: 'One automation with several steps', examples: ['Supplier quotes', 'Invoices posted to the ERP'] },
         { price: '$1,500', label: 'Several connected processes', examples: ['From purchase to invoice', 'From lead to signed contract'] },
       ],
+      notes: ['Hosting and maintenance included', 'Error fixes included', 'Support included'],
       cta: 'Request an assessment',
     },
     faq: {

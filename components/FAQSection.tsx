@@ -9,7 +9,7 @@ export default function FAQSection({ locale = 'pt' }: { locale?: Locale }) {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.1 })
 
   return (
-    <section id="duvidas" className="bg-white py-24 md:py-32">
+    <section id="duvidas" className="bg-white py-24 md:py-36">
       <div
         className="max-w-7xl mx-auto px-6 md:px-10"
         ref={ref}
@@ -19,29 +19,31 @@ export default function FAQSection({ locale = 'pt' }: { locale?: Locale }) {
           transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
-        {/* Section header */}
-        <div className="max-w-2xl">
-          <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900 leading-tight">
-            {t.titleLead}{' '}
-            <span className="text-zinc-900">{t.titleAccent}</span>
-          </h2>
-          <p className="mt-4 text-lg text-body leading-relaxed">
-            {t.subtitle}
-          </p>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,22rem)_1fr] gap-12 lg:gap-24 items-start">
+          {/* Section header: stays in view while the list scrolls */}
+          <div className="lg:sticky lg:top-28">
+            <h2 className="heading-display text-[2.25rem] md:text-5xl text-zinc-900">
+              {t.titleLead}{' '}
+              <span className="text-zinc-900">{t.titleAccent}</span>
+            </h2>
+            <p className="mt-6 text-lg text-body leading-relaxed">
+              {t.subtitle}
+            </p>
+          </div>
 
-        <Accordion className="mt-12 max-w-3xl rounded-none bg-white">
-          {t.items.map((item, index) => (
-            <AccordionItem key={index} value={`faq-${index}`}>
-              <AccordionTrigger className="text-lg text-zinc-900 gap-6">
-                {item.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-base">
-                {item.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+          <Accordion className="rounded-none border-0 border-b border-zinc-200 bg-white">
+            {t.items.map((item, index) => (
+              <AccordionItem key={index} value={`faq-${index}`}>
+                <AccordionTrigger icon="plus" className="px-0 py-6 text-lg font-semibold text-zinc-900 gap-6 hover:bg-transparent hover:text-sky-700">
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent className="px-0 pb-6 pr-10 text-base">
+                  {item.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
       </div>
     </section>
   )

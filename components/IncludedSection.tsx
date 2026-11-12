@@ -21,9 +21,9 @@ export default function IncludedSection({ locale = 'pt' }: { locale?: Locale }) 
   const t = getDict(locale).home.included
 
   return (
-    <section id="incluso" className="bg-zinc-900 py-20 md:py-28">
+    <section id="incluso" className="bg-zinc-900 py-24 md:py-36">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-white leading-tight max-w-3xl text-balance">{t.title}</h2>
+        <h2 className="heading-display text-[2.25rem] md:text-5xl lg:text-6xl text-white max-w-4xl text-balance">{t.title}</h2>
         <ul className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-8">
           {t.items.map((item, i) => (
             <li key={item} className="flex items-center gap-4 border-t-2 border-sky-300 pt-6 lg:flex-col lg:items-start">

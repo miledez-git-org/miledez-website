@@ -16,14 +16,14 @@ export default function BusinessProfilesSection({ onContactClick, locale = 'pt' 
     <div ref={ref}>
       {/* Section header */}
       <div
-        className="mb-12"
+        className="mb-12 md:mb-16"
         style={{
           transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
           opacity: isVisible ? 1 : 0,
           transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
-        <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900 leading-tight">
+        <h2 className="heading-display text-[2.25rem] md:text-5xl lg:text-6xl text-zinc-900 max-w-4xl">
           {t.title}
         </h2>
       </div>

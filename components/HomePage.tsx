@@ -11,9 +11,19 @@ import WorkflowExplainerSection from '@/components/WorkflowExplainerSection'
 import IncludedSection from '@/components/IncludedSection'
 import BusinessProfilesSection from '@/components/BusinessProfilesSection'
 import FAQSection from '@/components/FAQSection'
+import NumbersSection from '@/components/NumbersSection'
 import ScrollProgress from '@/components/ScrollProgress'
 import ContactModal from '@/components/ContactModal'
 import { getDict, type Locale } from '@/lib/i18n'
+
+// Hairline between two white sections, inside the content width
+function Divider() {
+  return (
+    <div className="max-w-7xl mx-auto px-6 md:px-10" aria-hidden="true">
+      <div className="h-px bg-zinc-200" />
+    </div>
+  )
+}
 
 export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
   const t = getDict(locale).home
@@ -97,42 +107,58 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
 
       </section>
 
-      {/* Story order: example → what's included → value → process → price → doubts → close */}
+      {/* Story order: example → numbers → what's included → value → process → price → doubts → close.
+          White sections are separated by hairlines; the only band is the dark "included" one. */}
+
+      <Divider />
 
       {/* Workflow Explainer - How automations work */}
       <WorkflowExplainerSection locale={locale} />
+
+      <Divider />
+
+      {/* Key figures */}
+      <NumbersSection locale={locale} />
 
       {/* Everything included in the monthly fee */}
       <IncludedSection locale={locale} />
 
       {/* Estimated value - one card per example */}
-      <section id="quanto-vale" className="py-24 md:py-32 bg-zinc-100 border-y border-zinc-200">
+      <section id="quanto-vale" className="py-24 md:py-36 bg-white">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <BusinessProfilesSection locale={locale} onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
+      <Divider />
+
       {/* How It Works - Process */}
-      <section id="como-funciona" className="py-24 md:py-32 bg-white">
+      <section id="como-funciona" className="py-24 md:py-36 bg-white">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <ProcessSection locale={locale} />
         </div>
       </section>
 
+      <Divider />
+
       {/* Pricing */}
-      <section id="precos" className="py-24 md:py-32 bg-zinc-100 border-y border-zinc-200">
+      <section id="precos" className="py-24 md:py-36 bg-white">
         <div className="px-6 md:px-10 max-w-7xl mx-auto">
           <PricingSection locale={locale} onContactClick={() => setIsContactModalOpen(true)} />
         </div>
       </section>
 
+      <Divider />
+
       {/* FAQ - objection handling */}
       <FAQSection locale={locale} />
 
+      <Divider />
+
       {/* CTA */}
-      <section id="contato" className="py-24 md:py-32 bg-zinc-100 border-y border-zinc-200">
-        <div className="px-6 md:px-10 max-w-3xl mx-auto text-center">
-          <h2 className="heading-display text-[2rem] md:text-[2.5rem] text-zinc-900 leading-tight">
+      <section id="contato" className="py-24 md:py-36 bg-white">
+        <div className="px-6 md:px-10 max-w-4xl mx-auto text-center">
+          <h2 className="heading-display text-[2.25rem] md:text-5xl lg:text-6xl text-zinc-900">
             {t.cta.titleLine1}<br />
             <span className="text-zinc-900">{t.cta.titleLine2}</span>
           </h2>
