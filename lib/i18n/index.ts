@@ -20,20 +20,12 @@ export const SITE_URL = 'https://miledez.com.br'
 
 export type RouteKey =
   | 'home'
-  | 'industries'
-  | 'health'
-  | 'services'
-  | 'agribusiness'
   | 'terms'
   | 'privacy'
 
 /** One entry per page: the Portuguese path and its English counterpart. */
 export const routes: Record<RouteKey, Record<Locale, string>> = {
   home: { pt: '/', en: '/en' },
-  industries: { pt: '/industrias', en: '/en/industries' },
-  health: { pt: '/saude', en: '/en/health' },
-  services: { pt: '/servicos', en: '/en/professional-services' },
-  agribusiness: { pt: '/agronegocio', en: '/en/agribusiness' },
   terms: { pt: '/termos', en: '/en/terms' },
   privacy: { pt: '/politica-privacidade', en: '/en/privacy-policy' },
 }

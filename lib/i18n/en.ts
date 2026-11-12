@@ -1,5 +1,5 @@
 import type { Dict } from './index'
-import type { IndustryCopy, LegalPage } from './pt'
+import type { LegalPage } from './pt'
 
 /**
  * English (en-US) copy. Typed against the Portuguese dictionary so a missing
@@ -11,14 +11,13 @@ export const en: Dict = {
   site: {
     title: 'mil&dez · Process automation',
     description:
-      'Appointment confirmations, billing, deadlines and eSocial checks on autopilot, in the systems you already use.',
-    keywords: ['process automation', 'automation for clinics', 'appointment confirmations', 'eSocial', 'Belo Horizonte', 'Brazil'],
+      'Booking confirmations, billing, deadlines and invoice entry on autopilot, in the systems you already use.',
+    keywords: ['process automation', 'task automation', 'automation for small and mid-sized businesses', 'booking confirmations', 'Belo Horizonte', 'Brazil'],
     skipLink: 'Skip to content',
   },
 
   header: {
     home: 'Home',
-    industries: 'Industries',
     pricing: 'Pricing',
     contact: 'Contact',
     openMenu: 'Open menu',
@@ -30,10 +29,6 @@ export const en: Dict = {
   footer: {
     tagline: 'your work on autopilot',
     home: 'Home',
-    health: 'Healthcare',
-    services: 'Services',
-    agribusiness: 'Agribusiness',
-    esocial: 'eSocial validator',
     whatsapp: 'WhatsApp',
     address: 'Belo Horizonte, MG, Brazil · CNPJ: 44.584.460/0001-80',
     rights: '© 2026 mil&dez. All rights reserved.',
@@ -76,14 +71,14 @@ export const en: Dict = {
     meta: {
       title: 'mil&dez · Process automation for small and mid-sized businesses',
       description:
-        'Appointment confirmations, billing, deadlines and eSocial checks on autopilot, in the systems you already use.',
+        'Booking confirmations, billing, deadlines and invoice entry on autopilot, in the systems you already use.',
     },
     hero: {
       line1: 'Your team stops',
       line2: 'repeating tasks.',
       accent: 'The system does it for them.',
       subtitle:
-        'Appointments confirmed, invoices sent and deadlines tracked without anyone having to remember. The automation runs in the systems you already use.',
+        'Bookings confirmed, invoices sent and deadlines tracked without anyone having to remember. The automation runs in the systems you already use.',
       cta: 'Request an assessment',
       ctaNote: 'A 30-minute call, no commitment. We reply within 1 business day to set up a time.',
       secondary: 'See automation examples',
@@ -94,13 +89,12 @@ export const en: Dict = {
     },
     pipeline: {
       summary:
-        'Three automation examples. Every completed occupational health exam is checked against the eSocial rules before submission. Invoices that arrive by email are read and posted to the ERP. A new lead is researched and gets a proposal ready to send.',
+        'Three automation examples. Every order spreadsheet is checked before it moves on. Invoices that arrive by email are read and posted to the ERP. A new lead is researched and gets a proposal ready to send.',
       stages: ['Input', 'mil&dez automation', 'Output'],
-      validatorLink: 'See the eSocial validator',
       scenarios: [
         {
-          input: { title: 'Health exam completed', text: "Occupational exam entered in the clinic's system" },
-          task: { title: 'eSocial check', text: 'Checks job code, employment type and health program for each exam' },
+          input: { title: 'Order spreadsheet', text: 'Orders entered by the team' },
+          task: { title: 'Data check', text: 'Checks customer details, amounts and dates on every row' },
           output: { title: 'Checked before submission', text: 'Errors flagged with the suggested fix' },
         },
         {
@@ -121,7 +115,7 @@ export const en: Dict = {
       subtitle:
         'Three problems show up in almost every small and mid-sized business. They cost hours every week and rarely appear in any report.',
       points: [
-        { title: 'The same task, every day', description: 'Confirming appointments, sending reminders, updating spreadsheets. Someone on the team does it by hand, one message at a time.' },
+        { title: 'The same task, every day', description: 'Confirming bookings, sending reminders, updating spreadsheets. Someone on the team does it by hand, one message at a time.' },
         { title: 'The deadline nobody remembered', description: 'A contract that expired, a bill that never went out, a license that lapsed. Every slip turns into rework, a fine or a lost customer.' },
         { title: 'Information in five places', description: 'The order came in on WhatsApp, the price is in a spreadsheet and the invoice is in email. To answer a customer, someone has to pull it all together.' },
       ],
@@ -193,34 +187,34 @@ export const en: Dict = {
       titleLead: 'What one of these',
       titleAccent: 'automations is worth',
       subtitle:
-        'We ran the numbers for three typical businesses, one for each example above. The assumptions are in plain sight so you can compare them with your own.',
+        'We ran the numbers for three typical businesses, each with one of the automations above. The assumptions are in plain sight so you can compare them with your own.',
       subscription: 'Monthly fee',
       savings: 'Estimated return',
       perMonth: '/mo',
       items: [
         {
-          type: 'Dental clinic',
+          type: 'Business that runs on bookings',
           size: '12 staff',
-          automation: 'Automation: appointment confirmations',
+          automation: 'Automation: booking confirmations',
           subscription: '$150',
           savings: '$600',
-          assumption: 'Assumption: 10 fewer no-shows a month at a $50 average ticket, plus 20 front-desk hours freed up ($5/h).',
+          assumption: 'Assumption: 10 fewer no-shows a month at a $50 average ticket, plus 20 staff hours freed up ($5/h).',
         },
         {
-          type: 'Accounting firm',
+          type: 'Business with recurring contracts',
           size: '6 employees',
           automation: 'Automation: contract renewals',
           subscription: '$150',
           savings: '$380',
-          assumption: 'Assumption: 15 hours a month freed up ($12/h), plus $200 a month in fees no longer lost to forgotten renewals.',
+          assumption: 'Assumption: 15 hours a month freed up ($12/h), plus $200 a month in revenue no longer lost to forgotten renewals.',
         },
         {
-          type: 'Coffee cooperative',
-          size: '50 growers',
-          automation: 'Automation: supply quotes',
+          type: 'Business with frequent purchasing',
+          size: '$80k in purchases a month',
+          automation: 'Automation: supplier quotes',
           subscription: '$500',
           savings: '$1,120',
-          assumption: 'Assumption: 1% savings on $80k of monthly purchases, plus 40 hours of quoting freed up ($8/h).',
+          assumption: 'Assumption: 1% savings on purchases, plus 40 hours of quoting freed up ($8/h).',
         },
       ],
       disclaimer: 'These figures are illustrative estimates. In the assessment, we redo the math with your own numbers.',
@@ -268,7 +262,7 @@ export const en: Dict = {
       from: 'Starting at',
       perMonth: '/mo',
       tiers: [
-        { price: '$150', label: 'One simple automation', example: 'For tasks like confirming appointments or flagging contracts that are about to expire.' },
+        { price: '$150', label: 'One simple automation', example: 'For tasks like confirming bookings or flagging contracts that are about to expire.' },
         { price: '$500', label: 'One automation with several steps', example: 'For processes like checking suppliers, comparing quotes and alerting the team.' },
         { price: '$1,500', label: 'Several connected processes', example: 'For operations like tracking a purchase from order to recording the invoice.' },
       ],
@@ -342,122 +336,6 @@ export const en: Dict = {
       button: 'Request an assessment',
       note: 'No commitment.',
     },
-  },
-
-  industries: {
-    meta: {
-      title: 'Industries · mil&dez',
-      description: 'Automation for clinics, professional firms and agribusiness, in the systems each industry already uses.',
-    },
-    titleLead: 'Automation for',
-    titleAccent: 'your industry',
-    subtitle: 'Every industry has its own recurring tasks. Pick yours to see automation examples.',
-    cardCta: 'See automations',
-    cards: {
-      health: {
-        title: 'Healthcare and clinics',
-        description: 'Appointment confirmations over WhatsApp, follow-up reminders and eSocial checks before submission.',
-      },
-      services: {
-        title: 'Professional services',
-        description: 'New client onboarding, contract renewal reminders and billing after every delivery.',
-      },
-      agribusiness: {
-        title: 'Agribusiness',
-        description: 'Supply quotes, license tracking and field updates organized in the office.',
-      },
-    },
-  },
-
-  industry: {
-    health: {
-      meta: {
-        title: 'Healthcare and clinics · mil&dez',
-        description: 'Appointment confirmations over WhatsApp and eSocial health and safety checks before submission, for clinics and practices.',
-      },
-      badge: 'Healthcare and clinics',
-      heroTitle: ['Fewer no-shows.', 'eSocial checked before submission.'],
-      heroText: 'Appointment confirmations go out over WhatsApp, without the front desk calling every patient. In occupational health, every exam is checked against the eSocial rules.',
-      heroCta: 'Request an assessment',
-      challengesTitle: "What weighs on the clinic's routine",
-      challenges: [
-        { title: "Patients who don't show up", description: "The front desk spends the morning calling to confirm appointments. Slots still go empty, with no time left to call another patient." },
-        { title: 'eSocial events that bounce back', description: 'A wrong job code or an exam outside the health program sends the event back. The team finds out later, reopens the exam record and races the deadline.' },
-        { title: 'Follow-ups nobody remembered', description: 'The patient was due back in six months, but the reminder depends on someone checking the calendar. When nobody checks, the patient never returns.' },
-      ],
-      workflowsTitle: 'Automations for your clinic',
-      workflowsText: 'Three examples, adjusted to the way your clinic works',
-      workflowSubtitles: ['WhatsApp reminder and an updated calendar', 'Errors flagged before submission, with the suggested fix', 'A message to the patient when it is time to come back'],
-      resultsTitle: 'What changes day to day',
-      resultsParagraphs: [
-        'The front desk stops spending the morning on the phone. Patients confirm over WhatsApp and open slots show up in time to call someone else.',
-        'In eSocial, errors appear before submission, when fixing them still takes minutes. The team stops reopening exam records over a wrong code.',
-      ],
-      integrationsTitle: 'Works with the systems you already use',
-      integrationsText: 'The automation connects to what the clinic already has, without replacing any system.',
-      ctaTitle: 'Which task weighs most on your clinic?',
-      ctaText: 'Tell us how your clinic works today. We reply within 1 business day to schedule the 30-minute call.',
-      ctaButton: 'Request an assessment',
-      ctaSecondary: { label: 'See the eSocial validator', href: '/validador-esocial' },
-    } as IndustryCopy,
-    services: {
-      meta: {
-        title: 'Professional services · mil&dez',
-        description: 'Renewals, deadlines and billing on time for firms and service providers, in the systems you already use.',
-      },
-      badge: 'Professional services',
-      heroTitle: ['No deadline', 'depends on memory.'],
-      heroText: 'Your firm gets a reminder for every renewal with time to decide, and the invoice goes out when the delivery happens.',
-      heroCta: 'Request an assessment',
-      challengesTitle: 'The cost of invisible work',
-      challenges: [
-        { title: "Hours that don't get billed", description: 'Proposals, client folders, invoices and collections take hours every week, and nobody pays for that time.' },
-        { title: 'Contracts and deadlines', description: 'The renewal date sits in some email, folder or spreadsheet, but nobody was reminded. The contract expires and the fee stops coming in.' },
-        { title: 'Manual collections', description: 'The invoice goes out late, the client forgets to pay and someone spends hours matching what was delivered with what was billed.' },
-      ],
-      workflowsTitle: 'Automations for your firm',
-      workflowsText: 'Three examples, adjusted to the way your firm works',
-      workflowSubtitles: ['Folder, documents and welcome ready on day one', 'Early reminder, and renewal only with your approval', 'A recorded delivery becomes an invoice and a payment reminder'],
-      resultsTitle: 'What changes day to day',
-      resultsParagraphs: [
-        'The hours that went into proposals, folders and collections go back to the work clients pay for.',
-        'Renewals arrive with a reminder and go through your approval before they are sent. The invoice goes out when the delivery happens, and the payment reminder follows without anyone chasing.',
-      ],
-      integrationsTitle: 'Works with the systems you already use',
-      integrationsText: 'The automation connects to what the firm already has, without replacing any system.',
-      ctaTitle: 'Which deadline worries your firm most?',
-      ctaText: 'Tell us how your firm works today. We reply within 1 business day to schedule the 30-minute call.',
-      ctaButton: 'Request an assessment',
-    } as IndustryCopy,
-    agribusiness: {
-      meta: {
-        title: 'Agribusiness · mil&dez',
-        description: 'Supply quotes, licenses and field updates organized in one place, for growers and cooperatives.',
-      },
-      badge: 'Agribusiness',
-      heroTitle: ['Suppliers and field', 'in one place.'],
-      heroText: 'Supply quotes arrive side by side in a spreadsheet, and what the field sends over WhatsApp reaches the office already organized.',
-      heroCta: 'Request an assessment',
-      challengesTitle: 'The daily grind that slows the operation',
-      challenges: [
-        { title: 'Suppliers on personal WhatsApp', description: 'Quotes, deadlines and confirmations scattered across personal chats. Nobody knows what was agreed or with whom.' },
-        { title: 'Licenses in loose folders', description: 'Licenses, certificates and reports sit in different folders. Expiration dates go unnoticed and inspections catch you off guard.' },
-        { title: 'Field and office disconnected', description: 'Field updates arrive as photos and loose text. The office spends hours organizing what should already be ready.' },
-      ],
-      workflowsTitle: 'Automations for your operation',
-      workflowsText: 'Three examples, adjusted to the way your operation works',
-      workflowSubtitles: ['Order, quote and confirmation in the same place', 'A reminder before every expiration', 'Field messages and photos organized in the spreadsheet'],
-      resultsTitle: 'What changes day to day',
-      resultsParagraphs: [
-        "Quotes stop depending on someone's personal WhatsApp. What was ordered, from whom and for how much is on record.",
-        'Licenses and certificates send a reminder before they expire, and the office gets field updates already organized in the spreadsheet.',
-      ],
-      integrationsTitle: 'Works with the systems you already use',
-      integrationsText: 'The automation connects to what the operation already has, without replacing any system.',
-      ctaTitle: 'Where does your operation lose the most time?',
-      ctaText: 'Tell us how your operation works today. We reply within 1 business day to schedule the 30-minute call.',
-      ctaButton: 'Request an assessment',
-    } as IndustryCopy,
   },
 
   terms: {

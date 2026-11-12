@@ -23,39 +23,17 @@ export interface LegalPage {
   sections: LegalSection[]
 }
 
-export interface IndustryCopy {
-  meta: { title: string; description: string }
-  badge: string
-  heroTitle: [string, string]
-  heroText: string
-  heroCta: string
-  challengesTitle: string
-  challenges: { title: string; description: string }[]
-  workflowsTitle: string
-  workflowsText: string
-  workflowSubtitles: [string, string, string]
-  resultsTitle: string
-  resultsParagraphs: [string, string]
-  integrationsTitle: string
-  integrationsText: string
-  ctaTitle: string
-  ctaText: string
-  ctaButton: string
-  ctaSecondary?: { label: string; href: string }
-}
-
 export const pt = {
   site: {
     title: 'mil&dez · Automação de processos',
     description:
-      'Confirmação de consultas, cobranças, prazos e conferência do eSocial no automático, nos sistemas que você já usa.',
-    keywords: ['automação de processos', 'automação para clínicas', 'confirmação de consultas', 'eSocial SST', 'Belo Horizonte', 'Brasil'],
+      'Confirmação de agendamentos, cobranças, prazos e lançamento de notas no automático, nos sistemas que você já usa.',
+    keywords: ['automação de processos', 'automação de tarefas', 'automação para pequenas e médias empresas', 'confirmação de agendamentos', 'Belo Horizonte', 'Brasil'],
     skipLink: 'Pular para o conteúdo',
   },
 
   header: {
     home: 'Início',
-    industries: 'Setores',
     pricing: 'Preços',
     contact: 'Contato',
     openMenu: 'Abrir menu',
@@ -67,10 +45,6 @@ export const pt = {
   footer: {
     tagline: 'seu trabalho no automático',
     home: 'Início',
-    health: 'Saúde',
-    services: 'Serviços',
-    agribusiness: 'Agronegócio',
-    esocial: 'Validador eSocial',
     whatsapp: 'WhatsApp',
     address: 'Belo Horizonte, MG · CNPJ: 44.584.460/0001-80',
     rights: '© 2026 mil&dez. Todos os direitos reservados.',
@@ -115,14 +89,14 @@ export const pt = {
     meta: {
       title: 'mil&dez · Automação de processos para pequenas e médias empresas',
       description:
-        'Confirmação de consultas, cobranças, prazos e conferência do eSocial no automático, nos sistemas que você já usa.',
+        'Confirmação de agendamentos, cobranças, prazos e lançamento de notas no automático, nos sistemas que você já usa.',
     },
     hero: {
       line1: 'Sua equipe para de',
       line2: 'repetir tarefa.',
       accent: 'O sistema faz por ela.',
       subtitle:
-        'Consultas confirmadas, cobranças enviadas e prazos acompanhados sem ninguém precisar lembrar. A automação funciona nos sistemas que você já usa.',
+        'Agendamentos confirmados, cobranças enviadas e prazos acompanhados sem ninguém precisar lembrar. A automação funciona nos sistemas que você já usa.',
       cta: 'Solicitar diagnóstico',
       ctaNote: 'Uma conversa de 30 minutos, sem compromisso. Respondemos em até 1 dia útil para combinar o horário.',
       secondary: 'Ver exemplos de automação',
@@ -133,13 +107,12 @@ export const pt = {
     },
     pipeline: {
       summary:
-        'Três exemplos de automação. Cada ASO finalizado é conferido com as regras do eSocial antes do envio. As notas fiscais que chegam por e-mail são lidas e lançadas no ERP. Um novo lead é pesquisado e recebe uma proposta pronta para enviar.',
+        'Três exemplos de automação. Cada planilha de pedidos é conferida antes de seguir para o próximo passo. As notas fiscais que chegam por e-mail são lidas e lançadas no ERP. Um novo lead é pesquisado e recebe uma proposta pronta para enviar.',
       stages: ['Entrada', 'Automação mil&dez', 'Saída'],
-      validatorLink: 'Ver o validador eSocial',
       scenarios: [
         {
-          input: { title: 'ASO finalizado', text: 'Exame ocupacional lançado no sistema da clínica' },
-          task: { title: 'Conferência eSocial', text: 'Confere CBO, vínculo e PCMSO de cada exame' },
+          input: { title: 'Planilha de pedidos', text: 'Pedidos lançados pela equipe' },
+          task: { title: 'Conferência de dados', text: 'Confere cadastro, valores e prazos de cada linha' },
           output: { title: 'Conferido antes do envio', text: 'Erros apontados com a correção sugerida' },
         },
         {
@@ -160,7 +133,7 @@ export const pt = {
       subtitle:
         'Três problemas aparecem em quase toda empresa de pequeno e médio porte. Eles custam horas toda semana e raramente aparecem em algum relatório.',
       points: [
-        { title: 'A mesma tarefa, todo dia', description: 'Confirmar consultas, mandar lembretes, atualizar planilhas. Alguém da equipe faz isso à mão, uma mensagem de cada vez.' },
+        { title: 'A mesma tarefa, todo dia', description: 'Confirmar agendamentos, mandar lembretes, atualizar planilhas. Alguém da equipe faz isso à mão, uma mensagem de cada vez.' },
         { title: 'O prazo que ninguém lembrou', description: 'Contrato que venceu, cobrança que não saiu, licença que expirou. Cada esquecimento vira retrabalho, multa ou cliente perdido.' },
         { title: 'Informação em cinco lugares', description: 'O pedido chegou no WhatsApp, o preço está na planilha e a nota ficou no e-mail. Para responder o cliente, alguém precisa juntar tudo.' },
       ],
@@ -232,34 +205,34 @@ export const pt = {
       titleLead: 'Quanto vale',
       titleAccent: 'uma automação dessas',
       subtitle:
-        'Fizemos as contas para três negócios típicos, um para cada exemplo acima. As premissas ficam à vista, para você comparar com a sua realidade.',
+        'Fizemos as contas para três empresas típicas, cada uma com uma das automações acima. As premissas ficam à vista, para você comparar com a sua realidade.',
       subscription: 'Mensalidade',
       savings: 'Retorno estimado',
       perMonth: '/mês',
       items: [
         {
-          type: 'Clínica odontológica',
-          size: '12 profissionais',
-          automation: 'Automação: confirmação de consultas',
+          type: 'Empresa com agenda de atendimento',
+          size: '12 pessoas na equipe',
+          automation: 'Automação: confirmação de agendamentos',
           subscription: 'R$500',
           savings: 'R$3.000',
-          assumption: 'Premissa: 10 faltas a menos por mês, com ticket médio de R$250, e 20 horas de recepção liberadas (R$25/h).',
+          assumption: 'Premissa: 10 faltas a menos por mês, com ticket médio de R$250, e 20 horas de atendimento liberadas (R$25/h).',
         },
         {
-          type: 'Escritório de contabilidade',
+          type: 'Empresa com contratos recorrentes',
           size: '6 colaboradores',
           automation: 'Automação: renovação de contratos',
           subscription: 'R$500',
           savings: 'R$1.900',
-          assumption: 'Premissa: 15 horas por mês liberadas (R$60/h) e R$1.000 por mês em honorários que deixam de se perder por renovação esquecida.',
+          assumption: 'Premissa: 15 horas por mês liberadas (R$60/h) e R$1.000 por mês em receita que deixa de se perder por renovação esquecida.',
         },
         {
-          type: 'Cooperativa de café',
-          size: '50 produtores',
-          automation: 'Automação: cotação de insumos',
+          type: 'Empresa com compras frequentes',
+          size: 'R$400 mil em compras por mês',
+          automation: 'Automação: cotação com fornecedores',
           subscription: 'R$2.000',
           savings: 'R$5.600',
-          assumption: 'Premissa: 1% de economia em R$400 mil de compras por mês e 40 horas de cotação liberadas (R$40/h).',
+          assumption: 'Premissa: 1% de economia nas compras e 40 horas de cotação liberadas (R$40/h).',
         },
       ],
       disclaimer: 'Estes valores são estimativas ilustrativas. No diagnóstico, refazemos a conta com os seus números.',
@@ -307,7 +280,7 @@ export const pt = {
       from: 'A partir de',
       perMonth: '/mês',
       tiers: [
-        { price: 'R$500', label: 'Uma automação simples', example: 'Para tarefas como confirmar consultas ou avisar sobre contratos próximos do vencimento.' },
+        { price: 'R$500', label: 'Uma automação simples', example: 'Para tarefas como confirmar agendamentos ou avisar sobre contratos próximos do vencimento.' },
         { price: 'R$2.000', label: 'Uma automação com várias etapas', example: 'Para processos como consultar fornecedores, comparar cotações e avisar a equipe.' },
         { price: 'R$6.000', label: 'Vários processos conectados', example: 'Para operações como acompanhar uma compra do pedido ao registro da nota fiscal.' },
       ],
@@ -381,122 +354,6 @@ export const pt = {
       button: 'Solicitar diagnóstico',
       note: 'Sem compromisso.',
     },
-  },
-
-  industries: {
-    meta: {
-      title: 'Setores · mil&dez',
-      description: 'Automação para clínicas, escritórios e agronegócio, nos sistemas que cada setor já usa.',
-    },
-    titleLead: 'Automação para',
-    titleAccent: 'o seu setor',
-    subtitle: 'Cada setor tem as suas tarefas que se repetem. Escolha o seu para ver exemplos de automação.',
-    cardCta: 'Ver automações',
-    cards: {
-      health: {
-        title: 'Saúde e clínicas',
-        description: 'Confirmação de consultas pelo WhatsApp, lembrete de retorno e conferência do eSocial antes do envio.',
-      },
-      services: {
-        title: 'Serviços profissionais',
-        description: 'Entrada de novos clientes, aviso de renovação de contratos e cobrança depois de cada entrega.',
-      },
-      agribusiness: {
-        title: 'Agronegócio',
-        description: 'Cotação de insumos, controle de licenças e informações do campo organizadas no escritório.',
-      },
-    },
-  },
-
-  industry: {
-    health: {
-      meta: {
-        title: 'Saúde e clínicas · mil&dez',
-        description: 'Confirmação de consultas pelo WhatsApp e conferência do eSocial SST antes do envio, para clínicas e consultórios.',
-      },
-      badge: 'Saúde e clínicas',
-      heroTitle: ['Menos faltas na agenda.', 'eSocial conferido antes do envio.'],
-      heroText: 'A confirmação de consultas sai pelo WhatsApp, sem a recepção ligar para cada paciente. Na medicina do trabalho, cada ASO é conferido com as regras do eSocial.',
-      heroCta: 'Solicitar diagnóstico',
-      challengesTitle: 'O que pesa na rotina da clínica',
-      challenges: [
-        { title: 'Paciente que não aparece', description: 'A recepção passa a manhã ligando para confirmar consultas. Mesmo assim, horários ficam vazios e não dá tempo de chamar outro paciente.' },
-        { title: 'Evento do eSocial que volta', description: 'Um CBO errado ou um exame fora do PCMSO faz o evento voltar. A equipe descobre depois, reabre o ASO e corre contra o prazo.' },
-        { title: 'Retorno que ninguém lembrou', description: 'O paciente devia voltar em seis meses para a revisão, mas o aviso depende de alguém olhar a agenda. Quando ninguém olha, ele não volta.' },
-      ],
-      workflowsTitle: 'Automações para a sua clínica',
-      workflowsText: 'Três exemplos, ajustados ao jeito que a sua clínica trabalha',
-      workflowSubtitles: ['Lembrete no WhatsApp e agenda atualizada', 'Erros apontados antes do envio, com a correção sugerida', 'Aviso ao paciente quando chega a hora de voltar'],
-      resultsTitle: 'O que muda na rotina',
-      resultsParagraphs: [
-        'A recepção deixa de passar a manhã ao telefone. Os pacientes confirmam pelo WhatsApp e os horários vagos aparecem a tempo de chamar outra pessoa.',
-        'No eSocial, os erros aparecem antes do envio, quando corrigir ainda leva minutos. A equipe para de reabrir ASO por causa de um código errado.',
-      ],
-      integrationsTitle: 'Funciona com os sistemas que você já usa',
-      integrationsText: 'A automação se conecta ao que a clínica já tem, sem trocar nenhum sistema.',
-      ctaTitle: 'Qual tarefa mais pesa na sua clínica?',
-      ctaText: 'Conte como a sua clínica trabalha hoje. Respondemos em até 1 dia útil para marcar a conversa de 30 minutos.',
-      ctaButton: 'Solicitar diagnóstico',
-      ctaSecondary: { label: 'Ver o validador eSocial', href: '/validador-esocial' },
-    } as IndustryCopy,
-    services: {
-      meta: {
-        title: 'Serviços profissionais · mil&dez',
-        description: 'Renovações, prazos e cobranças em dia para escritórios e prestadores de serviço, nos sistemas que você já usa.',
-      },
-      badge: 'Serviços profissionais',
-      heroTitle: ['Nenhum prazo', 'depende de memória.'],
-      heroText: 'O escritório recebe o aviso de cada renovação com tempo para decidir, e a cobrança sai quando a entrega acontece.',
-      heroCta: 'Solicitar diagnóstico',
-      challengesTitle: 'O custo do trabalho invisível',
-      challenges: [
-        { title: 'Horas que não viram faturamento', description: 'Proposta, pasta do cliente, fatura e cobrança tomam horas toda semana, e ninguém paga por esse tempo.' },
-        { title: 'Contratos e prazos', description: 'A data da renovação está em algum e-mail, pasta ou planilha, mas ninguém foi avisado. O contrato vence e o honorário deixa de entrar.' },
-        { title: 'Cobrança manual', description: 'A fatura atrasa, o cliente esquece de pagar e alguém passa horas conferindo o que foi entregue com o que foi cobrado.' },
-      ],
-      workflowsTitle: 'Automações para o seu escritório',
-      workflowsText: 'Três exemplos, ajustados ao jeito que o seu escritório trabalha',
-      workflowSubtitles: ['Pasta, documentos e boas-vindas prontos no primeiro dia', 'Aviso com antecedência e renovação só com a sua aprovação', 'A entrega registrada vira fatura e lembrete de pagamento'],
-      resultsTitle: 'O que muda na rotina',
-      resultsParagraphs: [
-        'As horas que iam para proposta, pasta e cobrança voltam para o trabalho que o cliente paga.',
-        'As renovações chegam com aviso e passam pela sua aprovação antes de sair. A fatura sai quando a entrega acontece, e o lembrete de pagamento vai sem ninguém precisar cobrar.',
-      ],
-      integrationsTitle: 'Funciona com os sistemas que você já usa',
-      integrationsText: 'A automação se conecta ao que o escritório já tem, sem trocar nenhum sistema.',
-      ctaTitle: 'Qual prazo mais preocupa o seu escritório?',
-      ctaText: 'Conte como o seu escritório trabalha hoje. Respondemos em até 1 dia útil para marcar a conversa de 30 minutos.',
-      ctaButton: 'Solicitar diagnóstico',
-    } as IndustryCopy,
-    agribusiness: {
-      meta: {
-        title: 'Agronegócio · mil&dez',
-        description: 'Cotações de insumos, licenças e informações do campo organizadas num só lugar, para produtores e cooperativas.',
-      },
-      badge: 'Agronegócio',
-      heroTitle: ['Fornecedores e campo', 'num só lugar.'],
-      heroText: 'As cotações de insumos chegam comparadas numa planilha, e o que o campo manda pelo WhatsApp entra organizado no escritório.',
-      heroCta: 'Solicitar diagnóstico',
-      challengesTitle: 'O dia a dia que trava a operação',
-      challenges: [
-        { title: 'Fornecedores no WhatsApp pessoal', description: 'Cotações, prazos e confirmações espalhados em conversas pessoais. Ninguém sabe o que foi combinado nem com quem.' },
-        { title: 'Licenças em pastas soltas', description: 'Licenças, certificados e laudos ficam em pastas diferentes. O vencimento passa sem ninguém ver e a fiscalização pega de surpresa.' },
-        { title: 'Campo e escritório desconectados', description: 'Informações do campo chegam por foto e texto solto. O escritório gasta horas organizando o que já deveria estar pronto.' },
-      ],
-      workflowsTitle: 'Automações para a sua operação',
-      workflowsText: 'Três exemplos, ajustados ao jeito que a sua operação trabalha',
-      workflowSubtitles: ['Pedido, cotação e confirmação no mesmo lugar', 'Aviso antes de cada vencimento', 'Mensagens e fotos do campo organizadas na planilha'],
-      resultsTitle: 'O que muda na rotina',
-      resultsParagraphs: [
-        'As cotações deixam de depender do WhatsApp pessoal de alguém. Fica registrado o que foi pedido, a quem e por quanto.',
-        'Licenças e certificados avisam antes de vencer, e o escritório recebe o que vem do campo já organizado na planilha.',
-      ],
-      integrationsTitle: 'Funciona com os sistemas que você já usa',
-      integrationsText: 'A automação se conecta ao que a operação já tem, sem trocar nenhum sistema.',
-      ctaTitle: 'Onde a sua operação mais perde tempo?',
-      ctaText: 'Conte como a sua operação funciona hoje. Respondemos em até 1 dia útil para marcar a conversa de 30 minutos.',
-      ctaButton: 'Solicitar diagnóstico',
-    } as IndustryCopy,
   },
 
   terms: {
