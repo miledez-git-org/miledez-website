@@ -1,0 +1,13 @@
+/* Rail gutter: the first card lines up with the section title (max-w-7xl container, px-6 / md:px-10),
+   and snapping keeps that alignment. Percentages resolve against the scroller width. */
+
+.scroller {
+  --gutter: max(1.5rem, calc((100% - 80rem) / 2 + 1.5rem));
+  scroll-padding-inline: var(--gutter);
+}
+
+@media (min-width: 768px) {
+  .scroller { --gutter: max(2.5rem, calc((100% - 80rem) / 2 + 2.5rem)); }
+}
+
+.track { padding-inline: var(--gutter); }
