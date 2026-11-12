@@ -79,7 +79,7 @@ export const pt = {
 
   routeError: {
     title: 'Algo deu errado',
-    text: 'Esta página não carregou. Tente de novo ou volte para o início. Se o erro continuar, fale conosco pelo WhatsApp: (31) 98352-9257.',
+    text: 'Esta página não carregou. Tente de novo ou volte para o início. Se o erro continuar, fale conosco pelo WhatsApp: (31) 98283-5587.',
     details: 'Detalhes técnicos',
     retry: 'Tentar de novo',
     home: 'Voltar ao início',

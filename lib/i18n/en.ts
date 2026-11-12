@@ -61,7 +61,7 @@ export const en: Dict = {
 
   routeError: {
     title: 'Something went wrong',
-    text: "This page didn't load. Try again or go back to the home page. If the error persists, reach us on WhatsApp: +55 31 98352-9257.",
+    text: "This page didn't load. Try again or go back to the home page. If the error persists, reach us on WhatsApp: +55 31 98283-5587.",
     details: 'Technical details',
     retry: 'Try again',
     home: 'Back to home',

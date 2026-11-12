@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, FormEvent } from 'react'
 import { getDict, localePath, type Locale } from '@/lib/i18n'
 
-const WHATSAPP_URL = 'https://wa.me/5531983529257'
+const WHATSAPP_URL = 'https://wa.me/5531982835587'
 
 interface ContactModalProps {
   isOpen: boolean

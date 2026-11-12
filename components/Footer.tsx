@@ -45,7 +45,7 @@ export default function Footer({ locale = 'pt' }: FooterProps) {
                 contato@miledez.com.br
               </a>
               <a
-                href="https://wa.me/5531983529257"
+                href="https://wa.me/5531982835587"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-white/80 hover:text-white transition-colors"
