@@ -29,7 +29,7 @@ export default function BusinessProfilesSection({ onContactClick, locale = 'pt' 
       </div>
 
       {/* One card per example above */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
         {t.items.map((profile, index) => {
           const delay = 150 + index * 100
 
@@ -47,15 +47,17 @@ export default function BusinessProfilesSection({ onContactClick, locale = 'pt' 
               <p className="text-sm text-zinc-500 mt-1">{profile.type}</p>
 
               {/* Net gain is the headline; the monthly fee stays small underneath */}
-              <div className="mt-6 rounded-xl border border-sky-200 bg-sky-50 p-5">
-                <p className="text-sm font-semibold uppercase tracking-wider text-sky-800">{t.gainLabel}</p>
-                <p className="mt-1 text-sky-700">
-                  <span className="text-4xl lg:text-5xl font-bold tracking-tight tabular-nums">{profile.gain}</span>
-                  <span className="text-lg font-medium">{t.perMonth}</span>
-                </p>
-                <p className="mt-3 text-sm text-zinc-500 tabular-nums">
-                  {t.subscription} {profile.subscription}
-                </p>
+              <div className="mt-auto pt-6">
+                <div className="rounded-xl border border-sky-200 bg-sky-50 p-5">
+                  <p className="text-sm font-semibold uppercase tracking-wider text-sky-800">{t.gainLabel}</p>
+                  <p className="mt-1 flex flex-wrap items-baseline gap-x-1 text-sky-700">
+                    <span className="text-4xl md:text-5xl lg:text-3xl xl:text-5xl font-bold tracking-tight tabular-nums">{profile.gain}</span>
+                    <span className="text-lg font-medium">{t.perMonth}</span>
+                  </p>
+                  <p className="mt-3 text-sm text-zinc-500 tabular-nums">
+                    {t.subscription} {profile.subscription}
+                  </p>
+                </div>
               </div>
             </div>
           )
