@@ -253,7 +253,7 @@ html {
   line-height: 1.5;
 }
 
-/* Primary Button - light-blue accent (sky-700, design system rule 7) */
+/* Primary Button - violet accent (sky-700, design system rule 7) */
 .btn-primary {
   background-color: theme('colors.sky.700');
   color: theme('colors.white');
