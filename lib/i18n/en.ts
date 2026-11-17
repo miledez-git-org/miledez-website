@@ -79,7 +79,6 @@ export const en: Dict = {
       subtitle:
         'Bookings confirmed, invoices sent and deadlines tracked without anyone having to remember. The automation runs in the systems you already use.',
       cta: 'Request an assessment',
-      ctaNote: 'A 30-minute call, no commitment. We reply within 1 hour to set up a time.',
       secondary: 'See automation examples',
     },
     diagram: {
@@ -113,7 +112,6 @@ export const en: Dict = {
       titleAccent: 'running on autopilot',
       subtitle:
         'Examples that work in any industry. In your company, the automation follows your process and uses the systems you already have.',
-      cardLabel: 'Example',
       workflows: [
         {
           title: 'Appointment scheduling and reminders',

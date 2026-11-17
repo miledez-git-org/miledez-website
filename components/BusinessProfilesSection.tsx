@@ -48,13 +48,13 @@ export default function BusinessProfilesSection({ onContactClick, locale = 'pt' 
 
               {/* Net gain is the headline; the monthly fee stays small underneath */}
               <div className="mt-auto pt-6">
-                <div className="rounded-xl border border-sky-200 bg-sky-50 p-5">
-                  <p className="text-sm font-semibold uppercase tracking-wider text-sky-800">{t.gainLabel}</p>
-                  <p className="mt-1 flex flex-wrap items-baseline gap-x-1 text-sky-700">
+                <div className="rounded-xl bg-zinc-900 p-5">
+                  <p className="text-sm font-semibold uppercase tracking-wider text-zinc-300">{t.gainLabel}</p>
+                  <p className="mt-1 flex flex-wrap items-baseline gap-x-1 text-white">
                     <span className="text-4xl md:text-5xl lg:text-3xl xl:text-5xl font-bold tracking-tight tabular-nums">{profile.gain}</span>
-                    <span className="text-lg font-medium">{t.perMonth}</span>
+                    <span className="text-lg font-medium text-zinc-300">{t.perMonth}</span>
                   </p>
-                  <p className="mt-3 text-sm text-zinc-500 tabular-nums">
+                  <p className="mt-3 text-sm text-zinc-300 tabular-nums">
                     {t.subscription} {profile.subscription}
                   </p>
                 </div>

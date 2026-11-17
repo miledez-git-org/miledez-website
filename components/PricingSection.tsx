@@ -45,16 +45,14 @@ export default function PricingSection({ onContactClick, locale = 'pt' }: Pricin
         </p>
       </div>
 
-      {/* Price tiers — 3 columns; the middle one is featured */}
+      {/* Price tiers — 3 equal columns */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-        {t.tiers.map((tier, i) => {
-          const featured = i === 1
-          return (
+        {t.tiers.map((tier, i) => (
           <div
             key={tier.price}
-            className={`bg-white border rounded-lg p-6 lg:p-8 flex flex-col shadow-sm ${featured ? 'border-sky-600 ring-1 ring-sky-600' : 'border-zinc-200'}`}
+            className="bg-white border border-zinc-200 rounded-lg p-6 lg:p-8 flex flex-col shadow-sm"
           >
-            <p className={`text-sm font-semibold uppercase tracking-[0.15em] mb-3 ${featured ? 'text-sky-700' : 'text-zinc-500'}`}>
+            <p className="text-sm font-semibold uppercase tracking-[0.15em] mb-3 text-zinc-500">
               {t.from}
             </p>
             <p className="heading-display text-3xl md:text-4xl text-zinc-900">
@@ -81,7 +79,7 @@ export default function PricingSection({ onContactClick, locale = 'pt' }: Pricin
                               <path d="M5 12h14M13 6l6 6-6 6" />
                             </svg>
                           )}
-                          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-zinc-200 bg-zinc-50">
+                          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-zinc-50">
                             <Image src={`/software-company-logos/${logo}.svg`} alt={LOGO_NAMES[logo]} width={20} height={20} draggable={false} />
                           </div>
                         </Fragment>
@@ -90,27 +88,18 @@ export default function PricingSection({ onContactClick, locale = 'pt' }: Pricin
                   </li>
                 ))}
               </ul>
-              <button
-                onClick={onContactClick}
-                className={`btn btn-md w-full mt-8 ${featured ? 'btn-primary' : 'btn-outline'}`}
-              >
-                {t.cta}
-              </button>
             </div>
           </div>
-          )
-        })}
+        ))}
       </div>
 
-      {/* What every tier includes */}
-      <ul className="mt-10 flex flex-col sm:flex-row sm:flex-wrap gap-x-12 gap-y-3">
-        {t.notes.map((note) => (
-          <li key={note} className="flex items-center gap-3 text-base text-body">
-            <span aria-hidden="true" className="h-2 w-2 shrink-0 rounded-full border-[1.5px] border-sky-600" />
-            {note}
-          </li>
-        ))}
-      </ul>
+      {/* One CTA for all tiers, with what every tier includes underneath */}
+      <div className="mt-12 flex flex-col items-center gap-4 text-center">
+        <button onClick={onContactClick} className="btn btn-primary btn-xl">
+          {t.cta}
+        </button>
+        <p className="text-sm text-zinc-500">{t.notes.join(' · ')}</p>
+      </div>
     </div>
   )
 }

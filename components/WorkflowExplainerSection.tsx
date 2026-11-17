@@ -6,8 +6,8 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { getDict, type Locale } from '@/lib/i18n'
 
 /**
- * Example workflows as stacked rows: name on the left, the chain of systems on the right
- * (outlined logo boxes joined by arrows; a vertical list below sm). Copy lives in `home.explainer`.
+ * Example workflows as a card grid on the zinc-100 band: each card has the name, the chain of systems
+ * (logo tiles joined by arrows) and the numbered steps. Copy lives in `home.explainer`.
  */
 
 // Logo per step, in the order of `home.explainer.workflows[].steps`. Files in public/software-company-logos.
@@ -23,7 +23,6 @@ const LOGOS: string[][] = [
 export default function WorkflowExplainerSection({ locale = 'pt' }: { locale?: Locale }) {
   const t = getDict(locale).home.explainer
   const { ref, isVisible } = useScrollReveal({ threshold: 0.05 })
-  const pad = (n: number) => String(n).padStart(2, '0')
 
   const reveal = (delay: number, y: number): CSSProperties => ({
     transform: isVisible ? 'translateY(0)' : `translateY(${y}px)`,
@@ -32,7 +31,7 @@ export default function WorkflowExplainerSection({ locale = 'pt' }: { locale?: L
   })
 
   return (
-    <section id="exemplos" className="bg-white py-24 md:py-36">
+    <section id="exemplos" className="bg-zinc-100 border-y border-zinc-200 py-24 md:py-36">
       <div ref={ref} className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="max-w-3xl" style={reveal(0, 20)}>
           <h2 className="heading-display text-[2.25rem] md:text-5xl lg:text-6xl text-zinc-900">
@@ -41,40 +40,38 @@ export default function WorkflowExplainerSection({ locale = 'pt' }: { locale?: L
           <p className="mt-6 text-lg text-body leading-relaxed max-w-2xl">{t.subtitle}</p>
         </div>
 
-        <ul className="mt-14 md:mt-20 divide-y divide-zinc-200 border-t border-zinc-200">
+        <ul className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {t.workflows.map((workflow, i) => (
             <li key={workflow.title}
-              className="grid grid-cols-1 lg:grid-cols-[18rem_1fr] gap-6 lg:gap-16 items-center py-10 md:py-12"
+              className="flex flex-col gap-5 rounded-lg border border-zinc-200 bg-white p-6 shadow-sm"
               style={reveal(150 + i * 80, 16)}>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.15em] text-sky-700">
-                  {t.cardLabel} {pad(i + 1)}
-                </p>
-                <h3 className="mt-3 text-2xl font-extrabold tracking-tight text-zinc-900">{workflow.title}</h3>
+              <h3 className="text-lg font-extrabold tracking-tight text-zinc-900">{workflow.title}</h3>
+
+              {/* Systems chain */}
+              <div className="flex items-center gap-2" aria-hidden="true">
+                {LOGOS[i].map((logo, j) => (
+                  <Fragment key={logo}>
+                    {j > 0 && (
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-zinc-400">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                      </svg>
+                    )}
+                    <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-zinc-50">
+                      <Image src={`/software-company-logos/${logo}.svg`} alt="" width={24} height={24} draggable={false} className="h-6 w-6" />
+                    </div>
+                  </Fragment>
+                ))}
               </div>
 
-              {/* Systems chain: horizontal from sm, a vertical list on phones */}
-              <ol className="flex flex-col sm:flex-row sm:items-start">
+              <ol className="flex flex-col gap-2 text-sm">
                 {workflow.steps.map((stepCopy, j) => (
-                  <Fragment key={stepCopy.title}>
-                    {j > 0 && (
-                      <li aria-hidden="true" className="flex h-6 w-14 justify-center sm:h-20 sm:w-auto sm:flex-1 sm:items-center sm:px-2">
-                        <span className="w-[1.5px] bg-sky-600 sm:h-[1.5px] sm:w-auto sm:flex-1" />
-                        <svg className="-ml-3 hidden h-3 w-3 shrink-0 text-sky-600 sm:block" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M6 1l5 5-5 5" />
-                        </svg>
-                      </li>
-                    )}
-                    <li className="flex items-center gap-4 sm:w-36 sm:flex-col sm:gap-4 sm:text-center">
-                      <div className="grid h-14 w-14 shrink-0 place-items-center rounded-lg border-[1.5px] border-sky-600 bg-white sm:h-20 sm:w-20">
-                        <Image src={`/software-company-logos/${LOGOS[i][j]}.svg`} alt="" width={28} height={28} draggable={false} className="h-6 w-6 sm:h-7 sm:w-7" />
-                      </div>
-                      <div className="flex flex-col gap-0.5">
-                        <p className="text-sm font-bold text-zinc-900">{stepCopy.title}</p>
-                        <p className="text-sm text-zinc-500">{stepCopy.text}</p>
-                      </div>
-                    </li>
-                  </Fragment>
+                  <li key={stepCopy.title} className="flex gap-3">
+                    <span className="w-4 shrink-0 tabular-nums text-zinc-400">{j + 1}</span>
+                    <span>
+                      <span className="font-semibold text-zinc-900">{stepCopy.title}</span>{' '}
+                      <span className="text-zinc-500">· {stepCopy.text}</span>
+                    </span>
+                  </li>
                 ))}
               </ol>
             </li>

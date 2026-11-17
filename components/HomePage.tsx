@@ -67,7 +67,7 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
                 <h1 className="heading-display text-[2.5rem] sm:text-5xl lg:text-6xl text-zinc-900 leading-[1.1]">
                   {t.hero.line1}<br />
                   {t.hero.line2}<br />
-                  <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-zinc-700 to-zinc-600">{t.hero.accent}</span>
+                  <span className="inline-block text-sky-700">{t.hero.accent}</span>
                 </h1>
 
                 {/* Subheadline */}
@@ -76,24 +76,20 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
                 </p>
               </div>
 
-              {/* CTAs: full width and stacked at the foot of the first screen on mobile; from sm the
-                  secondary link sits next to the primary and the note goes under both */}
-              <div className="mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-[auto_1fr] items-center sm:justify-items-start gap-x-4 gap-y-3">
+              {/* CTAs: full width and stacked at the foot of the first screen on mobile; side by side from sm */}
+              <div className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={() => setIsContactModalOpen(true)}
-                  className="btn btn-primary btn-xl w-full sm:w-auto sm:col-start-1 sm:row-start-1"
+                  className="btn btn-primary btn-xl w-full sm:w-auto"
                 >
                   {t.hero.cta}
                 </button>
                 <a
                   href="#exemplos"
-                  className="btn btn-outline btn-xl w-full sm:w-auto sm:col-start-2 sm:row-start-1"
+                  className="btn btn-outline-teal btn-xl w-full sm:w-auto"
                 >
                   {t.hero.secondary}
                 </a>
-                <p className="text-sm text-body max-w-md sm:col-span-2 sm:row-start-2">
-                  {t.hero.ctaNote}
-                </p>
               </div>
             </div>
 
@@ -108,14 +104,10 @@ export default function HomePage({ locale = 'pt' }: { locale?: Locale }) {
       </section>
 
       {/* Story order: example → numbers → what's included → value → process → price → doubts → close.
-          White sections are separated by hairlines; the only band is the dark "included" one. */}
-
-      <Divider />
+          White sections are separated by hairlines; the examples sit on the zinc-100 band and "included" is the dark one. */}
 
       {/* Workflow Explainer - How automations work */}
       <WorkflowExplainerSection locale={locale} />
-
-      <Divider />
 
       {/* Key figures */}
       <NumbersSection locale={locale} />

@@ -97,7 +97,6 @@ export const pt = {
       subtitle:
         'Agendamentos confirmados, cobranças enviadas e prazos acompanhados sem ninguém precisar lembrar. A automação funciona nos sistemas que você já usa.',
       cta: 'Solicitar diagnóstico',
-      ctaNote: 'Uma conversa de 30 minutos, sem compromisso. Respondemos em até 1 hora para combinar o horário.',
       secondary: 'Ver exemplos de automação',
     },
     diagram: {
@@ -131,7 +130,6 @@ export const pt = {
       titleAccent: 'rodando no automático',
       subtitle:
         'Exemplos que servem para qualquer setor. Na sua empresa, a automação segue o seu processo e usa os sistemas que você já tem.',
-      cardLabel: 'Exemplo',
       workflows: [
         {
           title: 'Agendamento e lembretes',
