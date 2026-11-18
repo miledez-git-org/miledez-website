@@ -5,9 +5,10 @@ import { getDict, type Locale } from '@/lib/i18n'
 import styles from './DecisionFlow.module.css'
 
 /**
- * "Como funciona" visual: one ERP order goes through an automatic check and branches. Approved orders produce a
- * PDF confirmation and a CRM update; divergent ones send the manager an alert. 9 s cycle that restarts while on
- * screen. React port of the `workflow-branch` animation (miledez-git-org/animations). Copy lives in `home.decision`.
+ * Main visual of the "Funcionando em seu negócio" page: one ERP order goes through an automatic check and branches.
+ * Approved orders produce a PDF confirmation and a CRM update; divergent ones send the manager an alert. 9 s cycle
+ * that restarts while on screen. React port of the `workflow-branch` animation (miledez-git-org/animations).
+ * Copy lives in `atWork.decision`.
  */
 
 const CYCLE = 9000
@@ -89,7 +90,7 @@ function Logo({ name, alt }: { name: string; alt: string }) {
 }
 
 export default function DecisionFlow({ locale = 'pt' }: { locale?: Locale }) {
-  const t = getDict(locale).home.decision
+  const t = getDict(locale).atWork.decision
   const [cycle, setCycle] = useState(0)
   const [geo, setGeo] = useState<{ w: number; h: number; links: (Link & { d: string })[]; pills: { x: number; y: number }[] }>({
     w: 0, h: 0, links: [], pills: [],
