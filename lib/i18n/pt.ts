@@ -125,6 +125,19 @@ export const pt = {
         },
       ],
     },
+    decision: {
+      summary:
+        'Um pedido chega do ERP e passa por uma verificação automática de cadastro, crédito e estoque. Se está tudo certo, a confirmação em PDF vai para o cliente e o CRM é atualizado. Se há divergência, o gestor recebe um alerta com os itens e a sugestão de ação.',
+      trigger: { title: 'Novo pedido no ERP', text: 'Cliente, itens e valor recebidos' },
+      check: { kicker: 'Verificação automática', title: 'Confere cadastro, crédito e estoque', text: 'Em segundos, para cada pedido' },
+      ok: { label: 'aprovado', title: 'Tudo certo', text: 'Aprovado sem ninguém olhar' },
+      warn: { label: 'revisar', title: 'Divergência encontrada', text: 'Estoque insuficiente para 2 itens' },
+      outputs: {
+        pdf: { title: 'Confirmação em PDF', text: 'Enviada ao cliente' },
+        crm: { title: 'CRM atualizado', text: 'Etapa e valor do negócio' },
+        alert: { title: 'Alerta para o gestor', text: 'Com os itens e a sugestão de ação' },
+      },
+    },
     explainer: {
       titleLead: 'Tarefas do dia a dia,',
       titleAccent: 'rodando no automático',

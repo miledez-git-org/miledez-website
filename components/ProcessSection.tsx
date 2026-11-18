@@ -2,6 +2,7 @@
 
 import { Fragment } from 'react'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
+import DecisionFlow from '@/components/DecisionFlow'
 import { getDict, type Locale } from '@/lib/i18n'
 
 export default function ProcessSection({ locale = 'pt' }: { locale?: Locale }) {
@@ -41,6 +42,11 @@ export default function ProcessSection({ locale = 'pt' }: { locale?: Locale }) {
             </Fragment>
           ))}
         </div>
+      </div>
+
+      {/* Example flow: one order checked automatically and routed by business rules */}
+      <div className="mb-16 md:mb-20">
+        <DecisionFlow locale={locale} />
       </div>
 
       {/* Steps: 4-column grid with large pale numbers */}
