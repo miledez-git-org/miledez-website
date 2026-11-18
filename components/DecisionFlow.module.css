@@ -1,0 +1,40 @@
+/* Timeline for DecisionFlow (9 s cycle). Each cycle remounts the keyed elements, so every animation restarts together.
+   ms: trigger lit 1000 · pulse to check 1400 · check lit 2100 · scan 2300-3500 · pulses to branches 3500 · pills 3900
+   · branches lit 4100 · pulses to outputs 4700 / 4900 · outputs lit 5300 / 5700 · everything resets 8300-8700.
+   Ported from animations/workflow-branch (miledez-git-org/animations). */
+
+.rise { animation: rise 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--in, 0ms) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+/* fadeOut has no backwards fill, so it only takes over at 8300 ms */
+.lit { opacity: 0; animation: fadeIn 300ms cubic-bezier(0.16, 1, 0.3, 1) var(--on, 0ms) both, fadeOut 400ms ease-in 8300ms forwards; }
+.trace { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw var(--dur, 600ms) cubic-bezier(0.4, 0, 0.2, 1) var(--go, 0ms) both, fadeOut 400ms ease-in 8300ms forwards; }
+.pill { opacity: 0; animation: fadeIn 300ms cubic-bezier(0.16, 1, 0.3, 1) var(--in, 0ms) both, fadeOut 400ms ease-in 8300ms forwards; }
+.scan { transform-origin: left center; transform: scaleX(0); animation: scan 1200ms cubic-bezier(0.4, 0, 0.2, 1) 2300ms both, fadeOut 400ms ease-in 8300ms forwards; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes scan { to { transform: scaleX(1); } }
+
+/* Centred on the path by offset-anchor alone: no negative margin, or the dot drifts off the line. */
+.dot { position: absolute; left: 0; top: 0; offset-rotate: 0deg; offset-anchor: 50% 50%; opacity: 0;
+       animation: travel var(--dur, 600ms) cubic-bezier(0.4, 0, 0.2, 1) var(--go, 0ms) both; }
+@keyframes travel {
+  0% { offset-distance: 0%; opacity: 0; }
+  15%, 85% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+.ok { transform: scale(0); animation: pop 450ms cubic-bezier(0.34, 1.56, 0.64, 1) var(--on, 0ms) both, popOut 200ms ease-in 8300ms forwards; }
+@keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }
+@keyframes popOut { from { transform: scale(1); } to { transform: scale(0); } }
+
+/* Reduced motion: the finished state, fully drawn and lit, no travel. The component also stops cycling. */
+@media (prefers-reduced-motion: reduce) {
+  .rise { animation: none; opacity: 1; transform: none; }
+  .lit, .pill { animation: none; opacity: 1; }
+  .trace { animation: none; stroke-dashoffset: 0; }
+  .scan { animation: none; transform: scaleX(1); }
+  .dot { display: none; }
+  .ok { animation: none; transform: scale(1); }
+}

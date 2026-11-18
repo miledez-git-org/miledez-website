@@ -107,6 +107,19 @@ export const en: Dict = {
         },
       ],
     },
+    decision: {
+      summary:
+        'An order arrives from the ERP and goes through an automatic check of customer record, credit and stock. If everything is right, a PDF confirmation goes to the customer and the CRM is updated. If something is off, the manager gets an alert with the items and a suggested action.',
+      trigger: { title: 'New order in the ERP', text: 'Customer, items and amount received' },
+      check: { kicker: 'Automatic check', title: 'Checks customer, credit and stock', text: 'In seconds, for every order' },
+      ok: { label: 'approved', title: 'All good', text: 'Approved without anyone looking' },
+      warn: { label: 'review', title: 'Mismatch found', text: 'Not enough stock for 2 items' },
+      outputs: {
+        pdf: { title: 'PDF confirmation', text: 'Sent to the customer' },
+        crm: { title: 'CRM updated', text: 'Deal stage and value' },
+        alert: { title: 'Alert for the manager', text: 'With the items and a suggested action' },
+      },
+    },
     explainer: {
       titleLead: 'Everyday tasks,',
       titleAccent: 'running on autopilot',
