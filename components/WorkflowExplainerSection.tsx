@@ -2,8 +2,9 @@
 
 import { Fragment, type CSSProperties } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
-import { getDict, type Locale } from '@/lib/i18n'
+import { getDict, localePath, type Locale } from '@/lib/i18n'
 
 /**
  * Example workflows as a card grid on the zinc-100 band: each card has the name, the chain of systems
@@ -77,6 +78,15 @@ export default function WorkflowExplainerSection({ locale = 'pt' }: { locale?: L
             </li>
           ))}
         </ul>
+
+        <div className="mt-10" style={reveal(150 + t.workflows.length * 80, 16)}>
+          <Link href={localePath(locale, 'atWork')} className="inline-flex items-center gap-2 font-semibold text-sky-700 hover:text-sky-800">
+            {t.atWorkLink}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </Link>
+        </div>
       </div>
     </section>
   )

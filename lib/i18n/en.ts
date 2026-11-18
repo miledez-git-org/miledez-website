@@ -18,6 +18,7 @@ export const en: Dict = {
 
   header: {
     home: 'Home',
+    atWork: 'At work in your business',
     pricing: 'Pricing',
     contact: 'Contact',
     openMenu: 'Open menu',
@@ -107,24 +108,12 @@ export const en: Dict = {
         },
       ],
     },
-    decision: {
-      summary:
-        'An order arrives from the ERP and goes through an automatic check of customer record, credit and stock. If everything is right, a PDF confirmation goes to the customer and the CRM is updated. If something is off, the manager gets an alert with the items and a suggested action.',
-      trigger: { title: 'New order in the ERP', text: 'Customer, items and amount received' },
-      check: { kicker: 'Automatic check', title: 'Checks customer, credit and stock', text: 'In seconds, for every order' },
-      ok: { label: 'approved', title: 'All good', text: 'Approved without anyone looking' },
-      warn: { label: 'review', title: 'Mismatch found', text: 'Not enough stock for 2 items' },
-      outputs: {
-        pdf: { title: 'PDF confirmation', text: 'Sent to the customer' },
-        crm: { title: 'CRM updated', text: 'Deal stage and value' },
-        alert: { title: 'Alert for the manager', text: 'With the items and a suggested action' },
-      },
-    },
     explainer: {
       titleLead: 'Everyday tasks,',
       titleAccent: 'running on autopilot',
       subtitle:
         'Examples that work in any industry. In your company, the automation follows your process and uses the systems you already have.',
+      atWorkLink: 'See an automation at work, step by step',
       workflows: [
         {
           title: 'Appointment scheduling and reminders',
@@ -311,6 +300,97 @@ export const en: Dict = {
       founder: 'Your message goes to Simon Larsen, founder of mil&dez, in Belo Horizonte.',
       founderAlt: 'Simon Larsen, founder of mil&dez',
       button: 'Request an assessment',
+      note: 'No commitment.',
+    },
+  },
+
+  atWork: {
+    meta: {
+      title: 'At work in your business · mil&dez',
+      description:
+        'An automation at work, step by step: the order arrives, gets checked and moves on by itself. When something breaks the rules, your team gets an alert.',
+    },
+    hero: {
+      title: 'At work in your business',
+      subtitle:
+        'Follow one order from the moment it arrives to the confirmation. The automation handles the routine and calls your team only when something needs a decision.',
+    },
+    decision: {
+      summary:
+        'An order arrives from the ERP and goes through an automatic check of customer record, credit and stock. If everything is right, a PDF confirmation goes to the customer and the CRM is updated. If something is off, the manager gets an alert with the items and a suggested action.',
+      trigger: { title: 'New order in the ERP', text: 'Customer, items and amount received' },
+      check: { kicker: 'Automatic check', title: 'Checks customer, credit and stock', text: 'In seconds, for every order' },
+      ok: { label: 'approved', title: 'All good', text: 'Approved without anyone looking' },
+      warn: { label: 'review', title: 'Mismatch found', text: 'Not enough stock for 2 items' },
+      outputs: {
+        pdf: { title: 'PDF confirmation', text: 'Sent to the customer' },
+        crm: { title: 'CRM updated', text: 'Deal stage and value' },
+        alert: { title: 'Alert for the manager', text: 'With the items and a suggested action' },
+      },
+    },
+    parts: {
+      title: 'What happens at each step',
+      subtitle:
+        'The example is a sales order. Other automations follow the same path, with other systems and other rules.',
+      items: [
+        {
+          label: 'Trigger',
+          title: 'The order arrives',
+          text: 'It all starts with an event: a new order in the ERP, an invoice in the inbox, a form filled in on the website. The automation starts right away, without anyone having to flag it.',
+        },
+        {
+          label: 'Check',
+          title: 'Everything is checked',
+          text: 'Customer record, credit and stock are checked the same way on every order, even on the busiest days.',
+        },
+        {
+          label: 'Rule',
+          title: 'The path is chosen',
+          text: "The rules are your company's, agreed with you before we build. If everything is right, the order moves on. If something is off, it goes to review.",
+        },
+        {
+          label: 'Result',
+          title: 'The work gets done',
+          text: 'On the approved path, the customer gets a PDF confirmation and the CRM is updated with the deal stage and value.',
+        },
+        {
+          label: 'Exception',
+          title: 'The person who decides is alerted',
+          text: 'When something breaks the rules, the manager gets an alert with the items and a suggested action, wherever the team already works, such as WhatsApp or email.',
+        },
+      ],
+    },
+    roles: {
+      title: 'Who decides what',
+      items: [
+        {
+          title: 'You set the rules',
+          text: 'What counts as an approved order, who gets each alert and what goes to the customer. Adjustments to the steps planned in the project are included.',
+        },
+        {
+          title: 'The automation handles the routine',
+          text: 'Whatever follows the rules goes through without anyone looking. When a simple rule does the job, we use the rule. AI comes in where it helps, such as reading messages or sorting orders.',
+        },
+        {
+          title: 'Your team handles the exceptions',
+          text: 'Only what needs a decision reaches people, with the context to resolve it. The team stays in the same systems, with no new tool to learn.',
+        },
+      ],
+    },
+    failure: {
+      title: 'What if the automation breaks?',
+      text: 'We monitor every automation. If something fails, we get an alert, let you know and fix it, usually within the same business day.',
+      items: ['Every automation monitored', 'An alert for us and a heads-up for you', 'Fixes included in the monthly fee'],
+    },
+    systems: {
+      title: 'In the systems you already use',
+      text: "The automation connects what you already use, such as WhatsApp, spreadsheets, email, calendar and your management system. If a system doesn't allow a connection, we tell you on the first call and suggest an alternative.",
+    },
+    cta: {
+      title: 'Want to see this with one of your processes?',
+      text: "Tell us which process takes up the most of your team's time. We reply within 1 hour to schedule the 30-minute call.",
+      button: 'Request an assessment',
+      secondary: 'See pricing',
       note: 'No commitment.',
     },
   },

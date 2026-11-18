@@ -34,6 +34,7 @@ export const pt = {
 
   header: {
     home: 'Início',
+    atWork: 'Funcionando em seu negócio',
     pricing: 'Preços',
     contact: 'Contato',
     openMenu: 'Abrir menu',
@@ -125,24 +126,12 @@ export const pt = {
         },
       ],
     },
-    decision: {
-      summary:
-        'Um pedido chega do ERP e passa por uma verificação automática de cadastro, crédito e estoque. Se está tudo certo, a confirmação em PDF vai para o cliente e o CRM é atualizado. Se há divergência, o gestor recebe um alerta com os itens e a sugestão de ação.',
-      trigger: { title: 'Novo pedido no ERP', text: 'Cliente, itens e valor recebidos' },
-      check: { kicker: 'Verificação automática', title: 'Confere cadastro, crédito e estoque', text: 'Em segundos, para cada pedido' },
-      ok: { label: 'aprovado', title: 'Tudo certo', text: 'Aprovado sem ninguém olhar' },
-      warn: { label: 'revisar', title: 'Divergência encontrada', text: 'Estoque insuficiente para 2 itens' },
-      outputs: {
-        pdf: { title: 'Confirmação em PDF', text: 'Enviada ao cliente' },
-        crm: { title: 'CRM atualizado', text: 'Etapa e valor do negócio' },
-        alert: { title: 'Alerta para o gestor', text: 'Com os itens e a sugestão de ação' },
-      },
-    },
     explainer: {
       titleLead: 'Tarefas do dia a dia,',
       titleAccent: 'rodando no automático',
       subtitle:
         'Exemplos que servem para qualquer setor. Na sua empresa, a automação segue o seu processo e usa os sistemas que você já tem.',
+      atWorkLink: 'Veja uma automação funcionando, passo a passo',
       workflows: [
         {
           title: 'Agendamento e lembretes',
@@ -329,6 +318,97 @@ export const pt = {
       founder: 'Quem responde é Simon Larsen, fundador da mil&dez, em Belo Horizonte.',
       founderAlt: 'Simon Larsen, fundador da mil&dez',
       button: 'Solicitar diagnóstico',
+      note: 'Sem compromisso.',
+    },
+  },
+
+  atWork: {
+    meta: {
+      title: 'Funcionando em seu negócio · mil&dez',
+      description:
+        'Uma automação funcionando, passo a passo: o pedido chega, é conferido e segue sozinho. Quando algo foge da regra, sua equipe recebe um alerta.',
+    },
+    hero: {
+      title: 'Funcionando em seu negócio',
+      subtitle:
+        'Acompanhe um pedido do momento em que ele chega até a confirmação. A automação resolve o que é rotina e chama sua equipe só quando algo precisa de uma decisão.',
+    },
+    decision: {
+      summary:
+        'Um pedido chega do ERP e passa por uma verificação automática de cadastro, crédito e estoque. Se está tudo certo, a confirmação em PDF vai para o cliente e o CRM é atualizado. Se há divergência, o gestor recebe um alerta com os itens e a sugestão de ação.',
+      trigger: { title: 'Novo pedido no ERP', text: 'Cliente, itens e valor recebidos' },
+      check: { kicker: 'Verificação automática', title: 'Confere cadastro, crédito e estoque', text: 'Em segundos, para cada pedido' },
+      ok: { label: 'aprovado', title: 'Tudo certo', text: 'Aprovado sem ninguém olhar' },
+      warn: { label: 'revisar', title: 'Divergência encontrada', text: 'Estoque insuficiente para 2 itens' },
+      outputs: {
+        pdf: { title: 'Confirmação em PDF', text: 'Enviada ao cliente' },
+        crm: { title: 'CRM atualizado', text: 'Etapa e valor do negócio' },
+        alert: { title: 'Alerta para o gestor', text: 'Com os itens e a sugestão de ação' },
+      },
+    },
+    parts: {
+      title: 'O que acontece em cada etapa',
+      subtitle:
+        'O exemplo é um pedido de venda. Outras automações seguem o mesmo caminho, com outros sistemas e outras regras.',
+      items: [
+        {
+          label: 'Gatilho',
+          title: 'O pedido chega',
+          text: 'Tudo começa com um acontecimento: um pedido novo no ERP, uma nota fiscal no e-mail, um formulário preenchido no site. A automação começa na hora, sem ninguém precisar avisar.',
+        },
+        {
+          label: 'Verificação',
+          title: 'Tudo é conferido',
+          text: 'Cadastro do cliente, crédito e estoque são conferidos do mesmo jeito em todo pedido, inclusive nos dias mais corridos.',
+        },
+        {
+          label: 'Regra',
+          title: 'O caminho é decidido',
+          text: 'As regras são as da sua empresa, combinadas com você antes da construção. Com tudo certo, o pedido segue. Com divergência, vai para revisão.',
+        },
+        {
+          label: 'Resultado',
+          title: 'O trabalho é entregue',
+          text: 'No caminho aprovado, o cliente recebe a confirmação em PDF e o CRM é atualizado com a etapa e o valor do negócio.',
+        },
+        {
+          label: 'Exceção',
+          title: 'Quem decide é avisado',
+          text: 'Quando algo foge da regra, o gestor recebe um alerta com os itens e a sugestão de ação, por onde a equipe já trabalha, como WhatsApp ou e-mail.',
+        },
+      ],
+    },
+    roles: {
+      title: 'Quem decide o quê',
+      items: [
+        {
+          title: 'Você define as regras',
+          text: 'O que conta como pedido aprovado, quem recebe cada alerta e o que vai para o cliente. Ajustes nas etapas previstas no projeto estão incluídos.',
+        },
+        {
+          title: 'A automação cuida da rotina',
+          text: 'O que segue a regra passa sem ninguém olhar. Quando uma regra simples resolve, usamos a regra. Inteligência artificial entra onde ajuda, como para ler mensagens ou classificar pedidos.',
+        },
+        {
+          title: 'Sua equipe resolve as exceções',
+          text: 'Só o que pede uma decisão chega até as pessoas, já com o contexto para resolver. A equipe continua nos mesmos sistemas, sem ferramenta nova para aprender.',
+        },
+      ],
+    },
+    failure: {
+      title: 'E se a automação der erro?',
+      text: 'Acompanhamos todas as automações. Se algo falhar, recebemos um alerta, avisamos você e corrigimos, normalmente no mesmo dia útil.',
+      items: ['Acompanhamento de todas as automações', 'Alerta para nós e aviso para você', 'Correção inclusa na mensalidade'],
+    },
+    systems: {
+      title: 'Nos sistemas que você já usa',
+      text: 'A automação conecta o que você já usa, como WhatsApp, planilhas, e-mail, agenda e sistema de gestão. Se algum sistema não permitir conexão, avisamos já na primeira conversa e sugerimos uma alternativa.',
+    },
+    cta: {
+      title: 'Quer ver isso com um processo seu?',
+      text: 'Conte qual processo mais toma tempo da sua equipe. Respondemos em até 1 hora para marcar a conversa de 30 minutos.',
+      button: 'Solicitar diagnóstico',
+      secondary: 'Ver preços',
       note: 'Sem compromisso.',
     },
   },

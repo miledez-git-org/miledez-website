@@ -92,6 +92,7 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
   }, [mobileMenuOpen])
 
   const homeActive = currentRoute === 'home'
+  const atWorkActive = currentRoute === 'atWork'
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all ${scrolled ? 'shadow-[0_1px_0_0_theme(colors.zinc.200)]' : 'shadow-[0_1px_0_0_theme(colors.zinc.100)]'}`}>
@@ -136,6 +137,14 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
           >
             {t.home}
             <span className={`absolute left-0 bottom-0 h-[1.5px] bg-zinc-900 transition-all duration-300 ${homeActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+          </Link>
+
+          <Link
+            href={localePath(locale, 'atWork')}
+            className={`relative group py-2 transition-colors ${atWorkActive ? 'text-zinc-900 font-medium' : 'text-zinc-500 hover:text-zinc-900'}`}
+          >
+            {t.atWork}
+            <span className={`absolute left-0 bottom-0 h-[1.5px] bg-zinc-900 transition-all duration-300 ${atWorkActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
           </Link>
 
           <Link
@@ -184,6 +193,14 @@ export default function Header({ onContactClick, locale = 'pt' }: HeaderProps) {
               role="menuitem"
             >
               {t.home}
+            </Link>
+            <Link
+              href={localePath(locale, 'atWork')}
+              className={`py-3 min-h-[44px] flex items-center transition-colors ${atWorkActive ? 'text-zinc-900 font-medium' : 'text-zinc-500 hover:text-zinc-900'}`}
+              onClick={() => setMobileMenuOpen(false)}
+              role="menuitem"
+            >
+              {t.atWork}
             </Link>
             <Link
               href={localePath(locale, 'home', 'precos')}

@@ -74,6 +74,33 @@
       ]
     },
     {
+      "source": "/funcionando",
+      "destination": "/en/at-work",
+      "permanent": false,
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country"
+        }
+      ],
+      "missing": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "BR"
+        },
+        {
+          "type": "cookie",
+          "key": "lang"
+        },
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*([Bb]ot|[Cc]rawl|[Ss]pider|[Ss]lurp|facebookexternalhit|WhatsApp|Lighthouse).*"
+        }
+      ]
+    },
+    {
       "source": "/termos",
       "destination": "/en/terms",
       "permanent": false,
@@ -130,6 +157,29 @@
     {
       "source": "/en",
       "destination": "/",
+      "permanent": false,
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "BR"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "lang"
+        },
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*([Bb]ot|[Cc]rawl|[Ss]pider|[Ss]lurp|facebookexternalhit|WhatsApp|Lighthouse).*"
+        }
+      ]
+    },
+    {
+      "source": "/en/at-work",
+      "destination": "/funcionando",
       "permanent": false,
       "has": [
         {

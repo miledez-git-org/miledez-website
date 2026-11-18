@@ -20,12 +20,14 @@ export const SITE_URL = 'https://miledez.com.br'
 
 export type RouteKey =
   | 'home'
+  | 'atWork'
   | 'terms'
   | 'privacy'
 
 /** One entry per page: the Portuguese path and its English counterpart. */
 export const routes: Record<RouteKey, Record<Locale, string>> = {
   home: { pt: '/', en: '/en' },
+  atWork: { pt: '/funcionando', en: '/en/at-work' },
   terms: { pt: '/termos', en: '/en/terms' },
   privacy: { pt: '/politica-privacidade', en: '/en/privacy-policy' },
 }
